@@ -13,7 +13,7 @@
 
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
-#include "ResponseCodes.h"
+#include "ResponseCodes.hpp"
 
 const std::string DEFAULT_KEY = "__DEFAULT";
 
@@ -50,7 +50,7 @@ Response AuthenticatingProxy::Get(const std::string& host,
     
     if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
         header_t response_headers = response.GetResponseHeaders();
-        _credentials.Authenticate(path, response_headers, request_headers);
+        _credentials.Authenticate("GET", path, response_headers, request_headers);
         Get(host, path, request_headers, body);
     }
     

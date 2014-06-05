@@ -90,9 +90,12 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 
 # ML C++ own libraries
-add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp)
+add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp Credentials.cpp Request.cpp
+    Response.cpp AuthenticatingProxy.cpp)
 
 # ML C++ dependencies
+
+include_directories (BEFORE /usr/include/libxml2)
 
 # Casablanca
 # Assume source in same directory as MLCPlusPlus
@@ -102,7 +105,7 @@ include_directories (AFTER
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
   )
 
-target_link_libraries (MLCPlusPlus ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib)
+target_link_libraries (MLCPlusPlus libcasablanca.dylib libboost_regex.dylib)
 
 # INSTALLATION
 install (TARGETS MLCPlusPlus DESTINATION lib)

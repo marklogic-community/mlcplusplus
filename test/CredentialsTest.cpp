@@ -7,7 +7,7 @@
 //
 
 #include <string>
-#include "TestCredentials.hpp"
+#include "CredentialsTest.hpp"
 #include "Credentials.hpp"
 #include <boost/regex.hpp>
 
