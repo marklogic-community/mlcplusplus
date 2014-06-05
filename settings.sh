@@ -3,6 +3,9 @@
 BINDIR=$PWD/bin
 SRCDIR=$PWD/src
 DISTDIR=$PWD/dist
+TESTDIR=$PWD/test
+
 echo "BINDIR:  $BINDIR"
 echo "SRCDIR:  $SRCDIR"
 echo "DISTDIR: $DISTDIR"
+echo "TESTDIR: $TESTDIR"
