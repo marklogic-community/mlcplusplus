@@ -51,7 +51,7 @@ Response AuthenticatingProxy::Get(const std::string& host,
     if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
         header_t response_headers = response.GetResponseHeaders();
         _credentials.Authenticate("GET", path, response_headers, request_headers);
-        Get(host, path, request_headers, body);
+        return Get(host, path, request_headers, body);
     }
     
     return response;
