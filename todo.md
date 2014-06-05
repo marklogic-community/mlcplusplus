@@ -7,29 +7,30 @@ Before initial checkin of 0.1 (June 2014):-
 - DONE Test XCode
 - TEST KDevelop IDE project files and builds
 - TEST Add Eclipse Support
-- Add visual studio support (CMake plugin?)
+- TEST Add visual studio support (Available on Windows CMake only)
 - IN PROGRESS Update clean for build files on each platform
  - DONE Unix, mac
- - IP KDevelop
- - Eclipse
+ - IN PROGRESS KDevelop
+ - IN PROGRESS Eclipse
  - VS
 - IN PROGRESS Update .gitignore for build files on each platform
  - DONE Unix, Mac
- - IP KDevelop
- - Eclipse
+ - IN PROGRESS KDevelop
+ - IN PROGRESS Eclipse
  - VS
-- Use bin directory for binaries (unless platform has own build folder)
- - intermediate files (generated h files)
- - Makefile distribution built code (dylib, so targets)
+- DONE Use bin directory for binaries (unless platform has own build folder)
+ - DONE intermediate files (generated h files)
+ - DONE Makefile distribution built code (dylib, so targets)
 - DONE Update README file for quick start
 - DONE Add next step echo line for each gen file. E.g. 'execute <open MLCPlusPlus.xcodeproj> now'
-- Add Casablanca dependency
- - Include files in distribution (Or auto via NuGet?)
- - Check include file CXX macro and CheckLibraryExists
- - Use find_library for Casablanca library
- - add_include for libs/* folders' header files
- - Install Casablanca if not present when installing MLCPlusPlus
- - Add link libraries command
+- DONE Add Casablanca dependency
+ - NA (Need to download and build separately on different platforms) - Include files in distribution (Or auto via NuGet?)
+ - NA Check include file CXX macro and CheckLibraryExists
+ - NA Use find_library for Casablanca library (libcasablanca)
+ - DONE add_include for libs/* folders' header files
+ - NA must be present for build to work - Install Casablanca if not present when installing MLCPlusPlus
+ - DONE Add link libraries command
+ - DONE Add include in MLCPlusPlus.h and cpp and recheck build works
 
 0.2 release (June 2014):-
 - Abstraction for authentication
@@ -45,7 +46,7 @@ Before initial checkin of 0.1 (June 2014):-
 - Abstract out calls to REST functions
  - Basic abstraction (see __doreq_node in MLJS)
  - Handle request/response special cases (see __doreq_node in MLJS.js and xhr2.js in MLJS)
-- Create generation Response object (See MLJS for example)
+- Create generic Response object (See MLJS for example)
 - Decide on JSON (in Casablanca) or XML (may require libXml2) as default for all REST requests
 - Create document – PUT /v1/documents
 - Patch document (append – stream data, and alter – document envelope metadata) – PATCH /v1/documents

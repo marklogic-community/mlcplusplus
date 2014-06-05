@@ -2,6 +2,8 @@
 #ifndef __MLCPlusPlus__
 #define __MLCPlusPlus__
 
+#include "cpprest/http_client.h"
+
 #include <string>
 
 class Connection {

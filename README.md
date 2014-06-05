@@ -4,6 +4,14 @@ This repository contains a C++ cross platform wrapper for the MarkLogic Server R
 
 You can build from source then use in your projects.
 
+### Get Casablanca
+
+Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level as the 'casablanca' git directory.
+
+These instructions are listed here: https://casablanca.codeplex.com/documentation
+
+Once built, continue below.
+
 ### Building the MLCPlusPlus library from source
 
 Ensure first that all build scripts are executable:-

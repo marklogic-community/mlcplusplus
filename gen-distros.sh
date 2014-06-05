@@ -1,4 +1,6 @@
 #!/bin/sh
+. settings.sh
+
 echo "Building binary distro"
 cpack -C CPackConfig.cmake
 echo "Building source distro"

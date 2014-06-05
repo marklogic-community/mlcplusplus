@@ -16,3 +16,5 @@ MLCPlusPlus.kdevses
 MLCPlusPlus.build
 libMLCPlusPlus.dylib
 .DS_Store
+.cproject
+.project
