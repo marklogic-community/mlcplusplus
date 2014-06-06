@@ -1,4 +1,5 @@
-cmake_minimum_required (VERSION 2.6)
+# 2.8.2 and above can handle openssl letter versions (E.g. 1.0.1h), which is required to get fixed version of openssl
+cmake_minimum_required (VERSION 2.8.2)
 project (MLCPlusPlus)
 
 # See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
@@ -104,7 +105,14 @@ include_directories (AFTER
   )
 
 # Open SSL
-find_package (OpenSSL REQUIRED)
+set (OpenSSL_DIR "/usr/local/opt/openssl")
+# TODO Use 1.0.1h explicitly to prevent MITM and other zero day attacks
+find_package (OpenSSL REQUIRED
+#  PATHS /usr/local/opt/openssl
+  )
+# NB That OpenSSL on the mac is very very old. Here is the 1.0.1h openssl info:-
+#     LDFLAGS:  -L/usr/local/opt/openssl/lib
+#     CPPFLAGS: -I/usr/local/opt/openssl/include
 
 # Boost (Includes system, thread, locale, regex and filesystem components by default)
 find_package (Boost REQUIRED )
@@ -120,6 +128,21 @@ target_link_libraries (MLCPlusPlus
   ${OPENSSL_LIBRARIES}
   ${Boost_LIBRARIES}
   )
+
+
+# API documentation
+# add a target to generate API documentation with Doxygen, and have it always run
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+  add_custom_target(doc ALL
+    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Generating API documentation with Doxygen" VERBATIM
+  )
+endif(DOXYGEN_FOUND)
+
+
 
 # INSTALLATION
 install (TARGETS MLCPlusPlus DESTINATION lib)
