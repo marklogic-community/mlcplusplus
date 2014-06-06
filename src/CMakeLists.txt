@@ -77,7 +77,7 @@ endif()
 
 
 
-
+# Have CMake do a search and replace on the version numbers in our config.h file
 configure_file (
   "${PROJECT_SOURCE_DIR}/MLCPlusPlusConfig.h.in"
   "${PROJECT_BINARY_DIR}/MLCPlusPlusConfig.h"
@@ -92,17 +92,34 @@ include_directories("${PROJECT_BINARY_DIR}")
 # ML C++ own libraries
 add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp)
 
+
+
 # ML C++ dependencies
 
-# Casablanca
+# Casablanca header files
 # Assume source in same directory as MLCPlusPlus
-
 include_directories (AFTER
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
   )
 
-target_link_libraries (MLCPlusPlus ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib)
+# Open SSL
+find_package (OpenSSL REQUIRED)
+
+# Boost (Includes system, thread, locale, regex and filesystem components by default)
+find_package (Boost REQUIRED )
+
+include_directories (AFTER
+  ${OPENSSL_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIRS}
+  )
+
+# Now link our library to its dependencies
+target_link_libraries (MLCPlusPlus
+  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
+  ${OPENSSL_LIBRARIES}
+  ${Boost_LIBRARIES}
+  )
 
 # INSTALLATION
 install (TARGETS MLCPlusPlus DESTINATION lib)
