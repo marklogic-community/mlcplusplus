@@ -7,6 +7,7 @@
 //
 
 #include <string>
+#include <iostream>
 #include "NoCredentialsException.hpp"
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
@@ -33,28 +34,41 @@ Response AuthenticatingProxy::Get(const std::string& host,
                                   const header_t& headers,
                                   const params_t& body)
 {
-    Response response;
-    header_t request_headers = headers;
+  Response response;
+  header_t request_headers = headers;
+  
+  std::cerr << "checking if we need to authenticate" << std::endl;
+  if (_credentials.Authenticating()) {
+    _credentials.SetCredentials(path, request_headers);
+  }
+  
+  std::cerr << "Creating client for host: " << host << std::endl;
+  http::client::http_client raw_client(U(host));
+  std::cerr << "Invoking request" << std::endl;
+  std::cerr << "Attempting request for " << path << std::endl;
+
+  try { 
+    raw_client.request(http::methods::GET, U(path)).then([&response](http::http_response raw_response) {
+      std::cerr << "Handling response" << std::endl;
+      response.SetResponseCode((ResponseCodes)raw_response.status_code());
+      std::cerr << "Response code: " << int((ResponseCodes)raw_response.status_code()) << std::endl;
+      response.SetResponseHeaders(raw_response.headers());
+    }).wait();
+  } catch(std::exception e) {
+    std::cerr << e.what() << std::endl;
+  }
+
+  std::cerr << "The response code " << int(response.GetResponseCode()) << std::endl;
+  std::cerr << "Checking Response code to see if we need to authenticate" << std::endl;
+  if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
+    header_t response_headers = response.GetResponseHeaders();
+    std::cerr << "Authenticating" << std::endl;
+    _credentials.Authenticate("GET", path, response_headers, request_headers);
+    std::cerr << "Restarting the request" << std::endl;
+    return Get(host, path, request_headers, body);
+  }
     
-    if (_credentials.Authenticating()) {
-        _credentials.SetCredentials(path, request_headers);
-    }
-    
-    http::client::http_client raw_client(U(host));
-    raw_client.request(http::methods::GET, U(path))
-        .then([&response](http::http_response raw_response)
-            {
-                response.SetResponseCode((ResponseCodes)raw_response.status_code());
-                response.SetResponseHeaders(raw_response.headers());
-            }).wait();
-    
-    if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
-        header_t response_headers = response.GetResponseHeaders();
-        _credentials.Authenticate("GET", path, response_headers, request_headers);
-        return Get(host, path, request_headers, body);
-    }
-    
-    return response;
+  return response;
 }
 
 Response AuthenticatingProxy::Get(const std::string& host, const std::string& path, const header_t& headers) {

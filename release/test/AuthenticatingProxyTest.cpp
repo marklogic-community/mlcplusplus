@@ -9,13 +9,23 @@
 #include "AuthenticatingProxyTest.hpp"
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
+#include "Response.hpp"
+#include "ResponseCodes.hpp"
+#include "Types.hpp"
 #include "NoCredentialsException.hpp"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(AuthenticatingProxyTest);
 
 void AuthenticatingProxyTest::TestGet(void) {
-    
-    CPPUNIT_FAIL("Not Implemented");
+  Credentials c("admin", "x8kia30");
+  AuthenticatingProxy ap;
+
+  ap.AddCredentials(c);
+
+  Response response = ap.Get("http://192.168.57.148:8003", "/document/test.json");
+
+  CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
+  
 }
 
 void AuthenticatingProxyTest::TestAddCredentials(void) {

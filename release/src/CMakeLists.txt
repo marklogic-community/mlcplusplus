@@ -1,18 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
-project (MLCPlusPlus)
-
-# See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
-
-# EDITABLE SETTINGS BEGIN
-
-set (MLCPlusPlus_VERSION_MAJOR 0)
-set (MLCPlusPlus_VERSION_MINOR 1)
-
-# EDITABLE SETTINGS END
-
-
-
-
+cmake_minimum_required (VERSION 2.8)
 
 
 # SYSTEM DETECTION
@@ -95,7 +81,7 @@ add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp Credentials.cpp Request.cpp
 
 # ML C++ dependencies
 
-include_directories (BEFORE /usr/include/libxml2)
+include_directories (BEFORE ../include /usr/include/libxml2)
 
 # Casablanca
 # Assume source in same directory as MLCPlusPlus

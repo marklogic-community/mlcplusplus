@@ -12,15 +12,15 @@
 using namespace web::http;
 
 void Response::SetResponseCode(const ResponseCodes& code) {
-    
+  _response_code = code;    
 }
 
 void Response::SetResponseType(const enum ResponseType& type) {
-    
+  _response_type = type;    
 }
 
 void Response::SetResponseHeaders(const header_t& headers) {
-    
+  _headers = headers;   
 }
 
 void Response::SetResponseHeaders(const web::http::http_headers& headers) {
