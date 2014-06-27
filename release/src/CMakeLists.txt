@@ -60,10 +60,6 @@ else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
 
-
-
-
-
 configure_file (
   "${PROJECT_SOURCE_DIR}/MLCPlusPlusConfig.h.in"
   "${PROJECT_BINARY_DIR}/MLCPlusPlusConfig.h"
@@ -76,8 +72,14 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 
 # ML C++ own libraries
-add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp Credentials.cpp Request.cpp
-    Response.cpp AuthenticatingProxy.cpp)
+add_library (MLCPlusPlus SHARED 
+    MLCPlusPlus.cpp 
+    Credentials.cpp 
+    Request.cpp
+    Response.cpp 
+    AuthenticatingProxy.cpp
+    AuthorizationBuilder.cpp
+)
 
 # ML C++ dependencies
 
@@ -91,7 +93,12 @@ include_directories (AFTER
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
   )
 
-target_link_libraries (MLCPlusPlus libcasablanca.dylib libboost_regex.dylib)
+target_link_libraries (MLCPlusPlus 
+    libcasablanca.dylib 
+    libboost_regex.dylib 
+    libssl.dylib
+    libcrypto.dylib
+)
 
 # INSTALLATION
 install (TARGETS MLCPlusPlus DESTINATION lib)

@@ -82,7 +82,21 @@ void Credentials::Authenticate(std::string method, std::string uri, header_t& re
     
     ParseWWWAthenticateHeader(response_headers[WWW_AUTHENTICATE_HEADER]);
     
+    std::ostringstream temp;
+    std::string username(_user.begin(), _user.end());
+    std::string password(_pass.begin(), _pass.end());
+    
+    temp << username << ":" << _realm << ":" << password;
+    
+    MD5_CTX md5_context;
+    unsigned char username_realm_password_hash[16];
+    
+    MD5_Init(&md5_context);
+    MD5_Update(&md5_context, temp.str().c_str(), temp.str().size());
+    MD5_Final(username_realm_password_hash, &md5_context);
+    
     oss << "Digest";
+    oss << " username\"" << username << "\"";
     oss << " realm=\"" << _realm << "\"";
     oss << " nonce=\"" << _nonce << "\"";
     oss << " uri=\"" << uri << "\"";

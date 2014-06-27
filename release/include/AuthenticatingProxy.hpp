@@ -11,6 +11,7 @@
 
 #include <map>
 #include <functional>
+#include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include "Response.hpp"
@@ -20,8 +21,10 @@
 
 class AuthenticatingProxy {
     Credentials _credentials;
+    uint32_t _attempts;
         
 public:
+    AuthenticatingProxy();
     void AddCredentials(const Credentials& c);
     Credentials GetCredentials(void) const;
     

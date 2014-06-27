@@ -21,7 +21,14 @@ const std::string DEFAULT_KEY = "__DEFAULT";
 using namespace web;
 using namespace utility;
 
-void AuthenticatingProxy::AddCredentials(const Credentials &c) {
+AuthenticatingProxy::AuthenticatingProxy() : _attempts(0)
+{
+
+}
+
+
+void AuthenticatingProxy::AddCredentials(const Credentials &c) 
+{
     _credentials = c;
 }
 
@@ -37,34 +44,29 @@ Response AuthenticatingProxy::Get(const std::string& host,
   Response response;
   header_t request_headers = headers;
   
-  std::cerr << "checking if we need to authenticate" << std::endl;
   if (_credentials.Authenticating()) {
     _credentials.SetCredentials(path, request_headers);
   }
   
-  std::cerr << "Creating client for host: " << host << std::endl;
   http::client::http_client raw_client(U(host));
-  std::cerr << "Invoking request" << std::endl;
-  std::cerr << "Attempting request for " << path << std::endl;
 
   try { 
     raw_client.request(http::methods::GET, U(path)).then([&response](http::http_response raw_response) {
-      std::cerr << "Handling response" << std::endl;
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
-      std::cerr << "Response code: " << int((ResponseCodes)raw_response.status_code()) << std::endl;
       response.SetResponseHeaders(raw_response.headers());
     }).wait();
   } catch(std::exception e) {
     std::cerr << e.what() << std::endl;
   }
 
-  std::cerr << "The response code " << int(response.GetResponseCode()) << std::endl;
-  std::cerr << "Checking Response code to see if we need to authenticate" << std::endl;
   if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
+    _attempts++;
+    if (_attempts > 1) {
+      std::cerr << "Unauthorized response on the second login attempt" << std::endl;
+      throw std::logic_error("Authenticating multiple times");
+    }
     header_t response_headers = response.GetResponseHeaders();
-    std::cerr << "Authenticating" << std::endl;
     _credentials.Authenticate("GET", path, response_headers, request_headers);
-    std::cerr << "Restarting the request" << std::endl;
     return Get(host, path, request_headers, body);
   }
     

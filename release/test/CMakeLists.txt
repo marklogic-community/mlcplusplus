@@ -12,9 +12,9 @@ elseif(UNIX) # This includes OSX
   find_package(Threads REQUIRED)
   find_package(OpenSSL REQUIRED)
 
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
+  #option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
 elseif(WIN32)
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
+  #option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
 
   add_definitions(-DUNICODE)
 
@@ -59,6 +59,10 @@ endif()
 
 include_directories(../include /usr/include/libxml2)
 
-add_executable(mlcpptest main.cpp AuthenticatingProxyTest.cpp CredentialsTest.cpp)
+add_executable(mlcpptest 
+    main.cpp 
+    AuthenticatingProxyTest.cpp 
+    CredentialsTest.cpp 
+    AuthorizationBuilderTest.cpp)
 link_directories(/usr/lib /usr/local/lib release)
 target_link_libraries(mlcpptest MLCPlusPlus cppunit)
