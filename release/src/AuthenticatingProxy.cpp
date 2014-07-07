@@ -61,7 +61,7 @@ Response AuthenticatingProxy::Get(const std::string& host,
 
   if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
     _attempts++;
-    if (_attempts > 1) {
+    if (_attempts > 2) {
       std::cerr << "Unauthorized response on the second login attempt" << std::endl;
       throw std::logic_error("Authenticating multiple times");
     }
@@ -73,7 +73,8 @@ Response AuthenticatingProxy::Get(const std::string& host,
   return response;
 }
 
-Response AuthenticatingProxy::Get(const std::string& host, const std::string& path, const header_t& headers) {
+Response AuthenticatingProxy::Get(const std::string& host, const std::string& path, 
+    const header_t& headers) {
     params_t blank_parameters;
     return Get(host, path, headers, blank_parameters);
 }
@@ -119,7 +120,8 @@ Response AuthenticatingProxy::Post(const std::string& host,
     return response;
 }
 
-Response AuthenticatingProxy::Post(const std::string& host, const std::string& path, const header_t& headers)
+Response AuthenticatingProxy::Post(const std::string& host, const std::string& path, 
+    const header_t& headers)
 {
     params_t blank_params;
     return Post(host, path, headers, blank_params);
@@ -166,7 +168,8 @@ Response AuthenticatingProxy::Put(const std::string& host,
     return response;
 }
 
-Response AuthenticatingProxy::Put(const std::string& host, const std::string& path, const header_t& headers) {
+Response AuthenticatingProxy::Put(const std::string& host, const std::string& path, 
+    const header_t& headers) {
     params_t blank_params;
     return Put(host, path, headers, blank_params);
 }
@@ -212,7 +215,8 @@ Response AuthenticatingProxy::Delete(const std::string& host,
     return response;
 }
 
-Response AuthenticatingProxy::Delete(const std::string& host, const std::string& path, const header_t& headers) {
+Response AuthenticatingProxy::Delete(const std::string& host, const std::string& path, 
+    const header_t& headers) {
     params_t blank_params;
     return Delete(host, path, headers, blank_params);
 }

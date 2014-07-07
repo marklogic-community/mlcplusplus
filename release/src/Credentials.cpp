@@ -23,20 +23,31 @@ const boost::regex opaque_re("opaque=\"([a-z0-9]+)\"");
 const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
 const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
 
-Credentials::Credentials() {
+Credentials::Credentials() : _nonce_count(0) {
     _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::string& user, const std::string& pass) :
-    _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end())
+    _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end()),
+    _nonce_count(0)
 {
     _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::wstring& user, const std::wstring& pass) :
-    _user(user), _pass(pass)
+    _user(user), _pass(pass), _nonce_count(0)
 {
     _cnonce = RandomCnonce();
+}
+
+Credentials::Credentials(const std::string& username, const std::string& password,
+        const std::string& cnonce, const uint32_t& nc) : 
+        _user(username.begin(), username.end()), 
+        _pass(password.begin(), password.end()), 
+        _cnonce(cnonce), 
+        _nonce_count(nc)
+{
+  
 }
 
 std::string Credentials::RandomCnonce() const 
@@ -83,7 +94,11 @@ void Credentials::ParseWWWAthenticateHeader(const std::string& raw) {
     }
 }
 
-void Credentials::Authenticate(std::string method, std::string uri, http::http_headers& raw_headers, std::map<std::string, std::string>& headers) {
+void Credentials::Authenticate(std::string method, 
+    std::string uri, 
+    http::http_headers& raw_headers, 
+    std::map<std::string, std::string>& headers) 
+{
     header_t input_headers;
     for(auto& iter : raw_headers) {
         input_headers[iter.first] = iter.second;
@@ -102,10 +117,13 @@ void Credentials::Authenticate(std::string method, std::string uri, http::http_h
  * nc=00000001, 
  * cnonce="72315add23f0224a"
  */
-void Credentials::Authenticate(std::string method, std::string uri, header_t& response_headers, header_t& headers) {
+void Credentials::Authenticate(std::string method, std::string uri, 
+    header_t& response_headers, header_t& headers) 
+{
     std::ostringstream oss;
     AuthorizationBuilder builder;
     ParseWWWAthenticateHeader(response_headers[WWW_AUTHENTICATE_HEADER]);
+    _nonce_count++;
     
     std::ostringstream temp;
     std::string username(_user.begin(), _user.end());
@@ -114,23 +132,25 @@ void Credentials::Authenticate(std::string method, std::string uri, header_t& re
     std::string a1 = builder.UsernameRealmAndPassword(username, _realm, password);
     std::string a2 = builder.MethodAndURL(method, uri);
     
-    oss << std::setfill('0') << std::setw(10) << _nonce_count;
+    oss << std::setfill('0') << std::setw(8) << _nonce_count;
+    std::string nc = oss.str();
+    
     std::string response = builder.Response(a1, _nonce, oss.str(), _cnonce, 
         _qop, a2);
     
     oss.str("");
     oss << "Digest";
-    oss << " username\"" << username << "\"";
+    oss << " username=\"" << username << "\"";
     oss << " realm=\"" << _realm << "\"";
     oss << " nonce=\"" << _nonce << "\"";
     oss << " uri=\"" << uri << "\"";
     oss << " response=\"" << response << "\"";
     oss << " opaque=\"" << _opaque << "\"";
-    oss << " qop=\"" << _qop << "\"";
-    oss << " nc=\"" << oss.str() << "\"";
+    oss << " qop=" << _qop;
+    oss << " nc=" << nc;
     oss << " cnonce=\"" << _cnonce << "\"";
             
-    headers[AUTHORIZATION_HEADER_NAME] = oss.str();
+    headers[AUTHORIZATION_HEADER_NAME] = oss.str();    
 }
 
 void Credentials::SetCredentials(std::string uri, header_t& headers) {

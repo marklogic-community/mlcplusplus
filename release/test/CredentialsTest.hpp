@@ -17,12 +17,14 @@ class TestCredentials : public CppUnit::TestCase {
     CPPUNIT_TEST_SUITE(TestCredentials);
     CPPUNIT_TEST(TestConstructor);
     CPPUNIT_TEST(TestParseWWWAuthenticateHeader);
-    CPPUNIT_TEST(TestAuthenicate);
+    CPPUNIT_TEST(TestAuthenticate);
+    CPPUNIT_TEST(TestAuthenticate2);
     CPPUNIT_TEST_SUITE_END();
 public:
     void TestConstructor(void);
     void TestParseWWWAuthenticateHeader();
-    void TestAuthenicate();
+    void TestAuthenticate();
+    void TestAuthenticate2();
 };
 
 #endif /* defined(__Scratch__TestCredentials__) */
