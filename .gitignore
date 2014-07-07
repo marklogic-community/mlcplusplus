@@ -19,3 +19,4 @@ libMLCPlusPlus.dylib
 .cproject
 .project
 nbproject
+test/mlcpptest

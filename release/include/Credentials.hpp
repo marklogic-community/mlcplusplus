@@ -27,6 +27,7 @@ class Credentials {
     std::string _opaque;
     std::string _realm;
     std::string _uri;
+    std::string _cnonce;
     uint32_t _nonce_count;
     
 protected:
@@ -34,6 +35,7 @@ protected:
     void Authenticate(std::string method, std::string uri, header_t& response_headers, header_t& headers);
     
     void SetCredentials(std::string uri, header_t& headers);
+    std::string RandomCnonce(void) const;
 public:
     Credentials();
     Credentials(const std::string& username, const std::string& password);

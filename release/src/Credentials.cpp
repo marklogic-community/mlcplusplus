@@ -8,8 +8,13 @@
 
 #include "Credentials.hpp"
 #include <sstream>
+#include <iomanip>
 #include <boost/regex.hpp>
-#include <openssl/md5.h>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include "MLCrypto.hpp"
+#include "AuthorizationBuilder.hpp"
 
 const boost::regex realm_re("[R|r]ealm=\"(\\w+)\"");
 const boost::regex qop_re("qop=\"(\\w+)\"");
@@ -19,20 +24,29 @@ const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
 const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
 
 Credentials::Credentials() {
-    
+    _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::string& user, const std::string& pass) :
     _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end())
 {
-    
+    _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::wstring& user, const std::wstring& pass) :
     _user(user), _pass(pass)
 {
-    
+    _cnonce = RandomCnonce();
 }
+
+std::string Credentials::RandomCnonce() const 
+{
+  MLCrypto crypto;
+  boost::uuids::uuid random_uuid = boost::uuids::random_generator()();
+  std::string my_random_uuid = boost::uuids::to_string(random_uuid);
+  return crypto.Md5(my_random_uuid);
+}
+
 
 Credentials::~Credentials() {
     
@@ -77,36 +91,45 @@ void Credentials::Authenticate(std::string method, std::string uri, http::http_h
     Authenticate(method, uri, input_headers, headers);
 }
 
+/*
+ * Digest username="admin", 
+ * realm="public", 
+ * nonce="9ca86b1d41652cdc4c2d14d2043d2c25", 
+ * uri="/", 
+ * response="7af18aeaf1b3e96ade1fcde51aad422e", 
+ * opaque="c8fb41173a096fd0", 
+ * qop=auth, 
+ * nc=00000001, 
+ * cnonce="72315add23f0224a"
+ */
 void Credentials::Authenticate(std::string method, std::string uri, header_t& response_headers, header_t& headers) {
     std::ostringstream oss;
-    
+    AuthorizationBuilder builder;
     ParseWWWAthenticateHeader(response_headers[WWW_AUTHENTICATE_HEADER]);
     
     std::ostringstream temp;
     std::string username(_user.begin(), _user.end());
     std::string password(_pass.begin(), _pass.end());
     
-    temp << username << ":" << _realm << ":" << password;
+    std::string a1 = builder.UsernameRealmAndPassword(username, _realm, password);
+    std::string a2 = builder.MethodAndURL(method, uri);
     
-    MD5_CTX md5_context;
-    unsigned char username_realm_password_hash[16];
+    oss << std::setfill('0') << std::setw(10) << _nonce_count;
+    std::string response = builder.Response(a1, _nonce, oss.str(), _cnonce, 
+        _qop, a2);
     
-    MD5_Init(&md5_context);
-    MD5_Update(&md5_context, temp.str().c_str(), temp.str().size());
-    MD5_Final(username_realm_password_hash, &md5_context);
-    
+    oss.str("");
     oss << "Digest";
     oss << " username\"" << username << "\"";
     oss << " realm=\"" << _realm << "\"";
     oss << " nonce=\"" << _nonce << "\"";
     oss << " uri=\"" << uri << "\"";
-    oss << " qop=\"" << _qop << "\"";
+    oss << " response=\"" << response << "\"";
     oss << " opaque=\"" << _opaque << "\"";
-    
-    std::string _ha1;
-    
-    oss << "response=\"" << "abc" << "\"";
-    
+    oss << " qop=\"" << _qop << "\"";
+    oss << " nc=\"" << oss.str() << "\"";
+    oss << " cnonce=\"" << _cnonce << "\"";
+            
     headers[AUTHORIZATION_HEADER_NAME] = oss.str();
 }
 

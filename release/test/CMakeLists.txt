@@ -63,6 +63,8 @@ add_executable(mlcpptest
     main.cpp 
     AuthenticatingProxyTest.cpp 
     CredentialsTest.cpp 
-    AuthorizationBuilderTest.cpp)
+    AuthorizationBuilderTest.cpp
+    MLCryptoTest.cpp
+)
 link_directories(/usr/lib /usr/local/lib release)
 target_link_libraries(mlcpptest MLCPlusPlus cppunit)
