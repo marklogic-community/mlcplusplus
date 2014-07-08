@@ -28,6 +28,21 @@ void AuthenticatingProxyTest::TestGet(void) {
   
 }
 
+void AuthenticatingProxyTest::TestGet2Tap(void) {
+  Credentials c("admin", "x8kia30");
+  AuthenticatingProxy ap;
+
+  ap.AddCredentials(c);
+
+  Response response = ap.Get("http://192.168.57.148:8003", "/v1/documents?uri=/document/test.json");
+
+  CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
+  
+  response = ap.Get("http://192.168.57.148:8003", "/v1/documents?uri=/document/test.json");
+
+  CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
+}
+
 void AuthenticatingProxyTest::TestAddCredentials(void) {
     AuthenticatingProxy ap;
     Credentials c("joe", "pass");

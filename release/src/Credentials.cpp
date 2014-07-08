@@ -96,9 +96,14 @@ void Credentials::ParseWWWAthenticateHeader(const std::string& raw) {
 }
 
 std::string Credentials::Authenticate(const std::string& method, const std::string& uri, const std::string& auth_header) {
+  ParseWWWAthenticateHeader(auth_header);
+
+  return Authenticate(method, uri);
+}
+
+std::string Credentials::Authenticate(const std::string& method, const std::string& uri) {
   std::ostringstream oss;
   AuthorizationBuilder builder;
-  ParseWWWAthenticateHeader(auth_header);
   _nonce_count++;
 
   std::ostringstream temp;

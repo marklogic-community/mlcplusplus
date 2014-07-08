@@ -50,6 +50,18 @@ protected:
     ///
     std::string Authenticate(const std::string& method, const std::string& uri,
             const std::string& auth_header);
+    
+    ///
+    /// Generate the authentication header contents.  This is what goes into 
+    /// the Authorize header.  Requires that the credentials are set up to
+    /// perform authentication and have a qop and nonce.
+    ///
+    /// \param method The HTTP method used.
+    /// \param uri The path portion of the URI
+    /// \return The contents of the Authorization header
+    ///
+    std::string Authenticate(const std::string& method, const std::string& uri);
+    
 
     ///
     /// Generate a random client nonce.

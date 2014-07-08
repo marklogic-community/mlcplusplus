@@ -53,6 +53,10 @@ Response AuthenticatingProxy::Get(const std::string& host,
     http::http_request req(http::methods::GET);
     req.set_request_uri(path);
     
+    if (_credentials.Authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("GET", path));
+    }
+    
     raw_client.request(req).then([&response](http::http_response raw_response) {
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
       response.SetResponseHeaders(raw_response.headers());
