@@ -80,6 +80,7 @@ add_library (MLCPlusPlus SHARED
     AuthenticatingProxy.cpp
     AuthorizationBuilder.cpp
     MLCrypto.cpp
+    ResponseCodes.cpp
 )
 
 # ML C++ dependencies

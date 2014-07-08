@@ -50,7 +50,6 @@ Response AuthenticatingProxy::Get(const std::string& host,
   http::client::http_client raw_client(U(host));
 
   try {
-    
     http::http_request req(http::methods::GET);
     req.set_request_uri(path);
     
@@ -73,12 +72,15 @@ Response AuthenticatingProxy::Get(const std::string& host,
     try {
       http::http_request req(http::methods::GET);
       req.set_request_uri(path);
+      
       req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("GET", path, 
           response.GetResponseHeaders()[WWW_AUTHENTICATE_HEADER]));
+      
       raw_client.request(req).then([&response](http::http_response raw_response) {
         response.SetResponseCode((ResponseCodes)raw_response.status_code());
         response.SetResponseHeaders(raw_response.headers());
       }).wait();
+      
     } catch(std::exception e) {
       std::cerr << e.what() << std::endl;
     }

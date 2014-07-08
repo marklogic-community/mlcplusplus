@@ -7,9 +7,34 @@
 //
 
 #include <algorithm>
+#include <boost/regex.hpp>
+
+#include "ResponseCodes.hpp"
 #include "Response.hpp"
 
 using namespace web::http;
+
+const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
+
+ResponseType Response::ParseContentTypeHeader(const std::string& content) {
+  boost::smatch matches;
+  enum ResponseType result = ResponseType::BINARY;
+  if (boost::regex_search(content, matches, content_type_re)) {
+    std::string major = matches[1];
+    std::string minor = matches[2];
+    
+    if (major == "application" || major == "text") {
+      if (minor == "json") {
+        result = ResponseType::JSON;
+      } else if(minor == "html" || minor == "xml") {
+        result = ResponseType::XML;
+      } else if(minor == "plain") {
+        result = ResponseType::TEXT;
+      }
+    }
+  }
+  return result;
+}
 
 void Response::SetResponseCode(const ResponseCodes& code) {
   _response_code = code;    
@@ -26,7 +51,10 @@ void Response::SetResponseHeaders(const header_t& headers) {
 void Response::SetResponseHeaders(const web::http::http_headers& headers) {
     _headers.clear();
     for (auto& iter : headers) {
-        _headers[iter.first] = iter.second;
+      _headers[iter.first] = iter.second;
+      if (iter.first == "Content-type" || iter.first == "Content-Type") {
+        _response_type = ParseContentTypeHeader(iter.second);
+      }
     }
 }
 

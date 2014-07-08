@@ -11,8 +11,11 @@
 
 #include <cstdint>
 #include <string>
+#include <iostream>
 
 enum class ResponseType { XML, JSON, TEXT, BINARY };
+
+std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 
 enum class ResponseCodes : int {
     CONTINUE                      = 100,

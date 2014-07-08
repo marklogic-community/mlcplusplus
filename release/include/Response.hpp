@@ -22,6 +22,8 @@ class Response {
     ResponseCodes _response_code;
     ResponseType  _response_type;
     header_t      _headers;
+    
+    ResponseType ParseContentTypeHeader(const std::string& content);
 public:
     ResponseType ResponseType(void) const;
     
@@ -56,6 +58,8 @@ public:
      * Guess what this does.
      */
     web::json::value Json() const;
+    
+    friend class ResponseTest;
 };
 
 #endif /* defined(__Scratch__Response__) */
