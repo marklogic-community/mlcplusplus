@@ -57,7 +57,7 @@ else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
 
-include_directories(../include /usr/include/libxml2)
+include_directories(../src /usr/include/libxml2)
 
 add_executable(mlcpptest 
     main.cpp 
