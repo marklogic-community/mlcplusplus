@@ -13,10 +13,16 @@
 #include <string>
 #include <iostream>
 
+///
+/// The type of response
+///
 enum class ResponseType { XML, JSON, TEXT, BINARY };
 
 std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 
+///
+/// The various HTTP response codes
+///
 enum class ResponseCodes : int {
     CONTINUE                      = 100,
     OK                            = 200,

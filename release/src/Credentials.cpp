@@ -145,6 +145,3 @@ std::string Credentials::Realm(void) const {
     return _realm;
 }
 
-std::string Credentials::Uri(void) const {
-    return _uri;
-}
