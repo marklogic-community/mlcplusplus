@@ -6,6 +6,10 @@
 
 #include <string>
 
+//! Connection class
+/*!
+ The Connection class is the primary means of connecting to a MarkLogic server.
+*/
 class Connection {
     static Connection* _instance;
 
