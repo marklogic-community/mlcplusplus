@@ -31,13 +31,9 @@ class Credentials {
     uint32_t _nonce_count;
     
 protected:
-    void Authenticate(std::string method, std::string uri, 
-            http::http_headers& raw_headers, 
-            header_t& headers);
-    void Authenticate(std::string method, std::string uri, 
-            header_t& response_headers, header_t& headers);
-    
-    void SetCredentials(std::string uri, header_t& headers);
+    std::string Authenticate(const std::string& method, const std::string& uri,
+            const std::string& auth_header);
+
     std::string RandomCnonce(void) const;
 public:
     Credentials();

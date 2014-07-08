@@ -22,7 +22,7 @@ void AuthenticatingProxyTest::TestGet(void) {
 
   ap.AddCredentials(c);
 
-  Response response = ap.Get("http://192.168.57.148:8003", "/document/test.json");
+  Response response = ap.Get("http://192.168.57.148:8003", "/v1/documents?uri=/document/test.json");
 
   CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
   

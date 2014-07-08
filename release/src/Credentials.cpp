@@ -52,6 +52,7 @@ Credentials::Credentials(const std::string& username, const std::string& passwor
 
 std::string Credentials::RandomCnonce() const 
 {
+  
   MLCrypto crypto;
   boost::uuids::uuid random_uuid = boost::uuids::random_generator()();
   std::string my_random_uuid = boost::uuids::to_string(random_uuid);
@@ -64,7 +65,7 @@ Credentials::~Credentials() {
 }
 
 bool Credentials::Authenticating() const {
-    return false;
+    return _user != L"" && _pass != L"" && _nonce != "" && _realm != "";
 }
 
 void Credentials::ParseWWWAthenticateHeader(const std::string& raw) {
@@ -94,67 +95,38 @@ void Credentials::ParseWWWAthenticateHeader(const std::string& raw) {
     }
 }
 
-void Credentials::Authenticate(std::string method, 
-    std::string uri, 
-    http::http_headers& raw_headers, 
-    std::map<std::string, std::string>& headers) 
-{
-    header_t input_headers;
-    for(auto& iter : raw_headers) {
-        input_headers[iter.first] = iter.second;
-    }
-    Authenticate(method, uri, input_headers, headers);
-}
+std::string Credentials::Authenticate(const std::string& method, const std::string& uri, const std::string& auth_header) {
+  std::ostringstream oss;
+  AuthorizationBuilder builder;
+  ParseWWWAthenticateHeader(auth_header);
+  _nonce_count++;
 
-/*
- * Digest username="admin", 
- * realm="public", 
- * nonce="9ca86b1d41652cdc4c2d14d2043d2c25", 
- * uri="/", 
- * response="7af18aeaf1b3e96ade1fcde51aad422e", 
- * opaque="c8fb41173a096fd0", 
- * qop=auth, 
- * nc=00000001, 
- * cnonce="72315add23f0224a"
- */
-void Credentials::Authenticate(std::string method, std::string uri, 
-    header_t& response_headers, header_t& headers) 
-{
-    std::ostringstream oss;
-    AuthorizationBuilder builder;
-    ParseWWWAthenticateHeader(response_headers[WWW_AUTHENTICATE_HEADER]);
-    _nonce_count++;
-    
-    std::ostringstream temp;
-    std::string username(_user.begin(), _user.end());
-    std::string password(_pass.begin(), _pass.end());
-    
-    std::string a1 = builder.UsernameRealmAndPassword(username, _realm, password);
-    std::string a2 = builder.MethodAndURL(method, uri);
-    
-    oss << std::setfill('0') << std::setw(8) << _nonce_count;
-    std::string nc = oss.str();
-    
-    std::string response = builder.Response(a1, _nonce, oss.str(), _cnonce, 
-        _qop, a2);
-    
-    oss.str("");
-    oss << "Digest";
-    oss << " username=\"" << username << "\"";
-    oss << " realm=\"" << _realm << "\"";
-    oss << " nonce=\"" << _nonce << "\"";
-    oss << " uri=\"" << uri << "\"";
-    oss << " response=\"" << response << "\"";
-    oss << " opaque=\"" << _opaque << "\"";
-    oss << " qop=" << _qop;
-    oss << " nc=" << nc;
-    oss << " cnonce=\"" << _cnonce << "\"";
-            
-    headers[AUTHORIZATION_HEADER_NAME] = oss.str();    
-}
+  std::ostringstream temp;
+  std::string username(_user.begin(), _user.end());
+  std::string password(_pass.begin(), _pass.end());
 
-void Credentials::SetCredentials(std::string uri, header_t& headers) {
-    
+  std::string a1 = builder.UsernameRealmAndPassword(username, _realm, password);
+  std::string a2 = builder.MethodAndURL(method, uri);
+
+  oss << std::setfill('0') << std::setw(8) << _nonce_count;
+  std::string nc = oss.str();
+
+  std::string response = builder.Response(a1, _nonce, oss.str(), _cnonce, 
+      _qop, a2);
+
+  oss.str("");
+  oss << " Digest";
+  oss << " username=\"" << username << "\",";
+  oss << " realm=\"" << _realm << "\",";
+  oss << " nonce=\"" << _nonce << "\",";
+  oss << " uri=\"" << uri << "\",";
+  oss << " cnonce=\"" << _cnonce << "\",";
+  oss << " nc=" << nc << ",";
+  oss << " qop=" << _qop << ",";
+  oss << " response=\"" << response << "\",";
+  oss << " opaque=\"" << _opaque << "\"";
+  
+  return oss.str();
 }
 
 std::string Credentials::Nonce(void) const {

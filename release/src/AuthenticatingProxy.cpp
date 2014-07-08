@@ -16,6 +16,9 @@
 #include <cpprest/json.h>
 #include "ResponseCodes.hpp"
 
+const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
+const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
+
 const std::string DEFAULT_KEY = "__DEFAULT";
 
 using namespace web;
@@ -44,14 +47,14 @@ Response AuthenticatingProxy::Get(const std::string& host,
   Response response;
   header_t request_headers = headers;
   
-  if (_credentials.Authenticating()) {
-    _credentials.SetCredentials(path, request_headers);
-  }
-  
   http::client::http_client raw_client(U(host));
 
-  try { 
-    raw_client.request(http::methods::GET, U(path)).then([&response](http::http_response raw_response) {
+  try {
+    
+    http::http_request req(http::methods::GET);
+    req.set_request_uri(path);
+    
+    raw_client.request(req).then([&response](http::http_response raw_response) {
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
       response.SetResponseHeaders(raw_response.headers());
     }).wait();
@@ -66,8 +69,19 @@ Response AuthenticatingProxy::Get(const std::string& host,
       throw std::logic_error("Authenticating multiple times");
     }
     header_t response_headers = response.GetResponseHeaders();
-    _credentials.Authenticate("GET", path, response_headers, request_headers);
-    return Get(host, path, request_headers, body);
+    
+    try {
+      http::http_request req(http::methods::GET);
+      req.set_request_uri(path);
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("GET", path, 
+          response.GetResponseHeaders()[WWW_AUTHENTICATE_HEADER]));
+      raw_client.request(req).then([&response](http::http_response raw_response) {
+        response.SetResponseCode((ResponseCodes)raw_response.status_code());
+        response.SetResponseHeaders(raw_response.headers());
+      }).wait();
+    } catch(std::exception e) {
+      std::cerr << e.what() << std::endl;
+    }
   }
     
   return response;

@@ -39,34 +39,31 @@ void TestCredentials::TestParseWWWAuthenticateHeader() {
 void TestCredentials::TestAuthenticate() {
     Credentials c1("Joe", "password");
     header_t headers, output_headers;
-    headers[AUTHENT_HEADER_NAME] = TEST_HEADER;
     
-    c1.Authenticate("GET", "/some/path", headers, output_headers);
+    std::string result = c1.Authenticate("GET", "/some/path", TEST_HEADER);
     
-    CPPUNIT_ASSERT(output_headers.find(AUTH_HEADER_NAME) != output_headers.end());
     
-    std::string auth_header = output_headers[AUTH_HEADER_NAME];
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("Digest")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("realm=\"public\"")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("nonce=\"79e3998e2a65a2bbb69c4027708f4bca\"")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("uri=\"/some/path\"")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("qop=auth")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("opaque=\"5db0205ddeca8742\"")));
-    CPPUNIT_ASSERT(boost::regex_search(auth_header, boost::regex("response=\"[a-z0-9]+\"")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("Digest")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("realm=\"public\"")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("nonce=\"79e3998e2a65a2bbb69c4027708f4bca\"")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("uri=\"/some/path\"")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("qop=auth")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("opaque=\"5db0205ddeca8742\"")));
+    CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("response=\"[a-z0-9]+\"")));
 }
 
 void TestCredentials::TestAuthenticate2() {
   std::string header = std::string("Digest realm=\"public\", qop=\"auth\", ") + 
-      "nonce=\"47ce411f1eed48f1b1e2a1571be9be20\", opaque=\"1d12777aeecded0f\"";
+      "nonce=\"c5d9544ee5f63a0b26b92224ea05bb30\", opaque=\"ef2f69bd929d0619\"";
   
-  Credentials c1("admin", "x8kia30", "ICAgICAgICAgICAgICAgICAgICAgIDE0MDUxOTk3NzU=", 0);
+  Credentials c1("admin", "x8kia30", "4724e19fc8d23421de47fd23300f74b0", 0);
   
   header_t headers, output_headers;
   headers[AUTHENT_HEADER_NAME] = header;
-  c1.Authenticate("GET", "/", headers, output_headers);
+  std::string reply = c1.Authenticate("GET", "/v1/documents?uri=/document/test.json", 
+      header);
   
-  std::string auth_header = output_headers[AUTH_HEADER_NAME];
-  CPPUNIT_ASSERT(boost::regex_search(auth_header, 
-      boost::regex("response=\"53eb77d79fff340a3f7d0f2bb088c481\"")));
+  CPPUNIT_ASSERT(boost::regex_search(reply, 
+      boost::regex("response=\"e36a1eaaea704f13d0fab930755b644e\"")));
   
 }
