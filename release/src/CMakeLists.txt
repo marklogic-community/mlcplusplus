@@ -14,8 +14,6 @@ set (MLCPlusPlus_VERSION_MINOR 1)
 
 
 
-
-
 # SYSTEM DETECTION
 
 # Platform (not compiler) specific settings
@@ -77,7 +75,6 @@ endif()
 
 
 
-
 # Have CMake do a search and replace on the version numbers in our config.h file
 configure_file (
   "${PROJECT_SOURCE_DIR}/MLCPlusPlusConfig.h.in"
@@ -88,16 +85,36 @@ configure_file (
 # so that we will find MLCPlusPlusConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
+add_custom_target(doc
+    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../doc
+    COMMENT "Generating API documentation with Doxygen" VERBATIM
+)
+endif(DOXYGEN_FOUND)
 
 
 # ML C++ own libraries
-add_library (MLCPlusPlus SHARED MLCPlusPlus.cpp)
+add_library (MLCPlusPlus SHARED
+    MLCPlusPlus.cpp
+    Credentials.cpp
+    Request.cpp
+    Response.cpp
+    AuthenticatingProxy.cpp
+    AuthorizationBuilder.cpp
+    MLCrypto.cpp
+    ResponseCodes.cpp
+)
 
 
 
 # ML C++ dependencies
 
-# Casablanca header files
+include_directories (BEFORE ../include /usr/include/libxml2)
+
+# Casablanca
 # Assume source in same directory as MLCPlusPlus
 include_directories (AFTER
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
@@ -123,11 +140,18 @@ include_directories (AFTER
   )
 
 # Now link our library to its dependencies
+#target_link_libraries (MLCPlusPlus
+#  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
+#  ${OPENSSL_LIBRARIES}
+#  ${Boost_LIBRARIES}
+#  )
+
 target_link_libraries (MLCPlusPlus
-  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
-  ${OPENSSL_LIBRARIES}
-  ${Boost_LIBRARIES}
-  )
+    libcasablanca.dylib
+    libboost_regex.dylib
+    libssl.dylib
+    libcrypto.dylib
+)
 
 
 # API documentation
