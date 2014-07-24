@@ -132,10 +132,21 @@ public:
     
     Response Put(const std::string& host,
                  const std::string& path,
-                 const header_t& headers,
-                 const params_t& body);
-    Response Put(const std::string& host, const std::string& path, const header_t& headers);
-    Response Put(const std::string& host, const std::string& path);
+                 const std::wstring& text_body,
+                 const header_t& headers = blank_headers);
+    Response Put(const std::string& host,
+                 const std::string& path,
+                 const json::value& text_body,
+                 const header_t& headers = blank_headers);
+    Response Put(const std::string& host,
+                 const std::string& path,
+                 const xmlDocPtr& xml_body,
+                 const header_t& headers = blank_headers);
+    Response Put(const std::string& host,
+                 const std::string& path,
+                 const uint8_t* data, 
+                 const size_t& size,
+                 const header_t& headers = blank_headers);
     
     void Put_Async(const std::string& host,
                    const std::string& path,

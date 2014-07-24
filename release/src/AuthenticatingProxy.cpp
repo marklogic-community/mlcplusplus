@@ -284,24 +284,83 @@ void AuthenticatingProxy::Post_Async(const std::string& host,
 }
 
 Response AuthenticatingProxy::Put(const std::string& host,
-                                  const std::string& path,
-                                  const header_t& headers,
-                                  const params_t& body)
+             const std::string& path,
+             const std::wstring& text_body,
+             const header_t& headers) 
 {
-    Response response;
-    return response;
+  Response result;
+  return result;
+}
+Response AuthenticatingProxy::Put(const std::string& host,
+             const std::string& path,
+             const json::value& json_body,
+             const header_t& headers) 
+{
+  Response response;
+  header_t request_headers = headers;
+  
+  http::client::http_client raw_client(U(host));
+
+  try {
+    http::http_request req(http::methods::PUT);
+    req.set_request_uri(path);
+    req.set_body(json_body);
+    
+    if (_credentials.Authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("PUT", path));
+    }
+    
+    raw_client.request(req).then([&response](http::http_response raw_response) {
+      response.SetResponseCode((ResponseCodes)raw_response.status_code());
+      response.SetResponseHeaders(raw_response.headers());
+    }).wait();
+  } catch(std::exception e) {
+    std::cerr << e.what() << std::endl;
+  }
+
+  if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
+    header_t response_headers = response.GetResponseHeaders();
+    
+    try {
+      http::http_request req(http::methods::PUT);
+      req.set_request_uri(path);
+      req.set_body(json_body);
+      
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("PUT", path, 
+          response.GetResponseHeaders()[WWW_AUTHENTICATE_HEADER]));
+      
+      raw_client.request(req).then([&response](http::http_response raw_response) {
+        response.SetResponseCode((ResponseCodes)raw_response.status_code());
+        response.SetResponseHeaders(raw_response.headers());
+      }).wait();
+      
+    } catch(std::exception e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+    
+  return response;
 }
 
-Response AuthenticatingProxy::Put(const std::string& host, const std::string& path, 
-    const header_t& headers) {
-    params_t blank_params;
-    return Put(host, path, headers, blank_params);
+Response AuthenticatingProxy::Put(const std::string& host,
+             const std::string& path,
+             const xmlDocPtr& xml_body,
+             const header_t& headers) 
+{
+  Response result;
+  return result;
 }
 
-Response AuthenticatingProxy::Put(const std::string& host, const std::string& path) {
-    header_t blank_headers;
-    return Put(host, path, blank_headers);
+Response AuthenticatingProxy::Put(const std::string& host,
+             const std::string& path,
+             const uint8_t* data, 
+             const size_t& size,
+             const header_t& headers) 
+{
+  Response result;
+  return result;
 }
+
 
 void AuthenticatingProxy::Put_Async(const std::string& host,
                                     const std::string& path,

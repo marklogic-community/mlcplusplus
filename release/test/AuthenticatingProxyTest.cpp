@@ -88,3 +88,32 @@ void AuthenticatingProxyTest::TestPostJSON(void) {
   CPPUNIT_ASSERT(expected == std::string("world"));
   
 }
+
+void AuthenticatingProxyTest::TestPutJSON(void) {
+  Credentials c("admin", "x8kia30");
+  AuthenticatingProxy ap;
+  ap.AddCredentials(c);
+  
+  web::json::value payload;
+  payload[utility::string_t("hello")] = web::json::value::string("world");
+  
+  Response response = ap.Post("http://192.168.57.148:8003", 
+      "/v1/documents?extension=json&directory=/document/test/",
+      payload);  
+  std::string location = response.GetResponseHeaders()["Location"];
+  
+  header_t headers;
+  
+  payload[utility::string_t("hello")] = web::json::value::string("Mars");
+  
+  response = ap.Put("http://192.168.57.148:8003", location, payload);
+  CPPUNIT_ASSERT_MESSAGE("Failed put", ResponseCodes::NO_CONTENT == response.GetResponseCode());
+  
+  response = ap.Get("http://192.168.57.148:8003", location);
+  
+  web::json::value responded_value = response.Json();
+  std::string expected = responded_value["hello"].as_string();
+  
+  CPPUNIT_ASSERT_MESSAGE("Incorrect response in resultant data", expected == std::string("Mars"));
+  
+}
