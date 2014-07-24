@@ -18,11 +18,13 @@ class AuthenticatingProxyTest : public CppUnit::TestCase {
     CPPUNIT_TEST(TestGet);
     CPPUNIT_TEST(TestGet2Tap);
     CPPUNIT_TEST(TestAddCredentials);
+    CPPUNIT_TEST(TestPostJSON);
     CPPUNIT_TEST_SUITE_END();
 public:
     void TestGet(void);
     void TestAddCredentials(void);
     void TestGet2Tap(void);
+    void TestPostJSON(void);
 };
 
 #endif /* defined(__Scratch__AuthenticatingProxyTest__) */

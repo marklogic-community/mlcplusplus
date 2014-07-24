@@ -6,9 +6,16 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__Request__
-#define __Scratch__Request__
+#ifndef __MARKLOGIC_REQUEST__
+#define __MARKLOGIC_REQUEST__
 
-#include "Response.hpp"
+template<typename T>
+class Request {
+    private:
+        T _payload;
+    
+    public:
+        
+};
 
-#endif /* defined(__Scratch__Request__) */
+#endif /* __MARKLOGIC_REQUEST__ */

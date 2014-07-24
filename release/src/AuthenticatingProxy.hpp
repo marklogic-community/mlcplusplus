@@ -14,10 +14,13 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
+#include <libxml/parser.h>
 #include "Response.hpp"
 #include "ResponseCodes.hpp"
 #include "Credentials.hpp"
 #include "Types.hpp"
+
+const header_t blank_headers;
 
 ///
 /// AuthenticatingProxy to handle authenticated calls to MarkLogic
@@ -34,9 +37,10 @@
 class AuthenticatingProxy {
     Credentials _credentials;
     uint32_t _attempts;
-        
-public:
     
+    
+        
+public:    
     ///
     /// Constructor
     ///
@@ -62,24 +66,12 @@ public:
     /// \param host The hostname or IP address ("127.0.0.1")
     /// \param path The path to invoke ("/v1/documents?uri=/foo/bar.xml")
     /// \param headers The HTTP headers to include in the invocation
-    /// \param body The body to include (not normally used for a GET)
     /// \return The Response object
     ///
     Response Get(const std::string& host,
                  const std::string& path,
-                 const header_t& headers,
-                 const params_t& body);
-    
-    ///
-    /// Invokes a synchronous GET operation on the MarkLogic server.
-    ///
-    /// \param host The hostname or IP address ("127.0.0.1")
-    /// \param path The path to invoke ("/v1/documents?uri=/foo/bar.xml")
-    /// \param headers The HTTP headers to include in the invocation
-    /// \return The Response object
-    ///
-    Response Get(const std::string& host, const std::string& path, const header_t& headers);
-    
+                 const header_t& headers);
+        
     ///
     /// Invokes a synchronous GET operation on the MarkLogic server.
     ///
@@ -102,12 +94,28 @@ public:
                    const std::string& path,
                    const std::function<void(const Response&)> handler);
     
-    Response Post(const std::string& host,
-                 const std::string& path,
-                 const header_t& headers,
-                 const params_t& body);
-    Response Post(const std::string& host, const std::string& path, const header_t& headers);
-    Response Post(const std::string& host, const std::string& path);
+    
+    Response Post(const std::string& host, 
+                  const std::string& path,
+                  const json::value& body,
+                  const header_t& headers = blank_headers);
+    Response Post(const std::string& host, 
+                  const std::string& path,
+                  const xmlDocPtr body,
+                  const header_t& headers = blank_headers);
+    Response Post(const std::string& host, 
+                  const std::string& path,
+                  const std::wstring& text_body,
+                  const header_t& headers = blank_headers);
+    Response Post(const std::string& host, 
+                  const std::string& path,
+                  const uint8_t* data, 
+                  const size_t& size,
+                  const header_t& headers = blank_headers);
+    Response PostFile(const std::string& host, 
+                      const std::string& path,
+                      const std::string& file_path,
+                      const header_t& headers = blank_headers);
     
     void Post_Async(const std::string& host,
                    const std::string& path,

@@ -29,6 +29,7 @@ class Response {
     ResponseCodes _response_code; /*!< The response code 200/400/404, etc */
     ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
     header_t      _headers;       /*!< The response headers */
+    web::json::value _json;
     
     ///
     /// Parses the content type header to guess the content type of the
@@ -128,6 +129,8 @@ public:
     /// \return The JSON object
     ///
     web::json::value Json() const;
+    
+    void SetJson(const web::json::value& json);
     
     friend class ResponseTest;
 };

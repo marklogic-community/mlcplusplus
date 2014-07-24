@@ -101,5 +101,9 @@ xmlDocPtr Response::Xml() const {
  * Guess what this does.
  */
 web::json::value Response::Json() const {
-    return web::json::value(0);
+    return _json;
+}
+
+void Response::SetJson(const web::json::value& json) {
+  _json = json;
 }
