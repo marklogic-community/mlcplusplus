@@ -78,15 +78,13 @@ void AuthenticatingProxyTest::TestPostJSON(void) {
   header_t headers;
   headers["Accept"] = "application/json";
   
-  //response = ap.Get("http://192.168.57.148:8003", val, headers);
-  //CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
-  //CPPUNIT_ASSERT(ResponseCodes::OK == response.GetResponseCode());
+  response = ap.Get("http://192.168.57.148:8003", val, headers);
+  CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
+  CPPUNIT_ASSERT(ResponseCodes::OK == response.GetResponseCode());
   
-  //web::json::value responded_value = response.Json();
-  //std::cout << std::endl << std::endl << responded_value.serialize() << std::endl;
-  //std::string expected = responded_value["hello"].as_string();
-  //std::cout << std::endl << std::endl;
-  //std::cout << expected << std::endl;
+  web::json::value responded_value = response.Json();
+  std::string expected = responded_value["hello"].as_string();
   
-  //CPPUNIT_ASSERT(expected == std::string("world"));
+  CPPUNIT_ASSERT(expected == std::string("world"));
+  
 }
