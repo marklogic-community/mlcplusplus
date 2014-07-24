@@ -148,6 +148,8 @@ include_directories (AFTER
 
 target_link_libraries (MLCPlusPlus
     libcasablanca.dylib
+    libcpprest.dylib
+    libcommon_utilities.dylib
     libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
