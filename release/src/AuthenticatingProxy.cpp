@@ -133,36 +133,12 @@ Response AuthenticatingProxy::Get(const std::string& host,
   return response;
 }
 
-Response AuthenticatingProxy::Get(const std::string& host, const std::string& path) 
-{
-    header_t blank_headers;
-    return Get(host, path, blank_headers);
-}
-
 void AuthenticatingProxy::Get_Async(const std::string& host,
                                     const std::string& path,
-                                    const header_t& headers,
-                                    const params_t& body,
-                                    const std::function<void(const Response&)> handler)
+                                    const std::function<void(const Response&)> handler,
+                                    const header_t& headers)
 {
     
-}
-
-void AuthenticatingProxy::Get_Async(const std::string& host,
-                                    const std::string& path,
-                                    const header_t& headers,
-                                    const std::function<void(const Response&)> handler)
-{
-    params_t blank_params;
-    Get_Async(host, path, headers, blank_params, handler);
-}
-
-void AuthenticatingProxy::Get_Async(const std::string& host,
-                                    const std::string& path,
-                                    const std::function<void(const Response&)> handler)
-{
-    header_t blank_heders;
-    Get_Async(host, path, blank_heders, handler);
 }
 
 Response AuthenticatingProxy::Post(const std::string& host, 
@@ -439,26 +415,8 @@ Response AuthenticatingProxy::Delete(const std::string& host,
 
 void AuthenticatingProxy::Delete_Async(const std::string& host,
                                        const std::string& path,
-                                       const header_t& headers,
-                                       const params_t& body,
-                                       const std::function<void(const Response&)> handler)
+                                       const std::function<void(const Response&)> handler,
+                                       const header_t& headers)
 {
     
-}
-
-void AuthenticatingProxy::Delete_Async(const std::string& host,
-                                       const std::string& path,
-                                       const header_t& headers,
-                                       const std::function<void(const Response&)> handler)
-{
-    params_t blank_params;
-    Delete_Async(host, path, headers, blank_params, handler);
-}
-
-void AuthenticatingProxy::Delete_Async(const std::string& host,
-                                       const std::string& path,
-                                       const std::function<void(const Response&)> handler)
-{
-    header_t headers;
-    Delete_Async(host, path, headers, handler);
 }

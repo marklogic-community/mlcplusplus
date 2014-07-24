@@ -70,29 +70,12 @@ public:
     ///
     Response Get(const std::string& host,
                  const std::string& path,
-                 const header_t& headers);
-        
-    ///
-    /// Invokes a synchronous GET operation on the MarkLogic server.
-    ///
-    /// \param host The hostname or IP address ("127.0.0.1")
-    /// \param path The path to invoke ("/v1/documents?uri=/foo/bar.xml")
-    /// \return The Response object
-    ///
-    Response Get(const std::string& host, const std::string& path);
-    
+                 const header_t& headers = blank_headers);
+            
     void Get_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
-                   const params_t& body,
-                   const std::function<void(const Response&)> handler);
-    void Get_Async(const std::string& host,
-                   const std::string& path,
-                   const header_t& headers,
-                   const std::function<void(const Response&)> handler);
-    void Get_Async(const std::string& host,
-                   const std::string& path,
-                   const std::function<void(const Response&)> handler);
+                   const std::function<void(const Response&)> handler,
+                   const header_t& headers = blank_headers);
     
     
     Response Post(const std::string& host, 
@@ -167,16 +150,8 @@ public:
     
     void Delete_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
-                   const params_t& body,
-                   const std::function<void(const Response&)> handler);
-    void Delete_Async(const std::string& host,
-                   const std::string& path,
-                   const header_t& headers,
-                   const std::function<void(const Response&)> handler);
-    void Delete_Async(const std::string& host,
-                   const std::string& path,
-                   const std::function<void(const Response&)> handler);
+                   const std::function<void(const Response&)> handler,
+                   const header_t& headers = blank_headers);
 };
 
 #endif /* defined(__Scratch__AuthenticatingProxy__) */
