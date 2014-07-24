@@ -390,25 +390,52 @@ void AuthenticatingProxy::Put_Async(const std::string& host,
 
 Response AuthenticatingProxy::Delete(const std::string& host,
                                      const std::string& path,
-                                     const header_t& headers,
-                                     const params_t& body)
+                                     const header_t& headers)
 {
-    Response response;
+  Response response;
+  header_t request_headers = headers;
+  
+  http::client::http_client raw_client(U(host));
+
+  try {
+    http::http_request req(http::methods::DEL);
+    req.set_request_uri(path);
     
-    return response;
+    if (_credentials.Authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("DELETE", path));
+    }
+    
+    raw_client.request(req).then([&response](http::http_response raw_response) {
+      response.SetResponseCode((ResponseCodes)raw_response.status_code());
+      response.SetResponseHeaders(raw_response.headers());
+    }).wait();
+  } catch(std::exception e) {
+    std::cerr << e.what() << std::endl;
+  }
+
+  if (response.GetResponseCode() == ResponseCodes::UNAUTHORIZED) {
+    header_t response_headers = response.GetResponseHeaders();
+    
+    try {
+      http::http_request req(http::methods::DEL);
+      req.set_request_uri(path);
+      
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("DELETE", path, 
+          response.GetResponseHeaders()[WWW_AUTHENTICATE_HEADER]));
+      
+      raw_client.request(req).then([&response](http::http_response raw_response) {
+        response.SetResponseCode((ResponseCodes)raw_response.status_code());
+        response.SetResponseHeaders(raw_response.headers());
+      }).wait();
+      
+    } catch(std::exception e) {
+      std::cerr << e.what() << std::endl;
+    }
+  }
+    
+  return response;
 }
 
-Response AuthenticatingProxy::Delete(const std::string& host, const std::string& path, 
-    const header_t& headers) {
-    params_t blank_params;
-    return Delete(host, path, headers, blank_params);
-}
-
-Response AuthenticatingProxy::Delete(const std::string& host, const std::string& path)
-{
-    header_t blank_headers;
-    return Delete(host, path, blank_headers);
-}
 
 void AuthenticatingProxy::Delete_Async(const std::string& host,
                                        const std::string& path,

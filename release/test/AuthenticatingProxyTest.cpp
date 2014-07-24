@@ -117,3 +117,25 @@ void AuthenticatingProxyTest::TestPutJSON(void) {
   CPPUNIT_ASSERT_MESSAGE("Incorrect response in resultant data", expected == std::string("Mars"));
   
 }
+
+void AuthenticatingProxyTest::TestDelete(void) {
+  Credentials c("admin", "x8kia30");
+  AuthenticatingProxy ap;
+  ap.AddCredentials(c);
+  
+  web::json::value payload;
+  payload[utility::string_t("hello")] = web::json::value::string("world");
+  
+  Response response = ap.Post("http://192.168.57.148:8003", 
+      "/v1/documents?extension=json&directory=/document/test/",
+      payload);  
+  std::string location = response.GetResponseHeaders()["Location"];
+    
+  
+  response = ap.Delete("http://192.168.57.148:8003", location);
+  CPPUNIT_ASSERT_MESSAGE("Failed delete", ResponseCodes::NO_CONTENT == response.GetResponseCode());
+  
+  response = ap.Get("http://192.168.57.148:8003", location);  
+  CPPUNIT_ASSERT_MESSAGE("There should be nothing there", ResponseCodes::NOT_FOUND == response.GetResponseCode());
+  
+}

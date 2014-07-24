@@ -163,10 +163,7 @@ public:
     
     Response Delete(const std::string& host,
                  const std::string& path,
-                 const header_t& headers,
-                 const params_t& body);
-    Response Delete(const std::string& host, const std::string& path, const header_t& headers);
-    Response Delete(const std::string& host, const std::string& path);
+                 const header_t& headers = blank_headers);
     
     void Delete_Async(const std::string& host,
                    const std::string& path,
