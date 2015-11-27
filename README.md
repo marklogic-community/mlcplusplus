@@ -8,7 +8,7 @@ You can build from source then use in your projects.
 
 Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level as the 'casablanca' git directory.
 
-These instructions are listed here: https://casablanca.codeplex.com/documentation
+These instructions are listed here: https://github.com/Microsoft/cpprestsdk/wiki
 
 Once built, continue below.
 

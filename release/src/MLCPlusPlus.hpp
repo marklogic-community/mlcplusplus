@@ -14,24 +14,27 @@ class Connection {
     Connection();
 public:
     static Connection* Instance(void);
-    void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password);
+    void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, const bool usessl);
     // TODO anonymous connection support
     // TODO Kerberos connection support
     // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods
 
-    Response get(std::string& uri);
-    Response save(std::string& uri,web::json::value payload);
+    Response get(const std::string& uri);
+    Response save(const std::string& uri,const web::json::value payload);
     // TODO save JSON with directory, no uri
     // TODO optional parameters (collection, security, etc.)
     // TODO save XML with and without URI
 
     // Multi part MIME saveAll function V7+
-    Response saveAll(std::string& uris[], web::json::value payload[]);
+    Response saveAll(const std::string& uris[], const web::json::value documents[]);
     // TODO XML save all
     // TODO multiple responses when paging in N number of doc transactions
 
-    Response search(web::json::value searchQuery,std::string& options);
-    // TODO search with options document
+    Response search(const web::json::value searchQuery,const std::string& options);
+    // TODO search with options document (combined query)
+    Response search(const web::json::value searchQuery,const web::json::value options);
+    Response Connection::search(const web::json::value searchQuery,const std::string& qtext);
+    Response Connection::search(const web::json::value searchQuery,const std::string& qtext,const web::json::value options);
     // TODO search with XML instead of JSON
 };
 

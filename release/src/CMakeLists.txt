@@ -11,7 +11,7 @@ set (MLCPlusPlus_VERSION_MINOR 1)
 
 # EDITABLE SETTINGS END
 
-
+#set (CMAKE_MODULE_PATH "../cmake/modules")
 
 
 # SYSTEM DETECTION
@@ -26,7 +26,7 @@ if(IOS)
 elseif(UNIX) # This includes OSX
   find_package(Boost COMPONENTS system thread locale regex filesystem REQUIRED)
   find_package(Threads REQUIRED)
-  find_package(OpenSSL REQUIRED)
+  #find_package(OpenSSL REQUIRED)
 
   option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
 elseif(WIN32)
@@ -43,6 +43,10 @@ elseif(WIN32)
 else()
   message("-- Unsupported Build Platform.")
 endif()
+
+# Casablanca fix for versions before 2.7.0 (CLang issue)
+add_definitions("-Wno-error=unused-local-typedefs")
+add_definitions("-Wnounused-local-typedefs")
 
 # Compiler (not platform) specific settings
 if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") OR IOS)
@@ -121,15 +125,31 @@ include_directories (AFTER
   ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
   )
 
-# Open SSL
-set (OpenSSL_DIR "/usr/local/opt/openssl")
+# Open SSL - to find the cmake commands
+set (OPENSSL_DIR "/usr/local/opt/openssl")
+
+# Search OpenSSL
+#find_package(PkgConfig REQUIRED)
+#pkg_search_module(OPENSSL REQUIRED openssl)
+
+#if( OPENSSL_FOUND )
+#    include_directories(${OPENSSL_INCLUDE_DIRS})
+#    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+#else()
+    # Error; with REQUIRED, pkg_search_module() will throw an error by it's own
+#endif()
+
 # TODO Use 1.0.1h explicitly to prevent MITM and other zero day attacks
-find_package (OpenSSL REQUIRED
+#find_package (OpenSSL REQUIRED
+# Following line seems REQUIRED on Mac OS X
 #  PATHS /usr/local/opt/openssl
-  )
+#  )
 # NB That OpenSSL on the mac is very very old. Here is the 1.0.1h openssl info:-
 #     LDFLAGS:  -L/usr/local/opt/openssl/lib
 #     CPPFLAGS: -I/usr/local/opt/openssl/include
+
+set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
+#set (OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib/libssl.dylib")
 
 # Boost (Includes system, thread, locale, regex and filesystem components by default)
 find_package (Boost REQUIRED )
