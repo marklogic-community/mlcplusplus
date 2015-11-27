@@ -6,26 +6,19 @@
 //  Copyright (c) 2014 __MARKLOGIC__. All rights reserved.
 //
 
-#include "MLCPlusPlus.h"
-
-Connection* Connection::_instance = nullptr;
-std::string Connection::_serverUrl = "http://localhost:8002";
-AuthenticatingProxy Connection::_proxy();
+#include "MLCPlusPlus.hpp"
 
 
-Connection::Connection(void) {
+Connection::Connection(void) : _proxy(), _serverUrl("http://localhost:8002") {
     ;
 }
 
-Connection* Connection::Instance(void) {
-    if (_instance == nullptr) {
-        _instance = Connection();
-    }
-    return _instance;
+void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
+	Connection::configure(hostname,port,username,password,false);
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
-  _serverUrl = "http://" + hostname + ":" + port;
+  _serverUrl = "http" + (usessl ? "s" : "") + "://" + hostname + ":" + port;
   Credentials c(username, password);
   _proxy.AddCredentials(c);
 }
@@ -37,37 +30,37 @@ Response Connection::get(const std::string& uri) {
 }
 
 // TODO XML version
-Response Connection::save(const std::string& uri,const web::json::value payload) {
+Response Connection::save(const std::string& uri,const web::json::value& payload) {
     //payload[utility::string_t("hello")] = web::json::value::string("world");
 
   Response response = _proxy.Put(_serverUrl,
-    "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version TODO check for URL parsing
+    "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing
     payload);
   return response;
 }
 
-
+/*
 Response Connection::saveAll(const std::string& uris[], const web::json::value payload[]) {
   // TODO multi part mime 
-}
+}*/
 
-Response Connection::search(const web::json::value searchQuery,const std::string& options) {
+Response Connection::search(const web::json::value& searchQuery,const std::string& options) {
   Response response = _proxy.Post(_serverUrl,
     "/v1/search?options=" + options, // TODO check for URL parsing
     searchQuery);
   return response;
 }
 
-Response Connection::search(const web::json::value searchQuery,const web::json::value options) {
+Response Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
 	return Connection::search(searchQuery,(std::string&)nullptr,options);
 }
 
 
-Response Connection::search(const web::json::value searchQuery,const std::string& qtext) {
+Response Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
 	return Connection::search(searchQuery,qtext,(web::json::value)nullptr);
 }
 
-Response Connection::search(const web::json::value searchQuery,const std::string& qtext,const web::json::value options) {
+Response Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
     // combined query
 	web::json::value combined;
 	if (searchQuery) {

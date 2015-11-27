@@ -20,13 +20,13 @@ Ensure first that all build scripts are executable:-
 To build the MLCPlusPlus library for your platform, execute the appropriate shell script, and use the build tool
 for your platform. E.g.:-
 
-- On a Mac, type './gen-mac.sh' and hit <enter>. This generates an XCode project you can use to build the library
-- On Linux, type './gen-kdevelop.sh' and hit <enter>. This generates a KDevelop project you can use to build the library
-- On other \*nix, type './gen-unix.sh' and hit <enter> Then type 'make' and hit <enter>. Optionally run 'sudo make install' to install the library on your system
+- On a Mac, type './gen-mac.sh' and hit enter. This generates an XCode project you can use to build the library
+- On Linux, type './gen-kdevelop.sh' and hit enter. This generates a KDevelop project you can use to build the library
+- On other \*nix, type './gen-unix.sh' and hit enter Then type 'make' and hit enter. Optionally run 'sudo make install' to install the library on your system
 - On Windows, TODO - Coming Soon for Visual Studio
-- For cross platform Eclipse CDT, type './gen-eclipse.sh' and hit <enter>. Then open Eclipse to build the library
+- For cross platform Eclipse CDT, type './gen-eclipse.sh' and hit enter. Then open Eclipse to build the library
 
-To remove all built files, execute './clean.sh' and hit <enter>
+To remove all built files, execute './clean.sh' and hit enter
 
 ### Using the MLCPlusPlus library in your C++ application
 
