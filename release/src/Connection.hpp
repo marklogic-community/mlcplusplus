@@ -37,7 +37,7 @@ public:
 
 private:
     std::string& _serverUrl;
-    mlclient::AuthenticatingProxy& _proxy;
+    mlclient::internals::AuthenticatingProxy& _proxy;
 
     // prevent compiler automatically defining the copy constructor and assignment operator:-
     Connection(const Connection&);

@@ -16,6 +16,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 class AsyncWrapper {
   AuthenticatingProxy _proxy;
 
@@ -46,7 +48,7 @@ public:
 
   // search functions
   // HIGH PRIORITY
-  void search(json::value& query,json::value& options,std::integer start,json::value& searchproperties,std::function<void(const Response&)> callback);
+  void search(json::value& query,json::value& options,int start,json::value& searchproperties,std::function<void(const Response&)> callback);
   void structuredSearch(json::value& query,json::value& options,json::value& searchproperties,std::function<void(const Response&)> callback);
   void combined(json::value& structuredQuery,std::string& textQuery,json::value& options,json::value& searchproperties,std::function<void(const Response&)> callback);
   void saveSearchOptions(std::string& name,json::value& options,std::function<void(const Response&)> callback);
@@ -102,5 +104,7 @@ private:
   void applySearchProperties();
 
 };
+
+}
 
 }

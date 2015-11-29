@@ -14,6 +14,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 /// AuthorizationBuilder class.
 /// 
 /// Testable helper class to build the parts of the Digest response.  Takes
@@ -105,6 +107,8 @@ public:
 private:
     
 };
+
+}
 
 }
 

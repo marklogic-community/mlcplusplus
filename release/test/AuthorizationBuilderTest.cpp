@@ -41,7 +41,7 @@ void AuthorizationBuilderTest::TestUsernameRealmAndPassword() {
     hex_ss << std::setfill('0') << std::setw(2) << (int)buffer[i]; 
   }
 
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   CPPUNIT_ASSERT_EQUAL(hex_ss.str(), builder.UsernameRealmAndPassword(username, realm, password));
 }
 
@@ -56,7 +56,7 @@ void AuthorizationBuilderTest::TestUserRealmPassNonceCnonce() {
   std::string part_1 = crypto.Md5(username + ":" + realm + ":" + password);
   std::string hash = crypto.Md5(part_1 + ":" + nonce + ":" + cnonce);
   
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   
   CPPUNIT_ASSERT_EQUAL(hash, builder.UserRealmPassNonceCnonce(username, realm,
       password, nonce, cnonce));
@@ -70,7 +70,7 @@ void AuthorizationBuilderTest::TestMethodAndURI() {
   std::string uri = "http://foo.bar.com/some/uri.html";
   std::string hash = "fbf2a47e19579171f6587884a7c7cd88";
   
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   CPPUNIT_ASSERT_EQUAL(hash, builder.MethodAndURL(method, uri));
 }
 
@@ -82,7 +82,7 @@ void AuthorizationBuilderTest::TestMethodURIAndBodyHash() {
   std::string uri = "http://foo.bar.com/some/uri.html";
   std::string bodyHash = crypto.Md5("body");
   
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   CPPUNIT_ASSERT_EQUAL(hash, builder.MethodURLAndBodyHash(method, uri, bodyHash));
 }
 
@@ -112,7 +112,7 @@ void AuthorizationBuilderTest::TestResponse1() {
   
   std::string hash1, hash2;
   
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   hash1 = builder.UsernameRealmAndPassword(username, realm, password);
   hash2 = builder.MethodAndURL(method, uri);
   std::string response = builder.Response(hash1, nonce, nonce_count, cnonce, qop,
@@ -132,7 +132,7 @@ void AuthorizationBuilderTest::TestResponse2() {
   
   std::string hash1, hash2;
   
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   hash1 = builder.UsernameRealmAndPassword(username, realm, password);
   hash2 = builder.MethodAndURL(method, uri);
    

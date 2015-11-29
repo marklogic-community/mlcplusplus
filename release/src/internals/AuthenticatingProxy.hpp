@@ -24,6 +24,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 const header_t blank_headers;
 
 ///
@@ -161,6 +163,8 @@ private:
     AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
     AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
 };
+
+}
 
 }
 

@@ -20,6 +20,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
 const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
 
@@ -424,6 +426,8 @@ void AuthenticatingProxy::Delete_Async(const std::string& host,
                                        const header_t& headers)
 {
     
+}
+
 }
 
 }
