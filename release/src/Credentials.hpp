@@ -16,6 +16,10 @@
 
 #include "Types.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 using namespace web;
 
 ///
@@ -154,5 +158,7 @@ public:
     friend class AuthenticatingProxy;
     friend class TestCredentials;
 };
+
+}
 
 #endif /* defined(__Scratch__Credentials__) */

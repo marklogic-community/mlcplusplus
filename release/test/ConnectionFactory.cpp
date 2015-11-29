@@ -8,8 +8,10 @@
 
 #include "MLCPlusPlus.hpp"
 
+using namespace mlclient;
+
 Connection& ConnectionFactory::getConnection() {
-  Connection* conn();
-  conn->configure("192.168.123.4","8002","admin","admin");
+  Connection conn;
+  conn.configure("192.168.123.4","8002","admin","admin",false);
   return conn;
 }

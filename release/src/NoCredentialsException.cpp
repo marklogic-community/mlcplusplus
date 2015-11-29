@@ -8,6 +8,12 @@
 
 #include "NoCredentialsException.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 const char* NoCredentialsException::what(void) const throw() {
     return "No credentials found";
+}
+
 }

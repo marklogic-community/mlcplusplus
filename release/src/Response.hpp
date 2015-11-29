@@ -17,6 +17,10 @@
 #include "ResponseCodes.hpp"
 #include "Types.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 ///
 /// Response class
 ///
@@ -134,5 +138,7 @@ public:
     
     friend class ResponseTest;
 };
+
+}
 
 #endif /* defined(__Scratch__Response__) */

@@ -20,6 +20,10 @@
 #include "Credentials.hpp"
 #include "Types.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 const header_t blank_headers;
 
 ///
@@ -54,7 +58,7 @@ public:
     void AddCredentials(const Credentials& c);
     
     ///
-    /// Returns the credentials used by the proxy.
+    /// Returns a read-only copy of the credentials used by the proxy.
     ///
     /// \return The credentials
     ///
@@ -152,6 +156,12 @@ public:
                    const std::string& path,
                    const std::function<void(const Response&)> handler,
                    const header_t& headers = blank_headers);
+
+private:
+    AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
+    AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
 };
+
+}
 
 #endif /* defined(__Scratch__AuthenticatingProxy__) */

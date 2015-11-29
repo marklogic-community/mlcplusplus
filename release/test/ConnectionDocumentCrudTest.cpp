@@ -8,6 +8,7 @@
 
 #include <cpprest/json.h>
 #include <cpprest/http_client.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 #include <string>
 #include "MLCPlusPlus.hpp"
@@ -21,42 +22,18 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(ConnectionDocumentCrudTest);
 
-void ConnectionDocumentCrudTest::TestGet(void) {
-  Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+using namespace mlclient;
 
-  ap.AddCredentials(c);
+void ConnectionDocumentCrudTest::TestGetJson(void) {
+  Connection* ml = ConnectionFactory::getConnection();
 
-  Response response = ap.Get("http://192.168.57.148:8003", "/v1/documents?uri=/document/test.json");
+  Response response = ml->getDocument("/some/doc.json");
 
   ResponseType rt = response.GetResponseType();
   if (rt == ResponseType::JSON) { std::cout << "This is a standard response." << std::endl; }
-
+  // TODO XML support
 
   CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response.GetResponseType());
   CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
-
-}
-
-
-void ConnectionDocumentCrudTest::TestDelete(void) {
-  Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
-  ap.AddCredentials(c);
-
-  web::json::value payload;
-  payload[utility::string_t("hello")] = web::json::value::string("world");
-
-  Response response = ap.Post("http://192.168.57.148:8003",
-      "/v1/documents?extension=json&directory=/document/test/",
-      payload);
-  std::string location = response.GetResponseHeaders()["Location"];
-
-
-  response = ap.Delete("http://192.168.57.148:8003", location);
-  CPPUNIT_ASSERT_MESSAGE("Failed delete", ResponseCodes::NO_CONTENT == response.GetResponseCode());
-
-  response = ap.Get("http://192.168.57.148:8003", location);
-  CPPUNIT_ASSERT_MESSAGE("There should be nothing there", ResponseCodes::NOT_FOUND == response.GetResponseCode());
 
 }

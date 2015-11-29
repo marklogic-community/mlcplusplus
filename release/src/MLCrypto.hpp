@@ -16,6 +16,10 @@
 
 #include <string>
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 /// Crypto support classs
 ///
 /// This class provides some basic wrappers around crypto hashing functions.
@@ -53,6 +57,8 @@ public:
 private:
 
 };
+
+}
 
 #endif	/* MLCRYPTO_HPP */
 

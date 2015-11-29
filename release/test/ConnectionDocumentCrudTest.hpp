@@ -13,18 +13,18 @@
 #ifndef __Scratch__ConnectionDocumentCrudTest__
 #define __Scratch__ConnectionDocumentCrudTest__
 
+using namespace mlclient;
+
 class ConnectionDocumentCrudTest : public CppUnit::TestCase {
     CPPUNIT_TEST_SUITE(ConnectionDocumentCrudTest);
-    CPPUNIT_TEST(TestGet);
-    CPPUNIT_TEST(TestSaveJson);
-    CPPUNIT_TEST(TestSaveAllJson);
-    CPPUNIT_TEST(TestDelete);
+    CPPUNIT_TEST(TestGetJson);
+    //CPPUNIT_TEST(TestSaveJson);
+    //CPPUNIT_TEST(TestSaveAllJson);
     CPPUNIT_TEST_SUITE_END();
 public:
-    void TestGet(void);
-    void TestSaveJson(void);
-    void TestSaveAllJson(void);
-    void TestDelete(void);
+    void TestGetJson(void);
+    //void TestSaveJson(void);
+    //void TestSaveAllJson(void);
 };
 
 #endif /* defined(__Scratch__ConnectionDocumentCrudTest__) */

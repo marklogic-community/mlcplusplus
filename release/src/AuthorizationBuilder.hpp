@@ -10,6 +10,10 @@
 
 #include <string>
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 /// AuthorizationBuilder class.
 /// 
 /// Testable helper class to build the parts of the Digest response.  Takes
@@ -101,6 +105,8 @@ public:
 private:
     
 };
+
+}
 
 #endif	/* AUTHORIZATIONBUILDER_HPP */
 

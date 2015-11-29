@@ -12,6 +12,8 @@
 #ifndef MLCRYPTOTEST_HPP
 #define	MLCRYPTOTEST_HPP
 
+using namespace mlclient;
+
 class MLCryptoTest : public CppUnit::TestCase {
 public:
     MLCryptoTest();

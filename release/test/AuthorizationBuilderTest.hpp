@@ -12,6 +12,8 @@
 #ifndef AUTHORIZATIONBUILDERTEST_HPP
 #define	AUTHORIZATIONBUILDERTEST_HPP
 
+using namespace mlclient;
+
 class AuthorizationBuilderTest : public CppUnit::TestCase {
 public:
     CPPUNIT_TEST_SUITE(AuthorizationBuilderTest);

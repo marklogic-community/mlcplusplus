@@ -12,6 +12,8 @@
 #ifndef RESPONSETEST_HPP
 #define	RESPONSETEST_HPP
 
+using namespace mlclient;
+
 class ResponseTest : public CppUnit::TestCase {
 public:
     ResponseTest();

@@ -12,6 +12,10 @@
 #include "Response.hpp"
 #include "ResponseCodes.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 class AsyncWrapper {
   AuthenticatingProxy _proxy;
 
@@ -88,7 +92,7 @@ public:
   // rest extensions from MLJS
   // HIGH
   void version();
-  std::integer getVersion(); // returns cached/default version value - no rest request
+  int getVersion(); // returns cached/default version value - no rest request
   // LOW
   void whoami();
 
@@ -98,3 +102,5 @@ private:
   void applySearchProperties();
 
 };
+
+}

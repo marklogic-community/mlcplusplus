@@ -11,6 +11,8 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(ResponseTest);
 
+using namespace mlclient;
+
 ResponseTest::ResponseTest() {
 }
 

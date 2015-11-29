@@ -8,6 +8,7 @@
 
 #include <cpprest/json.h>
 #include <cpprest/http_client.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 #include <string>
 #include "AuthenticatingProxyTest.hpp"
@@ -20,9 +21,11 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(AuthenticatingProxyTest);
 
+using namespace mlclient;
+
 void AuthenticatingProxyTest::TestGet(void) {
   Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+  mlclient::AuthenticatingProxy ap;
 
   ap.AddCredentials(c);
 
@@ -39,7 +42,7 @@ void AuthenticatingProxyTest::TestGet(void) {
 
 void AuthenticatingProxyTest::TestGet2Tap(void) {
   Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+  mlclient::AuthenticatingProxy ap;
 
   ap.AddCredentials(c);
 
@@ -53,7 +56,7 @@ void AuthenticatingProxyTest::TestGet2Tap(void) {
 }
 
 void AuthenticatingProxyTest::TestAddCredentials(void) {
-    AuthenticatingProxy ap;
+    mlclient::AuthenticatingProxy ap;
     Credentials c("joe", "pass");
     
     ap.AddCredentials(c);
@@ -61,7 +64,7 @@ void AuthenticatingProxyTest::TestAddCredentials(void) {
 
 void AuthenticatingProxyTest::TestPostJSON(void) {
   Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+  mlclient::AuthenticatingProxy ap;
   ap.AddCredentials(c);
   
   web::json::value payload;
@@ -91,7 +94,7 @@ void AuthenticatingProxyTest::TestPostJSON(void) {
 
 void AuthenticatingProxyTest::TestPutJSON(void) {
   Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+  mlclient::AuthenticatingProxy ap;
   ap.AddCredentials(c);
   
   web::json::value payload;
@@ -120,7 +123,7 @@ void AuthenticatingProxyTest::TestPutJSON(void) {
 
 void AuthenticatingProxyTest::TestDelete(void) {
   Credentials c("admin", "x8kia30");
-  AuthenticatingProxy ap;
+  mlclient::AuthenticatingProxy ap;
   ap.AddCredentials(c);
   
   web::json::value payload;

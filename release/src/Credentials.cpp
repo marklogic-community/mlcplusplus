@@ -16,6 +16,10 @@
 #include "MLCrypto.hpp"
 #include "AuthorizationBuilder.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 const boost::regex realm_re("[R|r]ealm=\"(\\w+)\"");
 const boost::regex qop_re("qop=\"(\\w+)\"");
 const boost::regex nonce_re("nonce=\"([a-z0-9]+)\"");
@@ -150,3 +154,4 @@ std::string Credentials::Realm(void) const {
     return _realm;
 }
 
+}

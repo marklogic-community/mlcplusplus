@@ -16,6 +16,10 @@
 #include <cpprest/json.h>
 #include "ResponseCodes.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
 const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
 
@@ -63,7 +67,7 @@ Response AuthenticatingProxy::Get(const std::string& host,
       req.headers().add(iter->first, iter->second);
     }
     
-    raw_client.request(req).then([&response](http::http_response raw_response) {      
+    raw_client.request(req).then([&response](http::http_response raw_response) {
       raw_response.extract_json().then([&response](pplx::task<web::json::value> previousTask)
       {
         try
@@ -163,6 +167,7 @@ Response AuthenticatingProxy::Post(const std::string& host,
     raw_client.request(req).then([&response](http::http_response raw_response) {
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
       response.SetResponseHeaders(raw_response.headers());
+
     }).wait();
   } catch(std::exception e) {
     std::cerr << e.what() << std::endl;
@@ -419,4 +424,6 @@ void AuthenticatingProxy::Delete_Async(const std::string& host,
                                        const header_t& headers)
 {
     
+}
+
 }

@@ -13,6 +13,10 @@
 #include <string>
 #include <iostream>
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 ///
 /// The type of response
 ///
@@ -150,5 +154,7 @@ public:
         return result;
     };
 };
+
+}
 
 #endif /* defined(__Scratch__ResponseCodes__) */

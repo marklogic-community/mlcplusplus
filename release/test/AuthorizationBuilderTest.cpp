@@ -18,6 +18,8 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(AuthorizationBuilderTest);
 
+using namespace mlclient;
+
 void AuthorizationBuilderTest::TestUsernameRealmAndPassword() {
   std::string username = "joeuser";
   std::string realm = "myrealm";
