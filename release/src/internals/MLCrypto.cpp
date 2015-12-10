@@ -16,6 +16,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 MLCrypto::MLCrypto() {
 }
 
@@ -43,6 +45,8 @@ std::string MLCrypto::ToHex(const uint8_t* bytes, const size_t& length) const {
     hex_ss << std::setfill('0') << std::setw(2) << (int)bytes[i]; 
   }
   return hex_ss.str();
+}
+
 }
 
 }

@@ -14,11 +14,13 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include "MLCrypto.hpp"
-#include "AuthorizationBuilder.hpp"
+#include "internals/AuthorizationBuilder.hpp"
 
 #include "MLCPlusPlus.hpp"
 
 namespace mlclient {
+
+namespace internals {
 
 const boost::regex realm_re("[R|r]ealm=\"(\\w+)\"");
 const boost::regex qop_re("qop=\"(\\w+)\"");
@@ -57,7 +59,7 @@ Credentials::Credentials(const std::string& username, const std::string& passwor
 std::string Credentials::RandomCnonce() const 
 {
   
-  MLCrypto crypto;
+  internals::MLCrypto crypto;
   boost::uuids::uuid random_uuid = boost::uuids::random_generator()();
   std::string my_random_uuid = boost::uuids::to_string(random_uuid);
   return crypto.Md5(my_random_uuid);
@@ -107,7 +109,7 @@ std::string Credentials::Authenticate(const std::string& method, const std::stri
 
 std::string Credentials::Authenticate(const std::string& method, const std::string& uri) {
   std::ostringstream oss;
-  AuthorizationBuilder builder;
+  internals::AuthorizationBuilder builder;
   _nonce_count++;
 
   std::ostringstream temp;
@@ -152,6 +154,8 @@ std::string Credentials::Opaque(void) const {
 
 std::string Credentials::Realm(void) const {
     return _realm;
+}
+
 }
 
 }

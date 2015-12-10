@@ -36,7 +36,7 @@ AuthenticatingProxy::AuthenticatingProxy() : _attempts(0)
 }
 
 
-void AuthenticatingProxy::AddCredentials(const Credentials &c) 
+void AuthenticatingProxy::AddCredentials(const internals::Credentials &c)
 {
     _credentials = c;
 }

@@ -16,8 +16,12 @@
 
 namespace mlclient {
 
+namespace internals {
+
 typedef std::map<std::string, std::string> header_t;
 typedef std::multimap<std::string, std::string> params_t;
+
+}
 
 }
 

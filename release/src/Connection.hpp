@@ -1,4 +1,7 @@
 
+#ifndef __MLCLIENT_CONNECTION__
+#define __MLCLIENT_CONNECTION__
+
 #include "cpprest/http_client.h"
 
 #include "MLCPlusPlus.hpp"
@@ -46,3 +49,4 @@ private:
 
 }
 
+#endif /* defined __MLCLIENT_CONNECTION__ */

@@ -15,7 +15,7 @@ void Connection::configure(const std::string& hostname, const std::string& port,
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   _serverUrl = "http" + (usessl ? "s" : "") + "://" + hostname + ":" + port;
-  Credentials c(username, password);
+  internals::Credentials c(username, password);
   _proxy.AddCredentials(c);
 }
 

@@ -72,5 +72,9 @@ add_executable(mlcpptest
     MLCryptoTest.cpp
     ResponseTest.cpp
 )
+add_executable(getdoc
+    getdoc.cpp
+    ConnectionFactory.cpp
+)
 link_directories(/usr/lib /usr/local/lib release)
 target_link_libraries(mlcpptest MLCPlusPlus cppunit)

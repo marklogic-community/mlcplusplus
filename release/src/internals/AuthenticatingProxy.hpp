@@ -41,8 +41,6 @@ const header_t blank_headers;
 /// as well as REST.
 ///
 class AuthenticatingProxy {
-    Credentials _credentials;
-    uint32_t _attempts;
     
     
         
@@ -162,6 +160,10 @@ public:
 private:
     AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
     AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
+
+
+    Credentials _credentials;
+    uint32_t _attempts;
 };
 
 }

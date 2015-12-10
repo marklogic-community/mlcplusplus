@@ -20,6 +20,8 @@
 
 namespace mlclient {
 
+namespace internals {
+
 /// Crypto support classs
 ///
 /// This class provides some basic wrappers around crypto hashing functions.
@@ -57,6 +59,8 @@ public:
 private:
 
 };
+
+}
 
 }
 
