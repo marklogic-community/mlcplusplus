@@ -18,6 +18,8 @@ const std::string AUTH_HEADER_NAME = "Authorization";
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCredentials);
 
+using namespace mlclient;
+
 void TestCredentials::TestConstructor() {
     Credentials c1;
     Credentials c2("user", "pass");

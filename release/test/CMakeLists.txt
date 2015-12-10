@@ -10,7 +10,12 @@ if(IOS)
 elseif(UNIX) # This includes OSX
   find_package(Boost COMPONENTS system thread locale regex filesystem REQUIRED)
   find_package(Threads REQUIRED)
-  find_package(OpenSSL REQUIRED)
+  #find_package(OpenSSL REQUIRED)
+  #find_package(CppUnit REQUIRED)
+
+
+  set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
+  set (CPPUNIT_INCLUDE_DIR "/usr/local/opt/cppunit/include")
 
   #option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
 elseif(WIN32)
@@ -57,15 +62,19 @@ else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
 
-include_directories(../src /usr/include/libxml2)
+include_directories(../src /usr/include/libxml2 ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
 
-add_executable(mlcpptest 
-    main.cpp 
-    AuthenticatingProxyTest.cpp 
-    CredentialsTest.cpp 
+add_executable(mlcpptest
+    main.cpp
+    AuthenticatingProxyTest.cpp
+    CredentialsTest.cpp
     AuthorizationBuilderTest.cpp
     MLCryptoTest.cpp
     ResponseTest.cpp
+)
+add_executable(getdoc
+    getdoc.cpp
+    ConnectionFactory.cpp
 )
 link_directories(/usr/lib /usr/local/lib release)
 target_link_libraries(mlcpptest MLCPlusPlus cppunit)

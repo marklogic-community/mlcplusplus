@@ -12,6 +12,10 @@
 #include "ResponseCodes.hpp"
 #include "Response.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 using namespace web::http;
 
 const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
@@ -106,4 +110,6 @@ web::json::value Response::Json() const {
 
 void Response::SetJson(const web::json::value& json) {
   _json = json;
+}
+
 }

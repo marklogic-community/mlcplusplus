@@ -12,6 +12,8 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(MLCryptoTest);
 
+using namespace mlclient;
+
 MLCryptoTest::MLCryptoTest() {
 }
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__Credentials__
-#define __Scratch__Credentials__
+#ifndef __MLCLIENT__Credentials__
+#define __MLCLIENT__Credentials__
 
 #include <string>
 #include <map>
@@ -15,6 +15,12 @@
 #include <cpprest/http_client.h>
 
 #include "Types.hpp"
+
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
+namespace internals {
 
 using namespace web;
 
@@ -155,4 +161,8 @@ public:
     friend class TestCredentials;
 };
 
-#endif /* defined(__Scratch__Credentials__) */
+}
+
+}
+
+#endif /* defined(__MLCLIENT__Credentials__) */

@@ -9,6 +9,10 @@
 #ifndef __MARKLOGIC_REQUEST__
 #define __MARKLOGIC_REQUEST__
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 template<typename T>
 class Request {
     private:
@@ -17,5 +21,7 @@ class Request {
     public:
         
 };
+
+}
 
 #endif /* __MARKLOGIC_REQUEST__ */

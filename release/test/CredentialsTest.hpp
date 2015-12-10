@@ -13,6 +13,8 @@
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
 
+using namespace mlclient;
+
 class TestCredentials : public CppUnit::TestCase {
     CPPUNIT_TEST_SUITE(TestCredentials);
     CPPUNIT_TEST(TestConstructor);

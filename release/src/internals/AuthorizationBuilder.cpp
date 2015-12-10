@@ -8,6 +8,12 @@
 #include "AuthorizationBuilder.hpp"
 #include "MLCrypto.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
+namespace internals {
+
 AuthorizationBuilder::AuthorizationBuilder() {
 }
 
@@ -71,4 +77,8 @@ std::string AuthorizationBuilder::Response(const std::string& hash1,
 {
   MLCrypto crypto;
   return crypto.Md5(hash1 + ":" + nonce + ":" + hash2);
+}
+
+}
+
 }

@@ -12,6 +12,11 @@
 #include <sstream>
 #include <openssl/md5.h>
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
+namespace internals {
 
 MLCrypto::MLCrypto() {
 }
@@ -42,3 +47,6 @@ std::string MLCrypto::ToHex(const uint8_t* bytes, const size_t& length) const {
   return hex_ss.str();
 }
 
+}
+
+}

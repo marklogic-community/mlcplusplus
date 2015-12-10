@@ -14,6 +14,8 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/BriefTestProgressListener.h>
 
+using namespace mlclient;
+
 int main(int argc, const char * argv[])
 {
     CppUnit::TestResult controller;

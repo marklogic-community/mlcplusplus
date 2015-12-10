@@ -4,6 +4,10 @@
 
 #include "ResponseCodes.hpp"
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
   switch(rt) {
     case ResponseType::BINARY:
@@ -20,4 +24,6 @@ std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
       break;
   }
   return os;
+}
+
 }

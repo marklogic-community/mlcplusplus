@@ -13,6 +13,8 @@
 #ifndef __Scratch__AuthenticatingProxyTest__
 #define __Scratch__AuthenticatingProxyTest__
 
+using namespace mlclient;
+
 class AuthenticatingProxyTest : public CppUnit::TestCase {
     CPPUNIT_TEST_SUITE(AuthenticatingProxyTest);
     CPPUNIT_TEST(TestGet);

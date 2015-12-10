@@ -12,9 +12,15 @@
 #include <exception>
 #include <stdexcept>
 
+#include "MLCPlusPlus.hpp"
+
+namespace mlclient {
+
 class NoCredentialsException : public std::exception {
 public:
     virtual const char* what() const throw() override;
 };
+
+}
 
 #endif /* defined(__Scratch__NoCredentialsException__) */
