@@ -76,5 +76,5 @@ add_executable(getdoc
     getdoc.cpp
     ConnectionFactory.cpp
 )
-link_directories(/usr/lib /usr/local/lib release)
-target_link_libraries(mlcpptest MLCPlusPlus cppunit)
+target_link_libraries(mlcpptest MLCPlusPlus cppunit ${Casablanca_LIBRARIES})
+target_link_libraries(getdoc MLCPlusPlus cppunit ${Casablanca_LIBRARIES})

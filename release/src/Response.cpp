@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <boost/regex.hpp>
 
+#include <cpprest/http_headers.h>
+
 #include "ResponseCodes.hpp"
 #include "Response.hpp"
 
@@ -47,12 +49,12 @@ void Response::SetResponseCode(const ResponseCodes& code) {
 void Response::SetResponseType(const enum ResponseType& type) {
   _response_type = type;    
 }
-
-void Response::SetResponseHeaders(const header_t& headers) {
+/*
+void Response::SetResponseHeaders(const http_headers& headers) {
   _headers = headers;   
-}
+}*/
 
-void Response::SetResponseHeaders(const web::http::http_headers& headers) {
+void Response::SetResponseHeaders(const http_headers& headers) {
     _headers.clear();
     for (auto& iter : headers) {
       _headers[iter.first] = iter.second;
@@ -70,7 +72,7 @@ ResponseType Response::GetResponseType(void) const {
     return _response_type;
 }
 
-header_t Response::GetResponseHeaders(void) const {
+http_headers Response::GetResponseHeaders(void) const {
     return _headers;
 }
 
@@ -97,9 +99,10 @@ std::wstring Response::String() const {
  * Tries to return the response as an XML.  Throws ResponseTypeException if it's
  * not XML.
  */
+/*
 xmlDocPtr Response::Xml() const {
     return nullptr;
-}
+}*/
 
 /*
  * Guess what this does.

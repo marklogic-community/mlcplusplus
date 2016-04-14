@@ -16,7 +16,7 @@
 
 #include <string>
 
-#include "MLCPlusPlus.hpp"
+#include "../MLCPlusPlus.hpp"
 
 namespace mlclient {
 

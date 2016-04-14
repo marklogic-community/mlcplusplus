@@ -16,7 +16,7 @@
 
 #include "Types.hpp"
 
-#include "MLCPlusPlus.hpp"
+#include "../MLCPlusPlus.hpp"
 
 namespace mlclient {
 
@@ -54,7 +54,7 @@ protected:
     /// \param auth_header The contents of the WWW Authenticate header
     /// \return The contents of the Authorization header
     ///
-    std::string Authenticate(const std::string& method, const std::string& uri,
+    utility::string_t Authenticate(const std::string& method, const std::string& uri,
             const std::string& auth_header);
     
     ///
@@ -66,7 +66,7 @@ protected:
     /// \param uri The path portion of the URI
     /// \return The contents of the Authorization header
     ///
-    std::string Authenticate(const std::string& method, const std::string& uri);
+    utility::string_t Authenticate(const std::string& method, const std::string& uri);
     
 
     ///

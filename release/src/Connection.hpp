@@ -2,9 +2,11 @@
 #ifndef __MLCLIENT_CONNECTION__
 #define __MLCLIENT_CONNECTION__
 
-#include "cpprest/http_client.h"
+#include <cpprest/http_client.h>
 
 #include "MLCPlusPlus.hpp"
+#include "Response.hpp"
+#include "internals/AuthenticatingProxy.hpp"
 
 namespace mlclient {
 
@@ -27,24 +29,26 @@ public:
     // TODO save XML with and without URI
 
     // Multi part MIME saveAll function V7+
-    Response saveAllDocuments(const std::string& uris[], const web::json::value& documents[]);
+    //Response saveAllDocuments(const std::string& uris[], const web::json::value& documents[]);
     // TODO XML save all
     // TODO multiple responses when paging in N number of doc transactions
 
-    Response search(const web::json::value& searchQuery,const std::string& options);
+    // CLASHES WITH QTEXT VERSION Response search(const web::json::value& searchQuery,const std::string& options);
     // TODO search with options document (combined query)
     Response search(const web::json::value& searchQuery,const web::json::value& options);
-    Response Connection::search(const web::json::value& searchQuery,const std::string& qtext);
-    Response Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
+    Response search(const web::json::value& searchQuery,const std::string& qtext);
+    Response search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
     // TODO search with XML instead of JSON
 
 private:
-    std::string& _serverUrl;
-    mlclient::internals::AuthenticatingProxy& _proxy;
+    std::string _serverUrl;
+    internals::AuthenticatingProxy _proxy;
 
     // prevent compiler automatically defining the copy constructor and assignment operator:-
-    Connection(const Connection&);
-    Connection& operator= (const Connection&);
+    //Connection(const Connection&);
+    //Connection& operator= (const Connection&);
+
+    Response _dosearch(const web::json::value& combined);
 };
 
 }

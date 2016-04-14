@@ -11,11 +11,12 @@
 
 #include <cstdint>
 #include <cpprest/json.h>
+#include <cpprest/http_headers.h>
 #include <cpprest/http_client.h>
-#include <libxml2/libxml/tree.h>
+//#include <libxml2/libxml/tree.h>
 
 #include "ResponseCodes.hpp"
-#include "Types.hpp"
+#include "internals/Types.hpp"
 
 #include "MLCPlusPlus.hpp"
 
@@ -32,7 +33,7 @@ namespace mlclient {
 class Response {
     ResponseCodes _response_code; /*!< The response code 200/400/404, etc */
     ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
-    header_t      _headers;       /*!< The response headers */
+    web::http::http_headers      _headers;       /*!< The response headers */
     web::json::value _json;
     
     ///
@@ -70,7 +71,7 @@ public:
     ///
     /// \param headers The HTTP response headers
     ///
-    void SetResponseHeaders(const header_t& headers);
+    void SetResponseHeaders(const web::http::http_headers& headers);
     
     ///
     /// Sets the headers received as part of the response.  This is set when
@@ -78,7 +79,7 @@ public:
     ///
     /// \param headers The HTTP response headers
     ///
-    void SetResponseHeaders(const web::http::http_headers& headers);
+    //void SetResponseHeaders(const web::http::http_headers& headers);
     
     ///
     /// Returns the HTTP response code for the response.
@@ -99,7 +100,7 @@ public:
     ///
     /// \return The HTTP response headers
     ///
-    header_t GetResponseHeaders(void) const;
+    web::http::http_headers GetResponseHeaders(void) const;
     
     
     ///
@@ -124,7 +125,7 @@ public:
     ///
     /// \return The response document
     ///
-    xmlDocPtr Xml() const;
+    //xmlDocPtr Xml() const;
     
     ///
     /// For JSON  responses, returns the document using the Casablanca JSON

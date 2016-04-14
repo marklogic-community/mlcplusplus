@@ -8,18 +8,29 @@
 
 #include <iostream>
 
-using namespace mlclient;
+#include "MLCPlusPlus.hpp"
+#include "Connection.hpp"
+#include "Response.hpp"
+#include "ResponseCodes.hpp"
+#include "ConnectionFactory.hpp"
+
 
 int main(int argc, const char * argv[])
 {
-    Connection& ml = ConnectionFactory::getConnection();
+	using namespace mlclient;
 
-    Response response = ml.getDocument("/some/doc.json");
+	std::cout << "Running getdoc..." << std::endl;
+
+    Connection* ml = ConnectionFactory::getConnection();
+
+    Response response = ml->getDocument("/some/doc.json");
 
     ResponseType rt = response.GetResponseType();
+    std::cout << "Response type: " << rt << std::endl;
     if (ResponseType::JSON == rt) { std::cout << "This is /some/doc.json: " << std::endl << response.Json() << std::endl; }
     // TODO XML support
 
+    std::cout << "getdoc complete" << std::endl;
     return 0;
 }
 

@@ -14,19 +14,20 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
-#include <libxml/parser.h>
-#include "Response.hpp"
-#include "ResponseCodes.hpp"
+//#include <libxml/parser.h>
+#include "../Response.hpp"
+#include "../ResponseCodes.hpp"
 #include "Credentials.hpp"
 #include "Types.hpp"
 
-#include "MLCPlusPlus.hpp"
+#include "../MLCPlusPlus.hpp"
 
 namespace mlclient {
 
 namespace internals {
+using namespace web::http;
 
-const header_t blank_headers;
+const http_headers blank_headers;
 
 ///
 /// AuthenticatingProxy to handle authenticated calls to MarkLogic
@@ -74,44 +75,46 @@ public:
     ///
     Response Get(const std::string& host,
                  const std::string& path,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
             
     void Get_Async(const std::string& host,
                    const std::string& path,
                    const std::function<void(const Response&)> handler,
-                   const header_t& headers = blank_headers);
+                   const http_headers& headers = blank_headers);
     
     
     Response Post(const std::string& host, 
                   const std::string& path,
                   const json::value& body,
-                  const header_t& headers = blank_headers);
+                  const http_headers& headers = blank_headers);
+    /*
     Response Post(const std::string& host, 
                   const std::string& path,
                   const xmlDocPtr body,
-                  const header_t& headers = blank_headers);
+                  const http_headers& headers = blank_headers);
+                  */
     Response Post(const std::string& host, 
                   const std::string& path,
                   const std::wstring& text_body,
-                  const header_t& headers = blank_headers);
+                  const http_headers& headers = blank_headers);
     Response Post(const std::string& host, 
                   const std::string& path,
                   const uint8_t* data, 
                   const size_t& size,
-                  const header_t& headers = blank_headers);
+                  const http_headers& headers = blank_headers);
     Response PostFile(const std::string& host, 
                       const std::string& path,
                       const std::string& file_path,
-                      const header_t& headers = blank_headers);
+                      const http_headers& headers = blank_headers);
     
     void Post_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
+                   const http_headers& headers,
                    const params_t& body,
                    const std::function<void(const Response&)> handler);
     void Post_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
+                   const http_headers& headers,
                    const std::function<void(const Response&)> handler);
     void Post_Async(const std::string& host,
                    const std::string& path,
@@ -120,29 +123,31 @@ public:
     Response Put(const std::string& host,
                  const std::string& path,
                  const std::wstring& text_body,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
     Response Put(const std::string& host,
                  const std::string& path,
                  const json::value& text_body,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
+    /*
     Response Put(const std::string& host,
                  const std::string& path,
                  const xmlDocPtr& xml_body,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
+                 */
     Response Put(const std::string& host,
                  const std::string& path,
                  const uint8_t* data, 
                  const size_t& size,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
     
     void Put_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
+                   const http_headers& headers,
                    const params_t& body,
                    const std::function<void(const Response&)> handler);
     void Put_Async(const std::string& host,
                    const std::string& path,
-                   const header_t& headers,
+                   const http_headers& headers,
                    const std::function<void(const Response&)> handler);
     void Put_Async(const std::string& host,
                    const std::string& path,
@@ -150,16 +155,16 @@ public:
     
     Response Delete(const std::string& host,
                  const std::string& path,
-                 const header_t& headers = blank_headers);
+                 const http_headers& headers = blank_headers);
     
     void Delete_Async(const std::string& host,
                    const std::string& path,
                    const std::function<void(const Response&)> handler,
-                   const header_t& headers = blank_headers);
+                   const http_headers& headers = blank_headers);
 
 private:
     AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
-    AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
+    //AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
 
 
     Credentials _credentials;

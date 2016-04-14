@@ -5,6 +5,28 @@ project (MLCPlusPlus)
 
 # SYSTEM DETECTION
 
+# Boost (Includes system, thread, locale, regex and filesystem components by default)
+find_package (Boost REQUIRED COMPONENTS system filesystem thread atomic regex chrono random unit_test_framework)
+
+include_directories (AFTER
+  ${OPENSSL_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIRS}
+  /usr/local/opt/openssl/include
+  )
+  
+set(Casablanca_LIBRARY ${LIB}cpprest)
+set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  ${Boost_ATOMIC_LIBRARY}
+  ${Boost_CHRONO_LIBRARY}
+  ${Boost_RANDOM_LIBRARY}
+  ${Boost_REGEX_LIBRARY}
+  ${Boost_UNIT_TEST_FRAMEWORK})
+
+link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
+  
 add_subdirectory(src)
 add_subdirectory(test)
 
