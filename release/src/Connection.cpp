@@ -1,12 +1,16 @@
 
 
 #include "Connection.hpp"
+#include "Response.hpp"
+#include "internals/Credentials.hpp"
+#include "internals/AuthenticatingProxy.hpp"
 
 namespace mlclient {
 
 
-Connection::Connection(void) : _proxy(), _serverUrl("http://localhost:8002") {
-    ;
+Connection::Connection() {
+	_proxy = internals::AuthenticatingProxy();
+	_serverUrl = "http://localhost:8002";
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
@@ -14,7 +18,7 @@ void Connection::configure(const std::string& hostname, const std::string& port,
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
-  _serverUrl = "http" + (usessl ? "s" : "") + "://" + hostname + ":" + port;
+  _serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
   internals::Credentials c(username, password);
   _proxy.AddCredentials(c);
 }
@@ -27,7 +31,7 @@ Response Connection::getDocument(const std::string& uri) {
 
 // TODO XML version
 Response Connection::saveDocument(const std::string& uri,const web::json::value& payload) {
-    //payload[utility::string_t("hello")] = web::json::value::string("world");
+    //payload[U("hello")] = web::json::value::string("world");
 
   Response response = _proxy.Put(_serverUrl,
     "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing
@@ -40,42 +44,41 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
   // TODO multi part mime
 }*/
 
-Response Connection::search(const web::json::value& searchQuery,const std::string& options) {
-  Response response = _proxy.Post(_serverUrl,
-    "/v1/search?options=" + options, // TODO check for URL parsing
-    searchQuery);
-  return response;
-}
-
-Response Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
-	return Connection::search(searchQuery,(std::string&)nullptr,options);
-}
-
-
-Response Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
-	return Connection::search(searchQuery,qtext,(web::json::value)nullptr);
-}
-
-Response Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
-    // combined query
-	web::json::value combined;
-	if (searchQuery) {
-	  combined[utility::string_t("query")] = searchQuery;
-	}
-	if (qtext) {
-	  combined[utility::string_t("qtext")] = qtext;
-	}
-	if (options) {
-	  combined[utility::string_t("options")] = options;
-	}
-
-	web::json::value search;
-	search[utility::string_t("search")] = combined;
+Response Connection::_dosearch(const web::json::value& combined) {
+	web::json::value search = web::json::value::object();
+	search[U("search")] = web::json::value(combined);
 
 	Response response = _proxy.Post(_serverUrl,
 		"/v1/search",
 	    search);
 	return response;
 }
+
+Response Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
+	web::json::value combined = web::json::value::object();
+	combined[U("query")] = web::json::value(searchQuery);
+	combined[U("options")] = web::json::value(options);
+	return Connection::_dosearch(combined);
+}
+
+
+Response Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
+	web::json::value combined = web::json::value::object();
+	combined[U("query")] = web::json::value(searchQuery);
+    combined[U("qtext")] = web::json::value(qtext);
+	return Connection::_dosearch(combined);
+}
+
+Response Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
+    // combined query
+	web::json::value combined = web::json::value::object();
+	combined[U("query")] = web::json::value(searchQuery);
+    combined[U("qtext")] = web::json::value(qtext);
+	combined[U("options")] = web::json::value(options);
+
+	return Connection::_dosearch(combined);
+}
+
+// TODO overload the above method to allow for null options
 
 }

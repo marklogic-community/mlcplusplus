@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Adam Fowler. All rights reserved.
 //
 
+#include "MLCPlusPlus.hpp"
+#include "Connection.hpp"
+
 using namespace mlclient;
 
 class ConnectionFactory {
 public:
-	static Connection& getConnection(void);
+	static Connection* getConnection(void);
 private:
 	ConnectionFactory();
 	virtual ~ConnectionFactory();

@@ -7,12 +7,14 @@
 //
 
 #include "MLCPlusPlus.hpp"
+#include "Connection.hpp"
+#include "ConnectionFactory.hpp"
 
 using namespace mlclient;
 
-Connection& ConnectionFactory::getConnection() {
-  Connection conn;
+Connection* ConnectionFactory::getConnection() {
+  Connection* conn = new Connection;
   // ALTER THE BELOW FOR YOUR OWN SYSTEM DURING TESTING
-  conn.configure("192.168.123.4","8002","admin","admin",false);
+  conn->configure("192.168.123.4","8122","admin","admin",false);
   return conn;
 }

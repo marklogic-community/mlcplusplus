@@ -102,14 +102,17 @@ endif(DOXYGEN_FOUND)
 
 # ML C++ own libraries
 add_library (MLCPlusPlus SHARED
+    Connection.cpp
     MLCPlusPlus.cpp
-    Credentials.cpp
+    NoCredentialsException.cpp
     Request.cpp
     Response.cpp
-    AuthenticatingProxy.cpp
-    AuthorizationBuilder.cpp
-    MLCrypto.cpp
     ResponseCodes.cpp
+    
+    internals/AuthenticatingProxy.cpp
+    internals/AuthorizationBuilder.cpp
+    internals/Credentials.cpp
+    internals/MLCrypto.cpp
 )
 
 
@@ -120,10 +123,10 @@ include_directories (BEFORE ../include /usr/include/libxml2)
 
 # Casablanca
 # Assume source in same directory as MLCPlusPlus
-include_directories (AFTER
-  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
-  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
-  )
+#include_directories (AFTER
+#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
+#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
+#  )
 
 # Open SSL - to find the cmake commands
 set (OPENSSL_DIR "/usr/local/opt/openssl")
@@ -151,13 +154,6 @@ set (OPENSSL_DIR "/usr/local/opt/openssl")
 set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 #set (OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib/libssl.dylib")
 
-# Boost (Includes system, thread, locale, regex and filesystem components by default)
-find_package (Boost REQUIRED )
-
-include_directories (AFTER
-  ${OPENSSL_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
-  )
 
 # Now link our library to its dependencies
 #target_link_libraries (MLCPlusPlus
@@ -167,12 +163,12 @@ include_directories (AFTER
 #  )
 
 target_link_libraries (MLCPlusPlus
-    libcasablanca.dylib
     libcpprest.dylib
     libcommon_utilities.dylib
     libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
+    ${Casablanca_LIBRARIES}
 )
 
 

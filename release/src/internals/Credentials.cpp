@@ -13,21 +13,23 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <cpprest/http_client.h>
 #include "MLCrypto.hpp"
-#include "internals/AuthorizationBuilder.hpp"
+#include "AuthorizationBuilder.hpp"
 
-#include "MLCPlusPlus.hpp"
+#include "../MLCPlusPlus.hpp"
 
 namespace mlclient {
 
 namespace internals {
+using namespace web::http;
 
 const boost::regex realm_re("[R|r]ealm=\"(\\w+)\"");
 const boost::regex qop_re("qop=\"(\\w+)\"");
 const boost::regex nonce_re("nonce=\"([a-z0-9]+)\"");
 const boost::regex opaque_re("opaque=\"([a-z0-9]+)\"");
-const std::string AUTHORIZATION_HEADER_NAME = "Authorization";
-const std::string WWW_AUTHENTICATE_HEADER = "WWW-Authenticate";
+const utility::string_t AUTHORIZATION_HEADER_NAME = U("Authorization");
+const utility::string_t WWW_AUTHENTICATE_HEADER = U("WWW-Authenticate");
 
 Credentials::Credentials() : _nonce_count(0) {
     _cnonce = RandomCnonce();
@@ -137,7 +139,7 @@ std::string Credentials::Authenticate(const std::string& method, const std::stri
   oss << " response=\"" << response << "\",";
   oss << " opaque=\"" << _opaque << "\"";
   
-  return oss.str();
+  return U(oss.str());
 }
 
 std::string Credentials::Nonce(void) const {
