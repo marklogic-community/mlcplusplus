@@ -64,12 +64,8 @@ endif()
 
 include_directories(../src /usr/include/libxml2 ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
 
-add_executable(mlcpptest
-    main.cpp
-    AuthenticatingProxyTest.cpp
-    CredentialsTest.cpp
-    AuthorizationBuilderTest.cpp
-    MLCryptoTest.cpp
-    ResponseTest.cpp
+add_executable(getdoc
+    getdoc.cpp
+    ConnectionFactory.cpp
 )
-target_link_libraries(mlcpptest MLCPlusPlus cppunit ${Casablanca_LIBRARIES})
+target_link_libraries(getdoc MLCPlusPlus cppunit ${Casablanca_LIBRARIES})

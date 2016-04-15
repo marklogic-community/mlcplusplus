@@ -23,6 +23,45 @@ void Connection::configure(const std::string& hostname, const std::string& port,
   _proxy.AddCredentials(c);
 }
 
+
+
+
+
+
+
+
+
+// BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
+Response Connection::doGet(const std::string& pathAndQuerystring) {
+	return Connection::_proxy.Get(_serverUrl, pathAndQuerystring);
+}
+Response Connection::doPut(const std::string& pathAndQuerystring,const web::json::value& payload) {
+	return _proxy.Put(_serverUrl,
+		pathAndQuerystring,
+	    payload);
+}
+Response Connection::doPost(const std::string& pathAndQuerystring,const web::json::value& payload) {
+	return _proxy.Post(_serverUrl,
+			"/v1/search",
+		    payload);
+}
+// TODO XML payload
+// TODO multipart payload
+Response Connection::doDelete(const std::string& path) {
+	return _proxy.Delete(_serverUrl,path);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 Response Connection::getDocument(const std::string& uri) {
   Response response = Connection::_proxy.Get(_serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
 

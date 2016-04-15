@@ -29,5 +29,6 @@ link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
   
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(samples)
 
 

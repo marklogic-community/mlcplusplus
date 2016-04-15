@@ -22,6 +22,16 @@ public:
     // TODO Kerberos connection support
     // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods
 
+    // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
+    Response doGet(const std::string& pathAndQuerystring);
+    Response doPut(const std::string& pathAndQuerystring,const web::json::value& payload);
+    Response doPost(const std::string& pathAndQuerystring,const web::json::value& payload);
+    // TODO XML payload
+    // TODO multipart payload
+    Response doDelete(const std::string& path);
+
+
+    // Wrapped and supported functions
     Response getDocument(const std::string& uri);
     Response saveDocument(const std::string& uri,const web::json::value& payload);
     // TODO save JSON with directory, no uri
