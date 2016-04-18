@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__ResponseCodes__
-#define __Scratch__ResponseCodes__
+#ifndef RESPONSECODES_H
+#define RESPONSECODES_H
 
 #include <cstdint>
 #include <string>
@@ -23,6 +23,8 @@ namespace mlclient {
 enum class ResponseType { XML, JSON, TEXT, BINARY };
 
 std::ostream& operator << (std::ostream& os, const ResponseType& rt);
+std::string& operator +(std::string& s, const ResponseType& rt);
+std::string& operator+(const char* orig,const ResponseType& rt);
 
 ///
 /// The various HTTP response codes

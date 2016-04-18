@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__NoCredentialsException__
-#define __Scratch__NoCredentialsException__
+#ifndef NOCREDENTIALSEXCEPTION_H
+#define NOCREDENTIALSEXCEPTION_H
 
 #include <exception>
 #include <stdexcept>
@@ -23,4 +23,4 @@ public:
 
 }
 
-#endif /* defined(__Scratch__NoCredentialsException__) */
+#endif /* defined(NOCREDENTIALSEXCEPTION_H) */
