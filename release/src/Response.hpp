@@ -6,14 +6,16 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__Response__
-#define __Scratch__Response__
+#ifndef RESPONSE_H
+#define RESPONSE_H
 
 #include <cstdint>
 #include <cpprest/json.h>
 #include <cpprest/http_headers.h>
 #include <cpprest/http_client.h>
 //#include <libxml2/libxml/tree.h>
+
+#include <pugixml.hpp>
 
 #include "ResponseCodes.hpp"
 #include "internals/Types.hpp"
@@ -34,7 +36,9 @@ class Response {
     ResponseCodes _response_code; /*!< The response code 200/400/404, etc */
     ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
     web::http::http_headers      _headers;       /*!< The response headers */
-    web::json::value _json;
+    std::string _content;
+    //web::json::value _json;
+    //pugi::xml_document& _xml;
     
     ///
     /// Parses the content type header to guess the content type of the
@@ -128,7 +132,8 @@ public:
     ///
     /// \return The response document
     ///
-    //xmlDocPtr Xml() const;
+    const pugi::xml_document& Xml() const;
+    //void SetXml(const pugi::xml_document& doc);
     
     ///
     /// For JSON  responses, returns the document using the Casablanca JSON
@@ -138,7 +143,8 @@ public:
     ///
     web::json::value Json() const;
     
-    void SetJson(const web::json::value& json);
+    //void SetJson(const web::json::value& json);
+    void SetContent(const std::string& content);
     
 
 private:
@@ -155,3 +161,6 @@ private:
 }
 
 #endif /* defined(__Scratch__Response__) */
+
+
+

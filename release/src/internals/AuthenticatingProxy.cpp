@@ -8,14 +8,20 @@
 
 #include <string>
 #include <iostream>
+
+// JSON and HTTP includes
+#include <cpprest/http_client.h>
+#include <cpprest/json.h>
+#include <cpprest/http_headers.h>
+
+// XML includes
+#include <pugixml.hpp>
+
+// our API includes
 #include "../NoCredentialsException.hpp"
 #include "../Response.hpp"
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
-
-#include <cpprest/http_client.h>
-#include <cpprest/json.h>
-#include <cpprest/http_headers.h>
 #include "../ResponseCodes.hpp"
 
 #include "../MLCPlusPlus.hpp"
@@ -83,16 +89,15 @@ const Response& AuthenticatingProxy::Get(const std::string& host,
     http_response raw_response = hr.get();
     try
     {
-      //std::cout << "Raw response JSON: " << raw_response.extract_json().get() << std::endl;
-      response.SetJson(raw_response.extract_json().get());
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
       response.SetResponseHeaders(raw_response.headers());
+      response.SetContent(std::string(raw_response.extract_string().get()));
     }
     catch (const http_exception& e)
     {
       // Print error.
       std::wostringstream ss;
-      ss << "There was an error on the first request!!!" << e.what() << std::endl;
+      ss << "There was an error extracting content from response: " << e.what() << std::endl;
       std::wcout << ss.str();
     }
 
@@ -150,10 +155,11 @@ const Response& AuthenticatingProxy::Get(const std::string& host,
 
       try
       {
-    	  response.SetJson(raw_response.extract_json().get());
+    	  //response.SetJson(raw_response.extract_json().get());
 
           response.SetResponseCode((ResponseCodes)raw_response.status_code());
           response.SetResponseHeaders(raw_response.headers());
+          response.SetContent(raw_response.extract_string().get());
       }
       catch (const web::http::http_exception& e)
       {

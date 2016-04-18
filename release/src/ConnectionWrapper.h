@@ -1,6 +1,10 @@
 /*
  * A header file to provide a C wrapping of the Connection C++ class
  */
+
+#ifndef CONNECTIONWRAPPER_H
+#define CONNECTIONWRAPPER_H
+
 #include "ResponseWrapper.h"
 
 typedef void CConnection;
@@ -34,4 +38,10 @@ CResponse * connection_search(const CConnection *conn,const char *searchQuery,co
 
 #ifdef __cplusplus
 }
+#endif
+
+
+
+
+
 #endif

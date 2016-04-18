@@ -35,6 +35,14 @@ const char* const response_Json(CResponse *resp) {
 	//static const char* cstr = asstr.c_str();
 	return pref;
 }
+const char* const response_Xml(CResponse *resp) {
+	using namespace mlclient;
+	Response *t = (Response*)resp;
+	std::ostringstream os;
+	t->Xml().save(os);
+	static const char* cstr = os.str().c_str();
+	return cstr;
+}
 const char* const response_String(CResponse *resp) {
 	using namespace mlclient;
 	Response *t = (Response*)resp;

@@ -103,6 +103,7 @@ endif(DOXYGEN_FOUND)
 # ML C++ own libraries
 add_library (MLCPlusPlus SHARED
     Connection.cpp
+    InvalidFormatException.cpp
     MLCPlusPlus.cpp
     NoCredentialsException.cpp
     Request.cpp
@@ -171,6 +172,7 @@ target_link_libraries (MLCPlusPlus
     libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
+    libpugixml.a
     ${Casablanca_LIBRARIES}
 )
 
