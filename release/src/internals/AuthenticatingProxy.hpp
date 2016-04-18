@@ -63,7 +63,7 @@ public:
     ///
     /// \return The credentials
     ///
-    Credentials GetCredentials(void) const;
+    const Credentials& GetCredentials(void) const;
     
     ///
     /// Invokes a synchronous GET operation on the MarkLogic server.
@@ -73,7 +73,7 @@ public:
     /// \param headers The HTTP headers to include in the invocation
     /// \return The Response object
     ///
-    Response Get(const std::string& host,
+    const Response& Get(const std::string& host,
                  const std::string& path,
                  const http_headers& headers = blank_headers);
             
@@ -83,7 +83,7 @@ public:
                    const http_headers& headers = blank_headers);
     
     
-    Response Post(const std::string& host, 
+    const Response& Post(const std::string& host,
                   const std::string& path,
                   const json::value& body,
                   const http_headers& headers = blank_headers);
@@ -93,16 +93,16 @@ public:
                   const xmlDocPtr body,
                   const http_headers& headers = blank_headers);
                   */
-    Response Post(const std::string& host, 
+    const Response& Post(const std::string& host,
                   const std::string& path,
                   const std::wstring& text_body,
                   const http_headers& headers = blank_headers);
-    Response Post(const std::string& host, 
+    const Response& Post(const std::string& host,
                   const std::string& path,
                   const uint8_t* data, 
                   const size_t& size,
                   const http_headers& headers = blank_headers);
-    Response PostFile(const std::string& host, 
+    const Response& PostFile(const std::string& host,
                       const std::string& path,
                       const std::string& file_path,
                       const http_headers& headers = blank_headers);
@@ -120,21 +120,21 @@ public:
                    const std::string& path,
                    const std::function<void(const Response&)> handler);
     
-    Response Put(const std::string& host,
+    const Response& Put(const std::string& host,
                  const std::string& path,
                  const std::wstring& text_body,
                  const http_headers& headers = blank_headers);
-    Response Put(const std::string& host,
+    const Response& Put(const std::string& host,
                  const std::string& path,
                  const json::value& text_body,
                  const http_headers& headers = blank_headers);
     /*
-    Response Put(const std::string& host,
+    Response& Put(const std::string& host,
                  const std::string& path,
                  const xmlDocPtr& xml_body,
                  const http_headers& headers = blank_headers);
                  */
-    Response Put(const std::string& host,
+    const Response& Put(const std::string& host,
                  const std::string& path,
                  const uint8_t* data, 
                  const size_t& size,
@@ -153,7 +153,7 @@ public:
                    const std::string& path,
                    const std::function<void(const Response&)> handler);
     
-    Response Delete(const std::string& host,
+    const Response& Delete(const std::string& host,
                  const std::string& path,
                  const http_headers& headers = blank_headers);
     

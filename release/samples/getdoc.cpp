@@ -23,7 +23,7 @@ int main(int argc, const char * argv[])
 
     Connection* ml = ConnectionFactory::getConnection();
 
-    Response response = ml->getDocument("/some/doc.json");
+    const Response& response = ml->getDocument("/some/doc.json");
 
     ResponseType rt = response.GetResponseType();
     std::cout << "Response type: " << rt << std::endl;

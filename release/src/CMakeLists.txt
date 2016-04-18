@@ -113,6 +113,9 @@ add_library (MLCPlusPlus SHARED
     internals/AuthorizationBuilder.cpp
     internals/Credentials.cpp
     internals/MLCrypto.cpp
+    
+    ConnectionWrapper.cpp
+    ResponseWrapper.cpp
 )
 
 

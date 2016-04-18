@@ -48,6 +48,9 @@ public:
     ///
     ResponseType ResponseType(void) const;
     
+    Response();
+    ~Response();
+
     ///
     /// Sets the HTTP response code for the Response.  This is normally set
     /// when the response is received.  It should not be set otherwise.
@@ -116,9 +119,9 @@ public:
     ///
     /// For text responses, returns the response content as a string.  
     ///
-    /// \return The UTF-16 string
+    /// \return The UTF-8 string
     ///
-    std::wstring String() const;
+    std::string String() const;
     
     ///
     /// For XML responses, returns a document using the libxml2 library.
@@ -137,6 +140,15 @@ public:
     
     void SetJson(const web::json::value& json);
     
+
+private:
+
+    // prevent compiler automatically defining the copy constructor and assignment operator:-
+    Response(const Response&);
+    Response& operator= (const Response&);
+
+
+
     friend class ResponseTest;
 };
 
