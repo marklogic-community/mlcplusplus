@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include "../NoCredentialsException.hpp"
+#include "../Response.hpp"
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
 
@@ -36,10 +37,11 @@ using namespace web;                        // Common features like URIs.
 using namespace web::http;                  // Common HTTP functionality
 using namespace web::http::client;          // HTTP client features
 using namespace concurrency::streams;       // Asynchronous streams
+using namespace mlclient;
 
-AuthenticatingProxy::AuthenticatingProxy() : _attempts(0)
+AuthenticatingProxy::AuthenticatingProxy() : _attempts(0), _credentials()
 {
-	;
+	//_credentials = new Credentials(); // should be declared virtual?;
 }
 
 
@@ -48,15 +50,15 @@ void AuthenticatingProxy::AddCredentials(const internals::Credentials &c)
     _credentials = c;
 }
 
-Credentials AuthenticatingProxy::GetCredentials() const {
+const Credentials& AuthenticatingProxy::GetCredentials() const {
     return _credentials;
 }
 
-Response AuthenticatingProxy::Get(const std::string& host,
+const Response& AuthenticatingProxy::Get(const std::string& host,
                                   const std::string& path,
                                   const http_headers& headers)
 {
-  Response response;
+  static Response response;
   http_headers request_headers = headers;
   http_client raw_client(U(host));
 
@@ -81,6 +83,7 @@ Response AuthenticatingProxy::Get(const std::string& host,
     http_response raw_response = hr.get();
     try
     {
+      //std::cout << "Raw response JSON: " << raw_response.extract_json().get() << std::endl;
       response.SetJson(raw_response.extract_json().get());
       response.SetResponseCode((ResponseCodes)raw_response.status_code());
       response.SetResponseHeaders(raw_response.headers());
@@ -197,12 +200,12 @@ void AuthenticatingProxy::Get_Async(const std::string& host,
     
 }
 
-Response AuthenticatingProxy::Post(const std::string& host, 
+const Response& AuthenticatingProxy::Post(const std::string& host,
                   const std::string& path,
                   const json::value& body,
                   const http_headers& headers)
 {
-  Response response;
+  static Response response;
   http_headers request_headers = headers;
   
   http::client::http_client raw_client(U(host));
@@ -288,7 +291,7 @@ Response AuthenticatingProxy::Post(const std::string& host,
 }
 
 /*
-Response AuthenticatingProxy::Post(const std::string& host, 
+Response& AuthenticatingProxy::Post(const std::string& host,
                   const std::string& path,
                   const xmlDocPtr body,
                   const http_headers& headers)
@@ -298,32 +301,34 @@ Response AuthenticatingProxy::Post(const std::string& host,
   return result;
 }*/
 
-Response AuthenticatingProxy::Post(const std::string& host, 
+const Response& AuthenticatingProxy::Post(const std::string& host,
                   const std::string& path,
                   const std::wstring& text_body,
                   const http_headers& headers)
 {
-  Response result;
+  static Response result;
+
+  // TODO MUST INITIALISE THIS RETURN VARIABLE
   
   return result;
 }
 
-Response AuthenticatingProxy::Post(const std::string& host, 
+const Response& AuthenticatingProxy::Post(const std::string& host,
                   const std::string& path,
                   const uint8_t* data, 
                   const size_t& size,
                   const http_headers& headers)
 {
-  Response result;
+  static Response result;
   
   return result;
 }
-Response AuthenticatingProxy::PostFile(const std::string& host, 
+const Response& AuthenticatingProxy::PostFile(const std::string& host,
                       const std::string& path,
                       const std::string& file_path,
                       const http_headers& headers)
 {
-  Response result;
+  static Response result;
   
   return result;
 }
@@ -356,20 +361,20 @@ void AuthenticatingProxy::Post_Async(const std::string& host,
     Post_Async(host, path, blank_headers, handler);
 }
 
-Response AuthenticatingProxy::Put(const std::string& host,
+const Response& AuthenticatingProxy::Put(const std::string& host,
              const std::string& path,
              const std::wstring& text_body,
              const http_headers& headers)
 {
-  Response result;
+  static Response result;
   return result;
 }
-Response AuthenticatingProxy::Put(const std::string& host,
+const Response& AuthenticatingProxy::Put(const std::string& host,
              const std::string& path,
              const json::value& json_body,
              const http_headers& headers)
 {
-  Response response;
+  static Response response;
   http_headers request_headers = headers;
   
   http::client::http_client raw_client(U(host));
@@ -461,13 +466,14 @@ Response AuthenticatingProxy::Put(const std::string& host,
   return result;
 }*/
 
-Response AuthenticatingProxy::Put(const std::string& host,
+const Response& AuthenticatingProxy::Put(const std::string& host,
              const std::string& path,
              const uint8_t* data, 
              const size_t& size,
              const http_headers& headers)
 {
-  Response result;
+  static Response result;
+  // TODO MUST INITIALISE THIS OBJECT
   return result;
 }
 
@@ -498,11 +504,11 @@ void AuthenticatingProxy::Put_Async(const std::string& host,
     Put_Async(host, path, blank_headers, handler);
 }
 
-Response AuthenticatingProxy::Delete(const std::string& host,
+const Response& AuthenticatingProxy::Delete(const std::string& host,
                                      const std::string& path,
                                      const http_headers& headers)
 {
-  Response response;
+  static Response response;
   http_headers request_headers = headers;
   
   http::client::http_client raw_client(U(host));
@@ -592,6 +598,6 @@ void AuthenticatingProxy::Delete_Async(const std::string& host,
     
 }
 
-}
+} // end internals namespace
 
-}
+} // end mlclient namespace

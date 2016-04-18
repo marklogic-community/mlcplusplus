@@ -22,6 +22,13 @@ using namespace web::http;
 
 const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 
+Response::Response() {
+	// ignore compilation warning - we know they are each set individually later, due to the nature of HTTP response interrogation code.
+}
+
+Response::~Response() {
+}
+
 ResponseType Response::ParseContentTypeHeader(const std::string& content) {
   boost::smatch matches;
   enum ResponseType result = ResponseType::BINARY;
@@ -91,8 +98,8 @@ size_t Response::Read(void* buffer, const size_t& max_size, const size_t off) {
  * Tries to read back the response as a string.  Throws ResponseTypeException
  * if the response is not a string or string based.
  */
-std::wstring Response::String() const {
-    return L"";
+std::string Response::String() const {
+    return "";
 }
 
 /*

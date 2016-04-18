@@ -68,4 +68,17 @@ add_executable(getdoc
     getdoc.cpp
     ConnectionFactory.cpp
 )
-target_link_libraries(getdoc MLCPlusPlus cppunit ${Casablanca_LIBRARIES})
+add_executable(cgetdoc
+    cgetdoc.c
+    ConnectionFactory.cpp
+    ConnectionFactoryWrapper.cpp
+)
+add_executable(cgetasstruct
+    cgetasstruct.c
+    ConnectionFactory.cpp
+    ConnectionFactoryWrapper.cpp
+    CStructWrapper.cpp
+)
+target_link_libraries(getdoc MLCPlusPlus ${Casablanca_LIBRARIES})
+target_link_libraries(cgetdoc MLCPlusPlus ${Casablanca_LIBRARIES})
+target_link_libraries(cgetasstruct MLCPlusPlus ${Casablanca_LIBRARIES})
