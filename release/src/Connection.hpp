@@ -23,17 +23,17 @@ public:
     // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods
 
     // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
-    const Response& doGet(const std::string& pathAndQuerystring);
-    const Response& doPut(const std::string& pathAndQuerystring,const web::json::value& payload);
-    const Response& doPost(const std::string& pathAndQuerystring,const web::json::value& payload);
+    std::unique_ptr<Response> doGet(const std::string& pathAndQuerystring);
+    std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const web::json::value& payload);
+    std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const web::json::value& payload);
     // TODO XML payload
     // TODO multipart payload
-    const Response& doDelete(const std::string& path);
+    std::unique_ptr<Response> doDelete(const std::string& path);
 
 
     // Wrapped and supported functions
-    const Response& getDocument(const std::string& uri);
-    const Response& saveDocument(const std::string& uri,const web::json::value& payload);
+    std::unique_ptr<Response> getDocument(const std::string& uri);
+    std::unique_ptr<Response> saveDocument(const std::string& uri,const web::json::value& payload);
     // TODO save JSON with directory, no uri
     // TODO optional parameters (collection, security, etc.)
     // TODO save XML with and without URI
@@ -45,9 +45,9 @@ public:
 
     // CLASHES WITH QTEXT VERSION Response search(const web::json::value& searchQuery,const std::string& options);
     // TODO search with options document (combined query)
-    const Response& search(const web::json::value& searchQuery,const web::json::value& options);
-    const Response& search(const web::json::value& searchQuery,const std::string& qtext);
-    const Response& search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
+    std::unique_ptr<Response> search(const web::json::value& searchQuery,const web::json::value& options);
+    std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext);
+    std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
     // TODO search with XML instead of JSON
 
 private:
@@ -58,7 +58,7 @@ private:
     //Connection(const Connection&);
     //Connection& operator= (const Connection&);
 
-    const Response& _dosearch(const web::json::value& combined);
+    std::unique_ptr<Response> _dosearch(const web::json::value& combined);
 };
 
 }

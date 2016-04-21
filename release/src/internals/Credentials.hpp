@@ -156,8 +156,9 @@ public:
     /// \return The realm
     ///
     std::string Realm(void) const;
-        
+
     friend class AuthenticatingProxy;
+    friend class AuthenticatingProxyTest; // I hate having these here!
     friend class TestCredentials;
 };
 

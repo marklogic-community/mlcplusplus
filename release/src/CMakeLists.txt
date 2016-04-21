@@ -109,12 +109,12 @@ add_library (MLCPlusPlus SHARED
     Request.cpp
     Response.cpp
     ResponseCodes.cpp
-    
+
     internals/AuthenticatingProxy.cpp
     internals/AuthorizationBuilder.cpp
     internals/Credentials.cpp
     internals/MLCrypto.cpp
-    
+
     ConnectionWrapper.cpp
     ResponseWrapper.cpp
 )
@@ -192,8 +192,8 @@ endif(DOXYGEN_FOUND)
 
 
 # INSTALLATION
-install (TARGETS MLCPlusPlus DESTINATION lib)
-install (FILES MLCPlusPlus.h DESTINATION include)
+install (TARGETS MLCPlusPlus LIBRARY DESTINATION lib)
+install (FILES MLCPlusPlus.h MLCPlusPlus.hpp Response.hpp DESTINATION include)
 
 
 
@@ -201,6 +201,9 @@ install (FILES MLCPlusPlus.h DESTINATION include)
 
 # build a CPack driven installer package
 include (InstallRequiredSystemLibraries)
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MarkLogic C++ Client Library")
+SET(CPACK_PACKAGE_VENDOR "MarkLogic Inc.")
+#SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ReadMe.txt")
 set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
 set (CPACK_PACKAGE_VERSION_MAJOR "${MLCPlusPlus_VERSION_MAJOR}")
 set (CPACK_PACKAGE_VERSION_MINOR "${MLCPlusPlus_VERSION_MINOR}")

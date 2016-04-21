@@ -22,10 +22,11 @@
 namespace mlclient {
 
 using namespace web::http;
+using namespace utility;
 
 const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 
-Response::Response() {
+Response::Response() : _response_code(ResponseCodes::UNKNOWN), _response_type(ResponseType::UNKNOWN) {
 	// ignore compilation warning - we know they are each set individually later, due to the nature of HTTP response interrogation code.
 	//_xml = pugi::xml_document;
 }
@@ -102,8 +103,8 @@ size_t Response::Read(void* buffer, const size_t& max_size, const size_t off) {
  * Tries to read back the response as a string.  Throws ResponseTypeException
  * if the response is not a string or string based.
  */
-std::string Response::String() const {
-    return "";
+std::string& Response::String() const {
+    return *_content; // force copy cstor
 }
 
 /*
@@ -121,13 +122,14 @@ const pugi::xml_document& Response::Xml() const {
 	// TODO sanity check/warning for type of response
     if (_response_type == ResponseType::XML) {
   		  // get response raw text
-  		  const std::string& asstr = _content;
+		  //const std::string asstr = *_content.get();
+		  //const std::string asstr = _content;
   		  //std::cout << "Content: " << asstr << std::endl;
   		  // parse in to XML object
   		  // set response XML
   		  static pugi::xml_document doc;
   		  static const pugi::xml_document& docref = doc;
-  		  pugi::xml_parse_result result = doc.load_string(asstr.c_str());
+  		  pugi::xml_parse_result result = doc.load_string(_content->c_str());
 
   		  if (result)
   		  {
@@ -136,9 +138,9 @@ const pugi::xml_document& Response::Xml() const {
   		  }
   		  else
   		  {
-  		      std::cout << "XML [" << asstr << "] parsed with errors]\n";
+  		      std::cout << "XML [" << *_content << "] parsed with errors]\n";
   		      std::cout << "Error description: " << result.description() << "\n";
-  		      std::cout << "Error offset: " << result.offset << " (error at [..." << asstr << "]\n\n";
+  		      std::cout << "Error offset: " << result.offset << " (error at [..." << *_content << "]\n\n";
   		      // TODO throw something here
   		      throw InvalidFormatException();
   		  }
@@ -151,8 +153,9 @@ void Response::SetXml(const pugi::xml_document& doc) {
 	_xml = doc;
 }*/
 
-void Response::SetContent(const std::string& content) {
-	_content = content;
+void Response::SetContent(std::unique_ptr<std::string> content) {
+	_content = std::move(content); // move ownership from function to object
+	//std::cout << "SetContent: parameter: " << content << ", member variable: " << _content << std::endl;
 }
 
 /*
@@ -161,10 +164,10 @@ void Response::SetContent(const std::string& content) {
 web::json::value Response::Json() const {
     //return _json;
 	// TODO sanity check/warning for type of response
-
+//std::cout << "Response type: " << _response_type << std::endl;
     if (_response_type == ResponseType::JSON) {
-    //std::cout << "Raw response JSON: " << raw_response.extract_json().get() << std::endl;
-      return web::json::value::parse(_content);
+    //std::cout << "Raw response JSON: " << _content << std::endl;
+      return web::json::value::parse(*_content);
     } else {
       throw InvalidFormatException();
     }

@@ -23,9 +23,14 @@ int main(int argc, const char * argv[])
     const int rc = response_GetResponseCode(response);
     printf("Response code: %i \n",rc);
     if (RESPONSETYPE_JSON == rt) {
-    	printf("This is %s: %s \n",uri,response_Json(response) );
+    	//int length = response_length(response);
+    	//char buffer[length + 1];
+    	//response_Json(response,buffer);
+    	//printf("This is %s: %s \n",uri,buffer );
+    	printf("This is JSON doc %s: %s \n",uri,response_String(response));
     } else if (RESPONSETYPE_XML == rt) {
-    	printf("This is XML doc %s: %s",uri,response_Xml(response));
+    	//const char* xml = response_Xml(response);
+    	printf("This is XML doc %s: %s",uri,response_String(response));
     } else {
     	printf("This is String doc %s: %s \n",uri,response_String(response));
     }
