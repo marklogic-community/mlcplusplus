@@ -17,16 +17,16 @@ using namespace mlclient;
 
 class TestCredentials : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(TestCredentials);
-  CPPUNIT_TEST(TestConstructor);
-  CPPUNIT_TEST(TestParseWWWAuthenticateHeader);
-  CPPUNIT_TEST(TestAuthenticate);
-  CPPUNIT_TEST(TestAuthenticate2);
+  CPPUNIT_TEST(testConstructor);
+  CPPUNIT_TEST(testParseWWWAuthenticateHeader);
+  CPPUNIT_TEST(testAuthenticate);
+  CPPUNIT_TEST(testAuthenticate2);
   CPPUNIT_TEST_SUITE_END();
 public:
-  void TestConstructor(void);
-  void TestParseWWWAuthenticateHeader();
-  void TestAuthenticate();
-  void TestAuthenticate2();
+  void testConstructor(void);
+  void testParseWWWAuthenticateHeader();
+  void testAuthenticate();
+  void testAuthenticate2();
 };
 
 #endif /* defined(__Scratch__TestCredentials__) */

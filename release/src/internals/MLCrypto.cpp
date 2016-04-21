@@ -27,7 +27,7 @@ MLCrypto::MLCrypto(const MLCrypto& orig) {
 MLCrypto::~MLCrypto() {
 }
 
-std::string MLCrypto::Md5(const std::string& raw) const {
+std::string MLCrypto::md5(const std::string& raw) const {
   uint8_t buffer[16];
 
   MD5_CTX _context;
@@ -35,10 +35,10 @@ std::string MLCrypto::Md5(const std::string& raw) const {
   MD5_Update(&_context, raw.c_str(), raw.size());
   MD5_Final(buffer, &_context);
 
-  return ToHex(buffer, 16);
+  return toHex(buffer, 16);
 }
 
-std::string MLCrypto::ToHex(const uint8_t* bytes, const size_t& length) const {
+std::string MLCrypto::toHex(const uint8_t* bytes, const size_t& length) const {
   std::ostringstream hex_ss;
   hex_ss << std::hex;
   for (size_t i = 0; i < length; i++) { 

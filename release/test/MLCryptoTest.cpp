@@ -24,7 +24,7 @@ MLCryptoTest::MLCryptoTest(const MLCryptoTest& orig) {
 MLCryptoTest::~MLCryptoTest() {
 }
 
-void MLCryptoTest::TestToHex() {
+void MLCryptoTest::testToHex() {
   MLCrypto crypto;
 
   uint8_t zero = 0;     std::string zero_str = "00";
@@ -32,17 +32,17 @@ void MLCryptoTest::TestToHex() {
   uint8_t ten = 10;     std::string ten_str = "0a";
   uint8_t sixteen = 16; std::string sixteen_str = "10";
 
-  CPPUNIT_ASSERT_EQUAL(zero_str, crypto.ToHex(&zero, 1));
-  CPPUNIT_ASSERT_EQUAL(one_str, crypto.ToHex(&one, 1));
-  CPPUNIT_ASSERT_EQUAL(ten_str, crypto.ToHex(&ten, 1));
-  CPPUNIT_ASSERT_EQUAL(sixteen_str, crypto.ToHex(&sixteen, 1));
+  CPPUNIT_ASSERT_EQUAL(zero_str, crypto.toHex(&zero, 1));
+  CPPUNIT_ASSERT_EQUAL(one_str, crypto.toHex(&one, 1));
+  CPPUNIT_ASSERT_EQUAL(ten_str, crypto.toHex(&ten, 1));
+  CPPUNIT_ASSERT_EQUAL(sixteen_str, crypto.toHex(&sixteen, 1));
 }
 
-void MLCryptoTest::TestMd5() {
+void MLCryptoTest::testMd5() {
   MLCrypto crypto;
 
   // MD5 of the word 'test'
   std::string expected = "098f6bcd4621d373cade4e832627b4f6";
 
-  CPPUNIT_ASSERT_EQUAL(expected, crypto.Md5("test"));
+  CPPUNIT_ASSERT_EQUAL(expected, crypto.md5("test"));
 }

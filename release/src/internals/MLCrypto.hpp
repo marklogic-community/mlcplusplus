@@ -47,7 +47,7 @@ public:
   /// \param raw The raw string to hash
   /// \return The MD5 hash as a hex string
   ///
-  std::string Md5(const std::string& raw) const;
+  std::string md5(const std::string& raw) const;
 
   ///
   /// Convert a set of bytes to a hex encoded string.
@@ -55,7 +55,7 @@ public:
   /// \param bytes The raw bytes
   /// \param length The length of the byte string
   /// \return The hex representaiton of the bytes
-  std::string ToHex(const uint8_t* bytes, const size_t& length) const;
+  std::string toHex(const uint8_t* bytes, const size_t& length) const;
 private:
 
 };

@@ -21,29 +21,29 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestCredentials);
 using namespace mlclient;
 using namespace mlclient::internals;
 
-void TestCredentials::TestConstructor() {
+void TestCredentials::testConstructor() {
   Credentials c1;
   Credentials c2("user", "pass");
   Credentials c3(L"user", L"pass");
 }
 
 
-void TestCredentials::TestParseWWWAuthenticateHeader() {
+void TestCredentials::testParseWWWAuthenticateHeader() {
   Credentials c1;
 
-  c1.ParseWWWAthenticateHeader(TEST_HEADER);
+  c1.parseWWWAthenticateHeader(TEST_HEADER);
 
-  CPPUNIT_ASSERT_EQUAL(std::string("public"), c1.Realm());
-  CPPUNIT_ASSERT_EQUAL(std::string("auth"), c1.Qop());
-  CPPUNIT_ASSERT_EQUAL(std::string("79e3998e2a65a2bbb69c4027708f4bca"), c1.Nonce());
-  CPPUNIT_ASSERT_EQUAL(std::string("5db0205ddeca8742"), c1.Opaque());
+  CPPUNIT_ASSERT_EQUAL(std::string("public"), c1.realm());
+  CPPUNIT_ASSERT_EQUAL(std::string("auth"), c1.qop());
+  CPPUNIT_ASSERT_EQUAL(std::string("79e3998e2a65a2bbb69c4027708f4bca"), c1.nonce());
+  CPPUNIT_ASSERT_EQUAL(std::string("5db0205ddeca8742"), c1.opaque());
 }
 
-void TestCredentials::TestAuthenticate() {
+void TestCredentials::testAuthenticate() {
   Credentials c1("Joe", "password");
   header_t headers, output_headers;
 
-  std::string result = c1.Authenticate("GET", "/some/path", TEST_HEADER);
+  std::string result = c1.authenticate("GET", "/some/path", TEST_HEADER);
 
 
   CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("Digest")));
@@ -55,7 +55,7 @@ void TestCredentials::TestAuthenticate() {
   CPPUNIT_ASSERT(boost::regex_search(result, boost::regex("response=\"[a-z0-9]+\"")));
 }
 
-void TestCredentials::TestAuthenticate2() {
+void TestCredentials::testAuthenticate2() {
   std::string header = std::string("Digest realm=\"public\", qop=\"auth\", ") + 
       "nonce=\"c5d9544ee5f63a0b26b92224ea05bb30\", opaque=\"ef2f69bd929d0619\"";
 
@@ -63,7 +63,7 @@ void TestCredentials::TestAuthenticate2() {
 
   header_t headers, output_headers;
   headers[AUTHENT_HEADER_NAME] = header;
-  std::string reply = c1.Authenticate("GET", "/v1/documents?uri=/document/test.json", 
+  std::string reply = c1.authenticate("GET", "/v1/documents?uri=/document/test.json",
       header);
 
   CPPUNIT_ASSERT(boost::regex_search(reply, 

@@ -37,7 +37,7 @@ public:
   /// \param password The user (plaintext) password
   /// \return The MD5 hash of the values
   ///
-  std::string UsernameRealmAndPassword(const std::string& username,
+  std::string usernameRealmAndPassword(const std::string& username,
       const std::string& realm, const std::string& password);
 
   ///
@@ -51,7 +51,7 @@ public:
   /// \param cnonce The client provided nonce
   /// \return The MD5 hash of the values
   ///
-  std::string UserRealmPassNonceCnonce(const std::string& username,
+  std::string userRealmPassNonceCnonce(const std::string& username,
       const std::string& realm, const std::string& password,
       const std::string& nonce, const std::string& cnonce);
 
@@ -63,7 +63,7 @@ public:
   /// \param url The document path portion of the url.
   /// \return The MD5 hash of the values
   ///
-  std::string MethodAndURL(const std::string& method, const std::string& url);
+  std::string methodAndURL(const std::string& method, const std::string& url);
 
   ///
   /// Constructs the alternate HA2 hash from the HTTP method, the path
@@ -73,7 +73,7 @@ public:
   /// \param url The document path portion of the url.
   /// \param bodyHash The hash of the body contents.
   ///
-  std::string MethodURLAndBodyHash(const std::string& method,
+  std::string methodURLAndBodyHash(const std::string& method,
       const std::string& url, const std::string& bodyHash);
 
   ///
@@ -87,7 +87,7 @@ public:
   /// \param hash2 The approparite HA2 hash
   /// \return The MD5 encoded hash of the values
   ///
-  std::string Response(const std::string& hash1,
+  std::string response(const std::string& hash1,
       const std::string& nonce,
       const std::string& nonceCount,
       const std::string& clientNonce,
@@ -102,7 +102,7 @@ public:
   /// \param hash2 The approparite HA2 hash
   /// \return The MD5 encoded hash of the values
   ///
-  std::string Response(const std::string& hash1, const std::string& nonce,
+  std::string response(const std::string& hash1, const std::string& nonce,
       const std::string& hash2);
 private:
 
