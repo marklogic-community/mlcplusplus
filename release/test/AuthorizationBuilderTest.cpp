@@ -20,7 +20,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(AuthorizationBuilderTest);
 
 using namespace mlclient;
 
-void AuthorizationBuilderTest::TestUsernameRealmAndPassword() {
+void AuthorizationBuilderTest::testUsernameRealmAndPassword() {
   std::string username = "joeuser";
   std::string realm = "myrealm";
   std::string password = "password";
@@ -42,10 +42,10 @@ void AuthorizationBuilderTest::TestUsernameRealmAndPassword() {
   }
 
   internals::AuthorizationBuilder builder;
-  CPPUNIT_ASSERT_EQUAL(hex_ss.str(), builder.UsernameRealmAndPassword(username, realm, password));
+  CPPUNIT_ASSERT_EQUAL(hex_ss.str(), builder.usernameRealmAndPassword(username, realm, password));
 }
 
-void AuthorizationBuilderTest::TestUserRealmPassNonceCnonce() {
+void AuthorizationBuilderTest::testUserRealmPassNonceCnonce() {
   internals::MLCrypto crypto;
   std::string username = "joe";
   std::string realm = "realm";
@@ -53,17 +53,17 @@ void AuthorizationBuilderTest::TestUserRealmPassNonceCnonce() {
   std::string nonce = "012345";
   std::string cnonce = "000001";
 
-  std::string part_1 = crypto.Md5(username + ":" + realm + ":" + password);
-  std::string hash = crypto.Md5(part_1 + ":" + nonce + ":" + cnonce);
+  std::string part_1 = crypto.md5(username + ":" + realm + ":" + password);
+  std::string hash = crypto.md5(part_1 + ":" + nonce + ":" + cnonce);
 
   internals::AuthorizationBuilder builder;
 
-  CPPUNIT_ASSERT_EQUAL(hash, builder.UserRealmPassNonceCnonce(username, realm,
+  CPPUNIT_ASSERT_EQUAL(hash, builder.userRealmPassNonceCnonce(username, realm,
       password, nonce, cnonce));
 }
 
 
-void AuthorizationBuilderTest::TestMethodAndURI() {
+void AuthorizationBuilderTest::testMethodAndURI() {
   internals::MLCrypto crypto;
 
   std::string method = "GET";
@@ -71,19 +71,19 @@ void AuthorizationBuilderTest::TestMethodAndURI() {
   std::string hash = "fbf2a47e19579171f6587884a7c7cd88";
 
   internals::AuthorizationBuilder builder;
-  CPPUNIT_ASSERT_EQUAL(hash, builder.MethodAndURL(method, uri));
+  CPPUNIT_ASSERT_EQUAL(hash, builder.methodAndURL(method, uri));
 }
 
-void AuthorizationBuilderTest::TestMethodURIAndBodyHash() {
+void AuthorizationBuilderTest::testMethodURIAndBodyHash() {
   std::string hash = "8e8c36970df5e7371dfda6202a6720be";
   internals::MLCrypto crypto;
 
   std::string method = "GET";
   std::string uri = "http://foo.bar.com/some/uri.html";
-  std::string bodyHash = crypto.Md5("body");
+  std::string bodyHash = crypto.md5("body");
 
   internals::AuthorizationBuilder builder;
-  CPPUNIT_ASSERT_EQUAL(hash, builder.MethodURLAndBodyHash(method, uri, bodyHash));
+  CPPUNIT_ASSERT_EQUAL(hash, builder.methodURLAndBodyHash(method, uri, bodyHash));
 }
 
 /*
@@ -97,7 +97,7 @@ void AuthorizationBuilderTest::TestMethodURIAndBodyHash() {
  * nc=00000001, 
  * cnonce="72315add23f0224a"
  */
-void AuthorizationBuilderTest::TestResponse1() {
+void AuthorizationBuilderTest::testResponse1() {
   std::string hash = "ec817aae17c45b164882ecaa9491c6e2";
   std::string username = "admin";
   std::string realm = "public";
@@ -113,15 +113,15 @@ void AuthorizationBuilderTest::TestResponse1() {
   std::string hash1, hash2;
 
   internals::AuthorizationBuilder builder;
-  hash1 = builder.UsernameRealmAndPassword(username, realm, password);
-  hash2 = builder.MethodAndURL(method, uri);
-  std::string response = builder.Response(hash1, nonce, nonce_count, cnonce, qop,
+  hash1 = builder.usernameRealmAndPassword(username, realm, password);
+  hash2 = builder.methodAndURL(method, uri);
+  std::string response = builder.response(hash1, nonce, nonce_count, cnonce, qop,
       hash2);
 
   CPPUNIT_ASSERT_EQUAL(hash, response);
 }
 
-void AuthorizationBuilderTest::TestResponse2() {
+void AuthorizationBuilderTest::testResponse2() {
   std::string hash = "f2aecff82351aae06344385e4a3add6e";
   std::string username = "admin";
   std::string realm = "public";
@@ -133,10 +133,10 @@ void AuthorizationBuilderTest::TestResponse2() {
   std::string hash1, hash2;
 
   internals::AuthorizationBuilder builder;
-  hash1 = builder.UsernameRealmAndPassword(username, realm, password);
-  hash2 = builder.MethodAndURL(method, uri);
+  hash1 = builder.usernameRealmAndPassword(username, realm, password);
+  hash2 = builder.methodAndURL(method, uri);
 
-  std::string response = builder.Response(hash1, nonce, hash2);
+  std::string response = builder.response(hash1, nonce, hash2);
 
   CPPUNIT_ASSERT_EQUAL(hash, response);
 }

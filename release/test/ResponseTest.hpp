@@ -20,10 +20,10 @@ public:
   ResponseTest(const ResponseTest& orig);
   virtual ~ResponseTest();
 
-  void TestParseContentTypeHeader();
+  void testParseContentTypeHeader();
 private:
   CPPUNIT_TEST_SUITE(ResponseTest);
-  CPPUNIT_TEST(TestParseContentTypeHeader);
+  CPPUNIT_TEST(testParseContentTypeHeader);
   CPPUNIT_TEST_SUITE_END();
 };
 

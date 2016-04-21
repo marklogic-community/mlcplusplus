@@ -15,7 +15,7 @@ void cstruct_unpack(CResponse* resp,struct sampledoc* obj) {
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
   Response& t = wrapper->get();
 
-  std::string& fs = t.String();
+  std::string& fs = t.asString();
   //std::string& fsr = fs; // hold a reference to the string
   //return fs.c_str();
   std::cout << "raw content: " << fs << std::endl;
@@ -25,7 +25,7 @@ void cstruct_unpack(CResponse* resp,struct sampledoc* obj) {
     // custom unpacking C++ code - as JSON and XML wrappers are C++, not C
     // This code has to be custom as C and C++ DO NOT do introspection of a struct
     //std::cout << "Web JSON string value: " << t->String() << std::endl;
-    const web::json::value& jsonValue = t.Json();
+    const web::json::value& jsonValue = t.asJson();
     std::cout << "Web JSON value&: " << jsonValue << std::endl;
     const web::json::object& jsonObject = jsonValue.as_object();
     static const std::string firstString = jsonObject.at("first").as_string(); // COPY VALUE
@@ -38,7 +38,7 @@ void cstruct_unpack(CResponse* resp,struct sampledoc* obj) {
     obj->second = const_cast<char*>(second); // no longer a hanging pointer
   } else {
     // assume XML
-    const pugi::xml_document& doc = t.Xml();
+    const pugi::xml_document& doc = t.asXml();
     const pugi::xml_node& root = doc.root();
     //std::cout << "root node name: " << root.name() << std::endl;
     const pugi::xml_node& docroot = root.child("docroot");

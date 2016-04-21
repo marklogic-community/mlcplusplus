@@ -52,16 +52,16 @@ AuthenticatingProxy::AuthenticatingProxy() : _attempts(0), _credentials()
 }
 
 
-void AuthenticatingProxy::AddCredentials(const internals::Credentials &c)
+void AuthenticatingProxy::addCredentials(const internals::Credentials &c)
 {
   _credentials = c;
 }
 
-const Credentials& AuthenticatingProxy::GetCredentials() const {
+const Credentials& AuthenticatingProxy::getCredentials() const {
   return _credentials;
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
     const std::string& path,
     const http_headers& headers)
 {
@@ -74,8 +74,8 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
     http::http_request req(http::methods::GET);
     req.set_request_uri(path);
 
-    if (_credentials.Authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("GET", path));
+    if (_credentials.authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("GET", path));
     }
 
     http_headers::const_iterator iter;
@@ -91,10 +91,10 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
     http_response raw_response = hr.get();
     try
     {
-      response->SetResponseCode((ResponseCode)raw_response.status_code());
-      response->SetResponseHeaders(raw_response.headers());
+      response->setResponseCode((ResponseCode)raw_response.status_code());
+      response->setResponseHeaders(raw_response.headers());
       std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->SetContent(std::move(c));
+      response->setContent(std::move(c));
       //response->SetContent(std::move(std::string(raw_response.extract_string().get())));
     }
     catch (const http_exception& e)
@@ -132,8 +132,8 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
     std::cerr << e.what() << std::endl;
   }
 
-  if (response->GetResponseCode() == ResponseCode::UNAUTHORIZED) {
-    http_headers response_headers = response->GetResponseHeaders();
+  if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
+    http_headers response_headers = response->getResponseHeaders();
 
     try {
       http::http_request req(http::methods::GET);
@@ -143,7 +143,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.Authenticate("GET", path, authHeader) )
+          U(_credentials.authenticate("GET", path, authHeader) )
       );
 
       http_headers::const_iterator iter;
@@ -160,10 +160,10 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
       {
         //response->SetJson(raw_response.extract_json().get());
 
-        response->SetResponseCode((ResponseCode)raw_response.status_code());
-        response->SetResponseHeaders(raw_response.headers());
+        response->setResponseCode((ResponseCode)raw_response.status_code());
+        response->setResponseHeaders(raw_response.headers());
         std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-        response->SetContent(std::move(c));
+        response->setContent(std::move(c));
       }
       catch (const web::http::http_exception& e)
       {
@@ -202,7 +202,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Get(const std::string& host,
   return std::unique_ptr<Response>(response);
 }
 
-void AuthenticatingProxy::Get_Async(const std::string& host,
+void AuthenticatingProxy::getAsync(const std::string& host,
     const std::string& path,
     const std::function<void(const Response&)> handler,
     const http_headers& headers)
@@ -210,7 +210,7 @@ void AuthenticatingProxy::Get_Async(const std::string& host,
 
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const json::value& body,
     const http_headers& headers)
@@ -225,8 +225,8 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
     req.set_request_uri(path);
     req.set_body(body);
 
-    if (_credentials.Authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("POST", path));
+    if (_credentials.authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("POST", path));
     }
 
 
@@ -234,10 +234,10 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
 
     try
     {
-      response->SetResponseCode((ResponseCode)raw_response.status_code());
-      response->SetResponseHeaders(raw_response.headers());
+      response->setResponseCode((ResponseCode)raw_response.status_code());
+      response->setResponseHeaders(raw_response.headers());
       std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->SetContent(std::move(c));
+      response->setContent(std::move(c));
     }
     catch (const web::http::http_exception& e)
     {
@@ -257,28 +257,28 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
     std::cerr << e.what() << std::endl;
   }
 
-  if (response->GetResponseCode() == ResponseCode::UNAUTHORIZED) {
-    http_headers response_headers = response->GetResponseHeaders();
+  if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
+    http_headers response_headers = response->getResponseHeaders();
 
     try {
       http::http_request req(http::methods::POST);
       req.set_request_uri(path);
       req.set_body(json::value(body));
 
-      http_headers respHeaders = response->GetResponseHeaders();
+      http_headers respHeaders = response->getResponseHeaders();
       std::string authHeader = to_utf8string(respHeaders[WWW_AUTHENTICATE_HEADER]);
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.Authenticate("POST", path, authHeader) )
+          U(_credentials.authenticate("POST", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();
 
       try
       {
-        response->SetResponseCode((ResponseCode)raw_response.status_code());
-        response->SetResponseHeaders(raw_response.headers());
+        response->setResponseCode((ResponseCode)raw_response.status_code());
+        response->setResponseHeaders(raw_response.headers());
       }
       catch (const web::http::http_exception& e)
       {
@@ -303,7 +303,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
 }
 
 /*
-Response& AuthenticatingProxy::Post(const std::string& host,
+Response& AuthenticatingProxy::postSync(const std::string& host,
                   const std::string& path,
                   const xmlDocPtr body,
                   const http_headers& headers)
@@ -313,7 +313,7 @@ Response& AuthenticatingProxy::Post(const std::string& host,
   return result;
 }*/
 
-std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const std::wstring& text_body,
     const http_headers& headers)
@@ -325,7 +325,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
   return std::unique_ptr<Response>(result);
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const uint8_t* data,
     const size_t& size,
@@ -335,7 +335,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Post(const std::string& host,
 
   return std::unique_ptr<Response>(response);
 }
-std::unique_ptr<Response> AuthenticatingProxy::PostFile(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::postFileSync(const std::string& host,
     const std::string& path,
     const std::string& file_path,
     const http_headers& headers)
@@ -347,7 +347,7 @@ std::unique_ptr<Response> AuthenticatingProxy::PostFile(const std::string& host,
 
 
 
-void AuthenticatingProxy::Post_Async(const std::string& host,
+void AuthenticatingProxy::postAsync(const std::string& host,
     const std::string& path,
     const http_headers& headers,
     const params_t& body,
@@ -356,24 +356,24 @@ void AuthenticatingProxy::Post_Async(const std::string& host,
 
 }
 
-void AuthenticatingProxy::Post_Async(const std::string& host,
+void AuthenticatingProxy::postAsync(const std::string& host,
     const std::string& path,
     const http_headers& headers,
     const std::function<void(const Response&)> handler)
 {
   params_t blank_params;
-  Post_Async(host, path, headers, blank_params, handler);
+  postAsync(host, path, headers, blank_params, handler);
 }
 
-void AuthenticatingProxy::Post_Async(const std::string& host,
+void AuthenticatingProxy::postAsync(const std::string& host,
     const std::string& path,
     const std::function<void(const Response&)> handler)
 {
   http_headers blank_headers;
-  Post_Async(host, path, blank_headers, handler);
+  postAsync(host, path, blank_headers, handler);
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const std::wstring& text_body,
     const http_headers& headers)
@@ -381,7 +381,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
   Response* response = new Response;
   return std::unique_ptr<Response> (response);
 }
-std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const json::value& json_body,
     const http_headers& headers)
@@ -396,16 +396,16 @@ std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
     req.set_request_uri(path);
     req.set_body(json_body);
 
-    if (_credentials.Authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("PUT", path));
+    if (_credentials.authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("PUT", path));
     }
 
     http_response raw_response = raw_client.request(req).get();
 
     try
     {
-      response->SetResponseCode((ResponseCode)raw_response.status_code());
-      response->SetResponseHeaders(raw_response.headers());
+      response->setResponseCode((ResponseCode)raw_response.status_code());
+      response->setResponseHeaders(raw_response.headers());
     }
     catch (const web::http::http_exception& e)
     {
@@ -424,28 +424,28 @@ std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
     std::cerr << e.what() << std::endl;
   }
 
-  if (response->GetResponseCode() == ResponseCode::UNAUTHORIZED) {
-    http_headers response_headers = response->GetResponseHeaders();
+  if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
+    http_headers response_headers = response->getResponseHeaders();
 
     try {
       http::http_request req(http::methods::PUT);
       req.set_request_uri(path);
       req.set_body(json::value(json_body));
 
-      http_headers respHeaders = response->GetResponseHeaders();
+      http_headers respHeaders = response->getResponseHeaders();
       std::string authHeader = to_utf8string(respHeaders[WWW_AUTHENTICATE_HEADER]);
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.Authenticate("PUT", path, authHeader) )
+          U(_credentials.authenticate("PUT", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();
 
       try
       {
-        response->SetResponseCode((ResponseCode)raw_response.status_code());
-        response->SetResponseHeaders(raw_response.headers());
+        response->setResponseCode((ResponseCode)raw_response.status_code());
+        response->setResponseHeaders(raw_response.headers());
       }
       catch (const web::http::http_exception& e)
       {
@@ -469,7 +469,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
   return std::unique_ptr<Response> (response);
 }
 /*
-Response AuthenticatingProxy::Put(const std::string& host,
+Response AuthenticatingProxy::putSync(const std::string& host,
              const std::string& path,
              const xmlDocPtr& xml_body,
              const http_headers& headers)
@@ -478,7 +478,7 @@ Response AuthenticatingProxy::Put(const std::string& host,
   return result;
 }*/
 
-std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const uint8_t* data,
     const size_t& size,
@@ -490,7 +490,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Put(const std::string& host,
 }
 
 
-void AuthenticatingProxy::Put_Async(const std::string& host,
+void AuthenticatingProxy::putAsync(const std::string& host,
     const std::string& path,
     const http_headers& headers,
     const params_t& body,
@@ -499,24 +499,24 @@ void AuthenticatingProxy::Put_Async(const std::string& host,
   ;
 }
 
-void AuthenticatingProxy::Put_Async(const std::string& host,
+void AuthenticatingProxy::putAsync(const std::string& host,
     const std::string& path,
     const http_headers& headers,
     const std::function<void(const Response&)> handler)
 {
   params_t blank_params;
-  Put_Async(host, path, headers, blank_params, handler);
+  putAsync(host, path, headers, blank_params, handler);
 }
 
-void AuthenticatingProxy::Put_Async(const std::string& host,
+void AuthenticatingProxy::putAsync(const std::string& host,
     const std::string& path,
     const std::function<void(const Response&)> handler)
 {
   http_headers blank_headers;
-  Put_Async(host, path, blank_headers, handler);
+  putAsync(host, path, blank_headers, handler);
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::Delete(const std::string& host,
+std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& host,
     const std::string& path,
     const http_headers& headers)
 {
@@ -529,16 +529,16 @@ std::unique_ptr<Response> AuthenticatingProxy::Delete(const std::string& host,
     http::http_request req(http::methods::DEL);
     req.set_request_uri(path);
 
-    if (_credentials.Authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.Authenticate("DELETE", path));
+    if (_credentials.authenticating()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("DELETE", path));
     }
 
     http_response raw_response = raw_client.request(req).get();
 
     try
     {
-      response->SetResponseCode((ResponseCode)raw_response.status_code());
-      response->SetResponseHeaders(raw_response.headers());
+      response->setResponseCode((ResponseCode)raw_response.status_code());
+      response->setResponseHeaders(raw_response.headers());
     }
     catch (const web::http::http_exception& e)
     {
@@ -557,27 +557,27 @@ std::unique_ptr<Response> AuthenticatingProxy::Delete(const std::string& host,
     std::cerr << e.what() << std::endl;
   }
 
-  if (response->GetResponseCode() == ResponseCode::UNAUTHORIZED) {
-    http_headers response_headers = response->GetResponseHeaders();
+  if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
+    http_headers response_headers = response->getResponseHeaders();
 
     try {
       http::http_request req(http::methods::DEL);
       req.set_request_uri(path);
 
-      http_headers respHeaders = response->GetResponseHeaders();
+      http_headers respHeaders = response->getResponseHeaders();
       std::string authHeader = to_utf8string(respHeaders[WWW_AUTHENTICATE_HEADER]);
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.Authenticate("DELETE", path, authHeader) )
+          U(_credentials.authenticate("DELETE", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();
 
       try
       {
-        response->SetResponseCode((ResponseCode)raw_response.status_code());
-        response->SetResponseHeaders(raw_response.headers());
+        response->setResponseCode((ResponseCode)raw_response.status_code());
+        response->setResponseHeaders(raw_response.headers());
       }
       catch (const web::http::http_exception& e)
       {
@@ -602,7 +602,7 @@ std::unique_ptr<Response> AuthenticatingProxy::Delete(const std::string& host,
 }
 
 
-void AuthenticatingProxy::Delete_Async(const std::string& host,
+void AuthenticatingProxy::deleteAsync(const std::string& host,
     const std::string& path,
     const std::function<void(const Response&)> handler,
     const http_headers& headers)

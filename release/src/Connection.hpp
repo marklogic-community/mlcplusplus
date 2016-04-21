@@ -51,14 +51,14 @@ public:
   // TODO search with XML instead of JSON
 
 private:
-  std::string _serverUrl;
-  internals::AuthenticatingProxy _proxy;
+  std::string serverUrl;
+  internals::AuthenticatingProxy proxy;
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
   //Connection(const Connection&);
   //Connection& operator= (const Connection&);
 
-  std::unique_ptr<Response> _dosearch(const web::json::value& combined);
+  std::unique_ptr<Response> dosearch(const web::json::value& combined);
 };
 
 }

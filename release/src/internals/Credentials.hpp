@@ -54,7 +54,7 @@ protected:
   /// \param auth_header The contents of the WWW Authenticate header
   /// \return The contents of the Authorization header
   ///
-  utility::string_t Authenticate(const std::string& method, const std::string& uri,
+  utility::string_t authenticate(const std::string& method, const std::string& uri,
       const std::string& auth_header);
 
   ///
@@ -66,7 +66,7 @@ protected:
   /// \param uri The path portion of the URI
   /// \return The contents of the Authorization header
   ///
-  utility::string_t Authenticate(const std::string& method, const std::string& uri);
+  utility::string_t authenticate(const std::string& method, const std::string& uri);
 
 
   ///
@@ -74,7 +74,7 @@ protected:
   ///
   /// \return A random nonce value
   ///
-  std::string RandomCnonce(void) const;
+  std::string randomCnonce(void) const;
 public:
 
   ///
@@ -117,7 +117,7 @@ public:
   ///
   /// \return Weather or not it can generate a challenge response
   ///
-  bool Authenticating(void) const;
+  bool authenticating(void) const;
 
   ///
   /// Parses the Authenticate header to extract the nonce, the qop and the
@@ -127,35 +127,35 @@ public:
   ///
   /// \param _raw The raw WWW Authenticate header
   ///
-  void ParseWWWAthenticateHeader(const std::string& _raw);
+  void parseWWWAthenticateHeader(const std::string& _raw);
 
   ///
   /// Returns the server provided nonce
   ///
   /// \return The nonce
   ///
-  std::string Nonce(void) const;
+  std::string nonce(void) const;
 
   ///
   /// Returns the server provided qop
   ///
   /// \return The qop
   ///
-  std::string Qop(void) const;
+  std::string qop(void) const;
 
   ///
   /// Returns the server provided opaque value
   ///
   /// \return The opaque
   ///
-  std::string Opaque(void) const;
+  std::string opaque(void) const;
 
   ///
   /// Returns the server provided realm
   ///
   /// \return The realm
   ///
-  std::string Realm(void) const;
+  std::string realm(void) const;
 
   friend class AuthenticatingProxy;
   friend class AuthenticatingProxyTest; // I hate having these here!

@@ -20,13 +20,13 @@ public:
   MLCryptoTest(const MLCryptoTest& orig);
   virtual ~MLCryptoTest();
 
-  void TestToHex();
-  void TestMd5();
+  void testToHex();
+  void testMd5();
 private:
 
   CPPUNIT_TEST_SUITE(MLCryptoTest);
-  CPPUNIT_TEST(TestToHex);
-  CPPUNIT_TEST(TestMd5);
+  CPPUNIT_TEST(testToHex);
+  CPPUNIT_TEST(testMd5);
   CPPUNIT_TEST_SUITE_END();
 };
 

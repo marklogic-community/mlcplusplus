@@ -34,22 +34,22 @@ using namespace utility;
 /// JSON and stores text/binary as a bag of bytes.
 ///
 class Response {
-  ResponseCode _response_code; /*!< The response code 200/400/404, etc */
-  ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
-  web::http::http_headers      _headers;       /*!< The response headers */
-  std::unique_ptr<std::string> _content;
+  ResponseCode responseCode; /*!< The response code 200/400/404, etc */
+  ResponseType  responseType; /*!< The response type text,xml,binary, etc. */
+  web::http::http_headers      headers;       /*!< The response headers */
+  std::unique_ptr<std::string> content;
 
   ///
   /// Parses the content type header to guess the content type of the
   /// response
   ///
   /// \param The raw header value (i.e. 'text/plain')
-  ResponseType ParseContentTypeHeader(const std::string& content);
+  ResponseType parseContentTypeHeader(const std::string& content);
 public:
   ///
   /// Constructor
   ///
-  ResponseType ResponseType(void) const;
+  ResponseType getResponseType(void) const;
 
   Response();
   ~Response();
@@ -60,7 +60,7 @@ public:
   ///
   /// \param code The HTTP response code
   ///
-  void SetResponseCode(const ResponseCode& code);
+  void setResponseCode(const ResponseCode& code);
 
   ///
   /// Sets the type of response received (XML, JSON, Binary, etc.)  This is
@@ -69,7 +69,7 @@ public:
   ///
   /// \param type The type of response
   ///
-  void SetResponseType(const enum ResponseType& type);
+  void setResponseType(const enum ResponseType& type);
 
   ///
   /// Sets the headers received as part of the response.  This is set when
@@ -77,7 +77,7 @@ public:
   ///
   /// \param headers The HTTP response headers
   ///
-  void SetResponseHeaders(const web::http::http_headers& headers);
+  void setResponseHeaders(const web::http::http_headers& headers);
 
   ///
   /// Sets the headers received as part of the response.  This is set when
@@ -92,21 +92,14 @@ public:
   ///
   /// \return The HTTP response code
   ///
-  ResponseCode GetResponseCode(void) const;
-
-  ///
-  /// Returns the type of response (text, xml, json, etc.)
-  ///
-  /// \return The type of response.
-  ///
-  enum ResponseType GetResponseType(void) const;
+  ResponseCode getResponseCode(void) const;
 
   ///
   /// Returns the headers that were returned with the response.
   ///
   /// \return The HTTP response headers
   ///
-  web::http::http_headers GetResponseHeaders(void) const;
+  web::http::http_headers getResponseHeaders(void) const;
 
 
   ///
@@ -117,21 +110,21 @@ public:
   ///
   /// \return The number of bytes read
   ///
-  size_t Read(void* buffer, const size_t& max_size, const size_t off = 0);
+  size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
 
   ///
   /// For text responses, returns the response content as a string.
   ///
   /// \return The UTF-8 string
   ///
-  std::string& String() const;
+  std::string& asString() const;
 
   ///
   /// For XML responses, returns a document using the libxml2 library.
   ///
   /// \return The response document
   ///
-  const pugi::xml_document& Xml() const;
+  const pugi::xml_document& asXml() const;
   //void SetXml(const pugi::xml_document& doc);
 
   ///
@@ -140,10 +133,10 @@ public:
   ///
   /// \return The JSON object
   ///
-  web::json::value Json() const; // uses copy semantics, not reference - peculiarity of the cpprest library
+  web::json::value asJson() const; // uses copy semantics, not reference - peculiarity of the cpprest library
 
   //void SetJson(const web::json::value& json);
-  void SetContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
+  void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
 
 
 private:
