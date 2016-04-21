@@ -16,26 +16,26 @@
 
 int main(int argc, const char * argv[])
 {
-	using namespace mlclient;
+  using namespace mlclient;
 
-	std::cout << "Running getdoc..." << std::endl;
+  std::cout << "Running getdoc..." << std::endl;
 
-    Connection* ml = ConnectionFactory::getConnection();
+  Connection* ml = ConnectionFactory::getConnection();
 
-    std::string uri = "/some/doc.json";
-    if (argc > 1) {
-    	uri = std::string(argv[1]);
-    }
+  std::string uri = "/some/doc.json";
+  if (argc > 1) {
+    uri = std::string(argv[1]);
+  }
 
-    const std::unique_ptr<Response> rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
-    Response* response = rp.get();
+  const std::unique_ptr<Response> rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
+  Response* response = rp.get();
 
-    ResponseType rt = response->GetResponseType();
-    std::cout << "Response type: " << rt << std::endl;
-    if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << response->Json() << std::endl; }
-    if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;response->Xml().save(std::cout); std::cout << std::endl; }
+  ResponseType rt = response->GetResponseType();
+  std::cout << "Response type: " << rt << std::endl;
+  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << response->Json() << std::endl; }
+  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;response->Xml().save(std::cout); std::cout << std::endl; }
 
-    std::cout << "getdoc complete" << std::endl;
-    return 0;
+  std::cout << "getdoc complete" << std::endl;
+  return 0;
 }
 

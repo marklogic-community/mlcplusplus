@@ -15,11 +15,11 @@ namespace mlclient {
 
 template<typename T>
 class Request {
-    private:
-        T _payload;
-    
-    public:
-        
+private:
+  T _payload;
+
+public:
+
 };
 
 }

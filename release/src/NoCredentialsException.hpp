@@ -18,7 +18,7 @@ namespace mlclient {
 
 class NoCredentialsException : public std::exception {
 public:
-    virtual const char* what() const throw() override;
+  virtual const char* what() const throw() override;
 };
 
 }

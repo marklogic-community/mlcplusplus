@@ -11,8 +11,8 @@
 #define CSTRUCT_H
 
 struct sampledoc {
-	char* first;
-	char* second;
+  char* first;
+  char* second;
 };
 
 #endif

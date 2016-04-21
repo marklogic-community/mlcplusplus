@@ -16,15 +16,15 @@ using namespace mlclient;
 
 class ResponseTest : public CppUnit::TestCase {
 public:
-    ResponseTest();
-    ResponseTest(const ResponseTest& orig);
-    virtual ~ResponseTest();
-    
-    void TestParseContentTypeHeader();
+  ResponseTest();
+  ResponseTest(const ResponseTest& orig);
+  virtual ~ResponseTest();
+
+  void TestParseContentTypeHeader();
 private:
-    CPPUNIT_TEST_SUITE(ResponseTest);
-    CPPUNIT_TEST(TestParseContentTypeHeader);
-    CPPUNIT_TEST_SUITE_END();
+  CPPUNIT_TEST_SUITE(ResponseTest);
+  CPPUNIT_TEST(TestParseContentTypeHeader);
+  CPPUNIT_TEST_SUITE_END();
 };
 
 #endif	/* RESPONSETEST_HPP */

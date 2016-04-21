@@ -13,8 +13,8 @@ using namespace mlclient;
 
 class ConnectionFactory {
 public:
-	static Connection* getConnection(void);
+  static Connection* getConnection(void);
 private:
-	ConnectionFactory();
-	virtual ~ConnectionFactory();
+  ConnectionFactory();
+  virtual ~ConnectionFactory();
 };
