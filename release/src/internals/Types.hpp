@@ -18,8 +18,8 @@ namespace mlclient {
 
 namespace internals {
 
-typedef std::map<std::string, std::string> header_t;
-typedef std::multimap<std::string, std::string> params_t;
+typedef std::map<std::string, std::string> header_t; // TODO what is this for???
+typedef std::multimap<std::string, std::string> params_t; // TODO what is this for???
 
 }
 

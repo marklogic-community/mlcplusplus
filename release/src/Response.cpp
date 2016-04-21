@@ -26,7 +26,7 @@ using namespace utility;
 
 const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 
-Response::Response() : _response_code(ResponseCodes::UNKNOWN), _response_type(ResponseType::UNKNOWN) {
+Response::Response() : _response_code(ResponseCode::UNKNOWN_CODE), _response_type(ResponseType::UNKNOWN_TYPE) {
   // ignore compilation warning - we know they are each set individually later, due to the nature of HTTP response interrogation code.
   //_xml = pugi::xml_document;
 }
@@ -54,7 +54,7 @@ ResponseType Response::ParseContentTypeHeader(const std::string& content) {
   return result;
 }
 
-void Response::SetResponseCode(const ResponseCodes& code) {
+void Response::SetResponseCode(const ResponseCode& code) {
   _response_code = code;    
 }
 
@@ -76,7 +76,7 @@ void Response::SetResponseHeaders(const http_headers& headers) {
   }
 }
 
-ResponseCodes Response::GetResponseCode(void) const {
+ResponseCode Response::GetResponseCode(void) const {
   return _response_code;
 }
 
