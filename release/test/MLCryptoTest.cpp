@@ -8,11 +8,12 @@
 #include <cstdint>
 #include <string>
 #include "MLCryptoTest.hpp"
-#include "MLCrypto.hpp"
+#include "internals/MLCrypto.hpp"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(MLCryptoTest);
 
 using namespace mlclient;
+using namespace mlclient::internals;
 
 MLCryptoTest::MLCryptoTest() {
 }

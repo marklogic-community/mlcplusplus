@@ -20,7 +20,7 @@ namespace mlclient {
 ///
 /// The type of response
 ///
-enum class ResponseType { XML, JSON, TEXT, BINARY };
+enum class ResponseType { UNKNOWN, XML, JSON, TEXT, BINARY }; // UNKNOWN IS FIRST SO AS TO AVOID INCORRECTLY INSTANTIATED RESPONSE ISSUES
 
 std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 std::string& operator +(std::string& s, const ResponseType& rt);
@@ -30,6 +30,7 @@ std::string& operator+(const char* orig,const ResponseType& rt);
 /// The various HTTP response codes
 ///
 enum class ResponseCodes : int {
+	UNKNOWN                       = 0,
     CONTINUE                      = 100,
     OK                            = 200,
     CREATED                       = 201,
@@ -76,6 +77,8 @@ public:
     static std::string Translate(const ResponseCodes& val) {
         std::string result = "No such code";
         switch (val) {
+            case ResponseCodes::UNKNOWN:
+                result = "Unknown"; break;
             case ResponseCodes::CONTINUE:
                 result = "Continue"; break;
             case ResponseCodes::OK:

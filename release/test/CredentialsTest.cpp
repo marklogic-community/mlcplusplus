@@ -8,7 +8,7 @@
 
 #include <string>
 #include "CredentialsTest.hpp"
-#include "Credentials.hpp"
+#include "internals/Credentials.hpp"
 #include <boost/regex.hpp>
 
 const std::string TEST_HEADER = "Digest realm=\"public\", qop=\"auth\", nonce=\"79e3998e2a65a2bbb69c4027708f4bca\", opaque=\"5db0205ddeca8742\"";
@@ -19,6 +19,7 @@ const std::string AUTH_HEADER_NAME = "Authorization";
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCredentials);
 
 using namespace mlclient;
+using namespace mlclient::internals;
 
 void TestCredentials::TestConstructor() {
     Credentials c1;

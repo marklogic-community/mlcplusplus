@@ -13,7 +13,6 @@
 #include <cpprest/json.h>
 #include <cpprest/http_headers.h>
 #include <cpprest/http_client.h>
-//#include <libxml2/libxml/tree.h>
 
 #include <pugixml.hpp>
 
@@ -24,21 +23,21 @@
 
 namespace mlclient {
 
+using namespace utility;
+
 ///
 /// Response class
 ///
 /// Encapsulates a response from a MarkLogic server.  Note that a response
 /// can be XML, JSON, text, or binary content.  Currently, this uses the
-/// LibXML2 libraries for handling XML content, Casablanca for handling 
+/// PugiXML library for handling XML content, Casablanca for handling
 /// JSON and stores text/binary as a bag of bytes.
 ///
 class Response {
     ResponseCodes _response_code; /*!< The response code 200/400/404, etc */
     ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
     web::http::http_headers      _headers;       /*!< The response headers */
-    std::string _content;
-    //web::json::value _json;
-    //pugi::xml_document& _xml;
+    std::unique_ptr<std::string> _content;
     
     ///
     /// Parses the content type header to guess the content type of the
@@ -125,7 +124,7 @@ public:
     ///
     /// \return The UTF-8 string
     ///
-    std::string String() const;
+    std::string& String() const;
     
     ///
     /// For XML responses, returns a document using the libxml2 library.
@@ -141,10 +140,10 @@ public:
     ///
     /// \return The JSON object
     ///
-    web::json::value Json() const;
+    web::json::value Json() const; // uses copy semantics, not reference - peculiarity of the cpprest library
     
     //void SetJson(const web::json::value& json);
-    void SetContent(const std::string& content);
+    void SetContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
     
 
 private:

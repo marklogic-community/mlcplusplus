@@ -27,12 +27,13 @@ int main(int argc, const char * argv[])
     	uri = std::string(argv[1]);
     }
 
-    const Response& response = ml->getDocument(uri);
+    const std::unique_ptr<Response> rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
+    Response* response = rp.get();
 
-    ResponseType rt = response.GetResponseType();
+    ResponseType rt = response->GetResponseType();
     std::cout << "Response type: " << rt << std::endl;
-    if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << response.Json() << std::endl; }
-    if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;response.Xml().save(std::cout); std::cout << std::endl; }
+    if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << response->Json() << std::endl; }
+    if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;response->Xml().save(std::cout); std::cout << std::endl; }
 
     std::cout << "getdoc complete" << std::endl;
     return 0;

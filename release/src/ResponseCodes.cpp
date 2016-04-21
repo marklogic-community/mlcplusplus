@@ -24,6 +24,9 @@ std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
     case ResponseType::XML:
       os << "ResponseType::XML";
       break;
+    case ResponseType::UNKNOWN:
+      os << "ResponseType::UNKNOWN";
+      break;
   }
   return os;
 }

@@ -13,8 +13,8 @@
 #include <openssl/md5.h>
 
 #include "AuthorizationBuilderTest.hpp"
-#include "AuthorizationBuilder.hpp"
-#include "MLCrypto.hpp"
+#include "internals/AuthorizationBuilder.hpp"
+#include "internals/MLCrypto.hpp"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(AuthorizationBuilderTest);
 
@@ -46,7 +46,7 @@ void AuthorizationBuilderTest::TestUsernameRealmAndPassword() {
 }
 
 void AuthorizationBuilderTest::TestUserRealmPassNonceCnonce() {
-  MLCrypto crypto;
+  internals::MLCrypto crypto;
   std::string username = "joe";
   std::string realm = "realm";
   std::string password = "password";
@@ -64,7 +64,7 @@ void AuthorizationBuilderTest::TestUserRealmPassNonceCnonce() {
 
 
 void AuthorizationBuilderTest::TestMethodAndURI() {
-  MLCrypto crypto;
+  internals::MLCrypto crypto;
   
   std::string method = "GET";
   std::string uri = "http://foo.bar.com/some/uri.html";
@@ -76,7 +76,7 @@ void AuthorizationBuilderTest::TestMethodAndURI() {
 
 void AuthorizationBuilderTest::TestMethodURIAndBodyHash() {
   std::string hash = "8e8c36970df5e7371dfda6202a6720be";
-  MLCrypto crypto;
+  internals::MLCrypto crypto;
   
   std::string method = "GET";
   std::string uri = "http://foo.bar.com/some/uri.html";

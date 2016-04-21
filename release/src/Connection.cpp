@@ -2,6 +2,7 @@
 
 #include "Connection.hpp"
 #include "Response.hpp"
+#include "CWrapper.hpp"
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 
@@ -34,22 +35,22 @@ void Connection::configure(const std::string& hostname, const std::string& port,
 
 
 // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
-const Response& Connection::doGet(const std::string& pathAndQuerystring) {
+std::unique_ptr<Response> Connection::doGet(const std::string& pathAndQuerystring) {
 	return Connection::_proxy.Get(_serverUrl, pathAndQuerystring);
 }
-const Response& Connection::doPut(const std::string& pathAndQuerystring,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const web::json::value& payload) {
 	return _proxy.Put(_serverUrl,
 		pathAndQuerystring,
 	    payload);
 }
-const Response& Connection::doPost(const std::string& pathAndQuerystring,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const web::json::value& payload) {
 	return _proxy.Post(_serverUrl,
 			"/v1/search",
 		    payload);
 }
 // TODO XML payload
 // TODO multipart payload
-const Response& Connection::doDelete(const std::string& path) {
+std::unique_ptr<Response> Connection::doDelete(const std::string& path) {
 	return _proxy.Delete(_serverUrl,path);
 }
 
@@ -64,20 +65,19 @@ const Response& Connection::doDelete(const std::string& path) {
 
 
 
-const Response& Connection::getDocument(const std::string& uri) {
-  const Response& response = Connection::_proxy.Get(_serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
+std::unique_ptr<Response> Connection::getDocument(const std::string& uri) {
+  return Connection::_proxy.Get(_serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
 
-  return response;
+  //return response;
 }
 
 // TODO XML version
-const Response& Connection::saveDocument(const std::string& uri,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const web::json::value& payload) {
     //payload[U("hello")] = web::json::value::string("world");
 
-  const Response& response = _proxy.Put(_serverUrl,
+  return _proxy.Put(_serverUrl,
     "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing
     payload);
-  return response;
 }
 
 /*
@@ -85,17 +85,16 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
   // TODO multi part mime
 }*/
 
-const Response& Connection::_dosearch(const web::json::value& combined) {
+std::unique_ptr<Response> Connection::_dosearch(const web::json::value& combined) {
 	web::json::value search = web::json::value::object();
 	search[U("search")] = web::json::value(combined);
 
-	const Response& response = _proxy.Post(_serverUrl,
+	return _proxy.Post(_serverUrl,
 		"/v1/search",
 	    search);
-	return response;
 }
 
-const Response& Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
+std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
 	web::json::value combined = web::json::value::object();
 	combined[U("query")] = web::json::value(searchQuery);
 	combined[U("options")] = web::json::value(options);
@@ -103,14 +102,14 @@ const Response& Connection::search(const web::json::value& searchQuery,const web
 }
 
 
-const Response& Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
+std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
 	web::json::value combined = web::json::value::object();
 	combined[U("query")] = web::json::value(searchQuery);
     combined[U("qtext")] = web::json::value(qtext);
 	return Connection::_dosearch(combined);
 }
 
-const Response& Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
+std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
     // combined query
 	web::json::value combined = web::json::value::object();
 	combined[U("query")] = web::json::value(searchQuery);

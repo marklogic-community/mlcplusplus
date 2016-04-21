@@ -10,6 +10,7 @@ typedef void CResponse;
 
 
 #ifdef __cplusplus
+
 extern "C" {
 #endif
 
@@ -25,10 +26,11 @@ void response_delete(CResponse *t);
 
 // member functions
 
-const char* const response_Json(CResponse *t);
+const int response_length(CResponse *t);
+//void response_Json(CResponse *t,char* buffer);
 // TODO member function for converting JSON (or XML) response to a provided c struct type
 const char* const response_String(CResponse *t);
-const char* const response_Xml(CResponse *t);
+//const char* const response_Xml(CResponse *t);
 const int response_GetResponseType(CResponse *t);
 const int response_GetResponseCode(CResponse *t);
 

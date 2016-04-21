@@ -29,7 +29,7 @@ int main(int argc, const char * argv[])
     	// convert to struct and output relevant fields
     	struct sampledoc result; // from CStruct.h
     	cstruct_unpack(response,&result); // from CStructWrapper.h
-    	printf("%s contains a sampledoc with 'first' set to '%s' and 'second' set to '%s' \n",uri,result.first,result.second);
+    	printf("%s contains a sampledoc struct with 'first' set to '%s' and 'second' set to '%s' \n",uri,result.first,result.second);
     } else {
     	printf("Response: %s : %s \n",uri,response_String(response));
     }
