@@ -119,7 +119,7 @@ const int response_GetResponseCode(CResponse *resp) {
 
 const char* const responsecodes_translate(int code) {
   using namespace mlclient;
-  static const char* cd = ResponseCode::Translate((ResponseCodes)code).c_str();
+  static const char* cd = mlclient::translate((ResponseCode)code).c_str();
   return cd;
 }
 

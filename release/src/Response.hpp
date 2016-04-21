@@ -34,7 +34,7 @@ using namespace utility;
 /// JSON and stores text/binary as a bag of bytes.
 ///
 class Response {
-  ResponseCodes _response_code; /*!< The response code 200/400/404, etc */
+  ResponseCode _response_code; /*!< The response code 200/400/404, etc */
   ResponseType  _response_type; /*!< The response type text,xml,binary, etc. */
   web::http::http_headers      _headers;       /*!< The response headers */
   std::unique_ptr<std::string> _content;
@@ -60,7 +60,7 @@ public:
   ///
   /// \param code The HTTP response code
   ///
-  void SetResponseCode(const ResponseCodes& code);
+  void SetResponseCode(const ResponseCode& code);
 
   ///
   /// Sets the type of response received (XML, JSON, Binary, etc.)  This is
@@ -92,7 +92,7 @@ public:
   ///
   /// \return The HTTP response code
   ///
-  ResponseCodes GetResponseCode(void) const;
+  ResponseCode GetResponseCode(void) const;
 
   ///
   /// Returns the type of response (text, xml, json, etc.)
