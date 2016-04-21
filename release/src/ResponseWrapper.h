@@ -16,10 +16,11 @@ extern "C" {
 
 // constants
 // from ResponseCodes.h
-#define RESPONSETYPE_XML	0
-#define RESPONSETYPE_JSON	1
-#define RESPONSETYPE_TEXT	2
-#define RESPONSETYPE_BINARY	3
+#define RESPONSETYPE_UNKNOWN	0
+#define RESPONSETYPE_XML		1
+#define RESPONSETYPE_JSON		2
+#define RESPONSETYPE_TEXT		3
+#define RESPONSETYPE_BINARY		4
 
 // destructor
 void response_delete(CResponse *t);
