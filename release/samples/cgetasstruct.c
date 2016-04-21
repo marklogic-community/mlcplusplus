@@ -10,30 +10,30 @@
 
 int main(int argc, const char * argv[])
 {
-	printf("Running getasstruct...\n");
+  printf("Running getasstruct...\n");
 
-    CConnection* ml = connectionfactory_getConnection();
+  CConnection* ml = connectionfactory_getConnection();
 
-    char* uri = "/some/doc.json";
-    if (argc > 1) {
-    	uri = argv[1];
-    }
-    CResponse* response = connection_getDocument(ml,uri);
+  char* uri = "/some/doc.json";
+  if (argc > 1) {
+    uri = argv[1];
+  }
+  CResponse* response = connection_getDocument(ml,uri);
 
-    const int rt = response_GetResponseType(response);
-    printf("Response type: %i \n",rt);
-    const int rc = response_GetResponseCode(response);
-    printf("Response code: %i \n",rc);
-    if (RESPONSETYPE_JSON == rt || RESPONSETYPE_XML == rt) {
-    	//printf("This is /some/doc.json: %s \n",response_Json(response) );
-    	// convert to struct and output relevant fields
-    	struct sampledoc result; // from CStruct.h
-    	cstruct_unpack(response,&result); // from CStructWrapper.h
-    	printf("%s contains a sampledoc struct with 'first' set to '%s' and 'second' set to '%s' \n",uri,result.first,result.second);
-    } else {
-    	printf("Response: %s : %s \n",uri,response_String(response));
-    }
+  const int rt = response_GetResponseType(response);
+  printf("Response type: %i \n",rt);
+  const int rc = response_GetResponseCode(response);
+  printf("Response code: %i \n",rc);
+  if (RESPONSETYPE_JSON == rt || RESPONSETYPE_XML == rt) {
+    //printf("This is /some/doc.json: %s \n",response_Json(response) );
+    // convert to struct and output relevant fields
+    struct sampledoc result; // from CStruct.h
+    cstruct_unpack(response,&result); // from CStructWrapper.h
+    printf("%s contains a sampledoc struct with 'first' set to '%s' and 'second' set to '%s' \n",uri,result.first,result.second);
+  } else {
+    printf("Response: %s : %s \n",uri,response_String(response));
+  }
 
-    printf("getasstruct complete\n");
-    return 0;
+  printf("getasstruct complete\n");
+  return 0;
 }

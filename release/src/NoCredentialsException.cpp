@@ -13,7 +13,7 @@
 namespace mlclient {
 
 const char* NoCredentialsException::what(void) const throw() {
-    return "No credentials found";
+  return "No credentials found";
 }
 
 }

@@ -12,22 +12,22 @@ extern "C" {
 
 // constructor/destructor
 void response_delete(CResponse *resp) {
-	using namespace mlclient;
-	//CResponseWrapper* wrapper = (CResponseWrapper*)resp;
-	CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
+  using namespace mlclient;
+  //CResponseWrapper* wrapper = (CResponseWrapper*)resp;
+  CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
 
-	//Response *t = (Response*)(wrapper->get());
-	//delete t;
-	delete wrapper;
+  //Response *t = (Response*)(wrapper->get());
+  //delete t;
+  delete wrapper;
 }
 
 // member functions
 
 const int response_length(CResponse *resp) {
-	using namespace mlclient;
-	CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
-	//Response *t = (Response*)(wrapper->get());
-	return wrapper->get().String().length();
+  using namespace mlclient;
+  CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
+  //Response *t = (Response*)(wrapper->get());
+  return wrapper->get().String().length();
 }
 /*
 void response_Json(CResponse *resp,char* buffer) {
@@ -45,13 +45,13 @@ void response_Json(CResponse *resp,char* buffer) {
 	int length = strlen(cstr);
 	std::cout << "length: " << length << std::endl;
 	strncpy(buffer,cstr,length);
-*/
+ */
 
-	// ISSUE STARTS AFTER HERE
-	//web::json::value json = t->Json(); // NOTE: Json() can ONLY be called ONCE
-	// BYPASS JSON AND GET THE STRING ITSELF
+// ISSUE STARTS AFTER HERE
+//web::json::value json = t->Json(); // NOTE: Json() can ONLY be called ONCE
+// BYPASS JSON AND GET THE STRING ITSELF
 
-	/*
+/*
 	std::string str = t->String();
 	const char* cstr = str.c_str();
 	static char *argv;
@@ -59,9 +59,9 @@ void response_Json(CResponse *resp,char* buffer) {
 		argv = new char[length + 1]();
 		strncpy(argv, cstr, length);
 	return argv;
-	*/
+ */
 
-	/*
+/*
 	std::cout << "JSON raw returned: " << json << std::endl;
 	std::ostringstream stream;
 	stream << json; // REQUIRED to get raw JSON as text, as serialize(void) does NOT work
@@ -74,13 +74,13 @@ void response_Json(CResponse *resp,char* buffer) {
 	std::cout << "JSON returned pref: " << pref << std::endl;
 	//static const char* cstr = asstr.c_str();
 	/
-	 * char *argv;
+ * char *argv;
 	int length = strlen(pref);
 	argv = new char[length + 1]();
 	strncpy(argv, pref, length);
 	/
 	return pref;
-	*/
+ */
 //}
 /*
 const char* const response_Xml(CResponse *resp) {
@@ -92,35 +92,35 @@ const char* const response_Xml(CResponse *resp) {
 	return cstr;
 }*/
 const char* const response_String(CResponse *resp) {
-	using namespace mlclient;
-	//Response *t = (Response*)resp;
-	CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
-	//std::cout << "Calling get" << std::endl;
-	//Response *t = (Response*)();
-	//static const char* cstr = ; // TODO fix this
-	//std::string& fs = t->String();
-	//std::cout << "response_String: " << wrapper->get().String() << std::endl;
-	return wrapper->get().String().c_str();
+  using namespace mlclient;
+  //Response *t = (Response*)resp;
+  CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
+  //std::cout << "Calling get" << std::endl;
+  //Response *t = (Response*)();
+  //static const char* cstr = ; // TODO fix this
+  //std::string& fs = t->String();
+  //std::cout << "response_String: " << wrapper->get().String() << std::endl;
+  return wrapper->get().String().c_str();
 }
 const int response_GetResponseType(CResponse *resp) {
-	using namespace mlclient;
-	//Response *t = (Response*)resp;
-	CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
-	//Response *t = (Response*)();
-	return (int)(wrapper->get().GetResponseType());
+  using namespace mlclient;
+  //Response *t = (Response*)resp;
+  CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
+  //Response *t = (Response*)();
+  return (int)(wrapper->get().GetResponseType());
 }
 const int response_GetResponseCode(CResponse *resp) {
-	using namespace mlclient;
-	//Response *t = (Response*)resp;
-	CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
-	//Response *t = (Response*)(wrapper->get());
-	return (int)(wrapper->get().GetResponseCode());
+  using namespace mlclient;
+  //Response *t = (Response*)resp;
+  CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
+  //Response *t = (Response*)(wrapper->get());
+  return (int)(wrapper->get().GetResponseCode());
 }
 
 const char* const responsecodes_translate(int code) {
-	using namespace mlclient;
-	static const char* cd = ResponseCode::Translate((ResponseCodes)code).c_str();
-	return cd;
+  using namespace mlclient;
+  static const char* cd = ResponseCode::Translate((ResponseCodes)code).c_str();
+  return cd;
 }
 
 #ifdef __cplusplus

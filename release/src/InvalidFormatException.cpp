@@ -12,7 +12,7 @@
 namespace mlclient {
 
 const char* InvalidFormatException::what(void) const throw() {
-    return "Response is not of the required type for requested function/operation to be carried out";
+  return "Response is not of the required type for requested function/operation to be carried out";
 }
 
 }

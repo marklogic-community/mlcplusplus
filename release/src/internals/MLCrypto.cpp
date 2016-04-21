@@ -29,12 +29,12 @@ MLCrypto::~MLCrypto() {
 
 std::string MLCrypto::Md5(const std::string& raw) const {
   uint8_t buffer[16];
-  
+
   MD5_CTX _context;
   MD5_Init(&_context);
   MD5_Update(&_context, raw.c_str(), raw.size());
   MD5_Final(buffer, &_context);
-  
+
   return ToHex(buffer, 16);
 }
 

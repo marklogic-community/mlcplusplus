@@ -5,7 +5,7 @@
 extern "C" {
 
 CConnection* connectionfactory_getConnection() {
-	return (CConnection*)ConnectionFactory::getConnection();
+  return (CConnection*)ConnectionFactory::getConnection();
 }
 
 }

@@ -16,15 +16,15 @@
 using namespace mlclient;
 
 class ConnectionDocumentCrudTest : public CppUnit::TestCase {
-    CPPUNIT_TEST_SUITE(ConnectionDocumentCrudTest);
-    CPPUNIT_TEST(TestGetJson);
-    //CPPUNIT_TEST(TestSaveJson);
-    //CPPUNIT_TEST(TestSaveAllJson);
-    CPPUNIT_TEST_SUITE_END();
+  CPPUNIT_TEST_SUITE(ConnectionDocumentCrudTest);
+  CPPUNIT_TEST(TestGetJson);
+  //CPPUNIT_TEST(TestSaveJson);
+  //CPPUNIT_TEST(TestSaveAllJson);
+  CPPUNIT_TEST_SUITE_END();
 public:
-    void TestGetJson(void);
-    //void TestSaveJson(void);
-    //void TestSaveAllJson(void);
+  void TestGetJson(void);
+  //void TestSaveJson(void);
+  //void TestSaveAllJson(void);
 };
 
 #endif /* defined(__Scratch__ConnectionDocumentCrudTest__) */

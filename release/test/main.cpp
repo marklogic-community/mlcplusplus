@@ -18,17 +18,17 @@
 
 int main(int argc, const char * argv[])
 {
-    CppUnit::TestResult controller;
-    
-    CppUnit::TestResultCollector collector;
-    controller.addListener(&collector);
-    
-    CppUnit::BriefTestProgressListener progress;
-    controller.addListener(&progress);
-    
-    CppUnit::TestRunner::TestRunner runner;
-    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-    runner.run(controller);
-    return 0;
+  CppUnit::TestResult controller;
+
+  CppUnit::TestResultCollector collector;
+  controller.addListener(&collector);
+
+  CppUnit::BriefTestProgressListener progress;
+  controller.addListener(&progress);
+
+  CppUnit::TestRunner::TestRunner runner;
+  runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+  runner.run(controller);
+  return 0;
 }
 

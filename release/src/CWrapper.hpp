@@ -12,17 +12,17 @@ using namespace mlclient;
 template <typename T>
 class CWrapper {
 public:
-	CWrapper(std::unique_ptr<T> obj) : ptr(std::move(obj)) {
-		;
-	}
-	~CWrapper() {
-		;
-	}
+  CWrapper(std::unique_ptr<T> obj) : ptr(std::move(obj)) {
+    ;
+  }
+  ~CWrapper() {
+    ;
+  }
 
-	T& get() {
-		return *ptr;
-	}
+  T& get() {
+    return *ptr;
+  }
 
 private:
-	std::unique_ptr<T> ptr;
+  std::unique_ptr<T> ptr;
 };

@@ -24,9 +24,9 @@ ResponseTest::~ResponseTest() {
 
 void ResponseTest::TestParseContentTypeHeader() {
   std::string example_header = "application/json; charset=utf-8";
-  
+
   Response response;
-  
+
   ResponseType type = response.ParseContentTypeHeader(example_header);
   CPPUNIT_ASSERT_EQUAL(ResponseType::JSON, type);  
 }

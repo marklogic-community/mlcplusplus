@@ -32,35 +32,35 @@ const utility::string_t AUTHORIZATION_HEADER_NAME = U("Authorization");
 const utility::string_t WWW_AUTHENTICATE_HEADER = U("WWW-Authenticate");
 
 Credentials::Credentials() : _nonce_count(0) {
-    _cnonce = RandomCnonce();
+  _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::string& user, const std::string& pass) :
-    _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end()),
-    _nonce_count(0)
+        _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end()),
+        _nonce_count(0)
 {
-    _cnonce = RandomCnonce();
+  _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::wstring& user, const std::wstring& pass) :
-    _user(user), _pass(pass), _nonce_count(0)
+        _user(user), _pass(pass), _nonce_count(0)
 {
-    _cnonce = RandomCnonce();
+  _cnonce = RandomCnonce();
 }
 
 Credentials::Credentials(const std::string& username, const std::string& password,
-        const std::string& cnonce, const uint32_t& nc) : 
-        _user(username.begin(), username.end()), 
-        _pass(password.begin(), password.end()), 
-        _cnonce(cnonce), 
-        _nonce_count(nc)
+    const std::string& cnonce, const uint32_t& nc) :
+            _user(username.begin(), username.end()),
+            _pass(password.begin(), password.end()),
+            _cnonce(cnonce),
+            _nonce_count(nc)
 {
-  
+
 }
 
 std::string Credentials::RandomCnonce() const 
 {
-  
+
   internals::MLCrypto crypto;
   boost::uuids::uuid random_uuid = boost::uuids::random_generator()();
   std::string my_random_uuid = boost::uuids::to_string(random_uuid);
@@ -69,38 +69,38 @@ std::string Credentials::RandomCnonce() const
 
 
 Credentials::~Credentials() {
-    
+
 }
 
 bool Credentials::Authenticating() const {
-    return _user != L"" && _pass != L"" && _nonce != "" && _realm != "";
+  return _user != L"" && _pass != L"" && _nonce != "" && _realm != "";
 }
 
 void Credentials::ParseWWWAthenticateHeader(const std::string& raw) {
-    boost::smatch matches;
-    if (boost::regex_search(raw, matches, realm_re)) {
-        _realm = matches[1];
-    } else {
-        _realm.clear();
-    }
-    
-    if(boost::regex_search(raw, matches, qop_re)) {
-        _qop = matches[1];
-    } else {
-        _qop.clear();
-    }
-    
-    if (boost::regex_search(raw, matches, nonce_re)) {
-        _nonce = matches[1];
-    } else {
-        _nonce.clear();
-    }
-    
-    if (boost::regex_search(raw, matches, opaque_re)) {
-        _opaque = matches[1];
-    } else {
-        _opaque.clear();
-    }
+  boost::smatch matches;
+  if (boost::regex_search(raw, matches, realm_re)) {
+    _realm = matches[1];
+  } else {
+    _realm.clear();
+  }
+
+  if(boost::regex_search(raw, matches, qop_re)) {
+    _qop = matches[1];
+  } else {
+    _qop.clear();
+  }
+
+  if (boost::regex_search(raw, matches, nonce_re)) {
+    _nonce = matches[1];
+  } else {
+    _nonce.clear();
+  }
+
+  if (boost::regex_search(raw, matches, opaque_re)) {
+    _opaque = matches[1];
+  } else {
+    _opaque.clear();
+  }
 }
 
 std::string Credentials::Authenticate(const std::string& method, const std::string& uri, const std::string& auth_header) {
@@ -138,24 +138,24 @@ std::string Credentials::Authenticate(const std::string& method, const std::stri
   oss << " qop=" << _qop << ",";
   oss << " response=\"" << response << "\",";
   oss << " opaque=\"" << _opaque << "\"";
-  
+
   return U(oss.str());
 }
 
 std::string Credentials::Nonce(void) const {
-    return _nonce;
+  return _nonce;
 }
 
 std::string Credentials::Qop(void) const {
-    return _qop;
+  return _qop;
 }
 
 std::string Credentials::Opaque(void) const {
-    return _opaque;
+  return _opaque;
 }
 
 std::string Credentials::Realm(void) const {
-    return _realm;
+  return _realm;
 }
 
 }
