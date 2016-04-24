@@ -14,9 +14,7 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 
-#include "Types.hpp"
-
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 

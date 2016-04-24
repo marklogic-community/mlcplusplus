@@ -8,7 +8,7 @@
 #include "AuthorizationBuilder.hpp"
 #include "MLCrypto.hpp"
 
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 

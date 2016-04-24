@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
+#include "mlclient.hpp"
 #include "NoCredentialsException.hpp"
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

@@ -5,9 +5,9 @@
 //  Copyright (c) 2016 Adam Fowler. All rights reserved.
 //
 
+#include "mlclient.hpp"
 #include "InvalidFormatException.hpp"
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

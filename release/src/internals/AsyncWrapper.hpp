@@ -5,6 +5,7 @@
 //  Copyright (c) 2014 Adam Fowler. All rights reserved.
 //
 
+#include <mlclient.hpp>
 #include <functional>
 #include <cstdint>
 
@@ -12,7 +13,6 @@
 #include "Response.hpp"
 #include "ResponseCodes.hpp"
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

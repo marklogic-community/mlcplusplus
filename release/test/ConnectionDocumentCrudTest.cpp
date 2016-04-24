@@ -8,10 +8,11 @@
 
 #include <cpprest/json.h>
 #include <cpprest/http_client.h>
+#include <mlclient.hpp>
+
 #include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 #include <string>
-#include "MLCPlusPlus.hpp"
 #include "AuthenticatingProxyTest.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 #include "internals/Credentials.hpp"

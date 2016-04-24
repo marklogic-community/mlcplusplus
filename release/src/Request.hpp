@@ -9,7 +9,7 @@
 #ifndef __MARKLOGIC_REQUEST__
 #define __MARKLOGIC_REQUEST__
 
-#include "MLCPlusPlus.hpp"
+#include "mlclient.hpp"
 
 namespace mlclient {
 

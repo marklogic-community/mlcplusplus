@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
+#include <mlclient.hpp>
 #include <iostream>
 
-#include "MLCPlusPlus.hpp"
 #include "Connection.hpp"
 #include "Response.hpp"
 #include "ResponseCodes.hpp"

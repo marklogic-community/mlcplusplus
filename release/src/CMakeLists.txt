@@ -1,13 +1,13 @@
 # 2.8.2 and above can handle openssl letter versions (E.g. 1.0.1h), which is required to get fixed version of openssl
 cmake_minimum_required (VERSION 2.8.2)
-project (MLCPlusPlus)
+project (mlclient)
 
 # See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
 
 # EDITABLE SETTINGS BEGIN
 
-set (MLCPlusPlus_VERSION_MAJOR 0)
-set (MLCPlusPlus_VERSION_MINOR 1)
+set (mlclient_VERSION_MAJOR 0)
+set (mlclient_VERSION_MINOR 1)
 
 # EDITABLE SETTINGS END
 
@@ -81,15 +81,15 @@ endif()
 
 # Have CMake do a search and replace on the version numbers in our config.h file
 configure_file (
-  "${PROJECT_SOURCE_DIR}/MLCPlusPlusConfig.h.in"
-  "${PROJECT_BINARY_DIR}/MLCPlusPlusConfig.h"
+  "${PROJECT_SOURCE_DIR}/mlclientConfig.h.in"
+  "${PROJECT_BINARY_DIR}/mlclientConfig.h"
   )
 
 # add the binary tree to the search path for include files
-# so that we will find MLCPlusPlusConfig.h
+# so that we will find mlclientConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
-find_package(Doxygen)
+find_package(Doxygen PATHS /usr/local/Cellar/doxygen/1.8.10 /usr/local/Cellar/doxygen/1.8.10/bin )
 if(DOXYGEN_FOUND)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
 add_custom_target(doc
@@ -101,10 +101,10 @@ endif(DOXYGEN_FOUND)
 
 
 # ML C++ own libraries
-add_library (MLCPlusPlus SHARED
+add_library (mlclient SHARED
     Connection.cpp
     InvalidFormatException.cpp
-    MLCPlusPlus.cpp
+    mlclient.cpp
     NoCredentialsException.cpp
     Request.cpp
     Response.cpp
@@ -126,7 +126,7 @@ add_library (MLCPlusPlus SHARED
 include_directories (BEFORE ../include /usr/include/libxml2)
 
 # Casablanca
-# Assume source in same directory as MLCPlusPlus
+# Assume source in same directory as mlclient
 #include_directories (AFTER
 #  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
 #  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
@@ -160,13 +160,13 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 
 
 # Now link our library to its dependencies
-#target_link_libraries (MLCPlusPlus
+#target_link_libraries (mlclient
 #  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
 #  ${OPENSSL_LIBRARIES}
 #  ${Boost_LIBRARIES}
 #  )
 
-target_link_libraries (MLCPlusPlus
+target_link_libraries (mlclient
     libcpprest.dylib
     libcommon_utilities.dylib
     libboost_regex.dylib
@@ -192,8 +192,8 @@ endif(DOXYGEN_FOUND)
 
 
 # INSTALLATION
-install (TARGETS MLCPlusPlus LIBRARY DESTINATION lib)
-install (FILES MLCPlusPlus.h MLCPlusPlus.hpp Response.hpp DESTINATION include)
+install (TARGETS mlclient LIBRARY DESTINATION lib)
+install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.jpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp DESTINATION include)
 
 
 
@@ -205,6 +205,6 @@ SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MarkLogic C++ Client Library")
 SET(CPACK_PACKAGE_VENDOR "MarkLogic Inc.")
 #SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ReadMe.txt")
 set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
-set (CPACK_PACKAGE_VERSION_MAJOR "${MLCPlusPlus_VERSION_MAJOR}")
-set (CPACK_PACKAGE_VERSION_MINOR "${MLCPlusPlus_VERSION_MINOR}")
+set (CPACK_PACKAGE_VERSION_MAJOR "${mlclient_VERSION_MAJOR}")
+set (CPACK_PACKAGE_VERSION_MINOR "${mlclient_VERSION_MINOR}")
 include (CPack)

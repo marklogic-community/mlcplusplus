@@ -9,11 +9,11 @@
 #ifndef RESPONSECODES_H
 #define RESPONSECODES_H
 
+#include "mlclient.hpp"
 #include <cstdint>
 #include <string>
 #include <iostream>
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

@@ -6,5 +6,5 @@
 //  Copyright (c) 2014 __MARKLOGIC__. All rights reserved.
 //
 
-#include "MLCPlusPlus.hpp"
+#include "mlclient.hpp"
 

@@ -13,13 +13,12 @@
 #include <cpprest/json.h>
 #include <cpprest/http_headers.h>
 #include <cpprest/http_client.h>
+#include "mlclient.hpp"
 
 #include <pugixml.hpp>
 
 #include "ResponseCodes.hpp"
-#include "internals/Types.hpp"
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 
