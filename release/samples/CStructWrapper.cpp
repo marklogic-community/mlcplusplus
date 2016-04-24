@@ -2,6 +2,7 @@
 #include "CStruct.h"
 #include "ResponseWrapper.h"
 #include "Response.hpp"
+#include "utilities/ResponseUtilities.hpp"
 #include <cpprest/json.h>
 #include <pugixml.hpp>
 #include "CWrapper.hpp"
@@ -10,12 +11,13 @@ extern "C" {
 
 void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj) {
   using namespace mlclient;
+  using namespace mlclient::utilities;
 
   //Response *t = (Response *)resp; // now have the C++ object
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
   Response& t = wrapper->get();
 
-  std::string& fs = t.asString();
+  const std::string& fs = t.getContent();
   //std::string& fsr = fs; // hold a reference to the string
   //return fs.c_str();
   std::cout << "raw content: " << fs << std::endl;
@@ -25,7 +27,7 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     // custom unpacking C++ code - as JSON and XML wrappers are C++, not C
     // This code has to be custom as C and C++ DO NOT do introspection of a struct
     //std::cout << "Web JSON string value: " << t->String() << std::endl;
-    const web::json::value& jsonValue = t.asJson();
+    const web::json::value& jsonValue = ResponseUtilities::asJson(t);
     std::cout << "Web JSON value&: " << jsonValue << std::endl;
     const web::json::object& jsonObject = jsonValue.as_object();
     static const std::string firstString = jsonObject.at("first").as_string(); // COPY VALUE
@@ -38,7 +40,7 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     obj->second = const_cast<char*>(second); // no longer a hanging pointer
   } else {
     // assume XML
-    const pugi::xml_document& doc = t.asXml();
+    const pugi::xml_document& doc = ResponseUtilities::asXml(t);
     const pugi::xml_node& root = doc.root();
     //std::cout << "root node name: " << root.name() << std::endl;
     const pugi::xml_node& docroot = root.child("docroot");

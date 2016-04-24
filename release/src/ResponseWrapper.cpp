@@ -27,7 +27,7 @@ const int ml_response_length(CResponse *resp) {
   using namespace mlclient;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
   //Response *t = (Response*)(wrapper->get());
-  return wrapper->get().asString().length();
+  return wrapper->get().getContent().length();
 }
 /*
 void response_Json(CResponse *resp,char* buffer) {
@@ -100,7 +100,7 @@ const char* const ml_response_String(CResponse *resp) {
   //static const char* cstr = ; // TODO fix this
   //std::string& fs = t->String();
   //std::cout << "response_String: " << wrapper->get().String() << std::endl;
-  return wrapper->get().asString().c_str();
+  return wrapper->get().getContent().c_str();
 }
 const int ml_response_GetResponseType(CResponse *resp) {
   using namespace mlclient;

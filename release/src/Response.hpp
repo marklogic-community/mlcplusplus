@@ -10,12 +10,9 @@
 #define RESPONSE_H
 
 #include <cstdint>
-#include <cpprest/json.h>
 #include <cpprest/http_headers.h>
 #include <cpprest/http_client.h>
 #include "mlclient.hpp"
-
-#include <pugixml.hpp>
 
 #include "ResponseCodes.hpp"
 
@@ -116,23 +113,7 @@ public:
   ///
   /// \return The UTF-8 string
   ///
-  std::string& asString() const;
-
-  ///
-  /// For XML responses, returns a document using the libxml2 library.
-  ///
-  /// \return The response document
-  ///
-  const pugi::xml_document& asXml() const;
-  //void SetXml(const pugi::xml_document& doc);
-
-  ///
-  /// For JSON  responses, returns the document using the Casablanca JSON
-  /// object represenation.
-  ///
-  /// \return The JSON object
-  ///
-  web::json::value asJson() const; // uses copy semantics, not reference - peculiarity of the cpprest library
+  const std::string& getContent() const;
 
   //void SetJson(const web::json::value& json);
   void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
