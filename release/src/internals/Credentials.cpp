@@ -31,34 +31,34 @@ const boost::regex OPAQUE_RE("opaque=\"([a-z0-9]+)\"");
 const utility::string_t AUTHORIZATION_HEADER_NAME = U("Authorization");
 const utility::string_t WWW_AUTHENTICATE_HEADER = U("WWW-Authenticate");
 
-Credentials::Credentials() : _nonce_count(0) {
-  _cnonce = randomCnonce();
+Credentials::Credentials() : nonce_count(0) {
+  cnonce = generateRandomCnonce();
 }
 
 Credentials::Credentials(const std::string& user, const std::string& pass) :
-        _user(std::wstring(user.begin(), user.end())), _pass(pass.begin(), pass.end()),
-        _nonce_count(0)
+        user(std::wstring(user.begin(), user.end())), pass(pass.begin(), pass.end()),
+        nonce_count(0)
 {
-  _cnonce = randomCnonce();
+  cnonce = generateRandomCnonce();
 }
 
 Credentials::Credentials(const std::wstring& user, const std::wstring& pass) :
-        _user(user), _pass(pass), _nonce_count(0)
+        user(user), pass(pass), nonce_count(0)
 {
-  _cnonce = randomCnonce();
+  cnonce = generateRandomCnonce();
 }
 
 Credentials::Credentials(const std::string& username, const std::string& password,
     const std::string& cnonce, const uint32_t& nc) :
-            _user(username.begin(), username.end()),
-            _pass(password.begin(), password.end()),
-            _cnonce(cnonce),
-            _nonce_count(nc)
+            user(username.begin(), username.end()),
+            pass(password.begin(), password.end()),
+            cnonce(cnonce),
+            nonce_count(nc)
 {
 
 }
 
-std::string Credentials::randomCnonce() const
+std::string Credentials::generateRandomCnonce() const
 {
 
   internals::MLCrypto crypto;
@@ -72,34 +72,34 @@ Credentials::~Credentials() {
 
 }
 
-bool Credentials::authenticating() const {
-  return _user != L"" && _pass != L"" && _nonce != "" && _realm != "";
+bool Credentials::canAuthenticate() const {
+  return user != L"" && pass != L"" && nonce != "" && realm != "";
 }
 
 void Credentials::parseWWWAthenticateHeader(const std::string& raw) {
   boost::smatch matches;
   if (boost::regex_search(raw, matches, REALM_RE)) {
-    _realm = matches[1];
+    realm = matches[1];
   } else {
-    _realm.clear();
+    realm.clear();
   }
 
   if(boost::regex_search(raw, matches, QOP_RE)) {
-    _qop = matches[1];
+    qop = matches[1];
   } else {
-    _qop.clear();
+    qop.clear();
   }
 
   if (boost::regex_search(raw, matches, NONCE_RE)) {
-    _nonce = matches[1];
+    nonce = matches[1];
   } else {
-    _nonce.clear();
+    nonce.clear();
   }
 
   if (boost::regex_search(raw, matches, OPAQUE_RE)) {
-    _opaque = matches[1];
+    opaque = matches[1];
   } else {
-    _opaque.clear();
+    opaque.clear();
   }
 }
 
@@ -112,50 +112,50 @@ std::string Credentials::authenticate(const std::string& method, const std::stri
 std::string Credentials::authenticate(const std::string& method, const std::string& uri) {
   std::ostringstream oss;
   internals::AuthorizationBuilder builder;
-  _nonce_count++;
+  nonce_count++;
 
   std::ostringstream temp;
-  std::string username(_user.begin(), _user.end());
-  std::string password(_pass.begin(), _pass.end());
+  std::string username(user.begin(), user.end());
+  std::string password(pass.begin(), pass.end());
 
-  std::string a1 = builder.usernameRealmAndPassword(username, _realm, password);
+  std::string a1 = builder.usernameRealmAndPassword(username, realm, password);
   std::string a2 = builder.methodAndURL(method, uri);
 
-  oss << std::setfill('0') << std::setw(8) << _nonce_count;
+  oss << std::setfill('0') << std::setw(8) << nonce_count;
   std::string nc = oss.str();
 
-  std::string response = builder.response(a1, _nonce, oss.str(), _cnonce,
-      _qop, a2);
+  std::string response = builder.response(a1, nonce, oss.str(), cnonce,
+      qop, a2);
 
   oss.str("");
   oss << " Digest";
   oss << " username=\"" << username << "\",";
-  oss << " realm=\"" << _realm << "\",";
-  oss << " nonce=\"" << _nonce << "\",";
+  oss << " realm=\"" << realm << "\",";
+  oss << " nonce=\"" << nonce << "\",";
   oss << " uri=\"" << uri << "\",";
-  oss << " cnonce=\"" << _cnonce << "\",";
+  oss << " cnonce=\"" << cnonce << "\",";
   oss << " nc=" << nc << ",";
-  oss << " qop=" << _qop << ",";
+  oss << " qop=" << qop << ",";
   oss << " response=\"" << response << "\",";
-  oss << " opaque=\"" << _opaque << "\"";
+  oss << " opaque=\"" << opaque << "\"";
 
   return U(oss.str());
 }
 
-std::string Credentials::nonce(void) const {
-  return _nonce;
+std::string Credentials::getNonce(void) const {
+  return nonce;
 }
 
-std::string Credentials::qop(void) const {
-  return _qop;
+std::string Credentials::getQop(void) const {
+  return qop;
 }
 
-std::string Credentials::opaque(void) const {
-  return _opaque;
+std::string Credentials::getOpaque(void) const {
+  return opaque;
 }
 
-std::string Credentials::realm(void) const {
-  return _realm;
+std::string Credentials::getRealm(void) const {
+  return realm;
 }
 
 }

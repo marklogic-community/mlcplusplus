@@ -5,8 +5,6 @@
  * and CConnection -> std:unique_ptr<Connection>
  */
 
-#include "Response.hpp"
-
 using namespace mlclient;
 
 template <typename T>

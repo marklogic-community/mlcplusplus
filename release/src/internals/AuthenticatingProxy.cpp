@@ -46,7 +46,7 @@ using namespace web::http::client;          // HTTP client features
 using namespace concurrency::streams;       // Asynchronous streams
 using namespace mlclient;
 
-AuthenticatingProxy::AuthenticatingProxy() : _attempts(0), _credentials()
+AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
 {
   //_credentials = new Credentials(); // should be declared virtual?;
 }
@@ -54,11 +54,11 @@ AuthenticatingProxy::AuthenticatingProxy() : _attempts(0), _credentials()
 
 void AuthenticatingProxy::addCredentials(const internals::Credentials &c)
 {
-  _credentials = c;
+  credentials = c;
 }
 
 const Credentials& AuthenticatingProxy::getCredentials() const {
-  return _credentials;
+  return credentials;
 }
 
 std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
@@ -74,8 +74,8 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
     http::http_request req(http::methods::GET);
     req.set_request_uri(path);
 
-    if (_credentials.authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("GET", path));
+    if (credentials.canAuthenticate()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("GET", path));
     }
 
     http_headers::const_iterator iter;
@@ -143,7 +143,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.authenticate("GET", path, authHeader) )
+          U(credentials.authenticate("GET", path, authHeader) )
       );
 
       http_headers::const_iterator iter;
@@ -227,8 +227,8 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     req.set_request_uri(path);
     req.set_body(body);
 
-    if (_credentials.authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("POST", path));
+    if (credentials.canAuthenticate()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("POST", path));
     }
 
 
@@ -272,7 +272,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.authenticate("POST", path, authHeader) )
+          U(credentials.authenticate("POST", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();
@@ -398,8 +398,8 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     req.set_request_uri(path);
     req.set_body(json_body);
 
-    if (_credentials.authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("PUT", path));
+    if (credentials.canAuthenticate()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("PUT", path));
     }
 
     http_response raw_response = raw_client.request(req).get();
@@ -439,7 +439,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.authenticate("PUT", path, authHeader) )
+          U(credentials.authenticate("PUT", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();
@@ -532,8 +532,8 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
     http::http_request req(http::methods::DEL);
     req.set_request_uri(path);
 
-    if (_credentials.authenticating()) {
-      req.headers().add(AUTHORIZATION_HEADER_NAME, _credentials.authenticate("DELETE", path));
+    if (credentials.canAuthenticate()) {
+      req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("DELETE", path));
     }
 
     http_response raw_response = raw_client.request(req).get();
@@ -572,7 +572,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(_credentials.authenticate("DELETE", path, authHeader) )
+          U(credentials.authenticate("DELETE", path, authHeader) )
       );
 
       http_response raw_response = raw_client.request(req).get();

@@ -30,16 +30,16 @@ using namespace web;
 /// nonce count.
 ///
 class Credentials {
-  std::wstring _user;
-  std::wstring _pass;
+  std::wstring user;
+  std::wstring pass;
 
-  std::string _nonce;
-  std::string _qop;
-  std::string _opaque;
-  std::string _realm;
-  std::string _uri;
-  std::string _cnonce;
-  uint32_t _nonce_count;
+  std::string nonce;
+  std::string qop;
+  std::string opaque;
+  std::string realm;
+  std::string uri;
+  std::string cnonce;
+  uint32_t nonce_count;
 
 protected:
   ///
@@ -72,7 +72,7 @@ protected:
   ///
   /// \return A random nonce value
   ///
-  std::string randomCnonce(void) const;
+  std::string generateRandomCnonce(void) const; // TODO hide me in Impl
 public:
 
   ///
@@ -115,7 +115,7 @@ public:
   ///
   /// \return Weather or not it can generate a challenge response
   ///
-  bool authenticating(void) const;
+  bool canAuthenticate(void) const;
 
   ///
   /// Parses the Authenticate header to extract the nonce, the qop and the
@@ -132,30 +132,30 @@ public:
   ///
   /// \return The nonce
   ///
-  std::string nonce(void) const;
+  std::string getNonce(void) const;
 
   ///
   /// Returns the server provided qop
   ///
   /// \return The qop
   ///
-  std::string qop(void) const;
+  std::string getQop(void) const;
 
   ///
   /// Returns the server provided opaque value
   ///
   /// \return The opaque
   ///
-  std::string opaque(void) const;
+  std::string getOpaque(void) const;
 
   ///
   /// Returns the server provided realm
   ///
   /// \return The realm
   ///
-  std::string realm(void) const;
+  std::string getRealm(void) const;
 
-  friend class AuthenticatingProxy;
+  friend class AuthenticatingProxy; // TODO REVIEW THESE - BAD KARMA
   friend class AuthenticatingProxyTest; // I hate having these here!
   friend class TestCredentials;
 };
