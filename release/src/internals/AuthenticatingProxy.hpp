@@ -14,13 +14,11 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
-//#include <libxml/parser.h>
 #include "../Response.hpp"
 #include "../ResponseCodes.hpp"
 #include "Credentials.hpp"
-#include "Types.hpp"
 
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 
@@ -76,12 +74,12 @@ public:
   std::unique_ptr<Response> getSync(const std::string& host,
       const std::string& path,
       const http_headers& headers = blankHeaders);
-
+/*
   void getAsync(const std::string& host,
       const std::string& path,
       const std::function<void(const Response&)> handler,
       const http_headers& headers = blankHeaders);
-
+*/
 
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
@@ -106,12 +104,13 @@ public:
       const std::string& path,
       const std::string& file_path,
       const http_headers& headers = blankHeaders);
-
+/*
   void postAsync(const std::string& host,
       const std::string& path,
       const http_headers& headers,
       const params_t& body,
       const std::function<void(const Response&)> handler);
+
   void postAsync(const std::string& host,
       const std::string& path,
       const http_headers& headers,
@@ -119,7 +118,7 @@ public:
   void postAsync(const std::string& host,
       const std::string& path,
       const std::function<void(const Response&)> handler);
-
+*/
   std::unique_ptr<Response> putSync(const std::string& host,
       const std::string& path,
       const std::wstring& text_body,
@@ -139,7 +138,7 @@ public:
        const uint8_t* data,
        const size_t& size,
        const http_headers& headers = blankHeaders);
-
+/*
    void putAsync(const std::string& host,
        const std::string& path,
        const http_headers& headers,
@@ -152,16 +151,16 @@ public:
    void putAsync(const std::string& host,
        const std::string& path,
        const std::function<void(const Response&)> handler);
-
+*/
    std::unique_ptr<Response> deleteSync(const std::string& host,
        const std::string& path,
        const http_headers& headers = blankHeaders);
-
+/*
    void deleteAsync(const std::string& host,
        const std::string& path,
        const std::function<void(const Response&)> handler,
        const http_headers& headers = blankHeaders);
-
+*/
 private:
    AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
    //AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation

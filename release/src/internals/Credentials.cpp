@@ -17,7 +17,7 @@
 #include "MLCrypto.hpp"
 #include "AuthorizationBuilder.hpp"
 
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 

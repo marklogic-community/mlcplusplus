@@ -2,7 +2,6 @@
 
 #include "Connection.hpp"
 #include "Response.hpp"
-#include "CWrapper.hpp"
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 

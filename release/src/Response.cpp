@@ -10,6 +10,7 @@
 #include <boost/regex.hpp>
 
 #include <cpprest/http_headers.h>
+#include "mlclient.hpp"
 
 #include <pugixml.hpp>
 
@@ -17,7 +18,6 @@
 #include "Response.hpp"
 #include "InvalidFormatException.hpp"
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

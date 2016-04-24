@@ -1,3 +1,0 @@
-// the configured options and settings for Tutorial
-#define MLCPlusPlus_VERSION_MAJOR @MLCPlusPlus_VERSION_MAJOR@
-#define MLCPlusPlus_VERSION_MINOR @MLCPlusPlus_VERSION_MINOR@

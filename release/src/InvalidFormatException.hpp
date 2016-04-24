@@ -8,10 +8,10 @@
 #ifndef INVALIDFORMATEXCEPTION_H
 #define INVALIDFORMATEXCEPTION_H
 
+#include "mlclient.hpp"
 #include <exception>
 #include <stdexcept>
 
-#include "MLCPlusPlus.hpp"
 
 namespace mlclient {
 

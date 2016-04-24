@@ -72,4 +72,4 @@ add_executable(mlcpptest
     MLCryptoTest.cpp
     ResponseTest.cpp
 )
-target_link_libraries(mlcpptest MLCPlusPlus cppunit ${Casablanca_LIBRARIES})
+target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES})

@@ -3,8 +3,8 @@
 #define __MLCLIENT_CONNECTION__
 
 #include <cpprest/http_client.h>
+#include "mlclient.hpp"
 
-#include "MLCPlusPlus.hpp"
 #include "Response.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 

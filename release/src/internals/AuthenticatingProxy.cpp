@@ -25,7 +25,7 @@
 #include "Credentials.hpp"
 #include "../ResponseCodes.hpp"
 
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 
@@ -202,6 +202,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
   return std::unique_ptr<Response>(response);
 }
 
+/*
 void AuthenticatingProxy::getAsync(const std::string& host,
     const std::string& path,
     const std::function<void(const Response&)> handler,
@@ -209,6 +210,7 @@ void AuthenticatingProxy::getAsync(const std::string& host,
 {
 
 }
+*/
 
 std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
@@ -345,7 +347,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postFileSync(const std::string& h
   return std::unique_ptr<Response>(response);
 }
 
-
+/*
 
 void AuthenticatingProxy::postAsync(const std::string& host,
     const std::string& path,
@@ -372,7 +374,7 @@ void AuthenticatingProxy::postAsync(const std::string& host,
   http_headers blank_headers;
   postAsync(host, path, blank_headers, handler);
 }
-
+*/
 std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const std::wstring& text_body,
@@ -488,7 +490,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
   // TODO MUST INITIALISE THIS OBJECT
   return std::unique_ptr<Response> (response);
 }
-
+/*
 
 void AuthenticatingProxy::putAsync(const std::string& host,
     const std::string& path,
@@ -515,6 +517,7 @@ void AuthenticatingProxy::putAsync(const std::string& host,
   http_headers blank_headers;
   putAsync(host, path, blank_headers, handler);
 }
+*/
 
 std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& host,
     const std::string& path,
@@ -600,7 +603,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
 
   return std::unique_ptr<Response> (response);
 }
-
+/*
 
 void AuthenticatingProxy::deleteAsync(const std::string& host,
     const std::string& path,
@@ -609,6 +612,7 @@ void AuthenticatingProxy::deleteAsync(const std::string& host,
 {
 
 }
+*/
 
 } // end internals namespace
 

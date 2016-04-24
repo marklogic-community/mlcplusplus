@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Adam Fowler. All rights reserved.
 //
 
-#include "MLCPlusPlus.hpp"
 #include "Connection.hpp"
 #include "ConnectionFactory.hpp"
+#include <mlclient.hpp>
 
 using namespace mlclient;
 

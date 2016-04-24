@@ -14,9 +14,9 @@
 #ifndef MLCRYPTO_HPP
 #define	MLCRYPTO_HPP
 
+#include "../mlclient.hpp"
 #include <string>
 
-#include "../MLCPlusPlus.hpp"
 
 namespace mlclient {
 

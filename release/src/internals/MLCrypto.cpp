@@ -12,7 +12,7 @@
 #include <sstream>
 #include <openssl/md5.h>
 
-#include "../MLCPlusPlus.hpp"
+#include "../mlclient.hpp"
 
 namespace mlclient {
 

@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Adam Fowler. All rights reserved.
 //
 
-#include "MLCPlusPlus.hpp"
 #include "Connection.hpp"
 #include "ConnectionFactory.hpp"
+#include <mlclient.hpp>
 
 using namespace mlclient;
 
 Connection* ConnectionFactory::getConnection() {
   Connection* conn = new Connection;
   // ALTER THE BELOW FOR YOUR OWN SYSTEM DURING TESTING
-  conn->configure("192.168.123.4","8122","admin","admin",false);
+  conn->configure("192.168.123.4","9797","admin","admin",false);
   return conn;
 }
