@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#ifndef __Scratch__AuthenticatingProxy__
-#define __Scratch__AuthenticatingProxy__
+#ifndef AUTHENTICATING_PROXY
+#define AUTHENTICATING_PROXY
 
 #include <map>
 #include <functional>
@@ -166,12 +166,12 @@ private:
    //AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
 
 
-   Credentials _credentials;
-   uint32_t _attempts;
+   Credentials credentials;
+   uint32_t attempts;
 };
 
 }
 
 }
 
-#endif /* defined(__Scratch__AuthenticatingProxy__) */
+#endif /* defined(AUTHENTICATING_PROXY) */

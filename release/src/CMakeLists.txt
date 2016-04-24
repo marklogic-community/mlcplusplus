@@ -106,7 +106,6 @@ add_library (mlclient SHARED
     InvalidFormatException.cpp
     mlclient.cpp
     NoCredentialsException.cpp
-    Request.cpp
     Response.cpp
     ResponseCodes.cpp
 

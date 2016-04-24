@@ -112,7 +112,7 @@ public:
   size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
 
   ///
-  /// For text responses, returns the response content as a string.
+  /// For text responses (including JSON and XML), returns the response content as a string.
   ///
   /// \return The UTF-8 string
   ///

@@ -62,7 +62,7 @@ else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
 
-include_directories(../src /usr/include/libxml2 ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
+include_directories(../src ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
 
 add_executable(getdoc
     getdoc.cpp
@@ -79,6 +79,6 @@ add_executable(cgetasstruct
     ConnectionFactoryWrapper.cpp
     CStructWrapper.cpp
 )
-target_link_libraries(getdoc MLCPlusPlus ${Casablanca_LIBRARIES})
-target_link_libraries(cgetdoc MLCPlusPlus ${Casablanca_LIBRARIES})
-target_link_libraries(cgetasstruct MLCPlusPlus ${Casablanca_LIBRARIES})
+target_link_libraries(getdoc mlclient ${Casablanca_LIBRARIES})
+target_link_libraries(cgetdoc mlclient ${Casablanca_LIBRARIES})
+target_link_libraries(cgetasstruct mlclient ${Casablanca_LIBRARIES})

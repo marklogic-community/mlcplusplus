@@ -1,6 +1,5 @@
 
-#ifndef __MLCPlusPlus__
-#define __MLCPlusPlus__
-#define __MLCLIENT__
+#ifndef MLCLIENT_H
+#define MLCLIENT_H
 
-#endif /* defined(__MLCPlusPlus__) */
+#endif /* defined(MLCLIENT_H) */
