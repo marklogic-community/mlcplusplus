@@ -22,16 +22,12 @@ extern "C" {
 #define RESPONSETYPE_TEXT		3
 #define RESPONSETYPE_BINARY		4
 
-// destructor
+// destructor (constructed via CConnection)
 void ml_response_delete(CResponse *t);
 
 // member functions
-
 const int ml_response_length(CResponse *t);
-//void response_Json(CResponse *t,char* buffer);
-// TODO member function for converting JSON (or XML) response to a provided c struct type
 const char* const ml_response_String(CResponse *t);
-//const char* const response_Xml(CResponse *t);
 const int ml_response_GetResponseType(CResponse *t);
 const int ml_response_GetResponseCode(CResponse *t);
 
