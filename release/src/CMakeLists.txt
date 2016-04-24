@@ -103,7 +103,6 @@ endif(DOXYGEN_FOUND)
 # ML C++ own libraries
 add_library (mlclient SHARED
     Connection.cpp
-    InvalidFormatException.cpp
     mlclient.cpp
     NoCredentialsException.cpp
     Response.cpp
@@ -116,6 +115,9 @@ add_library (mlclient SHARED
 
     ConnectionWrapper.cpp
     ResponseWrapper.cpp
+    
+    utilities/ResponseUtilities.cpp
+    utilities/InvalidFormatException.cpp
 )
 
 
@@ -192,7 +194,7 @@ endif(DOXYGEN_FOUND)
 
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib)
-install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.jpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp DESTINATION include)
+install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp ResponseUtilities.hpp DESTINATION include)
 
 
 

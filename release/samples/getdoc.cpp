@@ -11,12 +11,14 @@
 
 #include "Connection.hpp"
 #include "Response.hpp"
+#include "utilities/ResponseUtilities.hpp"
 #include "ResponseCodes.hpp"
 #include "ConnectionFactory.hpp"
 
 int main(int argc, const char * argv[])
 {
   using namespace mlclient;
+  using namespace mlclient::utilities;
 
   std::cout << "Running getdoc..." << std::endl;
 
@@ -28,12 +30,12 @@ int main(int argc, const char * argv[])
   }
 
   const std::unique_ptr<Response> rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
-  Response* response = rp.get();
+  Response& response = *rp.get();
 
-  ResponseType rt = response->getResponseType();
+  ResponseType rt = response.getResponseType();
   std::cout << "Response type: " << rt << std::endl;
-  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << response->asJson() << std::endl; }
-  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;response->asXml().save(std::cout); std::cout << std::endl; }
+  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << ResponseUtilities::asJson(response) << std::endl; }
+  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;ResponseUtilities::asXml(response).save(std::cout); std::cout << std::endl; }
 
   std::cout << "getdoc complete" << std::endl;
   return 0;
