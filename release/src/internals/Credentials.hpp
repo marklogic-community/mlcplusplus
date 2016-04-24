@@ -20,8 +20,6 @@ namespace mlclient {
 
 namespace internals {
 
-using namespace web;
-
 ///
 /// Used to manage the credentials for digest authentication.  Normally the
 /// username and password are initially known.  As part of the Digest challenge,

@@ -16,7 +16,6 @@
 namespace mlclient {
 
 namespace utilities {
-  using namespace mlclient;
 
 class ResponseUtilities {
 public:

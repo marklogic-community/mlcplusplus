@@ -16,8 +16,6 @@
 
 namespace mlclient {
 
-using namespace utility;
-
 ///
 /// Response class
 ///
