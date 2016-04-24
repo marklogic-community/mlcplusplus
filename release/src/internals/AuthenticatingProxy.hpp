@@ -23,9 +23,8 @@
 namespace mlclient {
 
 namespace internals {
-using namespace web::http;
 
-const http_headers blankHeaders;
+const web::http::http_headers blankHeaders;
 
 ///
 /// AuthenticatingProxy to handle authenticated calls to MarkLogic
@@ -73,7 +72,7 @@ public:
   ///
   std::unique_ptr<Response> getSync(const std::string& host,
       const std::string& path,
-      const http_headers& headers = blankHeaders);
+      const web::http::http_headers& headers = blankHeaders);
 /*
   void getAsync(const std::string& host,
       const std::string& path,
@@ -83,8 +82,8 @@ public:
 
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
-      const json::value& body,
-      const http_headers& headers = blankHeaders);
+      const web::json::value& body,
+      const web::http::http_headers& headers = blankHeaders);
   /*
     Response Post(const std::string& host, 
                   const std::string& path,
@@ -94,16 +93,16 @@ public:
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
       const std::wstring& text_body,
-      const http_headers& headers = blankHeaders);
+      const web::http::http_headers& headers = blankHeaders);
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
       const uint8_t* data,
       const size_t& size,
-      const http_headers& headers = blankHeaders);
+      const web::http::http_headers& headers = blankHeaders);
   std::unique_ptr<Response> postFileSync(const std::string& host,
       const std::string& path,
       const std::string& file_path,
-      const http_headers& headers = blankHeaders);
+      const web::http::http_headers& headers = blankHeaders);
 /*
   void postAsync(const std::string& host,
       const std::string& path,
@@ -122,11 +121,11 @@ public:
   std::unique_ptr<Response> putSync(const std::string& host,
       const std::string& path,
       const std::wstring& text_body,
-      const http_headers& headers = blankHeaders);
+      const web::http::http_headers& headers = blankHeaders);
   std::unique_ptr<Response> putSync(const std::string& host,
       const std::string& path,
-      const json::value& text_body,
-      const http_headers& headers = blankHeaders);
+      const web::json::value& text_body,
+      const web::http::http_headers& headers = blankHeaders);
   /*
     Response& Put(const std::string& host,
                  const std::string& path,
@@ -137,7 +136,7 @@ public:
        const std::string& path,
        const uint8_t* data,
        const size_t& size,
-       const http_headers& headers = blankHeaders);
+       const web::http::http_headers& headers = blankHeaders);
 /*
    void putAsync(const std::string& host,
        const std::string& path,
@@ -154,7 +153,7 @@ public:
 */
    std::unique_ptr<Response> deleteSync(const std::string& host,
        const std::string& path,
-       const http_headers& headers = blankHeaders);
+       const web::http::http_headers& headers = blankHeaders);
 /*
    void deleteAsync(const std::string& host,
        const std::string& path,
