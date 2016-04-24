@@ -9,13 +9,10 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
-#include <cstdint>
-#include <cpprest/http_headers.h>
-#include <cpprest/http_client.h>
 #include "mlclient.hpp"
-
 #include "ResponseCodes.hpp"
 
+#include <cpprest/http_headers.h>
 
 namespace mlclient {
 
@@ -30,17 +27,6 @@ using namespace utility;
 /// JSON and stores text/binary as a bag of bytes.
 ///
 class Response {
-  ResponseCode responseCode; /*!< The response code 200/400/404, etc */
-  ResponseType  responseType; /*!< The response type text,xml,binary, etc. */
-  web::http::http_headers      headers;       /*!< The response headers */
-  std::unique_ptr<std::string> content;
-
-  ///
-  /// Parses the content type header to guess the content type of the
-  /// response
-  ///
-  /// \param The raw header value (i.e. 'text/plain')
-  ResponseType parseContentTypeHeader(const std::string& content);
 public:
   ///
   /// Constructor
@@ -118,16 +104,15 @@ public:
   //void SetJson(const web::json::value& json);
   void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
 
+  // prevent compiler automatically defining the copy constructor and assignment operator:-
+  Response(const Response&) = delete;
+  Response& operator= (const Response&) = delete;
 
 private:
+  class Impl; // forward declare - PIMPL idiom
+  Impl* mImpl;
 
-  // prevent compiler automatically defining the copy constructor and assignment operator:-
-  Response(const Response&);
-  Response& operator= (const Response&);
-
-
-
-  friend class ResponseTest;
+  friend class ResponseTest; // TODO remove this - nasty
 };
 
 }

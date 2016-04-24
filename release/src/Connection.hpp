@@ -4,9 +4,7 @@
 
 #include <cpprest/http_client.h>
 #include "mlclient.hpp"
-
 #include "Response.hpp"
-#include "internals/AuthenticatingProxy.hpp"
 
 namespace mlclient {
 
@@ -129,21 +127,8 @@ public:
 
 
 private:
-  std::string serverUrl;
-  internals::AuthenticatingProxy proxy;
-
-  // prevent compiler automatically defining the copy constructor and assignment operator:-
-  //Connection(const Connection&);
-  //Connection& operator= (const Connection&);
-
-  std::unique_ptr<Response> dosearch(const web::json::value& combined);
-
-  /*
-
-  // HIGH
-  void applyTransformProperties();
-  void applySearchProperties();
-  */
+  class Impl; // forward declaration - PIMPL idiom
+  Impl* mImpl;
 };
 
 }
