@@ -122,7 +122,7 @@ add_library (mlclient SHARED
 
 # ML C++ dependencies
 
-include_directories (BEFORE ../include /usr/include/libxml2)
+include_directories (BEFORE ../include )
 
 # Casablanca
 # Assume source in same directory as mlclient
@@ -131,7 +131,7 @@ include_directories (BEFORE ../include /usr/include/libxml2)
 #  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
 #  )
 
-# Open SSL - to find the cmake commands
+# Open SSL - to find the cmake commands - TODO do we need this anymore?
 set (OPENSSL_DIR "/usr/local/opt/openssl")
 
 # Search OpenSSL
@@ -192,7 +192,7 @@ endif(DOXYGEN_FOUND)
 
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib)
-install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.jpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp DESTINATION include)
+install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.jpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp DESTINATION include)
 
 
 

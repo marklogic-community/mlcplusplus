@@ -10,7 +10,7 @@
 #ifndef CSTRUCT_H
 #define CSTRUCT_H
 
-struct sampledoc {
+struct ml_samples_sampledoc {
   char* first;
   char* second;
 };

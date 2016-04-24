@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 // member/static wrapper functions
-CConnection* connectionfactory_getConnection();
+CConnection* ml_samples_connectionfactory_getConnection();
 
 
 #ifdef __cplusplus

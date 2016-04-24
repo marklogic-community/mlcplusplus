@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 // constructor/destructor
-void response_delete(CResponse *resp) {
+void ml_response_delete(CResponse *resp) {
   using namespace mlclient;
   //CResponseWrapper* wrapper = (CResponseWrapper*)resp;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
@@ -23,7 +23,7 @@ void response_delete(CResponse *resp) {
 
 // member functions
 
-const int response_length(CResponse *resp) {
+const int ml_response_length(CResponse *resp) {
   using namespace mlclient;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
   //Response *t = (Response*)(wrapper->get());
@@ -91,7 +91,7 @@ const char* const response_Xml(CResponse *resp) {
 	static const char* cstr = os.str().c_str();
 	return cstr;
 }*/
-const char* const response_String(CResponse *resp) {
+const char* const ml_response_String(CResponse *resp) {
   using namespace mlclient;
   //Response *t = (Response*)resp;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
@@ -102,14 +102,14 @@ const char* const response_String(CResponse *resp) {
   //std::cout << "response_String: " << wrapper->get().String() << std::endl;
   return wrapper->get().asString().c_str();
 }
-const int response_GetResponseType(CResponse *resp) {
+const int ml_response_GetResponseType(CResponse *resp) {
   using namespace mlclient;
   //Response *t = (Response*)resp;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
   //Response *t = (Response*)();
   return (int)(wrapper->get().getResponseType());
 }
-const int response_GetResponseCode(CResponse *resp) {
+const int ml_response_GetResponseCode(CResponse *resp) {
   using namespace mlclient;
   //Response *t = (Response*)resp;
   CWrapper<Response>* wrapper = (CWrapper<Response>*)resp;
@@ -117,7 +117,7 @@ const int response_GetResponseCode(CResponse *resp) {
   return (int)(wrapper->get().getResponseCode());
 }
 
-const char* const responsecodes_translate(int code) {
+const char* const ml_responsecodes_translate(int code) {
   using namespace mlclient;
   static const char* cd = mlclient::translate((ResponseCode)code).c_str();
   return cd;

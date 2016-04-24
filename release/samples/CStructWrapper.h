@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 // member/static wrapper functions
-void cstruct_unpack(CResponse* resp,struct sampledoc* obj);
+void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj);
 
 #ifdef __cplusplus
 }
