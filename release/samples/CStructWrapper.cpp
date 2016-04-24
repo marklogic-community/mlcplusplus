@@ -8,7 +8,7 @@
 
 extern "C" {
 
-void cstruct_unpack(CResponse* resp,struct sampledoc* obj) {
+void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj) {
   using namespace mlclient;
 
   //Response *t = (Response *)resp; // now have the C++ object
@@ -20,7 +20,7 @@ void cstruct_unpack(CResponse* resp,struct sampledoc* obj) {
   //return fs.c_str();
   std::cout << "raw content: " << fs << std::endl;
 
-  const int rt = response_GetResponseType(resp);
+  const int rt = ml_response_GetResponseType(resp);
   if (rt == RESPONSETYPE_JSON) {
     // custom unpacking C++ code - as JSON and XML wrappers are C++, not C
     // This code has to be custom as C and C++ DO NOT do introspection of a struct

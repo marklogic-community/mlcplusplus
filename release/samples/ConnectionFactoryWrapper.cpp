@@ -4,7 +4,7 @@
 
 extern "C" {
 
-CConnection* connectionfactory_getConnection() {
+CConnection* ml_samples_connectionfactory_getConnection() {
   return (CConnection*)ConnectionFactory::getConnection();
 }
 
