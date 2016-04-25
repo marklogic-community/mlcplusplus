@@ -106,7 +106,6 @@ add_library (mlclient SHARED
     mlclient.cpp
     NoCredentialsException.cpp
     Response.cpp
-    ResponseCodes.cpp
     
     DocumentContent.cpp
     SearchDescription.cpp
@@ -119,8 +118,8 @@ add_library (mlclient SHARED
     ConnectionWrapper.cpp
     ResponseWrapper.cpp
     
-    utilities/JsonHelper.cpp
-    utilities/XmlHelper.cpp
+    utilities/CppRestJsonHelper.cpp
+    utilities/PugiXmlHelper.cpp
     utilities/InvalidFormatException.cpp
 )
 
@@ -198,7 +197,7 @@ endif(DOXYGEN_FOUND)
 
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib)
-install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h ResponseCodes.hpp NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp JsonHelper.hpp XmlHelper.hpp SearchDescription.hpp DocumentContent.hpp DESTINATION include)
+install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp CppRestJsonHelper.hpp PugiXmlHelper.hpp SearchDescription.hpp DocumentContent.hpp DESTINATION include)
 
 
 

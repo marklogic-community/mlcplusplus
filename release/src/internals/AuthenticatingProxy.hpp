@@ -15,7 +15,6 @@
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include "../Response.hpp"
-#include "../ResponseCodes.hpp"
 #include "Credentials.hpp"
 
 #include "../mlclient.hpp"

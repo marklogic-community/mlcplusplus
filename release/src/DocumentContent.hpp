@@ -22,6 +22,8 @@ namespace mlclient {
 class DocumentContent {
 public:
   // default constructor creation by compiler
+  virtual DocumentContent() = 0;
+  virtual ~DocumentContent() = 0;
 
   // TODO copy constructor
   virtual void setContent(std::string content) = 0;
@@ -31,6 +33,7 @@ public:
   virtual int getLength() = 0;
 
   std::string getMimeType();
+  void setMimeType(const std::string& mt);
 
 protected:
   class Impl;
@@ -47,7 +50,7 @@ protected:
 class TextDocumentContent : DocumentContent {
 public:
   TextDocumentContent();
-  ~TextDocumentContent();
+  virtual ~TextDocumentContent() = 0;
   void setContent(std::string content);
   std::string getContent();
   int getLength();
@@ -62,6 +65,11 @@ enum BinaryEncoding : int {
   HEX = 1, BINARY = 2
 };
 
+enum MimeType : std::string {
+  JSON = "application/json",
+  XML = "application/xml"
+};
+
 
 
 /**
@@ -70,7 +78,7 @@ enum BinaryEncoding : int {
 class BinaryDocumentContent : DocumentContent {
 public:
   BinaryDocumentContent();
-  ~BinaryDocumentContent();
+  virtual ~BinaryDocumentContent() = 0;
   void setContent(std::string content);
   std::string getContent(); // default to one encoding
   std::string getContent(const enum BinaryEncoding& encoding);

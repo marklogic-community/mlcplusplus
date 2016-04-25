@@ -13,7 +13,6 @@
 
 #include "Connection.hpp"
 #include "Response.hpp"
-#include "ResponseCodes.hpp"
 #include "ConnectionFactory.hpp"
 
 int main(int argc, const char * argv[])

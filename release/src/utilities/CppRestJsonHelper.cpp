@@ -16,11 +16,11 @@ namespace utilities {
 
 // DocumentContent conversion
 DocumentContent& CppRestJsonHelper::toDocument(const web::json::value json) {
-  TextDocumentContent tdc;
+  TextDocumentContent& tdc = TextDocumentContent();
   std::string c(json.as_string());
   tdc.setContent(c);
-  TextDocumentContent& ref = tdc;
-  return ref; // TODO ensure this doesn't get nixed
+  tdc.setMimeType("application/json");
+  return tdc; // TODO ensure this doesn't get nixed
 }
 
 web::json::value CppRestJsonHelper::fromDocument(const DocumentContent& dc) {

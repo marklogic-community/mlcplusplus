@@ -16,6 +16,8 @@ public:
 
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, const bool usessl);
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password);
+  void setDatabaseName(const std::string& db);
+  std::string getDatabaseName();
   // TODO anonymous connection support
   // TODO Kerberos connection support
   // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods

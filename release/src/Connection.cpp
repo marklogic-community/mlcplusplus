@@ -11,8 +11,8 @@ namespace mlclient {
 
 class Connection::Impl {
 public:
-  Impl() : proxy()  {
-    serverUrl = "http://localhost:8002";
+  Impl() : proxy(), databaseName("Documents"), serverUrl("http://localhost:8002") {
+    ;
   };
 
   ~Impl() {
@@ -20,6 +20,7 @@ public:
   };
 
   std::string serverUrl;
+  std::string databaseName;
   internals::AuthenticatingProxy proxy;
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
@@ -65,7 +66,13 @@ void Connection::configure(const std::string& hostname, const std::string& port,
   mImpl->proxy.addCredentials(c);
 }
 
+void Connection::setDatabaseName(const std::string& db) {
+  mImpl->databaseName = db;
+}
 
+std::string Connection::getDatabaseName() {
+  return mImpl->databaseName;
+}
 
 
 
@@ -85,9 +92,9 @@ std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystrin
 std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const DocumentContent& payload) {
   return mImpl->proxy.postSync(mImpl->serverUrl,
       "/v1/search",
-      payload);
+      payload.getContent());
 }
-// TODO XML payload
+
 // TODO multipart payload
 std::unique_ptr<Response> Connection::doDelete(const std::string& path) {
   return mImpl->proxy.deleteSync(mImpl->serverUrl,path);

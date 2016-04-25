@@ -15,7 +15,7 @@ namespace mlclient {
 
 namespace utilities {
 
-class XmlHelper {
+class PugiXmlHelper {
 public:
   XmlHelper() = delete;
   ~XmlHelper() = delete;

@@ -23,7 +23,6 @@
 #include "../Response.hpp"
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
-#include "../ResponseCodes.hpp"
 
 #include "../mlclient.hpp"
 

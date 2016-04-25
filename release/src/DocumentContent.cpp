@@ -25,9 +25,27 @@ public:
 };
 
 
+DocumentContent::DocumentContent() : mImpl(new Impl) {
+  ;
+}
+
+DocumentContent::~DocumentContent() {
+  delete mImpl;
+  mImpl = NULL;
+}
+
 std::string DocumentContent::getMimeType() {
   return std::string(mImpl->mimeType);
 }
+
+void DocumentContent::setMimeType(const std::string& mt) {
+  mImpl->mimeType = mt; // invokes copy constructor
+}
+
+
+
+
+
 
 
 
@@ -36,7 +54,7 @@ std::string DocumentContent::getMimeType() {
 
 class BinaryDocumentContent::Impl {
 public:
-  Impl() : content() {
+  Impl() : content("") {
     ;
   }
   ~Impl() {
@@ -44,6 +62,8 @@ public:
   }
   char* content; // TODO proper binary holder
 };
+
+
 
 BinaryDocumentContent::BinaryDocumentContent() : mImpl(new Impl) {
   ;

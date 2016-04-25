@@ -3,7 +3,6 @@
  */
 #include "ResponseWrapper.h"
 #include "Response.hpp"
-#include "ResponseCodes.hpp"
 #include "CWrapper.hpp"
 
 #ifdef __cplusplus

@@ -15,7 +15,7 @@ namespace mlclient {
 class SearchDescription {
 public:
   SearchDescription();
-  ~SearchDescription();
+  virtual ~SearchDescription();
   void setOptions(TextDocumentContent& options);
   TextDocumentContent getOptions();
   void setQuery(TextDocumentContent& query);
