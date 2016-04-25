@@ -2,9 +2,9 @@
 #ifndef __MLCLIENT_CONNECTION__
 #define __MLCLIENT_CONNECTION__
 
-#include <cpprest/http_client.h>
 #include "mlclient.hpp"
 #include "Response.hpp"
+#include "DocumentContent.hpp"
 
 namespace mlclient {
 
@@ -22,8 +22,8 @@ public:
 
   // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
   std::unique_ptr<Response> doGet(const std::string& pathAndQuerystring);
-  std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const web::json::value& payload);
-  std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const web::json::value& payload);
+  std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const DocumentContent& payload);
+  std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const DocumentContent& payload);
   // TODO XML payload
   // TODO multipart payload
   std::unique_ptr<Response> doDelete(const std::string& path);
@@ -31,7 +31,7 @@ public:
 
   // Wrapped and supported functions
   std::unique_ptr<Response> getDocument(const std::string& uri);
-  std::unique_ptr<Response> saveDocument(const std::string& uri,const web::json::value& payload);
+  std::unique_ptr<Response> saveDocument(const std::string& uri,const DocumentContent& payload);
   // TODO save JSON with directory, no uri
   // TODO optional parameters (collection, security, etc.)
   // TODO save XML with and without URI
@@ -43,9 +43,11 @@ public:
 
   // CLASHES WITH QTEXT VERSION Response search(const web::json::value& searchQuery,const std::string& options);
   // TODO search with options document (combined query)
-  std::unique_ptr<Response> search(const web::json::value& searchQuery,const web::json::value& options);
-  std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext);
-  std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
+  std::unique_ptr<Response> search(const SearchDescription& desc);
+  //std::unique_ptr<Response> search(const web::json::value& searchQuery,const web::json::value& options);
+  //std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext);
+  //std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options);
+  //std::unique_ptr<Response> search(const SearchDescription& desc);
   // TODO search with XML instead of JSON
 
 

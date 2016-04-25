@@ -66,8 +66,6 @@ public:
     return result;
   };
 
-private:
-
 };
 
 
@@ -129,7 +127,7 @@ size_t Response::read(void* buffer, const size_t& max_size, const size_t off) {
  * if the response is not a string or string based.
  */
 const std::string& Response::getContent() const {
-  return *(mImpl->content); // force copy cstor
+  return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
 }
 
 void Response::setContent(std::unique_ptr<std::string> content) {

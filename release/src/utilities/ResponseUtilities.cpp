@@ -60,15 +60,6 @@ void Response::SetXml(const pugi::xml_document& doc) {
  * Guess what this does.
  */
 const web::json::value ResponseUtilities::asJson(const Response& resp) {
-  //return _json;
-  // TODO sanity check/warning for type of response
-  //std::cout << "Response type: " << _response_type << std::endl;
-  if (resp.getResponseType() == ResponseType::JSON) {
-    //std::cout << "Raw response JSON: " << _content << std::endl;
-    return web::json::value::parse(resp.getContent());
-  } else {
-    throw InvalidFormatException();
-  }
 }
 /*
 void Response::SetJson(const web::json::value& json) {

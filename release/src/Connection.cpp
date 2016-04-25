@@ -2,6 +2,7 @@
 
 #include "Connection.hpp"
 #include "Response.hpp"
+#include "DocumentContent.hpp"
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 
@@ -25,6 +26,7 @@ public:
   //Connection(const Connection&);
   //Connection& operator= (const Connection&);
 
+  /*
   std::unique_ptr<Response> dosearch(const web::json::value& combined) {
     web::json::value search = web::json::value::object();
     search[U("search")] = web::json::value(combined);
@@ -33,6 +35,7 @@ public:
         "/v1/search",
         search);
   };
+  */
 
   /*
 
@@ -74,12 +77,12 @@ void Connection::configure(const std::string& hostname, const std::string& port,
 std::unique_ptr<Response> Connection::doGet(const std::string& pathAndQuerystring) {
   return mImpl->proxy.getSync(mImpl->serverUrl, pathAndQuerystring);
 }
-std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const DocumentContent& payload) {
   return mImpl->proxy.putSync(mImpl->serverUrl,
       pathAndQuerystring,
-      payload);
+      payload.getContent());
 }
-std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const DocumentContent& payload) {
   return mImpl->proxy.postSync(mImpl->serverUrl,
       "/v1/search",
       payload);
@@ -108,12 +111,12 @@ std::unique_ptr<Response> Connection::getDocument(const std::string& uri) {
 }
 
 // TODO XML version
-std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const web::json::value& payload) {
+std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const DocumentContent& payload) {
   //payload[U("hello")] = web::json::value::string("world");
 
   return mImpl->proxy.putSync(mImpl->serverUrl,
       "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing
-      payload);
+      payload.getContent());
 }
 
 /*
@@ -121,6 +124,15 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
   // TODO multi part mime
 }*/
 
+
+
+
+std::unique_ptr<Response> Connection::search(const SearchDescription& desc) {
+  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search", desc.getPayload().getContent());
+}
+
+
+/*
 
 std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
   web::json::value combined = web::json::value::object();
@@ -146,6 +158,7 @@ std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery
 
   return mImpl->dosearch(combined);
 }
+*/
 
 // TODO overload the above method to allow for null options
 

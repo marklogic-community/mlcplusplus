@@ -26,7 +26,7 @@ namespace internals {
 
 const web::http::http_headers blankHeaders;
 
-///
+/**
 /// AuthenticatingProxy to handle authenticated calls to MarkLogic
 ///
 /// This class proxies the calls to MarkLogic, handling authentication as
@@ -37,7 +37,7 @@ const web::http::http_headers blankHeaders;
 /// not only a REST library and is meant to be used as a general MarkLogic 
 /// C++ library.  It should be backward compatible with non RESTful end points
 /// as well as REST.
-///
+**/
 class AuthenticatingProxy {
 
 

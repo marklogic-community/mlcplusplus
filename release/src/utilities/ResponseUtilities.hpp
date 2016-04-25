@@ -22,22 +22,6 @@ public:
   ResponseUtilities() = delete;
   ~ResponseUtilities() = delete;
 
-  ///
-  /// For XML responses, returns a document using the libxml2 library.
-  ///
-  /// \return The response document
-  ///
-  static const pugi::xml_document& asXml(const Response& resp);
-  //void SetXml(const pugi::xml_document& doc);
-
-  ///
-  /// For JSON  responses, returns the document using the Casablanca JSON
-  /// object represenation.
-  ///
-  /// \return The JSON object
-  ///
-  static const web::json::value asJson(const Response& resp); // uses copy semantics, not reference - peculiarity of the cpprest library
-
 private:
 
 };
