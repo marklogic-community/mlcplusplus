@@ -16,6 +16,9 @@
 
 namespace mlclient {
 
+/**
+ * Indicates that you have not provided the Connection with any credentials, or the credentials are invalid.
+ */
 class NoCredentialsException : public std::exception {
 public:
   virtual const char* what() const throw() override;

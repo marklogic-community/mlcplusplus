@@ -80,3 +80,8 @@ The first parameter is a pointer to the CWrapper of the concrete class (CConnect
 
 The CConnection class is a typedef allowing direct casting of a C CConnection pointer to a C++ Connection pointer by
 the wrapper C++ API.
+
+## Documentation comments
+
+Doxygen is used to generate API documentation. Please use the /** and \*\*/ characters to start and end a Doxygen
+comment.

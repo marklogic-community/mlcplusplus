@@ -11,28 +11,73 @@ namespace mlclient {
 class Connection {
 
 public:
+  /**
+   * Creates a Connection instance. Defaults connection to admin/admin, localhost, nossl, port 8002, and the Documents database.
+   */
   Connection();
+  /**
+   * Destroys a Connection instance.
+   */
   ~Connection();
 
+  /**
+   * Configures this connection, providing connection override information - host, port, username, password and SSL usage
+   */
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, const bool usessl);
+
+  /**
+   * Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL.
+   */
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password);
+  /**
+   * Sets the name of the database to query/update. Defaults to Documents.
+   */
   void setDatabaseName(const std::string& db);
+  /**
+   * Returns the database name we're querying/updating. Defaults to Documents.
+   */
   std::string getDatabaseName();
   // TODO anonymous connection support
   // TODO Kerberos connection support
   // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods
 
   // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
+  /**
+   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
+   * a specific convenience method to invoke it.
+   * Performs a HTTP GET Request.
+   */
   std::unique_ptr<Response> doGet(const std::string& pathAndQuerystring);
+  /**
+   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
+   * a specific convenience method to invoke it.
+   * Performs a HTTP PUT Request.
+   */
   std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const DocumentContent& payload);
+  /**
+   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
+   * a specific convenience method to invoke it.
+   * Performs a HTTP POST Request.
+   */
   std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const DocumentContent& payload);
-  // TODO XML payload
+
   // TODO multipart payload
+  /**
+   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
+   * a specific convenience method to invoke it.
+   * Performs a HTTP DELETE Request.
+   */
   std::unique_ptr<Response> doDelete(const std::string& path);
 
 
   // Wrapped and supported functions
+  /**
+   * Retrieves a document from the server, at the given document URI (MarkLogic unique document ID)
+   */
   std::unique_ptr<Response> getDocument(const std::string& uri);
+  /**
+   * Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
+   */
   std::unique_ptr<Response> saveDocument(const std::string& uri,const DocumentContent& payload);
   // TODO save JSON with directory, no uri
   // TODO optional parameters (collection, security, etc.)
@@ -45,6 +90,9 @@ public:
 
   // CLASHES WITH QTEXT VERSION Response search(const web::json::value& searchQuery,const std::string& options);
   // TODO search with options document (combined query)
+  /**
+   * Performs a search against the MarkLogic database given the provided search query, text and options
+   */
   std::unique_ptr<Response> search(const SearchDescription& desc);
   //std::unique_ptr<Response> search(const web::json::value& searchQuery,const web::json::value& options);
   //std::unique_ptr<Response> search(const web::json::value& searchQuery,const std::string& qtext);

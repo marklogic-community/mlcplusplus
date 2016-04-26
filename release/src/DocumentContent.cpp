@@ -47,7 +47,7 @@ void DocumentContent::setMimeType(const std::string& mt) {
 
 
 
-
+/*
 
 
 // BINARY DOCUMENT CONTENT
@@ -90,7 +90,7 @@ int BinaryDocumentContent::getLength() {
 
 
 
-
+*/
 
 
 
