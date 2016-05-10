@@ -16,10 +16,6 @@ func2 = r'\[.+\s[*]?([a-zA-Z:_0-9]+)\(.*\).*\]\s'
 
 anything = r'.*'
 duration = r'in\s\[(\d*)\sms\]'
-mesg = r'(\S.*\S)\s+--Sev\s+'  # mesg to capture; terminated by string '--Sev'
-w2 = r'(\S+\s+\S+)\s+'  # two words separated by some white space
-w2semi = r'(\S+\s+\S+)\s*;\s+'  # two words terminated by a semicolon
-tail = r'(.*\S)\s*;'
 
 # Join together the above patterns to make one giant pattern that parses
 # the input.
@@ -49,7 +45,6 @@ else:
 
 print "Generating performance.csv from performance.log..."
 
-# excellent.
 
 
 
