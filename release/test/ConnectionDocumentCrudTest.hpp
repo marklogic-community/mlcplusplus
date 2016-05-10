@@ -28,9 +28,14 @@ class ConnectionDocumentCrudTest : public CppUnit::TestCase {
     CPPUNIT_TEST(testSaveJson);
     CPPUNIT_TEST(testGetJson);
     CPPUNIT_TEST(testDeleteJson);
+
     CPPUNIT_TEST(testSaveXml);
     CPPUNIT_TEST(testGetXml);
     CPPUNIT_TEST(testDeleteXml);
+
+    CPPUNIT_TEST(testSaveText);
+    CPPUNIT_TEST(testGetText);
+    CPPUNIT_TEST(testDeleteText);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
@@ -39,15 +44,22 @@ public:
   void testSaveJson(void);
   void testGetJson(void);
   void testDeleteJson(void);
+
   void testSaveXml(void);
   void testGetXml(void);
   void testDeleteXml(void);
+
+  void testSaveText(void);
+  void testGetText(void);
+  void testDeleteText(void);
 private:
   Connection* ml;
   std::string json;
   std::string xml;
+  std::string text;
   std::string jsonUri;
   std::string xmlUri;
+  std::string textUri;
 };
 
 #endif /* defined(__Scratch__ConnectionDocumentCrudTest__) */
