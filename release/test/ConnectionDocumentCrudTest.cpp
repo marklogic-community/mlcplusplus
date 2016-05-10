@@ -31,8 +31,10 @@ void ConnectionDocumentCrudTest::setUp(void) {
   ml = ConnectionFactory::getConnection();
   json = "{\"first\":\"value1\",\"second\":\"value2\"}";
   xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<doc><first>value1</first><second>value2</second></doc>";
+  text = "Some very nice text document";
   jsonUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.json";
   xmlUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.xml";
+  textUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.txt";
 }
 
 void ConnectionDocumentCrudTest::tearDown(void) {
@@ -69,7 +71,6 @@ void ConnectionDocumentCrudTest::testGetJson(void) {
   LOG(DEBUG) << "  Response Content: " << response->getContent();
 
   CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response->getResponseType());
-  CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
 
   //CPPUNIT_ASSERT_MESSAGE("The JSON response content is modified compared to the original", 0 == json.compare(response->getContent()));
 
@@ -115,7 +116,6 @@ void ConnectionDocumentCrudTest::testGetXml(void) {
   LOG(DEBUG) << "  Response Content: " << response->getContent();
 
   CPPUNIT_ASSERT_MESSAGE("The response is not a XML response", ResponseType::XML  == response->getResponseType());
-  CPPUNIT_ASSERT(ResponseType::XML  == response->getResponseType());
 
   //CPPUNIT_ASSERT_MESSAGE("The XML response content is modified compared to the original", 0 == xml.compare(response->getContent()));
   CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
@@ -126,6 +126,52 @@ void ConnectionDocumentCrudTest::testDeleteXml(void) {
   TIMED_FUNC(testDeleteXml);
   LOG(DEBUG) << " Entering testDeleteXml";
   const std::unique_ptr<Response> response = ml->deleteDocument(xmlUri);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 204 No Content",ResponseCode::NO_CONTENT == response->getResponseCode());
+}
+
+
+void ConnectionDocumentCrudTest::testSaveText(void) {
+  TIMED_FUNC(testSaveText);
+  LOG(DEBUG) << " Entering testSaveText";
+  // Note not using the Json or Xml helpers as we're not testing them here
+  TextDocumentContent tdc;
+  tdc.setMimeType("plain/text");
+  tdc.setContent(text);
+  const std::unique_ptr<Response> response = ml->saveDocument(textUri,tdc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 201 Created",ResponseCode::CREATED == response->getResponseCode());
+}
+
+void ConnectionDocumentCrudTest::testGetText(void) {
+  TIMED_FUNC(testGetText);
+  LOG(DEBUG) << " Entering testGetText";
+  const std::unique_ptr<Response> response = ml->getDocument(textUri);
+
+  ResponseType rt = response->getResponseType();
+  LOG(DEBUG) << "  Response Type: " << rt;
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a TEXT response", ResponseType::TEXT  == response->getResponseType());
+
+  //CPPUNIT_ASSERT_MESSAGE("The TEXT response content is modified compared to the original", 0 == text.compare(response->getContent()));
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+}
+
+
+void ConnectionDocumentCrudTest::testDeleteText(void) {
+  TIMED_FUNC(testDeleteText);
+  LOG(DEBUG) << " Entering testDeleteText";
+  const std::unique_ptr<Response> response = ml->deleteDocument(textUri);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
