@@ -1,89 +1,89 @@
 /**
  * \mainpage MarkLogic C/C++ API Documentation
- * 
+ *
  * \section sec_Contents Contents
- * 
+ *
  * \li \ref sec_Overview
  * \li \ref sec_Design
  * \li \ref sec_Examples
  * \li \ref sec_SeeAlso
- * 
+ *
  * \section sec_Overview Overview
- * 
+ *
  * The MarkLogic C and C++ API provides a wrapper API around the MarkLogic Server REST API.
  * The API is primarily aimed at Synchronous client application use, rather than Asynchronous use,
  * although this may be supported in the future.
- * 
+ *
  * MarkLogic Server version 8.0-4 and above is supported by this API. There is a single required
  * dependency - on the Microsoft cpprest (aka Casablanca) C++ based REST API. This is a cross
  * platform API that supports Windows, Mac, Linux, OS X and other platforms.
- * 
+ *
  * There are no other required dependencies, although in many applications you may
- * wish to use the cpprest API via the \link CppRestJsonHelper CPPRest JSON Helper \endlink class
- * in order to work with JSON documents, or the \link PugiXmlHelper PUGI XML Helper \endlink
+ * wish to use the cpprest API via the CppRestJsonHelper  class
+ * in order to work with JSON documents, or the PugiXmlHelper
  * class to work with XML documents. In order to use PUGI XML you will need to install the pugixml
  * package for your target system.
- * 
+ *
  * This API wrapper abstracts out the underlying security mechanism, allowing developers to quickly
  * and easily connect to a database on MarkLogic Server and start using it. Defaults for
  * MarkLogic are assumed throughout the API, with overrides accepted where applicable. (E.g. Digest authentication).
- * 
- * The main class you will use in applications is the \link Connection Connection \endlink class.
+ *
+ * The main class you will use in applications is the Connection  class.
  * This provides convenience methods to configure a connection (i.e. authentication and server settings),
  * and to perform common REST API functions. E.g. a POST to /v1/search is wrapped
- * by a convenient \link Connection_search Connection::search \endlink method.
- * 
+ * by a convenient Connection::search  method.
+ *
  * The API documentation includes examples for commonly used functions. Be sure to also
  * look at the /samples folder for C and C++ command line applications showing common usage.
- * 
+ *
  * We hope you enjoy using the API and find it useful. Please do log any issues or feature
- * requests on our GitHub Issues page (TODO link), to allow us to improve this API! 
- * 
+ * requests on our GitHub Issues page (TODO link), to allow us to improve this API!
+ *
  * \section sec_Design Design
- * 
+ *
  * The API uses the Microsoft cpprest (Casablanca) C++ library to provide rest support.
  * All the interaction with this API is hidden from the application developer,
- * so no knowledge of this API is required to use the C/C++ MarkLogic API. 
- * 
+ * so no knowledge of this API is required to use the C/C++ MarkLogic API.
+ *
  * You may though find it
  * useful to familiarise yourself with this API if you plan on using and processing JSON
  * documents in your C++ application, as the cpprest API provides many convenience
  * functions for parsing and working with JSON documents. Use of cpprest is not required though.
- * 
- * 
- * If you do wish to use cpprest, then please also check out the \link CppRestJsonHelper CppRestJsonHelper class \endlink
+ *
+ *
+ * If you do wish to use cpprest, then please also check out the CppRestJsonHelper class
  * as this provides convenience methods to take a cpprest JSON object and
  * save it to or read it from MarkLogic using this API.
- * 
+ *
  * There are four parts of the MarkLogic C/C++ API:-
  * \li Core Public API - The main classes application developers will use
  * \li Core Private API - The internal API that you should never use directly
- * \li Utility API - C++ classes that provide extended functionality. Examples are a SearchBuilder, or the 
+ * \li Utility API - C++ classes that provide extended functionality. Examples are a SearchBuilder, or the
  * JSON and XML library specific helper classes. These are not in the core public API to prevent forcing
  * required dependencies on all developers.
- * \li C wrapper API - C functions that wrap the Core C++ API to allow use from pure C applications. 
- * All core \link Connection Connection \endlink and \link Response Response \endlink functions are supported.
- * 
+ * \li C wrapper API - C functions that wrap the Core C++ API to allow use from pure C applications.
+ * All core Connection  and  Response  functions are supported.
+ *
  * For detail of the design of the API please see the \link page_Design Design page \endlink .
- * 
+ *
  * \section sec_Examples Examples
- * 
+ *
  * Example code is embedded throughout the API documentation. Each class summary and method will have a brief snippet
  * of sample code available to complete a common task.
- * 
+ *
  * Sample basic applications are also available in the /samples folder on the GitHub page TODO link.
- * 
+ *
  * Each function has a test routine available for it. There are also test routines available for all bug reports as
  * part of regression testing. This are located in the /test folder TODO link in the GitHub repository.
- * 
+ *
  * If you would like a particular use case based example creating, please log a documentation issue on out GitHub
  * issues page TODO link - don't suffer in silence! We want to hear as much feedback as possible to make this
  * the best quality API available for MarkLogic Server.
- * 
+ *
  * \section sec_SeeAlso See Also
- * 
+ *
  * Below are a variety of additional sources of information relevant to the MarkLogic C/C++ API
- * 
+ *
  * \li Summary documentation is available on the \link http://github.com/adamfowleruk/mlcplusplus GitHub Project Home Page \endlink .
  * \li GitHub issues tracker - for bug reports and feature/documentation/example requests. TODO link
  *

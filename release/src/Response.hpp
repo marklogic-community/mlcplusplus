@@ -103,89 +103,124 @@ const std::string translate(const ResponseCode& rt);
 
 
 ///
-/// Response class
+/// \class Response
+/// \since 8.0.0
+/// \date 2014-06-05
 ///
-/// Encapsulates a response from a MarkLogic server.  Note that a response
-/// can be XML, JSON, text, or binary content.  Currently, this uses the
-/// PugiXML library for handling XML content, Casablanca for handling
-/// JSON and stores text/binary as a bag of bytes.
+/// \brief Encapsulates a response from a MarkLogic server REST API.
+///
+/// Note that a response
+/// can be XML, JSON, text, or binary content. This holds the raw response
+/// - If you want to process the response use one of the utility classes
+/// based on the output of the Content-type response header.
+///
+/// \note This class is deliberately low level. See the CppRestJsonHelper and PugiXmlHelper classes for how to extract
+/// a DocumentContent object from a Response object.
 ///
 class Response {
 public:
   ///
   /// Constructor
   ///
-  ResponseType getResponseType(void) const;
-
   Response();
   ~Response();
 
   ///
-  /// Sets the HTTP response code for the Response.  This is normally set
+  /// \brief Sets the HTTP response code for the Response.
+  ///
+  /// This is normally set
   /// when the response is received.  It should not be set otherwise.
   ///
-  /// \param code The HTTP response code
+  /// \param[in] code The HTTP response code
   ///
   void setResponseCode(const ResponseCode& code);
 
+  /**
+   * \brief Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown.
+   *
+   * \return A ResponseType enum value representing the MarkLogic response type class. This can be outputted as a string using the << operator.
+   */
+  ResponseType getResponseType(void) const;
+
   ///
-  /// Sets the type of response received (XML, JSON, Binary, etc.)  This is
+  /// \brief Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally.
+  ///
+  /// This is
   /// normally set when the response is received.  It should not be set
   /// otherwise.
   ///
-  /// \param type The type of response
+  /// \param[in] type The type of response
   ///
   void setResponseType(const enum ResponseType& type);
 
   ///
-  /// Sets the headers received as part of the response.  This is set when
+  /// \brief Sets the headers received as part of the response.
+  ///
+  /// This is set when
   /// the response is received but should not be set otherwise.
   ///
-  /// \param headers The HTTP response headers
+  /// \param[in] headers The HTTP response headers
   ///
   void setResponseHeaders(const web::http::http_headers& headers);
 
   ///
-  /// Sets the headers received as part of the response.  This is set when
+  /// \brief Sets the headers received as part of the response.
+  ///
+  /// This is set when
   /// the response is received but should not be set otherwise.
   ///
-  /// \param headers The HTTP response headers
+  /// \param[in] headers The HTTP response headers
   ///
   //void SetResponseHeaders(const web::http::http_headers& headers);
 
   ///
-  /// Returns the HTTP response code for the response.
+  /// \brief Returns the HTTP response code for the response.
   ///
   /// \return The HTTP response code
   ///
   ResponseCode getResponseCode(void) const;
 
   ///
-  /// Returns the headers that were returned with the response.
+  /// \brief Returns the headers that were returned with the response.
   ///
   /// \return The HTTP response headers
+  /// \todo Remove the dependency on the cpprest API
   ///
   web::http::http_headers getResponseHeaders(void) const;
 
 
+  ///
+  /// \brief Reads the raw response in to a buffer. Used for Binary responses.
   ///
   /// For binary responses, reads up to max_size bytes into buffer, starting
   /// at a given offset.  For example, if an image is returned, it can be
   /// saved to a file, reading 4 k chunks.  The actual number of bytes
   /// read is returned.
   ///
+  /// \param[inout] buffer The untyped buffer to copy data in to
+  /// \param[in] max_size The maximum amount of data in bytes to read in to the buffer
+  /// \param[in] off The offset in the buffer after which this function starts writing data to
   /// \return The number of bytes read
   ///
   size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
 
   ///
-  /// For text responses (including JSON and XML), returns the response content as a string.
+  /// \brief For text responses (including JSON and XML), returns the response content as a string.
   ///
   /// \return The UTF-8 string
   ///
   const std::string& getContent() const;
 
   //void SetJson(const web::json::value& json);
+  /**
+   * \brief Sets the string content for this Response
+   *
+   * This should only be set by the MarkLogic C++ API itself, never by a developer using the API.
+   *
+   * \note This function takes ownership of the content pointer using std::move
+   *
+   * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
+   */
   void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
