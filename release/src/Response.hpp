@@ -9,9 +9,8 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
-#include "mlclient.hpp"
-
-#include <cpprest/http_headers.h>
+#include <iosfwd>
+#include <cpprest/http_client.h> // TODO REMOVE THIS DEPENDENCY!!!
 
 namespace mlclient {
 

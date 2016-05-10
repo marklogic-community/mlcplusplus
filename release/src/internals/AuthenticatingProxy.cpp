@@ -213,7 +213,7 @@ void AuthenticatingProxy::getAsync(const std::string& host,
 
 std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
-    const json::value& body,
+    const DocumentContent& body,
     const http_headers& headers)
 {
   Response* response = new Response;
@@ -224,7 +224,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
   try {
     http::http_request req(http::methods::POST);
     req.set_request_uri(path);
-    req.set_body(body);
+    req.set_body(U(body.getContent()),U(body.getMimeType()));
 
     if (credentials.canAuthenticate()) {
       req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("POST", path));
@@ -264,7 +264,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     try {
       http::http_request req(http::methods::POST);
       req.set_request_uri(path);
-      req.set_body(json::value(body));
+      req.set_body(U(body.getContent()),U(body.getMimeType()));
 
       http_headers respHeaders = response->getResponseHeaders();
       std::string authHeader = to_utf8string(respHeaders[WWW_AUTHENTICATE_HEADER]);
@@ -313,7 +313,7 @@ Response& AuthenticatingProxy::postSync(const std::string& host,
 
   return result;
 }*/
-
+/*
 std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const std::wstring& text_body,
@@ -325,7 +325,8 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
 
   return std::unique_ptr<Response>(result);
 }
-
+*/
+/*
 std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const uint8_t* data,
@@ -336,6 +337,8 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
 
   return std::unique_ptr<Response>(response);
 }
+*/
+/*
 std::unique_ptr<Response> AuthenticatingProxy::postFileSync(const std::string& host,
     const std::string& path,
     const std::string& file_path,
@@ -345,6 +348,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postFileSync(const std::string& h
 
   return std::unique_ptr<Response>(response);
 }
+*/
 
 /*
 
@@ -374,17 +378,20 @@ void AuthenticatingProxy::postAsync(const std::string& host,
   postAsync(host, path, blank_headers, handler);
 }
 */
+/*
 std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const std::wstring& text_body,
     const http_headers& headers)
 {
   Response* response = new Response;
+  // TODO do a request here
   return std::unique_ptr<Response> (response);
 }
+*/
 std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
-    const json::value& json_body,
+    const DocumentContent& text_body,
     const http_headers& headers)
 {
   Response* response = new Response;
@@ -395,7 +402,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
   try {
     http::http_request req(http::methods::PUT);
     req.set_request_uri(path);
-    req.set_body(json_body);
+    req.set_body(U(text_body.getContent()),U(text_body.getMimeType()));
 
     if (credentials.canAuthenticate()) {
       req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("PUT", path));
@@ -431,7 +438,8 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     try {
       http::http_request req(http::methods::PUT);
       req.set_request_uri(path);
-      req.set_body(json::value(json_body));
+      //req.set_body(json::value(json_body));
+      req.set_body(U(text_body.getContent()),U(text_body.getMimeType()));
 
       http_headers respHeaders = response->getResponseHeaders();
       std::string authHeader = to_utf8string(respHeaders[WWW_AUTHENTICATE_HEADER]);
@@ -478,7 +486,7 @@ Response AuthenticatingProxy::putSync(const std::string& host,
   Response result;
   return result;
 }*/
-
+/*
 std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const uint8_t* data,
@@ -489,6 +497,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
   // TODO MUST INITIALISE THIS OBJECT
   return std::unique_ptr<Response> (response);
 }
+*/
 /*
 
 void AuthenticatingProxy::putAsync(const std::string& host,

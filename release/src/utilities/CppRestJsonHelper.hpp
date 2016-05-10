@@ -11,6 +11,7 @@
 // I don't mind exposing these in an optional helper class
 #include <cpprest/http_client.h>
 #include "../DocumentContent.hpp"
+#include "../Response.hpp"
 
 namespace mlclient {
 
@@ -25,7 +26,7 @@ public:
   ~CppRestJsonHelper() = delete;
 
   // DocumentContent conversion
-  static DocumentContent& toDocument(const web::json::value json);
+  static DocumentContent* toDocument(const web::json::value json);
   static web::json::value fromDocument(const DocumentContent& doc);
 
   // Response conversion

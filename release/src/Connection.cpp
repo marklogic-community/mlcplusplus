@@ -3,6 +3,7 @@
 #include "Connection.hpp"
 #include "Response.hpp"
 #include "DocumentContent.hpp"
+#include "SearchDescription.hpp"
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 
@@ -54,6 +55,7 @@ Connection::Connection() :mImpl(new Impl) {
 }
 
 Connection::~Connection() {
+  delete mImpl;
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
@@ -87,12 +89,12 @@ std::unique_ptr<Response> Connection::doGet(const std::string& pathAndQuerystrin
 std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const DocumentContent& payload) {
   return mImpl->proxy.putSync(mImpl->serverUrl,
       pathAndQuerystring,
-      payload.getContent());
+      payload);
 }
 std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const DocumentContent& payload) {
   return mImpl->proxy.postSync(mImpl->serverUrl,
       "/v1/search",
-      payload.getContent());
+      payload);
 }
 
 // TODO multipart payload
@@ -122,8 +124,8 @@ std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const 
   //payload[U("hello")] = web::json::value::string("world");
 
   return mImpl->proxy.putSync(mImpl->serverUrl,
-      "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing
-      payload.getContent());
+      "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
+      payload);
 }
 
 /*
@@ -135,7 +137,7 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
 
 
 std::unique_ptr<Response> Connection::search(const SearchDescription& desc) {
-  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search", desc.getPayload().getContent());
+  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search", desc.getPayload());
 }
 
 
@@ -169,4 +171,4 @@ std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery
 
 // TODO overload the above method to allow for null options
 
-}
+} // end namespace mlclient

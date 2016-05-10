@@ -41,7 +41,9 @@ CResponse * ml_connection_doPut(const CConnection *conn,const char *pathAndQuery
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  return (CResponse*)(new CWrapper<Response>(t->doPut(std::string(pathAndQuerystring),json::value(std::string(payload)))));
+  TextDocumentContent tdc;
+  tdc.setContent(std::string(payload));
+  return (CResponse*)(new CWrapper<Response>(t->doPut(std::string(pathAndQuerystring),tdc)));
 }
 
 CResponse * ml_connection_doPost(const CConnection *conn,const char *pathAndQuerystring,
@@ -49,7 +51,9 @@ CResponse * ml_connection_doPost(const CConnection *conn,const char *pathAndQuer
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  return (CResponse*)(new CWrapper<Response>(t->doPost(std::string(pathAndQuerystring),json::value(std::string(payload)))));
+  TextDocumentContent tdc;
+  tdc.setContent(std::string(payload));
+  return (CResponse*)(new CWrapper<Response>(t->doPost(std::string(pathAndQuerystring),tdc)));
 }
 
 CResponse * ml_connection_doDelete(const CConnection *conn,const char *path) {
@@ -70,7 +74,9 @@ CResponse * ml_connection_saveDocument(const CConnection *conn,const char *uri,c
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  return (CResponse*)(new CWrapper<Response>(t->saveDocument(std::string(uri),json::value(std::string(payload)))));
+  TextDocumentContent tdc;
+  tdc.setContent(std::string(payload));
+  return (CResponse*)(new CWrapper<Response>(t->saveDocument(std::string(uri),tdc)));
 }
 
 CResponse * ml_connection_search(const CConnection *conn,const char *searchQuery,const char *qtext,
@@ -78,7 +84,15 @@ CResponse * ml_connection_search(const CConnection *conn,const char *searchQuery
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  return (CResponse*)(new CWrapper<Response>(t->search(json::value(std::string(searchQuery)),std::string(qtext),json::value(std::string(options)))));
+  TextDocumentContent sq;
+  sq.setContent(std::string(searchQuery));
+  TextDocumentContent so;
+  so.setContent(std::string(options));
+  SearchDescription desc;
+  desc.setOptions(so);
+  desc.setQuery(sq);
+  desc.setQueryText(std::string(qtext));
+  return (CResponse*)(new CWrapper<Response>(t->search(desc)));
 }
 
 

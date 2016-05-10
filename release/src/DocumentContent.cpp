@@ -8,6 +8,8 @@
 #include "DocumentContent.hpp"
 #include "SearchDescription.hpp"
 #include <string>
+#include <iostream>
+#include <sstream>
 
 namespace mlclient {
 
@@ -24,6 +26,18 @@ public:
   std::string mimeType;
 };
 
+/**
+ * \brief An enumeration for use with the DocumentContent class.
+ *
+ * A set of mime types that are needed internally in the MarkLogic C++ API. Other mime types are available.
+ * These are for convenience to API developers, and prevent hard coding, and shield the API from server
+ * side changes in the future.
+ *
+ * \note You can provide any string for mimeType - you are NOT limited to these enum values.
+ */
+const std::string DocumentContent::MIME_JSON = "application/json";    /// Standard MarkLogic JSON mime type. Used for all configuration API calls
+const std::string DocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
+
 
 DocumentContent::DocumentContent() : mImpl(new Impl) {
   ;
@@ -34,8 +48,8 @@ DocumentContent::~DocumentContent() {
   mImpl = NULL;
 }
 
-std::string DocumentContent::getMimeType() {
-  return std::string(mImpl->mimeType);
+std::string DocumentContent::getMimeType() const {
+  return std::string(mImpl->mimeType); // forces copy constructor
 }
 
 void DocumentContent::setMimeType(const std::string& mt) {
@@ -75,10 +89,10 @@ BinaryDocumentContent::~BinaryDocumentContent() {
 void BinaryDocumentContent::setContent(std::string content) {
   // TODO BinaryDocumentContent::setContent
 }
-std::string BinaryDocumentContent::getContent() {
+std::string& BinaryDocumentContent::getContent() {
   return BinaryDocumentContent::getContent(mlclient::BinaryEncoding::HEX);
 }
-std::string BinaryDocumentContent::getContent(const enum BinaryEncoding& encoding) {
+std::string& BinaryDocumentContent::getContent(const enum BinaryEncoding& encoding) {
   // TODO BinaryDocumentContent::getContent(BinaryEncoding)
 }
 void BinaryDocumentContent::setContent(char* binary,int offset,int length) {
@@ -101,13 +115,13 @@ int BinaryDocumentContent::getLength() {
 
 class TextDocumentContent::Impl {
 public:
-  Impl() : content("") {
+  Impl() : content(std::unique_ptr<std::string>(new std::string(""))) {
     ;
   }
   ~Impl() {
     ;
   }
-  std::string content;
+  std::unique_ptr<std::string> content;
 };
 
 
@@ -119,13 +133,20 @@ TextDocumentContent::~TextDocumentContent() {
   mImpl = NULL;
 }
 void TextDocumentContent::setContent(std::string content) {
-  mImpl->content = content;
+  mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
 }
-std::string TextDocumentContent::getContent() {
-  return mImpl->content;
+std::string TextDocumentContent::getContent() const {
+  return std::string(*(mImpl->content)); // Forces copy constructor
 }
-int TextDocumentContent::getLength() {
-  return mImpl->content.size();
+int TextDocumentContent::getLength() const {
+  return mImpl->content.get()->size();
+}
+
+std::ostream* TextDocumentContent::getStream() const {
+  std::ostringstream* os = new std::ostringstream;
+  (*os) << mImpl->content.get();
+  //std::ostringstream& osref = os; // TODO verify this works with no dangling reference
+  return os;
 }
 
 } // end mlclient namespace

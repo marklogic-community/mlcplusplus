@@ -14,17 +14,22 @@ namespace mlclient {
 
 class SearchDescription::Impl {
 public:
-  Impl() : query(TextDocumentContent()), options(TextDocumentContent()), queryText("") {
-    ;
+  Impl() {
+    TextDocumentContent* qtdc = new TextDocumentContent();
+    query = std::unique_ptr<TextDocumentContent>(std::move(qtdc));
+    TextDocumentContent* otdc = new TextDocumentContent();
+    options = std::unique_ptr<TextDocumentContent>(std::move(otdc));
+    std::string* qt = new std::string("");
+    queryText = std::unique_ptr<std::string>(std::move(qt));
   }
 
   ~Impl() {
     ;
   }
 
-  TextDocumentContent& query;
-  TextDocumentContent& options;
-  std::string queryText;
+  std::unique_ptr<TextDocumentContent> query;
+  std::unique_ptr<TextDocumentContent> options;
+  std::unique_ptr<std::string> queryText;
 }; // end SearchDescription::Impl class
 
 
@@ -32,66 +37,66 @@ SearchDescription::SearchDescription() : mImpl(new Impl) {
   ;
 }
 
-~SearchDescription::SearchDescription() {
+SearchDescription::~SearchDescription() {
   delete mImpl;
   mImpl = NULL;
 }
 
 
 void SearchDescription::setOptions(TextDocumentContent& options) {
-  mImpl->options = options;
+  mImpl->options = std::unique_ptr<TextDocumentContent>(std::move(&options)); // TODO check this & works
 }
-TextDocumentContent SearchDescription::getOptions() {
-  return mImpl->options;
+const TextDocumentContent& SearchDescription::getOptions() const {
+  return *(mImpl->options.get());
 }
 void SearchDescription::setQuery(TextDocumentContent& query) {
-  mImpl->query = query;
+  mImpl->query = std::unique_ptr<TextDocumentContent>(std::move(&query)); // TODO check this & works
 }
-TextDocumentContent SearchDescription::getQuery() {
-  return mImpl->query;
+const TextDocumentContent& SearchDescription::getQuery() const {
+  return *(mImpl->query.get());
 }
 void SearchDescription::setQueryText(std::string qtext) {
-  mImpl->queryText = qtext;
+  mImpl->queryText = std::unique_ptr<std::string>(new std::string(qtext));
 }
-std::string SearchDescription::getQueryText() {
-  return mImpl->queryText;
+const std::string& SearchDescription::getQueryText() const {
+  return *(mImpl->queryText.get());
 }
-DocumentContent& SearchDescription::getPayload() {
+const TextDocumentContent& SearchDescription::getPayload() const {
   // if options has not been initialised, leave blank, but set mime type as same as query
-  if ("" == mImpl->options.getMimeType()) {
-    mImpl->options.setMimeType(mImpl->query.getMimeType());
+  if ("" == mImpl->options.get()->getMimeType()) {
+    mImpl->options.get()->setMimeType(mImpl->query.get()->getMimeType());
   }
   // we could also have options, but no query (using qtext instead)
-  if ("" == mImpl->query.getMimeType()) {
-    mImpl->query.setMimeType(mImpl->options.getMimeType());
+  if ("" == mImpl->query.get()->getMimeType()) {
+    mImpl->query.get()->setMimeType(mImpl->options.get()->getMimeType());
   }
   // or just a blank query and options!
-  if ("" == mImpl->options.getMimeType() && "" == mImpl->query.getMimeType()) {
-    mImpl->options.setMimeType(MimeType::JSON);
-    mImpl->query.setMimeType(MimeType::JSON);
+  if ("" == mImpl->options.get()->getMimeType() && "" == mImpl->query.get()->getMimeType()) {
+    mImpl->options.get()->setMimeType(DocumentContent::MIME_JSON);
+    mImpl->query.get()->setMimeType(DocumentContent::MIME_JSON);
   }
-  if ( !(MimeType::JSON == mImpl->query.getMimeType() && MimeType::JSON == mImpl->options.getMimeType())
+  if ( !(DocumentContent::MIME_JSON == mImpl->query.get()->getMimeType() && DocumentContent::MIME_JSON == mImpl->options.get()->getMimeType())
        ||
-       !(MimeType::XML == mImpl->query.getMimeType() && MimeType::XML == mImpl->options.getMimeType())
+       !(DocumentContent::MIME_XML == mImpl->query.get()->getMimeType() && DocumentContent::MIME_XML == mImpl->options.get()->getMimeType())
      ) {
-    throw InvalidFormatException;
+    throw new InvalidFormatException;
   }
-  std::string[] elements = {
+  std::string elements[8] = {
       "{\"search\": {", "<search>",
       "}}","</search>",
       "\"qtext\": \"","<qtext>",
       "\"", "</qtext>"
   };
   int offset = 0; // default to JSON
-  if (MimeType::XML == mImpl->query.getMimeType()) {
+  if (DocumentContent::MIME_XML == mImpl->query.get()->getMimeType()) {
     offset = 1;
   }
-  std::string payloadString = elements[0+offset] + mImpl->query + mImpl->options + elements[2+offset] +
-      mImpl->queryText + elements[3+offset] + elements[1+offset];
-  TextDocumentContent& payload = TextDocumentContent;
-  payload.setMimeType(mImpl->query.getMimeType());
-  payload.setContent(payloadString);
-  return payload;
+  std::string payloadString = elements[0+offset] + mImpl->query.get()->getContent() + mImpl->options.get()->getContent() + elements[2+offset] +
+      *(mImpl->queryText.get()) + elements[3+offset] + elements[1+offset];
+  TextDocumentContent payload;
+  payload.setMimeType(mImpl->query.get()->getMimeType());
+  payload.setContent(std::move(payloadString));
+  return std::move(payload);
 }
 
 } // end namespace mlclient

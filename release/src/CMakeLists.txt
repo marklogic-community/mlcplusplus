@@ -108,6 +108,7 @@ add_library (mlclient SHARED
     Response.cpp
     
     DocumentContent.cpp
+    InvalidFormatException.cpp
     SearchDescription.cpp
 
     internals/AuthenticatingProxy.cpp
@@ -119,8 +120,8 @@ add_library (mlclient SHARED
     ResponseWrapper.cpp
     
     utilities/CppRestJsonHelper.cpp
+    utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
-    utilities/InvalidFormatException.cpp
 )
 
 

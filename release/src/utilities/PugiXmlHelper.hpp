@@ -10,6 +10,7 @@
 
 #include <pugixml.hpp>
 #include "../Response.hpp"
+#include "../DocumentContent.hpp"
 
 namespace mlclient {
 
@@ -17,15 +18,15 @@ namespace utilities {
 
 class PugiXmlHelper {
 public:
-  XmlHelper() = delete;
-  ~XmlHelper() = delete;
+  PugiXmlHelper() = delete;
+  ~PugiXmlHelper() = delete;
 
   // DocumentContent conversion
-  static DocumentContent& toDocument(const pugi::xml_document& dc);
-  static pugi::xml_document fromDocument(const DocumentContent& dc);
+  static DocumentContent* toDocument(const pugi::xml_document& dc);
+  static pugi::xml_document* fromDocument(const DocumentContent& dc);
 
   // Response conversion
-  static pugi::xml_document& fromResponse(const Response& resp);
+  static pugi::xml_document* fromResponse(const Response& resp);
 
 };
 

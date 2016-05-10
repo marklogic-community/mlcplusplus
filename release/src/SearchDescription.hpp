@@ -15,17 +15,18 @@ namespace mlclient {
 class SearchDescription {
 public:
   SearchDescription();
-  virtual ~SearchDescription();
+  virtual ~SearchDescription(); // allows subclassing
+
   void setOptions(TextDocumentContent& options);
-  TextDocumentContent getOptions();
+  const TextDocumentContent& getOptions() const;
   void setQuery(TextDocumentContent& query);
-  TextDocumentContent getQuery();
+  const TextDocumentContent& getQuery() const;
   void setQueryText(std::string qtext);
-  std::string getQueryText();
+  const std::string& getQueryText() const;
   /**
-   * Returns a string representation of the total payload for this search, as passed to MarkLogic Server
+   * Returns a string representation of the total payload for this search, as passed to MarkLogic Server (includes search, qtext, and options)
    */
-  DocumentContent& getPayload();
+  const TextDocumentContent& getPayload() const;
 private:
   class Impl;
   Impl* mImpl;

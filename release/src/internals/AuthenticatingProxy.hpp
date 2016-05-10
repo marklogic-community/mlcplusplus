@@ -15,6 +15,7 @@
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
 #include "../Response.hpp"
+#include "../DocumentContent.hpp"
 #include "Credentials.hpp"
 
 #include "../mlclient.hpp"
@@ -79,9 +80,14 @@ public:
       const http_headers& headers = blankHeaders);
 */
 
+  //std::unique_ptr<Response> postSync(const std::string& host,
+  //    const std::string& path,
+  //    const web::json::value& body,
+  //    const web::http::http_headers& headers = blankHeaders);
+
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
-      const web::json::value& body,
+      const DocumentContent& body,
       const web::http::http_headers& headers = blankHeaders);
   /*
     Response Post(const std::string& host, 
@@ -89,19 +95,23 @@ public:
                   const xmlDocPtr body,
                   const http_headers& headers = blankHeaders);
    */
-  std::unique_ptr<Response> postSync(const std::string& host,
-      const std::string& path,
-      const std::wstring& text_body,
-      const web::http::http_headers& headers = blankHeaders);
+  //std::unique_ptr<Response> postSync(const std::string& host,
+  //    const std::string& path,
+  //    const std::wstring& text_body,
+  //    const web::http::http_headers& headers = blankHeaders);
+/*
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
       const uint8_t* data,
       const size_t& size,
       const web::http::http_headers& headers = blankHeaders);
+*/
+  /*
   std::unique_ptr<Response> postFileSync(const std::string& host,
       const std::string& path,
       const std::string& file_path,
       const web::http::http_headers& headers = blankHeaders);
+      */
 /*
   void postAsync(const std::string& host,
       const std::string& path,
@@ -117,13 +127,14 @@ public:
       const std::string& path,
       const std::function<void(const Response&)> handler);
 */
+  //std::unique_ptr<Response> putSync(const std::string& host,
+  //    const std::string& path,
+  //    const std::wstring& text_body,
+  //    const web::http::http_headers& headers = blankHeaders);
+
   std::unique_ptr<Response> putSync(const std::string& host,
       const std::string& path,
-      const std::wstring& text_body,
-      const web::http::http_headers& headers = blankHeaders);
-  std::unique_ptr<Response> putSync(const std::string& host,
-      const std::string& path,
-      const web::json::value& text_body,
+      const DocumentContent& text_body,
       const web::http::http_headers& headers = blankHeaders);
   /*
     Response& Put(const std::string& host,
@@ -131,11 +142,13 @@ public:
                  const xmlDocPtr& xml_body,
                  const http_headers& headers = blankHeaders);
    */
+  /*
    std::unique_ptr<Response> putSync(const std::string& host,
        const std::string& path,
        const uint8_t* data,
        const size_t& size,
        const web::http::http_headers& headers = blankHeaders);
+       */
 /*
    void putAsync(const std::string& host,
        const std::string& path,

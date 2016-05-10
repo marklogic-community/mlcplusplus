@@ -6,25 +6,35 @@
  */
 
 #include <cpprest/http_client.h>
-#include "utilities/CppRestJsonHelper.hpp"
+#include "CppRestJsonHelper.hpp"
+#include "CppRestJsonDocumentContent.hpp"
 #include "../DocumentContent.hpp"
-#include "InvalidFormatException.hpp"
+#include "../Response.hpp"
+#include "../InvalidFormatException.hpp"
+
+#include <iostream>
 
 namespace mlclient {
 
 namespace utilities {
 
 // DocumentContent conversion
-DocumentContent& CppRestJsonHelper::toDocument(const web::json::value json) {
-  TextDocumentContent& tdc = TextDocumentContent();
-  std::string c(json.as_string());
-  tdc.setContent(c);
-  tdc.setMimeType("application/json");
-  return tdc; // TODO ensure this doesn't get nixed
+DocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+  CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
+  tdc->setContent(json);
+  tdc->setMimeType("application/json");
+  return tdc; // TODO ensure this doesn't get nixed. Note - uses copy constructor (may eat memory)
 }
 
+/**
+ * Don't call this on a CppRestJsonDocumentContent instance - use CppRestJsonDocumentContent::getJson() instead
+ */
 web::json::value CppRestJsonHelper::fromDocument(const DocumentContent& dc) {
-  return web::json::value(dc.getContent());
+  std::ostringstream os;
+  std::ostream* dcos(dc.getStream());
+  os << dcos;
+  delete dcos; // free pointer
+  return web::json::value(os.str());
 }
 
 // Response conversion

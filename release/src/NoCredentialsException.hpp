@@ -17,7 +17,7 @@
 namespace mlclient {
 
 /**
- * Indicates that you have not provided the Connection with any credentials, or the credentials are invalid.
+ * \brief Indicates that you have not provided the Connection with any credentials, or the credentials are invalid.
  */
 class NoCredentialsException : public std::exception {
 public:

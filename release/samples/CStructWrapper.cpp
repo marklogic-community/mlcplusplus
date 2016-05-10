@@ -2,7 +2,8 @@
 #include "CStruct.h"
 #include "ResponseWrapper.h"
 #include "Response.hpp"
-#include "utilities/ResponseUtilities.hpp"
+#include "utilities/CppRestJsonHelper.hpp"
+#include "utilities/PugiXmlHelper.hpp"
 #include <cpprest/json.h>
 #include <pugixml.hpp>
 #include "CWrapper.hpp"
@@ -27,7 +28,7 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     // custom unpacking C++ code - as JSON and XML wrappers are C++, not C
     // This code has to be custom as C and C++ DO NOT do introspection of a struct
     //std::cout << "Web JSON string value: " << t->String() << std::endl;
-    const web::json::value& jsonValue = ResponseUtilities::asJson(t);
+    const web::json::value& jsonValue = CppRestJsonHelper::fromResponse(t);
     std::cout << "Web JSON value&: " << jsonValue << std::endl;
     const web::json::object& jsonObject = jsonValue.as_object();
     static const std::string firstString = jsonObject.at("first").as_string(); // COPY VALUE
@@ -40,8 +41,8 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     obj->second = const_cast<char*>(second); // no longer a hanging pointer
   } else {
     // assume XML
-    const pugi::xml_document& doc = ResponseUtilities::asXml(t);
-    const pugi::xml_node& root = doc.root();
+    const pugi::xml_document* doc = PugiXmlHelper::fromResponse(t);
+    const pugi::xml_node& root = doc->root();
     //std::cout << "root node name: " << root.name() << std::endl;
     const pugi::xml_node& docroot = root.child("docroot");
     //std::cout << "docroot node name: " << docroot.name() << std::endl;

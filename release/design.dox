@@ -1,0 +1,145 @@
+/**
+ * \page page_Design Design
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * 
+ * This page details the underlying API and the decisions made during its development.
+ * 
+ * \li \ref sec_BestPractices Best Practices used in creating this API
+ * \li \ref sec_WhyUseCppRest Why I chose to use Microsoft's CPP REST API
+ * \li \ref sec_APIStructure Why the API and namespaces are structured as they are
+ * 
+ * \sec sec_BestPractices Best Practices
+ * 
+ * The API applies many best practices in the industry and C/C++ development generally.
+ * Many of the decisions taken are based upon practical experience and information from
+ * A few references.
+ * 
+ * API Design for C++ (Martin Reddy, 2011) was a source of much inspiration that has
+ * made this API as good as it can be. I thoroughly recommend this book for anyone
+ * writing APIs on any platform, even though it uses C++ as the base language.
+ * This book covers everything about APIs - including documentation, tools, project
+ * structure, versioning and much more. Well worth its cover price.
+ * 
+ * Extensive C++ (TODO check reference) was also a source of many useful tips and tricks,
+ * although I found it somewhat behind the curve of C++14. There are particularly good
+ * sections on templates and some coverage of unique_ptr from C++11.
+ * 
+ * I was planning on listing all the best practices I've used, but there were far too
+ * many in the end! If you are terminally interested, then have a read of all issues fixed
+ * under the Sprint-001 milestone on GitHub - there tends to be one brief issue logged
+ * per each best practice used in this API.
+ * 
+ * I didn't use every best practice mentioned, but I think I covered 99% of them!
+ * 
+ * \sec sec_WhyUseCppRest Why Use Microsoft's CPP REST API?
+ * 
+ * This API was released as a Beta programme in 2014, and had a major release in late 2015.
+ * Shockingly, it is an Apache 2 licensed Open Source library that supports not only
+ * Microsoft's Windows OS, but also Windows Mobile, Mac OS X, Linux, and iOS platforms.
+ * 
+ * Much of the internals of the MarkLogic C++ API uses JSON as its underlying communication
+ * mechanism rather than XML. For this reason we needed an API with solid JSON support,
+ * and where the JSON wrapper objects could be passed to the HTTP API. 
+ * 
+ * Microsoft's API provides excellent support for JSON and RESTful HTTP, good cross platform
+ * support, and support for synchronous and asynchronous (via Lambda expressions) API usage.
+ * It is also very simple to use, so it was a natural fit to use underneath the C++ API.
+ * 
+ * This API is entirely hidden as a compile time dependency though - by using the PIMPL
+ * idiom throughout the API code we were able to remove all compile time dependencies in
+ * the Core Public API. The only exception is in the utility classes for APIs to
+ * work with JSON and XML documents. These are optional though, so just don't include
+ * the CppRestJsonHelper.hpp or PugiXmlHelper.hpp files unless you need them.
+ * 
+ * \sec sec_APIStructure API Structure
+ * 
+ * There are 4 parts of the API, each with its own approaches and aims. These are detailed
+ * separately below.
+ * 
+ * \subsection subsec_CppPublicApi The C++ Public API
+ * 
+ * This is the place application developers will spend 99% of their time. Classes and functions in this
+ * part of the API provide high level convenience methods that abstract out the underlying MarkLogic
+ * REST API structures and behaviour.
+ * 
+ * The main class here is the \link Connection \endlink class. This provides a handle on access to
+ * a named MarkLogic database, and caches underlying TCP, HTTP and Digest security information,
+ * removing the need for this logic in your applications.
+ * 
+ * Various convenience methods are supported that map on to MarkLogic REST API methods directly.
+ * For example, the POST /v1/search endpoint that allows you to send text based query grammar searches,
+ * search options, and complex raw MarkLogic cts search configuration in one request is wrapped by the
+ * \link Connection_search Connection::search \endlink function.
+ * 
+ * The Connection classes' functions return a \link Response \endlink object instance. This is an
+ * immutable object that represents the response from MarkLogic Server. This is quite a low level
+ * object so developers may wish to use the \link CppRestJsonHelper \endlink and
+ * \link PugiXmlHelper \endlink , and \link ResponseHelper \endlink classes to gain higher level 
+ * representations of a response from MarkLogic Server.
+ * 
+ * These helpers return an instance of \link DocumentContent \endlink - one of
+ * \link TextDocumentContent \endlink for plain text, JSON and XML content, or
+ * \link BinaryDocumentContent \endlink for all other content types. This is a low level wrapper
+ * that wraps just the content of a document, and not its properties.
+ * 
+ * The \link Document \endlink class provides a high level representation of a Document in its
+ * entirety. This includes its content (an instance of \link DocumentContent \endlink),
+ * properties, URI, and security permissions.
+ * 
+ * \warning It's important to remember that not every function will return full document
+ * information. For example, a \link Connection_getDocument Connection::getDocument \endlink
+ * call will return a Document with a URI and Content, but not properties or permissions
+ * by default. The same is true of a search result, that will return a URI, but may not
+ * return an entire document's content depending on search settings. Remember to set the appropriate
+ * method settings, or make a separate call to \link group_getDocument getDocument* \endlink methods.
+ * 
+ * All classes in the Core Public API are in the \link mlclient \endlink namespace. 
+ * 
+ * \subsection subsec_CppUtilitiesApi The C++ Public Utilities API
+ * 
+ * This API provides non-core, i.e. optional, classes that use the core public API, but upon
+ * which the core public API is not dependant. This is particularly relevant when dealing with
+ * third party APIs specific to a document type, such as XML or JSON. There are many implementations
+ * to choose from for these APIs. Rather than introduce a forced compile time dependency upon clients,
+ * these classes are instead located within their own files within the utilities API. 
+ * 
+ * The Utilities API will contain Helper classes in future to remove complexity from application code.
+ * The usual example of this across MarkLogic REST API wrappers is a \link SearchBuilder \endlink class.
+ * This abstracts the underlying format of a search object in MarkLogic Server, allowing API developers
+ * to simply call functions, and also shielding them from future REST API data layer changes (which do
+ * happen regularly with every major version).
+ * 
+ * All classes in this API are in the \link utilities mlclient::utilities \endlink namespace.
+ * 
+ * There is not a huge amount of functionality in the utilities namespace at the moment. We spent
+ * the vast majority of our effort in the Version 8.0 timescale working on the Core API and ensuring that
+ * is robust. We expect to provide more utility classes in the 8.1 and 9.0 time frames (late 2016 / early 2017).
+ * 
+ * \subsection subsec_CppInternalApi The C++ Internal API
+ * 
+ * This is where the magic happens! All public API to underlying REST function call conversion, response
+ * parsing, error handling, and authentication happens within this API. This is a private API that
+ * should NEVER EVER EVER be called directly by your application. It is for developers of the C++ API only.
+ * 
+ * All classes within this group are located in the \link internals mlclient::internals \endlink namespace.
+ * 
+ * \subsection subsec_CApi The C API
+ * 
+ * Some MarkLogic customers have legacy C based APIs that need to access MarkLogic to enable long term
+ * data migration to MarkLogic Server. For this reason we have provided a set of wrappers around the
+ * Core C++ Public API.
+ * 
+ * These wrappers are 1:1 mappings to their C++ equivalent object orientated methods. Below are a few
+ * examples of methods covered:-
+ * \li \link Connection_constructor Connection() constructor \endlink = \link c_connection_new connection_getDocument \endlink C function
+ * \li \link Connection_getDocument Connection::getDocument \endlink = \link c_connection_getDocument connection_getDocument \endlink C function
+ * \li \link Response_getContent Response::getContent -> std::stirng \endlink = \link c_response_getContent char* \endlink c function
+ * \li and so on
+ * 
+ * \warning Be aware that only the Core API has wrappers at this present time, not the utilities API. This ie because
+ * The utilities API is tighlty coupled to specific C++ object orientated third party libraries. It's really out of scope
+ * for MarkLogic Inc to provide C wrappers around external third party APIs and have to support them. For this reason,
+ * C wrappers for this group of classes are not provided.
+ * 
+ * 
+ */

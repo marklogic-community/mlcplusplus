@@ -35,7 +35,7 @@ int main(int argc, const char * argv[])
   ResponseType rt = response.getResponseType();
   std::cout << "Response type: " << rt << std::endl;
   if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(response) << std::endl; }
-  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;PugiXmlHelper::fromResponse(response).save(std::cout); std::cout << std::endl; }
+  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;PugiXmlHelper::fromResponse(response)->save(std::cout); std::cout << std::endl; }
 
   std::cout << "getdoc complete" << std::endl;
   return 0;
