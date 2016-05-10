@@ -1,12 +1,23 @@
-/*
- * A header file to provide a C wrapping of the Connection C++ class
- */
+///
+/// \file ConnectionWrapper.h
+/// \brief A header file to provide a C wrapping of the Connection C++ class
+/// \since 8.0.0
+/// \author Adam Fowler <adam.fowler@marklogic.com>
+/// \date 2016-04-18
+///
 
 #ifndef CONNECTIONWRAPPER_H
 #define CONNECTIONWRAPPER_H
 
 #include "ResponseWrapper.h"
 
+///
+/// \typedef CConnection A wrapper for a C++ Connection instance's void* pointer.
+///
+/// \brief A type used to wrap the void* for the C++ Connection object.
+///
+/// Use this type in your C code instead of Connection.
+///
 typedef void CConnection;
 
 #ifdef __cplusplus
@@ -14,12 +25,38 @@ extern "C" {
 #endif
 
 // constructor
+///
+/// \brief Creates a new blank CConnection instance.
+///
+/// \note Caller is responsible for the pointer. Use ml_connection_delete to safely clean it up.
+///
+/// \return A CConnection type instance pointer.
+///
 CConnection * ml_connection_new();
 // destructor
+///
+/// \brief Safely deletes a CConnection instance
+///
+/// \param t The CConnection pointer to delete.
+///
 void ml_connection_delete(CConnection *t);
 
 // member functions
 
+///
+/// \brief Configured the CConnection given the specified properties.
+///
+/// See Connection::configure for details.
+///
+/// \note Assumes digest authentication is being used.
+///
+/// \param conn The CConnection pointer to modify
+/// \param hostname The MarkLogic Server hostname string
+/// \param port The MarkLogic Server REST API port as a string
+/// \param username The connection username (plain text) to use. E.g. admin or someuser
+/// \param password The connection password (plain text) to use.
+/// \param usessl Whether to use SSL or not. (I.e. https instead of http)
+///
 void ml_connection_configure(const CConnection *conn,const char *hostname, const char *port, const char *username, const char *password, const int usessl);
 
 // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap

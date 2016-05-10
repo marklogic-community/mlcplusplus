@@ -36,7 +36,7 @@ This class also abstracts the underlying security mechanism used to authenticate
 
 Simply create a Connection class, call configure to set up the connection parameters, then call a function!
 
-TODO API Documentation pending
+The API documentation can be found here: http://adamfowleruk.github.io/mlcplusplus/api/index.html
 
 ### Compiling the tests
 

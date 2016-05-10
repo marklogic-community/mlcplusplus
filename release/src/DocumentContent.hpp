@@ -80,8 +80,8 @@ public:
    */
   void setMimeType(const std::string& mt);
 
-  static const std::string MIME_JSON; /// The value application/json
-  static const std::string MIME_XML; /// The value application/xml
+  static const std::string MIME_JSON; //< The value application/json
+  static const std::string MIME_XML; //< The value application/xml
 
 protected:
   class Impl;
@@ -213,8 +213,8 @@ private:
  * There are many ways to encode a Binary document as a string. This enum allows them to be described.
  */
 enum BinaryEncoding : int {
-  HEX = 1,     /// Hexadecimal representation i.e. as characters 0-F
-  BIN = 2      /// As binary, rather than encoded. Used in multi-part mime
+  HEX = 1,     //< Hexadecimal representation i.e. as characters 0-F
+  BIN = 2      //< As binary, rather than encoded. Used in multi-part mime
 };
 
 

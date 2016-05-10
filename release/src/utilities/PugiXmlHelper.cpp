@@ -19,7 +19,7 @@ namespace mlclient {
 namespace utilities {
 
 // DocumentContent conversion
-DocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
+TextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
   TextDocumentContent* tdc = new TextDocumentContent;
   std::ostringstream os;
   os << dc;
