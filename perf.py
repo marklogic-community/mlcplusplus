@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import re
 
 # Define patterns we want to recognize.
@@ -28,8 +29,8 @@ s_pat = ( executed + func2 + duration)
 pat = re.compile(s_pat)
 
 # Test string and the expected output result.
-#s_input = "Executed [std::unique_ptr<Response> mlclient::Connection::getDocument(const std::string &)] in [3 ms]"
-s_input = "Executed [mlclient::TextDocumentContent *mlclient::SearchDescription::getPayload()] in [0 ms]"
+s_input = "Executed [std::unique_ptr<Response> mlclient::Connection::getDocument(const std::string &)] in [3 ms]"
+#s_input = "Executed [mlclient::TextDocumentContent *mlclient::SearchDescription::getPayload()] in [0 ms]"
 s_correct = "mlclient::Connection::getDocument,3"
 
 # re.match() returns a "match group"
@@ -41,11 +42,12 @@ print s_output
 
 # sanity check
 if s_correct == s_output:
-    print "excellent"
+    print "Test Succeeded"
 else:
-    print "bogus"
+    print "Test Failed"
     #exit
 
+print "Generating performance.csv from performance.log..."
 
 # excellent.
 
@@ -57,10 +59,12 @@ outputfile = open('performance.csv', 'w')
 
 for line in inputfile:
   m = re.match(pat,line)
-  print line + "   =>   "
-  print m.groups()
+  #print line + "   =>   "
+  #print m.groups()
   st = ",".join(m.groups())
   outputfile.writelines(st + "\n")
 
 inputfile.close()
 outputfile.close()
+
+print "Done."
