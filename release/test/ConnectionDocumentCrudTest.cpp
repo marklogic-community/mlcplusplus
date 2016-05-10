@@ -6,35 +6,130 @@
 //  Copyright (c) 2015 Adam Fowler. All rights reserved.
 //
 
-#include <cpprest/json.h>
-#include <cpprest/http_client.h>
-#include <mlclient.hpp>
-
 #include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 #include <string>
-#include "AuthenticatingProxyTest.hpp"
-#include "internals/AuthenticatingProxy.hpp"
-#include "internals/Credentials.hpp"
+#include "ConnectionDocumentCrudTest.hpp"
+#include "ConnectionFactory.hpp"
+#include "Connection.hpp"
 #include "Response.hpp"
-#include "ResponseCodes.hpp"
-#include "internals/Types.hpp"
+#include "DocumentContent.hpp"
 #include "NoCredentialsException.hpp"
 
-CPPUNIT_TEST_SUITE_REGISTRATION(ConnectionDocumentCrudTest);
+#include <string>
+
+#include "easylogging++.h"
 
 using namespace mlclient;
 
-void ConnectionDocumentCrudTest::TestGetJson(void) {
-  Connection* ml = ConnectionFactory::getConnection();
+CPPUNIT_TEST_SUITE_REGISTRATION(ConnectionDocumentCrudTest);
 
-  const Response& response = ml->getDocument("/some/doc.json");
 
-  ResponseType rt = response.GetResponseType();
-  if (rt == ResponseType::JSON) { std::cout << "This is a standard response." << std::endl; }
-  // TODO XML support
+void ConnectionDocumentCrudTest::setUp(void) {
+  LOG(DEBUG) << "ENTERING TEST SUITE ConnectionDocumentCrudTest::setUp";
+  // set up connection
+  ml = ConnectionFactory::getConnection();
+  json = "{\"first\":\"value1\",\"second\":\"value2\"}";
+  xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<doc><first>value1</first><second>value2</second></doc>";
+  jsonUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.json";
+  xmlUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.xml";
+}
 
-  CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response.GetResponseType());
-  CPPUNIT_ASSERT(ResponseType::JSON  == response.GetResponseType());
+void ConnectionDocumentCrudTest::tearDown(void) {
+  LOG(DEBUG) << "LEAVING TEST SUITE ConnectionDocumentCrudTest::tearDown";
+  // delete all content
+  delete ml;
+  ml = NULL;
+}
 
+void ConnectionDocumentCrudTest::testSaveJson(void) {
+  TIMED_FUNC(testSaveJson);
+  LOG(DEBUG) << " Entering testSaveJson";
+
+  // Note not using the Json or Xml helpers as we're not testing them here
+  TextDocumentContent tdc;
+  tdc.setMimeType("application/json");
+  tdc.setContent(json);
+  const std::unique_ptr<Response> response = ml->saveDocument(jsonUri,tdc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 201 Created",ResponseCode::CREATED == response->getResponseCode());
+}
+
+void ConnectionDocumentCrudTest::testGetJson(void) {
+  TIMED_FUNC(testGetJson);
+  LOG(DEBUG) << " Entering testGetJson";
+  const std::unique_ptr<Response> response = ml->getDocument(jsonUri);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response->getResponseType());
+  CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
+
+  //CPPUNIT_ASSERT_MESSAGE("The JSON response content is modified compared to the original", 0 == json.compare(response->getContent()));
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+}
+
+void ConnectionDocumentCrudTest::testDeleteJson(void) {
+  TIMED_FUNC(testDeleteJson);
+  LOG(DEBUG) << std::endl << " Entering testDeleteJson";
+  const std::unique_ptr<Response> response = ml->deleteDocument(jsonUri);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 204 No Content",ResponseCode::NO_CONTENT == response->getResponseCode());
+}
+
+void ConnectionDocumentCrudTest::testSaveXml(void) {
+  TIMED_FUNC(testSaveXml);
+  LOG(DEBUG) << " Entering testSaveXml";
+  // Note not using the Json or Xml helpers as we're not testing them here
+  TextDocumentContent tdc;
+  tdc.setMimeType("application/xml");
+  tdc.setContent(xml);
+  const std::unique_ptr<Response> response = ml->saveDocument(xmlUri,tdc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 201 Created",ResponseCode::CREATED == response->getResponseCode());
+}
+
+void ConnectionDocumentCrudTest::testGetXml(void) {
+  TIMED_FUNC(testGetXml);
+  LOG(DEBUG) << " Entering testGetXml";
+  const std::unique_ptr<Response> response = ml->getDocument(xmlUri);
+
+  ResponseType rt = response->getResponseType();
+  LOG(DEBUG) << "  Response Type: " << rt;
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a XML response", ResponseType::XML  == response->getResponseType());
+  CPPUNIT_ASSERT(ResponseType::XML  == response->getResponseType());
+
+  //CPPUNIT_ASSERT_MESSAGE("The XML response content is modified compared to the original", 0 == xml.compare(response->getContent()));
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+}
+
+
+void ConnectionDocumentCrudTest::testDeleteXml(void) {
+  TIMED_FUNC(testDeleteXml);
+  LOG(DEBUG) << " Entering testDeleteXml";
+  const std::unique_ptr<Response> response = ml->deleteDocument(xmlUri);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 204 No Content",ResponseCode::NO_CONTENT == response->getResponseCode());
 }

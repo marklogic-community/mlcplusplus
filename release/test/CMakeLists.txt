@@ -62,14 +62,12 @@ else()
   message("-- Unknown compiler, success is doubtful.")
 endif()
 
-include_directories(../src /usr/include/libxml2 ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
+include_directories(../src ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
 
 add_executable(mlcpptest
     main.cpp
-    AuthenticatingProxyTest.cpp
-    CredentialsTest.cpp
-    AuthorizationBuilderTest.cpp
-    MLCryptoTest.cpp
-    ResponseTest.cpp
+    ConnectionFactory.cpp
+    ConnectionDocumentCrudTest.cpp
+    ConnectionSearchTest.cpp
 )
 target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES})

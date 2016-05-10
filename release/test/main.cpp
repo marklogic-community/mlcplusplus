@@ -14,21 +14,35 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/BriefTestProgressListener.h>
 
+#include "easylogging++.h"
+
+INITIALIZE_EASYLOGGINGPP
 
 
 int main(int argc, const char * argv[])
 {
-  CppUnit::TestResult controller;
+  START_EASYLOGGINGPP(argc, argv);
 
-  CppUnit::TestResultCollector collector;
-  controller.addListener(&collector);
+  el::Configurations defaultConf;
+  defaultConf.setToDefault();
+  // Values are always std::string
+  defaultConf.setGlobally(el::ConfigurationType::Format, "%datetime %level %fbase:%line %msg");
+  // default logger uses default configurations
+  el::Loggers::reconfigureLogger("default", defaultConf);
 
-  CppUnit::BriefTestProgressListener progress;
-  controller.addListener(&progress);
+  LOG(INFO) << "In tests main";
 
-  CppUnit::TestRunner::TestRunner runner;
+  //CppUnit::TestResult controller;
+
+  //CppUnit::TestResultCollector collector;
+  //controller.addListener(&collector);
+
+  //CppUnit::BriefTestProgressListener progress;
+  //controller.addListener(&progress);
+
+  CppUnit::TextUi::TestRunner runner;
   runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-  runner.run(controller);
-  return 0;
+  bool wasSuccessful = runner.run( "", false );
+  return wasSuccessful;
 }
 

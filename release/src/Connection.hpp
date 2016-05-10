@@ -227,6 +227,20 @@ public:
    * \since 8.0.0
    */
   std::unique_ptr<Response> saveDocument(const std::string& uri,const DocumentContent& payload);
+
+  /**
+   * \brief Deletes the specified document by URI
+   *
+   * \param[in] uri The document URI to delete
+   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   *
+   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
+   * or permission is denied for this request.
+   *
+   * \since 8.0.0
+   */
+  std::unique_ptr<Response> deleteDocument(const std::string& uri);
+
   // TODO save JSON with directory, no uri
   // TODO optional parameters (collection, security, etc.)
   // TODO save XML with and without URI

@@ -8,3 +8,25 @@
 
 #include "mlclient.hpp"
 
+#include "easylogging++.h"
+INITIALIZE_EASYLOGGINGPP
+
+namespace mlclient {
+int runOnce() {
+    LOG(INFO) << "Registering logger [mlclient]";
+    el::Loggers::getLogger("mlclient");
+
+    el::Configurations defaultConf;
+    defaultConf.setToDefault();
+    // Values are always std::string
+    defaultConf.setGlobally(el::ConfigurationType::Format, "%datetime %level %fbase:%line %msg");
+    // default logger uses default configurations
+    el::Loggers::reconfigureLogger("default", defaultConf);
+
+    return 0;
+}
+
+int runOnceHelper = runOnce();
+
+
+} // end namespace mlclient

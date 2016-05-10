@@ -97,9 +97,9 @@ public:
    *
    * Used as the raw input to POST /v1/search, and encompasses all search configuration
    *
-   * \return A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request.
+   * \return A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object.
    */
-  const TextDocumentContent& getPayload() const;
+  TextDocumentContent* getPayload() const;
 private:
   class Impl;
   Impl* mImpl;

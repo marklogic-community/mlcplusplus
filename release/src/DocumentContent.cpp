@@ -115,8 +115,8 @@ int BinaryDocumentContent::getLength() {
 
 class TextDocumentContent::Impl {
 public:
-  Impl() : content(std::unique_ptr<std::string>(new std::string(""))) {
-    ;
+  Impl() {
+    content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   }
   ~Impl() {
     ;
@@ -125,7 +125,7 @@ public:
 };
 
 
-TextDocumentContent::TextDocumentContent() : mImpl(new Impl) {
+TextDocumentContent::TextDocumentContent() : DocumentContent::DocumentContent(), mImpl(new Impl) {
   ;
 }
 TextDocumentContent::~TextDocumentContent() {
