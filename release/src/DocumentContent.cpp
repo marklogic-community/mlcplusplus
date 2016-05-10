@@ -11,6 +11,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "easylogging++.h"
+
 namespace mlclient {
 
 // DOCUMENT CONTENT
@@ -143,6 +145,7 @@ int TextDocumentContent::getLength() const {
 }
 
 std::ostream* TextDocumentContent::getStream() const {
+  TIMED_FUNC(TextDocument_getStream);
   std::ostringstream* os = new std::ostringstream;
   (*os) << mImpl->content.get();
   //std::ostringstream& osref = os; // TODO verify this works with no dangling reference

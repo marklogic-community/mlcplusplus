@@ -64,6 +64,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
     const std::string& path,
     const http_headers& headers)
 {
+  TIMED_FUNC(AuthenticatingProxy_getSync);
   //auto && response = new Response;
   Response* response = new Response;
   http_headers request_headers = headers;
@@ -216,6 +217,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const DocumentContent& body,
     const http_headers& headers)
 {
+  TIMED_FUNC(AuthenticatingProxy_postSync);
   LOG(DEBUG) << "    Entering postSync";
   Response* response = new Response;
   http_headers request_headers = headers;
@@ -407,6 +409,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const DocumentContent& text_body,
     const http_headers& headers)
 {
+  TIMED_FUNC(AuthenticatingProxy_putSync);
   Response* response = new Response;
   http_headers request_headers = headers;
 
@@ -548,6 +551,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
     const std::string& path,
     const http_headers& headers)
 {
+  TIMED_FUNC(AuthenticatingProxy_deleteSync);
   Response* response = new Response;
   http_headers request_headers = headers;
 

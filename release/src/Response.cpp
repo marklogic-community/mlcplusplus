@@ -16,6 +16,7 @@
 
 #include "Response.hpp"
 
+#include "easylogging++.h"
 
 namespace mlclient {
 
@@ -274,6 +275,7 @@ public:
   ///
   /// \param The raw header value (i.e. 'text/plain')
   ResponseType parseContentTypeHeader(const std::string& content) {
+    TIMED_FUNC(Response_parseContentTypeHeader);
     boost::smatch matches;
     enum ResponseType result = ResponseType::BINARY;
     if (boost::regex_search(content, matches, content_type_re)) {

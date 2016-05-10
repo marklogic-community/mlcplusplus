@@ -14,12 +14,15 @@
 #include <iostream>
 #include <pugixml.hpp>
 
+#include "../easylogging++.h"
+
 namespace mlclient {
 
 namespace utilities {
 
 // DocumentContent conversion
 TextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
+  TIMED_FUNC(PugiXmlHelper_toDocument);
   TextDocumentContent* tdc = new TextDocumentContent;
   std::ostringstream os;
   os << dc;
@@ -28,6 +31,7 @@ TextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
   return tdc; // TODO do we need to std::move this?
 }
 pugi::xml_document* PugiXmlHelper::fromDocument(const DocumentContent& dc) {
+  TIMED_FUNC(PugiXmlHelper_fromDocument);
   // TODO handle invalid cast exception
 
   std::ostringstream os;
@@ -52,6 +56,7 @@ pugi::xml_document* PugiXmlHelper::fromDocument(const DocumentContent& dc) {
 
 // Response conversion
 pugi::xml_document* PugiXmlHelper::fromResponse(const Response& resp) {
+  TIMED_FUNC(PugiXmlHelper_fromResponse);
   if (resp.getResponseType() == ResponseType::XML) {
     pugi::xml_document* doc = new pugi::xml_document;
     pugi::xml_parse_result result = doc->load_string(resp.getContent().c_str());
