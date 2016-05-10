@@ -24,7 +24,7 @@
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
 
-#include "../mlclient.hpp"
+#include "../easylogging++.h"
 
 namespace mlclient {
 
@@ -101,7 +101,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
       // Print error.
       std::wostringstream ss;
       ss << "There was an error extracting content from response: " << e.what() << std::endl;
-      std::wcout << ss.str();
+      LOG(WARNING) << ss.str();
     }
 
     /*
@@ -216,6 +216,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const DocumentContent& body,
     const http_headers& headers)
 {
+  LOG(DEBUG) << "    Entering postSync";
   Response* response = new Response;
   http_headers request_headers = headers;
 
@@ -224,14 +225,23 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
   try {
     http::http_request req(http::methods::POST);
     req.set_request_uri(path);
-    req.set_body(U(body.getContent()),U(body.getMimeType()));
+    LOG(DEBUG) << "    Setting request body";
+    std::string content = body.getContent();
+    LOG(DEBUG) << "    Got content: " << content;
+    std::string mime = body.getMimeType();
+    LOG(DEBUG) << "    Got mime: " << mime;
+    req.set_body(U(content),U(mime));
+
+    LOG(DEBUG) << "    Checking authentication headers";
 
     if (credentials.canAuthenticate()) {
       req.headers().add(AUTHORIZATION_HEADER_NAME, credentials.authenticate("POST", path));
     }
 
 
+    LOG(DEBUG) << "    Sending request...";
     http_response raw_response = raw_client.request(req).get();
+    LOG(DEBUG) << "    Request complete";
 
     try
     {
@@ -244,8 +254,8 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     {
       // Print error.
       std::wostringstream ss;
-      ss << "There was an error!!!!" << e.what() << std::endl;
-      std::wcout << ss.str();
+      ss << "There was an error!!!!" << e.what();
+      LOG(WARNING) << ss.str();
     }
     /*
     raw_client.request(req).then([&response](http::http_response raw_response) {
@@ -255,7 +265,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     }).wait();
      */
   } catch(std::exception &e) {
-    std::cerr << e.what() << std::endl;
+    LOG(WARNING) << e.what();
   }
 
   if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
@@ -280,13 +290,15 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
       {
         response->setResponseCode((ResponseCode)raw_response.status_code());
         response->setResponseHeaders(raw_response.headers());
+        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+        response->setContent(std::move(c));
       }
       catch (const web::http::http_exception& e)
       {
         // Print error.
         std::wostringstream ss;
-        ss << "There was an error!!!!" << e.what() << std::endl;
-        std::wcout << ss.str();
+        ss << "There was an error!!!!" << e.what();
+        LOG(WARNING) << ss.str();
       }
       /*
       raw_client.request(req).then([&response](http::http_response raw_response) {
@@ -296,9 +308,10 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
        */
 
     } catch(std::exception &e) {
-      std::cerr << e.what() << std::endl;
+      LOG(WARNING) << e.what();
     }
   }
+  LOG(DEBUG) << "    Leaving postSync";
 
   return std::unique_ptr<Response>(response);
 }
@@ -414,6 +427,8 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     {
       response->setResponseCode((ResponseCode)raw_response.status_code());
       response->setResponseHeaders(raw_response.headers());
+      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+      response->setContent(std::move(c));
     }
     catch (const web::http::http_exception& e)
     {
@@ -455,6 +470,8 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
       {
         response->setResponseCode((ResponseCode)raw_response.status_code());
         response->setResponseHeaders(raw_response.headers());
+        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+        response->setContent(std::move(c));
       }
       catch (const web::http::http_exception& e)
       {
@@ -550,6 +567,8 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
     {
       response->setResponseCode((ResponseCode)raw_response.status_code());
       response->setResponseHeaders(raw_response.headers());
+      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+      response->setContent(std::move(c));
     }
     catch (const web::http::http_exception& e)
     {
@@ -589,6 +608,8 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
       {
         response->setResponseCode((ResponseCode)raw_response.status_code());
         response->setResponseHeaders(raw_response.headers());
+        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+        response->setContent(std::move(c));
       }
       catch (const web::http::http_exception& e)
       {

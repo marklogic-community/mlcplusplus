@@ -162,7 +162,7 @@ const std::string translate(const ResponseCode& val) {
   case ResponseCode::ACCEPTED:
     result = "Accepted"; break;
   case ResponseCode::NO_CONTENT:
-    result = "No Content"; break;
+    result = "No Content or Updated (MarkLogic REST API)"; break;
   case ResponseCode::RESET_CONTENT:
     result = "Reset Content"; break;
   case ResponseCode::PARTIAL_CONTENT:
@@ -255,7 +255,7 @@ const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 class Response::Impl {
 public:
   Impl() : responseCode(ResponseCode::UNKNOWN_CODE), responseType(ResponseType::UNKNOWN_TYPE)  {
-    ;
+    content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   };
   ~Impl() {
     ;

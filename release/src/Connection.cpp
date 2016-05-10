@@ -115,17 +115,19 @@ std::unique_ptr<Response> Connection::doDelete(const std::string& path) {
 
 std::unique_ptr<Response> Connection::getDocument(const std::string& uri) {
   return mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
-
-  //return response;
 }
 
 // TODO XML version
 std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const DocumentContent& payload) {
-  //payload[U("hello")] = web::json::value::string("world");
-
   return mImpl->proxy.putSync(mImpl->serverUrl,
-      "/v1/documents?extension=json&uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
+      "/v1/documents?uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
       payload);
+}
+
+std::unique_ptr<Response> Connection::deleteDocument(const std::string& uri) {
+  return mImpl->proxy.deleteSync(mImpl->serverUrl,
+      "/v1/documents?uri=" + uri // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
+      );
 }
 
 /*
@@ -137,7 +139,7 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
 
 
 std::unique_ptr<Response> Connection::search(const SearchDescription& desc) {
-  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search", desc.getPayload());
+  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
 }
 
 
