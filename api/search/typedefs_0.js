@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cconnection',['CConnection',['../_connection_wrapper_8h.html#a2745880a4c752f30082dbb3f59195eca',1,'ConnectionWrapper.h']]]
+  ['formatspecifiervalueresolver',['FormatSpecifierValueResolver',['../namespaceel.html#ab3cd18425a11df166a041d9024b8b5c6',1,'el']]]
 ];

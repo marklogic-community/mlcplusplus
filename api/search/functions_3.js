@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['fromdocument',['fromDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a5e3ed63d7769a93646671f4aa9997774',1,'mlclient::utilities::CppRestJsonHelper::fromDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a4fcf93a35e90aa0664095857dd479301',1,'mlclient::utilities::PugiXmlHelper::fromDocument()']]],
-  ['fromresponse',['fromResponse',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a46db30548677c5889820b29cb2b06986',1,'mlclient::utilities::CppRestJsonHelper::fromResponse()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a55f66d0fe047e5fe86b5161433276499',1,'mlclient::utilities::PugiXmlHelper::fromResponse()']]]
+  ['defaultconfigurations',['defaultConfigurations',['../classel_1_1_loggers.html#a96f2336fafdc3ef2c4df01a73ae5ffb7',1,'el::Loggers']]],
+  ['defaulttypedconfigurations',['defaultTypedConfigurations',['../classel_1_1_loggers.html#af296007c3eb3b71602ec80ff59875b46',1,'el::Loggers']]],
+  ['deletedocument',['deleteDocument',['../classmlclient_1_1_connection.html#ad406949e7a41b0b4e32974be725131a7',1,'mlclient::Connection']]],
+  ['documentcontent',['DocumentContent',['../classmlclient_1_1_document_content.html#a65fd0bfc31fcfeb870039e139898d8dc',1,'mlclient::DocumentContent']]],
+  ['dodelete',['doDelete',['../classmlclient_1_1_connection.html#ade33cc96ba01727b158b5b632c82e887',1,'mlclient::Connection']]],
+  ['doget',['doGet',['../classmlclient_1_1_connection.html#ae09d89728e8fd7268a80ed896f18a296',1,'mlclient::Connection']]],
+  ['dopost',['doPost',['../classmlclient_1_1_connection.html#ad53cbbac65c5b91c8aa0c08034ca6366',1,'mlclient::Connection']]],
+  ['doput',['doPut',['../classmlclient_1_1_connection.html#a09ce9e55dbc9b74382076dcc0ff0bf8f',1,'mlclient::Connection']]]
 ];

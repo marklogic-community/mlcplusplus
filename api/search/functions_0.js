@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['binarydocumentcontent',['BinaryDocumentContent',['../classmlclient_1_1_binary_document_content.html#ad70648d3a162c4876b1688d454f4992c',1,'mlclient::BinaryDocumentContent']]]
+  ['abstractregistry',['AbstractRegistry',['../classel_1_1base_1_1utils_1_1_abstract_registry.html#afe13c67ebd1ed1aa72845926894dffa2',1,'el::base::utils::AbstractRegistry::AbstractRegistry(void)'],['../classel_1_1base_1_1utils_1_1_abstract_registry.html#a9f468010439d491e90419f9334afcdba',1,'el::base::utils::AbstractRegistry::AbstractRegistry(AbstractRegistry &amp;&amp;sr)']]],
+  ['addflag',['addFlag',['../classel_1_1_loggers.html#aedd2de02dd701b0f20ddaa10f1f728f1',1,'el::Loggers']]]
 ];

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['what',['what',['../classmlclient_1_1_invalid_format_exception.html#a5501004e340585882251855475db0bf2',1,'mlclient::InvalidFormatException::what()'],['../classmlclient_1_1_no_credentials_exception.html#ab49d0f7efbd347ad3619f6e65c5e3d58',1,'mlclient::NoCredentialsException::what()']]]
+  ['operator_2b',['operator+',['../namespacemlclient.html#a552e719edcc7c70165bb96137ad79dc3',1,'mlclient']]],
+  ['operator_3c_3c',['operator&lt;&lt;',['../namespacemlclient.html#ac70556bf7f059b82d1f13ef54634eb35',1,'mlclient']]],
+  ['operator_3d',['operator=',['../classel_1_1base_1_1utils_1_1_abstract_registry.html#a5727a3cadeee6a2b10d8f46fb91956e7',1,'el::base::utils::AbstractRegistry::operator=()'],['../classel_1_1base_1_1utils_1_1_registry.html#a80e0ce12b7d0c24462b385fc7b3149e0',1,'el::base::utils::Registry::operator=()'],['../classel_1_1base_1_1utils_1_1_registry_with_pred.html#adb7e568c8cb084589467b937eab86b86',1,'el::base::utils::RegistryWithPred::operator=()']]],
+  ['os',['OS',['../classel_1_1base_1_1utils_1_1_o_s.html',1,'el::base::utils']]]
 ];

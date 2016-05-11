@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['bin',['BIN',['../namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54a17072704518d1a598b0f2b9705c0cb63',1,'mlclient']]]
+  ['allowverboseifmodulenotspecified',['AllowVerboseIfModuleNotSpecified',['../namespaceel.html#a2784aacd04cb7816ac1c0b20fcbf83cbac80d746c4296fe8e99ed032f5ffef31e',1,'el']]],
+  ['autospacing',['AutoSpacing',['../namespaceel.html#a2784aacd04cb7816ac1c0b20fcbf83cba34620f140246d3c3b68c17fdf7b8ada7',1,'el']]]
 ];

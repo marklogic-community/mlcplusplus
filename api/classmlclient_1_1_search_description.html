@@ -135,9 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a14a275e341cd71c97f1858f1c73e2617"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a14a275e341cd71c97f1858f1c73e2617">getQueryText</a> () const </td></tr>
 <tr class="memdesc:a14a275e341cd71c97f1858f1c73e2617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plain text query.  <a href="#a14a275e341cd71c97f1858f1c73e2617">More...</a><br /></td></tr>
 <tr class="separator:a14a275e341cd71c97f1858f1c73e2617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4986018d1183e1aefa4617055bc6d6c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#ad4986018d1183e1aefa4617055bc6d6c">getPayload</a> () const </td></tr>
-<tr class="memdesc:ad4986018d1183e1aefa4617055bc6d6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the total payload for this search, as passed to MarkLogic Server.  <a href="#ad4986018d1183e1aefa4617055bc6d6c">More...</a><br /></td></tr>
-<tr class="separator:ad4986018d1183e1aefa4617055bc6d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d90076a68721477ce84c72143d57424"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a9d90076a68721477ce84c72143d57424">getPayload</a> () const </td></tr>
+<tr class="memdesc:a9d90076a68721477ce84c72143d57424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the total payload for this search, as passed to MarkLogic Server.  <a href="#a9d90076a68721477ce84c72143d57424">More...</a><br /></td></tr>
+<tr class="separator:a9d90076a68721477ce84c72143d57424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A POD class representing input to the POST of /v1/search - i.e. all search configuration. </p>
@@ -192,12 +192,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad4986018d1183e1aefa4617055bc6d6c"></a>
+<a class="anchor" id="a9d90076a68721477ce84c72143d57424"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> &amp; mlclient::SearchDescription::getPayload </td>
+          <td class="memname"><a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> * mlclient::SearchDescription::getPayload </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -208,7 +208,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns a string representation of the total payload for this search, as passed to MarkLogic Server. </p>
 <p>Includes search complex query, query text, and options document, if supplied.</p>
 <p>Used as the raw input to POST /v1/search, and encompasses all search configuration</p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classmlclient_1_1_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">TextDocumentContent</a> (Which may be XML or JSON) wrapping the entire search request. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classmlclient_1_1_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">TextDocumentContent</a> (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object. </dd></dl>
 
 </div>
 </div>

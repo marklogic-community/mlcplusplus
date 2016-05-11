@@ -147,6 +147,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af6582211972df77eb81bb751efeba2ca"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#af6582211972df77eb81bb751efeba2ca">saveDocument</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_document_content.html">DocumentContent</a> &amp;payload)</td></tr>
 <tr class="memdesc:af6582211972df77eb81bb751efeba2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#af6582211972df77eb81bb751efeba2ca">More...</a><br /></td></tr>
 <tr class="separator:af6582211972df77eb81bb751efeba2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad406949e7a41b0b4e32974be725131a7"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#ad406949e7a41b0b4e32974be725131a7">deleteDocument</a> (const std::string &amp;uri)</td></tr>
+<tr class="memdesc:ad406949e7a41b0b4e32974be725131a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the specified document by URI.  <a href="#ad406949e7a41b0b4e32974be725131a7">More...</a><br /></td></tr>
+<tr class="separator:ad406949e7a41b0b4e32974be725131a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1e4858d53240e3e81fe2ec199597338"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#ac1e4858d53240e3e81fe2ec199597338">search</a> (const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;desc)</td></tr>
 <tr class="memdesc:ac1e4858d53240e3e81fe2ec199597338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search against the MarkLogic database given the provided search query, text and options.  <a href="#ac1e4858d53240e3e81fe2ec199597338">More...</a><br /></td></tr>
 <tr class="separator:ac1e4858d53240e3e81fe2ec199597338"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,6 +301,38 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="ad406949e7a41b0b4e32974be725131a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt; mlclient::Connection::deleteDocument </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>uri</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes the specified document by URI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The document URI to delete </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 </div>
 </div>

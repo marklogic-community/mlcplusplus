@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mime_5fjson',['MIME_JSON',['../classmlclient_1_1_document_content.html#a00defc73beb6236ae4031f75ef7444e0',1,'mlclient::DocumentContent']]],
-  ['mime_5fxml',['MIME_XML',['../classmlclient_1_1_document_content.html#aba94da0d65a4047c41bf16bf246936c5',1,'mlclient::DocumentContent']]]
+  ['kmaxvalid',['kMaxValid',['../classel_1_1_level_helper.html#aa06e80c65db5c336c4aad25872cf9a48',1,'el::LevelHelper::kMaxValid()'],['../classel_1_1_configuration_type_helper.html#aa02f3cefb127e7eb97d7e1dd7f51a12d',1,'el::ConfigurationTypeHelper::kMaxValid()']]],
+  ['kminvalid',['kMinValid',['../classel_1_1_level_helper.html#a3ecfe43d5b242e9946bad7f61ea4d89d',1,'el::LevelHelper::kMinValid()'],['../classel_1_1_configuration_type_helper.html#ab7266e698eb32dec2da285325a66e322',1,'el::ConfigurationTypeHelper::kMinValid()']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['testcredentials',['TestCredentials',['../class_test_credentials.html',1,'']]],
-  ['textable',['Textable',['../class_textable.html',1,'']]],
-  ['textdocumentcontent',['TextDocumentContent',['../classmlclient_1_1_text_document_content.html',1,'mlclient']]]
+  ['os',['OS',['../classel_1_1base_1_1utils_1_1_o_s.html',1,'el::base::utils']]]
 ];

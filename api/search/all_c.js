@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['textable',['Textable',['../class_textable.html',1,'']]],
-  ['textdocumentcontent',['TextDocumentContent',['../classmlclient_1_1_text_document_content.html',1,'mlclient']]],
-  ['textdocumentcontent',['TextDocumentContent',['../classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3',1,'mlclient::TextDocumentContent']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]],
-  ['todocument',['toDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a7f4a350b6478549cf74fc5f7d05fdc18',1,'mlclient::utilities::CppRestJsonHelper::toDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a45ad8986c6a65bcdebfef8b68a34c4af',1,'mlclient::utilities::PugiXmlHelper::toDocument()']]],
-  ['translate',['translate',['../namespacemlclient.html#a5e38f2d1ec1383c9105a87c535af1e68',1,'mlclient']]]
+  ['newfilestream',['newFileStream',['../classel_1_1base_1_1utils_1_1_file.html#aa4bef1f2e00269d75c1c1eabb0ce4563',1,'el::base::utils::File']]],
+  ['newlineforcontainer',['NewLineForContainer',['../namespaceel.html#a2784aacd04cb7816ac1c0b20fcbf83cba8246f93d9afd63f87632d2d718cabca8',1,'el']]],
+  ['nocopy',['NoCopy',['../classel_1_1base_1_1_no_copy.html',1,'el::base']]],
+  ['nocredentialsexception',['NoCredentialsException',['../classmlclient_1_1_no_credentials_exception.html',1,'mlclient']]],
+  ['nomutex',['NoMutex',['../classel_1_1base_1_1threading_1_1internal_1_1_no_mutex.html',1,'el::base::threading::internal']]],
+  ['noscopedlock',['NoScopedLock',['../classel_1_1base_1_1threading_1_1internal_1_1_no_scoped_lock.html',1,'el::base::threading::internal']]],
+  ['nullwriter',['NullWriter',['../classel_1_1base_1_1_null_writer.html',1,'el::base']]]
 ];
