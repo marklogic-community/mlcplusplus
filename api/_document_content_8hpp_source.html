@@ -100,118 +100,155 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classmlclient_1_1_document_content.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_document_content.html">DocumentContent</a> {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="comment">// default constructor creation by compiler</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span>  <a class="code" href="classmlclient_1_1_document_content.html#a65fd0bfc31fcfeb870039e139898d8dc">DocumentContent</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_document_content.html#a121511976bfebd4920052866a14ba7b7">~DocumentContent</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">virtual</span> std::ostream* <a class="code" href="classmlclient_1_1_document_content.html#ad26b2d1737aa7f9f39ce241e810d5b89">getStream</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">virtual</span> std::string <a class="code" href="classmlclient_1_1_document_content.html#ae66dffb64fcb673a5d51b7bdafc51e94">getContent</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  std::string <a class="code" href="classmlclient_1_1_document_content.html#acc5ed218bed7474b9ecb0f062fe3d40f">getMimeType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_document_content.html#a5dd0bf51580aa8ce4c2c9359f235807b">setMimeType</a>(<span class="keyword">const</span> std::string&amp; mt);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classmlclient_1_1_document_content.html#a00defc73beb6236ae4031f75ef7444e0">   83</a></span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string <a class="code" href="classmlclient_1_1_document_content.html#a00defc73beb6236ae4031f75ef7444e0">MIME_JSON</a>; <span class="comment">//&lt; The value application/json</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classmlclient_1_1_document_content.html#aba94da0d65a4047c41bf16bf246936c5">   84</a></span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string <a class="code" href="classmlclient_1_1_document_content.html#aba94da0d65a4047c41bf16bf246936c5">MIME_XML</a>; <span class="comment">//&lt; The value application/xml</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">class </span>Impl;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  Impl* mImpl;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">// TODO streaming operator</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classmlclient_1_1_i_document_content.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="comment">// default constructor creation by compiler</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span>  <a class="code" href="classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2">IDocumentContent</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">~IDocumentContent</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">virtual</span> std::ostream* <a class="code" href="classmlclient_1_1_i_document_content.html#abc5817a03238a61c176f7c5c3607d509">getStream</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">virtual</span> std::string <a class="code" href="classmlclient_1_1_i_document_content.html#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">getContent</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">virtual</span> std::string <a class="code" href="classmlclient_1_1_i_document_content.html#a20e1cc7e2a9958596ac52b6a39605119">getMimeType</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_i_document_content.html#acf7ba80db8786497f8e3bf794b4775c7">setMimeType</a>(<span class="keyword">const</span> std::string&amp; mt) = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string MIME_JSON; <span class="comment">//&lt; The value application/json</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keyword">static</span> <span class="keyword">const</span> std::string MIME_XML; <span class="comment">//&lt; The value application/xml</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="comment">//class Impl;</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="comment">//Impl* mbImpl;</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">// TODO streaming operator</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// INTERFACES</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"></span><span class="comment">//class Textable {</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">//public:</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"></span>  <span class="comment">//virtual Textable();</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span>  <span class="comment">//virtual ~Textable();</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <span class="comment">//virtual void setContent(std::string content) = 0;</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="comment">//virtual std::string&amp; getContent() = 0;</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="comment">//virtual int getLength() = 0;</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">//};</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// INTERFACES</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * \class Textable</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * \brief This is a marker (tagging) interface class that indicates a DocumentContent subclass can be interacted with as a string.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * Use of this class is for multiple inheritance where a custom class may implement DocumentContent, but may also need some API clients</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * to interact with it as a string.</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * \author Adam Fowler &lt;adam.fowler@marklogic.com&gt;</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * \since 8.0.0</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * \date 2016-05-01</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">//class Textable {</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">//public:</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"></span>  <span class="comment">//virtual Textable();</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"></span>  <span class="comment">//virtual ~Textable();</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="comment">//virtual void setContent(std::string content) = 0;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="comment">//virtual std::string&amp; getContent() = 0;</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="comment">//virtual int getLength() = 0;</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">//};</span></div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">// SPECIALISATIONS</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="classmlclient_1_1_text_document_content.html">  155</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> : <span class="keyword">public</span> <a class="code" href="classmlclient_1_1_document_content.html">DocumentContent</a> {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  <a class="code" href="classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3">TextDocumentContent</a>();</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_text_document_content.html#aa073a30bd440b059ae34ac29e2bd92ea">~TextDocumentContent</a>();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_text_document_content.html#a15f9e7039be35aa3141a7228183bfbd3">setContent</a>(std::string content);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  std::ostream* <a class="code" href="classmlclient_1_1_text_document_content.html#a60a079e6e1b2c246b727d0fa564c9513">getStream</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  std::string <a class="code" href="classmlclient_1_1_text_document_content.html#af11139496d2161ffbfc2ffdb5fa040d2">getContent</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classmlclient_1_1_text_document_content.html#a3d857988aec90bdfd8dd5ca71c143d30">getLength</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <span class="comment">// TODO implement generic traversal API here, include binary support (for easy multi part mime handling)</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keyword">class </span>Impl;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  Impl* mImpl;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;};</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">  215</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">BinaryEncoding</a> : <span class="keywordtype">int</span> {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;  HEX = 1,     <span class="comment">//&lt; Hexadecimal representation i.e. as characters 0-F</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  BIN = 2      <span class="comment">//&lt; As binary, rather than encoded. Used in multi-part mime</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;};</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">// SPECIALISATIONS</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classmlclient_1_1_text_document_content.html">  156</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> : <span class="keyword">public</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  <a class="code" href="classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3">TextDocumentContent</a>();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <a class="code" href="classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3">TextDocumentContent</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a>&amp; doc);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_text_document_content.html#a42735d82b7326b3d682675695c094570">~TextDocumentContent</a>();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_text_document_content.html#a15f9e7039be35aa3141a7228183bfbd3">setContent</a>(std::string content);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  std::ostream* <a class="code" href="classmlclient_1_1_text_document_content.html#a0f8a7bbcbf88d4113a04a7c0bf407b37">getStream</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  std::string <a class="code" href="classmlclient_1_1_text_document_content.html#aef4e49b621b929228a74e0383af97ce2">getContent</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  std::string <a class="code" href="classmlclient_1_1_text_document_content.html#a78bc1e195ccf6b9f8aeed478c0d00f7d">getMimeType</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_text_document_content.html#ae7e71ba4d85d44f4db896f95ab4020a2">setMimeType</a>(<span class="keyword">const</span> std::string&amp; mt) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classmlclient_1_1_binary_document_content.html">  231</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_binary_document_content.html">BinaryDocumentContent</a> : <span class="keyword">public</span> <a class="code" href="classmlclient_1_1_document_content.html">DocumentContent</a> {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <a class="code" href="classmlclient_1_1_binary_document_content.html#ad70648d3a162c4876b1688d454f4992c">BinaryDocumentContent</a>();</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_binary_document_content.html#a6183420ef5307387838158987e43913c">~BinaryDocumentContent</a>();</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;  <span class="comment">//void setContent(std::string content);</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment"></span>  <span class="comment">//std::string&amp; getContent(); // default to one encoding</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment"></span>  <span class="comment">//std::string&amp; getContent(const enum BinaryEncoding&amp; encoding = BinaryEncoding::HEX);</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment"></span>  <span class="comment">//void setContent(char* binary,int offset,int length); // TODO proper useful definition</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment"></span>  <span class="comment">//int getLength();</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  <span class="keyword">class </span>Impl;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;  Impl* mImpl;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;};</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment">// TODO &lt;&lt; operator for BinaryDocumentContent</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_DOCUMENTCONTENT_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_ae66dffb64fcb673a5d51b7bdafc51e94"><div class="ttname"><a href="classmlclient_1_1_document_content.html#ae66dffb64fcb673a5d51b7bdafc51e94">mlclient::DocumentContent::getContent</a></div><div class="ttdeci">virtual std::string getContent() const  =0</div><div class="ttdoc">Returns the content of this DocumentContent as a std::string. </div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_a3d857988aec90bdfd8dd5ca71c143d30"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a3d857988aec90bdfd8dd5ca71c143d30">mlclient::TextDocumentContent::getLength</a></div><div class="ttdeci">int getLength() const </div><div class="ttdoc">Returns the number of characters in the content string. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:143</div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_af11139496d2161ffbfc2ffdb5fa040d2"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#af11139496d2161ffbfc2ffdb5fa040d2">mlclient::TextDocumentContent::getContent</a></div><div class="ttdeci">std::string getContent() const </div><div class="ttdoc">Returns the content as a string. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:140</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_aba94da0d65a4047c41bf16bf246936c5"><div class="ttname"><a href="classmlclient_1_1_document_content.html#aba94da0d65a4047c41bf16bf246936c5">mlclient::DocumentContent::MIME_XML</a></div><div class="ttdeci">static const std::string MIME_XML</div><div class="ttdoc">Standard MarkLogic JSON mime type. Used for all configuration API calls. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:84</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_a65fd0bfc31fcfeb870039e139898d8dc"><div class="ttname"><a href="classmlclient_1_1_document_content.html#a65fd0bfc31fcfeb870039e139898d8dc">mlclient::DocumentContent::DocumentContent</a></div><div class="ttdeci">DocumentContent()</div><div class="ttdoc">Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options...</div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:44</div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html">mlclient::TextDocumentContent</a></div><div class="ttdoc">Pure virtual destructor. REQUIRED to allow subclassing. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:155</div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_aa073a30bd440b059ae34ac29e2bd92ea"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#aa073a30bd440b059ae34ac29e2bd92ea">mlclient::TextDocumentContent::~TextDocumentContent</a></div><div class="ttdeci">virtual ~TextDocumentContent()</div><div class="ttdoc">Pure virtual destructor. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:133</div></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classmlclient_1_1_text_document_content.html#a3d857988aec90bdfd8dd5ca71c143d30">getLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <span class="comment">// TODO implement generic traversal API here, include binary support (for easy multi part mime handling)</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  <span class="keyword">class </span>Impl;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  Impl* mImpl;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;};</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">  242</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">BinaryEncoding</a> : <span class="keywordtype">int</span> {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  HEX = 1,     <span class="comment">//&lt; Hexadecimal representation i.e. as characters 0-F</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  BIN = 2      <span class="comment">//&lt; As binary, rather than encoded. Used in multi-part mime</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;};</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="classmlclient_1_1_binary_document_content.html">  258</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_binary_document_content.html">BinaryDocumentContent</a> : <span class="keyword">public</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <a class="code" href="classmlclient_1_1_binary_document_content.html#ad70648d3a162c4876b1688d454f4992c">BinaryDocumentContent</a>();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_binary_document_content.html#a6183420ef5307387838158987e43913c">~BinaryDocumentContent</a>();</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;  <span class="comment">//void setContent(std::string content);</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment"></span>  <span class="comment">//std::string&amp; getContent(); // default to one encoding</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment"></span>  <span class="comment">//std::string&amp; getContent(const enum BinaryEncoding&amp; encoding = BinaryEncoding::HEX);</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment"></span>  <span class="comment">//void setContent(char* binary,int offset,int length); // TODO proper useful definition</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment"></span>  <span class="comment">//int getLength();</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  std::string <a class="code" href="classmlclient_1_1_binary_document_content.html#a60f261a613fdb272f4dbf08d01541a99">getMimeType</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_binary_document_content.html#a4693a628566d58ab5599c1e2e6d2f3ea">setMimeType</a>(<span class="keyword">const</span> std::string&amp; mt) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  std::ostream* <a class="code" href="classmlclient_1_1_binary_document_content.html#af11c67ba41cd48b1a945db2b28a723e3">getStream</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  std::string <a class="code" href="classmlclient_1_1_binary_document_content.html#a7ba0310e3306652acdb085c135235eb1">getContent</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="keyword">class </span>Impl;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  Impl* mImpl;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;};</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">// TODO &lt;&lt; operator for BinaryDocumentContent</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_DOCUMENTCONTENT_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a3d857988aec90bdfd8dd5ca71c143d30"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a3d857988aec90bdfd8dd5ca71c143d30">mlclient::TextDocumentContent::getLength</a></div><div class="ttdeci">int getLength() const </div><div class="ttdoc">Returns the number of characters in the content string. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">mlclient::IDocumentContent::getContent</a></div><div class="ttdeci">virtual std::string getContent() const  =0</div><div class="ttdoc">Returns the content of this DocumentContent as a std::string. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_aef4e49b621b929228a74e0383af97ce2"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#aef4e49b621b929228a74e0383af97ce2">mlclient::TextDocumentContent::getContent</a></div><div class="ttdeci">std::string getContent() const  override</div><div class="ttdoc">Returns the content as a string. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a0f8a7bbcbf88d4113a04a7c0bf407b37"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a0f8a7bbcbf88d4113a04a7c0bf407b37">mlclient::TextDocumentContent::getStream</a></div><div class="ttdeci">std::ostream * getStream() const  override</div><div class="ttdoc">Returns the content of this TextDocumentContent as an ostream. </div></div>
+<div class="ttc" id="classmlclient_1_1_binary_document_content_html_a4693a628566d58ab5599c1e2e6d2f3ea"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#a4693a628566d58ab5599c1e2e6d2f3ea">mlclient::BinaryDocumentContent::setMimeType</a></div><div class="ttdeci">void setMimeType(const std::string &amp;mt) override</div><div class="ttdoc">Sets the MIME type of this content. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_acf7ba80db8786497f8e3bf794b4775c7"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#acf7ba80db8786497f8e3bf794b4775c7">mlclient::IDocumentContent::setMimeType</a></div><div class="ttdeci">virtual void setMimeType(const std::string &amp;mt)=0</div><div class="ttdoc">Sets the MIME type of this content. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_ae7e71ba4d85d44f4db896f95ab4020a2"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#ae7e71ba4d85d44f4db896f95ab4020a2">mlclient::TextDocumentContent::setMimeType</a></div><div class="ttdeci">void setMimeType(const std::string &amp;mt) override</div><div class="ttdoc">Sets the MIME type of this content. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html">mlclient::TextDocumentContent</a></div><div class="ttdoc">Pure virtual destructor. REQUIRED to allow subclassing. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:156</div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_afdc1b9115e2a4d051fb263e74e06c21a"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">mlclient::IDocumentContent::~IDocumentContent</a></div><div class="ttdeci">virtual ~IDocumentContent()</div></div>
 <div class="ttc" id="classmlclient_1_1_binary_document_content_html_a6183420ef5307387838158987e43913c"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#a6183420ef5307387838158987e43913c">mlclient::BinaryDocumentContent::~BinaryDocumentContent</a></div><div class="ttdeci">virtual ~BinaryDocumentContent()</div><div class="ttdoc">Destructor. Will deallocate all contained buffered data. </div></div>
-<div class="ttc" id="namespacemlclient_html_ad47ff6baab050e78452eb2167a2a3b54"><div class="ttname"><a href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">mlclient::BinaryEncoding</a></div><div class="ttdeci">BinaryEncoding</div><div class="ttdoc">An enumeration for use with the BinaryDocumentContent class. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:215</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_acc5ed218bed7474b9ecb0f062fe3d40f"><div class="ttname"><a href="classmlclient_1_1_document_content.html#acc5ed218bed7474b9ecb0f062fe3d40f">mlclient::DocumentContent::getMimeType</a></div><div class="ttdeci">std::string getMimeType() const </div><div class="ttdoc">Returns the MIME type of this content. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:53</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_a121511976bfebd4920052866a14ba7b7"><div class="ttname"><a href="classmlclient_1_1_document_content.html#a121511976bfebd4920052866a14ba7b7">mlclient::DocumentContent::~DocumentContent</a></div><div class="ttdeci">virtual ~DocumentContent()</div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:48</div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_a60a079e6e1b2c246b727d0fa564c9513"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a60a079e6e1b2c246b727d0fa564c9513">mlclient::TextDocumentContent::getStream</a></div><div class="ttdeci">std::ostream * getStream() const </div><div class="ttdoc">Returns the content of this TextDocumentContent as an ostream. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:147</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html"><div class="ttname"><a href="classmlclient_1_1_document_content.html">mlclient::DocumentContent</a></div><div class="ttdoc">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...</div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:32</div></div>
-<div class="ttc" id="classmlclient_1_1_binary_document_content_html"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html">mlclient::BinaryDocumentContent</a></div><div class="ttdoc">This class is a specialisation of DocumentContent that holds binary data. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:231</div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_a58169cb4e3357f876ec7250c0db1dec3"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3">mlclient::TextDocumentContent::TextDocumentContent</a></div><div class="ttdeci">TextDocumentContent()</div><div class="ttdoc">Constructs a blank text document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:130</div></div>
+<div class="ttc" id="namespacemlclient_html_ad47ff6baab050e78452eb2167a2a3b54"><div class="ttname"><a href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">mlclient::BinaryEncoding</a></div><div class="ttdeci">BinaryEncoding</div><div class="ttdoc">An enumeration for use with the BinaryDocumentContent class. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:242</div></div>
+<div class="ttc" id="classmlclient_1_1_binary_document_content_html_a7ba0310e3306652acdb085c135235eb1"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#a7ba0310e3306652acdb085c135235eb1">mlclient::BinaryDocumentContent::getContent</a></div><div class="ttdeci">std::string getContent() const  override</div><div class="ttdoc">Returns the content as a string. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a42735d82b7326b3d682675695c094570"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a42735d82b7326b3d682675695c094570">mlclient::TextDocumentContent::~TextDocumentContent</a></div><div class="ttdeci">virtual ~TextDocumentContent()</div><div class="ttdoc">Pure virtual destructor. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_a20e1cc7e2a9958596ac52b6a39605119"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#a20e1cc7e2a9958596ac52b6a39605119">mlclient::IDocumentContent::getMimeType</a></div><div class="ttdeci">virtual std::string getMimeType() const  =0</div><div class="ttdoc">Returns the MIME type of this content. </div></div>
+<div class="ttc" id="classmlclient_1_1_binary_document_content_html"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html">mlclient::BinaryDocumentContent</a></div><div class="ttdoc">This class is a specialisation of DocumentContent that holds binary data. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:258</div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:33</div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a58169cb4e3357f876ec7250c0db1dec3"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3">mlclient::TextDocumentContent::TextDocumentContent</a></div><div class="ttdeci">TextDocumentContent()</div><div class="ttdoc">Constructs a blank text document. </div></div>
 <div class="ttc" id="classmlclient_1_1_binary_document_content_html_ad70648d3a162c4876b1688d454f4992c"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#ad70648d3a162c4876b1688d454f4992c">mlclient::BinaryDocumentContent::BinaryDocumentContent</a></div><div class="ttdeci">BinaryDocumentContent()</div><div class="ttdoc">Default constructor. Initialises the binary content to an empty buffer, of zero length. </div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.cpp:12</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_ad26b2d1737aa7f9f39ce241e810d5b89"><div class="ttname"><a href="classmlclient_1_1_document_content.html#ad26b2d1737aa7f9f39ce241e810d5b89">mlclient::DocumentContent::getStream</a></div><div class="ttdeci">virtual std::ostream * getStream() const  =0</div><div class="ttdoc">Returns the content of this DocumentContent as an ostream. </div></div>
-<div class="ttc" id="classmlclient_1_1_text_document_content_html_a15f9e7039be35aa3141a7228183bfbd3"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a15f9e7039be35aa3141a7228183bfbd3">mlclient::TextDocumentContent::setContent</a></div><div class="ttdeci">void setContent(std::string content)</div><div class="ttdoc">Sets the textual content for this document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:137</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_a5dd0bf51580aa8ce4c2c9359f235807b"><div class="ttname"><a href="classmlclient_1_1_document_content.html#a5dd0bf51580aa8ce4c2c9359f235807b">mlclient::DocumentContent::setMimeType</a></div><div class="ttdeci">void setMimeType(const std::string &amp;mt)</div><div class="ttdoc">Sets the MIME type of this content. </div><div class="ttdef"><b>Definition:</b> DocumentContent.cpp:57</div></div>
-<div class="ttc" id="classmlclient_1_1_document_content_html_a00defc73beb6236ae4031f75ef7444e0"><div class="ttname"><a href="classmlclient_1_1_document_content.html#a00defc73beb6236ae4031f75ef7444e0">mlclient::DocumentContent::MIME_JSON</a></div><div class="ttdeci">static const std::string MIME_JSON</div><div class="ttdoc">An enumeration for use with the DocumentContent class. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:83</div></div>
+<div class="ttc" id="classmlclient_1_1_binary_document_content_html_a60f261a613fdb272f4dbf08d01541a99"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#a60f261a613fdb272f4dbf08d01541a99">mlclient::BinaryDocumentContent::getMimeType</a></div><div class="ttdeci">std::string getMimeType() const  override</div><div class="ttdoc">Sets the content from the given string. </div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:20</div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_ab22722f1867bce185bba426e5f8afba2"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2">mlclient::IDocumentContent::IDocumentContent</a></div><div class="ttdeci">IDocumentContent()</div></div>
+<div class="ttc" id="classmlclient_1_1_binary_document_content_html_af11c67ba41cd48b1a945db2b28a723e3"><div class="ttname"><a href="classmlclient_1_1_binary_document_content.html#af11c67ba41cd48b1a945db2b28a723e3">mlclient::BinaryDocumentContent::getStream</a></div><div class="ttdeci">std::ostream * getStream() const  override</div><div class="ttdoc">Returns the content of this TextDocumentContent as an ostream. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a78bc1e195ccf6b9f8aeed478c0d00f7d"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a78bc1e195ccf6b9f8aeed478c0d00f7d">mlclient::TextDocumentContent::getMimeType</a></div><div class="ttdeci">std::string getMimeType() const  override</div><div class="ttdoc">Returns the MIME type of this content. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html_abc5817a03238a61c176f7c5c3607d509"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html#abc5817a03238a61c176f7c5c3607d509">mlclient::IDocumentContent::getStream</a></div><div class="ttdeci">virtual std::ostream * getStream() const  =0</div><div class="ttdoc">Returns the content of this DocumentContent as an ostream. </div></div>
+<div class="ttc" id="classmlclient_1_1_text_document_content_html_a15f9e7039be35aa3141a7228183bfbd3"><div class="ttname"><a href="classmlclient_1_1_text_document_content.html#a15f9e7039be35aa3141a7228183bfbd3">mlclient::TextDocumentContent::setContent</a></div><div class="ttdeci">void setContent(std::string content)</div><div class="ttdoc">Sets the textual content for this document. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['level',['level',['../classel_1_1_configuration.html#a66a96cf46d20204c50718f8a5e3622e2',1,'el::Configuration']]],
-  ['list',['list',['../classel_1_1base_1_1utils_1_1_abstract_registry.html#a072859d3728a75f910c2898f62fd12da',1,'el::base::utils::AbstractRegistry::list(void) ELPP_FINAL'],['../classel_1_1base_1_1utils_1_1_abstract_registry.html#a1c3da2af9177cbfae6f10b9e5dbe615c',1,'el::base::utils::AbstractRegistry::list(void) const ELPP_FINAL']]],
-  ['logcrashreason',['logCrashReason',['../classel_1_1_helpers.html#abf1ae61428740e1e6c5d5f0c36500faa',1,'el::Helpers']]],
-  ['logstreamsreference',['logStreamsReference',['../classel_1_1_loggers.html#ad17312c9474d94bc98efcaf08ca279a4',1,'el::Loggers']]],
-  ['ltrim',['ltrim',['../classel_1_1base_1_1utils_1_1_str.html#a64b7a841f04ed916ed8d234b8508703e',1,'el::base::utils::Str']]]
+  ['textdocumentcontent',['TextDocumentContent',['../classmlclient_1_1_text_document_content.html#a58169cb4e3357f876ec7250c0db1dec3',1,'mlclient::TextDocumentContent::TextDocumentContent()'],['../classmlclient_1_1_text_document_content.html#a0f72c4bb5475c13dfe73ba9d68cee582',1,'mlclient::TextDocumentContent::TextDocumentContent(const TextDocumentContent &amp;doc)']]],
+  ['todocument',['toDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a19fb2a6e83437d5f2c5e1a9c1599c84e',1,'mlclient::utilities::CppRestJsonHelper::toDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#ad2b38faa8cb7201e8735f8347c580263',1,'mlclient::utilities::PugiXmlHelper::toDocument()']]]
 ];

@@ -87,8 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">mlclient Namespace Reference</div>  </div>
 </div><!--header-->
@@ -106,13 +105,12 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_binary_document_content.html">BinaryDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="classmlclient_1_1_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> that holds binary data.  <a href="classmlclient_1_1_binary_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> that holds binary data.  <a href="classmlclient_1_1_binary_document_content.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html">Connection</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a high level logical object representing all access to a single MarkLogic database.  <a href="classmlclient_1_1_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_document_content.html">DocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof).  <a href="classmlclient_1_1_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_invalid_format_exception.html">InvalidFormatException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates an issue with parsing content.  <a href="classmlclient_1_1_invalid_format_exception.html#details">More...</a><br /></td></tr>
@@ -202,32 +200,24 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a356e20b227d8082d513f38341d3ec997"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a356e20b227d8082d513f38341d3ec997">runOnce</a> ()</td></tr>
-<tr class="separator:a356e20b227d8082d513f38341d3ec997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac70556bf7f059b82d1f13ef54634eb35"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ac70556bf7f059b82d1f13ef54634eb35">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:ac70556bf7f059b82d1f13ef54634eb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a552e719edcc7c70165bb96137ad79dc3"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a552e719edcc7c70165bb96137ad79dc3">operator+</a> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:a552e719edcc7c70165bb96137ad79dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e38f2d1ec1383c9105a87c535af1e68"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a5e38f2d1ec1383c9105a87c535af1e68">translate</a> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="memitem:a73b0f3bd368664c0e17b1c1c1b35d832"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b0f3bd368664c0e17b1c1c1b35d832"></a>
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:a73b0f3bd368664c0e17b1c1c1b35d832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0cb9825a6d38e9d4e91d6104ff3ab6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d0cb9825a6d38e9d4e91d6104ff3ab6"></a>
+std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:a8d0cb9825a6d38e9d4e91d6104ff3ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e38f2d1ec1383c9105a87c535af1e68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e38f2d1ec1383c9105a87c535af1e68"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
 <tr class="separator:a5e38f2d1ec1383c9105a87c535af1e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e0b66ea5ab7663e730cbe1c2ace6729"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e0b66ea5ab7663e730cbe1c2ace6729"></a>
+<tr class="memitem:aa86cf3969f5ec24d0fb59349de683858"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86cf3969f5ec24d0fb59349de683858"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
-<tr class="separator:a6e0b66ea5ab7663e730cbe1c2ace6729"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada7a34db73b47eb7b8fee6f57af84bfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada7a34db73b47eb7b8fee6f57af84bfa"></a>
+<tr class="separator:aa86cf3969f5ec24d0fb59349de683858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87fb95523acbadf164f20b738278cd70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87fb95523acbadf164f20b738278cd70"></a>
 std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
-<tr class="separator:ada7a34db73b47eb7b8fee6f57af84bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf94bbb1385a811082de833213ba8c43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf94bbb1385a811082de833213ba8c43"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;val)</td></tr>
-<tr class="separator:acf94bbb1385a811082de833213ba8c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05723511b4922b910702b2119b4826da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05723511b4922b910702b2119b4826da"></a>
-const boost::regex&#160;</td><td class="memItemRight" valign="bottom"><b>content_type_re</b> (&quot;([a-zA-Z\\.]+)/([a-zA-Z\\.]+)&quot;)</td></tr>
-<tr class="separator:a05723511b4922b910702b2119b4826da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a4621195d109badb274a2189f1c4fae01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4621195d109badb274a2189f1c4fae01"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>runOnceHelper</b> = <a class="el" href="namespacemlclient.html#a356e20b227d8082d513f38341d3ec997">runOnce</a>()</td></tr>
-<tr class="separator:a4621195d109badb274a2189f1c4fae01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a87fb95523acbadf164f20b738278cd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a635bf69cbc7b28df57b865954ba9d8cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a635bf69cbc7b28df57b865954ba9d8cf"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
+<tr class="separator:a635bf69cbc7b28df57b865954ba9d8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>the namespace which wraps all Core Public C++ API classes. </p>
@@ -270,115 +260,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>runOnceHelper</b> = <a
       </table>
 </div><div class="memdoc">
 <p>The type of response The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a552e719edcc7c70165bb96137ad79dc3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string &amp; mlclient::operator+ </td>
-          <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;&#160;</td>
-          <td class="paramname"><em>rt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds the textual respresentation of a response type to a string. E.g. ResponseType::BINARY </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>String to concatenate to </td></tr>
-    <tr><td class="paramname">rt</td><td>The response type const reference </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac70556bf7f059b82d1f13ef54634eb35"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; mlclient::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;&#160;</td>
-          <td class="paramname"><em>rt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds the textual respresentation of a response type to a stream. E.g. ResponseType::BINARY </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">os</td><td>Output Stream (E.g. std::cout) </td></tr>
-    <tr><td class="paramname">rt</td><td><a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> Type const reference </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a356e20b227d8082d513f38341d3ec997"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mlclient::runOnce </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>TODO make output file include version number of this upcoming release </p>
-
-</div>
-</div>
-<a class="anchor" id="a5e38f2d1ec1383c9105a87c535af1e68"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::string mlclient::translate </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;&#160;</td>
-          <td class="paramname"><em>rt</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds the textual respresentation of a response type to a string (C-string char*). E.g. ResponseType::BINARY </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">orig</td><td>the char* before this response type </td></tr>
-    <tr><td class="paramname">rt</td><td>The response type const reference </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/utilities Directory Reference</title>
+<title>MLCPlusPlus: DocumentContent Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -61,6 +61,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,26 +83,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7b5d38f1875f1b693f62ca6a108a1129.html">utilities</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">utilities Directory Reference</div>  </div>
+<div class="title">DocumentContent Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:_cpp_rest_json_document_content_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><b>CppRestJsonDocumentContent.hpp</b> <a href="_cpp_rest_json_document_content_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:_cpp_rest_json_helper_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><b>CppRestJsonHelper.hpp</b> <a href="_cpp_rest_json_helper_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:_pugi_xml_helper_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_pugi_xml_helper_8hpp.html">PugiXmlHelper.hpp</a> <a href="_pugi_xml_helper_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
+
+<p>This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof).  
+ <a href="class_document_content.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a>&gt;</code></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof). </p>
+<p>This class can also be used to wrap search options and other JSON/XML based content. There are only two specialisations of this class - text and binary - all more complex types are created by using the <a class="el" href="">CppRestJsonHelper</a> and <a class="el" href="">PugiXmlHelper</a> to parse/create these types. E.g. a pugixml::document or web::json::value.</p>
+<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016-04-25</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is an abstract class designed for extending, and cannot be instantiated directly. </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

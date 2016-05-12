@@ -81,32 +81,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Design </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a></dd></dl>
+<div class="textblock"><p>Introduction to the basic approach and design of the API</p>
+<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a></dd></dl>
 <p>This page details the underlying API and the decisions made during its development.</p>
 <ul>
-<li>sec_BestPractices Best Practices used in creating this API </li>
-<li>sec_WhyUseCppRest Why I chose to use Microsoft's CPP REST API </li>
-<li>sec_APIStructure Why the API and namespaces are structured as they are</li>
+<li>Best Practices used in creating this API </li>
+<li>Why I chose to use Microsoft's CPP REST API </li>
+<li>Why the API and namespaces are structured as they are</li>
 </ul>
-<p>sec_BestPractices Best Practices</p>
+<p>Best Practices</p>
 <p>The API applies many best practices in the industry and C/C++ development generally. Many of the decisions taken are based upon practical experience and information from A few references.</p>
 <p>API Design for C++ (Martin Reddy, 2011) was a source of much inspiration that has made this API as good as it can be. I thoroughly recommend this book for anyone writing APIs on any platform, even though it uses C++ as the base language. This book covers everything about APIs - including documentation, tools, project structure, versioning and much more. Well worth its cover price.</p>
 <p>Extensive C++ (TODO check reference) was also a source of many useful tips and tricks, although I found it somewhat behind the curve of C++14. There are particularly good sections on templates and some coverage of unique_ptr from C++11.</p>
 <p>I was planning on listing all the best practices I've used, but there were far too many in the end! If you are terminally interested, then have a read of all issues fixed under the Sprint-001 milestone on GitHub - there tends to be one brief issue logged per each best practice used in this API.</p>
 <p>I didn't use every best practice mentioned, but I think I covered 99% of them!</p>
-<p>sec_WhyUseCppRest Why Use Microsoft's CPP REST API?</p>
+<p>Why Use Microsoft's CPP REST API?</p>
 <p>This API was released as a Beta programme in 2014, and had a major release in late 2015. Shockingly, it is an Apache 2 licensed Open Source library that supports not only Microsoft's Windows OS, but also Windows Mobile, Mac OS X, Linux, and iOS platforms.</p>
 <p>Much of the internals of the MarkLogic C++ API uses JSON as its underlying communication mechanism rather than XML. For this reason we needed an API with solid JSON support, and where the JSON wrapper objects could be passed to the HTTP API.</p>
 <p>Microsoft's API provides excellent support for JSON and RESTful HTTP, good cross platform support, and support for synchronous and asynchronous (via Lambda expressions) API usage. It is also very simple to use, so it was a natural fit to use underneath the C++ API.</p>
 <p>This API is entirely hidden as a compile time dependency though - by using the PIMPL idiom throughout the API code we were able to remove all compile time dependencies in the Core Public API. The only exception is in the utility classes for APIs to work with JSON and XML documents. These are optional though, so just don't include the <a class="el" href="_cpp_rest_json_helper_8hpp_source.html">CppRestJsonHelper.hpp</a> or <a class="el" href="_pugi_xml_helper_8hpp.html">PugiXmlHelper.hpp</a> files unless you need them.</p>
-<p>sec_APIStructure API Structure</p>
+<p>API Structure</p>
 <p>There are 4 parts of the API, each with its own approaches and aims. These are detailed separately below.</p>
 <p>This is the place application developers will spend 99% of their time. Classes and functions in this part of the API provide high level convenience methods that abstract out the underlying MarkLogic REST API structures and behaviour.</p>
 <p>The main class here is the <a class="el" href="">Connection</a> class. This provides a handle on access to a named MarkLogic database, and caches underlying TCP, HTTP and Digest security information, removing the need for this logic in your applications.</p>
 <p>Various convenience methods are supported that map on to MarkLogic REST API methods directly. For example, the POST /v1/search endpoint that allows you to send text based query grammar searches, search options, and complex raw MarkLogic cts search configuration in one request is wrapped by the <a class="el" href="">Connection::search </a> function.</p>
 <p>The Connection classes' functions return a <a class="el" href="">Response</a> object instance. This is an immutable object that represents the response from MarkLogic Server. This is quite a low level object so developers may wish to use the <a class="el" href="">CppRestJsonHelper</a> and <a class="el" href="">PugiXmlHelper</a> , and <a class="el" href="">ResponseHelper</a> classes to gain higher level representations of a response from MarkLogic Server.</p>
-<p>These helpers return an instance of <a class="el" href="">DocumentContent</a> - one of <a class="el" href="">TextDocumentContent</a> for plain text, JSON and XML content, or <a class="el" href="">BinaryDocumentContent</a> for all other content types. This is a low level wrapper that wraps just the content of a document, and not its properties.</p>
-<p>The <a class="el" href="">Document</a> class provides a high level representation of a Document in its entirety. This includes its content (an instance of <a class="el" href="">DocumentContent</a>), properties, URI, and security permissions.</p>
+<p>These helpers return an instance of <a class="el" href="class_document_content.html">DocumentContent</a> - one of <a class="el" href="">TextDocumentContent</a> for plain text, JSON and XML content, or <a class="el" href="">BinaryDocumentContent</a> for all other content types. This is a low level wrapper that wraps just the content of a document, and not its properties.</p>
+<p>The <a class="el" href="">Document</a> class provides a high level representation of a Document in its entirety. This includes its content (an instance of <a class="el" href="class_document_content.html">DocumentContent</a>), properties, URI, and security permissions.</p>
 <dl class="section warning"><dt>Warning</dt><dd>It's important to remember that not every function will return full document information. For example, a <a class="el" href="">Connection::getDocument </a> call will return a Document with a URI and Content, but not properties or permissions by default. The same is true of a search result, that will return a URI, but may not return an entire document's content depending on search settings. Remember to set the appropriate method settings, or make a separate call to <a class="el" href="">getDocument* </a> methods.</dd></dl>
 <p>All classes in the Core Public API are in the <a class="el" href="namespacemlclient.html">mlclient</a> namespace.</p>
 <p>This API provides non-core, i.e. optional, classes that use the core public API, but upon which the core public API is not dependant. This is particularly relevant when dealing with third party APIs specific to a document type, such as XML or JSON. There are many implementations to choose from for these APIs. Rather than introduce a forced compile time dependency upon clients, these classes are instead located within their own files within the utilities API.</p>

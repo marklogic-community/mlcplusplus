@@ -85,22 +85,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacemlclient.html">mlclient</a></li><li class="navelem"><a class="el" href="namespacemlclient_1_1utilities.html">utilities</a></li><li class="navelem"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacemlclient.html">mlclient</a></li><li class="navelem"><a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">mlclient::utilities::CppRestJsonHelper Member List</div>  </div>
+<div class="title">mlclient::IDocumentContent Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CppRestJsonHelper</b>()=delete (defined in <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9">fromDocument</a>(const IDocumentContent &amp;doc)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a549fde831bf5144b19c029e710fecb80">fromResponse</a>(const Response &amp;resp)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a19fb2a6e83437d5f2c5e1a9c1599c84e">toDocument</a>(const web::json::value json)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~CppRestJsonHelper</b>()=delete (defined in <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">getContent</a>() const  =0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#a20e1cc7e2a9958596ac52b6a39605119">getMimeType</a>() const  =0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#abc5817a03238a61c176f7c5c3607d509">getStream</a>() const  =0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2">IDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>MIME_JSON</b> (defined in <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>MIME_XML</b> (defined in <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#acf7ba80db8786497f8e3bf794b4775c7">setMimeType</a>(const std::string &amp;mt)=0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">~IDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['warning',['Warning',['../namespaceel.html#ab0ac6091262344c52dd2d3ad099e8e36a0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'el']]],
-  ['wcharptrtocharptr',['wcharPtrToCharPtr',['../classel_1_1base_1_1utils_1_1_str.html#a6dc022e7e8d4cbf2c80ba9e1354feaea',1,'el::base::utils::Str']]],
-  ['what',['what',['../classmlclient_1_1_invalid_format_exception.html#a5501004e340585882251855475db0bf2',1,'mlclient::InvalidFormatException::what()'],['../classmlclient_1_1_no_credentials_exception.html#ab49d0f7efbd347ad3619f6e65c5e3d58',1,'mlclient::NoCredentialsException::what()']]],
-  ['wildcardmatch',['wildCardMatch',['../classel_1_1base_1_1utils_1_1_str.html#a95e007a25dfcbd77d4c573b0f73b3153',1,'el::base::utils::Str']]],
-  ['writer',['Writer',['../classel_1_1base_1_1_writer.html',1,'el::base']]]
+  ['_7ebinarydocumentcontent',['~BinaryDocumentContent',['../classmlclient_1_1_binary_document_content.html#a6183420ef5307387838158987e43913c',1,'mlclient::BinaryDocumentContent']]],
+  ['_7econnection',['~Connection',['../classmlclient_1_1_connection.html#abdcaf6fb409edc750246fa1f1bcb3953',1,'mlclient::Connection']]],
+  ['_7ecpprestjsondocumentcontent',['~CppRestJsonDocumentContent',['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#aa9bfe09196fd7facb6106d98c3b3f490',1,'mlclient::utilities::CppRestJsonDocumentContent']]],
+  ['_7edocumentcontent',['~DocumentContent',['../classmlclient_1_1_document_content.html#a121511976bfebd4920052866a14ba7b7',1,'mlclient::DocumentContent']]],
+  ['_7esearchdescription',['~SearchDescription',['../classmlclient_1_1_search_description.html#a02475443b9da34b0bc011469221d4e9c',1,'mlclient::SearchDescription']]],
+  ['_7etextdocumentcontent',['~TextDocumentContent',['../classmlclient_1_1_text_document_content.html#aa073a30bd440b059ae34ac29e2bd92ea',1,'mlclient::TextDocumentContent']]]
 ];

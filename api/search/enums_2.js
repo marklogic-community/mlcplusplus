@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['dispatchaction',['DispatchAction',['../namespaceel_1_1base.html#a3aa2563d38e47388ba242a1694fc2839',1,'el::base']]]
+  ['level',['Level',['../namespaceel.html#ab0ac6091262344c52dd2d3ad099e8e36',1,'el']]],
+  ['loggingflag',['LoggingFlag',['../namespaceel.html#a2784aacd04cb7816ac1c0b20fcbf83cb',1,'el']]]
 ];

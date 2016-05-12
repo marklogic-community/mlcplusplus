@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['kmaxvalid',['kMaxValid',['../classel_1_1_level_helper.html#aa06e80c65db5c336c4aad25872cf9a48',1,'el::LevelHelper::kMaxValid()'],['../classel_1_1_configuration_type_helper.html#aa02f3cefb127e7eb97d7e1dd7f51a12d',1,'el::ConfigurationTypeHelper::kMaxValid()']]],
-  ['kminvalid',['kMinValid',['../classel_1_1_level_helper.html#a3ecfe43d5b242e9946bad7f61ea4d89d',1,'el::LevelHelper::kMinValid()'],['../classel_1_1_configuration_type_helper.html#ab7266e698eb32dec2da285325a66e322',1,'el::ConfigurationTypeHelper::kMinValid()']]]
+  ['read',['read',['../classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367',1,'mlclient::Response']]],
+  ['response',['Response',['../classmlclient_1_1_response.html',1,'mlclient']]],
+  ['response',['Response',['../classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974',1,'mlclient::Response']]],
+  ['responsecode',['ResponseCode',['../namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23',1,'mlclient']]],
+  ['responsetype',['ResponseType',['../namespacemlclient.html#aff058411252d0c404caf56d2d0b65090',1,'mlclient']]]
 ];

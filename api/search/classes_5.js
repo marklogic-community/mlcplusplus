@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['helpers',['Helpers',['../classel_1_1_helpers.html',1,'el']]],
-  ['hitcounter',['HitCounter',['../classel_1_1base_1_1_hit_counter.html',1,'el::base']]]
+  ['pugixmlhelper',['PugiXmlHelper',['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html',1,'mlclient::utilities']]]
 ];
