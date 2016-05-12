@@ -256,6 +256,7 @@ const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 class Response::Impl {
 public:
   Impl() : responseCode(ResponseCode::UNKNOWN_CODE), responseType(ResponseType::UNKNOWN_TYPE)  {
+    LOG(DEBUG) << "    Response::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   };
   ~Impl() {
@@ -300,6 +301,7 @@ public:
 
 
 Response::Response() : mImpl(new Impl) {
+  LOG(DEBUG) << "    Response::defaultConstructor @" << &*this;
   // ignore compilation warning - we know they are each set individually later, due to the nature of HTTP response interrogation code.
   //_xml = pugi::xml_document;
 }

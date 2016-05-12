@@ -55,3 +55,46 @@ void ConnectionSearchTest::testEmptySearch() {
 
   CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
 }
+
+void ConnectionSearchTest::testQueryText() {
+  TIMED_FUNC(testQueryText);
+  LOG(DEBUG) << " Entering testQueryText";
+  SearchDescription desc; // default empty search object
+  desc.setQueryText("wibble");
+  LOG(DEBUG) << "  Got an initialised SearchDescription object instance";
+
+  const std::unique_ptr<Response> response = ml->search(desc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response->getResponseType());
+  CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+}
+
+
+void ConnectionSearchTest::testWordQuery() {
+  TIMED_FUNC(testWordQuery);
+  LOG(DEBUG) << " Entering testWordQuery";
+  SearchDescription desc; // default empty search object
+  TextDocumentContent queryDoc;
+  queryDoc.setContent("\"query\": {\"word-query\":\"Antidisestablishmentarianism\"}");
+  desc.setQuery(queryDoc);
+  LOG(DEBUG) << "  Got an initialised SearchDescription object instance";
+
+  const std::unique_ptr<Response> response = ml->search(desc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a JSON response", ResponseType::JSON  == response->getResponseType());
+  CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+  LOG(DEBUG) << " Leaving testWordQuery";
+}
+

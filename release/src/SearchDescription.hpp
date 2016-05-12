@@ -18,6 +18,7 @@ namespace mlclient {
  * \since 8.0.0
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \date 2016-04-25
+ *
  * \brief A POD class representing input to the POST of /v1/search - i.e. all search configuration
  *
  * May contain just query text, a complex query, options, or a mix thereof.

@@ -20,10 +20,10 @@ namespace mlclient {
 class DocumentContent::Impl {
 public:
   Impl() : mimeType("") {
-    ;
+    LOG(DEBUG) << "    DocumentContent::Impl::defaultConstructor @" << &*this;
   }
   ~Impl() {
-    ;
+    LOG(DEBUG) << "    DocumentContent::Impl::destructor @" << &*this << " complete.";
   }
   std::string mimeType;
 };
@@ -41,21 +41,23 @@ const std::string DocumentContent::MIME_JSON = "application/json";    /// Standa
 const std::string DocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
 
 
-DocumentContent::DocumentContent() : mImpl(new Impl) {
-  ;
+DocumentContent::DocumentContent() : mbImpl(new Impl) {
+  LOG(DEBUG) << "    DocumentContent::defaultConstructor @" << &*this;
 }
 
 DocumentContent::~DocumentContent() {
-  delete mImpl;
-  mImpl = NULL;
+  LOG(DEBUG) << "    DocumentContent::destructor @" << &*this;
+  delete mbImpl;
+  mbImpl = NULL;
+  LOG(DEBUG) << "    DocumentContent::destructor @" << &*this << " complete.";
 }
 
 std::string DocumentContent::getMimeType() const {
-  return std::string(mImpl->mimeType); // forces copy constructor
+  return std::string(mbImpl->mimeType); // forces copy constructor
 }
 
 void DocumentContent::setMimeType(const std::string& mt) {
-  mImpl->mimeType = mt; // invokes copy constructor
+  mbImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 
 
@@ -118,6 +120,7 @@ int BinaryDocumentContent::getLength() {
 class TextDocumentContent::Impl {
 public:
   Impl() {
+    LOG(DEBUG) << "    TextDocumentContent::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   }
   ~Impl() {
@@ -128,11 +131,19 @@ public:
 
 
 TextDocumentContent::TextDocumentContent() : DocumentContent::DocumentContent(), mImpl(new Impl) {
+  LOG(DEBUG) << "    TextDocumentContent::defaultConstructor @" << &*this;
   ;
 }
+TextDocumentContent::TextDocumentContent(const TextDocumentContent& doc) : DocumentContent::DocumentContent(doc), mImpl(new Impl) {
+  LOG(DEBUG) << "    TextDocumentContent::copyConstructor @ " << &*this;
+  mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
+}
 TextDocumentContent::~TextDocumentContent() {
+  LOG(DEBUG) << "    TextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
   delete mImpl;
   mImpl = NULL;
+  //DocumentContent::~DocumentContent();
+  LOG(DEBUG) << "    TextDocumentContent::destructor @ " << &*this << " complete.";
 }
 void TextDocumentContent::setContent(std::string content) {
   mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor

@@ -18,12 +18,16 @@ namespace mlclient {
 class SearchDescription::Impl {
 public:
   Impl() {
+    LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     TextDocumentContent* qtdc = new TextDocumentContent();
-    query = std::unique_ptr<TextDocumentContent>(std::move(qtdc));
+    qtdc->setContent("\"query\":{}");
+    query = std::unique_ptr<TextDocumentContent>(qtdc);
     TextDocumentContent* otdc = new TextDocumentContent();
-    options = std::unique_ptr<TextDocumentContent>(std::move(otdc));
+    otdc->setContent("\"options\":{}");
+    options = std::unique_ptr<TextDocumentContent>(otdc);
     std::string* qt = new std::string("");
-    queryText = std::unique_ptr<std::string>(std::move(qt));
+    queryText = std::unique_ptr<std::string>(qt);
+    LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this << " complete";
   }
 
   ~Impl() {
@@ -37,23 +41,25 @@ public:
 
 
 SearchDescription::SearchDescription() : mImpl(new Impl) {
-  ;
+  LOG(DEBUG) << "    SearchDescription::defaultConstructor @" << &*this;
 }
 
 SearchDescription::~SearchDescription() {
+  LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
   delete mImpl;
   mImpl = NULL;
+  LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this << " complete.";
 }
 
 
 void SearchDescription::setOptions(TextDocumentContent& options) {
-  mImpl->options = std::unique_ptr<TextDocumentContent>(std::move(&options)); // TODO check this & works
+  mImpl->options = std::unique_ptr<TextDocumentContent>(new TextDocumentContent(options)); // copy constructor
 }
 const TextDocumentContent& SearchDescription::getOptions() const {
   return *(mImpl->options.get());
 }
 void SearchDescription::setQuery(TextDocumentContent& query) {
-  mImpl->query = std::unique_ptr<TextDocumentContent>(std::move(&query)); // TODO check this & works
+  mImpl->query = std::unique_ptr<TextDocumentContent>(new TextDocumentContent(query)); // copy constructor
 }
 const TextDocumentContent& SearchDescription::getQuery() const {
   return *(mImpl->query.get());
@@ -103,9 +109,13 @@ TextDocumentContent* SearchDescription::getPayload() const {
   if (0==DocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
     offset = 1;
   }
-  std::string payloadString = elements[0+offset] + mImpl->query.get()->getContent() + mImpl->options.get()->getContent() + elements[4+offset] +
-      *(mImpl->queryText.get()) + elements[6+offset] + elements[2+offset];
-  LOG(DEBUG) << "    got payload string";
+  std::string payloadString =
+      elements[0+offset] +
+        mImpl->query.get()->getContent() + "," +
+        mImpl->options.get()->getContent() + "," +
+        elements[4+offset] + *(mImpl->queryText.get()) + elements[6+offset] +
+      elements[2+offset];
+  LOG(DEBUG) << "    got payload string: " << payloadString;
   TextDocumentContent* payload = new TextDocumentContent;
   payload->setMimeType(mImpl->query.get()->getMimeType());
   payload->setContent(std::move(payloadString));

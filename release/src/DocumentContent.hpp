@@ -27,6 +27,7 @@ namespace mlclient {
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.0
  * \date 2016-04-25
+ *
  * \note This is an abstract class designed for extending, and cannot be instantiated directly.
  */
 class DocumentContent {
@@ -85,7 +86,7 @@ public:
 
 protected:
   class Impl;
-  Impl* mImpl;
+  Impl* mbImpl;
 };
 
 // TODO streaming operator
@@ -160,6 +161,10 @@ public:
    * The type will by default be set to JSON. Content will by default be an empty string.
    */
   TextDocumentContent();
+  /**
+   * \brief deep copy constructor
+   */
+  TextDocumentContent(const TextDocumentContent& doc);
   /**
    * \brief Pure virtual destructor
    */

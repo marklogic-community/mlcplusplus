@@ -24,12 +24,16 @@ using namespace mlclient;
 class ConnectionSearchTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(ConnectionSearchTest);
     CPPUNIT_TEST(testEmptySearch);
+    CPPUNIT_TEST(testQueryText);
+    CPPUNIT_TEST(testWordQuery);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testEmptySearch(void);
+  void testQueryText(void);
+  void testWordQuery(void);
 private:
   Connection* ml;
   std::string json;

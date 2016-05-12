@@ -15,7 +15,7 @@ namespace mlclient {
 class Connection::Impl {
 public:
   Impl() : proxy(), databaseName("Documents"), serverUrl("http://localhost:8002") {
-    ;
+    LOG(DEBUG) << "    Connection::Impl::defaultConstructor @" << &*this;
   };
 
   ~Impl() {
@@ -53,7 +53,8 @@ private:
 };
 
 
-Connection::Connection() :mImpl(new Impl) {
+Connection::Connection() : mImpl(new Impl) {
+  LOG(DEBUG) << "    Connection::defaultConstructor @" << &*this;
 }
 
 Connection::~Connection() {
