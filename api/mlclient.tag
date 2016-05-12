@@ -987,6 +987,11 @@
     <class kind="class">mlclient::utilities::PugiXmlHelper</class>
   </compound>
   <compound kind="page">
+    <name>page_CWrapper</name>
+    <title>C Language Wrapper</title>
+    <filename>page__c_wrapper</filename>
+  </compound>
+  <compound kind="page">
     <name>page_Design</name>
     <title>Design</title>
     <filename>page__design</filename>
