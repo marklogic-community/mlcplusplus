@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object.  
+<p>An <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">ITextDocumentContent</a> instance that wraps a Microsoft cpprest JSON value object.  
  <a href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_cpp_rest_json_document_content_8hpp_source.html">CppRestJsonDocumentContent.hpp</a>&gt;</code></p>
@@ -127,7 +127,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:af9018322b3e967ed3041affbad11831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the content of this document instance from a Microsoft cpprest API web::json::value instance.  <a href="#af9018322b3e967ed3041affbad11831a">More...</a><br /></td></tr>
 <tr class="separator:af9018322b3e967ed3041affbad11831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af39265eb985910665a2097c4784371c1"><td class="memItemLeft" align="right" valign="top">std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#af39265eb985910665a2097c4784371c1">getStream</a> () const  override</td></tr>
-<tr class="memdesc:af39265eb985910665a2097c4784371c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this TextDocumentContent as an ostream.  <a href="#af39265eb985910665a2097c4784371c1">More...</a><br /></td></tr>
+<tr class="memdesc:af39265eb985910665a2097c4784371c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">ITextDocumentContent</a> as an ostream.  <a href="#af39265eb985910665a2097c4784371c1">More...</a><br /></td></tr>
 <tr class="separator:af39265eb985910665a2097c4784371c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1424d0bac3e03350bf943a0043944584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a1424d0bac3e03350bf943a0043944584">setContent</a> (std::string content) override</td></tr>
 <tr class="memdesc:a1424d0bac3e03350bf943a0043944584"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the textual content for this document.  <a href="#a1424d0bac3e03350bf943a0043944584">More...</a><br /></td></tr>
@@ -165,7 +165,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 <tr class="separator:a4ea89e3d97e41b93d7999c5e9af73d19 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object. </p>
+<div class="textblock"><p>An <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">ITextDocumentContent</a> instance that wraps a Microsoft cpprest JSON value object. </p>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-10</dd></dl>
@@ -297,7 +297,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 </table>
 </div><div class="memdoc">
 
-<p>Returns the content of this TextDocumentContent as an ostream. </p>
+<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">ITextDocumentContent</a> as an ostream. </p>
 <p>This allows streaming to a HTTP request of this string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>An ostream instance wrapping the content of this Text Document Content instance </dd></dl>
