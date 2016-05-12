@@ -32,7 +32,7 @@ namespace utilities {
  *
  * \brief This class provides utility functions to handle JSON data.
  *
- * This is a non-instantiable class with static functions to handle conversion of data between raw cpprest web::json::value and DocumentContent
+ * This is a non-instantiable class with static functions to handle conversion of data between raw cpprest web::json::value and IDocumentContent
  * objects.
  *
  * The fromResponse and toDocument functions are particularly useful when extracting information from a Response object.
@@ -47,24 +47,24 @@ public:
   CppRestJsonHelper() = delete;
   ~CppRestJsonHelper() = delete;
 
-  /// \name cpprestjsonhelper_documentconversion DocumentContent conversion functions
+  /// \name cpprestjsonhelper_documentconversion IDocumentContent conversion functions
   /// @{
   /**
-   * \brief Creates a DocumentContent instance based on a cpprest API web::json::value instance
+   * \brief Creates a IDocumentContent instance based on a cpprest API web::json::value instance
    *
    * \note Actually returns a CppRestJsonDocumentContent instance (A subclass of TextDocumentContent)
    *
-   * \param json The web::json::value to create a DocumentContent representation of
-   * \return A DocumentContent instance wrapping the value
+   * \param json The web::json::value to create a IDocumentContent representation of
+   * \return A IDocumentContent instance wrapping the value
    */
-  static TextDocumentContent* toDocument(const web::json::value json);
+  static ITextDocumentContent* toDocument(const web::json::value json);
   /**
-   * \brief Creates a web::json::value from a DocumentContent instance.
+   * \brief Creates a web::json::value from a IDocumentContent instance.
    *
    * \warning Don't call this on a CppRestJsonDocumentContent instance - use CppRestJsonDocumentContent::getJson() instead
    * \throw An InvalidFormatException if the document does not have the mime type of application/json, or if there is a parse error.
-   * \param doc The DocumentContent instance to create a web::json::value from.
-   * \return A Microsoft cpprest API web::json::value instance created from the DocumentContent.
+   * \param doc The IDocumentContent instance to create a web::json::value from.
+   * \return A Microsoft cpprest API web::json::value instance created from the IDocumentContent.
    */
   static web::json::value fromDocument(const IDocumentContent& doc);
   /// @}

@@ -29,7 +29,7 @@ public:
 };
 */
 /**
- * \brief An enumeration for use with the DocumentContent class.
+ * \brief An enumeration for use with the IDocumentContent class.
  *
  * A set of mime types that are needed internally in the MarkLogic C++ API. Other mime types are available.
  * These are for convenience to API developers, and prevent hard coding, and shield the API from server
@@ -42,12 +42,12 @@ const std::string IDocumentContent::MIME_XML = "application/xml";       /// Stan
 
 
 IDocumentContent::IDocumentContent() {
-  LOG(DEBUG) << "    DocumentContent::defaultConstructor @" << &*this;
+  LOG(DEBUG) << "    IDocumentContent::defaultConstructor @" << &*this;
 }
 
 IDocumentContent::~IDocumentContent() {
-  LOG(DEBUG) << "    DocumentContent::destructor @" << &*this;
-  LOG(DEBUG) << "    DocumentContent::destructor @" << &*this << " complete.";
+  LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this;
+  LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this << " complete.";
 }
 /*
 std::string DocumentContent::getMimeType() const {
@@ -61,6 +61,14 @@ void DocumentContent::setMimeType(const std::string& mt) {
 */
 
 
+ITextDocumentContent::ITextDocumentContent() {
+  LOG(DEBUG) << "    ITextDocumentContent::defaultConstructor @" << &*this;
+}
+
+ITextDocumentContent::~ITextDocumentContent() {
+  LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this;
+  LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this << " complete.";
+}
 
 
 /*
@@ -115,10 +123,10 @@ int BinaryDocumentContent::getLength() {
 
 // TEXT DOCUMENT CONTENT
 
-class TextDocumentContent::Impl {
+class GenericTextDocumentContent::Impl {
 public:
   Impl() {
-    LOG(DEBUG) << "    TextDocumentContent::Impl::defaultConstructor @" << &*this;
+    LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   }
   ~Impl() {
@@ -129,44 +137,48 @@ public:
 };
 
 
-TextDocumentContent::TextDocumentContent() : IDocumentContent::IDocumentContent(), mImpl(new Impl) {
-  LOG(DEBUG) << "    TextDocumentContent::defaultConstructor @" << &*this;
+GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent::ITextDocumentContent(), mImpl(new Impl) {
+  LOG(DEBUG) << "    GenericTextDocumentContent::defaultConstructor @" << &*this;
   ;
 }
-TextDocumentContent::TextDocumentContent(const TextDocumentContent& doc) : IDocumentContent::IDocumentContent(doc), mImpl(new Impl) {
-  LOG(DEBUG) << "    TextDocumentContent::copyConstructor @ " << &*this;
+GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
+  LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
   mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
 }
-TextDocumentContent::~TextDocumentContent() {
-  LOG(DEBUG) << "    TextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
+GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
+  LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
+  mImpl->content = std::unique_ptr<std::string>(new std::string(doc.getContent()));
+}
+GenericTextDocumentContent::~GenericTextDocumentContent() {
+  LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
   delete mImpl;
   mImpl = NULL;
   //DocumentContent::~DocumentContent();
-  LOG(DEBUG) << "    TextDocumentContent::destructor @ " << &*this << " complete.";
+  LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " complete.";
 }
-void TextDocumentContent::setContent(std::string content) {
+void GenericTextDocumentContent::setContent(std::string content) {
   mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
 }
-std::string TextDocumentContent::getContent() const {
+std::string GenericTextDocumentContent::getContent() const {
   return std::string(*(mImpl->content)); // Forces copy constructor
 }
-int TextDocumentContent::getLength() const {
+int GenericTextDocumentContent::getLength() const {
   return mImpl->content.get()->size();
 }
 
-std::ostream* TextDocumentContent::getStream() const {
-  TIMED_FUNC(TextDocument_getStream);
+std::ostream* GenericTextDocumentContent::getStream() const {
+  TIMED_FUNC(GenericTextDocumentContent_getStream);
   std::ostringstream* os = new std::ostringstream;
   (*os) << mImpl->content.get();
   //std::ostringstream& osref = os; // TODO verify this works with no dangling reference
   return os;
 }
 
-std::string TextDocumentContent::getMimeType() const {
+std::string GenericTextDocumentContent::getMimeType() const {
   return std::string(mImpl->mimeType); // forces copy constructor
 }
 
-void TextDocumentContent::setMimeType(const std::string& mt) {
+void GenericTextDocumentContent::setMimeType(const std::string& mt) {
   mImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 

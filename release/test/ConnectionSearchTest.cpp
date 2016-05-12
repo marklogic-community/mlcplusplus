@@ -80,7 +80,7 @@ void ConnectionSearchTest::testWordQuery() {
   TIMED_FUNC(testWordQuery);
   LOG(DEBUG) << " Entering testWordQuery";
   SearchDescription desc; // default empty search object
-  TextDocumentContent queryDoc;
+  GenericTextDocumentContent queryDoc;
   queryDoc.setContent("\"query\": {\"word-query\":\"Antidisestablishmentarianism\"}");
   desc.setQuery(queryDoc);
   LOG(DEBUG) << "  Got an initialised SearchDescription object instance";

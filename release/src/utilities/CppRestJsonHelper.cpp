@@ -21,7 +21,7 @@ namespace mlclient {
 namespace utilities {
 
 // DocumentContent conversion
-TextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+ITextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
   TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
   tdc->setContent(json);

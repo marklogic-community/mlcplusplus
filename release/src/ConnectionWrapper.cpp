@@ -41,7 +41,7 @@ CResponse * ml_connection_doPut(const CConnection *conn,const char *pathAndQuery
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setContent(std::string(payload));
   return (CResponse*)(new CWrapper<Response>(t->doPut(std::string(pathAndQuerystring),tdc)));
 }
@@ -51,7 +51,7 @@ CResponse * ml_connection_doPost(const CConnection *conn,const char *pathAndQuer
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setContent(std::string(payload));
   return (CResponse*)(new CWrapper<Response>(t->doPost(std::string(pathAndQuerystring),tdc)));
 }
@@ -74,7 +74,7 @@ CResponse * ml_connection_saveDocument(const CConnection *conn,const char *uri,c
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setContent(std::string(payload));
   return (CResponse*)(new CWrapper<Response>(t->saveDocument(std::string(uri),tdc)));
 }
@@ -84,9 +84,9 @@ CResponse * ml_connection_search(const CConnection *conn,const char *searchQuery
   using namespace mlclient;
   using namespace web;
   Connection *t = (Connection *)conn;
-  TextDocumentContent sq;
+  GenericTextDocumentContent sq;
   sq.setContent(std::string(searchQuery));
-  TextDocumentContent so;
+  GenericTextDocumentContent so;
   so.setContent(std::string(options));
   SearchDescription desc;
   desc.setOptions(so);

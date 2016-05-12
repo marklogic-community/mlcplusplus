@@ -19,12 +19,12 @@ class SearchDescription::Impl {
 public:
   Impl() {
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
-    TextDocumentContent* qtdc = new TextDocumentContent();
+    GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
     qtdc->setContent("\"query\":{}");
-    query = std::unique_ptr<TextDocumentContent>(qtdc);
-    TextDocumentContent* otdc = new TextDocumentContent();
+    query = std::unique_ptr<GenericTextDocumentContent>(qtdc);
+    GenericTextDocumentContent* otdc = new GenericTextDocumentContent();
     otdc->setContent("\"options\":{}");
-    options = std::unique_ptr<TextDocumentContent>(otdc);
+    options = std::unique_ptr<GenericTextDocumentContent>(otdc);
     std::string* qt = new std::string("");
     queryText = std::unique_ptr<std::string>(qt);
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this << " complete";
@@ -34,8 +34,8 @@ public:
     ;
   }
 
-  std::unique_ptr<TextDocumentContent> query;
-  std::unique_ptr<TextDocumentContent> options;
+  std::unique_ptr<ITextDocumentContent> query;
+  std::unique_ptr<ITextDocumentContent> options;
   std::unique_ptr<std::string> queryText;
 }; // end SearchDescription::Impl class
 
@@ -52,16 +52,16 @@ SearchDescription::~SearchDescription() {
 }
 
 
-void SearchDescription::setOptions(TextDocumentContent& options) {
-  mImpl->options = std::unique_ptr<TextDocumentContent>(new TextDocumentContent(options)); // copy constructor
+void SearchDescription::setOptions(ITextDocumentContent& options) {
+  mImpl->options = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(options)); // copy constructor
 }
-const TextDocumentContent& SearchDescription::getOptions() const {
+const ITextDocumentContent& SearchDescription::getOptions() const {
   return *(mImpl->options.get());
 }
-void SearchDescription::setQuery(TextDocumentContent& query) {
-  mImpl->query = std::unique_ptr<TextDocumentContent>(new TextDocumentContent(query)); // copy constructor
+void SearchDescription::setQuery(ITextDocumentContent& query) {
+  mImpl->query = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(query)); // copy constructor
 }
-const TextDocumentContent& SearchDescription::getQuery() const {
+const ITextDocumentContent& SearchDescription::getQuery() const {
   return *(mImpl->query.get());
 }
 void SearchDescription::setQueryText(std::string qtext) {
@@ -70,7 +70,7 @@ void SearchDescription::setQueryText(std::string qtext) {
 const std::string& SearchDescription::getQueryText() const {
   return *(mImpl->queryText.get());
 }
-TextDocumentContent* SearchDescription::getPayload() const {
+ITextDocumentContent* SearchDescription::getPayload() const {
   TIMED_FUNC(SearchDescription_getPayload);
   LOG(DEBUG) << "    Entering getPayload()";
   // if options has not been initialised, leave blank, but set mime type as same as query
@@ -116,7 +116,7 @@ TextDocumentContent* SearchDescription::getPayload() const {
         elements[4+offset] + *(mImpl->queryText.get()) + elements[6+offset] +
       elements[2+offset];
   LOG(DEBUG) << "    got payload string: " << payloadString;
-  TextDocumentContent* payload = new TextDocumentContent;
+  GenericTextDocumentContent* payload = new GenericTextDocumentContent;
   payload->setMimeType(mImpl->query.get()->getMimeType());
   payload->setContent(std::move(payloadString));
   LOG(DEBUG) << "    got payload doc";
