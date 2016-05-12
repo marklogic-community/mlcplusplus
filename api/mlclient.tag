@@ -34,6 +34,55 @@
       <anchor>a39f47ecbe026017cb9964e238481fd5b</anchor>
       <arglist>(const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</arglist>
     </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_doGet</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>a6bbf29f4338b15cb35bfae191b192f24</anchor>
+      <arglist>(const CConnection *conn, const char *pathAndQuerystring)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_doPut</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>ae660f9102176c5099c8ff98d786e4ba9</anchor>
+      <arglist>(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_doPost</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>affdd087058b68446b0ce50f0bbdacad3</anchor>
+      <arglist>(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_doDelete</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>abd4486855d9fce5a784eecb44388f446</anchor>
+      <arglist>(const CConnection *conn, const char *path)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_getDocument</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>adef37c84afd3c6aa67f0d00ab8cbf28b</anchor>
+      <arglist>(const CConnection *conn, const char *uri)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_saveDocument</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>a2980636057bdddf93031b906335be937</anchor>
+      <arglist>(const CConnection *conn, const char *uri, const char *payload)</arglist>
+    </member>
+    <member kind="function">
+      <type>CResponse *</type>
+      <name>ml_connection_search</name>
+      <anchorfile>_connection_wrapper_8h.html</anchorfile>
+      <anchor>a72f44f2378058efa160a27dd356bc75c</anchor>
+      <arglist>(const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>DocumentContent.hpp</name>
