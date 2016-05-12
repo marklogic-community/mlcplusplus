@@ -9,5 +9,11 @@ var searchData=
   ['ml_5fconnection_5fgetdocument',['ml_connection_getDocument',['../_connection_wrapper_8h.html#adef37c84afd3c6aa67f0d00ab8cbf28b',1,'ConnectionWrapper.h']]],
   ['ml_5fconnection_5fnew',['ml_connection_new',['../_connection_wrapper_8h.html#a0f9f96ce7400bf0f66d951c499f039ce',1,'ConnectionWrapper.h']]],
   ['ml_5fconnection_5fsavedocument',['ml_connection_saveDocument',['../_connection_wrapper_8h.html#a2980636057bdddf93031b906335be937',1,'ConnectionWrapper.h']]],
-  ['ml_5fconnection_5fsearch',['ml_connection_search',['../_connection_wrapper_8h.html#a72f44f2378058efa160a27dd356bc75c',1,'ConnectionWrapper.h']]]
+  ['ml_5fconnection_5fsearch',['ml_connection_search',['../_connection_wrapper_8h.html#a72f44f2378058efa160a27dd356bc75c',1,'ConnectionWrapper.h']]],
+  ['ml_5fresponse_5fdelete',['ml_response_delete',['../_response_wrapper_8h.html#a578dea9925aa14f3355f616a8987e485',1,'ResponseWrapper.h']]],
+  ['ml_5fresponse_5fgetresponsecode',['ml_response_GetResponseCode',['../_response_wrapper_8h.html#a9971b2bb07a09aded1639586af7487ae',1,'ResponseWrapper.h']]],
+  ['ml_5fresponse_5fgetresponsetype',['ml_response_GetResponseType',['../_response_wrapper_8h.html#a271df6f53d508c26f9e9029491e82b52',1,'ResponseWrapper.h']]],
+  ['ml_5fresponse_5flength',['ml_response_length',['../_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9',1,'ResponseWrapper.h']]],
+  ['ml_5fresponse_5fstring',['ml_response_String',['../_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e',1,'ResponseWrapper.h']]],
+  ['ml_5fresponsecodes_5ftranslate',['ml_responsecodes_translate',['../_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5',1,'ResponseWrapper.h']]]
 ];

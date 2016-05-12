@@ -13,6 +13,7 @@
     <name>ConnectionWrapper.h</name>
     <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/src/</path>
     <filename>_connection_wrapper_8h</filename>
+    <includes id="_response_wrapper_8h" name="ResponseWrapper.h" local="yes" imported="no">ResponseWrapper.h</includes>
     <member kind="function">
       <type>CConnection *</type>
       <name>ml_connection_new</name>
@@ -99,6 +100,88 @@
       <anchorfile>namespacemlclient.html</anchorfile>
       <anchor>ad47ff6baab050e78452eb2167a2a3b54</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ResponseWrapper.h</name>
+    <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/src/</path>
+    <filename>_response_wrapper_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>RESPONSETYPE_UNKNOWN</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a496b3797502f343da29787df9d985738</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RESPONSETYPE_XML</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a0d8e237a39860c250d968e3df25e6b1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RESPONSETYPE_JSON</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>aa01abb7cfed863a2730bedca296a6478</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RESPONSETYPE_TEXT</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a65ea3e3d9c53addcbd882ad77c325506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RESPONSETYPE_BINARY</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a84423320407e2e98db199491b51f0475</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ml_response_delete</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a578dea9925aa14f3355f616a8987e485</anchor>
+      <arglist>(CResponse *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>const int</type>
+      <name>ml_response_length</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a2879bf705ca85736d538e3398bf73bc9</anchor>
+      <arglist>(CResponse *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *const</type>
+      <name>ml_response_String</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a7faed8268459bce88a0481b4a9dad94e</anchor>
+      <arglist>(CResponse *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>const int</type>
+      <name>ml_response_GetResponseType</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a271df6f53d508c26f9e9029491e82b52</anchor>
+      <arglist>(CResponse *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>const int</type>
+      <name>ml_response_GetResponseCode</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a9971b2bb07a09aded1639586af7487ae</anchor>
+      <arglist>(CResponse *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *const</type>
+      <name>ml_responsecodes_translate</name>
+      <anchorfile>_response_wrapper_8h.html</anchorfile>
+      <anchor>a63a21f0f72515ddd2b258a43ef34a7e5</anchor>
+      <arglist>(int code)</arglist>
     </member>
   </compound>
   <compound kind="file">

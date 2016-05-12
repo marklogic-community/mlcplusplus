@@ -3,10 +3,11 @@ var indexSectionsWithContent =
   0: "bcdfgimnprstw~",
   1: "cginprs",
   2: "m",
-  3: "cdps",
+  3: "cdprs",
   4: "cdfgimrstw~",
   5: "br",
-  6: "dmt"
+  6: "r",
+  7: "dmt"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "files",
   4: "functions",
   5: "enums",
-  6: "pages"
+  6: "defines",
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Files",
   4: "Functions",
   5: "Enumerations",
-  6: "Pages"
+  6: "Macros",
+  7: "Pages"
 };
 
