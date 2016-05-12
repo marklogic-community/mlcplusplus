@@ -97,13 +97,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">mlclient::IDocumentContent Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof).  
+ <a href="classmlclient_1_1_i_document_content.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for mlclient::IDocumentContent:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classmlclient_1_1_i_document_content.png" usemap="#mlclient::IDocumentContent_map" alt=""/>
   <map id="mlclient::IDocumentContent_map" name="mlclient::IDocumentContent_map">
-<area href="classmlclient_1_1_binary_document_content.html" title="This class is a specialisation of DocumentContent that holds binary data. " alt="mlclient::BinaryDocumentContent" shape="rect" coords="0,56,277,80"/>
+<area href="classmlclient_1_1_binary_document_content.html" title="This class is a specialisation of IDocumentContent that holds binary data. " alt="mlclient::BinaryDocumentContent" shape="rect" coords="0,56,277,80"/>
 <area href="classmlclient_1_1_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. " alt="mlclient::TextDocumentContent" shape="rect" coords="287,56,564,80"/>
 <area href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object. " alt="mlclient::utilities::CppRestJsonDocumentContent" shape="rect" coords="287,112,564,136"/>
 </map>
@@ -116,10 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afdc1b9115e2a4d051fb263e74e06c21a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">~IDocumentContent</a> ()</td></tr>
 <tr class="separator:afdc1b9115e2a4d051fb263e74e06c21a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc5817a03238a61c176f7c5c3607d509"><td class="memItemLeft" align="right" valign="top">virtual std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#abc5817a03238a61c176f7c5c3607d509">getStream</a> () const  =0</td></tr>
-<tr class="memdesc:abc5817a03238a61c176f7c5c3607d509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> as an ostream.  <a href="#abc5817a03238a61c176f7c5c3607d509">More...</a><br /></td></tr>
+<tr class="memdesc:abc5817a03238a61c176f7c5c3607d509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as an ostream.  <a href="#abc5817a03238a61c176f7c5c3607d509">More...</a><br /></td></tr>
 <tr class="separator:abc5817a03238a61c176f7c5c3607d509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">getContent</a> () const  =0</td></tr>
-<tr class="memdesc:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> as a std::string.  <a href="#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">More...</a><br /></td></tr>
+<tr class="memdesc:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as a std::string.  <a href="#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">More...</a><br /></td></tr>
 <tr class="separator:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20e1cc7e2a9958596ac52b6a39605119"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a20e1cc7e2a9958596ac52b6a39605119">getMimeType</a> () const  =0</td></tr>
 <tr class="memdesc:a20e1cc7e2a9958596ac52b6a39605119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the MIME type of this content.  <a href="#a20e1cc7e2a9958596ac52b6a39605119">More...</a><br /></td></tr>
@@ -137,7 +142,14 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_XML</b></td></tr>
 <tr class="separator:a4ea89e3d97e41b93d7999c5e9af73d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof). </p>
+<p>This class can also be used to wrap search options and other JSON/XML based content. There are only two specialisations of this class - text and binary - all more complex types are created by using the <a class="el" href="">CppRestJsonHelper</a> and <a class="el" href="">PugiXmlHelper</a> to parse/create these types. E.g. a pugixml::document or web::json::value.</p>
+<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016-04-25</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is an abstract class designed for extending, and cannot be instantiated directly. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab22722f1867bce185bba426e5f8afba2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -150,7 +162,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> constructor. Called implicitly by subclasses only. </p>
+<p>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> constructor. Called implicitly by subclasses only. </p>
 
 </div>
 </div>
@@ -200,7 +212,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 </table>
 </div><div class="memdoc">
 
-<p>Returns the content of this <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> as a std::string. </p>
+<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as a std::string. </p>
 <p>This allows streaming of a HTTP request, with data encoded as a string.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string representing this content; </dd></dl>
 
@@ -258,7 +270,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 </table>
 </div><div class="memdoc">
 
-<p>Returns the content of this <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> as an ostream. </p>
+<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as an ostream. </p>
 <p>This allows streaming to a HTTP request, and works for binary and string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>An ostream instance wrapping the content of this Document Content instance </dd></dl>

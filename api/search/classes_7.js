@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['searchdescription',['SearchDescription',['../classmlclient_1_1_search_description.html',1,'mlclient']]]
+  ['textdocumentcontent',['TextDocumentContent',['../classmlclient_1_1_text_document_content.html',1,'mlclient']]]
 ];

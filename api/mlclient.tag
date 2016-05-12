@@ -414,10 +414,6 @@
     <templarg></templarg>
   </compound>
   <compound kind="class">
-    <name>DocumentContent</name>
-    <filename>class_document_content.html</filename>
-  </compound>
-  <compound kind="class">
     <name>mlclient::IDocumentContent</name>
     <filename>classmlclient_1_1_i_document_content.html</filename>
     <member kind="function">

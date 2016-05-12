@@ -105,10 +105,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad2b38faa8cb7201e8735f8347c580263"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#ad2b38faa8cb7201e8735f8347c580263">toDocument</a> (const pugi::xml_document &amp;dc)</td></tr>
-<tr class="memdesc:ad2b38faa8cb7201e8735f8347c580263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a pugi::xml_document instance to a MarkLogic C++ API <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> instance.  <a href="#ad2b38faa8cb7201e8735f8347c580263">More...</a><br /></td></tr>
+<tr class="memdesc:ad2b38faa8cb7201e8735f8347c580263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a pugi::xml_document instance to a MarkLogic C++ API <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance.  <a href="#ad2b38faa8cb7201e8735f8347c580263">More...</a><br /></td></tr>
 <tr class="separator:ad2b38faa8cb7201e8735f8347c580263"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5427cb837d708fe0a3503972605a24ce"><td class="memItemLeft" align="right" valign="top">static pugi::xml_document *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a5427cb837d708fe0a3503972605a24ce">fromDocument</a> (const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;dc)</td></tr>
-<tr class="memdesc:a5427cb837d708fe0a3503972605a24ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a pugi::xml_document instance from a <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> object.  <a href="#a5427cb837d708fe0a3503972605a24ce">More...</a><br /></td></tr>
+<tr class="memdesc:a5427cb837d708fe0a3503972605a24ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a pugi::xml_document instance from a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> object.  <a href="#a5427cb837d708fe0a3503972605a24ce">More...</a><br /></td></tr>
 <tr class="separator:a5427cb837d708fe0a3503972605a24ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ce6782a3b9e82ae92a5e52d0b8dcc5e"><td class="memItemLeft" align="right" valign="top">static pugi::xml_document *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a0ce6782a3b9e82ae92a5e52d0b8dcc5e">fromResponse</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
 <tr class="memdesc:a0ce6782a3b9e82ae92a5e52d0b8dcc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a pugi::xml_document instance directly from the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object.  <a href="#a0ce6782a3b9e82ae92a5e52d0b8dcc5e">More...</a><br /></td></tr>
@@ -119,7 +119,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-25</dd></dl>
-<p>Provides convenience conversions between pugi::xml_document and <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> objects.</p>
+<p>Provides convenience conversions between pugi::xml_document and <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> objects.</p>
 <dl class="section note"><dt>Note</dt><dd>This class introduces a dependency on the pugixml C++ library. You must install that to use this class. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a5427cb837d708fe0a3503972605a24ce"></a>
@@ -144,21 +144,21 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Extracts a pugi::xml_document instance from a <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> object. </p>
+<p>Extracts a pugi::xml_document instance from a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> object. </p>
 <p>This is useful when retrieving a document from MarkLogic Server and then processing the underlying XML.</p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>If the <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> does not have the application/xml mime type, or if parsing fails.</td></tr>
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>If the <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> does not have the application/xml mime type, or if parsing fails.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dc</td><td>The <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> instance to extract the XML content from. </td></tr>
+    <tr><td class="paramname">dc</td><td>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance to extract the XML content from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pugi::xml_document instance (parsed XML) created from the <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> object provided. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pugi::xml_document instance (parsed XML) created from the <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> object provided. </dd></dl>
 
 </div>
 </div>
@@ -223,14 +223,14 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Converts a pugi::xml_document instance to a MarkLogic C++ API <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> instance. </p>
+<p>Converts a pugi::xml_document instance to a MarkLogic C++ API <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dc</td><td>The pugi::xml_document instance to convert </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">DocumentContent</a> instance wrapping the XML content, with its mime type and content set </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance wrapping the XML content, with its mime type and content set </dd></dl>
 
 </div>
 </div>

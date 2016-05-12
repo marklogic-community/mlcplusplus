@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pugixmlhelper',['PugiXmlHelper',['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html',1,'mlclient::utilities']]]
+  ['response',['Response',['../classmlclient_1_1_response.html',1,'mlclient']]]
 ];

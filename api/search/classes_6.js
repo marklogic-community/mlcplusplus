@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['response',['Response',['../classmlclient_1_1_response.html',1,'mlclient']]]
+  ['searchdescription',['SearchDescription',['../classmlclient_1_1_search_description.html',1,'mlclient']]]
 ];
