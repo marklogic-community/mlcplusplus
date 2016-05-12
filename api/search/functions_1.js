@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['configure',['configure',['../classmlclient_1_1_connection.html#a864eb69ce6f54a34532fc3ea649b8e82',1,'mlclient::Connection::configure(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false)'],['../classmlclient_1_1_connection.html#a716b1aee10f890f3ce5051648445fb83',1,'mlclient::Connection::configure(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password)']]],
-  ['connection',['Connection',['../classmlclient_1_1_connection.html#ac135be7c9c00c0d66a9d84a0525373e3',1,'mlclient::Connection']]],
-  ['cpprestjsondocumentcontent',['CppRestJsonDocumentContent',['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#abf2fdf83328540c53e2a54c04cfac5fb',1,'mlclient::utilities::CppRestJsonDocumentContent']]]
+  ['deletedocument',['deleteDocument',['../classmlclient_1_1_connection.html#ad28e88100e5fd070e0d9c69ce7bb8417',1,'mlclient::Connection']]],
+  ['dodelete',['doDelete',['../classmlclient_1_1_connection.html#a5a19f3a64d7e8a9293571a05ba782d55',1,'mlclient::Connection']]],
+  ['doget',['doGet',['../classmlclient_1_1_connection.html#ae5da2adac3a3bc58f1b23ffe4f5b31ff',1,'mlclient::Connection']]],
+  ['dopost',['doPost',['../classmlclient_1_1_connection.html#a1205e9e925ea521c3c7727c67431b6fa',1,'mlclient::Connection']]],
+  ['doput',['doPut',['../classmlclient_1_1_connection.html#a44f935f37c386a616eeef89728f9692f',1,'mlclient::Connection']]]
 ];

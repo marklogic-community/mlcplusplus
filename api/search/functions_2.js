@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['deletedocument',['deleteDocument',['../classmlclient_1_1_connection.html#ad28e88100e5fd070e0d9c69ce7bb8417',1,'mlclient::Connection']]],
-  ['dodelete',['doDelete',['../classmlclient_1_1_connection.html#a5a19f3a64d7e8a9293571a05ba782d55',1,'mlclient::Connection']]],
-  ['doget',['doGet',['../classmlclient_1_1_connection.html#ae5da2adac3a3bc58f1b23ffe4f5b31ff',1,'mlclient::Connection']]],
-  ['dopost',['doPost',['../classmlclient_1_1_connection.html#a1205e9e925ea521c3c7727c67431b6fa',1,'mlclient::Connection']]],
-  ['doput',['doPut',['../classmlclient_1_1_connection.html#a44f935f37c386a616eeef89728f9692f',1,'mlclient::Connection']]]
+  ['fromdocument',['fromDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9',1,'mlclient::utilities::CppRestJsonHelper::fromDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a5427cb837d708fe0a3503972605a24ce',1,'mlclient::utilities::PugiXmlHelper::fromDocument()']]],
+  ['fromresponse',['fromResponse',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a549fde831bf5144b19c029e710fecb80',1,'mlclient::utilities::CppRestJsonHelper::fromResponse()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a0ce6782a3b9e82ae92a5e52d0b8dcc5e',1,'mlclient::utilities::PugiXmlHelper::fromResponse()']]]
 ];

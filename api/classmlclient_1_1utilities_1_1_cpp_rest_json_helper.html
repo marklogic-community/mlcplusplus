@@ -104,9 +104,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">cpprestjsonhelper_documentconversion IDocumentContent conversion functions</div></td></tr>
-<tr class="memitem:a19fb2a6e83437d5f2c5e1a9c1599c84e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a19fb2a6e83437d5f2c5e1a9c1599c84e">toDocument</a> (const web::json::value json)</td></tr>
-<tr class="memdesc:a19fb2a6e83437d5f2c5e1a9c1599c84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance based on a cpprest API web::json::value instance.  <a href="#a19fb2a6e83437d5f2c5e1a9c1599c84e">More...</a><br /></td></tr>
-<tr class="separator:a19fb2a6e83437d5f2c5e1a9c1599c84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaeb5213b9be3d09eab78b7adeebd2b5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#adaeb5213b9be3d09eab78b7adeebd2b5">toDocument</a> (const web::json::value json)</td></tr>
+<tr class="memdesc:adaeb5213b9be3d09eab78b7adeebd2b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance based on a cpprest API web::json::value instance.  <a href="#adaeb5213b9be3d09eab78b7adeebd2b5">More...</a><br /></td></tr>
+<tr class="separator:adaeb5213b9be3d09eab78b7adeebd2b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9453c8574f5455c41712c81c02c090c9"><td class="memItemLeft" align="right" valign="top">static web::json::value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9">fromDocument</a> (const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;doc)</td></tr>
 <tr class="memdesc:a9453c8574f5455c41712c81c02c090c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a web::json::value from a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance.  <a href="#a9453c8574f5455c41712c81c02c090c9">More...</a><br /></td></tr>
 <tr class="separator:a9453c8574f5455c41712c81c02c090c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,7 +204,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a19fb2a6e83437d5f2c5e1a9c1599c84e"></a>
+<a class="anchor" id="adaeb5213b9be3d09eab78b7adeebd2b5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -212,7 +212,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classmlclient_1_1_text_document_content.html">TextDocumentContent</a>* mlclient::utilities::CppRestJsonHelper::toDocument </td>
+          <td class="memname">static <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* mlclient::utilities::CppRestJsonHelper::toDocument </td>
           <td>(</td>
           <td class="paramtype">const web::json::value&#160;</td>
           <td class="paramname"><em>json</em></td><td>)</td>
@@ -227,7 +227,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance based on a cpprest API web::json::value instance. </p>
-<dl class="section note"><dt>Note</dt><dd>Actually returns a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a> instance (A subclass of <a class="el" href="classmlclient_1_1_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">TextDocumentContent</a>)</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Actually returns a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a> instance (A subclass of TextDocumentContent)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">json</td><td>The web::json::value to create a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> representation of </td></tr>

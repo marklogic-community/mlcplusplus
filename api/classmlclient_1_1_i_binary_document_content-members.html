@@ -85,22 +85,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacemlclient.html">mlclient</a></li><li class="navelem"><a class="el" href="namespacemlclient_1_1utilities.html">utilities</a></li><li class="navelem"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacemlclient.html">mlclient</a></li><li class="navelem"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">IBinaryDocumentContent</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">mlclient::utilities::CppRestJsonHelper Member List</div>  </div>
+<div class="title">mlclient::IBinaryDocumentContent Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CppRestJsonHelper</b>()=delete (defined in <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9">fromDocument</a>(const IDocumentContent &amp;doc)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a549fde831bf5144b19c029e710fecb80">fromResponse</a>(const Response &amp;resp)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#adaeb5213b9be3d09eab78b7adeebd2b5">toDocument</a>(const web::json::value json)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~CppRestJsonHelper</b>()=delete (defined in <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#ab4c50abc28510d17e3c8803e014fcd21">getContent</a>() const  override=0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#a90c5e793e93d58d4780114ce3ffd4a96">getMimeType</a>() const  override=0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#aa2b472a0dac3cf1b852615579cd8dd53">getStream</a>() const  override=0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#a0422bc609995315371f01f2e5ba86510">IBinaryDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2">IDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>MIME_JSON</b> (defined in <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>MIME_XML</b> (defined in <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a>)</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#ae9871f1ba9c5b85ed2a2463577828f72">setMimeType</a>(const std::string &amp;mt) override=0</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html#a5d661a5094264e8484edcebb68f0f2db">~IBinaryDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">mlclient::IBinaryDocumentContent</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">~IDocumentContent</a>()</td><td class="entry"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -40,8 +40,9 @@
     <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/src/</path>
     <filename>_document_content_8hpp</filename>
     <class kind="class">mlclient::IDocumentContent</class>
-    <class kind="class">mlclient::TextDocumentContent</class>
-    <class kind="class">mlclient::BinaryDocumentContent</class>
+    <class kind="class">mlclient::ITextDocumentContent</class>
+    <class kind="class">mlclient::GenericTextDocumentContent</class>
+    <class kind="class">mlclient::IBinaryDocumentContent</class>
     <namespace>mlclient</namespace>
     <member kind="enumeration">
       <type></type>
@@ -67,53 +68,6 @@
     <class kind="class">mlclient::utilities::PugiXmlHelper</class>
     <namespace>mlclient</namespace>
     <namespace>mlclient::utilities</namespace>
-  </compound>
-  <compound kind="class">
-    <name>mlclient::BinaryDocumentContent</name>
-    <filename>classmlclient_1_1_binary_document_content.html</filename>
-    <base>mlclient::IDocumentContent</base>
-    <member kind="function">
-      <type></type>
-      <name>BinaryDocumentContent</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>ad70648d3a162c4876b1688d454f4992c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~BinaryDocumentContent</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>a6183420ef5307387838158987e43913c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getMimeType</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>a60f261a613fdb272f4dbf08d01541a99</anchor>
-      <arglist>() const  override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setMimeType</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>a4693a628566d58ab5599c1e2e6d2f3ea</anchor>
-      <arglist>(const std::string &amp;mt) override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::ostream *</type>
-      <name>getStream</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>af11c67ba41cd48b1a945db2b28a723e3</anchor>
-      <arglist>() const  override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getContent</name>
-      <anchorfile>classmlclient_1_1_binary_document_content.html</anchorfile>
-      <anchor>a7ba0310e3306652acdb085c135235eb1</anchor>
-      <arglist>() const  override</arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>mlclient::Connection</name>
@@ -304,7 +258,7 @@
   <compound kind="class">
     <name>mlclient::utilities::CppRestJsonDocumentContent</name>
     <filename>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</filename>
-    <base>mlclient::TextDocumentContent</base>
+    <base>mlclient::ITextDocumentContent</base>
     <member kind="function">
       <type></type>
       <name>CppRestJsonDocumentContent</name>
@@ -330,8 +284,43 @@
       <type>std::ostream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
-      <anchor>ac39d6fb7fe563e1788386587ed9a9074</anchor>
-      <arglist>()</arglist>
+      <anchor>af39265eb985910665a2097c4784371c1</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setContent</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a1424d0bac3e03350bf943a0043944584</anchor>
+      <arglist>(std::string content) override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getContent</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a2597ba7ca0d8c17a5be610894afa2ecc</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getMimeType</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a08f053568a7c54781402db0bd36dffa0</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMimeType</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>aa7e571e60255efcdc21ea5f56e6fbed8</anchor>
+      <arglist>(const std::string &amp;mt) override</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLength</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a595f0785725d2aaca64740bff492e222</anchor>
+      <arglist>() const  override</arglist>
     </member>
     <member kind="function">
       <type>web::json::value &amp;</type>
@@ -351,8 +340,43 @@
       <type>std::ostream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
-      <anchor>ac39d6fb7fe563e1788386587ed9a9074</anchor>
-      <arglist>()</arglist>
+      <anchor>af39265eb985910665a2097c4784371c1</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setContent</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a1424d0bac3e03350bf943a0043944584</anchor>
+      <arglist>(std::string content) override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getContent</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a2597ba7ca0d8c17a5be610894afa2ecc</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getMimeType</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a08f053568a7c54781402db0bd36dffa0</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMimeType</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>aa7e571e60255efcdc21ea5f56e6fbed8</anchor>
+      <arglist>(const std::string &amp;mt) override</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLength</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
+      <anchor>a595f0785725d2aaca64740bff492e222</anchor>
+      <arglist>() const  override</arglist>
     </member>
     <member kind="function">
       <type>web::json::value &amp;</type>
@@ -366,10 +390,10 @@
     <name>mlclient::utilities::CppRestJsonHelper</name>
     <filename>classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html</filename>
     <member kind="function" static="yes">
-      <type>static TextDocumentContent *</type>
+      <type>static ITextDocumentContent *</type>
       <name>toDocument</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html</anchorfile>
-      <anchor>a19fb2a6e83437d5f2c5e1a9c1599c84e</anchor>
+      <anchor>adaeb5213b9be3d09eab78b7adeebd2b5</anchor>
       <arglist>(const web::json::value json)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -387,10 +411,10 @@
       <arglist>(const Response &amp;resp)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static TextDocumentContent *</type>
+      <type>static ITextDocumentContent *</type>
       <name>toDocument</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html</anchorfile>
-      <anchor>a19fb2a6e83437d5f2c5e1a9c1599c84e</anchor>
+      <anchor>adaeb5213b9be3d09eab78b7adeebd2b5</anchor>
       <arglist>(const web::json::value json)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -412,6 +436,128 @@
     <name>CWrapper</name>
     <filename>class_c_wrapper.html</filename>
     <templarg></templarg>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::GenericTextDocumentContent</name>
+    <filename>classmlclient_1_1_generic_text_document_content.html</filename>
+    <base>mlclient::ITextDocumentContent</base>
+    <member kind="function">
+      <type></type>
+      <name>GenericTextDocumentContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a4b6d427ab361ed48fa3d76bfa2a35805</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>GenericTextDocumentContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>ab3ae7235b73518099e57d0e50da0edd2</anchor>
+      <arglist>(const GenericTextDocumentContent &amp;doc)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>GenericTextDocumentContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a1437182afa2e2d4f92f276af8ad3d823</anchor>
+      <arglist>(const ITextDocumentContent &amp;doc)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~GenericTextDocumentContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>aafc291c2d3fbafb37946e52c3b404ea9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>ad051f989ef07b8d24b2454864c831b9c</anchor>
+      <arglist>(std::string content) override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::ostream *</type>
+      <name>getStream</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a5363fc970e08a32ef5dcacee62884cbb</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getContent</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a70818dba76a1b1dc28cd1ac1b03ab6a2</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getMimeType</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a4487625bb4ab15e2d7709778a2926458</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMimeType</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a5e53fb0737d1488448332f222671816e</anchor>
+      <arglist>(const std::string &amp;mt) override</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getLength</name>
+      <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
+      <anchor>a507199891ebb1dfaa994f287a33eaf22</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::IBinaryDocumentContent</name>
+    <filename>classmlclient_1_1_i_binary_document_content.html</filename>
+    <base>mlclient::IDocumentContent</base>
+    <member kind="function">
+      <type></type>
+      <name>IBinaryDocumentContent</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>a0422bc609995315371f01f2e5ba86510</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~IBinaryDocumentContent</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>a5d661a5094264e8484edcebb68f0f2db</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual std::string</type>
+      <name>getMimeType</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>a90c5e793e93d58d4780114ce3ffd4a96</anchor>
+      <arglist>() const  override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setMimeType</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>ae9871f1ba9c5b85ed2a2463577828f72</anchor>
+      <arglist>(const std::string &amp;mt) override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual std::ostream *</type>
+      <name>getStream</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>aa2b472a0dac3cf1b852615579cd8dd53</anchor>
+      <arglist>() const  override=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual std::string</type>
+      <name>getContent</name>
+      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
+      <anchor>ab4c50abc28510d17e3c8803e014fcd21</anchor>
+      <arglist>() const  override=0</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>mlclient::IDocumentContent</name>
@@ -471,6 +617,25 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>mlclient::ITextDocumentContent</name>
+    <filename>classmlclient_1_1_i_text_document_content.html</filename>
+    <base>mlclient::IDocumentContent</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setContent</name>
+      <anchorfile>classmlclient_1_1_i_text_document_content.html</anchorfile>
+      <anchor>a6eaf74649ada2436bc5f25c2635a9543</anchor>
+      <arglist>(std::string content)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual int</type>
+      <name>getLength</name>
+      <anchorfile>classmlclient_1_1_i_text_document_content.html</anchorfile>
+      <anchor>a81c0edab2ac29ece7a86b91fa6ca0c48</anchor>
+      <arglist>() const  =0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>mlclient::NoCredentialsException</name>
     <filename>classmlclient_1_1_no_credentials_exception.html</filename>
     <member kind="function" virtualness="virtual">
@@ -485,10 +650,10 @@
     <name>mlclient::utilities::PugiXmlHelper</name>
     <filename>classmlclient_1_1utilities_1_1_pugi_xml_helper.html</filename>
     <member kind="function" static="yes">
-      <type>static TextDocumentContent *</type>
+      <type>static ITextDocumentContent *</type>
       <name>toDocument</name>
       <anchorfile>classmlclient_1_1utilities_1_1_pugi_xml_helper.html</anchorfile>
-      <anchor>ad2b38faa8cb7201e8735f8347c580263</anchor>
+      <anchor>adeeb796d03dd51becf80598060eefdaf</anchor>
       <arglist>(const pugi::xml_document &amp;dc)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -601,28 +766,28 @@
       <type>void</type>
       <name>setOptions</name>
       <anchorfile>classmlclient_1_1_search_description.html</anchorfile>
-      <anchor>aeadec07540e3187f939f0738b80c7ea5</anchor>
-      <arglist>(TextDocumentContent &amp;options)</arglist>
+      <anchor>a90a96320f526f5010697d8daf88df2df</anchor>
+      <arglist>(ITextDocumentContent &amp;options)</arglist>
     </member>
     <member kind="function">
-      <type>const TextDocumentContent &amp;</type>
+      <type>const ITextDocumentContent &amp;</type>
       <name>getOptions</name>
       <anchorfile>classmlclient_1_1_search_description.html</anchorfile>
-      <anchor>a1d7c888dad94875044e9fb9da5c95bde</anchor>
+      <anchor>a4f7800af7906e1fdd0f56c89b89fbd1f</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setQuery</name>
       <anchorfile>classmlclient_1_1_search_description.html</anchorfile>
-      <anchor>a5d684c86f2e566af4899f03f71a24787</anchor>
-      <arglist>(TextDocumentContent &amp;query)</arglist>
+      <anchor>ada430d382bcf1ee4d090c832375185cf</anchor>
+      <arglist>(ITextDocumentContent &amp;query)</arglist>
     </member>
     <member kind="function">
-      <type>const TextDocumentContent &amp;</type>
+      <type>const ITextDocumentContent &amp;</type>
       <name>getQuery</name>
       <anchorfile>classmlclient_1_1_search_description.html</anchorfile>
-      <anchor>aefc543e87e0fdc53e3c3d752fb0e6ce8</anchor>
+      <anchor>a1bf0e745f41880624e31b7966b8d9c31</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -640,78 +805,10 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>TextDocumentContent *</type>
+      <type>ITextDocumentContent *</type>
       <name>getPayload</name>
       <anchorfile>classmlclient_1_1_search_description.html</anchorfile>
-      <anchor>a3e207885a37d2f8c6eb2d47a94599ac0</anchor>
-      <arglist>() const </arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>mlclient::TextDocumentContent</name>
-    <filename>classmlclient_1_1_text_document_content.html</filename>
-    <base>mlclient::IDocumentContent</base>
-    <member kind="function">
-      <type></type>
-      <name>TextDocumentContent</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a58169cb4e3357f876ec7250c0db1dec3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>TextDocumentContent</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a0f72c4bb5475c13dfe73ba9d68cee582</anchor>
-      <arglist>(const TextDocumentContent &amp;doc)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~TextDocumentContent</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a42735d82b7326b3d682675695c094570</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setContent</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a15f9e7039be35aa3141a7228183bfbd3</anchor>
-      <arglist>(std::string content)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::ostream *</type>
-      <name>getStream</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a0f8a7bbcbf88d4113a04a7c0bf407b37</anchor>
-      <arglist>() const  override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getContent</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>aef4e49b621b929228a74e0383af97ce2</anchor>
-      <arglist>() const  override</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getMimeType</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a78bc1e195ccf6b9f8aeed478c0d00f7d</anchor>
-      <arglist>() const  override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setMimeType</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>ae7e71ba4d85d44f4db896f95ab4020a2</anchor>
-      <arglist>(const std::string &amp;mt) override</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>getLength</name>
-      <anchorfile>classmlclient_1_1_text_document_content.html</anchorfile>
-      <anchor>a3d857988aec90bdfd8dd5ca71c143d30</anchor>
+      <anchor>a55f519e073c45d2138c3d26d692528f4</anchor>
       <arglist>() const </arglist>
     </member>
   </compound>
@@ -719,14 +816,15 @@
     <name>mlclient</name>
     <filename>namespacemlclient.html</filename>
     <namespace>mlclient::utilities</namespace>
-    <class kind="class">mlclient::BinaryDocumentContent</class>
     <class kind="class">mlclient::Connection</class>
+    <class kind="class">mlclient::GenericTextDocumentContent</class>
+    <class kind="class">mlclient::IBinaryDocumentContent</class>
     <class kind="class">mlclient::IDocumentContent</class>
     <class kind="class">mlclient::InvalidFormatException</class>
+    <class kind="class">mlclient::ITextDocumentContent</class>
     <class kind="class">mlclient::NoCredentialsException</class>
     <class kind="class">mlclient::Response</class>
     <class kind="class">mlclient::SearchDescription</class>
-    <class kind="class">mlclient::TextDocumentContent</class>
     <member kind="enumeration">
       <type></type>
       <name>BinaryEncoding</name>
