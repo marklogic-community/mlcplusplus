@@ -30,7 +30,7 @@ TextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
   tdc->setMimeType("application/xml");
   return tdc; // TODO do we need to std::move this?
 }
-pugi::xml_document* PugiXmlHelper::fromDocument(const DocumentContent& dc) {
+pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(PugiXmlHelper_fromDocument);
   // TODO handle invalid cast exception
 

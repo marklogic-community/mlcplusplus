@@ -214,7 +214,7 @@ void AuthenticatingProxy::getAsync(const std::string& host,
 
 std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
-    const DocumentContent& body,
+    const IDocumentContent& body,
     const http_headers& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_postSync);
@@ -406,7 +406,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
 */
 std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
-    const DocumentContent& text_body,
+    const IDocumentContent& text_body,
     const http_headers& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_putSync);

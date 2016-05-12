@@ -51,7 +51,7 @@ public:
    * \param dc The DocumentContent instance to extract the XML content from.
    * \return A pugi::xml_document instance (parsed XML) created from the DocumentContent object provided.
    */
-  static pugi::xml_document* fromDocument(const DocumentContent& dc);
+  static pugi::xml_document* fromDocument(const IDocumentContent& dc);
 
   // Response conversion
   /**

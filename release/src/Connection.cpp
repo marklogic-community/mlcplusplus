@@ -90,13 +90,13 @@ std::unique_ptr<Response> Connection::doGet(const std::string& pathAndQuerystrin
   TIMED_FUNC(Connection_doGet);
   return mImpl->proxy.getSync(mImpl->serverUrl, pathAndQuerystring);
 }
-std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const DocumentContent& payload) {
+std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_doPut);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       pathAndQuerystring,
       payload);
 }
-std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const DocumentContent& payload) {
+std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_doPost);
   return mImpl->proxy.postSync(mImpl->serverUrl,
       "/v1/search",
@@ -126,7 +126,7 @@ std::unique_ptr<Response> Connection::getDocument(const std::string& uri) {
 }
 
 // TODO XML version
-std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const DocumentContent& payload) {
+std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_saveDocument);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       "/v1/documents?uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here

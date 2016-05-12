@@ -145,7 +145,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const DocumentContent& payload);
+  std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload);
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
    *
@@ -166,7 +166,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const DocumentContent& payload);
+  std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload);
 
   // TODO multipart payload
   /**
@@ -226,7 +226,7 @@ public:
    *
    * \since 8.0.0
    */
-  std::unique_ptr<Response> saveDocument(const std::string& uri,const DocumentContent& payload);
+  std::unique_ptr<Response> saveDocument(const std::string& uri,const IDocumentContent& payload);
 
   /**
    * \brief Deletes the specified document by URI

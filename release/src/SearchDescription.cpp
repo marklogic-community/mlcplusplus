@@ -85,13 +85,13 @@ TextDocumentContent* SearchDescription::getPayload() const {
   LOG(DEBUG) << "    set query";
   // or just a blank query and options!
   if (mImpl->options.get()->getMimeType().empty() && mImpl->query.get()->getMimeType().empty()) {
-    mImpl->options.get()->setMimeType(DocumentContent::MIME_JSON);
-    mImpl->query.get()->setMimeType(DocumentContent::MIME_JSON);
+    mImpl->options.get()->setMimeType(IDocumentContent::MIME_JSON);
+    mImpl->query.get()->setMimeType(IDocumentContent::MIME_JSON);
   }
   LOG(DEBUG) << "    reset mime type";
-  if ( !(0==DocumentContent::MIME_JSON.compare(mImpl->query.get()->getMimeType()) && 0==DocumentContent::MIME_JSON.compare(mImpl->options.get()->getMimeType()))
+  if ( !(0==IDocumentContent::MIME_JSON.compare(mImpl->query.get()->getMimeType()) && 0==IDocumentContent::MIME_JSON.compare(mImpl->options.get()->getMimeType()))
        &&
-       !(0==DocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType()) && 0==DocumentContent::MIME_XML.compare(mImpl->options.get()->getMimeType()))
+       !(0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType()) && 0==IDocumentContent::MIME_XML.compare(mImpl->options.get()->getMimeType()))
      ) {
 
     LOG(DEBUG) << "    MIME TYPES DO NOT MATCH - THROWING EXCEPTION: Query mime: " << mImpl->query.get()->getMimeType()
@@ -106,7 +106,7 @@ TextDocumentContent* SearchDescription::getPayload() const {
   };
   LOG(DEBUG) << "    got elements";
   int offset = 0; // default to JSON
-  if (0==DocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
+  if (0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
     offset = 1;
   }
   std::string payloadString =

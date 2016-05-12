@@ -39,6 +39,8 @@ int main(int argc, const char * argv[])
 
   LOG(INFO) << "In tests main";
 
+  /// TODO delete performance.csv before running tests
+
   //CppUnit::TestResult controller;
 
   //CppUnit::TestResultCollector collector;

@@ -16,7 +16,7 @@
 namespace mlclient {
 
 // DOCUMENT CONTENT
-
+/*
 class DocumentContent::Impl {
 public:
   Impl() : mimeType("") {
@@ -27,7 +27,7 @@ public:
   }
   std::string mimeType;
 };
-
+*/
 /**
  * \brief An enumeration for use with the DocumentContent class.
  *
@@ -37,21 +37,19 @@ public:
  *
  * \note You can provide any string for mimeType - you are NOT limited to these enum values.
  */
-const std::string DocumentContent::MIME_JSON = "application/json";    /// Standard MarkLogic JSON mime type. Used for all configuration API calls
-const std::string DocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
+const std::string IDocumentContent::MIME_JSON = "application/json";    /// Standard MarkLogic JSON mime type. Used for all configuration API calls
+const std::string IDocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
 
 
-DocumentContent::DocumentContent() : mbImpl(new Impl) {
+IDocumentContent::IDocumentContent() {
   LOG(DEBUG) << "    DocumentContent::defaultConstructor @" << &*this;
 }
 
-DocumentContent::~DocumentContent() {
+IDocumentContent::~IDocumentContent() {
   LOG(DEBUG) << "    DocumentContent::destructor @" << &*this;
-  delete mbImpl;
-  mbImpl = NULL;
   LOG(DEBUG) << "    DocumentContent::destructor @" << &*this << " complete.";
 }
-
+/*
 std::string DocumentContent::getMimeType() const {
   return std::string(mbImpl->mimeType); // forces copy constructor
 }
@@ -60,7 +58,7 @@ void DocumentContent::setMimeType(const std::string& mt) {
   mbImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 
-
+*/
 
 
 
@@ -127,14 +125,15 @@ public:
     ;
   }
   std::unique_ptr<std::string> content;
+  std::string mimeType;
 };
 
 
-TextDocumentContent::TextDocumentContent() : DocumentContent::DocumentContent(), mImpl(new Impl) {
+TextDocumentContent::TextDocumentContent() : IDocumentContent::IDocumentContent(), mImpl(new Impl) {
   LOG(DEBUG) << "    TextDocumentContent::defaultConstructor @" << &*this;
   ;
 }
-TextDocumentContent::TextDocumentContent(const TextDocumentContent& doc) : DocumentContent::DocumentContent(doc), mImpl(new Impl) {
+TextDocumentContent::TextDocumentContent(const TextDocumentContent& doc) : IDocumentContent::IDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    TextDocumentContent::copyConstructor @ " << &*this;
   mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
 }
@@ -161,6 +160,14 @@ std::ostream* TextDocumentContent::getStream() const {
   (*os) << mImpl->content.get();
   //std::ostringstream& osref = os; // TODO verify this works with no dangling reference
   return os;
+}
+
+std::string TextDocumentContent::getMimeType() const {
+  return std::string(mImpl->mimeType); // forces copy constructor
+}
+
+void TextDocumentContent::setMimeType(const std::string& mt) {
+  mImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 
 } // end mlclient namespace

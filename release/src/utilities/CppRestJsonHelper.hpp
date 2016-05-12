@@ -66,7 +66,7 @@ public:
    * \param doc The DocumentContent instance to create a web::json::value from.
    * \return A Microsoft cpprest API web::json::value instance created from the DocumentContent.
    */
-  static web::json::value fromDocument(const DocumentContent& doc);
+  static web::json::value fromDocument(const IDocumentContent& doc);
   /// @}
 
   /// \name cpprestjsonhelper_responseconversion Response conversion functions

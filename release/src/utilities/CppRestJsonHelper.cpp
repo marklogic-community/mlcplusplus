@@ -29,7 +29,7 @@ TextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) 
   return tdc; // TODO ensure this doesn't get nixed. Note - uses copy constructor (may eat memory)
 }
 
-web::json::value CppRestJsonHelper::fromDocument(const DocumentContent& dc) {
+web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(CppRestJsonHelper_fromDocument);
   std::ostringstream os;
   std::ostream* dcos(dc.getStream());

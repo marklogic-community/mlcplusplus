@@ -30,18 +30,18 @@ namespace mlclient {
  *
  * \note This is an abstract class designed for extending, and cannot be instantiated directly.
  */
-class DocumentContent {
+class IDocumentContent {
 public:
   // default constructor creation by compiler
   /**
    * The DocumentContent constructor. Called implicitly by subclasses only.
    */
-  DocumentContent();
+  IDocumentContent();
 
   /**
    * A virtual destructor, ripe for overloading. REQUIRED to allow subclassing
    */
-  virtual ~DocumentContent();
+  virtual ~IDocumentContent();
 
   /**
    * \brief Returns the content of this DocumentContent as an ostream.
@@ -70,7 +70,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  std::string getMimeType() const;
+  virtual std::string getMimeType() const = 0;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -79,21 +79,21 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  void setMimeType(const std::string& mt);
+  virtual void setMimeType(const std::string& mt) = 0;
 
   static const std::string MIME_JSON; //< The value application/json
   static const std::string MIME_XML; //< The value application/xml
 
 protected:
-  class Impl;
-  Impl* mbImpl;
+  //class Impl;
+  //Impl* mbImpl;
 };
 
 // TODO streaming operator
 
 
 // INTERFACES
-/**
+/*
  * \class Textable
  * \brief This is a marker (tagging) interface class that indicates a DocumentContent subclass can be interacted with as a string.
  *
@@ -153,7 +153,7 @@ protected:
  * There are no JSON or XML specialisations (Use the JSON and XML helper classes in the \link utilities \endlink namespace
  * instead to create, modify, or introspect the JSON/XML.)
  */
-class TextDocumentContent : public DocumentContent {
+class TextDocumentContent : public IDocumentContent {
 public:
   /**
    * \brief Constructs a blank text document
@@ -188,14 +188,36 @@ public:
    *
    * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  std::ostream* getStream() const;
+  std::ostream* getStream() const override;
 
   /**
    * \brief Returns the content as a string
    *
    * \return The string representation of the content.
    */
-  std::string getContent() const;
+  std::string getContent() const override;
+
+
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  std::string getMimeType() const override;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  void setMimeType(const std::string& mt) override;
+
+
   /**
    * \brief Returns the number of characters in the content string.
    *
@@ -233,7 +255,7 @@ enum BinaryEncoding : int {
  *
  * \note There are also operators like << available for streaming support.
  */
-class BinaryDocumentContent : public DocumentContent {
+class BinaryDocumentContent : public IDocumentContent {
 public:
   /**
    * \brief Default constructor. Initialises the binary content to an empty buffer, of zero length.
@@ -287,6 +309,47 @@ public:
    * \return The integer length of the string encoding (not the binary buffer length) of this data.
    */
   //int getLength();
+
+
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  std::string getMimeType() const override;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  void setMimeType(const std::string& mt) override;
+
+
+
+  /**
+   * \brief Returns the content of this TextDocumentContent as an ostream.
+   *
+   * This allows streaming to a HTTP request of this string content.
+   *
+   * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
+   *
+   * \return An ostream instance wrapping the content of this Text Document Content instance
+   */
+  std::ostream* getStream() const override;
+
+  /**
+   * \brief Returns the content as a string
+   *
+   * \return The string representation of the content.
+   */
+  std::string getContent() const override;
+
 private:
   class Impl;
   Impl* mImpl;
