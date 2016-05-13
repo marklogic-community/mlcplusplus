@@ -14,7 +14,12 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/BriefTestProgressListener.h>
 
+#ifndef ELPP_PERFORMANCE_MICROSECONDS
+#define ELPP_PERFORMANCE_MICROSECONDS 1
+#endif
+
 #include "easylogging++.h"
+
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -34,6 +39,7 @@ int main(int argc, const char * argv[])
   performanceConf.setToDefault();
   performanceConf.set(el::Level::Info, el::ConfigurationType::Format, "%msg");
   performanceConf.set(el::Level::Info,el::ConfigurationType::Filename,"../performance.log"); /// TODO make output file include version number of this upcoming release
+  //performanceConf.set(el::Level::Info,el::ConfigurationType::MillisecondsWidth,"6");
   el::Loggers::reconfigureLogger("performance", performanceConf);
   el::Loggers::addFlag(el::LoggingFlag::FixedTimeFormat); // ensures performance numbers are always quoted as seconds, never formatted
 

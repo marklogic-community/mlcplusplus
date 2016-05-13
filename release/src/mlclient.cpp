@@ -8,7 +8,13 @@
 
 #include "mlclient.hpp"
 
+
+#ifndef ELPP_PERFORMANCE_MICROSECONDS
+#define ELPP_PERFORMANCE_MICROSECONDS 1
+#endif
+
 #include "easylogging++.h"
+
 INITIALIZE_EASYLOGGINGPP
 
 namespace mlclient {
