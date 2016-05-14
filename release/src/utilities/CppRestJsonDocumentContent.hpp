@@ -4,7 +4,7 @@
  * \date 2016-05-01
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.0
- * \brief Provides a convenience Json DocumentContent wrapper for use with Microsoft's CPP REST API
+ * \brief Provides a convenience Json IDocumentContent wrapper for use with Microsoft's CPP REST API
  */
 
 #ifndef SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
@@ -22,14 +22,14 @@ namespace utilities {
  * \since 8.0.0
  * \date 2016-05-10
  *
- * \brief A TextDocumentContent instance that wraps a Microsoft cpprest JSON value object.
+ * \brief An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object.
  *
  * Used by the CppRestJsonHelper class
  *
  * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
-class CppRestJsonDocumentContent : public TextDocumentContent {
+class CppRestJsonDocumentContent : public ITextDocumentContent {
 public:
   /**
    * \brief Default constructor
@@ -50,13 +50,60 @@ public:
   void setContent(const web::json::value& json);
 
   /**
-   * \brief Returns an ostream instance for the underlying content.
+   * \brief Returns the content of this ITextDocumentContent as an ostream.
    *
-   * \note Actually returns a std::ostringstream instance that is newly created by this function. Assumes the caller destroys the stream once done.
+   * This allows streaming to a HTTP request of this string content.
    *
-   * \return A std::ostream instance pointer. Assumes the caller deletes the pointer once done.
+   * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
+   *
+   * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  std::ostream* getStream();
+  std::ostream* getStream() const override;
+
+  /**
+   * \brief Sets the textual content for this document
+   *
+   * Assumes content string is non null
+   *
+   * \param[in] The string content to copy in to this object.
+   */
+  void setContent(std::string content) override;
+
+  /**
+   * \brief Returns the content as a string
+   *
+   * \return The string representation of the content.
+   */
+  std::string getContent() const override;
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  std::string getMimeType() const override;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  void setMimeType(const std::string& mt) override;
+
+
+  /**
+   * \brief Returns the number of characters in the content string.
+   *
+   * \note This number does not include C null characters - just std::string length
+   *
+   * \return The number of characters in the string. Does not include C null character.
+   */
+  int getLength() const override;
+
   /// @}
 
   /// \name cpprestjsondocumentcontent_functions These functions are new to this subclass.

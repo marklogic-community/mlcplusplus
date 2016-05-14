@@ -87,7 +87,7 @@ public:
 
   std::unique_ptr<Response> postSync(const std::string& host,
       const std::string& path,
-      const DocumentContent& body,
+      const IDocumentContent& body,
       const web::http::http_headers& headers = blankHeaders);
   /*
     Response Post(const std::string& host, 
@@ -134,7 +134,7 @@ public:
 
   std::unique_ptr<Response> putSync(const std::string& host,
       const std::string& path,
-      const DocumentContent& text_body,
+      const IDocumentContent& text_body,
       const web::http::http_headers& headers = blankHeaders);
   /*
     Response& Put(const std::string& host,

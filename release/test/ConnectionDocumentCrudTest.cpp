@@ -49,7 +49,7 @@ void ConnectionDocumentCrudTest::testSaveJson(void) {
   LOG(DEBUG) << " Entering testSaveJson";
 
   // Note not using the Json or Xml helpers as we're not testing them here
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setMimeType("application/json");
   tdc.setContent(json);
   const std::unique_ptr<Response> response = ml->saveDocument(jsonUri,tdc);
@@ -93,7 +93,7 @@ void ConnectionDocumentCrudTest::testSaveXml(void) {
   TIMED_FUNC(testSaveXml);
   LOG(DEBUG) << " Entering testSaveXml";
   // Note not using the Json or Xml helpers as we're not testing them here
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setMimeType("application/xml");
   tdc.setContent(xml);
   const std::unique_ptr<Response> response = ml->saveDocument(xmlUri,tdc);
@@ -139,7 +139,7 @@ void ConnectionDocumentCrudTest::testSaveText(void) {
   TIMED_FUNC(testSaveText);
   LOG(DEBUG) << " Entering testSaveText";
   // Note not using the Json or Xml helpers as we're not testing them here
-  TextDocumentContent tdc;
+  GenericTextDocumentContent tdc;
   tdc.setMimeType("plain/text");
   tdc.setContent(text);
   const std::unique_ptr<Response> response = ml->saveDocument(textUri,tdc);

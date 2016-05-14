@@ -23,27 +23,27 @@ namespace mlclient {
  * There are only two specialisations of this class - text and binary - all more complex types are created by using
  * the \link CppRestJsonHelper \endlink and \link PugiXmlHelper \endlink to parse/create these types. E.g. a pugixml::document or web::json::value.
  *
- * \class DocumentContent
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.0
  * \date 2016-04-25
+ *
  * \note This is an abstract class designed for extending, and cannot be instantiated directly.
  */
-class DocumentContent {
+class IDocumentContent {
 public:
   // default constructor creation by compiler
   /**
-   * The DocumentContent constructor. Called implicitly by subclasses only.
+   * The IDocumentContent constructor. Called implicitly by subclasses only.
    */
-  DocumentContent();
+  IDocumentContent();
 
   /**
    * A virtual destructor, ripe for overloading. REQUIRED to allow subclassing
    */
-  virtual ~DocumentContent();
+  virtual ~IDocumentContent();
 
   /**
-   * \brief Returns the content of this DocumentContent as an ostream.
+   * \brief Returns the content of this IDocumentContent as an ostream.
    *
    * This allows streaming to a HTTP request, and works for binary and string content.
    *
@@ -54,7 +54,7 @@ public:
   virtual std::ostream* getStream() const = 0;
 
   /**
-   * \brief Returns the content of this DocumentContent as a std::string.
+   * \brief Returns the content of this IDocumentContent as a std::string.
    *
    * This allows streaming of a HTTP request, with data encoded as a string.
    *
@@ -69,7 +69,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  std::string getMimeType() const;
+  virtual std::string getMimeType() const = 0;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -78,25 +78,24 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  void setMimeType(const std::string& mt);
+  virtual void setMimeType(const std::string& mt) = 0;
 
   static const std::string MIME_JSON; //< The value application/json
   static const std::string MIME_XML; //< The value application/xml
 
 protected:
-  class Impl;
-  Impl* mImpl;
+  //class Impl;
+  //Impl* mbImpl;
 };
 
 // TODO streaming operator
 
 
 // INTERFACES
-/**
- * \class Textable
- * \brief This is a marker (tagging) interface class that indicates a DocumentContent subclass can be interacted with as a string.
+/*
+ * \brief This is a marker (tagging) interface class that indicates an IDocumentContent subclass can be interacted with as a string.
  *
- * Use of this class is for multiple inheritance where a custom class may implement DocumentContent, but may also need some API clients
+ * Use of this class is for multiple inheritance where a custom class may implement IDocumentContent, but may also need some API clients
  * to interact with it as a string.
  *
  * \author Adam Fowler <adam.fowler@marklogic.com>
@@ -141,29 +140,17 @@ protected:
 //};
 
 
-
-
-
-// SPECIALISATIONS
 /**
- * \brief This class is a specialisation of DocumentContent that holds all data in a string.
+ * \brief An overarching interface for a Text Document
+ * \since 8.0.0
+ * \date 2016-05-12
  *
- * This class is used as the data holding class for all JSON and XML documents.
- * There are no JSON or XML specialisations (Use the JSON and XML helper classes in the \link utilities \endlink namespace
- * instead to create, modify, or introspect the JSON/XML.)
+ * \author Adam Fowler <adam.fowler@marklogic.com>
  */
-class TextDocumentContent : public DocumentContent {
+class ITextDocumentContent : public IDocumentContent {
 public:
-  /**
-   * \brief Constructs a blank text document
-   *
-   * The type will by default be set to JSON. Content will by default be an empty string.
-   */
-  TextDocumentContent();
-  /**
-   * \brief Pure virtual destructor
-   */
-  virtual ~TextDocumentContent();
+  ITextDocumentContent();
+  virtual ~ITextDocumentContent();
 
   /**
    * \brief Sets the textual content for this document
@@ -172,7 +159,62 @@ public:
    *
    * \param[in] The string content to copy in to this object.
    */
-  void setContent(std::string content);
+  virtual void setContent(std::string content) = 0;
+
+  /**
+   * \brief Returns the number of characters in the content string.
+   *
+   * \note This number does not include C null characters - just std::string length
+   *
+   * \return The number of characters in the string. Does not include C null character.
+   */
+  virtual int getLength() const = 0;
+};
+
+// SPECIALISATIONS
+/**
+ * \brief This class is a specialisation of ITextDocumentContent (and thus IDocumentContent) that holds all data in a string.
+ * \since 8.0.0
+ * \date 2016-05-12
+ *
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ *
+ * This class is used as the data holding class for all JSON and XML documents.
+ * There are no JSON or XML specialisations (Use the JSON and XML helper classes in the \link utilities \endlink namespace
+ * instead to create, modify, or introspect the JSON/XML.)
+ */
+class GenericTextDocumentContent : public ITextDocumentContent {
+public:
+  /**
+   * \brief Constructs a blank text document
+   *
+   * The type will by default be set to JSON. Content will by default be an empty string.
+   */
+  GenericTextDocumentContent();
+
+  /**
+   * \brief deep copy constructor
+   */
+  GenericTextDocumentContent(const GenericTextDocumentContent& doc);
+
+  /**
+   * \brief deep copy constructor
+   */
+  GenericTextDocumentContent(const ITextDocumentContent& doc);
+
+  /**
+   * \brief Pure virtual destructor
+   */
+  virtual ~GenericTextDocumentContent();
+
+  /**
+   * \brief Sets the textual content for this document
+   *
+   * Assumes content string is non null
+   *
+   * \param[in] The string content to copy in to this object.
+   */
+  void setContent(std::string content) override;
 
   /**
    * \brief Returns the content of this TextDocumentContent as an ostream.
@@ -183,14 +225,36 @@ public:
    *
    * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  std::ostream* getStream() const;
+  std::ostream* getStream() const override;
 
   /**
    * \brief Returns the content as a string
    *
    * \return The string representation of the content.
    */
-  std::string getContent() const;
+  std::string getContent() const override;
+
+
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  std::string getMimeType() const override;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  void setMimeType(const std::string& mt) override;
+
+
   /**
    * \brief Returns the number of characters in the content string.
    *
@@ -198,7 +262,7 @@ public:
    *
    * \return The number of characters in the string. Does not include C null character.
    */
-  int getLength() const;
+  int getLength() const override;
 
 
   // TODO implement generic traversal API here, include binary support (for easy multi part mime handling)
@@ -221,23 +285,25 @@ enum BinaryEncoding : int {
 
 
 /**
- * \class BinaryDocumentContent
- * \brief This class is a specialisation of DocumentContent that holds binary data.
+ * \brief This class is a specialisation of IDocumentContent that holds binary data.
+ * \since 8.0.0
  *
  * This class provides additional methods to make working with binary data more convenient.
  *
  * \note There are also operators like << available for streaming support.
+ *
+ * \warning This class is not yet implemented by a concrete class, or supported by the C++ API. It is here for reference only.
  */
-class BinaryDocumentContent : public DocumentContent {
+class IBinaryDocumentContent : public IDocumentContent {
 public:
   /**
    * \brief Default constructor. Initialises the binary content to an empty buffer, of zero length.
    */
-  BinaryDocumentContent();
+  IBinaryDocumentContent();
   /**
    * \brief Destructor. Will deallocate all contained buffered data
    */
-  virtual ~BinaryDocumentContent();
+  virtual ~IBinaryDocumentContent();
   /**
    * \brief Sets the content from the given string.
    *
@@ -282,6 +348,47 @@ public:
    * \return The integer length of the string encoding (not the binary buffer length) of this data.
    */
   //int getLength();
+
+
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  virtual std::string getMimeType() const override = 0;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  virtual void setMimeType(const std::string& mt) override = 0;
+
+
+
+  /**
+   * \brief Returns the content of this TextDocumentContent as an ostream.
+   *
+   * This allows streaming to a HTTP request of this string content.
+   *
+   * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
+   *
+   * \return An ostream instance wrapping the content of this Text Document Content instance
+   */
+  virtual std::ostream* getStream() const override = 0;
+
+  /**
+   * \brief Returns the content as a string
+   *
+   * \return The string representation of the content.
+   */
+  virtual std::string getContent() const override = 0;
+
 private:
   class Impl;
   Impl* mImpl;

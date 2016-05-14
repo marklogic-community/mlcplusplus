@@ -18,44 +18,50 @@ namespace mlclient {
 class SearchDescription::Impl {
 public:
   Impl() {
-    TextDocumentContent* qtdc = new TextDocumentContent();
-    query = std::unique_ptr<TextDocumentContent>(std::move(qtdc));
-    TextDocumentContent* otdc = new TextDocumentContent();
-    options = std::unique_ptr<TextDocumentContent>(std::move(otdc));
+    LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
+    GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
+    qtdc->setContent("\"query\":{}");
+    query = std::unique_ptr<GenericTextDocumentContent>(qtdc);
+    GenericTextDocumentContent* otdc = new GenericTextDocumentContent();
+    otdc->setContent("\"options\":{}");
+    options = std::unique_ptr<GenericTextDocumentContent>(otdc);
     std::string* qt = new std::string("");
-    queryText = std::unique_ptr<std::string>(std::move(qt));
+    queryText = std::unique_ptr<std::string>(qt);
+    LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this << " complete";
   }
 
   ~Impl() {
     ;
   }
 
-  std::unique_ptr<TextDocumentContent> query;
-  std::unique_ptr<TextDocumentContent> options;
+  std::unique_ptr<ITextDocumentContent> query;
+  std::unique_ptr<ITextDocumentContent> options;
   std::unique_ptr<std::string> queryText;
 }; // end SearchDescription::Impl class
 
 
 SearchDescription::SearchDescription() : mImpl(new Impl) {
-  ;
+  LOG(DEBUG) << "    SearchDescription::defaultConstructor @" << &*this;
 }
 
 SearchDescription::~SearchDescription() {
+  LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
   delete mImpl;
   mImpl = NULL;
+  LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this << " complete.";
 }
 
 
-void SearchDescription::setOptions(TextDocumentContent& options) {
-  mImpl->options = std::unique_ptr<TextDocumentContent>(std::move(&options)); // TODO check this & works
+void SearchDescription::setOptions(ITextDocumentContent& options) {
+  mImpl->options = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(options)); // copy constructor
 }
-const TextDocumentContent& SearchDescription::getOptions() const {
+const ITextDocumentContent& SearchDescription::getOptions() const {
   return *(mImpl->options.get());
 }
-void SearchDescription::setQuery(TextDocumentContent& query) {
-  mImpl->query = std::unique_ptr<TextDocumentContent>(std::move(&query)); // TODO check this & works
+void SearchDescription::setQuery(ITextDocumentContent& query) {
+  mImpl->query = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(query)); // copy constructor
 }
-const TextDocumentContent& SearchDescription::getQuery() const {
+const ITextDocumentContent& SearchDescription::getQuery() const {
   return *(mImpl->query.get());
 }
 void SearchDescription::setQueryText(std::string qtext) {
@@ -64,7 +70,7 @@ void SearchDescription::setQueryText(std::string qtext) {
 const std::string& SearchDescription::getQueryText() const {
   return *(mImpl->queryText.get());
 }
-TextDocumentContent* SearchDescription::getPayload() const {
+ITextDocumentContent* SearchDescription::getPayload() const {
   TIMED_FUNC(SearchDescription_getPayload);
   LOG(DEBUG) << "    Entering getPayload()";
   // if options has not been initialised, leave blank, but set mime type as same as query
@@ -79,13 +85,13 @@ TextDocumentContent* SearchDescription::getPayload() const {
   LOG(DEBUG) << "    set query";
   // or just a blank query and options!
   if (mImpl->options.get()->getMimeType().empty() && mImpl->query.get()->getMimeType().empty()) {
-    mImpl->options.get()->setMimeType(DocumentContent::MIME_JSON);
-    mImpl->query.get()->setMimeType(DocumentContent::MIME_JSON);
+    mImpl->options.get()->setMimeType(IDocumentContent::MIME_JSON);
+    mImpl->query.get()->setMimeType(IDocumentContent::MIME_JSON);
   }
   LOG(DEBUG) << "    reset mime type";
-  if ( !(0==DocumentContent::MIME_JSON.compare(mImpl->query.get()->getMimeType()) && 0==DocumentContent::MIME_JSON.compare(mImpl->options.get()->getMimeType()))
+  if ( !(0==IDocumentContent::MIME_JSON.compare(mImpl->query.get()->getMimeType()) && 0==IDocumentContent::MIME_JSON.compare(mImpl->options.get()->getMimeType()))
        &&
-       !(0==DocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType()) && 0==DocumentContent::MIME_XML.compare(mImpl->options.get()->getMimeType()))
+       !(0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType()) && 0==IDocumentContent::MIME_XML.compare(mImpl->options.get()->getMimeType()))
      ) {
 
     LOG(DEBUG) << "    MIME TYPES DO NOT MATCH - THROWING EXCEPTION: Query mime: " << mImpl->query.get()->getMimeType()
@@ -100,13 +106,17 @@ TextDocumentContent* SearchDescription::getPayload() const {
   };
   LOG(DEBUG) << "    got elements";
   int offset = 0; // default to JSON
-  if (0==DocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
+  if (0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
     offset = 1;
   }
-  std::string payloadString = elements[0+offset] + mImpl->query.get()->getContent() + mImpl->options.get()->getContent() + elements[4+offset] +
-      *(mImpl->queryText.get()) + elements[6+offset] + elements[2+offset];
-  LOG(DEBUG) << "    got payload string";
-  TextDocumentContent* payload = new TextDocumentContent;
+  std::string payloadString =
+      elements[0+offset] +
+        mImpl->query.get()->getContent() + "," +
+        mImpl->options.get()->getContent() + "," +
+        elements[4+offset] + *(mImpl->queryText.get()) + elements[6+offset] +
+      elements[2+offset];
+  LOG(DEBUG) << "    got payload string: " << payloadString;
+  GenericTextDocumentContent* payload = new GenericTextDocumentContent;
   payload->setMimeType(mImpl->query.get()->getMimeType());
   payload->setContent(std::move(payloadString));
   LOG(DEBUG) << "    got payload doc";

@@ -7,6 +7,12 @@
 
 using namespace mlclient;
 
+/**
+ * \brief A template container allowing the holding of any C++ object within a wrapper accessible from C.
+ *
+ * See the ConnectionWrapper.h file for connecting to MarkLogic and making requests, the ResponseWrapper.h file for working
+ * with the results from those calls.
+ */
 template <typename T>
 class CWrapper {
 public:

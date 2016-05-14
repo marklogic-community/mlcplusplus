@@ -18,6 +18,7 @@ namespace mlclient {
  * \since 8.0.0
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \date 2016-04-25
+ *
  * \brief A POD class representing input to the POST of /v1/search - i.e. all search configuration
  *
  * May contain just query text, a complex query, options, or a mix thereof.
@@ -46,24 +47,24 @@ public:
    *
    * See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.
    *
-   * \param[inout] options The search options as an XML or JSON DocumentContent instance
+   * \param[inout] options The search options as an XML or JSON IDocumentContent instance
    */
-  void setOptions(TextDocumentContent& options);
+  void setOptions(ITextDocumentContent& options);
 
   /**
    * \brief Returns the options as a document
    * \return A non-editable reference to the underlying search options.
    */
-  const TextDocumentContent& getOptions() const;
+  const ITextDocumentContent& getOptions() const;
 
   /**
-   * \brief Sets the complex query using an XML or JSON DocumentContent instance
+   * \brief Sets the complex query using an XML or JSON IDocumentContent instance
    *
    * See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.
    *
    * \param[inout] query The TextDocumentContent instance wrapping the XML or JSON query.
    */
-  void setQuery(TextDocumentContent& query);
+  void setQuery(ITextDocumentContent& query);
 
   /**
    * \brief Returns the complex query as a document
@@ -72,7 +73,7 @@ public:
    *
    * \return A non editable reference to the underlying complex query TextDocumentContent
    */
-  const TextDocumentContent& getQuery() const;
+  const ITextDocumentContent& getQuery() const;
 
   /**
    * \brief Sets the plain text query text.
@@ -99,7 +100,7 @@ public:
    *
    * \return A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object.
    */
-  TextDocumentContent* getPayload() const;
+  ITextDocumentContent* getPayload() const;
 private:
   class Impl;
   Impl* mImpl;

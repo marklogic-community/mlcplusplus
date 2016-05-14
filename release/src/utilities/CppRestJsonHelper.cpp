@@ -14,19 +14,23 @@
 
 #include <iostream>
 
+#include "../easylogging++.h"
+
 namespace mlclient {
 
 namespace utilities {
 
 // DocumentContent conversion
-TextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+ITextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+  TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
   tdc->setContent(json);
   tdc->setMimeType("application/json");
   return tdc; // TODO ensure this doesn't get nixed. Note - uses copy constructor (may eat memory)
 }
 
-web::json::value CppRestJsonHelper::fromDocument(const DocumentContent& dc) {
+web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
+  TIMED_FUNC(CppRestJsonHelper_fromDocument);
   std::ostringstream os;
   std::ostream* dcos(dc.getStream());
   os << dcos;
@@ -36,6 +40,7 @@ web::json::value CppRestJsonHelper::fromDocument(const DocumentContent& dc) {
 
 // Response conversion
 web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
+  TIMED_FUNC(CppRestJsonHelper_fromResponse);
   //std::cout << "Response type: " << _response_type << std::endl;
   if (resp.getResponseType() == ResponseType::JSON) {
     //std::cout << "Raw response JSON: " << _content << std::endl;
