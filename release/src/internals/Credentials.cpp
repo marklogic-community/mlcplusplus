@@ -9,7 +9,8 @@
 #include "Credentials.hpp"
 #include <sstream>
 #include <iomanip>
-#include <boost/regex.hpp>
+// #include <boost/regex.hpp> // replaced by regex in C++11
+#include <regex>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -24,10 +25,10 @@ namespace mlclient {
 namespace internals {
 using namespace web::http;
 
-const boost::regex REALM_RE("[R|r]ealm=\"(\\w+)\"");
-const boost::regex QOP_RE("qop=\"(\\w+)\"");
-const boost::regex NONCE_RE("nonce=\"([a-z0-9]+)\"");
-const boost::regex OPAQUE_RE("opaque=\"([a-z0-9]+)\"");
+const std::regex REALM_RE("[R|r]ealm=\"(\\w+)\"");
+const std::regex QOP_RE("qop=\"(\\w+)\"");
+const std::regex NONCE_RE("nonce=\"([a-z0-9]+)\"");
+const std::regex OPAQUE_RE("opaque=\"([a-z0-9]+)\"");
 const utility::string_t AUTHORIZATION_HEADER_NAME = U("Authorization");
 const utility::string_t WWW_AUTHENTICATE_HEADER = U("WWW-Authenticate");
 
@@ -77,26 +78,26 @@ bool Credentials::canAuthenticate() const {
 }
 
 void Credentials::parseWWWAthenticateHeader(const std::string& raw) {
-  boost::smatch matches;
-  if (boost::regex_search(raw, matches, REALM_RE)) {
+  std::smatch matches;
+  if (std::regex_search(raw, matches, REALM_RE)) {
     realm = matches[1];
   } else {
     realm.clear();
   }
 
-  if(boost::regex_search(raw, matches, QOP_RE)) {
+  if(std::regex_search(raw, matches, QOP_RE)) {
     qop = matches[1];
   } else {
     qop.clear();
   }
 
-  if (boost::regex_search(raw, matches, NONCE_RE)) {
+  if (std::regex_search(raw, matches, NONCE_RE)) {
     nonce = matches[1];
   } else {
     nonce.clear();
   }
 
-  if (boost::regex_search(raw, matches, OPAQUE_RE)) {
+  if (std::regex_search(raw, matches, OPAQUE_RE)) {
     opaque = matches[1];
   } else {
     opaque.clear();

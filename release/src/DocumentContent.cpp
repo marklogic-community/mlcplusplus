@@ -7,9 +7,11 @@
 
 #include "DocumentContent.hpp"
 #include "SearchDescription.hpp"
+// #include "internals/memory.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 #include "easylogging++.h"
 
@@ -127,7 +129,7 @@ class GenericTextDocumentContent::Impl {
 public:
   Impl() {
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
-    content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
+    content = std::make_unique<std::string>(""); // MUST BE INITIALISED
   }
   ~Impl() {
     ;
@@ -143,11 +145,13 @@ GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent:
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
+  //mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
+  // DO COPY INSTEAD, IT'S SAFER - mImpl->content = std::move(doc.mImpl->content); // move constructor
+  mImpl->content = mlclient::make_unique<std::string>(doc.mImpl->content); // copy constructor
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(doc.getContent()));
+  mImpl->content = mlclient::make_unique<std::string>(doc.getContent()); // copy constructor
 }
 GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
@@ -157,7 +161,7 @@ GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " complete.";
 }
 void GenericTextDocumentContent::setContent(std::string content) {
-  mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
+  mImpl->content = mlclient::make_unique<std::string>(content); // Force copy constructor
 }
 std::string GenericTextDocumentContent::getContent() const {
   return std::string(*(mImpl->content)); // Forces copy constructor

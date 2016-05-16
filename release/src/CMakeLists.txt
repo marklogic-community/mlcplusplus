@@ -58,9 +58,9 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") OR IOS)
 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
+  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++14")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
   message("-- Setting gcc options")
@@ -71,7 +71,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
   set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
   set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 else()
   message("-- Unknown compiler, success is doubtful.")
@@ -89,15 +89,15 @@ configure_file (
 # so that we will find mlclientConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
-find_package(Doxygen PATHS /usr/local/Cellar/doxygen/1.8.10 /usr/local/Cellar/doxygen/1.8.10/bin )
-if(DOXYGEN_FOUND)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
-add_custom_target(doc
-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../doc
-    COMMENT "Generating API documentation with Doxygen" VERBATIM
-)
-endif(DOXYGEN_FOUND)
+#find_package(Doxygen PATHS /usr/local/Cellar/doxygen/1.8.10 /usr/local/Cellar/doxygen/1.8.10/bin )
+#if(DOXYGEN_FOUND)
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
+#add_custom_target(doc
+#    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile
+#    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../doc
+#    COMMENT "Generating API documentation with Doxygen" VERBATIM
+#)
+#endif(DOXYGEN_FOUND)
 
 
 # ML C++ own libraries
@@ -106,7 +106,7 @@ add_library (mlclient SHARED
     mlclient.cpp
     NoCredentialsException.cpp
     Response.cpp
-    
+
     DocumentContent.cpp
     InvalidFormatException.cpp
     SearchDescription.cpp
@@ -114,11 +114,12 @@ add_library (mlclient SHARED
     internals/AuthenticatingProxy.cpp
     internals/AuthorizationBuilder.cpp
     internals/Credentials.cpp
+    internals/FakeConnection.cpp
     internals/MLCrypto.cpp
 
     ConnectionWrapper.cpp
     ResponseWrapper.cpp
-    
+
     utilities/CppRestJsonHelper.cpp
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp

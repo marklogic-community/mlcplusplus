@@ -53,7 +53,7 @@ public:
   void testGetText(void);
   void testDeleteText(void);
 private:
-  Connection* ml;
+  IConnection* ml;
   std::string json;
   std::string xml;
   std::string text;

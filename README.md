@@ -1,5 +1,9 @@
 This repository contains a C++ cross platform wrapper for the MarkLogic Server REST API.
 
+## Introduction
+
+
+
 ## Quick Start
 
 You can build from source then use in your projects.

@@ -11,6 +11,16 @@
 
 namespace mlclient {
 
+/*
+IConnection::IConnection() {
+  LOG(DEBUG) << "    IConnection::defaultConstructor @" << &*this;
+  LOG(DEBUG) << "    IConnection::defaultConstructor @" << &*this << " complete.";
+}
+
+IConnection::~IConnection() {
+  LOG(DEBUG) << "    IConnection::destructor @" << &*this;
+  LOG(DEBUG) << "    IConnection::destructor @" << &*this << " complete.";
+}*/
 
 class Connection::Impl {
 public:

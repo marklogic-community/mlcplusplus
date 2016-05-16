@@ -35,7 +35,7 @@ public:
   void testQueryText(void);
   void testWordQuery(void);
 private:
-  Connection* ml;
+  IConnection* ml;
   std::string json;
   std::string xml;
   std::string jsonUri;
