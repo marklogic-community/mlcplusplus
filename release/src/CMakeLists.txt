@@ -174,8 +174,8 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 
 target_link_libraries (mlclient
     libcpprest.dylib
-    libcommon_utilities.dylib
-    libboost_regex.dylib
+#    libcommon_utilities.dylib
+#    libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
     libpugixml.a
