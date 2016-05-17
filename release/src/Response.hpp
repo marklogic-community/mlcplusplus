@@ -9,8 +9,9 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
+#include "HttpHeaders.hpp"
+
 #include <iosfwd>
-#include <cpprest/http_client.h> // TODO REMOVE THIS DEPENDENCY!!!
 
 namespace mlclient {
 
@@ -161,7 +162,7 @@ public:
   ///
   /// \param[in] headers The HTTP response headers
   ///
-  void setResponseHeaders(const web::http::http_headers& headers);
+  void setResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
   /// \brief Sets the headers received as part of the response.
@@ -171,7 +172,7 @@ public:
   ///
   /// \param[in] headers The HTTP response headers
   ///
-  //void SetResponseHeaders(const web::http::http_headers& headers);
+  //void SetResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
   /// \brief Returns the HTTP response code for the response.
@@ -186,7 +187,7 @@ public:
   /// \return The HTTP response headers
   /// \todo Remove the dependency on the cpprest API
   ///
-  web::http::http_headers getResponseHeaders(void) const;
+  mlclient::HttpHeaders getResponseHeaders(void) const;
 
 
   ///

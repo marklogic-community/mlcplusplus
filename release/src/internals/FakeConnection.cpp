@@ -3,23 +3,25 @@
 
 #include "FakeConnection.hpp"
 #include <string>
+#include <map>
 
 #include "../easylogging++.h"
 
-#include <cpprest/http_client.h>
+#include "../HttpHeaders.hpp"
 
 namespace mlclient {
 
 namespace internals {
 
 
-typedef std::map<char*, IDocumentContent*> UriDocumentMap;
 //typedef std::map<char*, IDocumentContent*>::iterator DocMapIter; // Use::Iterator version as it's clearer
 
 // strcmp equals function lambda for use by map.find()
-auto docComp = [](const char* p1,const char* p2) {
-  return (0 == strcmp(p1,p2));
-};
+//auto docUriComp = [](const char* p1,const char* p2) {
+//  return (0 == strcmp(p1,p2));
+//};
+
+//typedef std::map<char*, IDocumentContent*, decltype(docUriComp)> UriDocumentMap;
 
 
 class FakeConnection::Impl {
@@ -33,7 +35,8 @@ public:
 
   std::string serverUrl;
   std::string databaseName;
-  UriDocumentMap<char*,IDocumentContent*,decltype(docComp)> documents;
+  //UriDocumentMap documents;
+  std::map<std::string, IDocumentContent*> documents;
 };
 
 FakeConnection::FakeConnection() : mImpl(new Impl) {
@@ -102,8 +105,9 @@ std::unique_ptr<Response> FakeConnection::saveDocument(const std::string& uri,co
   TIMED_FUNC(FakeConnection_saveDocument);
   LOG(DEBUG) << "  Entering FakeConnection::saveDocument";
 
+  //IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
   IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
-  mImpl->documents.insert(std::pair<char*,IDocumentContent*>(uri.c_str(),dp));
+  mImpl->documents.insert(std::pair<std::string,IDocumentContent*>(uri,dp));
 
   Response* response = new Response;
 
@@ -117,9 +121,17 @@ std::unique_ptr<Response> FakeConnection::getDocument(const std::string& uri) {
   LOG(DEBUG) << "  Entering FakeConnection::getDocument";
 
   LOG(DEBUG) << "    Fetching document with URI: " << uri;
-  IDocumentContent* value = mImpl->documents[uri.c_str()];
+  std::map<std::string,IDocumentContent*>::iterator it;
+  it = mImpl->documents.find(uri);
+  std::string ct("");
+  std::string mime("");
+  if (mImpl->documents.end() != it) {
+    ct = ((IDocumentContent*)it->second)->getContent();
+    mime = ((IDocumentContent*)it->second)->getMimeType();
+  }
+  //IDocumentContent& value = mImpl->documents[uri.c_str()];
 
-  LOG(DEBUG) << "    pointer value: " << value;
+  //LOG(DEBUG) << "    pointer value: " << value;
 
   Response* response = new Response;
   LOG(DEBUG) << "  Setting response code";
@@ -127,11 +139,11 @@ std::unique_ptr<Response> FakeConnection::getDocument(const std::string& uri) {
   response->setResponseCode(ResponseCode::OK);
 
   LOG(DEBUG) << "  Setting response content ptr";
-  std::unique_ptr<std::string> content(new std::string("" + value->getContent()));
+  std::unique_ptr<std::string> content(new std::string(ct));
   response->setContent(std::move(content));
   LOG(DEBUG) << "  Setting response headers";
-  web::http::http_headers headers;
-  headers["Content-type"] = value->getMimeType();
+  HttpHeaders headers;
+  headers.setHeader("Content-type",mime);
   response->setResponseHeaders(headers);
 
   LOG(DEBUG) << "  returning response ";
@@ -142,9 +154,15 @@ std::unique_ptr<Response> FakeConnection::deleteDocument(const std::string& uri)
   TIMED_FUNC(FakeConnection_deleteDocument);
   LOG(DEBUG) << "  Entering FakeConnection::deleteDocument";
 
-  UriDocumentMap::iterator it;
+  std::map<std::string,IDocumentContent*>::iterator it;
   it = mImpl->documents.find(uri.c_str());
-  mImpl->documents.erase(it);
+  if (mImpl->documents.end() != it) {
+    // delete if found
+    LOG(DEBUG) << "   URI found: " << uri;
+    mImpl->documents.erase(it);
+  } else {
+    LOG(DEBUG) << "   URI not found: " << uri;
+  }
 
   Response* response = new Response;
 
@@ -160,8 +178,8 @@ std::unique_ptr<Response> FakeConnection::search(const SearchDescription& desc) 
   Response* response = new Response;
 
   response->setResponseCode(ResponseCode::OK);
-  web::http::http_headers headers;
-  headers["Content-type"] = "application/json";
+  HttpHeaders headers;
+  headers.setHeader("Content-type","application/json");
   response->setResponseHeaders(headers);
   std::ostringstream cos;
   cos <<
@@ -177,7 +195,7 @@ std::unique_ptr<Response> FakeConnection::search(const SearchDescription& desc) 
   cos << ", \"results\": [";
 
   // loop over documents in map
-  UriDocumentMap::iterator it;
+  std::map<std::string,IDocumentContent*>::iterator it;
   int count = 0;
   for (it = mImpl->documents.begin();it != mImpl->documents.end() && count < 10;++it) {
     ++count; // iterate first as MarkLogic responses are 1 indexed, not 0 indexed

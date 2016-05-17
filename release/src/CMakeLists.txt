@@ -105,6 +105,7 @@ add_library (mlclient SHARED
     Connection.cpp
     mlclient.cpp
     NoCredentialsException.cpp
+    HttpHeaders.cpp
     Response.cpp
 
     DocumentContent.cpp
@@ -181,6 +182,128 @@ target_link_libraries (mlclient
     libpugixml.a
     ${Casablanca_LIBRARIES}
 )
+
+
+
+
+# Now build SWIG bindings
+
+FIND_PACKAGE(SWIG REQUIRED)
+INCLUDE(${SWIG_USE_FILE})
+
+#INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+SET(CMAKE_SWIG_FLAGS "")
+
+# SWIG Python
+
+FIND_PACKAGE(PythonLibs)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH})
+
+SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES SWIG_FLAGS "-includeall")
+SWIG_ADD_MODULE(mlclient-python python mlclient-python.i
+    Connection.cpp
+    mlclient.cpp
+    NoCredentialsException.cpp
+    HttpHeaders.cpp
+    Response.cpp
+
+    DocumentContent.cpp
+    InvalidFormatException.cpp
+    SearchDescription.cpp
+)
+SWIG_LINK_LIBRARIES(mlclient-python
+    libcpprest.dylib
+    libboost_regex.dylib
+    libssl.dylib
+    libcrypto.dylib
+    libpugixml.a
+    mlclient
+    ${Casablanca_LIBRARIES}
+    ${PYTHON_LIBRARIES}
+)
+
+# SWIG -Go
+
+#SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES SWIG_FLAGS "-includeall -cgo -intgosize 64")
+#SWIG_ADD_MODULE(mlclient-go go mlclient-go.i
+#    Connection.cpp
+#    mlclient.cpp
+#    NoCredentialsException.cpp
+#    Response.cpp
+
+#    DocumentContent.cpp
+#    InvalidFormatException.cpp
+#    SearchDescription.cpp
+#)
+#SWIG_LINK_LIBRARIES(mlclient-go
+#    libcpprest.dylib
+#    libcommon_utilities.dylib
+#    libboost_regex.dylib
+#    libssl.dylib
+#    libcrypto.dylib
+#    libpugixml.a
+#    ${Casablanca_LIBRARIES}
+#)
+
+# SWIG -Ruby
+
+#SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES SWIG_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
+#SWIG_ADD_MODULE(mlclient-ruby ruby mlclient-ruby.i
+#    Connection.cpp
+#    mlclient.cpp
+#    NoCredentialsException.cpp
+#    Response.cpp
+#
+#    DocumentContent.cpp
+#    InvalidFormatException.cpp
+#    SearchDescription.cpp
+#)
+#set_source_files_properties( ${swig_generated_file_fullname}
+#                             PROPERTIES COMPILE_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
+#SWIG_LINK_LIBRARIES(mlclient-ruby mlclient)
+
+
+
+#SET( LIBMLCLIENT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+#SET( RUBY_EXECUTABLE "ruby" )
+#SET( RUBY_INCLUDE_PATH "/usr/local/include/ruby-2.2.0/ruby.h" )
+
+
+#EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['vendorarchdir']" OUTPUT_VARIABLE RUBY_VENDOR_ARCH_DIR)
+
+#MESSAGE(STATUS "Ruby executable: ${RUBY_EXECUTABLE}")
+#MESSAGE(STATUS "Ruby vendor arch dir: ${RUBY_VENDOR_ARCH_DIR}")
+#MESSAGE(STATUS "Ruby include path: ${RUBY_INCLUDE_PATH}")
+
+#SET( SWIG_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/mlclient_ruby.cxx" )
+
+#ADD_CUSTOM_COMMAND (
+#   OUTPUT  ${SWIG_OUTPUT}
+#   COMMAND ${CMAKE_COMMAND} -E echo_append "Creating wrapper code for ruby..."
+#   COMMAND ${SWIG_EXECUTABLE} -c++ -ruby -autorename -o ${SWIG_OUTPUT} -I${LIBMLCLIENT_INCLUDE_DIR} ${SWIG_INPUT}
+#   COMMAND ${CMAKE_COMMAND} -E echo "Done."
+#   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+#   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.i
+#)
+
+#ADD_LIBRARY( mlclient-ruby SHARED ${SWIG_OUTPUT} )
+#INCLUDE_DIRECTORIES( ${RUBY_INCLUDE_PATH} ${LIBMLCLIENT_INCLUDE_DIR} )
+
+#SET_TARGET_PROPERTIES( mlclient-ruby PROPERTIES PREFIX "" OUTPUT_NAME "mlclient-ruby")
+
+#TARGET_LINK_LIBRARIES( mlclient-ruby mlclient )
+#TARGET_LINK_LIBRARIES( mlclient-ruby ${RUBY_LIBRARY} )
+
+#INSTALL(TARGETS mlclient-ruby LIBRARY DESTINATION ${RUBY_VENDOR_ARCH_DIR})
+
+
+
+
+
 
 
 # API documentation

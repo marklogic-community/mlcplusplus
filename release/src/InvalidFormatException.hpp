@@ -30,6 +30,7 @@ public:
    * \brief An override of the what() function to provide a better description of the issue.
    */
   virtual const char* what() const throw() override;
+
 };
 
 }
