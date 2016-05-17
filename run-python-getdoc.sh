@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#PYTHONPATH=./bin/src:./release/samples
-cd ./src
-python getdoc.py
+PYTHONPATH=./bin/src:./release/samples
+python ./release/samples/getdoc.py
 
 

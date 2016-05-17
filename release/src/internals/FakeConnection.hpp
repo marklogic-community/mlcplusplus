@@ -60,7 +60,7 @@ public:
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
       const bool usessl = false) override;
 
-  /**
+  /*
    * \brief Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL.
    *
    * TODO do we need this now usessl is defaulted above???
@@ -72,7 +72,7 @@ public:
    * \param[in] username The username of the used to connect to MarkLogic Server as
    * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
    */
-  void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) override;
+  //void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) override;
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
    *
@@ -120,7 +120,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doGet(const std::string& pathAndQuerystring) override;
+  Response* doGet(const std::string& pathAndQuerystring) override;
   /**
    * \brief Performs a HTTP PUT Request against MarkLogic Server.
    *
@@ -141,7 +141,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
+  Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
    *
@@ -162,7 +162,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
+  Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
   // TODO multipart payload
   /**
@@ -184,7 +184,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  std::unique_ptr<Response> doDelete(const std::string& pathAndQueryString) override;
+  Response* doDelete(const std::string& pathAndQueryString) override;
 
   // @}
 
@@ -207,7 +207,7 @@ public:
    *
    * \since 8.0.0
    */
-  std::unique_ptr<Response> getDocument(const std::string& uri) override; // TODO add optional call parameters (E.g. fetch properties also)
+  Response* getDocument(const std::string& uri) override; // TODO add optional call parameters (E.g. fetch properties also)
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
@@ -222,7 +222,7 @@ public:
    *
    * \since 8.0.0
    */
-  std::unique_ptr<Response> saveDocument(const std::string& uri,const IDocumentContent& payload) override;
+  Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
 
   /**
    * \brief Deletes the specified document by URI
@@ -235,7 +235,7 @@ public:
    *
    * \since 8.0.0
    */
-  std::unique_ptr<Response> deleteDocument(const std::string& uri) override;
+  Response* deleteDocument(const std::string& uri) override;
 
   // TODO save JSON with directory, no uri
   // TODO optional parameters (collection, security, etc.)
@@ -263,7 +263,7 @@ public:
    *
    * \since 8.0.0
    */
-  std::unique_ptr<Response> search(const SearchDescription& desc) override;
+  Response* search(const SearchDescription& desc) override;
 
 private:
   class Impl; // forward declaration

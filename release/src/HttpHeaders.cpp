@@ -7,6 +7,8 @@
 
 #include "HttpHeaders.hpp"
 
+#include "easylogging++.h"
+
 #include <map>
 #include <string>
 
@@ -24,7 +26,9 @@ void HttpHeaders::setHeaders(const std::map<std::string,std::string>& headers) {
   mHeaders = headers;
 }
 void HttpHeaders::setHeader(const std::string& header,const std::string& value) {
+  //LOG(DEBUG) << "Setting header: " << header << " = " << value;
   mHeaders.insert(std::pair<std::string,std::string>(header,value));
+  //LOG(DEBUG) << "Checking existence, value: " << getHeader(header);
 }
 //std::map<std::string,std::string>::iterator& iterator();
 const std::string& empty = "";

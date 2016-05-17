@@ -70,7 +70,7 @@ public:
   /// \param headers The HTTP headers to include in the invocation
   /// \return The Response object
   ///
-  std::unique_ptr<Response> getSync(const std::string& host,
+  Response* getSync(const std::string& host,
       const std::string& path,
       const mlclient::HttpHeaders& headers = blankHeaders);
 /*
@@ -85,7 +85,7 @@ public:
   //    const web::json::value& body,
   //    const mlclient::HttpHeaders& headers = blankHeaders);
 
-  std::unique_ptr<Response> postSync(const std::string& host,
+  Response* postSync(const std::string& host,
       const std::string& path,
       const IDocumentContent& body,
       const mlclient::HttpHeaders& headers = blankHeaders);
@@ -132,7 +132,7 @@ public:
   //    const std::wstring& text_body,
   //    const mlclient::HttpHeaders& headers = blankHeaders);
 
-  std::unique_ptr<Response> putSync(const std::string& host,
+  Response* putSync(const std::string& host,
       const std::string& path,
       const IDocumentContent& text_body,
       const mlclient::HttpHeaders& headers = blankHeaders);
@@ -163,7 +163,7 @@ public:
        const std::string& path,
        const std::function<void(const Response&)> handler);
 */
-   std::unique_ptr<Response> deleteSync(const std::string& host,
+  Response* deleteSync(const std::string& host,
        const std::string& path,
        const mlclient::HttpHeaders& headers = blankHeaders);
 /*

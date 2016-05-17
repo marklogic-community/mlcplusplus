@@ -96,17 +96,17 @@ std::string Connection::getDatabaseName() {
 
 
 // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
-std::unique_ptr<Response> Connection::doGet(const std::string& pathAndQuerystring) {
+Response* Connection::doGet(const std::string& pathAndQuerystring) {
   TIMED_FUNC(Connection_doGet);
   return mImpl->proxy.getSync(mImpl->serverUrl, pathAndQuerystring);
 }
-std::unique_ptr<Response> Connection::doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
+Response* Connection::doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_doPut);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       pathAndQuerystring,
       payload);
 }
-std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
+Response* Connection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_doPost);
   return mImpl->proxy.postSync(mImpl->serverUrl,
       "/v1/search",
@@ -114,7 +114,7 @@ std::unique_ptr<Response> Connection::doPost(const std::string& pathAndQuerystri
 }
 
 // TODO multipart payload
-std::unique_ptr<Response> Connection::doDelete(const std::string& path) {
+Response* Connection::doDelete(const std::string& path) {
   TIMED_FUNC(Connection_doDelete);
   return mImpl->proxy.deleteSync(mImpl->serverUrl,path);
 }
@@ -130,20 +130,20 @@ std::unique_ptr<Response> Connection::doDelete(const std::string& path) {
 
 
 
-std::unique_ptr<Response> Connection::getDocument(const std::string& uri) {
+Response* Connection::getDocument(const std::string& uri) {
   TIMED_FUNC(Connection_getDocument);
   return mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
 }
 
 // TODO XML version
-std::unique_ptr<Response> Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
+Response* Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_saveDocument);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       "/v1/documents?uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
       payload);
 }
 
-std::unique_ptr<Response> Connection::deleteDocument(const std::string& uri) {
+Response* Connection::deleteDocument(const std::string& uri) {
   TIMED_FUNC(Connection_deleteDocument);
   return mImpl->proxy.deleteSync(mImpl->serverUrl,
       "/v1/documents?uri=" + uri // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
@@ -158,7 +158,7 @@ Response Connection::saveAllDocuments(const std::string& uris[], const web::json
 
 
 
-std::unique_ptr<Response> Connection::search(const SearchDescription& desc) {
+Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
   return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
 }

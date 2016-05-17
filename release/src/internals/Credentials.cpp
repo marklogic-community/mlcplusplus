@@ -18,7 +18,7 @@
 #include "MLCrypto.hpp"
 #include "AuthorizationBuilder.hpp"
 
-#include "../mlclient.hpp"
+#include "../easylogging++.h"
 
 namespace mlclient {
 
@@ -74,6 +74,7 @@ Credentials::~Credentials() {
 }
 
 bool Credentials::canAuthenticate() const {
+  //LOG(DEBUG) << "Credentials::canAuthenticate. user is null?: " << (user) << " pass is null?:" << (pass) << " nonce is null?: " << (nonce) << " realm is null?: " << (realm);
   return user != L"" && pass != L"" && nonce != "" && realm != "";
 }
 

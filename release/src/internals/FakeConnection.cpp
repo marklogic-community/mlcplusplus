@@ -49,9 +49,9 @@ FakeConnection::~FakeConnection() {
 }
 
 
-void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
-  configure(hostname,port,username,password,false);
-}
+//void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
+//  configure(hostname,port,username,password,false);
+//}
 
 void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
@@ -65,43 +65,43 @@ std::string FakeConnection::getDatabaseName() {
   return mImpl->databaseName;
 }
 
-std::unique_ptr<Response> FakeConnection::doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
+Response* FakeConnection::doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(FakeConnection_doPut);
   Response* response = new Response;
 
   response->setResponseCode(ResponseCode::OK); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
+Response* FakeConnection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(FakeConnection_doPost);
   Response* response = new Response;
 
   response->setResponseCode(ResponseCode::OK); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::doGet(const std::string& pathAndQuerystring) {
+Response* FakeConnection::doGet(const std::string& pathAndQuerystring) {
   TIMED_FUNC(FakeConnection_doGet);
   Response* response = new Response;
 
   response->setResponseCode(ResponseCode::OK); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::doDelete(const std::string& pathAndQuerystring) {
+Response* FakeConnection::doDelete(const std::string& pathAndQuerystring) {
   TIMED_FUNC(FakeConnection_doDelete);
   Response* response = new Response;
 
   response->setResponseCode(ResponseCode::NO_CONTENT); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
+Response* FakeConnection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
   TIMED_FUNC(FakeConnection_saveDocument);
   LOG(DEBUG) << "  Entering FakeConnection::saveDocument";
 
@@ -113,10 +113,10 @@ std::unique_ptr<Response> FakeConnection::saveDocument(const std::string& uri,co
 
   response->setResponseCode(ResponseCode::OK); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::getDocument(const std::string& uri) {
+Response* FakeConnection::getDocument(const std::string& uri) {
   TIMED_FUNC(FakeConnection_getDocument);
   LOG(DEBUG) << "  Entering FakeConnection::getDocument";
 
@@ -148,10 +148,10 @@ std::unique_ptr<Response> FakeConnection::getDocument(const std::string& uri) {
   response->setResponseHeaders(headers);
 
   LOG(DEBUG) << "  returning response ";
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::deleteDocument(const std::string& uri) {
+Response* FakeConnection::deleteDocument(const std::string& uri) {
   TIMED_FUNC(FakeConnection_deleteDocument);
   LOG(DEBUG) << "  Entering FakeConnection::deleteDocument";
 
@@ -169,10 +169,10 @@ std::unique_ptr<Response> FakeConnection::deleteDocument(const std::string& uri)
 
   response->setResponseCode(ResponseCode::OK); // otherwise blank
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
-std::unique_ptr<Response> FakeConnection::search(const SearchDescription& desc) {
+Response* FakeConnection::search(const SearchDescription& desc) {
   TIMED_FUNC(FakeConnection_search);
   LOG(DEBUG) << "  Entering FakeConnection::search";
 
@@ -212,7 +212,7 @@ std::unique_ptr<Response> FakeConnection::search(const SearchDescription& desc) 
   //response->setContent(std::move(cPtr));
   response->setContent(new std::string(cos.str()));
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 
 

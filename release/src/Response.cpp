@@ -328,13 +328,13 @@ void Response::setResponseHeaders(const mlclient::HttpHeaders& headers) {
   if ("" != value) {
     mImpl->responseType = mImpl->parseContentTypeHeader(value);
   }
-  /*
-  for (auto& iter : headers) {
-    mImpl->headers[iter.first] = iter.second;
+
+  for (auto& iter : headers.getHeaders()) {
+    mImpl->headers.setHeader(iter.first,iter.second);
     if (iter.first == "Content-type" || iter.first == "Content-Type") {
       mImpl->responseType = mImpl->parseContentTypeHeader(iter.second);
     }
-  }*/
+  }
 }
 
 ResponseCode Response::getResponseCode(void) const {

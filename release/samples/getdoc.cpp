@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
-#include <mlclient.hpp>
 #include "utilities/CppRestJsonHelper.hpp"
 #include "utilities/PugiXmlHelper.hpp"
 #include <iostream>
@@ -29,13 +28,12 @@ int main(int argc, const char * argv[])
     uri = std::string(argv[1]);
   }
 
-  const std::unique_ptr<Response> rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
-  Response& response = *rp.get();
+  const Response* rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
 
-  ResponseType rt = response.getResponseType();
+  ResponseType rt = rp->getResponseType();
   std::cout << "Response type: " << rt << std::endl;
-  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(response) << std::endl; }
-  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;PugiXmlHelper::fromResponse(response)->save(std::cout); std::cout << std::endl; }
+  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(*rp) << std::endl; }
+  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;PugiXmlHelper::fromResponse(*rp)->save(std::cout); std::cout << std::endl; }
 
   std::cout << "getdoc complete" << std::endl;
   return 0;

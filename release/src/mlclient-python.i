@@ -42,8 +42,9 @@
 %}
 
 /* Parse the header file to generate wrappers */
-%include "Connection.hpp"
+/* WARNING - THESE MUST BE IN DEPENDENCY ORDER!!! ORDER IS VERY VERY IMPORTANT!!! */
 %include "DocumentContent.hpp"
 %include "HttpHeaders.hpp"
 %include "Response.hpp"
 %include "SearchDescription.hpp"
+%include "Connection.hpp"

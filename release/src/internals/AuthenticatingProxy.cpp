@@ -54,9 +54,11 @@ AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
 void AuthenticatingProxy::copyHeaders(const web::http::http_headers& from, mlclient::HttpHeaders& to) {
   std::map<std::string,std::string> headers;
   for (auto& it : from) {
-    headers.insert(std::pair<std::string,std::string>(it.first,it.second));
+    //LOG(DEBUG) << "Copy headers found: header: " << it.first << " = " << it.second;
+    to.setHeader(it.first,it.second);
+    //headers.insert(std::pair<std::string,std::string>(it.first,it.second));
   }
-  to.setHeaders(headers);
+  //to.setHeaders(headers);
 }
 
 
@@ -69,7 +71,7 @@ const Credentials& AuthenticatingProxy::getCredentials() const {
   return credentials;
 }
 
-std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
+Response* AuthenticatingProxy::getSync(const std::string& host,
     const std::string& path,
     const mlclient::HttpHeaders& headers)
 {
@@ -78,6 +80,8 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
   Response* response = new Response;
   HttpHeaders request_headers = headers;
   http_client raw_client(U(host));
+
+  std::string responseAuthHeaderValue = "";
 
   try {
     http::http_request req(http::methods::GET);
@@ -95,6 +99,14 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
       }
       req.headers().add(iter.first, iter.second);
     }
+    // print out headers for debug
+    /*
+    LOG(DEBUG) << "Listing initial request headers:-";
+    for (auto& iter : req.headers()) {
+      LOG(DEBUG) << " header: " << iter.first << " = " << iter.second;
+    }
+    LOG(DEBUG) << "Finishing listing request headers.";
+    */
 
     pplx::task<http_response> hr = raw_client.request(req);
 
@@ -104,7 +116,18 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
       response->setResponseCode((ResponseCode)raw_response.status_code());
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
-      response->setResponseHeaders(h);
+      response->setResponseHeaders(h); // THIS DOESN'T SET ANYTHING
+      responseAuthHeaderValue = raw_response.headers()[WWW_AUTHENTICATE_HEADER];
+
+      /*
+      LOG(DEBUG) << "Listing response object headers:-";
+      for (auto& iter : response->getResponseHeaders().getHeaders()) {
+        LOG(DEBUG) << " header name: " << iter.first;
+        LOG(DEBUG) << "  value = " << iter.second;
+      }
+      LOG(DEBUG) << "Finishing listing response object headers.";
+      */
+
       //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
       //response->setContent(std::move(c));
       response->setContent(new std::string(raw_response.extract_string().get()));
@@ -146,17 +169,35 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
   }
 
   if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
-    HttpHeaders response_headers = response->getResponseHeaders();
+    //LOG(DEBUG) << "UNAUTHORIZED";
+    //HttpHeaders response_headers = response->getResponseHeaders();
+    /*
+    LOG(DEBUG) << "Listing headers fetched from response:-";
+    for (auto& iter : response_headers.getHeaders()) {
+      LOG(DEBUG) << " header: " << iter.first << " = " << iter.second;
+    }
+    LOG(DEBUG) << "Finishing listing headers fetched from response.";
+    */
 
     try {
       http::http_request req(http::methods::GET);
       req.set_request_uri(path);
 
-      std::string authHeader = to_utf8string(response_headers.getHeader(WWW_AUTHENTICATE_HEADER));
+      // print out all headers from response
+/*
+      LOG(DEBUG) << "Listing Unauth response headers:-";
+      for (auto& iter : response_headers.getHeaders()) {
+        LOG(DEBUG) << " header: " << iter.first << " = " << iter.second;
+      }
+      LOG(DEBUG) << "Finishing listing unauth response headers.";
+      LOG(DEBUG) << "Value of www authenticate: " << WWW_AUTHENTICATE_HEADER;
+      */
+
+      //std::string authHeader = to_utf8string(response_headers.getHeader(WWW_AUTHENTICATE_HEADER));
 
       req.headers().add(
           AUTHORIZATION_HEADER_NAME,
-          U(credentials.authenticate("GET", path, authHeader) )
+          U(credentials.authenticate("GET", path, responseAuthHeaderValue) )
       );
 
       std::map<std::string,std::string>::const_iterator iter;
@@ -167,12 +208,20 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
         }
         req.headers().add(iter.first, iter.second);
       }
+      /*
+      LOG(DEBUG) << "Listing request headers post auth calculation:-";
+      for (auto& iter : req.headers()) {
+        LOG(DEBUG) << " header: " << iter.first << " = " << iter.second;
+      }
+      LOG(DEBUG) << "Finishing listing request headers.";
+      */
 
       http_response raw_response = raw_client.request(req).get();
 
       try
       {
         //response->SetJson(raw_response.extract_json().get());
+        //LOG(DEBUG) << "Final response...";
 
         response->setResponseCode((ResponseCode)raw_response.status_code());
         HttpHeaders h;
@@ -214,7 +263,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
     }
   }
 
-  return std::unique_ptr<Response>(response);
+  return response;
 }
 
 /*
@@ -227,7 +276,7 @@ void AuthenticatingProxy::getAsync(const std::string& host,
 }
 */
 
-std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
+Response* AuthenticatingProxy::postSync(const std::string& host,
     const std::string& path,
     const IDocumentContent& body,
     const mlclient::HttpHeaders& headers)
@@ -332,7 +381,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
   }
   LOG(DEBUG) << "    Leaving postSync";
 
-  return std::unique_ptr<Response>(response);
+  return response;
 }
 
 /*
@@ -421,7 +470,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
   return std::unique_ptr<Response> (response);
 }
 */
-std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
+Response* AuthenticatingProxy::putSync(const std::string& host,
     const std::string& path,
     const IDocumentContent& text_body,
     const mlclient::HttpHeaders& headers)
@@ -514,7 +563,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
     }
   }
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 /*
 Response AuthenticatingProxy::putSync(const std::string& host,
@@ -566,7 +615,7 @@ void AuthenticatingProxy::putAsync(const std::string& host,
 }
 */
 
-std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& host,
+Response* AuthenticatingProxy::deleteSync(const std::string& host,
     const std::string& path,
     const mlclient::HttpHeaders& headers)
 {
@@ -655,7 +704,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
     }
   }
 
-  return std::unique_ptr<Response> (response);
+  return response;
 }
 /*
 
