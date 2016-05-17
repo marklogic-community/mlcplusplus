@@ -116,15 +116,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a19e062190a54b18dea43008dd15c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a2a19e062190a54b18dea43008dd15c7b">setResponseType</a> (const enum <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;type)</td></tr>
 <tr class="memdesc:a2a19e062190a54b18dea43008dd15c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally.  <a href="#a2a19e062190a54b18dea43008dd15c7b">More...</a><br /></td></tr>
 <tr class="separator:a2a19e062190a54b18dea43008dd15c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d6560614478ee46082b2464aa9efe4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a73d6560614478ee46082b2464aa9efe4">setResponseHeaders</a> (const web::http::http_headers &amp;headers)</td></tr>
-<tr class="memdesc:a73d6560614478ee46082b2464aa9efe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a73d6560614478ee46082b2464aa9efe4">More...</a><br /></td></tr>
-<tr class="separator:a73d6560614478ee46082b2464aa9efe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7eef7761531135409092e88b2c7258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a0f7eef7761531135409092e88b2c7258">setResponseHeaders</a> (const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;headers)</td></tr>
+<tr class="memdesc:a0f7eef7761531135409092e88b2c7258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a0f7eef7761531135409092e88b2c7258">More...</a><br /></td></tr>
+<tr class="separator:a0f7eef7761531135409092e88b2c7258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65a5133e83bca31c37bd443da37451eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a65a5133e83bca31c37bd443da37451eb">getResponseCode</a> (void) const </td></tr>
 <tr class="memdesc:a65a5133e83bca31c37bd443da37451eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a65a5133e83bca31c37bd443da37451eb">More...</a><br /></td></tr>
 <tr class="separator:a65a5133e83bca31c37bd443da37451eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8af98e570832afad9afa17505cc9db8"><td class="memItemLeft" align="right" valign="top">web::http::http_headers&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#ac8af98e570832afad9afa17505cc9db8">getResponseHeaders</a> (void) const </td></tr>
-<tr class="memdesc:ac8af98e570832afad9afa17505cc9db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the headers that were returned with the response.  <a href="#ac8af98e570832afad9afa17505cc9db8">More...</a><br /></td></tr>
-<tr class="separator:ac8af98e570832afad9afa17505cc9db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f8301c312194b48864633dcec68246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a21f8301c312194b48864633dcec68246">getResponseHeaders</a> (void) const </td></tr>
+<tr class="memdesc:a21f8301c312194b48864633dcec68246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the headers that were returned with the response.  <a href="#a21f8301c312194b48864633dcec68246">More...</a><br /></td></tr>
+<tr class="separator:a21f8301c312194b48864633dcec68246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a628325fb5e48c06f69fb4ead94fbb367"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367">read</a> (void *buffer, const size_t &amp;max_size, const size_t off=0)</td></tr>
 <tr class="memdesc:a628325fb5e48c06f69fb4ead94fbb367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw response in to a buffer. Used for Binary responses.  <a href="#a628325fb5e48c06f69fb4ead94fbb367">More...</a><br /></td></tr>
 <tr class="separator:a628325fb5e48c06f69fb4ead94fbb367"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -217,12 +217,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="ac8af98e570832afad9afa17505cc9db8"></a>
+<a class="anchor" id="a21f8301c312194b48864633dcec68246"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">web::http::http_headers mlclient::Response::getResponseHeaders </td>
+          <td class="memname"><a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> mlclient::Response::getResponseHeaders </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -351,14 +351,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a73d6560614478ee46082b2464aa9efe4"></a>
+<a class="anchor" id="a0f7eef7761531135409092e88b2c7258"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void mlclient::Response::setResponseHeaders </td>
           <td>(</td>
-          <td class="paramtype">const web::http::http_headers &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;&#160;</td>
           <td class="paramname"><em>headers</em></td><td>)</td>
           <td></td>
         </tr>

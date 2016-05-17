@@ -102,71 +102,71 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef RESPONSE_H</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define RESPONSE_H</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;cpprest/http_client.h&gt;</span> <span class="comment">// TODO REMOVE THIS DEPENDENCY!!!</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;HttpHeaders.hpp&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//enum ResponseType : int; // UNKNOWN IS FIRST SO AS TO AVOID INCORRECTLY INSTANTIATED RESPONSE ISSUES</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">   26</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> : <span class="keywordtype">int</span> { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//std::string&amp; operator+(const char* orig,const ResponseType&amp; rt);</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">   37</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> : <span class="keywordtype">int</span> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;       UNKNOWN_CODE                  = 0,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;       CONTINUE                      = 100,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;       OK                            = 200,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;       CREATED                       = 201,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;       ACCEPTED                      = 202,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;       NO_CONTENT                    = 204,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;       RESET_CONTENT                 = 205,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;       PARTIAL_CONTENT               = 206,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       MULTIPLE_CHOICES              = 300,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       MOVED_PERMANENTLY             = 301,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       FOUND                         = 302,</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;       SEE_OTHER                     = 303,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;       NOT_MODIFIED                  = 304,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;       USE_PROXY                     = 305,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;       TEMPORARY_REDIRECT            = 307,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;       BAD_REQUEST                   = 400,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;       UNAUTHORIZED                  = 401,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;       PAYMENT_REQUIRED              = 402,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;       FORBIDDEN                     = 403,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;       NOT_FOUND                     = 404,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;       METHOD_NOT_ALLOWED            = 405,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;       NOT_ACCEPTABLE                = 406,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;       PROXY_AUTHENTICATION_REQUIRED = 407,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;       REQUEST_TIMEOUT               = 408,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;       CONFLICT                      = 409,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;       GONE                          = 410,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;       LENGTH_REQUIRED               = 411,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;       PRECONDITION_FAILED           = 412,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;       REQUEST_ENTITY_TOO_LARGE      = 413,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;       REQUEST_URI_TOO_LONG          = 414,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;       UNSUPPORTED_MEDIA_TYPE        = 415,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;       REQUEST_RANGE_BAD             = 416,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;       EXPECTATION_FAILED            = 417,</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;       INTERNAL_SERVER_ERROR         = 500,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;       NOT_IMPLEMENTED               = 501,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;       BAD_GATEWAY                   = 502,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;       SERVICE_UNAVAILABLE           = 503,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;       GATEWAY_TIMEOUT               = 504,</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;       HTTP_VERSION_NOT_SUPPORTED    = 505</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//enum ResponseType : int; // UNKNOWN IS FIRST SO AS TO AVOID INCORRECTLY INSTANTIATED RESPONSE ISSUES</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">   27</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> : <span class="keywordtype">int</span> { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//std::string&amp; operator+(const char* orig,const ResponseType&amp; rt);</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; rt);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">   38</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> : <span class="keywordtype">int</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;       UNKNOWN_CODE                  = 0,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;       CONTINUE                      = 100,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;       OK                            = 200,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;       CREATED                       = 201,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;       ACCEPTED                      = 202,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;       NO_CONTENT                    = 204,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;       RESET_CONTENT                 = 205,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       PARTIAL_CONTENT               = 206,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       MULTIPLE_CHOICES              = 300,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       MOVED_PERMANENTLY             = 301,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;       FOUND                         = 302,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;       SEE_OTHER                     = 303,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;       NOT_MODIFIED                  = 304,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;       USE_PROXY                     = 305,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;       TEMPORARY_REDIRECT            = 307,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;       BAD_REQUEST                   = 400,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;       UNAUTHORIZED                  = 401,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;       PAYMENT_REQUIRED              = 402,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;       FORBIDDEN                     = 403,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;       NOT_FOUND                     = 404,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;       METHOD_NOT_ALLOWED            = 405,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;       NOT_ACCEPTABLE                = 406,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;       PROXY_AUTHENTICATION_REQUIRED = 407,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;       REQUEST_TIMEOUT               = 408,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;       CONFLICT                      = 409,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;       GONE                          = 410,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;       LENGTH_REQUIRED               = 411,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;       PRECONDITION_FAILED           = 412,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;       REQUEST_ENTITY_TOO_LARGE      = 413,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;       REQUEST_URI_TOO_LONG          = 414,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;       UNSUPPORTED_MEDIA_TYPE        = 415,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;       REQUEST_RANGE_BAD             = 416,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;       EXPECTATION_FAILED            = 417,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;       INTERNAL_SERVER_ERROR         = 500,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;       NOT_IMPLEMENTED               = 501,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;       BAD_GATEWAY                   = 502,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;       SERVICE_UNAVAILABLE           = 503,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;       GATEWAY_TIMEOUT               = 504,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;       HTTP_VERSION_NOT_SUPPORTED    = 505</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rc);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rc);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//std::string&amp; operator+(const char* orig,const ResponseCode&amp; rc);</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rt);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rc);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rc);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//std::string&amp; operator+(const char* orig,const ResponseCode&amp; rc);</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; rt);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
@@ -186,63 +186,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classmlclient_1_1_response.html">  120</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_response.html">Response</a> {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <a class="code" href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">Response</a>();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  ~<a class="code" href="classmlclient_1_1_response.html">Response</a>();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a8df32c7a735c11fe23eb216a0ff7d7d7">setResponseCode</a>(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; code);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> <a class="code" href="classmlclient_1_1_response.html#a4d2dd5829c9f12d1cca84c12502369f5">getResponseType</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a2a19e062190a54b18dea43008dd15c7b">setResponseType</a>(<span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; type);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a73d6560614478ee46082b2464aa9efe4">setResponseHeaders</a>(<span class="keyword">const</span> web::http::http_headers&amp; headers);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="comment">//void SetResponseHeaders(const web::http::http_headers&amp; headers);</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> <a class="code" href="classmlclient_1_1_response.html#a65a5133e83bca31c37bd443da37451eb">getResponseCode</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  web::http::http_headers <a class="code" href="classmlclient_1_1_response.html#ac8af98e570832afad9afa17505cc9db8">getResponseHeaders</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classmlclient_1_1_response.html">  121</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_response.html">Response</a> {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <a class="code" href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">Response</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  ~<a class="code" href="classmlclient_1_1_response.html">Response</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a8df32c7a735c11fe23eb216a0ff7d7d7">setResponseCode</a>(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&amp; code);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> <a class="code" href="classmlclient_1_1_response.html#a4d2dd5829c9f12d1cca84c12502369f5">getResponseType</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a2a19e062190a54b18dea43008dd15c7b">setResponseType</a>(<span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&amp; type);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a0f7eef7761531135409092e88b2c7258">setResponseHeaders</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a>&amp; headers);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="comment">//void SetResponseHeaders(const mlclient::HttpHeaders&amp; headers);</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <a class="code" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> <a class="code" href="classmlclient_1_1_response.html#a65a5133e83bca31c37bd443da37451eb">getResponseCode</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <a class="code" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> <a class="code" href="classmlclient_1_1_response.html#a21f8301c312194b48864633dcec68246">getResponseHeaders</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367">read</a>(<span class="keywordtype">void</span>* buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; max_size, <span class="keyword">const</span> <span class="keywordtype">size_t</span> off = 0);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;  <span class="comment">//void SetJson(const web::json::value&amp; json);</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment"></span>  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a646820f18250f5a743fe031ade050451">setContent</a>(std::unique_ptr&lt;std::string&gt; content); <span class="comment">// move ownership to this class - use std::move(str) in the caller</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  <span class="comment">// prevent compiler automatically defining the copy constructor and assignment operator:-</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <a class="code" href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">Response</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <span class="keyword">class </span>Impl; <span class="comment">// forward declare - PIMPL idiom</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  Impl* mImpl;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <span class="keyword">friend</span> <span class="keyword">class </span>ResponseTest; <span class="comment">// TODO remove this - nasty</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;};</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;}</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__Scratch__Response__) */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367">read</a>(<span class="keywordtype">void</span>* buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; max_size, <span class="keyword">const</span> <span class="keywordtype">size_t</span> off = 0);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  <span class="comment">//void SetJson(const web::json::value&amp; json);</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment"></span>  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_response.html#a646820f18250f5a743fe031ade050451">setContent</a>(std::unique_ptr&lt;std::string&gt; content); <span class="comment">// move ownership to this class - use std::move(str) in the caller</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="comment">// prevent compiler automatically defining the copy constructor and assignment operator:-</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <a class="code" href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">Response</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="keyword">class </span>Impl; <span class="comment">// forward declare - PIMPL idiom</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  Impl* mImpl;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  <span class="keyword">friend</span> <span class="keyword">class </span>ResponseTest; <span class="comment">// TODO remove this - nasty</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;};</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;}</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__Scratch__Response__) */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
 <div class="ttc" id="classmlclient_1_1_response_html_a2a19e062190a54b18dea43008dd15c7b"><div class="ttname"><a href="classmlclient_1_1_response.html#a2a19e062190a54b18dea43008dd15c7b">mlclient::Response::setResponseType</a></div><div class="ttdeci">void setResponseType(const enum ResponseType &amp;type)</div><div class="ttdoc">Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally. </div></div>
-<div class="ttc" id="classmlclient_1_1_response_html_ac8af98e570832afad9afa17505cc9db8"><div class="ttname"><a href="classmlclient_1_1_response.html#ac8af98e570832afad9afa17505cc9db8">mlclient::Response::getResponseHeaders</a></div><div class="ttdeci">web::http::http_headers getResponseHeaders(void) const </div><div class="ttdoc">Returns the headers that were returned with the response. </div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a628325fb5e48c06f69fb4ead94fbb367"><div class="ttname"><a href="classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367">mlclient::Response::read</a></div><div class="ttdeci">size_t read(void *buffer, const size_t &amp;max_size, const size_t off=0)</div><div class="ttdoc">Reads the raw response in to a buffer. Used for Binary responses. </div></div>
-<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:120</div></div>
+<div class="ttc" id="classmlclient_1_1_response_html_a0f7eef7761531135409092e88b2c7258"><div class="ttname"><a href="classmlclient_1_1_response.html#a0f7eef7761531135409092e88b2c7258">mlclient::Response::setResponseHeaders</a></div><div class="ttdeci">void setResponseHeaders(const mlclient::HttpHeaders &amp;headers)</div><div class="ttdoc">Sets the headers received as part of the response. </div></div>
+<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:121</div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a65a5133e83bca31c37bd443da37451eb"><div class="ttname"><a href="classmlclient_1_1_response.html#a65a5133e83bca31c37bd443da37451eb">mlclient::Response::getResponseCode</a></div><div class="ttdeci">ResponseCode getResponseCode(void) const </div><div class="ttdoc">Sets the headers received as part of the response. </div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a0487a31c6d74e7a1d5dc4ba1f9b263e2"><div class="ttname"><a href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">mlclient::Response::getContent</a></div><div class="ttdeci">const std::string &amp; getContent() const </div><div class="ttdoc">For text responses (including JSON and XML), returns the response content as a string. </div></div>
+<div class="ttc" id="classmlclient_1_1_response_html_a21f8301c312194b48864633dcec68246"><div class="ttname"><a href="classmlclient_1_1_response.html#a21f8301c312194b48864633dcec68246">mlclient::Response::getResponseHeaders</a></div><div class="ttdeci">mlclient::HttpHeaders getResponseHeaders(void) const </div><div class="ttdoc">Returns the headers that were returned with the response. </div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a8df32c7a735c11fe23eb216a0ff7d7d7"><div class="ttname"><a href="classmlclient_1_1_response.html#a8df32c7a735c11fe23eb216a0ff7d7d7">mlclient::Response::setResponseCode</a></div><div class="ttdeci">void setResponseCode(const ResponseCode &amp;code)</div><div class="ttdoc">Sets the HTTP response code for the Response. </div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a6fe9f3d9b1e2b056ca9c994135252974"><div class="ttname"><a href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">mlclient::Response::Response</a></div><div class="ttdeci">Response()</div></div>
 <div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:20</div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a4d2dd5829c9f12d1cca84c12502369f5"><div class="ttname"><a href="classmlclient_1_1_response.html#a4d2dd5829c9f12d1cca84c12502369f5">mlclient::Response::getResponseType</a></div><div class="ttdeci">ResponseType getResponseType(void) const </div><div class="ttdoc">Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown...</div></div>
-<div class="ttc" id="namespacemlclient_html_aff058411252d0c404caf56d2d0b65090"><div class="ttname"><a href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">mlclient::ResponseType</a></div><div class="ttdeci">ResponseType</div><div class="ttdef"><b>Definition:</b> Response.hpp:26</div></div>
-<div class="ttc" id="namespacemlclient_html_ac8a0790b90fd9b1df837c9476659fb23"><div class="ttname"><a href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">mlclient::ResponseCode</a></div><div class="ttdeci">ResponseCode</div><div class="ttdef"><b>Definition:</b> Response.hpp:37</div></div>
-<div class="ttc" id="classmlclient_1_1_response_html_a73d6560614478ee46082b2464aa9efe4"><div class="ttname"><a href="classmlclient_1_1_response.html#a73d6560614478ee46082b2464aa9efe4">mlclient::Response::setResponseHeaders</a></div><div class="ttdeci">void setResponseHeaders(const web::http::http_headers &amp;headers)</div><div class="ttdoc">Sets the headers received as part of the response. </div></div>
+<div class="ttc" id="namespacemlclient_html_aff058411252d0c404caf56d2d0b65090"><div class="ttname"><a href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">mlclient::ResponseType</a></div><div class="ttdeci">ResponseType</div><div class="ttdef"><b>Definition:</b> Response.hpp:27</div></div>
+<div class="ttc" id="namespacemlclient_html_ac8a0790b90fd9b1df837c9476659fb23"><div class="ttname"><a href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">mlclient::ResponseCode</a></div><div class="ttdeci">ResponseCode</div><div class="ttdef"><b>Definition:</b> Response.hpp:38</div></div>
+<div class="ttc" id="classmlclient_1_1_http_headers_html"><div class="ttname"><a href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a></div><div class="ttdef"><b>Definition:</b> HttpHeaders.hpp:16</div></div>
 <div class="ttc" id="classmlclient_1_1_response_html_a646820f18250f5a743fe031ade050451"><div class="ttname"><a href="classmlclient_1_1_response.html#a646820f18250f5a743fe031ade050451">mlclient::Response::setContent</a></div><div class="ttdeci">void setContent(std::unique_ptr&lt; std::string &gt; content)</div><div class="ttdoc">Sets the string content for this Response. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
