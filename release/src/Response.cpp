@@ -364,9 +364,15 @@ const std::string& Response::getContent() const {
   return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
 }
 
+/*
 void Response::setContent(std::unique_ptr<std::string> content) {
   mImpl->content = std::move(content); // move ownership from function to object
   //std::cout << "SetContent: parameter: " << content << ", member variable: " << _content << std::endl;
+}
+*/
+
+void Response::setContent(std::string* content) {
+  mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
 }
 
 

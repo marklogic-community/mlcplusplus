@@ -72,7 +72,7 @@ public:
    * \param[in] username The username of the used to connect to MarkLogic Server as
    * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
    */
-  virtual void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) = 0;
+  //virtual void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) = 0;
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
    *

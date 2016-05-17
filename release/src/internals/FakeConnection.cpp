@@ -139,8 +139,9 @@ std::unique_ptr<Response> FakeConnection::getDocument(const std::string& uri) {
   response->setResponseCode(ResponseCode::OK);
 
   LOG(DEBUG) << "  Setting response content ptr";
-  std::unique_ptr<std::string> content(new std::string(ct));
-  response->setContent(std::move(content));
+  //std::unique_ptr<std::string> content(new std::string(ct));
+  //response->setContent(std::move(content));
+  response->setContent(new std::string(ct));
   LOG(DEBUG) << "  Setting response headers";
   HttpHeaders headers;
   headers.setHeader("Content-type",mime);
@@ -207,8 +208,9 @@ std::unique_ptr<Response> FakeConnection::search(const SearchDescription& desc) 
   }
 
   cos << "] } }";
-  std::unique_ptr<std::string> cPtr(new std::string(cos.str()));
-  response->setContent(std::move(cPtr));
+  //std::unique_ptr<std::string> cPtr(new std::string(cos.str()));
+  //response->setContent(std::move(cPtr));
+  response->setContent(new std::string(cos.str()));
 
   return std::unique_ptr<Response> (response);
 }

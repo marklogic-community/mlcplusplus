@@ -222,7 +222,8 @@ public:
    *
    * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
    */
-  void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
+  //void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
+  void setContent(std::string* content);
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
   Response(const Response&) = delete;

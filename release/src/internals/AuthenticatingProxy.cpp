@@ -105,8 +105,9 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
       response->setResponseHeaders(h);
-      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->setContent(std::move(c));
+      //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+      //response->setContent(std::move(c));
+      response->setContent(new std::string(raw_response.extract_string().get()));
       //response->SetContent(std::move(std::string(raw_response.extract_string().get())));
     }
     catch (const http_exception& e)
@@ -177,8 +178,7 @@ std::unique_ptr<Response> AuthenticatingProxy::getSync(const std::string& host,
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h);
-        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-        response->setContent(std::move(c));
+        response->setContent(new std::string(raw_response.extract_string().get()));
       }
       catch (const web::http::http_exception& e)
       {
@@ -266,8 +266,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
       response->setResponseHeaders(h);
-      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->setContent(std::move(c));
+      response->setContent(new std::string(raw_response.extract_string().get()));
     }
     catch (const web::http::http_exception& e)
     {
@@ -311,8 +310,7 @@ std::unique_ptr<Response> AuthenticatingProxy::postSync(const std::string& host,
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h);
-        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-        response->setContent(std::move(c));
+        response->setContent(new std::string(raw_response.extract_string().get()));
       }
       catch (const web::http::http_exception& e)
       {
@@ -451,8 +449,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
       response->setResponseHeaders(h);
-      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->setContent(std::move(c));
+      response->setContent(new std::string(raw_response.extract_string().get()));
     }
     catch (const web::http::http_exception& e)
     {
@@ -496,8 +493,7 @@ std::unique_ptr<Response> AuthenticatingProxy::putSync(const std::string& host,
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h);
-        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-        response->setContent(std::move(c));
+        response->setContent(new std::string(raw_response.extract_string().get()));
       }
       catch (const web::http::http_exception& e)
       {
@@ -596,8 +592,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
       response->setResponseHeaders(h);
-      std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      response->setContent(std::move(c));
+      response->setContent(new std::string(raw_response.extract_string().get()));
     }
     catch (const web::http::http_exception& e)
     {
@@ -639,8 +634,7 @@ std::unique_ptr<Response> AuthenticatingProxy::deleteSync(const std::string& hos
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h);
-        std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-        response->setContent(std::move(c));
+        response->setContent(new std::string(raw_response.extract_string().get()));
       }
       catch (const web::http::http_exception& e)
       {

@@ -1,4 +1,4 @@
-%module mlclient_python
+%module mlclientpython
 
 
 
@@ -42,6 +42,7 @@
 %}
 
 /* Parse the header file to generate wrappers */
+%include "Connection.hpp"
 %include "DocumentContent.hpp"
 %include "HttpHeaders.hpp"
 %include "Response.hpp"

@@ -58,9 +58,9 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") OR IOS)
 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++14")
+  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
   message("-- Setting gcc options")
@@ -71,7 +71,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
   set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
   set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 else()
   message("-- Unknown compiler, success is doubtful.")
@@ -202,7 +202,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH})
 
 SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES CPLUSPLUS ON)
 #SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES SWIG_FLAGS "-includeall")
-SWIG_ADD_MODULE(mlclient-python python mlclient-python.i
+SWIG_ADD_MODULE(mlclientpython python mlclient-python.i
     Connection.cpp
     mlclient.cpp
     NoCredentialsException.cpp
@@ -213,7 +213,7 @@ SWIG_ADD_MODULE(mlclient-python python mlclient-python.i
     InvalidFormatException.cpp
     SearchDescription.cpp
 )
-SWIG_LINK_LIBRARIES(mlclient-python
+SWIG_LINK_LIBRARIES(mlclientpython
     libcpprest.dylib
     libboost_regex.dylib
     libssl.dylib

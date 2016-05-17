@@ -71,9 +71,9 @@ Connection::~Connection() {
   delete mImpl;
 }
 
-void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
-  Connection::configure(hostname,port,username,password,false);
-}
+//void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
+//  Connection::configure(hostname,port,username,password,false);
+//}
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
