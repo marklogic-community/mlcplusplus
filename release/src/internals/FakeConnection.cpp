@@ -1,4 +1,16 @@
 /*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  */
 
 #include "FakeConnection.hpp"
@@ -111,7 +123,8 @@ Response* FakeConnection::saveDocument(const std::string& uri,const IDocumentCon
 
   Response* response = new Response;
 
-  response->setResponseCode(ResponseCode::OK); // otherwise blank
+  response->setResponseCode(ResponseCode::CREATED); // otherwise blank
+  response->setResponseType(ResponseType::UNKNOWN_TYPE); // explicit
 
   return response;
 }
@@ -126,8 +139,10 @@ Response* FakeConnection::getDocument(const std::string& uri) {
   std::string ct("");
   std::string mime("");
   if (mImpl->documents.end() != it) {
-    ct = ((IDocumentContent*)it->second)->getContent();
-    mime = ((IDocumentContent*)it->second)->getMimeType();
+    LOG(DEBUG) << "    Found document with URI: " << uri;
+    IDocumentContent* docPtr = it->second;
+    ct = docPtr->getContent();
+    mime = docPtr->getMimeType();
   }
   //IDocumentContent& value = mImpl->documents[uri.c_str()];
 
@@ -136,16 +151,32 @@ Response* FakeConnection::getDocument(const std::string& uri) {
   Response* response = new Response;
   LOG(DEBUG) << "  Setting response code";
 
-  response->setResponseCode(ResponseCode::OK);
 
   LOG(DEBUG) << "  Setting response content ptr";
   //std::unique_ptr<std::string> content(new std::string(ct));
   //response->setContent(std::move(content));
   response->setContent(new std::string(ct));
   LOG(DEBUG) << "  Setting response headers";
-  HttpHeaders headers;
-  headers.setHeader("Content-type",mime);
-  response->setResponseHeaders(headers);
+  if (0 == ct.compare("")) {
+    // not found
+    response->setResponseCode(ResponseCode::NOT_FOUND);
+    response->setResponseType(ResponseType::UNKNOWN_TYPE);
+  } else {
+    // found
+    HttpHeaders headers;
+    headers.setHeader("Content-type",mime);
+    response->setResponseHeaders(headers);
+    response->setResponseCode(ResponseCode::OK);
+    if (0 == mime.compare("application/json")) {
+      response->setResponseType(ResponseType::JSON);
+    } else if (0 == mime.compare("application/xml") ) {
+      response->setResponseType(ResponseType::XML);
+    } else if (0 == mime.compare("text/plain")) {
+      response->setResponseType(ResponseType::TEXT);
+    } else {
+      response->setResponseType(ResponseType::BINARY);
+    }
+  }
 
   LOG(DEBUG) << "  returning response ";
   return response;
@@ -167,7 +198,7 @@ Response* FakeConnection::deleteDocument(const std::string& uri) {
 
   Response* response = new Response;
 
-  response->setResponseCode(ResponseCode::OK); // otherwise blank
+  response->setResponseCode(ResponseCode::NO_CONTENT); // 204 = DELETED too and NO_CONTENT
 
   return response;
 }
@@ -211,6 +242,7 @@ Response* FakeConnection::search(const SearchDescription& desc) {
   //std::unique_ptr<std::string> cPtr(new std::string(cos.str()));
   //response->setContent(std::move(cPtr));
   response->setContent(new std::string(cos.str()));
+  response->setResponseType(ResponseType::JSON);
 
   return response;
 }

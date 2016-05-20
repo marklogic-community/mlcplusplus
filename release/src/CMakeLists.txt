@@ -224,6 +224,18 @@ SWIG_LINK_LIBRARIES(mlclientpython
     ${PYTHON_LIBRARIES}
 )
 
+# SWIG C#.NET
+
+# Find C#
+#find_package( CSharp REQUIRED )
+#include( ${CSHARP_USE_FILE} )
+
+#set(_build 0)
+#set(_revision 0)
+
+
+
+
 # SWIG -Go
 
 #SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES CPLUSPLUS ON)
