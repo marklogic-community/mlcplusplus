@@ -6,14 +6,14 @@ project (mlclient)
 # SYSTEM DETECTION
 
 # Boost (Includes system, thread, locale, regex and filesystem components by default)
-find_package (Boost REQUIRED COMPONENTS system filesystem thread atomic regex chrono random unit_test_framework)
+find_package (Boost REQUIRED COMPONENTS filesystem system thread atomic chrono random regex)
 
 include_directories (AFTER
   ${OPENSSL_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}
   /usr/local/opt/openssl/include
   )
-  
+
 set(Casablanca_LIBRARY ${LIB}cpprest)
 set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
   ${Boost_FILESYSTEM_LIBRARY}
@@ -28,9 +28,7 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
 )
 
 link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
-  
+
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(samples)
-
-
