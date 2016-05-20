@@ -8,6 +8,12 @@ to MarkLogic Server version 6 and above.
 A C wrapper API around the core C++ API is also provided. This enables legacy C applications to be configured to
 talk to MarkLogic Server. All C++ usage is abstracted behind this wrapper API.
 
+## Latest release
+
+The latest release is 8.0.0 - See [The release notes](https://raw.githubusercontent.com/adamfowleruk/mlcplusplus/develop/documentation/release-notes/release-notes-8.0.0.md) for details.
+
+Note the Major and Minor version numbers of this project track MarkLogic Server, the revision number tracks this API's changes, rather than the revision number of MarkLogic Server.
+
 ## Documentation
 
 Various documentation is available:-
