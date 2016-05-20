@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: Related Pages</title>
+<title>MLCPlusPlus: Installing MLCPlusPlus</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -76,20 +75,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Related Pages</div>  </div>
+<div class="title">Installing MLCPlusPlus </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page__c_wrapper.html" target="_self">C Language Wrapper</a></td><td class="desc">Describes the C API wrapper for this C++ API </td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page__design.html" target="_self">Design</a></td><td class="desc">Introduction to the basic approach and design of the API </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page__install.html" target="_self">Installing MLCPlusPlus</a></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="todo.html" target="_self">Todo List</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="sec_Installation"></a>
+Installation</h1>
+<h3>Get Casablanca</h3>
+<p>Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level as the 'casablanca' git directory.</p>
+<p>These instructions are listed here: <a href="https://github.com/Microsoft/cpprestsdk/wiki">https://github.com/Microsoft/cpprestsdk/wiki</a></p>
+<p>WARNING*: If you receive an error about a 'redundant std::move' when compiling the above API, then rm -rf build.debug and checkout the development branch of casablanca (i.e. git checkout development within the casablanca folder). This is a known bug in the latest casablanca minor release.</p>
+<p>Now in the casablanca folder issue <code>sudo make install</code></p>
+<p>Once built, continue below.</p>
+<h3>Building the MLCPlusPlus library from source</h3>
+<p>Ensure first that all build scripts are executable:-</p><ul>
+<li>chmod u+x *.sh</li>
+</ul>
+<p>To build the MLCPlusPlus library for your platform, execute the appropriate shell script, and use the build tool for your platform. E.g.:-</p>
+<ul>
+<li>For cross platform (<em>RECOMMENDED</em>) Eclipse CDT, type './gen-eclipse.sh' and hit enter. Then open Eclipse and go to File, Import Existing Project, and point to the MLCPlusPlus project folder. This will discover the Eclipse project under ./bin .</li>
+<li>On a Mac, type './gen-mac.sh' and hit enter. This generates an XCode project you can use to build the library</li>
+<li>On Linux, type './gen-kdevelop.sh' and hit enter. This generates a KDevelop project you can use to build the library</li>
+<li>On other *nix, type './gen-unix.sh' and hit enter Then type 'make' and hit enter. Optionally run 'sudo make install' to install the library on your system</li>
+<li>On Windows, TODO - Coming Soon for Visual Studio</li>
+</ul>
+<p>(Note: In future, if you want to remove all built files, execute './clean.sh' and hit enter )</p>
+<p>sec_Using Using MLCPlus Plus in your own project</p>
+<h3>Using the MLCPlusPlus library in your C++ application</h3>
+<p>Start with the Connection class. This provides a connect function and callbacks for all MarkLogic REST API functions.</p>
+<p>This class also abstracts the underlying security mechanism used to authenticate to the server.</p>
+<p>Simply create a Connection class, call configure to set up the connection parameters, then call a function!</p>
+<p>The API documentation can be found here: <a href="http://adamfowleruk.github.io/mlcplusplus/api/index.html">http://adamfowleruk.github.io/mlcplusplus/api/index.html</a></p>
+<h3>Compiling the tests</h3>
+<p>These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to work on your own projects though. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -1157,6 +1157,12 @@
     <docanchor file="page__design" title="C++ Public API">The</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_Install</name>
+    <title>Installing MLCPlusPlus</title>
+    <filename>page__install</filename>
+    <docanchor file="page__install" title="Installation">sec_Installation</docanchor>
+  </compound>
+  <compound kind="page">
     <name>index</name>
     <title>MarkLogic C/C++ API Documentation</title>
     <filename>index</filename>
