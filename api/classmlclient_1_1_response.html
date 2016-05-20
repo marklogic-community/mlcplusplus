@@ -131,9 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a> () const </td></tr>
 <tr class="memdesc:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">For text responses (including JSON and XML), returns the response content as a string.  <a href="#a0487a31c6d74e7a1d5dc4ba1f9b263e2">More...</a><br /></td></tr>
 <tr class="separator:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a646820f18250f5a743fe031ade050451"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a646820f18250f5a743fe031ade050451">setContent</a> (std::unique_ptr&lt; std::string &gt; content)</td></tr>
-<tr class="memdesc:a646820f18250f5a743fe031ade050451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a646820f18250f5a743fe031ade050451">More...</a><br /></td></tr>
-<tr class="separator:a646820f18250f5a743fe031ade050451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92d868056fd29885b44317be4ecda999"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a92d868056fd29885b44317be4ecda999">setContent</a> (std::string *content)</td></tr>
+<tr class="memdesc:a92d868056fd29885b44317be4ecda999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a92d868056fd29885b44317be4ecda999">More...</a><br /></td></tr>
+<tr class="separator:a92d868056fd29885b44317be4ecda999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade5538c95aa2c5578e383ad4f55244cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade5538c95aa2c5578e383ad4f55244cc"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Response</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
 <tr class="separator:ade5538c95aa2c5578e383ad4f55244cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -300,14 +300,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a646820f18250f5a743fe031ade050451"></a>
+<a class="anchor" id="a92d868056fd29885b44317be4ecda999"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void mlclient::Response::setContent </td>
           <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; std::string &gt;&#160;</td>
+          <td class="paramtype">std::string *&#160;</td>
           <td class="paramname"><em>content</em></td><td>)</td>
           <td></td>
         </tr>

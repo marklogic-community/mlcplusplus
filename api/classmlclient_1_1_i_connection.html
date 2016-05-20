@@ -118,43 +118,40 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">connection_configuration Connection configuration functions</div></td></tr>
 <tr class="memitem:a6de9145a6afe8b3e63e90188ee5e1b42"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a6de9145a6afe8b3e63e90188ee5e1b42">configure</a> (const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false)=0</td></tr>
 <tr class="separator:a6de9145a6afe8b3e63e90188ee5e1b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a1f38a89ab2dbef8d629506c5887a1f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a2a1f38a89ab2dbef8d629506c5887a1f">configure</a> (const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password)=0</td></tr>
-<tr class="memdesc:a2a1f38a89ab2dbef8d629506c5887a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL.  <a href="#a2a1f38a89ab2dbef8d629506c5887a1f">More...</a><br /></td></tr>
-<tr class="separator:a2a1f38a89ab2dbef8d629506c5887a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a989d55778b0fcfa306c3a17acff77ed4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a989d55778b0fcfa306c3a17acff77ed4">setDatabaseName</a> (const std::string &amp;db)=0</td></tr>
-<tr class="memdesc:a989d55778b0fcfa306c3a17acff77ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the database to query/update. Defaults to Documents.  <a href="#a989d55778b0fcfa306c3a17acff77ed4">More...</a><br /></td></tr>
+<tr class="memdesc:a989d55778b0fcfa306c3a17acff77ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL.  <a href="#a989d55778b0fcfa306c3a17acff77ed4">More...</a><br /></td></tr>
 <tr class="separator:a989d55778b0fcfa306c3a17acff77ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b63b959736635a0e555f00ba21d20ad"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a2b63b959736635a0e555f00ba21d20ad">getDatabaseName</a> ()=0</td></tr>
 <tr class="memdesc:a2b63b959736635a0e555f00ba21d20ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the database name we're querying/updating. Defaults to Documents.  <a href="#a2b63b959736635a0e555f00ba21d20ad">More...</a><br /></td></tr>
 <tr class="separator:a2b63b959736635a0e555f00ba21d20ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">http_raw RAW HTTP commands</div></td></tr>
-<tr class="memitem:acc70e12496a63cd1db9860c1fbd72812"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#acc70e12496a63cd1db9860c1fbd72812">doGet</a> (const std::string &amp;pathAndQuerystring)=0</td></tr>
-<tr class="memdesc:acc70e12496a63cd1db9860c1fbd72812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP GET Request against MarkLogic Server.  <a href="#acc70e12496a63cd1db9860c1fbd72812">More...</a><br /></td></tr>
-<tr class="separator:acc70e12496a63cd1db9860c1fbd72812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eadf5729c26d367f8c90e83e5718e83"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a2eadf5729c26d367f8c90e83e5718e83">doPut</a> (const std::string &amp;pathAndQuerystring, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
-<tr class="memdesc:a2eadf5729c26d367f8c90e83e5718e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP PUT Request against MarkLogic Server.  <a href="#a2eadf5729c26d367f8c90e83e5718e83">More...</a><br /></td></tr>
-<tr class="separator:a2eadf5729c26d367f8c90e83e5718e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4011985f75be7316a358647a6dc8a0eb"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a4011985f75be7316a358647a6dc8a0eb">doPost</a> (const std::string &amp;pathAndQuerystring, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
-<tr class="memdesc:a4011985f75be7316a358647a6dc8a0eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP POST Request against MarkLogic Server.  <a href="#a4011985f75be7316a358647a6dc8a0eb">More...</a><br /></td></tr>
-<tr class="separator:a4011985f75be7316a358647a6dc8a0eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d9f82ffb0bc89237ceb5766fd1062d4"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a5d9f82ffb0bc89237ceb5766fd1062d4">doDelete</a> (const std::string &amp;pathAndQueryString)=0</td></tr>
-<tr class="memdesc:a5d9f82ffb0bc89237ceb5766fd1062d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO multipart payload.  <a href="#a5d9f82ffb0bc89237ceb5766fd1062d4">More...</a><br /></td></tr>
-<tr class="separator:a5d9f82ffb0bc89237ceb5766fd1062d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060653d258207f6406da38c8878c33f5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a060653d258207f6406da38c8878c33f5">doGet</a> (const std::string &amp;pathAndQuerystring)=0</td></tr>
+<tr class="memdesc:a060653d258207f6406da38c8878c33f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP GET Request against MarkLogic Server.  <a href="#a060653d258207f6406da38c8878c33f5">More...</a><br /></td></tr>
+<tr class="separator:a060653d258207f6406da38c8878c33f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868294d70b7a707955f79a2286bc528b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a868294d70b7a707955f79a2286bc528b">doPut</a> (const std::string &amp;pathAndQuerystring, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
+<tr class="memdesc:a868294d70b7a707955f79a2286bc528b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP PUT Request against MarkLogic Server.  <a href="#a868294d70b7a707955f79a2286bc528b">More...</a><br /></td></tr>
+<tr class="separator:a868294d70b7a707955f79a2286bc528b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57c2bff6813ceb21bafe287b9e8e5317"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a57c2bff6813ceb21bafe287b9e8e5317">doPost</a> (const std::string &amp;pathAndQuerystring, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
+<tr class="memdesc:a57c2bff6813ceb21bafe287b9e8e5317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a HTTP POST Request against MarkLogic Server.  <a href="#a57c2bff6813ceb21bafe287b9e8e5317">More...</a><br /></td></tr>
+<tr class="separator:a57c2bff6813ceb21bafe287b9e8e5317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a622f4ec1aa07e8c0828af5cc1d411b05"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a622f4ec1aa07e8c0828af5cc1d411b05">doDelete</a> (const std::string &amp;pathAndQueryString)=0</td></tr>
+<tr class="memdesc:a622f4ec1aa07e8c0828af5cc1d411b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO multipart payload.  <a href="#a622f4ec1aa07e8c0828af5cc1d411b05">More...</a><br /></td></tr>
+<tr class="separator:a622f4ec1aa07e8c0828af5cc1d411b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>TODO PATCH and other HTTP synonyms </p>
 </div></td></tr>
-<tr class="memitem:a720f57b08ea6084bca748ae4e7ba963e"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a720f57b08ea6084bca748ae4e7ba963e">getDocument</a> (const std::string &amp;uri)=0</td></tr>
-<tr class="memdesc:a720f57b08ea6084bca748ae4e7ba963e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a document from the server, at the given document URI (MarkLogic unique document ID)  <a href="#a720f57b08ea6084bca748ae4e7ba963e">More...</a><br /></td></tr>
-<tr class="separator:a720f57b08ea6084bca748ae4e7ba963e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1541a286441b6c74a426a8706d1ec0d"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#ac1541a286441b6c74a426a8706d1ec0d">saveDocument</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
-<tr class="memdesc:ac1541a286441b6c74a426a8706d1ec0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO add optional call parameters (E.g. fetch properties also)  <a href="#ac1541a286441b6c74a426a8706d1ec0d">More...</a><br /></td></tr>
-<tr class="separator:ac1541a286441b6c74a426a8706d1ec0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35d46035c9953c1a18d2738c608594a8"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a35d46035c9953c1a18d2738c608594a8">deleteDocument</a> (const std::string &amp;uri)=0</td></tr>
-<tr class="memdesc:a35d46035c9953c1a18d2738c608594a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the specified document by URI.  <a href="#a35d46035c9953c1a18d2738c608594a8">More...</a><br /></td></tr>
-<tr class="separator:a35d46035c9953c1a18d2738c608594a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a142c97162615d1f7a4a55bf37969d26c"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classmlclient_1_1_response.html">Response</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a142c97162615d1f7a4a55bf37969d26c">search</a> (const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;desc)=0</td></tr>
-<tr class="memdesc:a142c97162615d1f7a4a55bf37969d26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search against the MarkLogic database given the provided search query, text and options.  <a href="#a142c97162615d1f7a4a55bf37969d26c">More...</a><br /></td></tr>
-<tr class="separator:a142c97162615d1f7a4a55bf37969d26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a7d25c5af3e72eb1a8b539a5c36262c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a0a7d25c5af3e72eb1a8b539a5c36262c">getDocument</a> (const std::string &amp;uri)=0</td></tr>
+<tr class="memdesc:a0a7d25c5af3e72eb1a8b539a5c36262c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a document from the server, at the given document URI (MarkLogic unique document ID)  <a href="#a0a7d25c5af3e72eb1a8b539a5c36262c">More...</a><br /></td></tr>
+<tr class="separator:a0a7d25c5af3e72eb1a8b539a5c36262c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b33ec344cf1c666cb9d42ebd9e2282"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a10b33ec344cf1c666cb9d42ebd9e2282">saveDocument</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
+<tr class="memdesc:a10b33ec344cf1c666cb9d42ebd9e2282"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO add optional call parameters (E.g. fetch properties also)  <a href="#a10b33ec344cf1c666cb9d42ebd9e2282">More...</a><br /></td></tr>
+<tr class="separator:a10b33ec344cf1c666cb9d42ebd9e2282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54fddb7c48924d45904dd2fc686b5839"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a54fddb7c48924d45904dd2fc686b5839">deleteDocument</a> (const std::string &amp;uri)=0</td></tr>
+<tr class="memdesc:a54fddb7c48924d45904dd2fc686b5839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the specified document by URI.  <a href="#a54fddb7c48924d45904dd2fc686b5839">More...</a><br /></td></tr>
+<tr class="separator:a54fddb7c48924d45904dd2fc686b5839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79f13a3472446cb05412ddcd4a28fc75"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a79f13a3472446cb05412ddcd4a28fc75">search</a> (const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;desc)=0</td></tr>
+<tr class="memdesc:a79f13a3472446cb05412ddcd4a28fc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search against the MarkLogic database given the provided search query, text and options.  <a href="#a79f13a3472446cb05412ddcd4a28fc75">More...</a><br /></td></tr>
+<tr class="separator:a79f13a3472446cb05412ddcd4a28fc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass, or a real <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> subclass. </p>
@@ -253,7 +250,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2a1f38a89ab2dbef8d629506c5887a1f"></a>
+<a class="anchor" id="a54fddb7c48924d45904dd2fc686b5839"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -261,68 +258,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void mlclient::IConnection::configure </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>hostname</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>username</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>password</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL. </p>
-<p>TODO do we need this now usessl is defaulted above???</p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">hostname</td><td>The hostname or IP address of the MarkLogic Server (or load balancer) to connect to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>A String representing the (numerical) port number of the MarkLogic Server (or load balancer) to connect to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">username</td><td>The username of the used to connect to MarkLogic Server as </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">password</td><td>The plain text password used to authenticate the user to MarkLogic server with </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a89a73f31511904c7d6dd3e8eeb80979f">mlclient::Connection</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a35d46035c9953c1a18d2738c608594a8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::deleteDocument </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::deleteDocument </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -352,11 +288,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#abc2670f06b28609ad7333d5050664632">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a7cb0f7bc4146e00665f8d94989ad9369">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5d9f82ffb0bc89237ceb5766fd1062d4"></a>
+<a class="anchor" id="a622f4ec1aa07e8c0828af5cc1d411b05"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -364,7 +300,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::doDelete </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::doDelete </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>pathAndQueryString</em></td><td>)</td>
@@ -398,11 +334,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#ad8aab88f5533d090c9c6296dec48ccbe">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a905da280d5afd2e3b8cb74b171f7fe90">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acc70e12496a63cd1db9860c1fbd72812"></a>
+<a class="anchor" id="a060653d258207f6406da38c8878c33f5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -410,7 +346,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::doGet </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::doGet </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>pathAndQuerystring</em></td><td>)</td>
@@ -443,11 +379,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#aa67c11f4d7ece339f9e88d69378b6ce1">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a8111a379cb5e7e06abc637fff8d02e29">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4011985f75be7316a358647a6dc8a0eb"></a>
+<a class="anchor" id="a57c2bff6813ceb21bafe287b9e8e5317"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -455,7 +391,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::doPost </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::doPost </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>pathAndQuerystring</em>, </td>
@@ -499,11 +435,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#ae4a657745bd91458179e252ad04558bb">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a23f96ff9230fbfe921dfeb394524b741">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2eadf5729c26d367f8c90e83e5718e83"></a>
+<a class="anchor" id="a868294d70b7a707955f79a2286bc528b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -511,7 +447,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::doPut </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::doPut </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>pathAndQuerystring</em>, </td>
@@ -555,7 +491,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a188162b9c79d293c71a78e0174f457a2">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#ae9837d1c47ee36657dcc5e4b8b9a2ce7">mlclient::Connection</a>.</p>
 
 </div>
 </div>
@@ -588,7 +524,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a720f57b08ea6084bca748ae4e7ba963e"></a>
+<a class="anchor" id="a0a7d25c5af3e72eb1a8b539a5c36262c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -596,7 +532,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::getDocument </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::getDocument </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>uri</em></td><td>)</td>
@@ -627,11 +563,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a3d91f727f53d52ea019c6ae728ad369b">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#adad12f7f19c4fa6fe991b8a70e2f85a9">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac1541a286441b6c74a426a8706d1ec0d"></a>
+<a class="anchor" id="a10b33ec344cf1c666cb9d42ebd9e2282"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -639,7 +575,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::saveDocument </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::saveDocument </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>uri</em>, </td>
@@ -682,11 +618,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a6148040b07303886824cfbbf3909843e">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a687b2026a97545a5d363cc5bf3ddfdcc">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a142c97162615d1f7a4a55bf37969d26c"></a>
+<a class="anchor" id="a79f13a3472446cb05412ddcd4a28fc75"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -694,7 +630,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classmlclient_1_1_response.html">Response</a>&gt; mlclient::IConnection::search </td>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::search </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;&#160;</td>
           <td class="paramname"><em>desc</em></td><td>)</td>
@@ -726,7 +662,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#afb82cbef7311faeb73990ebf8b028749">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a0d2dc7e12ec1eadec6d78c49536c2d4e">mlclient::Connection</a>.</p>
 
 </div>
 </div>
@@ -752,7 +688,18 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the name of the database to query/update. Defaults to Documents. </p>
+<p>Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL. </p>
+<p>TODO do we need this now usessl is defaulted above???</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hostname</td><td>The hostname or IP address of the MarkLogic Server (or load balancer) to connect to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>A String representing the (numerical) port number of the MarkLogic Server (or load balancer) to connect to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">username</td><td>The username of the used to connect to MarkLogic Server as </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">password</td><td>The plain text password used to authenticate the user to MarkLogic server with Sets the name of the database to query/update. Defaults to Documents.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

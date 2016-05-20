@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['deletedocument',['deleteDocument',['../classmlclient_1_1_i_connection.html#a35d46035c9953c1a18d2738c608594a8',1,'mlclient::IConnection::deleteDocument()'],['../classmlclient_1_1_connection.html#abc2670f06b28609ad7333d5050664632',1,'mlclient::Connection::deleteDocument()']]],
+  ['deletedocument',['deleteDocument',['../classmlclient_1_1_i_connection.html#a54fddb7c48924d45904dd2fc686b5839',1,'mlclient::IConnection::deleteDocument()'],['../classmlclient_1_1_connection.html#a7cb0f7bc4146e00665f8d94989ad9369',1,'mlclient::Connection::deleteDocument()']]],
   ['documentcontent_2ehpp',['DocumentContent.hpp',['../_document_content_8hpp.html',1,'']]],
-  ['dodelete',['doDelete',['../classmlclient_1_1_i_connection.html#a5d9f82ffb0bc89237ceb5766fd1062d4',1,'mlclient::IConnection::doDelete()'],['../classmlclient_1_1_connection.html#ad8aab88f5533d090c9c6296dec48ccbe',1,'mlclient::Connection::doDelete()']]],
-  ['doget',['doGet',['../classmlclient_1_1_i_connection.html#acc70e12496a63cd1db9860c1fbd72812',1,'mlclient::IConnection::doGet()'],['../classmlclient_1_1_connection.html#aa67c11f4d7ece339f9e88d69378b6ce1',1,'mlclient::Connection::doGet()']]],
-  ['dopost',['doPost',['../classmlclient_1_1_i_connection.html#a4011985f75be7316a358647a6dc8a0eb',1,'mlclient::IConnection::doPost()'],['../classmlclient_1_1_connection.html#ae4a657745bd91458179e252ad04558bb',1,'mlclient::Connection::doPost()']]],
-  ['doput',['doPut',['../classmlclient_1_1_i_connection.html#a2eadf5729c26d367f8c90e83e5718e83',1,'mlclient::IConnection::doPut()'],['../classmlclient_1_1_connection.html#a188162b9c79d293c71a78e0174f457a2',1,'mlclient::Connection::doPut()']]],
+  ['dodelete',['doDelete',['../classmlclient_1_1_i_connection.html#a622f4ec1aa07e8c0828af5cc1d411b05',1,'mlclient::IConnection::doDelete()'],['../classmlclient_1_1_connection.html#a905da280d5afd2e3b8cb74b171f7fe90',1,'mlclient::Connection::doDelete()']]],
+  ['doget',['doGet',['../classmlclient_1_1_i_connection.html#a060653d258207f6406da38c8878c33f5',1,'mlclient::IConnection::doGet()'],['../classmlclient_1_1_connection.html#a8111a379cb5e7e06abc637fff8d02e29',1,'mlclient::Connection::doGet()']]],
+  ['dopost',['doPost',['../classmlclient_1_1_i_connection.html#a57c2bff6813ceb21bafe287b9e8e5317',1,'mlclient::IConnection::doPost()'],['../classmlclient_1_1_connection.html#a23f96ff9230fbfe921dfeb394524b741',1,'mlclient::Connection::doPost()']]],
+  ['doput',['doPut',['../classmlclient_1_1_i_connection.html#a868294d70b7a707955f79a2286bc528b',1,'mlclient::IConnection::doPut()'],['../classmlclient_1_1_connection.html#ae9837d1c47ee36657dcc5e4b8b9a2ce7',1,'mlclient::Connection::doPut()']]],
   ['design',['Design',['../page__design.html',1,'']]]
 ];

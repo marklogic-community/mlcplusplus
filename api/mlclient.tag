@@ -229,13 +229,6 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>configure</name>
-      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a89a73f31511904c7d6dd3e8eeb80979f</anchor>
-      <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
       <anchor>a7687e92b55868df1bd6c851300b6af1a</anchor>
@@ -249,59 +242,59 @@
       <arglist>() override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doGet</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>aa67c11f4d7ece339f9e88d69378b6ce1</anchor>
+      <anchor>a8111a379cb5e7e06abc637fff8d02e29</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doPut</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a188162b9c79d293c71a78e0174f457a2</anchor>
+      <anchor>ae9837d1c47ee36657dcc5e4b8b9a2ce7</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doPost</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>ae4a657745bd91458179e252ad04558bb</anchor>
+      <anchor>a23f96ff9230fbfe921dfeb394524b741</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doDelete</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>ad8aab88f5533d090c9c6296dec48ccbe</anchor>
+      <anchor>a905da280d5afd2e3b8cb74b171f7fe90</anchor>
       <arglist>(const std::string &amp;pathAndQueryString) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>getDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a3d91f727f53d52ea019c6ae728ad369b</anchor>
+      <anchor>adad12f7f19c4fa6fe991b8a70e2f85a9</anchor>
       <arglist>(const std::string &amp;uri) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>saveDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a6148040b07303886824cfbbf3909843e</anchor>
+      <anchor>a687b2026a97545a5d363cc5bf3ddfdcc</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>deleteDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>abc2670f06b28609ad7333d5050664632</anchor>
+      <anchor>a7cb0f7bc4146e00665f8d94989ad9369</anchor>
       <arglist>(const std::string &amp;uri) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>search</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>afb82cbef7311faeb73990ebf8b028749</anchor>
+      <anchor>a0d2dc7e12ec1eadec6d78c49536c2d4e</anchor>
       <arglist>(const SearchDescription &amp;desc) override</arglist>
     </member>
     <member kind="function">
@@ -313,13 +306,6 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>configure</name>
-      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a89a73f31511904c7d6dd3e8eeb80979f</anchor>
-      <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
       <anchor>a7687e92b55868df1bd6c851300b6af1a</anchor>
@@ -333,59 +319,59 @@
       <arglist>() override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doGet</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>aa67c11f4d7ece339f9e88d69378b6ce1</anchor>
+      <anchor>a8111a379cb5e7e06abc637fff8d02e29</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doPut</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a188162b9c79d293c71a78e0174f457a2</anchor>
+      <anchor>ae9837d1c47ee36657dcc5e4b8b9a2ce7</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doPost</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>ae4a657745bd91458179e252ad04558bb</anchor>
+      <anchor>a23f96ff9230fbfe921dfeb394524b741</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>doDelete</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>ad8aab88f5533d090c9c6296dec48ccbe</anchor>
+      <anchor>a905da280d5afd2e3b8cb74b171f7fe90</anchor>
       <arglist>(const std::string &amp;pathAndQueryString) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>getDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a3d91f727f53d52ea019c6ae728ad369b</anchor>
+      <anchor>adad12f7f19c4fa6fe991b8a70e2f85a9</anchor>
       <arglist>(const std::string &amp;uri) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>saveDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a6148040b07303886824cfbbf3909843e</anchor>
+      <anchor>a687b2026a97545a5d363cc5bf3ddfdcc</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>deleteDocument</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>abc2670f06b28609ad7333d5050664632</anchor>
+      <anchor>a7cb0f7bc4146e00665f8d94989ad9369</anchor>
       <arglist>(const std::string &amp;uri) override</arglist>
     </member>
     <member kind="function">
-      <type>std::unique_ptr&lt; Response &gt;</type>
+      <type>Response *</type>
       <name>search</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>afb82cbef7311faeb73990ebf8b028749</anchor>
+      <anchor>a0d2dc7e12ec1eadec6d78c49536c2d4e</anchor>
       <arglist>(const SearchDescription &amp;desc) override</arglist>
     </member>
   </compound>
@@ -716,13 +702,6 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>configure</name>
-      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a2a1f38a89ab2dbef8d629506c5887a1f</anchor>
-      <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password)=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
       <anchor>a989d55778b0fcfa306c3a17acff77ed4</anchor>
@@ -736,59 +715,59 @@
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doGet</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>acc70e12496a63cd1db9860c1fbd72812</anchor>
+      <anchor>a060653d258207f6406da38c8878c33f5</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doPut</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a2eadf5729c26d367f8c90e83e5718e83</anchor>
+      <anchor>a868294d70b7a707955f79a2286bc528b</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doPost</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a4011985f75be7316a358647a6dc8a0eb</anchor>
+      <anchor>a57c2bff6813ceb21bafe287b9e8e5317</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doDelete</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a5d9f82ffb0bc89237ceb5766fd1062d4</anchor>
+      <anchor>a622f4ec1aa07e8c0828af5cc1d411b05</anchor>
       <arglist>(const std::string &amp;pathAndQueryString)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>getDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a720f57b08ea6084bca748ae4e7ba963e</anchor>
+      <anchor>a0a7d25c5af3e72eb1a8b539a5c36262c</anchor>
       <arglist>(const std::string &amp;uri)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>saveDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>ac1541a286441b6c74a426a8706d1ec0d</anchor>
+      <anchor>a10b33ec344cf1c666cb9d42ebd9e2282</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>deleteDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a35d46035c9953c1a18d2738c608594a8</anchor>
+      <anchor>a54fddb7c48924d45904dd2fc686b5839</anchor>
       <arglist>(const std::string &amp;uri)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>search</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a142c97162615d1f7a4a55bf37969d26c</anchor>
+      <anchor>a79f13a3472446cb05412ddcd4a28fc75</anchor>
       <arglist>(const SearchDescription &amp;desc)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -800,13 +779,6 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>configure</name>
-      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a2a1f38a89ab2dbef8d629506c5887a1f</anchor>
-      <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password)=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
       <anchor>a989d55778b0fcfa306c3a17acff77ed4</anchor>
@@ -820,59 +792,59 @@
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doGet</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>acc70e12496a63cd1db9860c1fbd72812</anchor>
+      <anchor>a060653d258207f6406da38c8878c33f5</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doPut</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a2eadf5729c26d367f8c90e83e5718e83</anchor>
+      <anchor>a868294d70b7a707955f79a2286bc528b</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doPost</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a4011985f75be7316a358647a6dc8a0eb</anchor>
+      <anchor>a57c2bff6813ceb21bafe287b9e8e5317</anchor>
       <arglist>(const std::string &amp;pathAndQuerystring, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>doDelete</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a5d9f82ffb0bc89237ceb5766fd1062d4</anchor>
+      <anchor>a622f4ec1aa07e8c0828af5cc1d411b05</anchor>
       <arglist>(const std::string &amp;pathAndQueryString)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>getDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a720f57b08ea6084bca748ae4e7ba963e</anchor>
+      <anchor>a0a7d25c5af3e72eb1a8b539a5c36262c</anchor>
       <arglist>(const std::string &amp;uri)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>saveDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>ac1541a286441b6c74a426a8706d1ec0d</anchor>
+      <anchor>a10b33ec344cf1c666cb9d42ebd9e2282</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>deleteDocument</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a35d46035c9953c1a18d2738c608594a8</anchor>
+      <anchor>a54fddb7c48924d45904dd2fc686b5839</anchor>
       <arglist>(const std::string &amp;uri)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual std::unique_ptr&lt; Response &gt;</type>
+      <type>virtual Response *</type>
       <name>search</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a142c97162615d1f7a4a55bf37969d26c</anchor>
+      <anchor>a79f13a3472446cb05412ddcd4a28fc75</anchor>
       <arglist>(const SearchDescription &amp;desc)=0</arglist>
     </member>
   </compound>
@@ -1058,8 +1030,8 @@
       <type>void</type>
       <name>setContent</name>
       <anchorfile>classmlclient_1_1_response.html</anchorfile>
-      <anchor>a646820f18250f5a743fe031ade050451</anchor>
-      <arglist>(std::unique_ptr&lt; std::string &gt; content)</arglist>
+      <anchor>a92d868056fd29885b44317be4ecda999</anchor>
+      <arglist>(std::string *content)</arglist>
     </member>
   </compound>
   <compound kind="class">
