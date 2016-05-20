@@ -1162,6 +1162,7 @@
     <filename>index</filename>
     <docanchor file="index" title="Contents">sec_Contents</docanchor>
     <docanchor file="index" title="Overview">sec_Overview</docanchor>
+    <docanchor file="index" title="Install">sec_Install</docanchor>
     <docanchor file="index" title="Design">sec_Design</docanchor>
     <docanchor file="index" title="Examples">sec_Examples</docanchor>
     <docanchor file="index" title="See Also">sec_SeeAlso</docanchor>
