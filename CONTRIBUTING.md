@@ -1,8 +1,41 @@
 # How to Contribute to the MLCPlusPlus project
 
-## GitFlow
+## <a name="question"></a> Got a Question or Problem?
 
-TODO full intro to GitFlow (feature-branch-workflow)
+If you have questions about how to use MLCPlusPlus, please direct these to the
+Adam Fowler - adam.fowler@marklogic.com.
+
+## <a name="issue"></a> Found an Issue?
+If you find a bug in the source code or a mistake in the documentation, you can help us by
+submitting an issue to our [GitHub Issue Tracker][issue tracker]. Even better you can submit a Pull Request
+with a fix for the issue you filed.
+
+## <a name="feature"></a> Want a Feature?
+You can request a new feature by submitting an issue to our [GitHub Issue Tracker][issue tracker].  If you
+would like to implement a new feature then first create a new issue and discuss it with one of our
+project maintainers.
+
+## <a name="submit"></a> Submission Guidelines
+
+### Submitting an Issue
+Before you submit your issue search the archive, maybe your question was already answered.
+
+If your issue appears to be a bug, and hasn't been reported, open a new issue.
+Help us to maximize the effort we can spend fixing issues and adding new
+features, by not reporting duplicate issues.  Providing the following information will increase the
+chances of your issue being dealt with quickly:
+
+* **Overview of the Issue** - if an error is being thrown a stack trace helps
+* **Motivation for or Use Case** - explain why this is a bug for you
+* **MLCPlusPlus Version** - is it a named version or from our dev branch
+* **Operating System** - Mac, windows? details help
+* **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
+  causing the problem (line of code or commit)
+
+### Submitting a Pull Request
+
+We use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) to manage the
+progress so multiple dev teams can work at the same time. Below is a description.
 
 ## Architectural standards
 

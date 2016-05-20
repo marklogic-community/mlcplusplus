@@ -1,4 +1,16 @@
 /*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * DocumentContent.cpp
  *
  *  Created on: 25 Apr 2016
@@ -7,9 +19,11 @@
 
 #include "DocumentContent.hpp"
 #include "SearchDescription.hpp"
+//#include "internals/memory.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>
+//#include <memory>
 
 #include "easylogging++.h"
 
@@ -127,7 +141,7 @@ class GenericTextDocumentContent::Impl {
 public:
   Impl() {
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
-    content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
+    content = std::unique_ptr<std::string>(new std::string(std::string(""))); // MUST BE INITIALISED
   }
   ~Impl() {
     ;
@@ -143,11 +157,13 @@ GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent:
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
+  //mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get())));
+  // DO COPY INSTEAD, IT'S SAFER - mImpl->content = std::move(doc.mImpl->content); // move constructor
+  mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get()))); // copy constructor
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(doc.getContent()));
+  mImpl->content = std::unique_ptr<std::string>(new std::string(doc.getContent())); // copy constructor
 }
 GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());

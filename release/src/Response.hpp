@@ -1,16 +1,27 @@
+/*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 //  Response.h
-//  Scratch
-//
 //  Created by Paul Hoehne on 5/29/14.
-//  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
 
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
+#include "HttpHeaders.hpp"
+
 #include <iosfwd>
-#include <cpprest/http_client.h> // TODO REMOVE THIS DEPENDENCY!!!
 
 namespace mlclient {
 
@@ -161,7 +172,7 @@ public:
   ///
   /// \param[in] headers The HTTP response headers
   ///
-  void setResponseHeaders(const web::http::http_headers& headers);
+  void setResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
   /// \brief Sets the headers received as part of the response.
@@ -171,7 +182,7 @@ public:
   ///
   /// \param[in] headers The HTTP response headers
   ///
-  //void SetResponseHeaders(const web::http::http_headers& headers);
+  //void SetResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
   /// \brief Returns the HTTP response code for the response.
@@ -186,7 +197,7 @@ public:
   /// \return The HTTP response headers
   /// \todo Remove the dependency on the cpprest API
   ///
-  web::http::http_headers getResponseHeaders(void) const;
+  mlclient::HttpHeaders getResponseHeaders(void) const;
 
 
   ///
@@ -221,7 +232,8 @@ public:
    *
    * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
    */
-  void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
+  //void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
+  void setContent(std::string* content);
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
   Response(const Response&) = delete;

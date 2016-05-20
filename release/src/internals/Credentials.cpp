@@ -1,15 +1,25 @@
-//
-//  Credentials.cpp
-//  Scratch
-//
-//  Created by Paul Hoehne on 5/29/14.
-//  Copyright (c) 2014 Paul Hoehne. All rights reserved.
-//
+/*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Credentials.cpp
+ * Created by Paul Hoehne on 5/29/14.
+ */
 
 #include "Credentials.hpp"
 #include <sstream>
 #include <iomanip>
-#include <boost/regex.hpp>
+// #include <boost/regex.hpp> // replaced by regex in C++11
+#include <regex>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -17,17 +27,17 @@
 #include "MLCrypto.hpp"
 #include "AuthorizationBuilder.hpp"
 
-#include "../mlclient.hpp"
+#include "../easylogging++.h"
 
 namespace mlclient {
 
 namespace internals {
 using namespace web::http;
 
-const boost::regex REALM_RE("[R|r]ealm=\"(\\w+)\"");
-const boost::regex QOP_RE("qop=\"(\\w+)\"");
-const boost::regex NONCE_RE("nonce=\"([a-z0-9]+)\"");
-const boost::regex OPAQUE_RE("opaque=\"([a-z0-9]+)\"");
+const std::regex REALM_RE("[R|r]ealm=\"(\\w+)\"");
+const std::regex QOP_RE("qop=\"(\\w+)\"");
+const std::regex NONCE_RE("nonce=\"([a-z0-9]+)\"");
+const std::regex OPAQUE_RE("opaque=\"([a-z0-9]+)\"");
 const utility::string_t AUTHORIZATION_HEADER_NAME = U("Authorization");
 const utility::string_t WWW_AUTHENTICATE_HEADER = U("WWW-Authenticate");
 
@@ -73,30 +83,31 @@ Credentials::~Credentials() {
 }
 
 bool Credentials::canAuthenticate() const {
+  //LOG(DEBUG) << "Credentials::canAuthenticate. user is null?: " << (user) << " pass is null?:" << (pass) << " nonce is null?: " << (nonce) << " realm is null?: " << (realm);
   return user != L"" && pass != L"" && nonce != "" && realm != "";
 }
 
 void Credentials::parseWWWAthenticateHeader(const std::string& raw) {
-  boost::smatch matches;
-  if (boost::regex_search(raw, matches, REALM_RE)) {
+  std::smatch matches;
+  if (std::regex_search(raw, matches, REALM_RE)) {
     realm = matches[1];
   } else {
     realm.clear();
   }
 
-  if(boost::regex_search(raw, matches, QOP_RE)) {
+  if(std::regex_search(raw, matches, QOP_RE)) {
     qop = matches[1];
   } else {
     qop.clear();
   }
 
-  if (boost::regex_search(raw, matches, NONCE_RE)) {
+  if (std::regex_search(raw, matches, NONCE_RE)) {
     nonce = matches[1];
   } else {
     nonce.clear();
   }
 
-  if (boost::regex_search(raw, matches, OPAQUE_RE)) {
+  if (std::regex_search(raw, matches, OPAQUE_RE)) {
     opaque = matches[1];
   } else {
     opaque.clear();

@@ -1,4 +1,17 @@
-/**
+/*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*
  * \file ConnectionSearchTest.cpp
  *
  * \date 2016-05-10
@@ -34,7 +47,7 @@ void ConnectionSearchTest::setUp(void) {
 void ConnectionSearchTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionDocumentCrudTest";
   // delete all content
-  delete ml;
+  ConnectionFactory::releaseConnection(ml);
   ml = NULL;
 }
 
@@ -44,7 +57,7 @@ void ConnectionSearchTest::testEmptySearch() {
   SearchDescription desc; // default empty search object
   LOG(DEBUG) << "  Got a blank SearchDescription object instance";
 
-  const std::unique_ptr<Response> response = ml->search(desc);
+  const Response* response = ml->search(desc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -54,6 +67,7 @@ void ConnectionSearchTest::testEmptySearch() {
   CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
 
   CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+  delete response;
 }
 
 void ConnectionSearchTest::testQueryText() {
@@ -63,7 +77,7 @@ void ConnectionSearchTest::testQueryText() {
   desc.setQueryText("wibble");
   LOG(DEBUG) << "  Got an initialised SearchDescription object instance";
 
-  const std::unique_ptr<Response> response = ml->search(desc);
+  const Response* response = ml->search(desc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -73,6 +87,7 @@ void ConnectionSearchTest::testQueryText() {
   CPPUNIT_ASSERT(ResponseType::JSON  == response->getResponseType());
 
   CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+  delete response;
 }
 
 
@@ -85,7 +100,7 @@ void ConnectionSearchTest::testWordQuery() {
   desc.setQuery(queryDoc);
   LOG(DEBUG) << "  Got an initialised SearchDescription object instance";
 
-  const std::unique_ptr<Response> response = ml->search(desc);
+  const Response* response = ml->search(desc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -96,5 +111,6 @@ void ConnectionSearchTest::testWordQuery() {
 
   CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
   LOG(DEBUG) << " Leaving testWordQuery";
+  delete response;
 }
 

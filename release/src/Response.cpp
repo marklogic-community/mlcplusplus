@@ -1,20 +1,27 @@
+/*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 //
 //  Response.cpp
-//  Scratch
-//
 //  Created by Paul Hoehne on 5/29/14.
-//  Copyright (c) 2014 Paul Hoehne. All rights reserved.
 //
+#include "HttpHeaders.hpp"
+#include "Response.hpp"
 
 #include <algorithm>
-#include <boost/regex.hpp>
+#include <regex> // using std::regex as of C++14
 
 #include <cstdint>
-#include <cpprest/http_headers.h>
-#include <cpprest/http_client.h>
-#include "mlclient.hpp"
-
-#include "Response.hpp"
 
 #include "easylogging++.h"
 
@@ -248,10 +255,7 @@ const std::string translate(const ResponseCode& val) {
 
 
 
-using namespace web::http;
-using namespace utility;
-
-const boost::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
+const std::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 
 class Response::Impl {
 public:
@@ -266,7 +270,7 @@ public:
 
   ResponseCode responseCode; /*!< The response code 200/400/404, etc */
   ResponseType  responseType; /*!< The response type text,xml,binary, etc. */
-  web::http::http_headers      headers;       /*!< The response headers */
+  mlclient::HttpHeaders      headers;       /*!< The response headers */
   std::unique_ptr<std::string> content;
 
 
@@ -277,9 +281,9 @@ public:
   /// \param The raw header value (i.e. 'text/plain')
   ResponseType parseContentTypeHeader(const std::string& content) {
     TIMED_FUNC(Response_parseContentTypeHeader);
-    boost::smatch matches;
+    std::smatch matches;
     enum ResponseType result = ResponseType::BINARY;
-    if (boost::regex_search(content, matches, content_type_re)) {
+    if (std::regex_search(content, matches, content_type_re)) {
       std::string major = matches[1];
       std::string minor = matches[2];
 
@@ -324,10 +328,19 @@ void Response::SetResponseHeaders(const http_headers& headers) {
   _headers = headers;   
 }*/
 
-void Response::setResponseHeaders(const http_headers& headers) {
+void Response::setResponseHeaders(const mlclient::HttpHeaders& headers) {
   mImpl->headers.clear();
-  for (auto& iter : headers) {
-    mImpl->headers[iter.first] = iter.second;
+  const std::string& ct = "Content-type";
+  std::string value = headers.getHeader(ct);
+  if ("" == value) {
+    value = headers.getHeader("Content-Type");
+  }
+  if ("" != value) {
+    mImpl->responseType = mImpl->parseContentTypeHeader(value);
+  }
+
+  for (auto& iter : headers.getHeaders()) {
+    mImpl->headers.setHeader(iter.first,iter.second);
     if (iter.first == "Content-type" || iter.first == "Content-Type") {
       mImpl->responseType = mImpl->parseContentTypeHeader(iter.second);
     }
@@ -342,7 +355,7 @@ ResponseType Response::getResponseType(void) const {
   return mImpl->responseType;
 }
 
-http_headers Response::getResponseHeaders(void) const {
+HttpHeaders Response::getResponseHeaders(void) const {
   return mImpl->headers;
 }
 
@@ -361,9 +374,15 @@ const std::string& Response::getContent() const {
   return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
 }
 
+/*
 void Response::setContent(std::unique_ptr<std::string> content) {
   mImpl->content = std::move(content); // move ownership from function to object
   //std::cout << "SetContent: parameter: " << content << ", member variable: " << _content << std::endl;
+}
+*/
+
+void Response::setContent(std::string* content) {
+  mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
 }
 
 
