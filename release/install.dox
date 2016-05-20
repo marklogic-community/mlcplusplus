@@ -1,4 +1,5 @@
-\page Installing MLCPlusPlus
+/**
+\page page_Install Installing MLCPlusPlus
 
 \section sec_Installation Installation
 
@@ -52,3 +53,4 @@ The API documentation can be found here: http://adamfowleruk.github.io/mlcpluspl
 These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and
 passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to
 work on your own projects though.
+*/

@@ -17,7 +17,7 @@
  * \since 8.0.0
  * \date 2015-11-29
  *
- * \brief Provides the definition of the \link Connection \endlink class. No enums or constants are defined
+ * \brief Provides the definition of the Connection class. No enums or constants are defined
  *
  */
 #ifndef __MLCLIENT_CONNECTION__

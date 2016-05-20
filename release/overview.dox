@@ -4,6 +4,7 @@
  * \section sec_Contents Contents
  *
  * \li \ref sec_Overview
+ * \li \ref sec_Install
  * \li \ref sec_Design
  * \li \ref sec_Examples
  * \li \ref sec_SeeAlso
@@ -38,6 +39,10 @@
  *
  * We hope you enjoy using the API and find it useful. Please do log any issues or feature
  * requests on our GitHub Issues page https://github.com/adamfowleruk/mlcplusplus/issues , to allow us to improve this API!
+ *
+ * \section sec_Install Install
+ *
+ * To install MLCPlusPlus follow the instructions on the \link page_Install Install page \endlink
  *
  * \section sec_Design Design
  *
@@ -85,7 +90,7 @@
  *
  * Below are a variety of additional sources of information relevant to the MarkLogic C/C++ API
  *
- * \li Summary documentation is available on the \link http://github.com/adamfowleruk/mlcplusplus GitHub Project Home Page \endlink .
+ * \li Summary documentation is available on the GitHub Project Home Page http://github.com/adamfowleruk/mlcplusplus .
  * \li GitHub issues tracker - for bug reports and feature/documentation/example requests. This can be found here: https://github.com/adamfowleruk/mlcplusplus/issues
  *
  * \section sec_ApiDocs API Documentation
