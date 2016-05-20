@@ -176,7 +176,6 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 target_link_libraries (mlclient
     libcpprest.dylib
 #    libcommon_utilities.dylib
-#    libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
     libpugixml.a
@@ -215,7 +214,6 @@ SWIG_ADD_MODULE(mlclientpython python mlclient-python.i
 )
 SWIG_LINK_LIBRARIES(mlclientpython
     libcpprest.dylib
-    libboost_regex.dylib
     libssl.dylib
     libcrypto.dylib
     libpugixml.a
@@ -253,7 +251,6 @@ SWIG_LINK_LIBRARIES(mlclientpython
 #SWIG_LINK_LIBRARIES(mlclient-go
 #    libcpprest.dylib
 #    libcommon_utilities.dylib
-#    libboost_regex.dylib
 #    libssl.dylib
 #    libcrypto.dylib
 #    libpugixml.a
