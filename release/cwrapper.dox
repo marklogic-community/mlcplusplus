@@ -1,0 +1,21 @@
+/**
+ * \page page_CWrapper C Language Wrapper
+ * \brief Describes the C API wrapper for this C++ API
+ *
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ *
+ * The MarkLogic C++ API includes a C wrapper that can be used by native C applications in order to access MarkLogic
+ * Server.
+ *
+ * The C wrapper consists of C header files (.h files) that define the interface to interact with MarkLogic Server.
+ *
+ * The Core API is well served by C wrappers for all core functionality. There are some instances where having a C
+ * wrapper does not make sense. One of these is in the utility classes. The PugiXML and Microsoft cpprest APIs are
+ * object orientated APIs, and so it did not make sense to provide C wrapper functions for these classes.
+ *
+ * Likewise it does not currently make sense to wrap each subclass of IDocumentContent. It is assumed C applications
+ * will deal with the raw string content underlying the Response (CResponse) objects, directly.
+ *
+ * The C wrapper API consists of the ConnectionWrapper.h file and ResponseWrapper.h file functions. These wrap
+ * Connection and Response objects, respectively.
+ */
