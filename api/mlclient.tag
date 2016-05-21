@@ -1175,6 +1175,7 @@
     <docanchor file="page_devguide" title="Reading a Binary document">sec_getbinarydocument</docanchor>
     <docanchor file="page_devguide" title="Reading, modifying, and writing document metadata">sec_documentmetadata</docanchor>
     <docanchor file="page_devguide" title="Conversion of Document Encoding">sec_documentencoding</docanchor>
+    <docanchor file="page_devguide" title="Cleaning up Resources">sec_cleaningup</docanchor>
     <docanchor file="page_devguide" title="Query Options">sec_queryoptions</docanchor>
     <docanchor file="page_devguide" title="Using query options">sec_usingqueryoptions</docanchor>
     <docanchor file="page_devguide" title="Default query options">sec_defaultqueryoptions</docanchor>
@@ -1183,7 +1184,7 @@
     <docanchor file="page_devguide" title="Deleting query options">sec_deletequeryoptions</docanchor>
     <docanchor file="page_devguide" title="Creating query options from raw XML or JSON">sec_createoptionsfromtext</docanchor>
     <docanchor file="page_devguide" title="Validating query options">sec_validatequeryoptions</docanchor>
-    <docanchor file="page_devguide" title="Searching">sec_searching</docanchor>
+    <docanchor file="page_devguide" title="Searching">sec_search</docanchor>
     <docanchor file="page_devguide" title="Overview of Search in the C++ API">sec_searchoverview</docanchor>
     <docanchor file="page_devguide" title="Using the Search Results Iterator">sec_resultsiterator</docanchor>
     <docanchor file="page_devguide" title="Using simple text query search">sec_textquery</docanchor>
@@ -1208,7 +1209,7 @@
     <docanchor file="page_devguide" title="Stopping logging">sec_stoplogging</docanchor>
     <docanchor file="page_devguide" title="Log entry format">sec_logformat</docanchor>
     <docanchor file="page_devguide" title="Performance logging">sec_performancelogging</docanchor>
-    <docanchor file="page_devguide" title="Extending the C++ API">sec_extendapi</docanchor>
+    <docanchor file="page_devguide" title="Extending the C++ API">sec_extending</docanchor>
     <docanchor file="page_devguide" title="Performing an ad-hoc query to any REST endpoint">sec_adhocendpoint</docanchor>
     <docanchor file="page_devguide" title="Troubleshooting">sec_trouble</docanchor>
     <docanchor file="page_devguide" title="Error detection">sec_errors</docanchor>
