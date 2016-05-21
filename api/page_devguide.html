@@ -91,57 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 <li class="level1"><a href="#sec_documentoperations">Document Operations</a><ul><li class="level2"><a href="#sec_createdocument">Document Creation</a></li>
-<li class="level2"><a href="#sec_getdocument">Document Retrieval</a></li>
-<li class="level2"><a href="#sec_deletedocument">Document Deletion</a></li>
-<li class="level2"><a href="#sec_createbinarydocument">Writing a Binary document</a></li>
-<li class="level2"><a href="#sec_getbinarydocument">Reading a Binary document</a></li>
-<li class="level2"><a href="#sec_documentmetadata">Reading, modifying, and writing document metadata</a></li>
-<li class="level2"><a href="#sec_documentencoding">Conversion of Document Encoding</a></li>
-<li class="level2"><a href="#sec_cleaningup">Cleaning up Resources</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_queryoptions">Query Options</a><ul><li class="level2"><a href="#sec_usingqueryoptions">Using query options</a></li>
-<li class="level2"><a href="#sec_defaultqueryoptions">Default query options</a></li>
-<li class="level2"><a href="#sec_createqueryoptions">Creating query options</a></li>
-<li class="level2"><a href="#sec_updatequeryoptions">Updating query options</a></li>
-<li class="level2"><a href="#sec_deletequeryoptions">Deleting query options</a></li>
-<li class="level2"><a href="#sec_createoptionsfromtext">Creating query options from raw XML or JSON</a></li>
-<li class="level2"><a href="#sec_validatequeryoptions">Validating query options</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_search">Searching</a><ul><li class="level2"><a href="#sec_searchoverview">Overview of Search in the C++ API</a></li>
-<li class="level2"><a href="#sec_resultsiterator">Using the Search Results Iterator</a></li>
-<li class="level2"><a href="#sec_textquery">Using simple text query search</a></li>
-<li class="level2"><a href="#sec_structuredquery">Using structured search and the Search Builder</a></li>
-<li class="level2"><a href="#sec_querybyexample">Prototype a query using Query By Example</a></li>
-<li class="level2"><a href="#sec_combinedquery">Using Combined Queries</a></li>
-<li class="level2"><a href="#sec_valuestuples">Searching Values and Tuples</a></li>
-<li class="level2"><a href="#sec_searchtransforms">Transforming Search results</a></li>
-<li class="level2"><a href="#sec_searchsuggest">Generating Search Suggestions</a></li>
-<li class="level2"><a href="#sec_searchextract">Extracting a portion of matching documents</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_multipledocuments">Reading and Writing Multiple Documents</a><ul><li class="level2"><a href="#sec_writemultiple">Write multiple documents</a></li>
-<li class="level2"><a href="#sec_writemultiplefiles">Writing multiple documents from files</a></li>
-<li class="level2"><a href="#sec_readmultipleuri">Read multiple documents by URI</a></li>
-<li class="level2"><a href="#sec_readmultiplequery">Read multiple documents matching a query</a></li>
-<li class="level2"><a href="#sec_readtransform">Apply a read transformation</a></li>
-<li class="level2"><a href="#sec_multiplebatchsize">Setting batch size</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_transactions">Transactions and Optimistic Locking</a></li>
-<li class="level1"><a href="#sec_logging">Logging</a><ul><li class="level2"><a href="#sec_startlogging">Starting logging and setting the log level</a></li>
-<li class="level2"><a href="#sec_suspendlogging">Suspending logging</a></li>
-<li class="level2"><a href="#sec_stoplogging">Stopping logging</a></li>
-<li class="level2"><a href="#sec_logformat">Log entry format</a></li>
-<li class="level2"><a href="#sec_performancelogging">Performance logging</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_extending">Extending the C++ API</a><ul><li class="level2"><a href="#sec_adhocendpoint">Performing an ad-hoc query to any REST endpoint</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#sec_trouble">Troubleshooting</a><ul><li class="level2"><a href="#sec_errors">Error detection</a></li>
-<li class="level2"><a href="#sec_troubletechs">General Troubleshooting Techniques</a></li>
 </ul>
 </li>
 </ul>
@@ -151,9 +100,9 @@ Introduction to the C++ API</h1>
 <p>The C++ API is an Apache 2.0 licensed Open Source API allowing interaction with MarkLogic Server versions 6.0 and above. The capabilities provided by the C++ API include:-</p>
 <ul>
 <li>Insert, update, or delete documents and their metadata - See <a class="el" href="page_devguide.html#sec_documentoperations">Document Operations</a> </li>
-<li>Query document and lexicon values - See <a class="el" href="page_devguide.html#sec_search">Searching</a> </li>
-<li>Configure dynamic and persistent Query options - See <a class="el" href="page_devguide.html#sec_queryoptions">Query Options</a> </li>
-<li>Extend the C++ API - See <a class="el" href="page_devguide.html#sec_extending">Extending the C++ API</a></li>
+<li>Query document and lexicon values - See sec_search </li>
+<li>Configure dynamic and persistent Query options - See sec_queryoptions </li>
+<li>Extend the C++ API - See sec_extending</li>
 </ul>
 <p>The C++ API provides subinterfaces and instances of the IDocumentContent interface class in order to provide interaction with the content of a Document. The Document class itself uses an IDocumentContent instance, we well as objects representing Collections, Permissions, and Metadata.</p>
 <p>The main class to use is the Connection class which holds methods wrapping specific REST API services, and which provide a level of abstraction and error checking beyond simple REST HTTP calls.</p>
@@ -200,145 +149,7 @@ jsonStringContent.setMimeType("application/json");
 Response* jsonStringResponse = conn-&gt;saveDocument("/some/json1.json",jsonStringContent);
 
 CppRestJsonDocumentContent* jsonWrappedContent = CppRestJsonHelper::toDocument(web::json::value::parse("{\"some\": \"other json value\"}"));
-</pre><p> the above sets the mime type for you Response* jsonWrappedResponse = conn-&gt;saveDocument("/some/json2.json",*jsonWrappedContent);</p>
-<p>GenericTextDocumentContent xmlStringContent; xmlStringContent.setContent("&lt;xmldoc&gt;&lt;some&gt;value&lt;/some&gt;&lt;/xmldoc&gt;"); xmlStringContent.setMimeType("application/xml"); Response* xmlStringResponse = conn-&gt;saveDocument("/some/xml1.xml",xmlStringContent);</p>
-<p>GenericTextDocumentContent xmlWrappedContent; pugi::xml_document* doc = new pugi::xml_document; pugi::xml_parse_result result = doc-&gt;load_string("&lt;xmldoc&gt;&lt;some&gt;other xml&lt;/some&gt;&lt;/xmldoc&gt;"); normally you'd already have a pugi::xml_document instance... std::ostringstream os; os &lt;&lt; doc; xmlWrappedContent.setContent(os.str()); xmlWrappedContent.setMimeType("application/xml"); Response* xmlWrappedResponse = conn-&gt;saveDocument("some/xml2.xml",xmlWrappedContent);</p>
-<p>The above shows ways of using the utility wrapper functions. Note you can just use a GenericTextDocumentContent instance.</p>
-<p>In the future IBinaryDocumentContent instances will also be provided. These are not currently provided in the API.</p>
-<h2><a class="anchor" id="sec_getdocument"></a>
-Document Retrieval</h2>
-<p>Documents are again retrieved as low level Response objects. You can then convert these to the higher level classes that you need to use using helper classes. </p><pre class="fragment">Response* resp = conn-&gt;getDocument("/some/json1.json");
-CppRestJsonDocumentContent* doc = CppRestJsonHelper::toDocument(CppRestJsonHelper::fromResponse(resp));
-</pre><p> the above will check mime type and throw if not JSON (i.e. not mimetype of application/json) std::cout &lt;&lt; "My doc: " &lt;&lt; *doc &lt;&lt; std::endl;</p>
-<p>See how the above first converts to a web::json::value instance, and then wraps this as a document. If you prefer to work with just the web::json::value, then just call fromResponse rather than this with toDocument.</p>
-<p>The PugiXmlHelper class has equivalent methods for XML. You can also use a GenericTextDocumentContent instance too, using its setContent method and the Response's getContent method. (along with get/set MimeType methods).</p>
-<h2><a class="anchor" id="sec_deletedocument"></a>
-Document Deletion</h2>
-<p>Document deletion is very straight forward. If a document is deleted it will return a response with the ResponseCode::NoContent code. If it doesn't exist, you will receive a ResponseCode::NotFound response code. </p><pre class="fragment">Response* resp = conn-&gt;deleteDocument("/some/json2.json");
-std::cout &lt;&lt; "Deletion response: " &lt;&lt; resp-&gt;getResponseCode() &lt;&lt; std::endl;
-</pre><h2><a class="anchor" id="sec_createbinarydocument"></a>
-Writing a Binary document</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_getbinarydocument"></a>
-Reading a Binary document</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_documentmetadata"></a>
-Reading, modifying, and writing document metadata</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_documentencoding"></a>
-Conversion of Document Encoding</h2>
-<p>The C++ API uses UTF-8 exclusively via the C++ std::string class.</p>
-<h2><a class="anchor" id="sec_cleaningup"></a>
-Cleaning up Resources</h2>
-<p>The C++ API returns unmanaged pointers to resources. This means you will have to manually clean up and delete any connection and response objects you received from the API yourself, when you no longer need them.</p>
-<p>Below is some best practice sample code, which assumes you keep a local pointer variable for the connection:- </p><pre class="fragment">delete response;
-delete conn;
-conn = NULL; // assuming you delete this in a destructor, or similar
-</pre><p>You can also use a Connection pool or individual ConnectionFactory singleton to keep a single connection instance, and create a getConnection and releaseConnection static methods. For an effective implementation see /release/test/ConnectionFactory.cpp .</p>
-<h1><a class="anchor" id="sec_queryoptions"></a>
-Query Options</h1>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_usingqueryoptions"></a>
-Using query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_defaultqueryoptions"></a>
-Default query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_createqueryoptions"></a>
-Creating query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_updatequeryoptions"></a>
-Updating query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_deletequeryoptions"></a>
-Deleting query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_usingqueryoptions"></a>
-Using query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_createoptionsfromtext"></a>
-Creating query options from raw XML or JSON</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_validatequeryoptions"></a>
-Validating query options</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h1><a class="anchor" id="sec_search"></a>
-Searching</h1>
-<h2><a class="anchor" id="sec_searchoverview"></a>
-Overview of Search in the C++ API</h2>
-<h2><a class="anchor" id="sec_resultsiterator"></a>
-Using the Search Results Iterator</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_textquery"></a>
-Using simple text query search</h2>
-<p>TODO simple text search</p>
-<h2><a class="anchor" id="sec_structuredquery"></a>
-Using structured search and the Search Builder</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_querybyexample"></a>
-Prototype a query using Query By Example</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_combinedquery"></a>
-Using Combined Queries</h2>
-<p>TODO combined queries</p>
-<h2><a class="anchor" id="sec_valuestuples"></a>
-Searching Values and Tuples</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_searchtransforms"></a>
-Transforming Search results</h2>
-<p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h2><a class="anchor" id="sec_searchsuggest"></a>
-Generating Search Suggestions</h2>
-<p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h2><a class="anchor" id="sec_searchextract"></a>
-Extracting a portion of matching documents</h2>
-<p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h1><a class="anchor" id="sec_multipledocuments"></a>
-Reading and Writing Multiple Documents</h1>
-<h2><a class="anchor" id="sec_writemultiple"></a>
-Write multiple documents</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_writemultiplefiles"></a>
-Writing multiple documents from files</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_readmultipleuri"></a>
-Read multiple documents by URI</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_readmultiplequery"></a>
-Read multiple documents matching a query</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_readtransform"></a>
-Apply a read transformation</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="sec_multiplebatchsize"></a>
-Setting batch size</h2>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h1><a class="anchor" id="sec_transactions"></a>
-Transactions and Optimistic Locking</h1>
-<p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h1><a class="anchor" id="sec_logging"></a>
-Logging</h1>
-<h2><a class="anchor" id="sec_startlogging"></a>
-Starting logging and setting the log level</h2>
-<h2><a class="anchor" id="sec_suspendlogging"></a>
-Suspending logging</h2>
-<h2><a class="anchor" id="sec_stoplogging"></a>
-Stopping logging</h2>
-<h2><a class="anchor" id="sec_logformat"></a>
-Log entry format</h2>
-<h2><a class="anchor" id="sec_performancelogging"></a>
-Performance logging</h2>
-<h1><a class="anchor" id="sec_extending"></a>
-Extending the C++ API</h1>
-<h2><a class="anchor" id="sec_adhocendpoint"></a>
-Performing an ad-hoc query to any REST endpoint</h2>
-<h1><a class="anchor" id="sec_trouble"></a>
-Troubleshooting</h1>
-<h2><a class="anchor" id="sec_errors"></a>
-Error detection</h2>
-<h2><a class="anchor" id="sec_troubletechs"></a>
-General Troubleshooting Techniques</h2>
-</div></div><!-- contents -->
+/* the above sets the mime type for you  </pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
