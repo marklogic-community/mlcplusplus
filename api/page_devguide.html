@@ -207,15 +207,16 @@ CppRestJsonDocumentContent* jsonWrappedContent = CppRestJsonHelper::toDocument(w
 <p>In the future IBinaryDocumentContent instances will also be provided. These are not currently provided in the API.</p>
 <h2><a class="anchor" id="sec_getdocument"></a>
 Document Retrieval</h2>
-<p>Documents are again retrieved as low level Response objects. You can then convert these to the higher level classes that you need to use using helper classes.</p>
-<p>Response* resp = conn-&gt;getDocument("/some/json1.json"); CppRestJsonDocumentContent* doc = CppRestJsonHelper::toDocument(CppRestJsonHelper::fromResponse(resp)); the above will check mime type and throw if not JSON (i.e. not mimetype of application/json) std::cout &lt;&lt; "My doc: " &lt;&lt; *doc &lt;&lt; std::endl;</p>
+<p>Documents are again retrieved as low level Response objects. You can then convert these to the higher level classes that you need to use using helper classes. </p><pre class="fragment">Response* resp = conn-&gt;getDocument("/some/json1.json");
+CppRestJsonDocumentContent* doc = CppRestJsonHelper::toDocument(CppRestJsonHelper::fromResponse(resp));
+</pre><p> the above will check mime type and throw if not JSON (i.e. not mimetype of application/json) std::cout &lt;&lt; "My doc: " &lt;&lt; *doc &lt;&lt; std::endl;</p>
 <p>See how the above first converts to a web::json::value instance, and then wraps this as a document. If you prefer to work with just the web::json::value, then just call fromResponse rather than this with toDocument.</p>
 <p>The PugiXmlHelper class has equivalent methods for XML. You can also use a GenericTextDocumentContent instance too, using its setContent method and the Response's getContent method. (along with get/set MimeType methods).</p>
 <h2><a class="anchor" id="sec_deletedocument"></a>
 Document Deletion</h2>
-<p>Document deletion is very straight forward. If a document is deleted it will return a response with the ResponseCode::NoContent code. If it doesn't exist, you will receive a ResponseCode::NotFound response code.</p>
-<p>Response* resp = conn-&gt;deleteDocument("/some/json2.json"); std::cout &lt;&lt; "Deletion response: " &lt;&lt; resp-&gt;getResponseCode() &lt;&lt; std::endl;</p>
-<h2><a class="anchor" id="sec_createbinarydocument"></a>
+<p>Document deletion is very straight forward. If a document is deleted it will return a response with the ResponseCode::NoContent code. If it doesn't exist, you will receive a ResponseCode::NotFound response code. </p><pre class="fragment">Response* resp = conn-&gt;deleteDocument("/some/json2.json");
+std::cout &lt;&lt; "Deletion response: " &lt;&lt; resp-&gt;getResponseCode() &lt;&lt; std::endl;
+</pre><h2><a class="anchor" id="sec_createbinarydocument"></a>
 Writing a Binary document</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_getbinarydocument"></a>
