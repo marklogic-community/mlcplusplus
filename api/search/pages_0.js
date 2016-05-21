@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['c_20language_20wrapper',['C Language Wrapper',['../page__c_wrapper.html',1,'']]]
+  ['application_20developers_20guide',['Application Developers Guide',['../page_devguide.html',1,'']]]
 ];

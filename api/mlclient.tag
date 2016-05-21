@@ -1157,6 +1157,49 @@
     <docanchor file="page__design" title="C++ Public API">The</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_devguide</name>
+    <title>Application Developers Guide</title>
+    <filename>page_devguide</filename>
+    <docanchor file="page_devguide" title="to the C++ API">Introduction</docanchor>
+    <docanchor file="page_devguide" title="Started">Getting</docanchor>
+    <docanchor file="page_devguide" title=", working with, and releasing a Connection instance">Creating</docanchor>
+    <docanchor file="page_devguide" title="document retrieval example">Basic</docanchor>
+    <docanchor file="page_devguide" title="Document and IDocumentContent objects">Using</docanchor>
+    <docanchor file="page_devguide" title="safety">Thread</docanchor>
+    <docanchor file="page_devguide">Concurrency</docanchor>
+    <docanchor file="page_devguide" title="Operations">Document</docanchor>
+    <docanchor file="page_devguide" title="a Binary document">Writing</docanchor>
+    <docanchor file="page_devguide" title="a Binary document">Reading</docanchor>
+    <docanchor file="page_devguide" title="of Document Encoding">Conversion</docanchor>
+    <docanchor file="page_devguide" title="Options">Query</docanchor>
+    <docanchor file="page_devguide" title="query options">Default</docanchor>
+    <docanchor file="page_devguide" title="query options">Updating</docanchor>
+    <docanchor file="page_devguide" title="query options">Deleting</docanchor>
+    <docanchor file="page_devguide" title="query options">Validating</docanchor>
+    <docanchor file="page_devguide">Searching</docanchor>
+    <docanchor file="page_devguide" title="of Search in the C++ API">Overview</docanchor>
+    <docanchor file="page_devguide" title="a query using Query By Example">Prototype</docanchor>
+    <docanchor file="page_devguide" title="Search results">Transforming</docanchor>
+    <docanchor file="page_devguide" title="Search Suggestions">Generating</docanchor>
+    <docanchor file="page_devguide" title="a portion of matching documents">Extracting</docanchor>
+    <docanchor file="page_devguide" title="multiple documents">Write</docanchor>
+    <docanchor file="page_devguide" title="multiple documents by URI">Read</docanchor>
+    <docanchor file="page_devguide" title="a read transformation">Apply</docanchor>
+    <docanchor file="page_devguide" title="batch size">Setting</docanchor>
+    <docanchor file="page_devguide" title="and Optimistic Locking">Transactions</docanchor>
+    <docanchor file="page_devguide">Logging</docanchor>
+    <docanchor file="page_devguide" title="logging and setting the log level">Starting</docanchor>
+    <docanchor file="page_devguide" title="logging">Suspending</docanchor>
+    <docanchor file="page_devguide" title="logging">Stopping</docanchor>
+    <docanchor file="page_devguide" title="entry format">Log</docanchor>
+    <docanchor file="page_devguide" title="logging">Performance</docanchor>
+    <docanchor file="page_devguide" title="the C++ API">Extending</docanchor>
+    <docanchor file="page_devguide" title="an ad-hoc query to any REST endpoint">Performing</docanchor>
+    <docanchor file="page_devguide">Troubleshooting</docanchor>
+    <docanchor file="page_devguide" title="detection">Error</docanchor>
+    <docanchor file="page_devguide" title="Troubleshooting Techniques">General</docanchor>
+  </compound>
+  <compound kind="page">
     <name>page_Install</name>
     <title>Installing MLCPlusPlus</title>
     <filename>page__install</filename>
@@ -1169,6 +1212,7 @@
     <docanchor file="index" title="Contents">sec_Contents</docanchor>
     <docanchor file="index" title="Overview">sec_Overview</docanchor>
     <docanchor file="index" title="Install">sec_Install</docanchor>
+    <docanchor file="index" title="Application Development Guide">sec_DevGuide</docanchor>
     <docanchor file="index" title="Design">sec_Design</docanchor>
     <docanchor file="index" title="Examples">sec_Examples</docanchor>
     <docanchor file="index" title="See Also">sec_SeeAlso</docanchor>
