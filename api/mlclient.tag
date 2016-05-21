@@ -1160,44 +1160,59 @@
     <name>page_devguide</name>
     <title>Application Developers Guide</title>
     <filename>page_devguide</filename>
-    <docanchor file="page_devguide" title="to the C++ API">Introduction</docanchor>
-    <docanchor file="page_devguide" title="Started">Getting</docanchor>
-    <docanchor file="page_devguide" title=", working with, and releasing a Connection instance">Creating</docanchor>
-    <docanchor file="page_devguide" title="document retrieval example">Basic</docanchor>
-    <docanchor file="page_devguide" title="Document and IDocumentContent objects">Using</docanchor>
-    <docanchor file="page_devguide" title="safety">Thread</docanchor>
-    <docanchor file="page_devguide">Concurrency</docanchor>
-    <docanchor file="page_devguide" title="Operations">Document</docanchor>
-    <docanchor file="page_devguide" title="a Binary document">Writing</docanchor>
-    <docanchor file="page_devguide" title="a Binary document">Reading</docanchor>
-    <docanchor file="page_devguide" title="of Document Encoding">Conversion</docanchor>
-    <docanchor file="page_devguide" title="Options">Query</docanchor>
-    <docanchor file="page_devguide" title="query options">Default</docanchor>
-    <docanchor file="page_devguide" title="query options">Updating</docanchor>
-    <docanchor file="page_devguide" title="query options">Deleting</docanchor>
-    <docanchor file="page_devguide" title="query options">Validating</docanchor>
-    <docanchor file="page_devguide">Searching</docanchor>
-    <docanchor file="page_devguide" title="of Search in the C++ API">Overview</docanchor>
-    <docanchor file="page_devguide" title="a query using Query By Example">Prototype</docanchor>
-    <docanchor file="page_devguide" title="Search results">Transforming</docanchor>
-    <docanchor file="page_devguide" title="Search Suggestions">Generating</docanchor>
-    <docanchor file="page_devguide" title="a portion of matching documents">Extracting</docanchor>
-    <docanchor file="page_devguide" title="multiple documents">Write</docanchor>
-    <docanchor file="page_devguide" title="multiple documents by URI">Read</docanchor>
-    <docanchor file="page_devguide" title="a read transformation">Apply</docanchor>
-    <docanchor file="page_devguide" title="batch size">Setting</docanchor>
-    <docanchor file="page_devguide" title="and Optimistic Locking">Transactions</docanchor>
-    <docanchor file="page_devguide">Logging</docanchor>
-    <docanchor file="page_devguide" title="logging and setting the log level">Starting</docanchor>
-    <docanchor file="page_devguide" title="logging">Suspending</docanchor>
-    <docanchor file="page_devguide" title="logging">Stopping</docanchor>
-    <docanchor file="page_devguide" title="entry format">Log</docanchor>
-    <docanchor file="page_devguide" title="logging">Performance</docanchor>
-    <docanchor file="page_devguide" title="the C++ API">Extending</docanchor>
-    <docanchor file="page_devguide" title="an ad-hoc query to any REST endpoint">Performing</docanchor>
-    <docanchor file="page_devguide">Troubleshooting</docanchor>
-    <docanchor file="page_devguide" title="detection">Error</docanchor>
-    <docanchor file="page_devguide" title="Troubleshooting Techniques">General</docanchor>
+    <docanchor file="page_devguide" title="Introduction to the C++ API">sec_introduction</docanchor>
+    <docanchor file="page_devguide" title="Getting Started">sec_gettingstarted</docanchor>
+    <docanchor file="page_devguide" title="Creating, working with, and releasing a Connection instance">sec_connection</docanchor>
+    <docanchor file="page_devguide" title="Basic document retrieval example">sec_getdocumentexample</docanchor>
+    <docanchor file="page_devguide" title="Using Document and IDocumentContent objects">sec_idocumentcontent</docanchor>
+    <docanchor file="page_devguide" title="Thread safety">sec_threads</docanchor>
+    <docanchor file="page_devguide" title="Concurrency">sec_concurrency</docanchor>
+    <docanchor file="page_devguide" title="Document Operations">sec_documentoperations</docanchor>
+    <docanchor file="page_devguide" title="Document Creation">sec_createdocument</docanchor>
+    <docanchor file="page_devguide" title="Document Retrieval">sec_getdocument</docanchor>
+    <docanchor file="page_devguide" title="Document Deletion">sec_deletedocument</docanchor>
+    <docanchor file="page_devguide" title="Writing a Binary document">sec_createbinarydocument</docanchor>
+    <docanchor file="page_devguide" title="Reading a Binary document">sec_getbinarydocument</docanchor>
+    <docanchor file="page_devguide" title="Reading, modifying, and writing document metadata">sec_documentmetadata</docanchor>
+    <docanchor file="page_devguide" title="Conversion of Document Encoding">sec_documentencoding</docanchor>
+    <docanchor file="page_devguide" title="Query Options">sec_queryoptions</docanchor>
+    <docanchor file="page_devguide" title="Using query options">sec_usingqueryoptions</docanchor>
+    <docanchor file="page_devguide" title="Default query options">sec_defaultqueryoptions</docanchor>
+    <docanchor file="page_devguide" title="Creating query options">sec_createqueryoptions</docanchor>
+    <docanchor file="page_devguide" title="Updating query options">sec_updatequeryoptions</docanchor>
+    <docanchor file="page_devguide" title="Deleting query options">sec_deletequeryoptions</docanchor>
+    <docanchor file="page_devguide" title="Creating query options from raw XML or JSON">sec_createoptionsfromtext</docanchor>
+    <docanchor file="page_devguide" title="Validating query options">sec_validatequeryoptions</docanchor>
+    <docanchor file="page_devguide" title="Searching">sec_searching</docanchor>
+    <docanchor file="page_devguide" title="Overview of Search in the C++ API">sec_searchoverview</docanchor>
+    <docanchor file="page_devguide" title="Using the Search Results Iterator">sec_resultsiterator</docanchor>
+    <docanchor file="page_devguide" title="Using simple text query search">sec_textquery</docanchor>
+    <docanchor file="page_devguide" title="Using structured search and the Search Builder">sec_structuredquery</docanchor>
+    <docanchor file="page_devguide" title="Prototype a query using Query By Example">sec_querybyexample</docanchor>
+    <docanchor file="page_devguide" title="Using Combined Queries">sec_combinedquery</docanchor>
+    <docanchor file="page_devguide" title="Searching Values and Tuples">sec_valuestuples</docanchor>
+    <docanchor file="page_devguide" title="Transforming Search results">sec_searchtransforms</docanchor>
+    <docanchor file="page_devguide" title="Generating Search Suggestions">sec_searchsuggest</docanchor>
+    <docanchor file="page_devguide" title="Extracting a portion of matching documents">sec_searchextract</docanchor>
+    <docanchor file="page_devguide" title="Reading and Writing Multiple Documents">sec_multipledocuments</docanchor>
+    <docanchor file="page_devguide" title="Write multiple documents">sec_writemultiple</docanchor>
+    <docanchor file="page_devguide" title="Writing multiple documents from files">sec_writemultiplefiles</docanchor>
+    <docanchor file="page_devguide" title="Read multiple documents by URI">sec_readmultipleuri</docanchor>
+    <docanchor file="page_devguide" title="Read multiple documents matching a query">sec_readmultiplequery</docanchor>
+    <docanchor file="page_devguide" title="Apply a read transformation">sec_readtransform</docanchor>
+    <docanchor file="page_devguide" title="Setting batch size">sec_multiplebatchsize</docanchor>
+    <docanchor file="page_devguide" title="Transactions and Optimistic Locking">sec_transactions</docanchor>
+    <docanchor file="page_devguide" title="Logging">sec_logging</docanchor>
+    <docanchor file="page_devguide" title="Starting logging and setting the log level">sec_startlogging</docanchor>
+    <docanchor file="page_devguide" title="Suspending logging">sec_suspendlogging</docanchor>
+    <docanchor file="page_devguide" title="Stopping logging">sec_stoplogging</docanchor>
+    <docanchor file="page_devguide" title="Log entry format">sec_logformat</docanchor>
+    <docanchor file="page_devguide" title="Performance logging">sec_performancelogging</docanchor>
+    <docanchor file="page_devguide" title="Extending the C++ API">sec_extendapi</docanchor>
+    <docanchor file="page_devguide" title="Performing an ad-hoc query to any REST endpoint">sec_adhocendpoint</docanchor>
+    <docanchor file="page_devguide" title="Troubleshooting">sec_trouble</docanchor>
+    <docanchor file="page_devguide" title="Error detection">sec_errors</docanchor>
+    <docanchor file="page_devguide" title="General Troubleshooting Techniques">sec_troubletechs</docanchor>
   </compound>
   <compound kind="page">
     <name>page_Install</name>

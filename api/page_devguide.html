@@ -82,209 +82,225 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#Introduction">to the C++ API</a><ul><li class="level2"><a href="#Getting">Started</a></li>
-<li class="level2"><a href="#Creating">, working with, and releasing a Connection instance</a></li>
-<li class="level2"><a href="#Basic">document retrieval example</a></li>
-<li class="level2"><a href="#Using">Document and IDocumentContent objects</a></li>
-<li class="level2"><a href="#Thread">safety</a></li>
-<li class="level2"><a href="#Concurrency">Concurrency</a></li>
+<ul><li class="level1"><a href="#sec_introduction">Introduction to the C++ API</a><ul><li class="level2"><a href="#sec_gettingstarted">Getting Started</a></li>
+<li class="level2"><a href="#sec_connection">Creating, working with, and releasing a Connection instance</a></li>
+<li class="level2"><a href="#sec_getdocumentexample">Basic document retrieval example</a></li>
+<li class="level2"><a href="#sec_idocumentcontent">Using Document and IDocumentContent objects</a></li>
+<li class="level2"><a href="#sec_threads">Thread safety</a></li>
+<li class="level2"><a href="#sec_concurrency">Concurrency</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Document">Operations</a><ul><li class="level2"><a href="#Writing">a Binary document</a></li>
-<li class="level2"><a href="#Reading">a Binary document</a></li>
-<li class="level2"><a href="#Conversion">of Document Encoding</a></li>
+<li class="level1"><a href="#sec_documentoperations">Document Operations</a><ul><li class="level2"><a href="#sec_createdocument">Document Creation</a></li>
+<li class="level2"><a href="#sec_getdocument">Document Retrieval</a></li>
+<li class="level2"><a href="#sec_deletedocument">Document Deletion</a></li>
+<li class="level2"><a href="#sec_createbinarydocument">Writing a Binary document</a></li>
+<li class="level2"><a href="#sec_getbinarydocument">Reading a Binary document</a></li>
+<li class="level2"><a href="#sec_documentmetadata">Reading, modifying, and writing document metadata</a></li>
+<li class="level2"><a href="#sec_documentencoding">Conversion of Document Encoding</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Query">Options</a><ul><li class="level2"><a href="#Default">query options</a></li>
-<li class="level2"><a href="#Updating">query options</a></li>
-<li class="level2"><a href="#Deleting">query options</a></li>
-<li class="level2"><a href="#Validating">query options</a></li>
+<li class="level1"><a href="#sec_queryoptions">Query Options</a><ul><li class="level2"><a href="#sec_usingqueryoptions">Using query options</a></li>
+<li class="level2"><a href="#sec_defaultqueryoptions">Default query options</a></li>
+<li class="level2"><a href="#sec_createqueryoptions">Creating query options</a></li>
+<li class="level2"><a href="#sec_updatequeryoptions">Updating query options</a></li>
+<li class="level2"><a href="#sec_deletequeryoptions">Deleting query options</a></li>
+<li class="level2"><a href="#sec_createoptionsfromtext">Creating query options from raw XML or JSON</a></li>
+<li class="level2"><a href="#sec_validatequeryoptions">Validating query options</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Searching">Searching</a><ul><li class="level2"><a href="#Overview">of Search in the C++ API</a></li>
-<li class="level2"><a href="#Prototype">a query using Query By Example</a></li>
-<li class="level2"><a href="#Transforming">Search results</a></li>
-<li class="level2"><a href="#Generating">Search Suggestions</a></li>
-<li class="level2"><a href="#Extracting">a portion of matching documents</a></li>
-<li class="level2"><a href="#Write">multiple documents</a></li>
-<li class="level2"><a href="#Read">multiple documents by URI</a></li>
-<li class="level2"><a href="#Apply">a read transformation</a></li>
-<li class="level2"><a href="#Setting">batch size</a></li>
+<li class="level1"><a href="#sec_searching">Searching</a><ul><li class="level2"><a href="#sec_searchoverview">Overview of Search in the C++ API</a></li>
+<li class="level2"><a href="#sec_resultsiterator">Using the Search Results Iterator</a></li>
+<li class="level2"><a href="#sec_textquery">Using simple text query search</a></li>
+<li class="level2"><a href="#sec_structuredquery">Using structured search and the Search Builder</a></li>
+<li class="level2"><a href="#sec_querybyexample">Prototype a query using Query By Example</a></li>
+<li class="level2"><a href="#sec_combinedquery">Using Combined Queries</a></li>
+<li class="level2"><a href="#sec_valuestuples">Searching Values and Tuples</a></li>
+<li class="level2"><a href="#sec_searchtransforms">Transforming Search results</a></li>
+<li class="level2"><a href="#sec_searchsuggest">Generating Search Suggestions</a></li>
+<li class="level2"><a href="#sec_searchextract">Extracting a portion of matching documents</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Transactions">and Optimistic Locking</a></li>
-<li class="level1"><a href="#Logging">Logging</a><ul><li class="level2"><a href="#Starting">logging and setting the log level</a></li>
-<li class="level2"><a href="#Suspending">logging</a></li>
-<li class="level2"><a href="#Stopping">logging</a></li>
-<li class="level2"><a href="#Log">entry format</a></li>
-<li class="level2"><a href="#Performance">logging</a></li>
+<li class="level1"><a href="#sec_multipledocuments">Reading and Writing Multiple Documents</a><ul><li class="level2"><a href="#sec_writemultiple">Write multiple documents</a></li>
+<li class="level2"><a href="#sec_writemultiplefiles">Writing multiple documents from files</a></li>
+<li class="level2"><a href="#sec_readmultipleuri">Read multiple documents by URI</a></li>
+<li class="level2"><a href="#sec_readmultiplequery">Read multiple documents matching a query</a></li>
+<li class="level2"><a href="#sec_readtransform">Apply a read transformation</a></li>
+<li class="level2"><a href="#sec_multiplebatchsize">Setting batch size</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Extending">the C++ API</a><ul><li class="level2"><a href="#Performing">an ad-hoc query to any REST endpoint</a></li>
+<li class="level1"><a href="#sec_transactions">Transactions and Optimistic Locking</a></li>
+<li class="level1"><a href="#sec_logging">Logging</a><ul><li class="level2"><a href="#sec_startlogging">Starting logging and setting the log level</a></li>
+<li class="level2"><a href="#sec_suspendlogging">Suspending logging</a></li>
+<li class="level2"><a href="#sec_stoplogging">Stopping logging</a></li>
+<li class="level2"><a href="#sec_logformat">Log entry format</a></li>
+<li class="level2"><a href="#sec_performancelogging">Performance logging</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#Troubleshooting">Troubleshooting</a><ul><li class="level2"><a href="#Error">detection</a></li>
-<li class="level2"><a href="#General">Troubleshooting Techniques</a></li>
+<li class="level1"><a href="#sec_extendapi">Extending the C++ API</a><ul><li class="level2"><a href="#sec_adhocendpoint">Performing an ad-hoc query to any REST endpoint</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#sec_trouble">Troubleshooting</a><ul><li class="level2"><a href="#sec_errors">Error detection</a></li>
+<li class="level2"><a href="#sec_troubletechs">General Troubleshooting Techniques</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-to the C++ API</h1>
+<div class="textblock"><h1><a class="anchor" id="sec_introduction"></a>
+Introduction to the C++ API</h1>
 <p>The C++ API is an Apache 2.0 licensed Open Source API allowing interaction with MarkLogic Server versions 6.0 and above. The capabilities provided by the C++ API include:-</p>
 <ul>
-<li>Insert, update, or delete documents and their metadata - See sec_documentoperations </li>
+<li>Insert, update, or delete documents and their metadata - See <a class="el" href="page_devguide.html#sec_documentoperations">Document Operations</a> </li>
 <li>Query document and lexicon values - See sec_search </li>
-<li>Configure dynamic and persistent Query options - See sec_queryoptions </li>
+<li>Configure dynamic and persistent Query options - See <a class="el" href="page_devguide.html#sec_queryoptions">Query Options</a> </li>
 <li>Apply transforms to document and search results - See sec_transforms </li>
 <li>Extend the C++ API - See sec_extending</li>
 </ul>
 <p>The C++ API provides subinterfaces and instances of the IDocumentContent interface class in order to provide interaction with the content of a Document. The Document class itself uses an IDocumentContent instance, we well as objects representing Collections, Permissions, and Metadata.</p>
 <p>The main class to use is the Connection class which holds methods wrapping specific REST API services, and which provide a level of abstraction and error checking beyond simple REST HTTP calls.</p>
 <p>A low-level interface on the Connection object allows raw http calls to be used. This is useful for extensions or Early Access functionality that is not yet wrapped by the C++ API Connection class' methods.</p>
-<h2><a class="anchor" id="Getting"></a>
-Started</h2>
+<h2><a class="anchor" id="sec_gettingstarted"></a>
+Getting Started</h2>
 <p>First you must install the C++ API. This currently means building it and its dependencies from source. Please see the <a class="el" href="page__install.html">Install page </a> for those instructions.</p>
-<h2><a class="anchor" id="Creating"></a>
-, working with, and releasing a Connection instance</h2>
+<h2><a class="anchor" id="sec_connection"></a>
+Creating, working with, and releasing a Connection instance</h2>
 <p>The Connection class is the way to generate a connection to MarkLogic Server and invoke its REST API operations.</p>
 <dl class="section note"><dt>Note</dt><dd>You may find it useful to use a ConnectionFactory class. This can be a single place to hold connection hostname, port, and security information, and allows the re-use of a single connection instance. For an example implementation, see the /release/test/ConnectionFactory.cpp file.</dd></dl>
 <p>Firstly, you must create and configure a Connection instance:- </p><pre class="fragment">Connection* conn = new Connection();
 conn-&gt;configure("localhost","8002","admin","admin");
 </pre><p>This creates a connection to the MarkLogic Server running on localhost on port 8002 (the generic/admin REST API), with the username and password admin.</p>
-<h2><a class="anchor" id="Basic"></a>
-document retrieval example</h2>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_getdocumentexample"></a>
+Basic document retrieval example</h2>
+<h2><a class="anchor" id="sec_idocumentcontent"></a>
+Using Document and IDocumentContent objects</h2>
 <p>TODO talk about IDocumentContent objects</p>
 <p>Document functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Thread"></a>
-safety</h2>
-<h2><a class="anchor" id="Concurrency"></a>
+<h2><a class="anchor" id="sec_threads"></a>
+Thread safety</h2>
+<h2><a class="anchor" id="sec_concurrency"></a>
 Concurrency</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h1><a class="anchor" id="Document"></a>
-Operations</h1>
-<h2><a class="anchor" id="Document"></a>
-Operations</h2>
-<h2><a class="anchor" id="Document"></a>
-Operations</h2>
-<h2><a class="anchor" id="Document"></a>
-Operations</h2>
-<h2><a class="anchor" id="Writing"></a>
-a Binary document</h2>
+<h1><a class="anchor" id="sec_documentoperations"></a>
+Document Operations</h1>
+<h2><a class="anchor" id="sec_createdocument"></a>
+Document Creation</h2>
+<h2><a class="anchor" id="sec_getdocument"></a>
+Document Retrieval</h2>
+<h2><a class="anchor" id="sec_deletedocument"></a>
+Document Deletion</h2>
+<h2><a class="anchor" id="sec_createbinarydocument"></a>
+Writing a Binary document</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Reading"></a>
-a Binary document</h2>
+<h2><a class="anchor" id="sec_getbinarydocument"></a>
+Reading a Binary document</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Reading"></a>
-a Binary document</h2>
+<h2><a class="anchor" id="sec_documentmetadata"></a>
+Reading, modifying, and writing document metadata</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Conversion"></a>
-of Document Encoding</h2>
-<h1><a class="anchor" id="Query"></a>
-Options</h1>
+<h2><a class="anchor" id="sec_documentencoding"></a>
+Conversion of Document Encoding</h2>
+<h1><a class="anchor" id="sec_queryoptions"></a>
+Query Options</h1>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_usingqueryoptions"></a>
+Using query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Default"></a>
-query options</h2>
+<h2><a class="anchor" id="sec_defaultqueryoptions"></a>
+Default query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Creating"></a>
-, working with, and releasing a Connection instance</h2>
+<h2><a class="anchor" id="sec_createqueryoptions"></a>
+Creating query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Updating"></a>
-query options</h2>
+<h2><a class="anchor" id="sec_updatequeryoptions"></a>
+Updating query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Deleting"></a>
-query options</h2>
+<h2><a class="anchor" id="sec_deletequeryoptions"></a>
+Deleting query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_usingqueryoptions"></a>
+Using query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Creating"></a>
-, working with, and releasing a Connection instance</h2>
+<h2><a class="anchor" id="sec_createoptionsfromtext"></a>
+Creating query options from raw XML or JSON</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Validating"></a>
-query options</h2>
+<h2><a class="anchor" id="sec_validatequeryoptions"></a>
+Validating query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h1><a class="anchor" id="Searching"></a>
+<h1><a class="anchor" id="sec_searching"></a>
 Searching</h1>
-<h2><a class="anchor" id="Overview"></a>
-of Search in the C++ API</h2>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_searchoverview"></a>
+Overview of Search in the C++ API</h2>
+<h2><a class="anchor" id="sec_resultsiterator"></a>
+Using the Search Results Iterator</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_textquery"></a>
+Using simple text query search</h2>
 <p>TODO simple text search</p>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_structuredquery"></a>
+Using structured search and the Search Builder</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Prototype"></a>
-a query using Query By Example</h2>
+<h2><a class="anchor" id="sec_querybyexample"></a>
+Prototype a query using Query By Example</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Using"></a>
-Document and IDocumentContent objects</h2>
+<h2><a class="anchor" id="sec_combinedquery"></a>
+Using Combined Queries</h2>
 <p>TODO combined queries</p>
-<h2><a class="anchor" id="Searching"></a>
-Searching</h2>
+<h2><a class="anchor" id="sec_valuestuples"></a>
+Searching Values and Tuples</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Transforming"></a>
-Search results</h2>
+<h2><a class="anchor" id="sec_searchtransforms"></a>
+Transforming Search results</h2>
 <p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h2><a class="anchor" id="Generating"></a>
-Search Suggestions</h2>
+<h2><a class="anchor" id="sec_searchsuggest"></a>
+Generating Search Suggestions</h2>
 <p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h2><a class="anchor" id="Extracting"></a>
-a portion of matching documents</h2>
+<h2><a class="anchor" id="sec_searchextract"></a>
+Extracting a portion of matching documents</h2>
 <p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h1><a class="anchor" id="Reading"></a>
-a Binary document</h1>
-<h2><a class="anchor" id="Write"></a>
-multiple documents</h2>
+<h1><a class="anchor" id="sec_multipledocuments"></a>
+Reading and Writing Multiple Documents</h1>
+<h2><a class="anchor" id="sec_writemultiple"></a>
+Write multiple documents</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Writing"></a>
-a Binary document</h2>
+<h2><a class="anchor" id="sec_writemultiplefiles"></a>
+Writing multiple documents from files</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Read"></a>
-multiple documents by URI</h2>
+<h2><a class="anchor" id="sec_readmultipleuri"></a>
+Read multiple documents by URI</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Read"></a>
-multiple documents by URI</h2>
+<h2><a class="anchor" id="sec_readmultiplequery"></a>
+Read multiple documents matching a query</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Apply"></a>
-a read transformation</h2>
+<h2><a class="anchor" id="sec_readtransform"></a>
+Apply a read transformation</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h2><a class="anchor" id="Setting"></a>
-batch size</h2>
+<h2><a class="anchor" id="sec_multiplebatchsize"></a>
+Setting batch size</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
-<h1><a class="anchor" id="Transactions"></a>
-and Optimistic Locking</h1>
+<h1><a class="anchor" id="sec_transactions"></a>
+Transactions and Optimistic Locking</h1>
 <p>This functionality will be released in version 8.0.4 in January 2017</p>
-<h1><a class="anchor" id="Logging"></a>
+<h1><a class="anchor" id="sec_logging"></a>
 Logging</h1>
-<h2><a class="anchor" id="Starting"></a>
-logging and setting the log level</h2>
-<h2><a class="anchor" id="Suspending"></a>
-logging</h2>
-<h2><a class="anchor" id="Stopping"></a>
-logging</h2>
-<h2><a class="anchor" id="Log"></a>
-entry format</h2>
-<h2><a class="anchor" id="Performance"></a>
-logging</h2>
-<h1><a class="anchor" id="Extending"></a>
-the C++ API</h1>
-<h2><a class="anchor" id="Performing"></a>
-an ad-hoc query to any REST endpoint</h2>
-<h1><a class="anchor" id="Troubleshooting"></a>
+<h2><a class="anchor" id="sec_startlogging"></a>
+Starting logging and setting the log level</h2>
+<h2><a class="anchor" id="sec_suspendlogging"></a>
+Suspending logging</h2>
+<h2><a class="anchor" id="sec_stoplogging"></a>
+Stopping logging</h2>
+<h2><a class="anchor" id="sec_logformat"></a>
+Log entry format</h2>
+<h2><a class="anchor" id="sec_performancelogging"></a>
+Performance logging</h2>
+<h1><a class="anchor" id="sec_extendapi"></a>
+Extending the C++ API</h1>
+<h2><a class="anchor" id="sec_adhocendpoint"></a>
+Performing an ad-hoc query to any REST endpoint</h2>
+<h1><a class="anchor" id="sec_trouble"></a>
 Troubleshooting</h1>
-<h2><a class="anchor" id="Error"></a>
-detection</h2>
-<h2><a class="anchor" id="General"></a>
-Troubleshooting Techniques</h2>
+<h2><a class="anchor" id="sec_errors"></a>
+Error detection</h2>
+<h2><a class="anchor" id="sec_troubletechs"></a>
+General Troubleshooting Techniques</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
