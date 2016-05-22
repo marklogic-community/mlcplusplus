@@ -216,6 +216,7 @@ xmlWrappedContent.setContent(os.str());
 xmlWrappedContent.setMimeType("application/xml");
 Response* xmlWrappedResponse = conn-&gt;saveDocument("some/xml2.xml",xmlWrappedContent);
 </pre><p>The above shows ways of using the utility wrapper functions. Note you can just use a GenericTextDocumentContent instance.</p>
+<p>The saveDocument(std::string uri,IDocumentContent content) function wraps <a href="http://docs.marklogic.com/REST/PUT/v1/documents">http://docs.marklogic.com/REST/PUT/v1/documents</a> directly.</p>
 <p>In the future IBinaryDocumentContent instances will also be provided. These are not currently provided in the API.</p>
 <h2><a class="anchor" id="sec_getdocument"></a>
 Document Retrieval</h2>
@@ -224,11 +225,13 @@ CppRestJsonDocumentContent* doc = CppRestJsonHelper::toDocument(CppRestJsonHelpe
 std::cout &lt;&lt; "My doc: " &lt;&lt; *doc &lt;&lt; std::endl;
 </pre><p>See how the above first converts to a web::json::value instance, and then wraps this as a document. If you prefer to work with just the web::json::value, then just call fromResponse rather than this with toDocument.</p>
 <p>The PugiXmlHelper class has equivalent methods for XML. You can also use a GenericTextDocumentContent instance too, using its setContent method and the Response's getContent method. (along with get/set MimeType methods).</p>
+<p>The getDocument(std::string uri) function wraps the <a href="http://docs.marklogic.com/REST/GET/v1/documents">http://docs.marklogic.com/REST/GET/v1/documents</a> call.</p>
 <h2><a class="anchor" id="sec_deletedocument"></a>
 Document Deletion</h2>
 <p>Document deletion is very straight forward. If a document is deleted it will return a response with the ResponseCode::NoContent code. If it doesn't exist, you will receive a ResponseCode::NotFound response code. </p><pre class="fragment">Response* resp = conn-&gt;deleteDocument("/some/json2.json");
 std::cout &lt;&lt; "Deletion response: " &lt;&lt; resp-&gt;getResponseCode() &lt;&lt; std::endl;
-</pre><h2><a class="anchor" id="sec_createbinarydocument"></a>
+</pre><p>The deleteDocument(std::string uri) function wraps <a href="http://docs.marklogic.com/REST/DELETE/v1/documents">http://docs.marklogic.com/REST/DELETE/v1/documents</a> directly.</p>
+<h2><a class="anchor" id="sec_createbinarydocument"></a>
 Writing a Binary document</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_getbinarydocument"></a>
@@ -249,7 +252,9 @@ conn = NULL; // assuming you delete this in a destructor, or similar
 </pre><p>You can also use a Connection pool or individual ConnectionFactory singleton to keep a single connection instance, and create a getConnection and releaseConnection static methods. For an effective implementation see /release/test/ConnectionFactory.cpp .</p>
 <h1><a class="anchor" id="sec_queryoptions"></a>
 Query Options</h1>
-<p>This functionality will be released in version 8.0.2 in July 2016</p>
+<p>Currently query options are provided by using a GenericTextDocumentContent to wrap the XML or JSON string, which is then passed to a SearchDescription's setOptions function.</p>
+<dl class="section note"><dt>Note</dt><dd>Both the Options and Search IDocumentContent objects within a SearchDescription MUST be of the same type. I.e. they must both have a mime type of application/json or application/xml - you cannot mix and match them. This is because the Connection::search(SearchDescription) method wraps <a href="http://docs.marklogic.com/REST/POST/v1/search">http://docs.marklogic.com/REST/POST/v1/search</a> directly.</dd></dl>
+<p>A QueryOptionsBuilder class will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_usingqueryoptions"></a>
 Using query options</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
@@ -278,13 +283,25 @@ Validating query options</h2>
 Searching</h1>
 <h2><a class="anchor" id="sec_searchoverview"></a>
 Overview of Search in the C++ API</h2>
-<h2><a class="anchor" id="sec_resultsiterator"></a>
+<p>A search is described by either XML or JSON wrapped by an instance of ITextDocumentContent. This in turn is passed to a SearchDescription instance using the setQuery(ITextDocumentContent) method.</p>
+<dl class="section note"><dt>Note</dt><dd>Both the Options and Search IDocumentContent objects within a SearchDescription MUST be of the same type. I.e. they must both have a mime type of application/json or application/xml - you cannot mix and match them. This is because the Connection::search(SearchDescription) method wraps <a href="http://docs.marklogic.com/REST/POST/v1/search">http://docs.marklogic.com/REST/POST/v1/search</a> directly.</dd></dl>
+<p>Once you have a SearchDescription object, you can perform a search. The response contains a JSON response detailing the search response object, as per the options specified (or default options, if not specified). </p><pre class="fragment">SearchDescription desc; // default empty search object
+GenericTextDocumentContent queryDoc;
+queryDoc.setContent("{\"query\": {\"word-query\":\"wibble\"}}");
+desc.setQuery(queryDoc);
+const Response* response = conn-&gt;search(desc);
+std::cout &lt;&lt; "Search response JSON: " &lt;&lt; response-&gt;getContent() &lt;&lt; std::endl;
+</pre><h2><a class="anchor" id="sec_resultsiterator"></a>
 Using the Search Results Iterator</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_textquery"></a>
 Using simple text query search</h2>
-<p>TODO simple text search</p>
-<h2><a class="anchor" id="sec_structuredquery"></a>
+<p>The REST API also supports a free text search grammar. Think of this like a Google-esque search text bar. The grammar can be overridden using query options.</p>
+<p>The equivalent search of the above word-query for 'wibble' is shown below as a text query:- </p><pre class="fragment">SearchDescription desc;
+desc.setQueryText("wibble");
+const Response* response = conn-&gt;search(desc);
+std::cout &lt;&lt; "Search response JSON: " &lt;&lt; response-&gt;getContent() &lt;&lt; std::endl;
+</pre><h2><a class="anchor" id="sec_structuredquery"></a>
 Using structured search and the Search Builder</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_querybyexample"></a>
@@ -292,7 +309,8 @@ Prototype a query using Query By Example</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
 <h2><a class="anchor" id="sec_combinedquery"></a>
 Using Combined Queries</h2>
-<p>TODO combined queries</p>
+<p>The Search REST API supports submitting query options, complex query, and query text all together in one call. This wraps <a href="http://docs.marklogic.com/REST/POST/v1/search">http://docs.marklogic.com/REST/POST/v1/search</a> directly via the Connection::search method.</p>
+<p>TODO combined query example from tests of 8.0.2.</p>
 <h2><a class="anchor" id="sec_valuestuples"></a>
 Searching Values and Tuples</h2>
 <p>This functionality will be released in version 8.0.2 in July 2016</p>
@@ -330,6 +348,8 @@ Transactions and Optimistic Locking</h1>
 <p>This functionality will be released in version 8.0.4 in January 2017</p>
 <h1><a class="anchor" id="sec_logging"></a>
 Logging</h1>
+<p>Logging within the C++ API is provided by using the easylogging++.h file. This is a header only logger implementation. In DEBUG build mode, up to the DEBUG level is supported. In RELEASE build mode, the WARNING level is supported.</p>
+<p>This logging logs all performance metrics to one file and the console, and all LOG(level) messages to a separate log file, and the console.</p>
 <h2><a class="anchor" id="sec_startlogging"></a>
 Starting logging and setting the log level</h2>
 <h2><a class="anchor" id="sec_suspendlogging"></a>
@@ -340,16 +360,31 @@ Stopping logging</h2>
 Log entry format</h2>
 <h2><a class="anchor" id="sec_performancelogging"></a>
 Performance logging</h2>
+<p>Many things are routinely logged for performance in the C++ API:-</p><ul>
+<li>Public API object Constructors and Destructors - Connection, Response, SearchDescription, GenericTextDocumentContent.</li>
+<li>All Connection methods that invoke a REST endpoint</li>
+<li>All underlying methods of the private API's AuthenticatingProxy class - getSync, postSync, putSync, deleteSync, etc.</li>
+<li>All unit test functions</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>Developers should never rely on anything in the private API. It could change at any time without warning. The public API is designed such that all applications build on the C++ API do not have compile time bindings in the private API.</dd></dl>
 <h1><a class="anchor" id="sec_extending"></a>
 Extending the C++ API</h1>
 <h2><a class="anchor" id="sec_adhocendpoint"></a>
 Performing an ad-hoc query to any REST endpoint</h2>
 <h1><a class="anchor" id="sec_trouble"></a>
 Troubleshooting</h1>
+<p>The best place to start is to build MLCPlusPlus in DEBUG mode, re-run the application, and check the output provided by DEBUG level logging in the AuthenticatingProxy class. This will show request and response details sent to, and received from, the MarkLogic Server cluster.</p>
 <h2><a class="anchor" id="sec_errors"></a>
 Error detection</h2>
+<p>The Response object will have (as of the 8.0.2 release) a bool inError function. This function tells the developer whether a logical error has occurred in the call. This does not necessarily mean a server error.</p>
+<p>For example, a deleteDocument call on a non existent document returns a HTTP NotFound (404) error. Whilst not an error as such, the C++ API will return this as an error, and so Response::inError will return true.</p>
+<p>All connection errors, or invalid request format errors, will result in Response::inError returning true too.</p>
+<p>In this circumstance, check the output of Response::getContent to determine the exact error occurred.</p>
+<p>In 8.0.4 a toRestError function will be provided to automatically handle internal REST API response formats and present a standard error object to client developers. When this is present, no knowledge of the REST API response formats will be necessary from a C++ developer.</p>
 <h2><a class="anchor" id="sec_troubletechs"></a>
 General Troubleshooting Techniques</h2>
+<p>If in doubt, review all the test cases relevant to your function call. Ensure you are providing the required configuration in the same manner as the test is. This provides you with a solid working example of every function call.</p>
+<p>Please do log an issue on the projects GitHub page, even if you think it may be your code. You can log issues with a Question label rather than bug to indicate you need assistance. You can do this here: <a href="https://github.com/adamfowleruk/mlcplusplus/issues">https://github.com/adamfowleruk/mlcplusplus/issues</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
