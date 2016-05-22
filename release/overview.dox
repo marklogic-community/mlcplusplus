@@ -5,6 +5,7 @@
  *
  * \li \ref sec_Overview
  * \li \ref sec_Install
+ * \li \ref sec_DevGuide
  * \li \ref sec_Design
  * \li \ref sec_Examples
  * \li \ref sec_SeeAlso
@@ -43,6 +44,11 @@
  * \section sec_Install Install
  *
  * To install MLCPlusPlus follow the instructions on the \link page_Install Install page \endlink
+ *
+ * \section sec_DevGuide Application Development Guide
+ *
+ * There is a comprehensive \link page_devguide Application Developers Guide page \endlink which is akin to the
+ * Java Application Developer's Guide. Read this for code excerpts and API explanatory notes.
  *
  * \section sec_Design Design
  *
