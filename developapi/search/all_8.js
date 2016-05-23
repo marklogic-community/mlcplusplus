@@ -1,9 +1,6 @@
 var searchData=
 [
   ['marklogic_20c_2fc_2b_2b_20api_20documentation',['MarkLogic C/C++ API Documentation',['../index.html',1,'']]],
-  ['md5',['md5',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a473f2e32bf5bbd591b272036e4c0a679',1,'mlclient::internals::MLCrypto']]],
-  ['methodandurl',['methodAndURL',['../classmlclient_1_1internals_1_1_authorization_builder.html#a4b4304ed3182ccdcc40d96f078605c52',1,'mlclient::internals::AuthorizationBuilder']]],
-  ['methodurlandbodyhash',['methodURLAndBodyHash',['../classmlclient_1_1internals_1_1_authorization_builder.html#a45e027ce65223f141a5f6b43be0200d6',1,'mlclient::internals::AuthorizationBuilder']]],
   ['ml_5fconnection_5fconfigure',['ml_connection_configure',['../_connection_wrapper_8h.html#a39f47ecbe026017cb9964e238481fd5b',1,'ConnectionWrapper.h']]],
   ['ml_5fconnection_5fdelete',['ml_connection_delete',['../_connection_wrapper_8h.html#a613b334d14483b593a62a82dd357d093',1,'ConnectionWrapper.h']]],
   ['ml_5fconnection_5fdeletedocument',['ml_connection_deleteDocument',['../_connection_wrapper_8h.html#afdaa9f1f5c99bd4d22b33ab013fdd4a4',1,'ConnectionWrapper.h']]],
@@ -21,9 +18,6 @@ var searchData=
   ['ml_5fresponse_5flength',['ml_response_length',['../_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9',1,'ResponseWrapper.h']]],
   ['ml_5fresponse_5fstring',['ml_response_String',['../_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e',1,'ResponseWrapper.h']]],
   ['ml_5fresponsecodes_5ftranslate',['ml_responsecodes_translate',['../_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5',1,'ResponseWrapper.h']]],
-  ['ml_5fsamples_5fsampledoc',['ml_samples_sampledoc',['../structml__samples__sampledoc.html',1,'']]],
   ['mlclient',['mlclient',['../namespacemlclient.html',1,'']]],
-  ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html',1,'mlclient::internals']]],
-  ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6fef8a6eb60b68444b0b52b1bccb72a8',1,'mlclient::internals::MLCrypto::MLCrypto()'],['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6149bbe955b9a203bb606c4b4cd3d0ae',1,'mlclient::internals::MLCrypto::MLCrypto(const MLCrypto &amp;orig)']]],
   ['utilities',['utilities',['../namespacemlclient_1_1utilities.html',1,'mlclient']]]
 ];

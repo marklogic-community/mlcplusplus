@@ -164,7 +164,7 @@ Getting Started</h2>
 <h2><a class="anchor" id="sec_connection"></a>
 Creating, working with, and releasing a Connection instance</h2>
 <p>The Connection class is the way to generate a connection to MarkLogic Server and invoke its REST API operations.</p>
-<dl class="section note"><dt>Note</dt><dd>You may find it useful to use a <a class="el" href="class_connection_factory.html">ConnectionFactory</a> class. This can be a single place to hold connection hostname, port, and security information, and allows the re-use of a single connection instance. For an example implementation, see the /release/test/ConnectionFactory.cpp file.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You may find it useful to use a ConnectionFactory class. This can be a single place to hold connection hostname, port, and security information, and allows the re-use of a single connection instance. For an example implementation, see the /release/test/ConnectionFactory.cpp file.</dd></dl>
 <p>Firstly, you must create and configure a Connection instance:- </p><pre class="fragment">Connection* conn = new Connection();
 conn-&gt;configure("localhost","8002","admin","admin");
 </pre><p>This creates a connection to the MarkLogic Server running on localhost on port 8002 (the generic/admin REST API), with the username and password admin.</p>
@@ -249,7 +249,7 @@ Cleaning up Resources</h2>
 <p>Below is some best practice sample code, which assumes you keep a local pointer variable for the connection:- </p><pre class="fragment">delete response;
 delete conn;
 conn = NULL; // assuming you delete this in a destructor, or similar
-</pre><p>You can also use a Connection pool or individual <a class="el" href="class_connection_factory.html">ConnectionFactory</a> singleton to keep a single connection instance, and create a getConnection and releaseConnection static methods. For an effective implementation see /release/test/ConnectionFactory.cpp .</p>
+</pre><p>You can also use a Connection pool or individual ConnectionFactory singleton to keep a single connection instance, and create a getConnection and releaseConnection static methods. For an effective implementation see /release/test/ConnectionFactory.cpp .</p>
 <h1><a class="anchor" id="sec_queryoptions"></a>
 Query Options</h1>
 <p>Currently query options are provided by using a GenericTextDocumentContent to wrap the XML or JSON string, which is then passed to a SearchDescription's setOptions function.</p>
