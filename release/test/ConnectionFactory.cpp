@@ -20,8 +20,6 @@
 #include "ConnectionFactory.hpp"
 #include "internals/FakeConnection.hpp"
 
-#include <mlclient.hpp>
-
 using namespace mlclient;
 
 IConnection* ConnectionFactory::getConnection() {

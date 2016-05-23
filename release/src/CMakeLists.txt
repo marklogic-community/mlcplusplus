@@ -4,12 +4,6 @@ project (mlclient)
 
 # See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
 
-# EDITABLE SETTINGS BEGIN
-
-set (mlclient_VERSION_MAJOR 0)
-set (mlclient_VERSION_MINOR 1)
-
-# EDITABLE SETTINGS END
 
 #set (CMAKE_MODULE_PATH "../cmake/modules")
 
@@ -89,15 +83,6 @@ configure_file (
 # so that we will find mlclientConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
-#find_package(Doxygen PATHS /usr/local/Cellar/doxygen/1.8.10 /usr/local/Cellar/doxygen/1.8.10/bin )
-#if(DOXYGEN_FOUND)
-#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
-#add_custom_target(doc
-#    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile
-#    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../doc
-#    COMMENT "Generating API documentation with Doxygen" VERBATIM
-#)
-#endif(DOXYGEN_FOUND)
 
 
 # ML C++ own libraries
@@ -313,19 +298,6 @@ SWIG_LINK_LIBRARIES(mlclientpython
 
 
 
-
-
-# API documentation
-# add a target to generate API documentation with Doxygen, and have it always run
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-  add_custom_target(doc ALL
-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Generating API documentation with Doxygen" VERBATIM
-  )
-endif(DOXYGEN_FOUND)
 
 
 

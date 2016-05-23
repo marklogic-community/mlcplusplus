@@ -19,7 +19,7 @@
 
 #include "HttpHeaders.hpp"
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 #include <map>
 #include <string>

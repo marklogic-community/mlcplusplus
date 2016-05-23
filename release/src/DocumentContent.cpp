@@ -23,7 +23,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 namespace mlclient {
 

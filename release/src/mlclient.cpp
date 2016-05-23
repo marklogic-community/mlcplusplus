@@ -17,7 +17,7 @@
  * \date 2014-06-04
  */
 
-#include "mlclient.hpp"
+#include "ext/mlclient.hpp"
 
 #ifndef ELPP_PERFORMANCE_MICROSECONDS
 #define ELPP_PERFORMANCE_MICROSECONDS 1

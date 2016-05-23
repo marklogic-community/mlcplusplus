@@ -34,7 +34,7 @@
 #include "AuthenticatingProxy.hpp"
 #include "Credentials.hpp"
 
-#include "../easylogging++.h"
+#include "../ext/easylogging++.h"
 
 #include <string>
 

@@ -19,7 +19,7 @@
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 namespace mlclient {
 

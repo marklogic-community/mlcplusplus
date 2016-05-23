@@ -24,7 +24,7 @@
 
 #include <cstdint>
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 namespace mlclient {
 

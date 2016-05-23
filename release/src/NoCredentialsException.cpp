@@ -17,7 +17,6 @@
  * \date 2014-05-29
  */
 
-#include "mlclient.hpp"
 #include "NoCredentialsException.hpp"
 
 

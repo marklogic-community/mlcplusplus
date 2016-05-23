@@ -26,7 +26,7 @@
 #include <iostream>
 #include <pugixml.hpp>
 
-#include "../easylogging++.h"
+#include "../ext/easylogging++.h"
 
 namespace mlclient {
 

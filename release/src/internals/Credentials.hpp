@@ -23,8 +23,6 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 
-#include "../mlclient.hpp"
-
 namespace mlclient {
 
 namespace internals {

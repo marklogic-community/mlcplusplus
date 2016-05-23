@@ -24,8 +24,6 @@
 #include <sstream>
 #include <openssl/md5.h>
 
-#include "../mlclient.hpp"
-
 namespace mlclient {
 
 namespace internals {
