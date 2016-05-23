@@ -11,10 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  NoCredentialsException.cpp
-//  Created by Paul Hoehne on 5/29/14.
-//
+/**
+ * \file NoCredentialsException.cpp
+ * \author Paul Hoehne
+ * \date 2014-05-29
+ */
 
 #include "mlclient.hpp"
 #include "NoCredentialsException.hpp"
@@ -26,4 +27,4 @@ const char* NoCredentialsException::what(void) const throw() {
   return "No credentials found";
 }
 
-}
+} // end namespace mlclient

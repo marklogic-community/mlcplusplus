@@ -59,17 +59,13 @@ using namespace mlclient;
 
 AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
 {
-  //_credentials = new Credentials(); // should be declared virtual?;
 }
 
 void AuthenticatingProxy::copyHeaders(const web::http::http_headers& from, mlclient::HttpHeaders& to) {
   std::map<std::string,std::string> headers;
   for (auto& it : from) {
-    //LOG(DEBUG) << "Copy headers found: header: " << it.first << " = " << it.second;
     to.setHeader(it.first,it.second);
-    //headers.insert(std::pair<std::string,std::string>(it.first,it.second));
   }
-  //to.setHeaders(headers);
 }
 
 
@@ -144,9 +140,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       */
 
       //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
-      //response->setContent(std::move(c));
       response->setContent(new std::string(raw_response.extract_string().get())); // TODO handle binary response types
-      //response->SetContent(std::move(std::string(raw_response.extract_string().get())));
     }
     catch (const http_exception& e)
     {
@@ -162,7 +156,6 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
   if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
     //LOG(DEBUG) << "UNAUTHORIZED";
-    //HttpHeaders response_headers = response->getResponseHeaders();
     /*
     LOG(DEBUG) << "Listing headers fetched from response:-";
     for (auto& iter : response_headers.getHeaders()) {
@@ -184,8 +177,6 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Finishing listing unauth response headers.";
       LOG(DEBUG) << "Value of www authenticate: " << WWW_AUTHENTICATE_HEADER;
       */
-
-      //std::string authHeader = to_utf8string(response_headers.getHeader(WWW_AUTHENTICATE_HEADER));
 
 
       std::map<std::string,std::string>::const_iterator iter;
@@ -220,7 +211,6 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       try
       {
-        //response->SetJson(raw_response.extract_json().get());
         //LOG(DEBUG) << "Final response...";
 
         response->setResponseCode((ResponseCode)raw_response.status_code());
@@ -250,7 +240,6 @@ Response* AuthenticatingProxy::getSync(const std::string& host,
     const mlclient::HttpHeaders& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_getSync);
-  //auto && response = new Response;
   Response* response = new Response;
 
   // do initial request

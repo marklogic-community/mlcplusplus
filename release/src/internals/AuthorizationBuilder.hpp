@@ -22,8 +22,6 @@
 
 #include <string>
 
-#include "../mlclient.hpp"
-
 namespace mlclient {
 
 namespace internals {
@@ -116,13 +114,14 @@ public:
   ///
   std::string response(const std::string& hash1, const std::string& nonce,
       const std::string& hash2);
+
 private:
 
 };
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient
 
 #endif	/* AUTHORIZATIONBUILDER_HPP */
 

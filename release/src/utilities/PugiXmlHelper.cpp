@@ -40,7 +40,7 @@ ITextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
   os << dc;
   tdc->setContent(os.str());
   tdc->setMimeType("application/xml");
-  return tdc; // TODO do we need to std::move this?
+  return tdc;
 }
 pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(PugiXmlHelper_fromDocument);
@@ -55,13 +55,11 @@ pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   pugi::xml_parse_result result = doc->load_string(os.str().c_str());
 
   if (result) {
-    //std::cout << "XML [" << asstr << "] parsed without errors]\n\n"; // , attr value: [" << doc.child("node").attribute("attr").value()
     return doc;
   } else {
     std::cout << "XML [" << os.str() << "] parsed with errors]\n";
     std::cout << "Error description: " << result.description() << "\n";
     std::cout << "Error offset: " << result.offset << " (error at [..." << os.str() << "]\n\n";
-    // TODO throw something here
     throw new InvalidFormatException;
   }
 }
@@ -74,13 +72,11 @@ pugi::xml_document* PugiXmlHelper::fromResponse(const Response& resp) {
     pugi::xml_parse_result result = doc->load_string(resp.getContent().c_str());
 
     if (result) {
-      //std::cout << "XML [" << asstr << "] parsed without errors]\n\n"; // , attr value: [" << doc.child("node").attribute("attr").value()
       return doc;
     } else {
       std::cout << "XML [" << resp.getContent() << "] parsed with errors]\n";
       std::cout << "Error description: " << result.description() << "\n";
       std::cout << "Error offset: " << result.offset << " (error at [..." << resp.getContent() << "]\n\n";
-      // TODO throw something here
       throw new InvalidFormatException;
     }
   } else {

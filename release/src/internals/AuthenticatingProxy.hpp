@@ -36,17 +36,17 @@ namespace internals {
 const mlclient::HttpHeaders blankHeaders;
 
 /**
-/// AuthenticatingProxy to handle authenticated calls to MarkLogic
-///
-/// This class proxies the calls to MarkLogic, handling authentication as
-/// necessary.  It includes both synchronous and asynchronous methods to allow
-/// users to select the method of invocation most suited to their application.
-///
-/// Note that some concepts contained run against "REST" principles.  This is 
-/// not only a REST library and is meant to be used as a general MarkLogic 
-/// C++ library.  It should be backward compatible with non RESTful end points
-/// as well as REST.
-**/
+ * \brief AuthenticatingProxy to handle authenticated calls to MarkLogic
+ *
+ * This class proxies the calls to MarkLogic, handling authentication as
+ * necessary.  It includes both synchronous and asynchronous methods to allow
+ * users to select the method of invocation most suited to their application.
+ *
+ * \note Some concepts contained run against "REST" principles.  This is
+ * not only a REST library and is meant to be used as a general MarkLogic
+ * C++ library.  It should be backward compatible with non RESTful end points
+ * as well as REST.
+ */
 class AuthenticatingProxy {
 
 
@@ -82,108 +82,48 @@ public:
   Response* getSync(const std::string& host,
       const std::string& path,
       const mlclient::HttpHeaders& headers = blankHeaders);
-/*
-  void getAsync(const std::string& host,
-      const std::string& path,
-      const std::function<void(const Response&)> handler,
-      const mlclient::HttpHeaders& headers = blankHeaders);
-*/
 
-  //std::unique_ptr<Response> postSync(const std::string& host,
-  //    const std::string& path,
-  //    const web::json::value& body,
-  //    const mlclient::HttpHeaders& headers = blankHeaders);
-
+  /**
+   * \brief A Synchronous HTTP POST to a remote MarkLogic REST API URL
+   *
+   * \param[in] host The hostname or IP Address to communicate with
+   * \param[in] path The URL path (E.g. /v1/documents) to invoke
+   * \param[in] body The content to send as the POST body
+   * \param[in\ headers The HTTP Headers to use (Optional. Defaults to a blank set of headers)
+   * \return A Response pointer that the call is responsible for deleting
+   */
   Response* postSync(const std::string& host,
       const std::string& path,
       const IDocumentContent& body,
       const mlclient::HttpHeaders& headers = blankHeaders);
-  /*
-    Response Post(const std::string& host, 
-                  const std::string& path,
-                  const xmlDocPtr body,
-                  const mlclient::HttpHeaders& headers = blankHeaders);
+
+  /**
+   * \brief A Synchronous HTTP PUT to a remote MarkLogic REST API URL
+   *
+   * \param[in] host The hostname or IP Address to communicate with
+   * \param[in] path The URL path (E.g. /v1/documents) to invoke
+   * \param[in] body The content to send as the PUT body
+   * \param[in\ headers The HTTP Headers to use (Optional. Defaults to a blank set of headers)
+   * \return A Response pointer that the call is responsible for deleting
    */
-  //std::unique_ptr<Response> postSync(const std::string& host,
-  //    const std::string& path,
-  //    const std::wstring& text_body,
-  //    const mlclient::HttpHeaders& headers = blankHeaders);
-/*
-  std::unique_ptr<Response> postSync(const std::string& host,
-      const std::string& path,
-      const uint8_t* data,
-      const size_t& size,
-      const mlclient::HttpHeaders& headers = blankHeaders);
-*/
-  /*
-  std::unique_ptr<Response> postFileSync(const std::string& host,
-      const std::string& path,
-      const std::string& file_path,
-      const mlclient::HttpHeaders& headers = blankHeaders);
-      */
-/*
-  void postAsync(const std::string& host,
-      const std::string& path,
-      const http_headers& headers,
-      const params_t& body,
-      const std::function<void(const Response&)> handler);
-
-  void postAsync(const std::string& host,
-      const std::string& path,
-      const http_headers& headers,
-      const std::function<void(const Response&)> handler);
-  void postAsync(const std::string& host,
-      const std::string& path,
-      const std::function<void(const Response&)> handler);
-*/
-  //std::unique_ptr<Response> putSync(const std::string& host,
-  //    const std::string& path,
-  //    const std::wstring& text_body,
-  //    const mlclient::HttpHeaders& headers = blankHeaders);
-
   Response* putSync(const std::string& host,
       const std::string& path,
-      const IDocumentContent& text_body,
+      const IDocumentContent& body,
       const mlclient::HttpHeaders& headers = blankHeaders);
-  /*
-    Response& Put(const std::string& host,
-                 const std::string& path,
-                 const xmlDocPtr& xml_body,
-                 const mlclient::HttpHeaders& headers = blankHeaders);
+
+  /**
+   * \brief A Synchronous HTTP DELETE to a remote MarkLogic REST API URL
+   *
+   * \param[in] host The hostname or IP Address to communicate with
+   * \param[in] path The URL path (E.g. /v1/documents) to invoke
+   * \param[in\ headers The HTTP Headers to use (Optional. Defaults to a blank set of headers)
+   * \return A Response pointer that the call is responsible for deleting
    */
-  /*
-   std::unique_ptr<Response> putSync(const std::string& host,
-       const std::string& path,
-       const uint8_t* data,
-       const size_t& size,
-       const mlclient::HttpHeaders& headers = blankHeaders);
-       */
-/*
-   void putAsync(const std::string& host,
-       const std::string& path,
-       const http_headers& headers,
-       const params_t& body,
-       const std::function<void(const Response&)> handler);
-   void putAsync(const std::string& host,
-       const std::string& path,
-       const http_headers& headers,
-       const std::function<void(const Response&)> handler);
-   void putAsync(const std::string& host,
-       const std::string& path,
-       const std::function<void(const Response&)> handler);
-*/
   Response* deleteSync(const std::string& host,
        const std::string& path,
        const mlclient::HttpHeaders& headers = blankHeaders);
-/*
-   void deleteAsync(const std::string& host,
-       const std::string& path,
-       const std::function<void(const Response&)> handler,
-       const mlclient::HttpHeaders& headers = blankHeaders);
-*/
 private:
    AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
-   //AuthenticatingProxy& operator= (const AuthenticatingProxy& rhs); // hide assignment operator - not a valid operation
 
 
    /* Copies Microsoft CPPREST headers to useful mlclient::HttpHeaders class */
@@ -195,8 +135,8 @@ private:
    uint32_t attempts;
 };
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient
 
 #endif /* defined(AUTHENTICATING_PROXY) */

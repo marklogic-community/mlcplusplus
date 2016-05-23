@@ -11,10 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  Response.cpp
-//  Created by Paul Hoehne on 5/29/14.
-//
+/**
+ * \file Response.cpp
+ * \author Paul Hoehne <paul.hoehne@marklogic.com>
+ * \date 2014-05-5
+ */
 #include "HttpHeaders.hpp"
 #include "Response.hpp"
 
@@ -39,26 +40,6 @@ namespace mlclient {
  * @return
  */
 std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
-  /*
-  switch(rt) {
-  case ResponseType::BINARY:
-    os << "ResponseType::BINARY";
-    break;
-  case ResponseType::JSON:
-    os << "ResponseType::JSON";
-    break;
-  case ResponseType::TEXT:
-    os << "ResponseType::TEXT";
-    break;
-  case ResponseType::XML:
-    os << "ResponseType::XML";
-    break;
-  case ResponseType::UNKNOWN:
-    os << "ResponseType::UNKNOWN";
-    break;
-  }
-  return os;
-  */
   os << translate(rt);
   return os;
 }
@@ -70,41 +51,9 @@ std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
  * @return
  */
 std::string& operator +(std::string& s, const ResponseType& rt) {
-  /*
-  switch(rt) {
-  case ResponseType::BINARY:
-    all.append("ResponseType::BINARY");
-    break;
-  case ResponseType::JSON:
-    all.append("ResponseType::JSON");
-    break;
-  case ResponseType::TEXT:
-    all.append("ResponseType::TEXT");
-    break;
-  case ResponseType::XML:
-    all.append("ResponseType::XML");
-    break;
-  default:
-    all.append("ResponseType::UNKNOWN");
-  }*/
   s.append(translate(rt));
   return s;
 }
-
-/**
- * Adds the textual respresentation of a response type to a string (C-string char*). E.g. ResponseType::BINARY
- * @param orig the char* before this response type
- * @param rt The response type const reference
- * @return
- */
-/*std::string& operator+(const char* orig,const ResponseType& rt) {
-  std::ostringstream os;
-  os << std::string(orig) << translate(rt);
-  //std::unique_ptr<std::string> ref = std::unique_ptr<std::string>(new std::string(os.str()));
-  std::string& ref = std::string(os.str());
-  return ref;
-}
-*/
 
 const std::string translate(const ResponseType& rt) {
   std::ostringstream os;
@@ -131,10 +80,9 @@ const std::string translate(const ResponseType& rt) {
 }
 
 
-/*
- * Response Code operators - allows string output of code in human readable form
+/**
+ * Response Code operator - allows string output of code in human readable form
  */
-
 std::ostream& operator << (std::ostream& os, const ResponseCode& rc) {
   os << translate(rc);
   return os;
@@ -145,14 +93,6 @@ std::string& operator+(std::string& s,const ResponseCode& rc) {
   s.append(translate(rc));
   return s;
 }
-/*
-std::string& operator+(const char* orig,const ResponseCode& rc) {
-  std::ostringstream os;
-  os << std::string(orig) << translate(rc);
-  std::string& ref = os.str();
-  return ref;
-}*/
-
 
 const std::string translate(const ResponseCode& val) {
   std::ostringstream os;
@@ -274,11 +214,6 @@ public:
   std::unique_ptr<std::string> content;
 
 
-  ///
-  /// Parses the content type header to guess the content type of the
-  /// response
-  ///
-  /// \param The raw header value (i.e. 'text/plain')
   ResponseType parseContentTypeHeader(const std::string& content) {
     TIMED_FUNC(Response_parseContentTypeHeader);
     std::smatch matches;
@@ -306,14 +241,13 @@ public:
 
 Response::Response() : mImpl(new Impl) {
   LOG(DEBUG) << "    Response::defaultConstructor @" << &*this;
-  // ignore compilation warning - we know they are each set individually later, due to the nature of HTTP response interrogation code.
-  //_xml = pugi::xml_document;
 }
 
 Response::~Response() {
   delete mImpl;
   mImpl = NULL;
 }
+
 
 
 void Response::setResponseCode(const ResponseCode& code) {
@@ -323,10 +257,6 @@ void Response::setResponseCode(const ResponseCode& code) {
 void Response::setResponseType(const enum ResponseType& type) {
   mImpl->responseType = type;
 }
-/*
-void Response::SetResponseHeaders(const http_headers& headers) {
-  _headers = headers;   
-}*/
 
 void Response::setResponseHeaders(const mlclient::HttpHeaders& headers) {
   mImpl->headers.clear();
@@ -359,31 +289,17 @@ HttpHeaders Response::getResponseHeaders(void) const {
   return mImpl->headers;
 }
 
-/*
- * Read up to max size bytes into the response, starting at offset.
- */
 size_t Response::read(void* buffer, const size_t& max_size, const size_t off) {
   return 0;
 }
 
-/*
- * Tries to read back the response as a string.  Throws ResponseTypeException
- * if the response is not a string or string based.
- */
 const std::string& Response::getContent() const {
   return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
 }
-
-/*
-void Response::setContent(std::unique_ptr<std::string> content) {
-  mImpl->content = std::move(content); // move ownership from function to object
-  //std::cout << "SetContent: parameter: " << content << ", member variable: " << _content << std::endl;
-}
-*/
 
 void Response::setContent(std::string* content) {
   mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
 }
 
 
-}
+} // end namespace mlclient

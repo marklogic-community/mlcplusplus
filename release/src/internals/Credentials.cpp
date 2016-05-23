@@ -18,8 +18,7 @@
 #include "Credentials.hpp"
 #include <sstream>
 #include <iomanip>
-// #include <boost/regex.hpp> // replaced by regex in C++11
-#include <regex>
+#include <regex> // replaces boost regex in C++11
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -83,7 +82,6 @@ Credentials::~Credentials() {
 }
 
 bool Credentials::canAuthenticate() const {
-  //LOG(DEBUG) << "Credentials::canAuthenticate. user is null?: " << (user) << " pass is null?:" << (pass) << " nonce is null?: " << (nonce) << " realm is null?: " << (realm);
   return user != L"" && pass != L"" && nonce != "" && realm != "";
 }
 
@@ -169,6 +167,6 @@ std::string Credentials::getRealm(void) const {
   return realm;
 }
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient

@@ -72,19 +72,6 @@ public:
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
       const bool usessl = false) override;
 
-  /*
-   * \brief Configures this connection, providing connection override information - host, port, username, password. Defaults to no SSL.
-   *
-   * TODO do we need this now usessl is defaulted above???
-   *
-   * \since 8.0.0
-   *
-   * \param[in] hostname The hostname or IP address of the MarkLogic Server (or load balancer) to connect to
-   * \param[in] port A String representing the (numerical) port number of the MarkLogic Server (or load balancer) to connect to
-   * \param[in] username The username of the used to connect to MarkLogic Server as
-   * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
-   */
-  //void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) override;
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
    *
@@ -93,6 +80,7 @@ public:
    * \param[in] The string name (not internal MarkLogic numeric ID) of the database to query.
    */
   void setDatabaseName(const std::string& db) override;
+
   /**
    * \brief Returns the database name we're querying/updating. Defaults to Documents.
    *
@@ -103,12 +91,6 @@ public:
   std::string getDatabaseName() override;
 
   // @}
-
-  // TODO anonymous connection support
-  // TODO Kerberos connection support
-  // TODO test BASIC and DIGEST and BASIC+DIGEST authentication methods
-
-  // BASIC commands allowing re-use of this connection, perhaps for URLs we don't yet wrap
 
   /// \name http_raw RAW HTTP commands
   // @{
@@ -133,6 +115,7 @@ public:
    * web application URL.
    */
   Response* doGet(const std::string& pathAndQuerystring) override;
+
   /**
    * \brief Performs a HTTP PUT Request against MarkLogic Server.
    *
@@ -154,6 +137,7 @@ public:
    * web application URL.
    */
   Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
+
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
    *
@@ -176,7 +160,6 @@ public:
    */
   Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
-  // TODO multipart payload
   /**
    * \brief Performs a HTTP DELETE Request against MarkLogic Server.
    *
@@ -200,7 +183,6 @@ public:
 
   // @}
 
-  // TODO PATCH and other HTTP synonyms
 
   /// \name wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls.
   // @{
@@ -220,6 +202,7 @@ public:
    * \since 8.0.0
    */
   Response* getDocument(const std::string& uri) override; // TODO add optional call parameters (E.g. fetch properties also)
+
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
@@ -249,17 +232,6 @@ public:
    */
   Response* deleteDocument(const std::string& uri) override;
 
-  // TODO save JSON with directory, no uri
-  // TODO optional parameters (collection, security, etc.)
-  // TODO save XML with and without URI
-
-  // Multi part MIME saveAll function V7+
-  //Response saveAllDocuments(const std::string& uris[], const web::json::value& documents[]);
-  // TODO XML save all
-  // TODO multiple responses when paging in N number of doc transactions
-
-  // CLASHES WITH QTEXT VERSION Response search(const web::json::value& searchQuery,const std::string& options);
-  // TODO search with options document (combined query)
   /**
    * \brief Performs a search against the MarkLogic database given the provided search query, text and options
    *
@@ -278,7 +250,7 @@ public:
   Response* search(const SearchDescription& desc) override;
 
 private:
-  class Impl; // forward declaration
+  class Impl; // forward declaration - PIMPL idiom
   Impl * mImpl;
 };
 

@@ -46,6 +46,7 @@ public:
    * \brief Default Constructor
    */
   SearchDescription();
+
   /**
    * \brief Default destructor
    *

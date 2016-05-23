@@ -26,16 +26,6 @@ namespace mlclient {
 namespace internals {
 
 
-//typedef std::map<char*, IDocumentContent*>::iterator DocMapIter; // Use::Iterator version as it's clearer
-
-// strcmp equals function lambda for use by map.find()
-//auto docUriComp = [](const char* p1,const char* p2) {
-//  return (0 == strcmp(p1,p2));
-//};
-
-//typedef std::map<char*, IDocumentContent*, decltype(docUriComp)> UriDocumentMap;
-
-
 class FakeConnection::Impl {
 public:
   Impl() : databaseName("Documents"), serverUrl("http://localhost:8002"), documents() {
@@ -47,7 +37,6 @@ public:
 
   std::string serverUrl;
   std::string databaseName;
-  //UriDocumentMap documents;
   std::map<std::string, IDocumentContent*> documents;
 };
 
@@ -60,10 +49,6 @@ FakeConnection::~FakeConnection() {
   mImpl = NULL;
 }
 
-
-//void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
-//  configure(hostname,port,username,password,false);
-//}
 
 void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
@@ -117,7 +102,6 @@ Response* FakeConnection::saveDocument(const std::string& uri,const IDocumentCon
   TIMED_FUNC(FakeConnection_saveDocument);
   LOG(DEBUG) << "  Entering FakeConnection::saveDocument";
 
-  //IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
   IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
   mImpl->documents.insert(std::pair<std::string,IDocumentContent*>(uri,dp));
 
@@ -144,17 +128,12 @@ Response* FakeConnection::getDocument(const std::string& uri) {
     ct = docPtr->getContent();
     mime = docPtr->getMimeType();
   }
-  //IDocumentContent& value = mImpl->documents[uri.c_str()];
-
-  //LOG(DEBUG) << "    pointer value: " << value;
 
   Response* response = new Response;
   LOG(DEBUG) << "  Setting response code";
 
 
   LOG(DEBUG) << "  Setting response content ptr";
-  //std::unique_ptr<std::string> content(new std::string(ct));
-  //response->setContent(std::move(content));
   response->setContent(new std::string(ct));
   LOG(DEBUG) << "  Setting response headers";
   if (0 == ct.compare("")) {
@@ -239,8 +218,6 @@ Response* FakeConnection::search(const SearchDescription& desc) {
   }
 
   cos << "] } }";
-  //std::unique_ptr<std::string> cPtr(new std::string(cos.str()));
-  //response->setContent(std::move(cPtr));
   response->setContent(new std::string(cos.str()));
   response->setResponseType(ResponseType::JSON);
 

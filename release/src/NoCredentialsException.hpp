@@ -11,10 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  NoCredentialsException.h
-//  Created by Paul Hoehne on 5/29/14.
-//
+/**
+ * \file NoCredentialsException.h
+ * \author Paul Hoehne <paul.hoehne@marklogic.com>
+ * \date 2014-05-29
+ */
 
 #ifndef NOCREDENTIALSEXCEPTION_H
 #define NOCREDENTIALSEXCEPTION_H
@@ -41,6 +42,6 @@ public:
   virtual const char* what() const throw() override;
 };
 
-}
+} // end namespace mlclient
 
 #endif /* defined(NOCREDENTIALSEXCEPTION_H) */

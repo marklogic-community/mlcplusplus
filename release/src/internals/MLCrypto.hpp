@@ -72,9 +72,9 @@ private:
 
 };
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient
 
 #endif	/* MLCRYPTO_HPP */
 

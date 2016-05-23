@@ -59,6 +59,6 @@ std::string MLCrypto::toHex(const uint8_t* bytes, const size_t& length) const {
   return hex_ss.str();
 }
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient

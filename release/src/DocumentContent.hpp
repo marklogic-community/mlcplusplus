@@ -96,61 +96,11 @@ public:
   static const std::string MIME_JSON; //< The value application/json
   static const std::string MIME_XML; //< The value application/xml
 
-protected:
-  //class Impl;
-  //Impl* mbImpl;
 };
 
 // TODO streaming operator
 
 
-// INTERFACES
-/*
- * \brief This is a marker (tagging) interface class that indicates an IDocumentContent subclass can be interacted with as a string.
- *
- * Use of this class is for multiple inheritance where a custom class may implement IDocumentContent, but may also need some API clients
- * to interact with it as a string.
- *
- * \author Adam Fowler <adam.fowler@marklogic.com>
- * \since 8.0.0
- * \date 2016-05-01
- */
-//class Textable {
-//public:
-  /**
-   * Pure virtual constructor
-   */
-  //virtual Textable();
-  /**
-   * \brief Pure virtual destructor. REQUIRED to allow subclassing
-   */
-  //virtual ~Textable();
-
-  /**
-   * \brief Sets the textual content for this document
-   *
-   * Assumes content string is non null
-   *
-   * \param[in] The string content to copy in to this object.
-   */
-  //virtual void setContent(std::string content) = 0;
-
-  /**
-   * \brief Returns the content as a string
-   *
-   * \return The string representation of the content.
-   */
-  //virtual std::string& getContent() = 0;
-
-  /**
-   * \brief Returns the number of characters in the content string.
-   *
-   * \note This number does not include C null characters - just std::string length
-   *
-   * \return The number of characters in the string. Does not include C null character.
-   */
-  //virtual int getLength() = 0;
-//};
 
 
 /**
@@ -184,7 +134,14 @@ public:
   virtual int getLength() const = 0;
 };
 
-// SPECIALISATIONS
+
+
+
+
+
+// SPECIALISATION TYPES - DEFAULT IMPLEMENTATIONS
+
+
 /**
  * \brief This class is a specialisation of ITextDocumentContent (and thus IDocumentContent) that holds all data in a string.
  * \since 8.0.0
@@ -277,8 +234,6 @@ public:
    */
   int getLength() const override;
 
-
-  // TODO implement generic traversal API here, include binary support (for easy multi part mime handling)
 private:
   class Impl;
   Impl* mImpl;
@@ -313,10 +268,12 @@ public:
    * \brief Default constructor. Initialises the binary content to an empty buffer, of zero length.
    */
   IBinaryDocumentContent();
+
   /**
    * \brief Destructor. Will deallocate all contained buffered data
    */
   virtual ~IBinaryDocumentContent();
+
   /**
    * \brief Sets the content from the given string.
    *
@@ -326,7 +283,8 @@ public:
    *
    * \param[in] content The string content to copy in to the buffer.
    */
-  //void setContent(std::string content);
+  void setContent(std::string content);
+
   /**
    * \brief Returns the textual representation of this content.
    *
@@ -334,7 +292,8 @@ public:
    *
    * \return The content of this buffer encoded as a string (HEX encoding by default)
    */
-  //std::string& getContent(); // default to one encoding
+  std::string& getContent(); // default to one encoding
+
   /**
    * \brief Returns the string representation(encoding) of the binary content, using the specified representation (HEX, BINARY, etc.)
    *
@@ -344,7 +303,8 @@ public:
    * \param[in] encoding The encoding to use. Defaults to HEX
    * \return The string representation of the binary content in the requested encoding.
    */
-  //std::string& getContent(const enum BinaryEncoding& encoding = BinaryEncoding::HEX);
+  std::string& getContent(const enum BinaryEncoding& encoding = BinaryEncoding::HEX);
+
   /**
    * \brief Sets the content from a raw binary buffer.
    *
@@ -353,6 +313,7 @@ public:
    * TODO check parameters' validity, and document accordingly.
    */
   //void setContent(char* binary,int offset,int length); // TODO proper useful definition
+
   /**
    * \brief Returns the number of characters in the TEXTUAL encoding of this binary document. (i.e. NOT raw byte length)
    *

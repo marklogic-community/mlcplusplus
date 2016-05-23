@@ -22,7 +22,7 @@
 #ifndef RESPONSEWRAPPER_H
 #define RESPONSEWRAPPER_H
 
-
+/// \brief Holding typedef to wrap a CWrapper<Response>* pointer as a C variable.
 typedef void CResponse;
 
 
@@ -62,7 +62,7 @@ const int ml_response_GetResponseCode(CResponse *t);
 const char* const ml_responsecodes_translate(int code);
 
 #ifdef __cplusplus
-}
+} // end extern C
 #endif
 
 

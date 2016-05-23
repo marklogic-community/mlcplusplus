@@ -11,12 +11,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * Creates a generic template for a wrapper holding a unique_ptr to an instance of an mlclient
- * object that needs to be held and casted to and from a C wrapper class.
- * Examples are CResponse -> std::unique_ptr<Response>
- * and CConnection -> std:unique_ptr<Connection>
- */
 
 using namespace mlclient;
 
