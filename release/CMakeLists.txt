@@ -3,6 +3,14 @@ project (mlclient)
 
 # See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
 
+# EDITABLE SETTINGS BEGIN
+
+set (mlclient_VERSION_MAJOR 8)
+set (mlclient_VERSION_MINOR 0)
+set (mlclient_VERSION_REVISION 2)
+
+# EDITABLE SETTINGS END
+
 # SYSTEM DETECTION
 
 # Boost (Includes system, thread, locale, regex and filesystem components by default)
@@ -32,3 +40,4 @@ link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(samples)
+add_subdirectory(doxygen)

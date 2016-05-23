@@ -23,8 +23,6 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 
-#include "../mlclient.hpp"
-
 namespace mlclient {
 
 namespace internals {
@@ -80,6 +78,7 @@ protected:
   /// \return A random nonce value
   ///
   std::string generateRandomCnonce(void) const; // TODO hide me in Impl
+
 public:
 
   ///
@@ -162,9 +161,6 @@ public:
   ///
   std::string getRealm(void) const;
 
-  friend class AuthenticatingProxy; // TODO REVIEW THESE - BAD KARMA
-  friend class AuthenticatingProxyTest; // I hate having these here!
-  friend class TestCredentials;
 };
 
 }

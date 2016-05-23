@@ -1,0 +1,19 @@
+This files in this ext folder are external dependencies. These each have their own copyright and license terms.
+These are summarised as follows. For exact information, view their source files.
+
+# 1. EasyLogging++
+
+//  Easylogging++ v9.80
+//  Single-header only, cross-platform logging library for C++ applications
+//
+//  Copyright (c) 2015 muflihun.com
+//
+//  This library is released under the MIT Licence.
+//  http://easylogging.muflihun.com/licence.php
+//
+//  easylogging@muflihun.com
+//
+//  https://github.com/easylogging/easyloggingpp
+//  http://easylogging.muflihun.com
+//  http://muflihun.com
+

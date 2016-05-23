@@ -11,10 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  Response.h
-//  Created by Paul Hoehne on 5/29/14.
-//
+/**
+ * \file Response.h
+ * \author Paul Hoehne <paul.hoehne@marklogic.com>
+ * \date 2014-05-29
+ */
 
 #ifndef RESPONSE_H
 #define RESPONSE_H
@@ -26,11 +27,6 @@
 namespace mlclient {
 
 
-///
-/// The type of response
-///
-//enum ResponseType : int; // UNKNOWN IS FIRST SO AS TO AVOID INCORRECTLY INSTANTIATED RESPONSE ISSUES
-
 /**
  * The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
  */
@@ -38,7 +34,6 @@ enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY 
 
 std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 std::string& operator +(std::string& s, const ResponseType& rt);
-//std::string& operator+(const char* orig,const ResponseType& rt);
 
 const std::string translate(const ResponseType& rt);
 
@@ -90,7 +85,6 @@ enum ResponseCode : int {
 
 std::ostream& operator << (std::ostream& os, const ResponseCode& rc);
 std::string& operator +(std::string& s, const ResponseCode& rc);
-//std::string& operator+(const char* orig,const ResponseCode& rc);
 
 const std::string translate(const ResponseCode& rt);
 
@@ -175,16 +169,6 @@ public:
   void setResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
-  /// \brief Sets the headers received as part of the response.
-  ///
-  /// This is set when
-  /// the response is received but should not be set otherwise.
-  ///
-  /// \param[in] headers The HTTP response headers
-  ///
-  //void SetResponseHeaders(const mlclient::HttpHeaders& headers);
-
-  ///
   /// \brief Returns the HTTP response code for the response.
   ///
   /// \return The HTTP response code
@@ -222,7 +206,6 @@ public:
   ///
   const std::string& getContent() const;
 
-  //void SetJson(const web::json::value& json);
   /**
    * \brief Sets the string content for this Response
    *
@@ -232,7 +215,6 @@ public:
    *
    * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
    */
-  //void setContent(std::unique_ptr<std::string> content); // move ownership to this class - use std::move(str) in the caller
   void setContent(std::string* content);
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
@@ -242,11 +224,9 @@ public:
 private:
   class Impl; // forward declare - PIMPL idiom
   Impl* mImpl;
-
-  friend class ResponseTest; // TODO remove this - nasty
 };
 
-}
+} // end namespace mlclient
 
 #endif /* defined(__Scratch__Response__) */
 

@@ -111,6 +111,14 @@ CResponse * ml_connection_getDocument(const CConnection *conn,const char *uri);
 /// \date 2016-04-18
 ///
 CResponse * ml_connection_saveDocument(const CConnection *conn,const char *uri,const char *payload);
+
+///
+/// \brief Deletes a document by URI from MarkLogic server, on the specified connection instance
+/// \since 8.0.2
+/// \date 2016-05-23
+///
+CResponse * ml_connection_deleteDocument(const CConnection *conn,const char *uri);
+
 ///
 /// \brief Performs a search on MarkLogic server, using the specified connection instance
 /// \since 8.0.0

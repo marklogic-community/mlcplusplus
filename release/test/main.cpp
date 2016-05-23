@@ -28,7 +28,7 @@
 #define ELPP_PERFORMANCE_MICROSECONDS 1
 #endif
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 
 INITIALIZE_EASYLOGGINGPP

@@ -31,13 +31,12 @@ public:
   ~HttpHeaders() = default;
   void setHeaders(const std::map<std::string,std::string>& headers);
   void setHeader(const std::string& header,const std::string& value);
-  //std::map<std::string,std::string>::iterator& iterator();
   const std::string& getHeader(const std::string& header) const;
   const std::map<std::string,std::string>& getHeaders() const;
   void clear();
 
 private:
-  std::map<std::string,std::string> mHeaders; // no point hiding - we have a compile time dependency on std::map from setHeaders()
+  std::map<std::string,std::string> mHeaders; // no point hiding via PIMPL idiom - we have a compile time dependency on std::map from setHeaders()
 };
 
 } // end namespace mlclient

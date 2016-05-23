@@ -11,11 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  InvalidFormatException.cpp
-//
-//  Created by Adam Fowler on 18 Apr 2016
-//
+/**
+ * \file InvalidFormatException.cpp
+ *
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * \created 2016-04-18
+ * \since 8.0.0
+ */
 
 #include "InvalidFormatException.hpp"
 
@@ -26,4 +28,4 @@ const char* InvalidFormatException::what(void) const throw() {
   return "Response is not of the required type for requested function/operation to be carried out";
 }
 
-}
+} // end namepace mlclient
