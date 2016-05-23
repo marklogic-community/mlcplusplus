@@ -19,20 +19,9 @@
 #include "internals/Credentials.hpp"
 #include "internals/AuthenticatingProxy.hpp"
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 namespace mlclient {
-
-/*
-IConnection::IConnection() {
-  LOG(DEBUG) << "    IConnection::defaultConstructor @" << &*this;
-  LOG(DEBUG) << "    IConnection::defaultConstructor @" << &*this << " complete.";
-}
-
-IConnection::~IConnection() {
-  LOG(DEBUG) << "    IConnection::destructor @" << &*this;
-  LOG(DEBUG) << "    IConnection::destructor @" << &*this << " complete.";
-}*/
 
 class Connection::Impl {
 public:
@@ -47,31 +36,6 @@ public:
   std::string serverUrl;
   std::string databaseName;
   internals::AuthenticatingProxy proxy;
-
-  // prevent compiler automatically defining the copy constructor and assignment operator:-
-  //Connection(const Connection&);
-  //Connection& operator= (const Connection&);
-
-  /*
-  std::unique_ptr<Response> dosearch(const web::json::value& combined) {
-    web::json::value search = web::json::value::object();
-    search[U("search")] = web::json::value(combined);
-
-    return proxy.postSync(serverUrl,
-        "/v1/search",
-        search);
-  };
-  */
-
-  /*
-
-  // HIGH
-  void applyTransformProperties();
-  void applySearchProperties();
-  */
-
-private:
-
 };
 
 
@@ -82,10 +46,6 @@ Connection::Connection() : mImpl(new Impl) {
 Connection::~Connection() {
   delete mImpl;
 }
-
-//void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password) {
-//  Connection::configure(hostname,port,username,password,false);
-//}
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
@@ -124,8 +84,6 @@ Response* Connection::doPost(const std::string& pathAndQuerystring,const IDocume
       "/v1/search",
       payload);
 }
-
-// TODO multipart payload
 Response* Connection::doDelete(const std::string& path) {
   TIMED_FUNC(Connection_doDelete);
   return mImpl->proxy.deleteSync(mImpl->serverUrl,path);
@@ -147,7 +105,6 @@ Response* Connection::getDocument(const std::string& uri) {
   return mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
 }
 
-// TODO XML version
 Response* Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_saveDocument);
   return mImpl->proxy.putSync(mImpl->serverUrl,
@@ -162,48 +119,10 @@ Response* Connection::deleteDocument(const std::string& uri) {
       );
 }
 
-/*
-Response Connection::saveAllDocuments(const std::string& uris[], const web::json::value payload[]) {
-  // TODO multi part mime
-}*/
-
-
-
-
 Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
   return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
 }
 
-
-/*
-
-std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const web::json::value& options) {
-  web::json::value combined = web::json::value::object();
-  combined[U("query")] = web::json::value(searchQuery);
-  combined[U("options")] = web::json::value(options);
-  return mImpl->dosearch(combined);
-}
-
-
-std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const std::string& qtext) {
-  web::json::value combined = web::json::value::object();
-  combined[U("query")] = web::json::value(searchQuery);
-  combined[U("qtext")] = web::json::value(qtext);
-  return mImpl->dosearch(combined);
-}
-
-std::unique_ptr<Response> Connection::search(const web::json::value& searchQuery,const std::string& qtext,const web::json::value& options) {
-  // combined query
-  web::json::value combined = web::json::value::object();
-  combined[U("query")] = web::json::value(searchQuery);
-  combined[U("qtext")] = web::json::value(qtext);
-  combined[U("options")] = web::json::value(options);
-
-  return mImpl->dosearch(combined);
-}
-*/
-
-// TODO overload the above method to allow for null options
 
 } // end namespace mlclient

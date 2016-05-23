@@ -19,31 +19,26 @@
 
 #include "HttpHeaders.hpp"
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 #include <map>
 #include <string>
 
 namespace mlclient {
 
-
-
 HttpHeaders::HttpHeaders() : mHeaders() {
   ;
 }
-
-// default destructor
 
 void HttpHeaders::setHeaders(const std::map<std::string,std::string>& headers) {
   mHeaders = headers;
 }
 void HttpHeaders::setHeader(const std::string& header,const std::string& value) {
-  //LOG(DEBUG) << "Setting header: " << header << " = " << value;
   mHeaders.insert(std::pair<std::string,std::string>(header,value));
-  //LOG(DEBUG) << "Checking existence, value: " << getHeader(header);
 }
-//std::map<std::string,std::string>::iterator& iterator();
+
 const std::string& empty = "";
+
 const std::string& HttpHeaders::getHeader(const std::string& header) const {
   std::map<std::string,std::string>::const_iterator iter = mHeaders.find(header);
   if (mHeaders.end() == iter) {
@@ -51,9 +46,11 @@ const std::string& HttpHeaders::getHeader(const std::string& header) const {
   }
   return iter->second;
 }
+
 const std::map<std::string,std::string>& HttpHeaders::getHeaders() const {
   return mHeaders;
 }
+
 void HttpHeaders::clear() {
   mHeaders.clear();
 }

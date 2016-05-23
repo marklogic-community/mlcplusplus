@@ -92,6 +92,13 @@ CResponse * ml_connection_saveDocument(const CConnection *conn,const char *uri,c
   return (CResponse*)(new CWrapper<Response>(t->saveDocument(std::string(uri),tdc)));
 }
 
+CResponse * ml_connection_deleteDocument(const CConnection *conn,const char *uri) {
+  using namespace mlclient;
+  using namespace web;
+  Connection *t = (Connection *)conn;
+  return (CResponse*)(new CWrapper<Response>(t->deleteDocument(std::string(uri))));
+}
+
 CResponse * ml_connection_search(const CConnection *conn,const char *searchQuery,const char *qtext,
     const char *options) {
   using namespace mlclient;

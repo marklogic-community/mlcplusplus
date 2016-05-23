@@ -19,7 +19,6 @@
 #ifndef __Scratch__ConnectionFactory__
 #define __Scratch__ConnectionFactory__
 
-#include <mlclient.hpp>
 #include "Connection.hpp"
 
 using namespace mlclient;

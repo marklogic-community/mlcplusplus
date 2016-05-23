@@ -24,8 +24,6 @@
 #include <sstream>
 #include <openssl/md5.h>
 
-#include "../mlclient.hpp"
-
 namespace mlclient {
 
 namespace internals {
@@ -59,6 +57,6 @@ std::string MLCrypto::toHex(const uint8_t* bytes, const size_t& length) const {
   return hex_ss.str();
 }
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient

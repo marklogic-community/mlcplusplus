@@ -53,6 +53,7 @@ public:
    * \return The IDocumentContent instance wrapping the XML content, with its mime type and content set
    */
   static ITextDocumentContent* toDocument(const pugi::xml_document& dc);
+
   /**
    * \brief Extracts a pugi::xml_document instance from a IDocumentContent object.
    *

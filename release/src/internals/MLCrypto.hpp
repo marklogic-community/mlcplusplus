@@ -26,7 +26,6 @@
 #ifndef MLCRYPTO_HPP
 #define	MLCRYPTO_HPP
 
-#include "../mlclient.hpp"
 #include <string>
 
 
@@ -72,9 +71,9 @@ private:
 
 };
 
-}
+} // end namespace internals
 
-}
+} // end namespace mlclient
 
 #endif	/* MLCRYPTO_HPP */
 

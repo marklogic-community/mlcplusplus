@@ -11,11 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//
-//  InvalidFormatException.h
-//
-//  Created by Adam Fowler on 18 Apr 2016
-//
+/**
+ * \file InvalidFormatException.h
+ *
+ * \author Adam Fowler
+ * \date 2016-04-18
+ * \since 8.0.0
+ */
 
 #ifndef INVALIDFORMATEXCEPTION_H
 #define INVALIDFORMATEXCEPTION_H
@@ -45,6 +47,6 @@ public:
 
 };
 
-}
+} // end namespace mlclient
 
 #endif /* defined(INVALIDFORMATEXCEPTION_H) */

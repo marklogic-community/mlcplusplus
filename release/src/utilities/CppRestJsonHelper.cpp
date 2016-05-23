@@ -26,7 +26,7 @@
 
 #include <iostream>
 
-#include "../easylogging++.h"
+#include "../ext/easylogging++.h"
 
 namespace mlclient {
 
@@ -53,9 +53,7 @@ web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
 // Response conversion
 web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   TIMED_FUNC(CppRestJsonHelper_fromResponse);
-  //std::cout << "Response type: " << _response_type << std::endl;
   if (resp.getResponseType() == ResponseType::JSON) {
-    //std::cout << "Raw response JSON: " << _content << std::endl;
     return web::json::value::parse(resp.getContent());
   } else {
     throw InvalidFormatException();
