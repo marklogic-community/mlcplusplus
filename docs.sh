@@ -3,7 +3,7 @@
 mkdir -p ./bin/api
 cd release
 
-doxygen Doxyfile
+doxygen doxygen/Doxyfile
 cd ..
 
 echo "Done generating docs."
