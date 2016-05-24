@@ -17,13 +17,13 @@
  * \date 2014-06-04
  */
 
-#include "ext/mlclient.hpp"
+#include "mlclient.hpp"
 
 #ifndef ELPP_PERFORMANCE_MICROSECONDS
 #define ELPP_PERFORMANCE_MICROSECONDS 1
 #endif
 
-#include "easylogging++.h"
+#include "ext/easylogging++.h"
 
 INITIALIZE_EASYLOGGINGPP
 
