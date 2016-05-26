@@ -90,6 +90,8 @@ public:
    * \return A Microsoft cpprest API web::json::value instance created from the Response.
    */
   static web::json::value fromResponse(const Response& resp);
+
+  static web::json::value fromSearchResult(const SearchResult& result);
   /// @}
 
 };

@@ -18,11 +18,14 @@ public:
   enum DETAIL {
     SNIPPETS, CONTENT, NONE
   };
+  static const std::string JSON;
+  static const std::string XML;
 
   SearchResult();
   SearchResult(const SearchResult& other) = default;
   SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-      const double confidence,const double fitness,const DETAIL& detail,const std::string& detailContent = "");
+      const double confidence,const double fitness,const DETAIL& detail,const std::string& detailContent = "",
+      const std::string& mimeType = "",const std::string& format = JSON);
   virtual ~SearchResult() = default;
 
   long getIndex();
@@ -33,6 +36,8 @@ public:
   double getFitness();
   const DETAIL& getDetail() const;
   const std::string& getDetailContent() const;
+  const std::string& getMimeType() const;
+  const std::string& getFormat() const;
 
 private:
   long index;
@@ -43,6 +48,8 @@ private:
   double fitness;
   DETAIL detail;
   std::string detailContent;
+  std::string mimeType;
+  std::string format;
 
 };
 

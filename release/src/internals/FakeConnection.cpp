@@ -49,6 +49,14 @@ FakeConnection::~FakeConnection() {
   mImpl = NULL;
 }
 
+bool FakeConnection::connect() {
+  return true;
+}
+
+void FakeConnection::disconnect() {
+  ;
+}
+
 
 void FakeConnection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;

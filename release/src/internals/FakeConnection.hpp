@@ -90,6 +90,20 @@ public:
    */
   std::string getDatabaseName() override;
 
+
+  /**
+   * \brief Connects or tests the authentication in the connection. May not actually connect.
+   * \note Should be called prior to any use of functions. Is not called for the developer
+   */
+  bool connect() override;
+
+  /**
+   * \brief Frees up resources held by the connection, until the next call to connect.
+   * \note Should be called by a class' destructor
+   */
+  void disconnect() override;
+
+
   // @}
 
   /// \name http_raw RAW HTTP commands

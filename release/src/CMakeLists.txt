@@ -96,6 +96,8 @@ add_library (mlclient SHARED
     DocumentContent.cpp
     InvalidFormatException.cpp
     SearchDescription.cpp
+    SearchResult.cpp
+    SearchResultSet.cpp
 
     internals/AuthenticatingProxy.cpp
     internals/AuthorizationBuilder.cpp

@@ -29,7 +29,7 @@ public:
   /**
    * \brief Creates a self-advancing result set given the specified search description
    */
-  SearchResultSet(const IConnection& conn,const SearchDescription& desc);
+  SearchResultSet(IConnection* conn,SearchDescription& desc);
 
   /**
    * \brief Destroys a SearchResultSet and all of its owned resources
@@ -58,7 +58,7 @@ public:
   std::exception* getFetchException();
 
 private:
-  IConnection& mConn;
+  IConnection* mConn;
   SearchDescription& mInitialDescription;
   std::list<SearchResult> mResults;
   std::exception* mFetchException;

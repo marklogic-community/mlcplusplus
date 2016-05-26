@@ -60,6 +60,14 @@ web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   }
 }
 
+web::json::value fromSearchResult(const SearchResult& result) {
+  TIMED_FUNC(CppRestJsonHelper_fromSearchResult);
+  if (result.getFormat() == SearchResult::JSON) {
+    return web::json::value::parse(result.getDetailContent());
+  } else {
+    throw InvalidFormatException();
+  }
+}
 
 } // end utilities namespace
 

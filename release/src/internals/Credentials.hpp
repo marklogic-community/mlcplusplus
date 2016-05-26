@@ -35,6 +35,8 @@ namespace internals {
 /// nonce count.
 ///
 class Credentials {
+  friend class AuthenticatingProxy;
+
   std::wstring user;
   std::wstring pass;
 
