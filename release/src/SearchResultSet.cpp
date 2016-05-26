@@ -41,7 +41,7 @@ bool SearchResultSet::fetch() {
 
     // extract metrics, if they exist
     try {
-      web::json::value& metrics = value.at("metrics");
+      const web::json::value& metrics = value.at("metrics");
       queryResolutionTime = metrics.at("query-resolution-time").as_string();
       snippetResolutionTime = metrics.at("snippet-resolution-time").as_string();
       totalTime = metrics.at("total-time").as_string();
@@ -59,16 +59,16 @@ bool SearchResultSet::fetch() {
     std::string mimeType;
     std::string format;
     web::json::value ctVal;
-    for (auto iter = resv.as_array().begin(); iter != resv.as_array().end(); ++iter)
-    {
-        auto& rowdata = *iter;
-        const web::json::object& row = rowdata.as_object();
+    for (auto iter = resv.as_array().begin(); iter != resv.as_array().end(); ++iter) {
+      auto& rowdata = *iter;
+      const web::json::object& row = rowdata.as_object();
       //LOG(DEBUG) << "Row: " << iter->as_string();
       //const web::json::object& row = iter.as_object();
       detail = SearchResult::DETAIL::NONE;
       mimeType = "";
       format = SearchResult::JSON;
       ct = "";
+      // TODO performance - replace these try-catches with checks of the top level snippet-format value
       try {
         ctVal = row.at("content");
         ct = ctVal.as_string();
@@ -97,12 +97,12 @@ bool SearchResultSet::fetch() {
           detail = SearchResult::DETAIL::CONTENT;
           LOG(DEBUG) << "  Result is content less";
         }
-      }
+      } // end content catch
 
       // TODO handle empty result or no search metrics in the below - at the moment they could throw!!!
       mResults.push_back(SearchResult(row.at("index").as_integer(),row.at("uri").as_string(),row.at("path").as_string(),row.at("score").as_integer(),
           row.at("confidence").as_double(),row.at("fitness").as_double(),detail,ct,mimeType,format ));
-    }
+    } // end loop
 
     delete(resp); // TODO ensure this does not invalidate any of our variables in search result set or searchresult instances
 

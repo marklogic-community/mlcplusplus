@@ -24,6 +24,7 @@
 #include <cpprest/http_client.h>
 #include "../DocumentContent.hpp"
 #include "../Response.hpp"
+#include "../SearchResult.hpp"
 
 namespace mlclient {
 

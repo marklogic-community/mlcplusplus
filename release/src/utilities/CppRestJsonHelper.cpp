@@ -23,6 +23,7 @@
 #include "../DocumentContent.hpp"
 #include "../Response.hpp"
 #include "../InvalidFormatException.hpp"
+#include "../SearchResult.hpp"
 
 #include <iostream>
 
