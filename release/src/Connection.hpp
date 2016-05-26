@@ -73,6 +73,17 @@ public:
       const std::string& password, const bool usessl = false) = 0;
 
   /**
+   * \brief Connects or tests the authentication in the connection. May not actually connect.
+   * \note Should be called prior to any use of functions. Is not called for the developer
+   */
+  virtual void connect() = 0;
+  /**
+   * \brief Frees up resources held by the connection, until the next call to connect.
+   * \note Should be called by a class' destructor
+   */
+  virtual void disconnect() = 0;
+
+  /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
    *
    * \since 8.0.0
@@ -256,7 +267,18 @@ public:
   virtual Response* search(const SearchDescription& desc) = 0;
 
 
+  /**
+   * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
+   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   */
+  virtual Response* listRootCollections() = 0;
 
+  /**
+   * \brief Lists the immediate child collections of the specified parent Collections.
+   * \note Parent collection must start with a /
+   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   */
+  virtual Response* listCollections(const std::string& parentCollection) = 0;
 
 
   /*
@@ -376,6 +398,18 @@ public:
    */
   void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
       const bool usessl = false) override;
+
+  /**
+   * \brief Connects or tests the authentication in the connection. May not actually connect.
+   * \note Should be called prior to any use of functions. Is not called for the developer
+   */
+  virtual bool connect() = 0;
+
+  /**
+   * \brief Frees up resources held by the connection, until the next call to connect.
+   * \note Should be called by a class' destructor
+   */
+  virtual void disconnect() = 0;
 
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
@@ -551,6 +585,21 @@ public:
    * \since 8.0.0
    */
   Response* search(const SearchDescription& desc) override;
+
+
+  /**
+   * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
+   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   */
+  Response* listRootCollections() override;
+
+  /**
+   * \brief Lists the immediate child collections of the specified parent Collections.
+   * \note Parent collection must start with a /
+   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   */
+  Response* listCollections(const std::string& parentCollection) override;
+
 
   // @}
 
