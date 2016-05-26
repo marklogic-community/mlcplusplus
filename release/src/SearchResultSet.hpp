@@ -62,6 +62,13 @@ private:
   SearchDescription& mInitialDescription;
   std::list<SearchResult> mResults;
   std::exception* mFetchException;
+  long start;
+  long total;
+  long pageLength;
+  std::string snippetFormat;
+  std::string queryResolutionTime; // W3C Duration String
+  std::string snippetResolutionTime; // W3C Duration String
+  std::string totalTime; // W3C Duration String
 };
 
 } // end namespace mlclient

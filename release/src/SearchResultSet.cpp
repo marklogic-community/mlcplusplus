@@ -19,7 +19,8 @@
 
 namespace mlclient {
 
-SearchResultSet::SearchResultSet(IConnection* conn,SearchDescription& desc) : mConn(conn), mInitialDescription(desc), mResults(), mFetchException(nullptr) {
+SearchResultSet::SearchResultSet(IConnection* conn,SearchDescription& desc) : mConn(conn), mInitialDescription(desc),
+    mResults(), mFetchException(nullptr), start(0), pageLength(0), total(0),totalTime(""),queryResolutionTime(""),snippetResolutionTime("") {
   ;
 }
 
@@ -30,10 +31,26 @@ bool SearchResultSet::fetch() {
 
     // TODO handle request errors
 
-    // TODO extract top level summary information for the result set
+    const web::json::value& value = utilities::CppRestJsonHelper::fromResponse(*resp);
+
+    // extract top level summary information for the result set
+    snippetFormat = value.at("snippet-format").as_string();
+    total = value.at("total").as_integer();
+    pageLength = value.at("page-length").as_integer();
+    start = value.at("start").as_integer();
+
+    // extract metrics, if they exist
+    try {
+      web::json::value& metrics = value.at("metrics");
+      queryResolutionTime = metrics.at("query-resolution-time").as_string();
+      snippetResolutionTime = metrics.at("snippet-resolution-time").as_string();
+      totalTime = metrics.at("total-time").as_string();
+    } catch (std::exception me) {
+      // no metrics element - possible due to search options
+    }
+
 
     // take the response, and parse it
-    const web::json::value& value = utilities::CppRestJsonHelper::fromResponse(*resp);
     const web::json::value& resv = value.at("results");
     const web::json::array& res = value.at("results").as_array();
     LOG(DEBUG) << "We have a results JSON array";
