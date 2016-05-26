@@ -71,6 +71,8 @@ bool SearchResultSet::fetch() {
         try {
           ctVal = row.at("matches");
           ct = ctVal.as_string();
+          mimeType = row.at("mimetype").as_string();
+          format = row.at("format").as_string();
           LOG(DEBUG) << "  Got snippet content" << ct;
           detail = SearchResult::DETAIL::SNIPPETS;
         } catch (std::exception& ex) {
