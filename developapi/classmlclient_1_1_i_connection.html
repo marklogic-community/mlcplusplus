@@ -121,6 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">connection_configuration Connection configuration functions</div></td></tr>
 <tr class="memitem:a6de9145a6afe8b3e63e90188ee5e1b42"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a6de9145a6afe8b3e63e90188ee5e1b42">configure</a> (const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false)=0</td></tr>
 <tr class="separator:a6de9145a6afe8b3e63e90188ee5e1b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda80ba717ee31d4930101e1bc62035b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#afda80ba717ee31d4930101e1bc62035b">connect</a> ()=0</td></tr>
+<tr class="memdesc:afda80ba717ee31d4930101e1bc62035b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects or tests the authentication in the connection. May not actually connect.  <a href="#afda80ba717ee31d4930101e1bc62035b">More...</a><br /></td></tr>
+<tr class="separator:afda80ba717ee31d4930101e1bc62035b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c68b9371c7238e1f193a615b215eeb8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a7c68b9371c7238e1f193a615b215eeb8">disconnect</a> ()=0</td></tr>
+<tr class="memdesc:a7c68b9371c7238e1f193a615b215eeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees up resources held by the connection, until the next call to connect.  <a href="#a7c68b9371c7238e1f193a615b215eeb8">More...</a><br /></td></tr>
+<tr class="separator:a7c68b9371c7238e1f193a615b215eeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a989d55778b0fcfa306c3a17acff77ed4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a989d55778b0fcfa306c3a17acff77ed4">setDatabaseName</a> (const std::string &amp;db)=0</td></tr>
 <tr class="memdesc:a989d55778b0fcfa306c3a17acff77ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the database to query/update. Defaults to Documents.  <a href="#a989d55778b0fcfa306c3a17acff77ed4">More...</a><br /></td></tr>
 <tr class="separator:a989d55778b0fcfa306c3a17acff77ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,6 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a79f13a3472446cb05412ddcd4a28fc75"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a79f13a3472446cb05412ddcd4a28fc75">search</a> (const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;desc)=0</td></tr>
 <tr class="memdesc:a79f13a3472446cb05412ddcd4a28fc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search against the MarkLogic database given the provided search query, text and options.  <a href="#a79f13a3472446cb05412ddcd4a28fc75">More...</a><br /></td></tr>
 <tr class="separator:a79f13a3472446cb05412ddcd4a28fc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3ac790b2c71066368b20237a23e6a7c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#ac3ac790b2c71066368b20237a23e6a7c">listRootCollections</a> ()=0</td></tr>
+<tr class="memdesc:ac3ac790b2c71066368b20237a23e6a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character.  <a href="#ac3ac790b2c71066368b20237a23e6a7c">More...</a><br /></td></tr>
+<tr class="separator:ac3ac790b2c71066368b20237a23e6a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c2fe2bbc6bb8336e5898e617be46c2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#ac3c2fe2bbc6bb8336e5898e617be46c2">listCollections</a> (const std::string &amp;parentCollection)=0</td></tr>
+<tr class="memdesc:ac3c2fe2bbc6bb8336e5898e617be46c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the immediate child collections of the specified parent Collections.  <a href="#ac3c2fe2bbc6bb8336e5898e617be46c2">More...</a><br /></td></tr>
+<tr class="separator:ac3c2fe2bbc6bb8336e5898e617be46c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass, or a real <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> subclass. </p>
@@ -280,6 +292,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afda80ba717ee31d4930101e1bc62035b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool mlclient::IConnection::connect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Connects or tests the authentication in the connection. May not actually connect. </p>
+<dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a8de106c3b1dca7627d1803e6e2720451">mlclient::Connection</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a54fddb7c48924d45904dd2fc686b5839"></a>
 <div class="memitem">
 <div class="memproto">
@@ -319,6 +359,34 @@ Public Member Functions</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a7cb0f7bc4146e00665f8d94989ad9369">mlclient::Connection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c68b9371c7238e1f193a615b215eeb8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mlclient::IConnection::disconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frees up resources held by the connection, until the next call to connect. </p>
+<dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a888ee845034b3818b0cd0e8f1f5343ab">mlclient::Connection</a>.</p>
 
 </div>
 </div>
@@ -594,6 +662,65 @@ Public Member Functions</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#adad12f7f19c4fa6fe991b8a70e2f85a9">mlclient::Connection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3c2fe2bbc6bb8336e5898e617be46c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::listCollections </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parentCollection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists the immediate child collections of the specified parent Collections. </p>
+<dl class="section note"><dt>Note</dt><dd>Parent collection must start with a / </dd>
+<dd>
+Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a9f4d8cddb411020d4699c05f86002f3e">mlclient::Connection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3ac790b2c71066368b20237a23e6a7c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::listRootCollections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character. </p>
+<dl class="section note"><dt>Note</dt><dd>Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a2e79bddfe74f1809971724013b93a247">mlclient::Connection</a>.</p>
 
 </div>
 </div>

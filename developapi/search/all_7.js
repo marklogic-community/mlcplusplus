@@ -8,5 +8,5 @@ var searchData=
   ['idocumentcontent',['IDocumentContent',['../classmlclient_1_1_i_document_content.html',1,'mlclient']]],
   ['invalidformatexception',['InvalidFormatException',['../classmlclient_1_1_invalid_format_exception.html',1,'mlclient']]],
   ['itextdocumentcontent',['ITextDocumentContent',['../classmlclient_1_1_i_text_document_content.html',1,'mlclient']]],
-  ['installing_20mlcplusplus',['Installing MLCPlusPlus',['../page__install.html',1,'']]]
+  ['installing_20mlcplusplus',['Installing MLCPlusPlus',['../page_install.html',1,'']]]
 ];

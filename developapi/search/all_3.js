@@ -1,6 +1,7 @@
 var searchData=
 [
   ['deletedocument',['deleteDocument',['../classmlclient_1_1_i_connection.html#a54fddb7c48924d45904dd2fc686b5839',1,'mlclient::IConnection::deleteDocument()'],['../classmlclient_1_1_connection.html#a7cb0f7bc4146e00665f8d94989ad9369',1,'mlclient::Connection::deleteDocument()']]],
+  ['disconnect',['disconnect',['../classmlclient_1_1_i_connection.html#a7c68b9371c7238e1f193a615b215eeb8',1,'mlclient::IConnection::disconnect()'],['../classmlclient_1_1_connection.html#a888ee845034b3818b0cd0e8f1f5343ab',1,'mlclient::Connection::disconnect()']]],
   ['documentcontent_2ehpp',['DocumentContent.hpp',['../_document_content_8hpp.html',1,'']]],
   ['dodelete',['doDelete',['../classmlclient_1_1_i_connection.html#a622f4ec1aa07e8c0828af5cc1d411b05',1,'mlclient::IConnection::doDelete()'],['../classmlclient_1_1_connection.html#a905da280d5afd2e3b8cb74b171f7fe90',1,'mlclient::Connection::doDelete()']]],
   ['doget',['doGet',['../classmlclient_1_1_i_connection.html#a060653d258207f6406da38c8878c33f5',1,'mlclient::IConnection::doGet()'],['../classmlclient_1_1_connection.html#a8111a379cb5e7e06abc637fff8d02e29',1,'mlclient::Connection::doGet()']]],

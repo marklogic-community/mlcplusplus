@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['what',['what',['../classmlclient_1_1_invalid_format_exception.html#ad18b7a305e6768f07b8683c0e168c304',1,'mlclient::InvalidFormatException::what()'],['../classmlclient_1_1_no_credentials_exception.html#ae9df0a71170f161b0857f9ef7b8b6351',1,'mlclient::NoCredentialsException::what()']]]
+  ['todocument',['toDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#adaeb5213b9be3d09eab78b7adeebd2b5',1,'mlclient::utilities::CppRestJsonHelper::toDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#adeeb796d03dd51becf80598060eefdaf',1,'mlclient::utilities::PugiXmlHelper::toDocument()']]]
 ];

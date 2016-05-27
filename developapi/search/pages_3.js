@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['installing_20mlcplusplus',['Installing MLCPlusPlus',['../page__install.html',1,'']]]
+  ['installing_20mlcplusplus',['Installing MLCPlusPlus',['../page_install.html',1,'']]]
 ];

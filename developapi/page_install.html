@@ -81,15 +81,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Installing MLCPlusPlus </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="sec_Installation"></a>
-Installation</h1>
-<h3>Get Casablanca</h3>
+<div class="textblock"><h1><a class="anchor" id="sec_getcasablanca"></a>
+Get Casablanca</h1>
 <p>Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level as the 'casablanca' git directory.</p>
 <p>These instructions are listed here: <a href="https://github.com/Microsoft/cpprestsdk/wiki">https://github.com/Microsoft/cpprestsdk/wiki</a></p>
 <p>WARNING*: If you receive an error about a 'redundant std::move' when compiling the above API, then rm -rf build.debug and checkout the development branch of casablanca (i.e. git checkout development within the casablanca folder). This is a known bug in the latest casablanca minor release.</p>
 <p>Now in the casablanca folder issue <code>sudo make install</code></p>
 <p>Once built, continue below.</p>
-<h3>Building the MLCPlusPlus library from source</h3>
+<h1><a class="anchor" id="sec_getpugixml"></a>
+sec_getpugixml</h1>
+<p>PugiXML is a lightweight XML library. This is needed for building MLC++, but is not required for you in your applications if you're not using XML - there is no 'public' dependency on pugixml in the API. (i.e. no public API header files including pugixml).</p>
+<p>To get pugixml you can do one of:-</p>
+<ul>
+<li>Mac: brew install pugixml</li>
+<li>Source: <a href="http://pugixml.org">http://pugixml.org</a> - Quick start install guide: <a href="http://pugixml.org/docs/quickstart.html#install">http://pugixml.org/docs/quickstart.html#install</a></li>
+</ul>
+<h1><a class="anchor" id="sec_buildit"></a>
+Building the MLCPlusPlus library from source</h1>
 <p>Ensure first that all build scripts are executable:-</p><ul>
 <li>chmod u+x *.sh</li>
 </ul>
@@ -102,13 +110,14 @@ Installation</h1>
 <li>On Windows, TODO - Coming Soon for Visual Studio</li>
 </ul>
 <p>(Note: In future, if you want to remove all built files, execute './clean.sh' and hit enter )</p>
-<p>sec_Using Using MLCPlus Plus in your own project</p>
-<h3>Using the MLCPlusPlus library in your C++ application</h3>
+<h1><a class="anchor" id="sec_using"></a>
+Using the MLCPlusPlus library in your C++ application</h1>
 <p>Start with the Connection class. This provides a connect function and callbacks for all MarkLogic REST API functions.</p>
 <p>This class also abstracts the underlying security mechanism used to authenticate to the server.</p>
 <p>Simply create a Connection class, call configure to set up the connection parameters, then call a function!</p>
 <p>The API documentation can be found here: <a href="http://adamfowleruk.github.io/mlcplusplus/api/index.html">http://adamfowleruk.github.io/mlcplusplus/api/index.html</a></p>
-<h3>Compiling the tests</h3>
+<h1><a class="anchor" id="sec_compilingtests"></a>
+Compiling the tests</h1>
 <p>These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to work on your own projects though. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->

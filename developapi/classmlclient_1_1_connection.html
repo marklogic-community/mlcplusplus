@@ -121,6 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">connection_configuration Connection configuration functions</div></td></tr>
 <tr class="memitem:a769a2073f7d09bc7f80e0a42587b0de0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a769a2073f7d09bc7f80e0a42587b0de0">configure</a> (const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false) override</td></tr>
 <tr class="separator:a769a2073f7d09bc7f80e0a42587b0de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8de106c3b1dca7627d1803e6e2720451"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a8de106c3b1dca7627d1803e6e2720451">connect</a> () override</td></tr>
+<tr class="memdesc:a8de106c3b1dca7627d1803e6e2720451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects or tests the authentication in the connection. May not actually connect.  <a href="#a8de106c3b1dca7627d1803e6e2720451">More...</a><br /></td></tr>
+<tr class="separator:a8de106c3b1dca7627d1803e6e2720451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a888ee845034b3818b0cd0e8f1f5343ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a888ee845034b3818b0cd0e8f1f5343ab">disconnect</a> () override</td></tr>
+<tr class="memdesc:a888ee845034b3818b0cd0e8f1f5343ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees up resources held by the connection, until the next call to connect.  <a href="#a888ee845034b3818b0cd0e8f1f5343ab">More...</a><br /></td></tr>
+<tr class="separator:a888ee845034b3818b0cd0e8f1f5343ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7687e92b55868df1bd6c851300b6af1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a7687e92b55868df1bd6c851300b6af1a">setDatabaseName</a> (const std::string &amp;db) override</td></tr>
 <tr class="memdesc:a7687e92b55868df1bd6c851300b6af1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the database to query/update. Defaults to Documents.  <a href="#a7687e92b55868df1bd6c851300b6af1a">More...</a><br /></td></tr>
 <tr class="separator:a7687e92b55868df1bd6c851300b6af1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +159,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d2dc7e12ec1eadec6d78c49536c2d4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a0d2dc7e12ec1eadec6d78c49536c2d4e">search</a> (const <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> &amp;desc) override</td></tr>
 <tr class="memdesc:a0d2dc7e12ec1eadec6d78c49536c2d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search against the MarkLogic database given the provided search query, text and options.  <a href="#a0d2dc7e12ec1eadec6d78c49536c2d4e">More...</a><br /></td></tr>
 <tr class="separator:a0d2dc7e12ec1eadec6d78c49536c2d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e79bddfe74f1809971724013b93a247"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a2e79bddfe74f1809971724013b93a247">listRootCollections</a> () override</td></tr>
+<tr class="memdesc:a2e79bddfe74f1809971724013b93a247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character.  <a href="#a2e79bddfe74f1809971724013b93a247">More...</a><br /></td></tr>
+<tr class="separator:a2e79bddfe74f1809971724013b93a247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4d8cddb411020d4699c05f86002f3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a9f4d8cddb411020d4699c05f86002f3e">listCollections</a> (const std::string &amp;parentCollection) override</td></tr>
+<tr class="memdesc:a9f4d8cddb411020d4699c05f86002f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the immediate child collections of the specified parent Collections.  <a href="#a9f4d8cddb411020d4699c05f86002f3e">More...</a><br /></td></tr>
+<tr class="separator:a9f4d8cddb411020d4699c05f86002f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmlclient_1_1_i_connection"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classmlclient_1_1_i_connection')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmlclient_1_1_i_connection.html">mlclient::IConnection</a></td></tr>
 <tr class="memitem:a821e52b676376b6b62896e63c0594435 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a821e52b676376b6b62896e63c0594435">IConnection</a> ()=default</td></tr>
 <tr class="memdesc:a821e52b676376b6b62896e63c0594435 inherit pub_methods_classmlclient_1_1_i_connection"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> instance.  <a href="#a821e52b676376b6b62896e63c0594435">More...</a><br /></td></tr>
@@ -269,6 +281,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8de106c3b1dca7627d1803e6e2720451"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mlclient::Connection::connect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Connects or tests the authentication in the connection. May not actually connect. </p>
+<dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#afda80ba717ee31d4930101e1bc62035b">mlclient::IConnection</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7cb0f7bc4146e00665f8d94989ad9369"></a>
 <div class="memitem">
 <div class="memproto">
@@ -308,6 +348,34 @@ Public Member Functions</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a54fddb7c48924d45904dd2fc686b5839">mlclient::IConnection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a888ee845034b3818b0cd0e8f1f5343ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mlclient::Connection::disconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frees up resources held by the connection, until the next call to connect. </p>
+<dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a7c68b9371c7238e1f193a615b215eeb8">mlclient::IConnection</a>.</p>
 
 </div>
 </div>
@@ -582,6 +650,65 @@ Public Member Functions</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a0a7d25c5af3e72eb1a8b539a5c36262c">mlclient::IConnection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f4d8cddb411020d4699c05f86002f3e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::Connection::listCollections </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parentCollection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists the immediate child collections of the specified parent Collections. </p>
+<dl class="section note"><dt>Note</dt><dd>Parent collection must start with a / </dd>
+<dd>
+Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#ac3c2fe2bbc6bb8336e5898e617be46c2">mlclient::IConnection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e79bddfe74f1809971724013b93a247"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::Connection::listRootCollections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character. </p>
+<dl class="section note"><dt>Note</dt><dd>Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#ac3ac790b2c71066368b20237a23e6a7c">mlclient::IConnection</a>.</p>
 
 </div>
 </div>

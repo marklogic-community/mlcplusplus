@@ -242,6 +242,20 @@
       <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false) override</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>connect</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a8de106c3b1dca7627d1803e6e2720451</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>disconnect</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a888ee845034b3818b0cd0e8f1f5343ab</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
@@ -310,6 +324,20 @@
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
       <anchor>a0d2dc7e12ec1eadec6d78c49536c2d4e</anchor>
       <arglist>(const SearchDescription &amp;desc) override</arglist>
+    </member>
+    <member kind="function">
+      <type>Response *</type>
+      <name>listRootCollections</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a2e79bddfe74f1809971724013b93a247</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>Response *</type>
+      <name>listCollections</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a9f4d8cddb411020d4699c05f86002f3e</anchor>
+      <arglist>(const std::string &amp;parentCollection) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -319,6 +347,20 @@
       <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false) override</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>connect</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a8de106c3b1dca7627d1803e6e2720451</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>disconnect</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a888ee845034b3818b0cd0e8f1f5343ab</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
@@ -387,6 +429,20 @@
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
       <anchor>a0d2dc7e12ec1eadec6d78c49536c2d4e</anchor>
       <arglist>(const SearchDescription &amp;desc) override</arglist>
+    </member>
+    <member kind="function">
+      <type>Response *</type>
+      <name>listRootCollections</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a2e79bddfe74f1809971724013b93a247</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>Response *</type>
+      <name>listCollections</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a9f4d8cddb411020d4699c05f86002f3e</anchor>
+      <arglist>(const std::string &amp;parentCollection) override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -743,6 +799,20 @@
       <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>connect</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>afda80ba717ee31d4930101e1bc62035b</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>disconnect</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>a7c68b9371c7238e1f193a615b215eeb8</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
@@ -811,6 +881,20 @@
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
       <anchor>a79f13a3472446cb05412ddcd4a28fc75</anchor>
       <arglist>(const SearchDescription &amp;desc)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Response *</type>
+      <name>listRootCollections</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>ac3ac790b2c71066368b20237a23e6a7c</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Response *</type>
+      <name>listCollections</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>ac3c2fe2bbc6bb8336e5898e617be46c2</anchor>
+      <arglist>(const std::string &amp;parentCollection)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -820,6 +904,20 @@
       <arglist>(const std::string &amp;hostname, const std::string &amp;port, const std::string &amp;username, const std::string &amp;password, const bool usessl=false)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>connect</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>afda80ba717ee31d4930101e1bc62035b</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>disconnect</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>a7c68b9371c7238e1f193a615b215eeb8</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>setDatabaseName</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
@@ -888,6 +986,20 @@
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
       <anchor>a79f13a3472446cb05412ddcd4a28fc75</anchor>
       <arglist>(const SearchDescription &amp;desc)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Response *</type>
+      <name>listRootCollections</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>ac3ac790b2c71066368b20237a23e6a7c</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Response *</type>
+      <name>listCollections</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>ac3c2fe2bbc6bb8336e5898e617be46c2</anchor>
+      <arglist>(const std::string &amp;parentCollection)=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1143,6 +1255,42 @@
       <arglist>() const </arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>mlclient::SearchResult</name>
+    <filename>classmlclient_1_1_search_result.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::SearchResultSet</name>
+    <filename>classmlclient_1_1_search_result_set.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>SearchResultSet</name>
+      <anchorfile>classmlclient_1_1_search_result_set.html</anchorfile>
+      <anchor>a09b346f3d39812d876e9041af0fa7301</anchor>
+      <arglist>(IConnection *conn, SearchDescription &amp;desc)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~SearchResultSet</name>
+      <anchorfile>classmlclient_1_1_search_result_set.html</anchorfile>
+      <anchor>a8498ac974f338d35e47acc6b7beeddac</anchor>
+      <arglist>()=default</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>fetch</name>
+      <anchorfile>classmlclient_1_1_search_result_set.html</anchorfile>
+      <anchor>aca734f56b0108e20c63e252db996cf9d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::exception *</type>
+      <name>getFetchException</name>
+      <anchorfile>classmlclient_1_1_search_result_set.html</anchorfile>
+      <anchor>a4bb005ee6e8f1ff7fcf990e4d5c315ba</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
   <compound kind="namespace">
     <name>mlclient</name>
     <filename>namespacemlclient.html</filename>
@@ -1158,6 +1306,8 @@
     <class kind="class">mlclient::NoCredentialsException</class>
     <class kind="class">mlclient::Response</class>
     <class kind="class">mlclient::SearchDescription</class>
+    <class kind="class">mlclient::SearchResult</class>
+    <class kind="class">mlclient::SearchResultSet</class>
     <member kind="enumeration">
       <type></type>
       <name>BinaryEncoding</name>
@@ -1258,10 +1408,14 @@
     <docanchor file="page_devguide" title="General Troubleshooting Techniques">sec_troubletechs</docanchor>
   </compound>
   <compound kind="page">
-    <name>page_Install</name>
+    <name>page_install</name>
     <title>Installing MLCPlusPlus</title>
-    <filename>page__install</filename>
-    <docanchor file="page__install" title="Installation">sec_Installation</docanchor>
+    <filename>page_install</filename>
+    <docanchor file="page_install" title="Get Casablanca">sec_getcasablanca</docanchor>
+    <docanchor file="page_install">sec_getpugixml</docanchor>
+    <docanchor file="page_install" title="Building the MLCPlusPlus library from source">sec_buildit</docanchor>
+    <docanchor file="page_install" title="Using the MLCPlusPlus library in your C++ application">sec_using</docanchor>
+    <docanchor file="page_install" title="Compiling the tests">sec_compilingtests</docanchor>
   </compound>
   <compound kind="page">
     <name>index</name>
