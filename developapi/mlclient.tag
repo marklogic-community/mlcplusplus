@@ -100,7 +100,6 @@
     <class kind="class">mlclient::IDocumentContent</class>
     <class kind="class">mlclient::ITextDocumentContent</class>
     <class kind="class">mlclient::GenericTextDocumentContent</class>
-    <class kind="class">mlclient::IBinaryDocumentContent</class>
     <namespace>mlclient</namespace>
     <member kind="enumeration">
       <type></type>
@@ -707,74 +706,6 @@
     <filename>classmlclient_1_1_http_headers.html</filename>
   </compound>
   <compound kind="class">
-    <name>mlclient::IBinaryDocumentContent</name>
-    <filename>classmlclient_1_1_i_binary_document_content.html</filename>
-    <base>mlclient::IDocumentContent</base>
-    <member kind="function">
-      <type></type>
-      <name>IBinaryDocumentContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>a0422bc609995315371f01f2e5ba86510</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~IBinaryDocumentContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>a5d661a5094264e8484edcebb68f0f2db</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>a882d01fb57977eb05f23c3eae224c968</anchor>
-      <arglist>(std::string content)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>getContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>a2f917038feb72dab74c63ebac75d6d02</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>getContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>aeaafb74f1152b61c12f3a0069d7ebf32</anchor>
-      <arglist>(const enum BinaryEncoding &amp;encoding=BinaryEncoding::HEX)</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual std::string</type>
-      <name>getMimeType</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>a90c5e793e93d58d4780114ce3ffd4a96</anchor>
-      <arglist>() const  override=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual void</type>
-      <name>setMimeType</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>ae9871f1ba9c5b85ed2a2463577828f72</anchor>
-      <arglist>(const std::string &amp;mt) override=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual std::ostream *</type>
-      <name>getStream</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>aa2b472a0dac3cf1b852615579cd8dd53</anchor>
-      <arglist>() const  override=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual std::string</type>
-      <name>getContent</name>
-      <anchorfile>classmlclient_1_1_i_binary_document_content.html</anchorfile>
-      <anchor>ab4c50abc28510d17e3c8803e014fcd21</anchor>
-      <arglist>() const  override=0</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>mlclient::IConnection</name>
     <filename>classmlclient_1_1_i_connection.html</filename>
     <member kind="function">
@@ -1189,6 +1120,38 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>mlclient::utilities::ResponseHelper</name>
+    <filename>classmlclient_1_1utilities_1_1_response_helper.html</filename>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>isInError</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>a0cffeedcd4fa73663c6fe7440dba3104</anchor>
+      <arglist>(const Response &amp;resp)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::string</type>
+      <name>getErrorMessage</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>abe287dda66374f733b99b2bf4dab5b99</anchor>
+      <arglist>(const Response &amp;resp)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::string</type>
+      <name>getErrorDetailAsString</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>a85dd3c1faa4ff29c6e01f609ac134c16</anchor>
+      <arglist>(const Response &amp;resp)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::list&lt; std::string &gt;</type>
+      <name>getSuggestions</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>a59fd8e2c54fb4ca33540d05fbd2be39f</anchor>
+      <arglist>(const Response &amp;resp)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>mlclient::SearchDescription</name>
     <filename>classmlclient_1_1_search_description.html</filename>
     <member kind="function">
@@ -1298,7 +1261,6 @@
     <class kind="class">mlclient::Connection</class>
     <class kind="class">mlclient::GenericTextDocumentContent</class>
     <class kind="class">mlclient::HttpHeaders</class>
-    <class kind="class">mlclient::IBinaryDocumentContent</class>
     <class kind="class">mlclient::IConnection</class>
     <class kind="class">mlclient::IDocumentContent</class>
     <class kind="class">mlclient::InvalidFormatException</class>
@@ -1336,6 +1298,7 @@
     <class kind="class">mlclient::utilities::CppRestJsonDocumentContent</class>
     <class kind="class">mlclient::utilities::CppRestJsonHelper</class>
     <class kind="class">mlclient::utilities::PugiXmlHelper</class>
+    <class kind="class">mlclient::utilities::ResponseHelper</class>
   </compound>
   <compound kind="page">
     <name>page_CWrapper</name>
@@ -1414,6 +1377,7 @@
     <docanchor file="page_install" title="Get Casablanca">sec_getcasablanca</docanchor>
     <docanchor file="page_install">sec_getpugixml</docanchor>
     <docanchor file="page_install" title="Building the MLCPlusPlus library from source">sec_buildit</docanchor>
+    <docanchor file="page_install" title="Installing MLCPlusPlus globally in your system">sec_install_for_dev</docanchor>
     <docanchor file="page_install" title="Using the MLCPlusPlus library in your C++ application">sec_using</docanchor>
     <docanchor file="page_install" title="Compiling the tests">sec_compilingtests</docanchor>
   </compound>

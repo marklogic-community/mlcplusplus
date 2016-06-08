@@ -110,12 +110,28 @@ Building the MLCPlusPlus library from source</h1>
 <li>On Windows, TODO - Coming Soon for Visual Studio</li>
 </ul>
 <p>(Note: In future, if you want to remove all built files, execute './clean.sh' and hit enter )</p>
+<h1><a class="anchor" id="sec_install_for_dev"></a>
+Installing MLCPlusPlus globally in your system</h1>
+<p>If you intend to use MLCPlusPlus as a library in your own development project, use Unix Makefiles via the gen-unix.sh command</p>
+<p>Once this completes successfully you will receive a message telling you to <code>cd bin;make</code> - do this now.</p>
+<p>Note*: If you receive an error message then you likely have not installed all the above dependencies. Follow those instructions again.</p>
+<p>Now you need to install MLCPlusPlus. To do this type <code>sudo make install</code>, and enter your system admin password. All header files will be placed in to /usr/local/include/mlclient and the libmlclient.dylib (or .so) will be installed in /usr/local/lib .</p>
+<p>You are now ready to develop using MLCPlusPlus.</p>
 <h1><a class="anchor" id="sec_using"></a>
 Using the MLCPlusPlus library in your C++ application</h1>
 <p>Start with the Connection class. This provides a connect function and callbacks for all MarkLogic REST API functions.</p>
 <p>This class also abstracts the underlying security mechanism used to authenticate to the server.</p>
 <p>Simply create a Connection class, call configure to set up the connection parameters, then call a function!</p>
 <p>The API documentation can be found here: <a href="http://adamfowleruk.github.io/mlcplusplus/api/index.html">http://adamfowleruk.github.io/mlcplusplus/api/index.html</a></p>
+<p>To use this class, add the following include:- </p><div class="fragment"><div class="line">{C++}</div>
+<div class="line"><span class="preprocessor">#include &lt;mlclient/Connection.hpp&gt;</span></div>
+</div><!-- fragment --><p>Then declare you are using the right namespace, or create a connection instance, and use it:-</p>
+<div class="fragment"><div class="line">{C++}</div>
+<div class="line"><a class="code" href="classmlclient_1_1_connection.html">mlclient::Connection</a>* conn = <span class="keyword">new</span> Connection();</div>
+<div class="line">conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#a769a2073f7d09bc7f80e0a42587b0de0">configure</a>(<span class="stringliteral">&quot;localhost&quot;</span>,<span class="stringliteral">&quot;8050&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="keyword">false</span>);</div>
+<div class="line"><a class="code" href="classmlclient_1_1_response.html">mlclient::Response</a>* resp = conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#adad12f7f19c4fa6fe991b8a70e2f85a9">getDocument</a>(<span class="stringliteral">&quot;/some/uri.json&quot;</span>);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Doc content: &quot;</span> &lt;&lt; resp-&gt;<a class="code" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a>() &lt;&lt; std::endl;</div>
+</div><!-- fragment --><p>You may want to consider creating a ConnectionFactory to manage your connection. See the tests folder for an example of a singleton that manages a single connection instance for use between requests.</p>
 <h1><a class="anchor" id="sec_compilingtests"></a>
 Compiling the tests</h1>
 <p>These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to work on your own projects though. </p>

@@ -108,10 +108,9 @@ Inheritance diagram for mlclient::IDocumentContent:</div>
  <div class="center">
   <img src="classmlclient_1_1_i_document_content.png" usemap="#mlclient::IDocumentContent_map" alt=""/>
   <map id="mlclient::IDocumentContent_map" name="mlclient::IDocumentContent_map">
-<area href="classmlclient_1_1_i_binary_document_content.html" title="This class is a specialisation of IDocumentContent that holds binary data. " alt="mlclient::IBinaryDocumentContent" shape="rect" coords="0,56,277,80"/>
-<area href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. " alt="mlclient::ITextDocumentContent" shape="rect" coords="287,56,564,80"/>
-<area href="classmlclient_1_1_generic_text_document_content.html" title="This class is a specialisation of ITextDocumentContent (and thus IDocumentContent) that holds all dat..." alt="mlclient::GenericTextDocumentContent" shape="rect" coords="143,112,420,136"/>
-<area href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. " alt="mlclient::utilities::CppRestJsonDocumentContent" shape="rect" coords="430,112,707,136"/>
+<area href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. " alt="mlclient::ITextDocumentContent" shape="rect" coords="143,56,420,80"/>
+<area href="classmlclient_1_1_generic_text_document_content.html" title="This class is a specialisation of ITextDocumentContent (and thus IDocumentContent) that holds all dat..." alt="mlclient::GenericTextDocumentContent" shape="rect" coords="0,112,277,136"/>
+<area href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. " alt="mlclient::utilities::CppRestJsonDocumentContent" shape="rect" coords="287,112,564,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -217,7 +216,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 <p>This allows streaming of a HTTP request, with data encoded as a string.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string representing this content; </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_i_binary_document_content.html#ab4c50abc28510d17e3c8803e014fcd21">mlclient::IBinaryDocumentContent</a>, <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a70818dba76a1b1dc28cd1ac1b03ab6a2">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a2597ba7ca0d8c17a5be610894afa2ecc">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a70818dba76a1b1dc28cd1ac1b03ab6a2">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a2597ba7ca0d8c17a5be610894afa2ecc">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
@@ -246,7 +245,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 <p>E.g. application/json or application/xml</p>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server) </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_i_binary_document_content.html#a90c5e793e93d58d4780114ce3ffd4a96">mlclient::IBinaryDocumentContent</a>, <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a4487625bb4ab15e2d7709778a2926458">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a08f053568a7c54781402db0bd36dffa0">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a4487625bb4ab15e2d7709778a2926458">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a08f053568a7c54781402db0bd36dffa0">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
@@ -276,7 +275,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>An ostream instance wrapping the content of this Document Content instance </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_i_binary_document_content.html#aa2b472a0dac3cf1b852615579cd8dd53">mlclient::IBinaryDocumentContent</a>, <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a5363fc970e08a32ef5dcacee62884cbb">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#af39265eb985910665a2097c4784371c1">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a5363fc970e08a32ef5dcacee62884cbb">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#af39265eb985910665a2097c4784371c1">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
@@ -311,7 +310,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_i_binary_document_content.html#ae9871f1ba9c5b85ed2a2463577828f72">mlclient::IBinaryDocumentContent</a>, <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a5e53fb0737d1488448332f222671816e">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#aa7e571e60255efcdc21ea5f56e6fbed8">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a5e53fb0737d1488448332f222671816e">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#aa7e571e60255efcdc21ea5f56e6fbed8">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
