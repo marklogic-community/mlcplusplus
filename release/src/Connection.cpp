@@ -140,12 +140,13 @@ Response* Connection::listRootCollections() {
 Response* Connection::listCollections(const std::string& parentCollection) {
   std::ostringstream os;
   os << "{\"search\": {\"query\": {\"collection-query\" : {\"uri\": [\"" << parentCollection << "\"]}},";
-  os << "\"options\": {\"values\": [{\"name\": \"childcollectionsvalues\",\"constraint\": [{\"name\": \"childcollections\",";
-  os << "\"collection\": {\"prefix\": \"" << parentCollection << "\"}}]}]}}}";
+  os << "\"options\": {\"default-suggestion-source\": {\"collection\": {\"prefix\":\"" << parentCollection << "\"}}}}}";
   GenericTextDocumentContent tdc;
   tdc.setMimeType(IDocumentContent::MIME_JSON);
   tdc.setContent(os.str());
-  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/values/shotgun?direction=ascending&view=values",tdc);
+  // TODO handle query for /some that matches /some/col1 returns just /col1 - should correct to /some/col1???
+  // TODO Find out why Accept: application/json is not being sent correctly (it works in PostMan)
+  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/suggest?format=json",tdc);
 }
 
 } // end namespace mlclient

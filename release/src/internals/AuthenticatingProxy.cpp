@@ -256,6 +256,7 @@ Response* AuthenticatingProxy::postSync(const std::string& host,
 {
   TIMED_FUNC(AuthenticatingProxy_postSync);
   LOG(DEBUG) << "    Entering postSync";
+  LOG(DEBUG) << "    Post content: " << body.getContent();
   Response* response = new Response;
 
   doRequest(http::methods::POST,host,path,headers,response,&body);

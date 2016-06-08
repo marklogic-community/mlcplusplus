@@ -11,10 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * CppRestJsonHelper.hpp
+ * \file CppRestJsonHelper.hpp
  *
- *  Created on: 25 Apr 2016
- *      Author: adamfowler
+ * \date 25 Apr 2016
+ * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
 #ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_

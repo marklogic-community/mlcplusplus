@@ -111,6 +111,7 @@ add_library (mlclient SHARED
     utilities/CppRestJsonHelper.cpp
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
+    utilities/ResponseHelper.cpp
 )
 
 
@@ -306,7 +307,7 @@ SWIG_LINK_LIBRARIES(mlclientpython
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib)
 install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
-install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
+install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
 
 
 # CPack installer

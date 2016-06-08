@@ -70,5 +70,6 @@ add_executable(mlcpptest
     ConnectionDocumentCrudTest.cpp
     ConnectionSearchTest.cpp
     SearchResultSetTest.cpp
+    ConnectionCollectionsTest.cpp
 )
 target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES})
