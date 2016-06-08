@@ -44,6 +44,19 @@ to install the library on your system
 
 (Note: In future, if you want to remove all built files, execute './clean.sh' and hit enter )
 
+\section sec_install_for_dev Installing MLCPlusPlus globally in your system
+
+If you intend to use MLCPlusPlus as a library in your own development project, use Unix Makefiles via the gen-unix.sh command
+
+Once this completes successfully you will receive a message telling you to `cd bin;make` - do this now.
+
+*Note*: If you receive an error message then you likely have not installed all the above dependencies. Follow those instructions again.
+
+Now you need to install MLCPlusPlus. To do this type `sudo make install`, and enter your system admin password. All
+header files will be placed in to /usr/local/include/mlclient and the libmlclient.dylib (or .so) will be installed in
+/usr/local/lib .
+
+You are now ready to develop using MLCPlusPlus.
 
 \section sec_using Using the MLCPlusPlus library in your C++ application
 
@@ -54,6 +67,23 @@ This class also abstracts the underlying security mechanism used to authenticate
 Simply create a Connection class, call configure to set up the connection parameters, then call a function!
 
 The API documentation can be found here: http://adamfowleruk.github.io/mlcplusplus/api/index.html
+
+To use this class, add the following include:-
+```C++
+#include <mlclient/Connection.hpp>
+```
+
+Then declare you are using the right namespace, or create a connection instance, and use it:-
+
+```C++
+mlclient::Connection* conn = new Connection();
+conn->configure("localhost","8050","admin","admin",false);
+mlclient::Response* resp = conn->getDocument("/some/uri.json");
+std::cout << "Doc content: " << resp->getContent() << std::endl;
+```
+
+You may want to consider creating a ConnectionFactory to manage your connection. See the tests folder for an example of
+a singleton that manages a single connection instance for use between requests.
 
 \section sec_compilingtests Compiling the tests
 
