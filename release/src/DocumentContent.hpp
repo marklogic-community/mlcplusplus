@@ -262,17 +262,17 @@ enum BinaryEncoding : int {
  *
  * \warning This class is not yet implemented by a concrete class, or supported by the C++ API. It is here for reference only.
  */
-class IBinaryDocumentContent : public IDocumentContent {
-public:
+//class IBinaryDocumentContent : public IDocumentContent {
+//public:
   /**
    * \brief Default constructor. Initialises the binary content to an empty buffer, of zero length.
    */
-  IBinaryDocumentContent();
+  //IBinaryDocumentContent();
 
   /**
    * \brief Destructor. Will deallocate all contained buffered data
    */
-  virtual ~IBinaryDocumentContent();
+  //virtual ~IBinaryDocumentContent();
 
   /**
    * \brief Sets the content from the given string.
@@ -283,7 +283,7 @@ public:
    *
    * \param[in] content The string content to copy in to the buffer.
    */
-  void setContent(std::string content);
+  //void setContent(std::string content);
 
   /**
    * \brief Returns the textual representation of this content.
@@ -292,7 +292,7 @@ public:
    *
    * \return The content of this buffer encoded as a string (HEX encoding by default)
    */
-  std::string& getContent(); // default to one encoding
+  //std::string getContent() const override; // default to one encoding
 
   /**
    * \brief Returns the string representation(encoding) of the binary content, using the specified representation (HEX, BINARY, etc.)
@@ -303,7 +303,7 @@ public:
    * \param[in] encoding The encoding to use. Defaults to HEX
    * \return The string representation of the binary content in the requested encoding.
    */
-  std::string& getContent(const enum BinaryEncoding& encoding = BinaryEncoding::HEX);
+  //std::string getContentWithEncoding(const enum BinaryEncoding& encoding = BinaryEncoding::HEX);
 
   /**
    * \brief Sets the content from a raw binary buffer.
@@ -332,7 +332,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  virtual std::string getMimeType() const override = 0;
+  //virtual std::string getMimeType() const override = 0;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -341,7 +341,7 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  virtual void setMimeType(const std::string& mt) override = 0;
+  //virtual void setMimeType(const std::string& mt) override = 0;
 
 
 
@@ -354,19 +354,13 @@ public:
    *
    * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  virtual std::ostream* getStream() const override = 0;
+  //virtual std::ostream* getStream() const override = 0;
 
-  /**
-   * \brief Returns the content as a string
-   *
-   * \return The string representation of the content.
-   */
-  virtual std::string getContent() const override = 0;
 
-private:
-  class Impl;
-  Impl* mImpl;
-};
+//private:
+//  class Impl;
+//  Impl* mImpl;
+//};
 
 
 // TODO << operator for BinaryDocumentContent
