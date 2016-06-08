@@ -20,6 +20,7 @@
 #include "internals/AuthenticatingProxy.hpp"
 
 #include "ext/easylogging++.h"
+#include <sstream>
 
 namespace mlclient {
 
@@ -51,6 +52,14 @@ void Connection::configure(const std::string& hostname, const std::string& port,
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
   internals::Credentials c(username, password);
   mImpl->proxy.addCredentials(c);
+}
+
+bool Connection::connect() {
+  return true; // TODO test authentication scheme and pre-calculate auth where possible
+}
+
+void Connection::disconnect() {
+  ; // TODO remove any TCP connections (if they have a keep-alive, they will still exist)
 }
 
 void Connection::setDatabaseName(const std::string& db) {
@@ -124,5 +133,20 @@ Response* Connection::search(const SearchDescription& desc) {
   return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
 }
 
+Response* Connection::listRootCollections() {
+  return listCollections(""); // TODO Check this works and doesn't require a "/"
+}
+
+Response* Connection::listCollections(const std::string& parentCollection) {
+  std::ostringstream os;
+  os << "{\"search\": {\"query\": {\"collection-query\" : {\"uri\": [\"" << parentCollection << "\"]}},";
+  os << "\"options\": {\"default-suggestion-source\": {\"collection\": {\"prefix\":\"" << parentCollection << "\"}}}}}";
+  GenericTextDocumentContent tdc;
+  tdc.setMimeType(IDocumentContent::MIME_JSON);
+  tdc.setContent(os.str());
+  // TODO handle query for /some that matches /some/col1 returns just /col1 - should correct to /some/col1???
+  // TODO Find out why Accept: application/json is not being sent correctly (it works in PostMan)
+  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/suggest?format=json",tdc);
+}
 
 } // end namespace mlclient

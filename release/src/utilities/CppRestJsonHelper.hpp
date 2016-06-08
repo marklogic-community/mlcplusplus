@@ -11,10 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * CppRestJsonHelper.hpp
+ * \file CppRestJsonHelper.hpp
  *
- *  Created on: 25 Apr 2016
- *      Author: adamfowler
+ * \date 25 Apr 2016
+ * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
 #ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
@@ -24,6 +24,7 @@
 #include <cpprest/http_client.h>
 #include "../DocumentContent.hpp"
 #include "../Response.hpp"
+#include "../SearchResult.hpp"
 
 namespace mlclient {
 
@@ -90,6 +91,8 @@ public:
    * \return A Microsoft cpprest API web::json::value instance created from the Response.
    */
   static web::json::value fromResponse(const Response& resp);
+
+  static web::json::value fromSearchResult(const SearchResult& result);
   /// @}
 
 };
