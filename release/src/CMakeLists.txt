@@ -38,6 +38,15 @@ else()
   message("-- Unsupported Build Platform.")
 endif()
 
+# Universal binary only makes sense on OSX
+IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    OPTION (OSX_UNIVERSAL "Build an OSX universal binary" OFF)
+    IF (OSX_UNIVERSAL)
+        message("-- Building Mac OS X Universal Binary")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch i386 -arch x86_64")
+    ENDIF ()
+ENDIF ()
+
 # Casablanca fix for versions before 2.7.0 (CLang issue)
 add_definitions("-Wno-error=unused-local-typedefs")
 add_definitions("-Wnounused-local-typedefs")
@@ -112,6 +121,10 @@ add_library (mlclient SHARED
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
     utilities/ResponseHelper.cpp
+    utilities/SearchBuilder.cpp
+    utilities/SearchOptionsBuilder.cpp
+    
+    ext/pugixml/pugixml.cpp
 )
 
 
@@ -166,7 +179,7 @@ target_link_libraries (mlclient
 #    libcommon_utilities.dylib
     libssl.dylib
     libcrypto.dylib
-    libpugixml.a
+#    libpugixml.a
     ${Casablanca_LIBRARIES}
 )
 
@@ -204,7 +217,7 @@ SWIG_LINK_LIBRARIES(mlclientpython
     libcpprest.dylib
     libssl.dylib
     libcrypto.dylib
-    libpugixml.a
+#    libpugixml.a
     mlclient
     ${Casablanca_LIBRARIES}
     ${PYTHON_LIBRARIES}
@@ -307,7 +320,7 @@ SWIG_LINK_LIBRARIES(mlclientpython
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib)
 install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
-install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
+install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
 
 
 # CPack installer

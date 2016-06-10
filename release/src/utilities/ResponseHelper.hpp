@@ -17,6 +17,9 @@
  * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
+#ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_
+#define SRC_UTILITIES_RESPONSEHELPER_HPP_
+
 #include "../Response.hpp"
 #include <list>
 #include <string>
@@ -83,3 +86,5 @@ public:
 } // end namespace utilities
 
 } // end namespace mlclient
+
+#endif

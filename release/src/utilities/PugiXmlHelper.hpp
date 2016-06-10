@@ -21,7 +21,7 @@
 #ifndef SRC_UTILITIES_PUGIXMLHELPER_HPP_
 #define SRC_UTILITIES_PUGIXMLHELPER_HPP_
 
-#include <pugixml.hpp>
+#include "../ext/pugixml/pugixml.hpp"
 #include "../Response.hpp"
 #include "../DocumentContent.hpp"
 

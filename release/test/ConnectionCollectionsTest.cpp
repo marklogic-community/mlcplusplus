@@ -51,6 +51,7 @@ void ConnectionCollectionsTest::tearDown(void) {
 
 void ConnectionCollectionsTest::testListTopLevelCollections(void) {
   TIMED_FUNC(testSaveJson);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testListTopLevelCollections";
 
   const Response* response = ml->listRootCollections();

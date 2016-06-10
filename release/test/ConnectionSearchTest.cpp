@@ -53,6 +53,7 @@ void ConnectionSearchTest::tearDown(void) {
 
 void ConnectionSearchTest::testEmptySearch() {
   TIMED_FUNC(testEmptySearch);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testEmptySearch";
   SearchDescription desc; // default empty search object
   LOG(DEBUG) << "  Got a blank SearchDescription object instance";
@@ -72,6 +73,7 @@ void ConnectionSearchTest::testEmptySearch() {
 
 void ConnectionSearchTest::testQueryText() {
   TIMED_FUNC(testQueryText);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testQueryText";
   SearchDescription desc; // default empty search object
   desc.setQueryText("wibble");
@@ -93,6 +95,7 @@ void ConnectionSearchTest::testQueryText() {
 
 void ConnectionSearchTest::testWordQuery() {
   TIMED_FUNC(testWordQuery);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testWordQuery";
   SearchDescription desc; // default empty search object
   GenericTextDocumentContent queryDoc;

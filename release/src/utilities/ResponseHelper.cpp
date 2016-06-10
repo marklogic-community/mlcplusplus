@@ -61,7 +61,7 @@ std::list<std::string> ResponseHelper::getSuggestions(const Response& resp) {
   const web::json::object& jsonObject = doc.as_object();
   const web::json::array& suggestionArray = jsonObject.at("suggestions").as_array();
   std::list<std::string> suggestions;
-  for (auto iter: suggestionArray) {
+  for (auto& iter: suggestionArray) {
     suggestions.push_back(iter.as_string());
   }
   return suggestions;

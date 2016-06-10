@@ -17,6 +17,9 @@
  * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
+#ifndef SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
+#define SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
+
 #include "../SearchDescription.hpp"
 #include "../DocumentContent.hpp"
 #include "SearchBuilder.hpp"
@@ -37,6 +40,9 @@ namespace utilities {
  *
  * \note This class deals only with search options, NOT complex searches or text grammar.
  *
+ * \note This class only ever generates JSON output, never XML. This enables the class to be more efficient,
+ * using the same internal structures as required by a JSON stream.
+ *
  * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
@@ -49,39 +55,31 @@ public:
   SearchOptionsBuilder();
   ~SearchOptionsBuilder() = default;
 
-  // public static methods that create items used in options, such as container references
-  static IContainerRef& elementContainerRef();
-  static IContainerRef& elementAttributeContainerRef();
-  static IContainerRef& propertyContainerRef();
-  static IContainerRef& xpathContainerRef();
-  static IContainerRef& fieldContainerRef();
-
   // public class methods that control the create of a search or query
   SearchOptionsBuilder* additionalQuery(const IQuery& query);
   SearchOptionsBuilder* containerConstraint(const IContainerRef& container);
   //SearchOptionsBuilder* fieldRangeConstraint(const IContainerRef& container); // use fieldContainerRef() with containerConstraint()
 
-  SearchOptionsBuilder* geoAttributePairConstraint(const IContainerRef& container);
-  SearchOptionsBuilder* geoElementConstraint(const IContainerRef& container);
-  SearchOptionsBuilder* geoElementPairConstraint(const IContainerRef& container);
-  SearchOptionsBuilder* geoPathConstraint(const IContainerRef& container);
+  //SearchOptionsBuilder* geoAttributePairConstraint(const IContainerRef& container);
+  //SearchOptionsBuilder* geoElementConstraint(const IContainerRef& container);
+  //SearchOptionsBuilder* geoElementPairConstraint(const IContainerRef& container);
+  //SearchOptionsBuilder* geoPathConstraint(const IContainerRef& container);
 
   SearchOptionsBuilder* emptySnippet();
   SearchOptionsBuilder* rawSnippet();
 
-  SearchOptionsBuilder* extractAttributeMetadata();
-  SearchOptionsBuilder* extractElementMetadata();
-  SearchOptionsBuilder* extractPropertyMetadata();
-  SearchOptionsBuilder* extractConstraintMetadata();
+  //SearchOptionsBuilder* extractAttributeMetadata();
+  //SearchOptionsBuilder* extractElementMetadata();
+  //SearchOptionsBuilder* extractPropertyMetadata();
+  //SearchOptionsBuilder* extractConstraintMetadata();
 
-  SearchOptionsBuilder* forests(std::list<std::string> forests);
-  SearchOptionsBuilder* fragmentScope(SearchOptionsBuilder::FragmentScope scope);
+  //SearchOptionsBuilder* forests(std::list<std::string> forests);
+  //SearchOptionsBuilder* fragmentScope(SearchOptionsBuilder::FragmentScope scope);
 
   // TODO grammar options including - grouping, implicit, implicitAnd, implicitOr, joiner
 
-  void fromDocument(const IDocumentContent& doc);
-  IDocumentContent& toJsonDocument();
-  IDocumentContent& toXmlDocument();
+  void fromDocument(const ITextDocumentContent& doc);
+  ITextDocumentContent& toDocument();
 
 private:
   class Impl; // forward declaration - hides underlying API dependencies
@@ -92,4 +90,6 @@ private:
 } // end namespace utilities
 
 } // end namespace mlclient
+
+#endif
 

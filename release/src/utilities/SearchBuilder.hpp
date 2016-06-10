@@ -17,25 +17,116 @@
  * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
+#ifndef SRC_UTILITIES_SEARCHBUILDER_HPP_
+#define SRC_UTILITIES_SEARCHBUILDER_HPP_
+
+#include <cpprest/http_client.h> // deliberate compile time dependency
 #include "../SearchDescription.hpp"
-#include <list>
+#include <vector>
 #include <string>
+#include <ostream>
 
 namespace mlclient {
 
 namespace utilities {
 
+
+// QUERY TYPES
+
 class IQuery {
-  // TODO define IQuery
+public:
+  IQuery() = default;
+  virtual ~IQuery() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
+
+protected:
+  virtual std::ostream& write(std::ostream& os) const = 0;
 };
+
+
+std::ostream& operator << (std::ostream& os, const IQuery& rt);
+std::string& operator +(std::string& s, const IQuery& rt);
+
+
+
+class GenericQuery: public IQuery {
+public:
+  GenericQuery();
+  ~GenericQuery() = default;
+
+  void setQuery(const web::json::value& value);
+  const web::json::value& getQuery() const;
+
+protected:
+  std::ostream& write(std::ostream& os) const override;
+
+private:
+  web::json::value value;
+};
+
+class JsonPropertyQuery: public IQuery {
+public:
+  JsonPropertyQuery();
+  ~JsonPropertyQuery() = default;
+
+  void setQuery(const std::string& property,const web::json::value& value);
+  const web::json::value& getQuery() const;
+
+protected:
+  std::ostream& write(std::ostream& os) const override;
+
+private:
+  web::json::value value;
+};
+
+// CONTAINER REFERENCES
 
 class IContainerRef {
+public:
   // TODO define IContainerRef
+  IContainerRef() = default;
+  virtual ~IContainerRef() = default;
+
+  friend std::ostream& operator<<(std::ostream& os, const IContainerRef& ref);
+
+protected:
+  virtual std::ostream& write(std::ostream& os) const = 0;
+};
+std::ostream& operator << (std::ostream& os, const IContainerRef& rt);
+std::string& operator +(std::string& s, const IContainerRef& rt);
+
+class JsonPropertyRef : public IContainerRef {
+public:
+  JsonPropertyRef();
+  ~JsonPropertyRef() = default;
+
+  void setProperty(const std::string& property);
+  const web::json::value getRef();
+
+protected:
+  std::ostream& write(std::ostream& os) const override;
+
+private:
+  web::json::value value;
 };
 
+
+// MARKLOGIC SUPPORTED TYPES
+
 class ITypedValue {
-  // TODO define ITypedValue
+public:
+  ITypedValue() = default;
+  virtual ~ITypedValue() = default;
 };
+
+
+
+
+
+
+
+
 
 /**
  * \class SearchBuilder
@@ -47,6 +138,9 @@ class ITypedValue {
  *
  * \note This class deals only with a complex search, NOT search options or text grammar.
  *
+ * \note This class only ever generates JSON output, never XML. This enables the class to be more efficient,
+ * using the same internal structures as required by a JSON stream.
+ *
  * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
@@ -56,23 +150,30 @@ public:
     Equal,NotEqual,LessThan,LessThanOrEqual,MoreThan,MoreThanOrEqual
   };
 
-  SearchBuilder() = default;
+  SearchBuilder();
   ~SearchBuilder() = default;
 
   // public static methods that create query terms and option constraints
-  static IQuery& createCollectionQuery(const std::string& collection);
-  static IQuery& createWordQuery(const IContainerRef& container,const std::string& value);
-  static IQuery& createValueQuery(const IContainerRef& container,const ITypedValue& value);
-  static IQuery& createRangeQuery(const IContainerRef& container,const SearchBuilder::RangeOperation operation,const ITypedValue& value);
-  static IQuery& createConstraintQuery(const std::string& constraintName,const ITypedValue& value);
-  static IQuery& createUriQuery(const std::list<std::string> uris);
+  static IQuery* collectionQuery(const std::vector<std::string>& collections);
+  //static IQuery& createWordQuery(const IContainerRef& container,const std::string& value);
+  //static IQuery& createValueQuery(const IContainerRef& container,const ITypedValue& value);
+  //static IQuery& createRangeQuery(const IContainerRef& container,const SearchBuilder::RangeOperation operation,const ITypedValue& value);
+  //static IQuery& createConstraintQuery(const std::string& constraintName,const ITypedValue& value);
+  static IQuery* documentQuery(const std::vector<std::string>& uris);
 
   // public class methods that control the create of a search or query
-  SearchBuilder* andQuery(const std::list<IQuery&> queries);
-  SearchBuilder* orQuery(const std::list<IQuery&> queries);
-  SearchBuilder* notQuery(const std::list<IQuery&> queries);
+  static IQuery* andQuery(const std::vector<IQuery>& queries);
+  static IQuery* orQuery(const std::vector<IQuery>& queries);
+  static IQuery* notQuery(const std::vector<IQuery>& queries);
+
+  // instance methods that control the base search definition
+  SearchBuilder* setQuery(IQuery* query); // top level root query
+
+  ITextDocumentContent& toDocument();
 
 private:
+  class Impl; // forward declaration
+  Impl* mImpl;
 
 }; // end SearchBuilder class
 
@@ -80,3 +181,4 @@ private:
 
 } // end namespace mlclient
 
+#endif
