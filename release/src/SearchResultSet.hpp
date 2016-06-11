@@ -57,11 +57,20 @@ public:
    */
   std::exception* getFetchException();
 
+  const long getStart();
+  const long getTotal();
+  const long getPageLength();
+  const std::string& getSnippetFormat() const;
+  const std::string& getQueryResolutionTime() const;
+  const std::string& getSnippetResolutionTime() const;
+  const std::string& getTotalTime() const;
+
 private:
   IConnection* mConn;
   SearchDescription& mInitialDescription;
   std::vector<SearchResult> mResults;
   std::exception* mFetchException;
+
   long start;
   long total;
   long pageLength;

@@ -55,14 +55,14 @@ public:
   GenericQuery();
   ~GenericQuery() = default;
 
-  void setQuery(const web::json::value& value);
-  const web::json::value& getQuery() const;
+  void setQuery(const std::string& value);
+  const std::string& getQuery() const;
 
 protected:
   std::ostream& write(std::ostream& os) const override;
 
 private:
-  web::json::value value;
+  std::string value;
 };
 
 class JsonPropertyQuery: public IQuery {
@@ -70,14 +70,14 @@ public:
   JsonPropertyQuery();
   ~JsonPropertyQuery() = default;
 
-  void setQuery(const std::string& property,const web::json::value& value);
-  const web::json::value& getQuery() const;
+  void setQuery(const std::string& property,const std::string& value);
+  const std::string& getQuery() const;
 
 protected:
   std::ostream& write(std::ostream& os) const override;
 
 private:
-  web::json::value value;
+  std::string value;
 };
 
 // CONTAINER REFERENCES
@@ -102,13 +102,13 @@ public:
   ~JsonPropertyRef() = default;
 
   void setProperty(const std::string& property);
-  const web::json::value getRef();
+  const std::string getRef();
 
 protected:
   std::ostream& write(std::ostream& os) const override;
 
 private:
-  web::json::value value;
+  std::string value;
 };
 
 
@@ -169,7 +169,7 @@ public:
   // instance methods that control the base search definition
   SearchBuilder* setQuery(IQuery* query); // top level root query
 
-  ITextDocumentContent& toDocument();
+  ITextDocumentContent* toDocument();
 
 private:
   class Impl; // forward declaration

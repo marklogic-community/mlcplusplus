@@ -79,7 +79,7 @@ public:
   // TODO grammar options including - grouping, implicit, implicitAnd, implicitOr, joiner
 
   void fromDocument(const ITextDocumentContent& doc);
-  ITextDocumentContent& toDocument();
+  ITextDocumentContent* toDocument();
 
 private:
   class Impl; // forward declaration - hides underlying API dependencies

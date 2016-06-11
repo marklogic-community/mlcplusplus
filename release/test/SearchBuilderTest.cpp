@@ -72,8 +72,8 @@ void SearchBuilderTest::testAll() {
     )
   );
   */
-
-  desc.setQuery(builder.toDocument());
+  ITextDocumentContent& searchDoc = *builder.toDocument();
+  desc.setQuery(searchDoc);
   LOG(DEBUG) << "  Got a SearchDescription object instance";
 
   SearchResultSet* results = new SearchResultSet(ml,desc);

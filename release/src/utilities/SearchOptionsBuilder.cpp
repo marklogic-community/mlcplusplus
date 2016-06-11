@@ -33,12 +33,13 @@ namespace utilities {
 
 class SearchOptionsBuilder::Impl {
 public:
-  Impl() : value(web::json::value::object()) {
-    value["options"] = web::json::value::object();
-    value["options"]["constraints"] = web::json::value::array();
+  Impl() : additionalQuery(),constraints(),transform("raw") {
+    ;
   };
 
-  web::json::value value;
+  std::string additionalQuery;
+  std::vector<std::string> constraints;
+  std::string transform;
 };
 
 
@@ -52,35 +53,41 @@ SearchOptionsBuilder::SearchOptionsBuilder() : mImpl(new Impl) {
 SearchOptionsBuilder* SearchOptionsBuilder::additionalQuery(const IQuery& query) {
   std::ostringstream oss;
   oss << query;
-  mImpl->value["options"]["additional-query"] = web::json::value(oss.str());
+  mImpl->additionalQuery = oss.str();
   return this;
 }
 
 SearchOptionsBuilder* SearchOptionsBuilder::containerConstraint(const IContainerRef& container) {
   std::ostringstream oss;
   oss << container;
-  web::json::array& arr = mImpl->value["options"]["constraints"].as_array();
-  arr.at(arr.size()) = web::json::value(oss.str()); // validate this includes closing braces, and that we're appending correctly
+  mImpl->constraints.push_back(oss.str());
+
   return this;
 }
 
 
 SearchOptionsBuilder* SearchOptionsBuilder::emptySnippet() {
-  mImpl->value["options"]["transform-results"] = web::json::value("{\"apply\": \"empty\"}");
+  mImpl->transform = "empty";
   return this;
 }
 
 SearchOptionsBuilder* SearchOptionsBuilder::rawSnippet() {
-  mImpl->value["options"]["transform-results"] = web::json::value("{\"apply\": \"raw\"}");
+  mImpl->transform = "raw";
   return this;
 }
 
 void SearchOptionsBuilder::fromDocument(const ITextDocumentContent& doc) {
-  mImpl->value = CppRestJsonHelper::fromDocument(doc);
+  // TODO complete this, parse, and extract values
 }
 
-ITextDocumentContent& SearchOptionsBuilder::toDocument() {
-  return *CppRestJsonHelper::toDocument(mImpl->value);
+ITextDocumentContent* SearchOptionsBuilder::toDocument() {
+  std::ostringstream oss;
+  oss << "{\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
+  // TODO other JSON attributes
+  GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
+  tdc->setContent(oss.str());
+  tdc->setMimeType(IDocumentContent::MIME_JSON);
+  return tdc;
 }
 
 

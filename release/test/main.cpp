@@ -42,6 +42,7 @@ int main(int argc, const char * argv[])
   defaultConf.setToDefault();
   // Values are always std::string
   defaultConf.setGlobally(el::ConfigurationType::Format, "%datetime %level %fbase:%line %msg");
+  //defaultConf.setGlobally(el::ConfigurationType::ToStandardOutput, "false");
   // default logger uses default configurations
   el::Loggers::reconfigureLogger("default", defaultConf);
 

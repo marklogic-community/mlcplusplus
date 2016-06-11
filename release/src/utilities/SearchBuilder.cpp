@@ -20,12 +20,15 @@
 
 #include <cpprest/http_client.h>
 #include "SearchBuilder.hpp"
+#include "../DocumentContent.hpp"
 #include "CppRestJsonHelper.hpp"
 #include "CppRestJsonDocumentContent.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
+
+#include "../ext/easylogging++.h"
 
 namespace mlclient {
 
@@ -70,11 +73,11 @@ std::string& operator +(std::string& s, const GenericQuery& query) {
 }
 */
 
-void GenericQuery::setQuery(const web::json::value& value) {
+void GenericQuery::setQuery(const std::string& value) {
   this->value = value;
 }
 
-const web::json::value& GenericQuery::getQuery() const {
+const std::string& GenericQuery::getQuery() const {
   return value;
 }
 
@@ -102,14 +105,14 @@ std::string& operator +(std::string& s, const JsonPropertyQuery& query) {
   return s;
 }*/
 
-void JsonPropertyQuery::setQuery(const std::string& property,const web::json::value& value) {
-  std::ostringstream str;
-  str << "{\"container-query\": {\"property\": \"" << property << "\", \"value\": " << value << "}}"; // TODO validate value returns quotes around string and not around numbers, etc.
+void JsonPropertyQuery::setQuery(const std::string& property,const std::string& value) {
+  std::ostringstream oss;
+  oss << "{\"container-query\": {\"property\": \"" << property << "\", \"value\": " << value << "}}"; // TODO validate value returns quotes around string and not around numbers, etc.
   GenericQuery query;
-  query.setQuery(web::json::value(str.str()));
+  query.setQuery(oss.str());
 }
 
-const web::json::value& JsonPropertyQuery::getQuery() const {
+const std::string& JsonPropertyQuery::getQuery() const {
   return value;
 }
 
@@ -172,14 +175,20 @@ public:
       oss << iter; // TODO ensure comma between queries, and no trailing comma
     }
     oss << "]}";
-    query->setQuery(web::json::value(oss.str()));
+    query->setQuery(oss.str());
     return query;
   };
 
   static std::ostringstream& multiStringProperty(const std::vector<std::string> strings,const std::string& property,std::ostringstream& oss) {
     oss << "\"" << property << "\": [";
-    for (auto& iter: strings) {
-      oss << iter; // TODO ensure comma between queries, and no trailing comma
+    int count = 0;
+    int size = strings.size();
+    for (std::vector<std::string>::const_iterator str = strings.begin();str != strings.end();str++) {
+      oss << "\"" << *str << "\""; // ensure comma between queries, and no trailing comma
+      if (count < size - 1) {
+        oss << ",";
+      }
+      count++;
     }
     oss << "]";
     return oss;
@@ -203,10 +212,11 @@ SearchBuilder::SearchBuilder(): mImpl(new SearchBuilder::Impl) {
 IQuery* SearchBuilder::collectionQuery(const std::vector<std::string>& collections) {
   std::ostringstream oss;
   oss << "{\"collection-query\": {";
-  Impl::multiStringProperty(collections,"collection",oss);
+  Impl::multiStringProperty(collections,"uri",oss);
   oss << "}}";
+  LOG(DEBUG) << "SearchBuilder::collectionQuery: raw text: " << oss.str();
   GenericQuery* query = new GenericQuery;
-  query->setQuery(web::json::value(oss.str()));
+  query->setQuery(oss.str());
   return query;
 }
 
@@ -218,7 +228,7 @@ IQuery* SearchBuilder::documentQuery(const std::vector<std::string>& uris) {
   Impl::multiStringProperty(uris,"uri",oss);
   oss << "}}";
   GenericQuery* query = new GenericQuery;
-  query->setQuery(web::json::value(oss.str()));
+  query->setQuery(oss.str());
   return query;
 }
 
@@ -241,14 +251,22 @@ IQuery* SearchBuilder::notQuery(const std::vector<IQuery>& queries) {
 
 
 SearchBuilder* SearchBuilder::setQuery(IQuery* query) {
+  LOG(DEBUG) << "SearchBuilder::setQuery query to stream: " << *query;
   mImpl->rootQuery = query;
   return this;
 }
 
-ITextDocumentContent& SearchBuilder::toDocument() {
+ITextDocumentContent* SearchBuilder::toDocument() {
   std::ostringstream oss;
-  oss << mImpl->rootQuery;
-  return *CppRestJsonHelper::toDocument(web::json::value(oss.str()));
+  //oss << "{\"query\":";
+  oss << *(mImpl->rootQuery);
+  //oss << "}";
+  GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
+  tdc->setContent(oss.str());
+  tdc->setMimeType(mlclient::IDocumentContent::MIME_JSON);
+  return tdc;
+
+  //return CppRestJsonHelper::toDocument(web::json::value(oss.str()));
 }
 
 
