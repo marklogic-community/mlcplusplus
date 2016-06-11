@@ -23,6 +23,7 @@
 #define SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 
 #include "../DocumentContent.hpp"
+#include <cpprest/http_client.h>
 
 namespace mlclient {
 

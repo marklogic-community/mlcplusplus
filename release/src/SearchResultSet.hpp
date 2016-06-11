@@ -11,7 +11,7 @@
 #include "SearchResult.hpp"
 #include "Connection.hpp"
 #include "SearchDescription.hpp"
-#include <list>
+#include <vector>
 
 namespace mlclient {
 
@@ -24,7 +24,7 @@ namespace mlclient {
  */
 class SearchResultSet {
 public:
-  typedef std::list<SearchResult>::const_iterator const_iterator ;
+  typedef std::vector<SearchResult>::const_iterator const_iterator ;
 
   /**
    * \brief Creates a self-advancing result set given the specified search description
@@ -60,7 +60,7 @@ public:
 private:
   IConnection* mConn;
   SearchDescription& mInitialDescription;
-  std::list<SearchResult> mResults;
+  std::vector<SearchResult> mResults;
   std::exception* mFetchException;
   long start;
   long total;

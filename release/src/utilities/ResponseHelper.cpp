@@ -55,12 +55,12 @@ std::string ResponseHelper::getErrorDetailAsString(const Response& resp) {
   return message;
 }
 
-std::list<std::string> ResponseHelper::getSuggestions(const Response& resp) {
+std::vector<std::string> ResponseHelper::getSuggestions(const Response& resp) {
   // TODO add checks for JSON or XML - don't just assume JSON
   const web::json::value& doc = CppRestJsonHelper::fromResponse(resp);
   const web::json::object& jsonObject = doc.as_object();
   const web::json::array& suggestionArray = jsonObject.at("suggestions").as_array();
-  std::list<std::string> suggestions;
+  std::vector<std::string> suggestions;
   for (auto& iter: suggestionArray) {
     suggestions.push_back(iter.as_string());
   }

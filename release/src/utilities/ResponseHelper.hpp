@@ -78,7 +78,7 @@ public:
    * \param Response The response to introspect
    * \return A list of suggestion values
    */
-  static std::list<std::string> getSuggestions(const Response& resp);
+  static std::vector<std::string> getSuggestions(const Response& resp);
 
 
 }; // end ResponseHelper class
