@@ -16,6 +16,17 @@ set (mlclient_VERSION_REVISION 2)
 # Boost (Includes system, thread, locale, regex and filesystem components by default)
 find_package (Boost REQUIRED COMPONENTS filesystem system thread atomic chrono random regex)
 
+
+  if(APPLE AND NOT OPENSSL_ROOT_DIR)
+    # Prefer a homebrew version of OpenSSL over the one in /usr/lib
+    file(GLOB OPENSSL_ROOT_DIR /usr/local/Cellar/openssl/*)
+    # Prefer the latest (make the latest one first)
+    list(REVERSE OPENSSL_ROOT_DIR)
+  endif()
+  # This should prevent linking against the system provided 0.9.8y
+  set(_OPENSSL_VERSION "")
+  find_package(OpenSSL 1.0.0 REQUIRED)
+
 include_directories (AFTER
   ${OPENSSL_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}
@@ -32,7 +43,6 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
   ${Boost_RANDOM_LIBRARY}
   ${Boost_REGEX_LIBRARY}
   ${Boost_UNIT_TEST_FRAMEWORK}
-  /usr/local/lib/libpugixml.a
 )
 
 link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )

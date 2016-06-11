@@ -29,9 +29,12 @@ bool SearchResultSet::fetch() {
     // perform the request to search in the connection
     Response* resp = mConn->search(mInitialDescription);
 
+    LOG(DEBUG) << "SearchResultSet::fetch Response value: " << resp->getContent();
+
     // TODO handle request errors
 
     const web::json::value& value = utilities::CppRestJsonHelper::fromResponse(*resp);
+
 
     // extract top level summary information for the result set
     snippetFormat = value.at("snippet-format").as_string();
@@ -59,7 +62,7 @@ bool SearchResultSet::fetch() {
     std::string mimeType;
     std::string format;
     web::json::value ctVal;
-    for (auto iter = resv.as_array().begin(); iter != resv.as_array().end(); ++iter) {
+    for (auto iter = res.begin(); iter != res.end(); ++iter) {
       auto& rowdata = *iter;
       const web::json::object& row = rowdata.as_object();
       //LOG(DEBUG) << "Row: " << iter->as_string();
@@ -71,14 +74,22 @@ bool SearchResultSet::fetch() {
       // TODO performance - replace these try-catches with checks of the top level snippet-format value
       try {
         ctVal = row.at("content");
-        ct = ctVal.as_string();
+        LOG(DEBUG) << "  Got content";
+
+
+        //ct = ctVal.as_string(); // not a string!!! It's a JSON object if the response and document are both JSON
+        // assume just JSON for now to get it working TODO don't assume this in future!!!
+        std::ostringstream rss;
+        rss << ctVal;
+        ct = rss.str();
+
+
         mimeType = row.at("mimetype").as_string();
+        LOG(DEBUG) << "  Got mimetype";
         format = row.at("format").as_string();
+        LOG(DEBUG) << "  Got format";
         LOG(DEBUG) << "  Row content: " << ct;
 
-        // TODO parse as IDocumentContent, if relevant, for each result's content - or have helper class available to do it
-
-        // otherwise, is either transform or content - so just set CONTENT
       } catch (std::exception& e) {
         LOG(DEBUG) << "  Row does not have content... trying snippet...";
         // element doesn't exist - no result content, or has a snippet
@@ -100,8 +111,9 @@ bool SearchResultSet::fetch() {
       } // end content catch
 
       // TODO handle empty result or no search metrics in the below - at the moment they could throw!!!
-      mResults.push_back(SearchResult(row.at("index").as_integer(),row.at("uri").as_string(),row.at("path").as_string(),row.at("score").as_integer(),
-          row.at("confidence").as_double(),row.at("fitness").as_double(),detail,ct,mimeType,format ));
+      SearchResult sr(row.at("index").as_integer(),row.at("uri").as_string(),row.at("path").as_string(),row.at("score").as_integer(),
+          row.at("confidence").as_double(),row.at("fitness").as_double(),detail,ct,mimeType,format );
+      mResults.push_back(std::move(sr));
     } // end loop
 
     delete(resp); // TODO ensure this does not invalidate any of our variables in search result set or searchresult instances
@@ -124,5 +136,29 @@ SearchResultSet::const_iterator SearchResultSet::begin() const {
 SearchResultSet::const_iterator SearchResultSet::end() const {
   return mResults.end();
 }
+
+
+const long SearchResultSet::getStart() {
+  return start;
+}
+const long SearchResultSet::getTotal() {
+  return total;
+}
+const long SearchResultSet::getPageLength() {
+  return pageLength;
+}
+const std::string& SearchResultSet::getSnippetFormat() const {
+  return snippetFormat;
+}
+const std::string& SearchResultSet::getQueryResolutionTime() const {
+  return queryResolutionTime;
+}
+const std::string& SearchResultSet::getSnippetResolutionTime() const {
+  return snippetResolutionTime;
+}
+const std::string& SearchResultSet::getTotalTime() const {
+  return totalTime;
+}
+
 
 } // end namespace mlclient

@@ -17,6 +17,9 @@
  * \author Adam Fowler <adam.fowler@marklogic.com>
  */
 
+#ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_
+#define SRC_UTILITIES_RESPONSEHELPER_HPP_
+
 #include "../Response.hpp"
 #include <list>
 #include <string>
@@ -75,7 +78,7 @@ public:
    * \param Response The response to introspect
    * \return A list of suggestion values
    */
-  static std::list<std::string> getSuggestions(const Response& resp);
+  static std::vector<std::string> getSuggestions(const Response& resp);
 
 
 }; // end ResponseHelper class
@@ -83,3 +86,5 @@ public:
 } // end namespace utilities
 
 } // end namespace mlclient
+
+#endif

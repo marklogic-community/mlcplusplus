@@ -56,6 +56,7 @@ void ConnectionDocumentCrudTest::tearDown(void) {
 
 void ConnectionDocumentCrudTest::testSaveJson(void) {
   TIMED_FUNC(testSaveJson);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testSaveJson";
 
   // Note not using the Json or Xml helpers as we're not testing them here
@@ -74,6 +75,7 @@ void ConnectionDocumentCrudTest::testSaveJson(void) {
 
 void ConnectionDocumentCrudTest::testGetJson(void) {
   TIMED_FUNC(testGetJson);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testGetJson";
   const Response* response = ml->getDocument(jsonUri);
 
@@ -91,6 +93,7 @@ void ConnectionDocumentCrudTest::testGetJson(void) {
 
 void ConnectionDocumentCrudTest::testDeleteJson(void) {
   TIMED_FUNC(testDeleteJson);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << std::endl << " Entering testDeleteJson";
   const Response* response = ml->deleteDocument(jsonUri);
 
@@ -104,6 +107,7 @@ void ConnectionDocumentCrudTest::testDeleteJson(void) {
 
 void ConnectionDocumentCrudTest::testSaveXml(void) {
   TIMED_FUNC(testSaveXml);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testSaveXml";
   // Note not using the Json or Xml helpers as we're not testing them here
   GenericTextDocumentContent tdc;
@@ -121,6 +125,7 @@ void ConnectionDocumentCrudTest::testSaveXml(void) {
 
 void ConnectionDocumentCrudTest::testGetXml(void) {
   TIMED_FUNC(testGetXml);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testGetXml";
   const Response* response = ml->getDocument(xmlUri);
 
@@ -139,6 +144,7 @@ void ConnectionDocumentCrudTest::testGetXml(void) {
 
 void ConnectionDocumentCrudTest::testDeleteXml(void) {
   TIMED_FUNC(testDeleteXml);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testDeleteXml";
   const Response* response = ml->deleteDocument(xmlUri);
 
@@ -153,6 +159,7 @@ void ConnectionDocumentCrudTest::testDeleteXml(void) {
 
 void ConnectionDocumentCrudTest::testSaveText(void) {
   TIMED_FUNC(testSaveText);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testSaveText";
   // Note not using the Json or Xml helpers as we're not testing them here
   GenericTextDocumentContent tdc;
@@ -170,6 +177,7 @@ void ConnectionDocumentCrudTest::testSaveText(void) {
 
 void ConnectionDocumentCrudTest::testGetText(void) {
   TIMED_FUNC(testGetText);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testGetText";
   const Response* response = ml->getDocument(textUri);
 
@@ -188,6 +196,7 @@ void ConnectionDocumentCrudTest::testGetText(void) {
 
 void ConnectionDocumentCrudTest::testDeleteText(void) {
   TIMED_FUNC(testDeleteText);
+  LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testDeleteText";
   const Response* response = ml->deleteDocument(textUri);
 

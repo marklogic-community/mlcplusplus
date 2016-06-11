@@ -32,10 +32,10 @@ public:
   Impl() {
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
-    qtdc->setContent("\"query\":{}");
+    qtdc->setContent("{}");
     query = std::unique_ptr<GenericTextDocumentContent>(qtdc);
     GenericTextDocumentContent* otdc = new GenericTextDocumentContent();
-    otdc->setContent("\"options\":{}");
+    otdc->setContent("{}");
     options = std::unique_ptr<GenericTextDocumentContent>(otdc);
     std::string* qt = new std::string("");
     queryText = std::unique_ptr<std::string>(qt);
@@ -110,11 +110,13 @@ ITextDocumentContent* SearchDescription::getPayload() const {
               << ", options MIME: " << mImpl->options.get()->getMimeType();
     throw new InvalidFormatException;
   }
-  std::string elements[8] = {
-      "{\"search\": {", "<search>",
+  std::string elements[12] = {
+      "{\"search\": {\"query\":", "<search>",
       "}}","</search>",
       "\"qtext\": \"","<qtext>",
-      "\"", "</qtext>"
+      "\"", "</qtext>",
+      ",\"options\":","",
+      "},",""
   };
   LOG(DEBUG) << "    got elements";
   int offset = 0; // default to JSON
@@ -123,8 +125,8 @@ ITextDocumentContent* SearchDescription::getPayload() const {
   }
   std::string payloadString =
       elements[0+offset] +
-        mImpl->query.get()->getContent() + "," +
-        mImpl->options.get()->getContent() + "," +
+        mImpl->query.get()->getContent() + elements[8+offset] +
+        mImpl->options.get()->getContent() + elements[10+offset]  +
         elements[4+offset] + *(mImpl->queryText.get()) + elements[6+offset] +
       elements[2+offset];
   LOG(DEBUG) << "    got payload string: " << payloadString;

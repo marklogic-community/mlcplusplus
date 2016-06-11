@@ -24,7 +24,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include <pugixml.hpp>
+#include "../ext/pugixml/pugixml.hpp"
 
 #include "../ext/easylogging++.h"
 
