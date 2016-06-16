@@ -2,7 +2,8 @@ echo off
 echo "Removing binary build files"
 
 cd bin
-del /Q *
+rem del /Q *
+cmake --build . --target clean
 cd ..
 
 echo "Completed clean"

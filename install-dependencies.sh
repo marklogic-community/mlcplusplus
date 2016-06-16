@@ -39,7 +39,7 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
   else
     port=`port --version`
     if [[ "$port" =~ ^port.* ]]; then
-      echo " - Using Macports package manager"
+      echo " - Using Macports package manager - will prompt for sudo password"
       if [[ "$curl" =~ .*command.* ]]; then
         echo "  - Installing curl"
         sudo port install curl
@@ -66,7 +66,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
   echo "-- On a Linux machine"
 
   if [[ "$platform" =~ .*Ubuntu.* ]]; then
-    echo "-- Fetching dependencies for Ubuntu"
+    echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
     sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake
   else
     redhat=`cat /etc/redhat-release`
@@ -78,7 +78,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
       echo "-- Fetching dependencies for Redhat Enterprise Linux"
     fi
     if [[ "$yum" =~ ^yum.* ]]; then
-      echo " - Using the Yum package manager"
+      echo " - Using the Yum package manager - will prompt for sudo password"
       sudo yum install boost gcc git make boost-devel openssl openssl-devel cmake
     else
       echo " - FAILURE: No yum package manager installed"
@@ -112,7 +112,7 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 fi
 
 # Build dependencies
-echo "-- Building Microsoft's cpprest SDK (aka casablanca)"
+echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will prompt for sudo password to install"
 cd $CPPREST_FOLDER
 mkdir build.debug
 cd build.debug
