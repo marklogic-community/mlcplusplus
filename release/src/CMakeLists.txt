@@ -1,84 +1,4 @@
-# 2.8.2 and above can handle openssl letter versions (E.g. 1.0.1h), which is required to get fixed version of openssl
-cmake_minimum_required (VERSION 2.8.2)
-project (mlclient)
 
-# See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
-
-
-#set (CMAKE_MODULE_PATH "../cmake/modules")
-
-
-# SYSTEM DETECTION
-
-# Platform (not compiler) specific settings
-if(IOS)
-
-  # The cxx_flags must be set here, because the ios-cmake toolchain file unfortunately sets "-headerpad_max_install_names" which is not a valid clang flag.
-  set(CMAKE_CXX_FLAGS "-fvisibility=hidden -fvisibility-inlines-hidden")
-
-  set(BUILD_SHARED_LIBS OFF)
-elseif(UNIX) # This includes OSX
-  find_package(Boost COMPONENTS system thread locale regex filesystem REQUIRED)
-  find_package(Threads REQUIRED)
-  #find_package(OpenSSL REQUIRED)
-
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
-elseif(WIN32)
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
-
-  add_definitions(-DUNICODE)
-
-  if(NOT BUILD_SHARED_LIBS)
-    # This causes cmake to not link the test libraries separately, but instead hold onto their object files.
-    set(TEST_LIBRARY_TARGET_TYPE OBJECT)
-  endif()
-
-  set(LIB lib)
-else()
-  message("-- Unsupported Build Platform.")
-endif()
-
-# Universal binary only makes sense on OSX
-IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    OPTION (OSX_UNIVERSAL "Build an OSX universal binary" OFF)
-    IF (OSX_UNIVERSAL)
-        message("-- Building Mac OS X Universal Binary")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch i386 -arch x86_64")
-    ENDIF ()
-ENDIF ()
-
-# Casablanca fix for versions before 2.7.0 (CLang issue)
-add_definitions("-Wno-error=unused-local-typedefs")
-add_definitions("-Wnounused-local-typedefs")
-
-# Compiler (not platform) specific settings
-if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") OR IOS)
-  message("-- Setting clang options")
-
-  set(WARNINGS "-Wall -Wextra -Wcast-qual -Wconversion -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-format-attribute -Wmissing-include-dirs -Wpacked -Wredundant-decls")
-  set(OSX_SUPPRESSIONS "-Wno-overloaded-virtual -Wno-sign-conversion -Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-char-subscripts -Wno-switch -Wno-unused-parameter -Wno-unused-variable -Wno-deprecated -Wno-unused-value -Wno-unknown-warning-option -Wno-return-type-c-linkage -Wno-unused-function -Wno-sign-compare -Wno-shorten-64-to-32 -Wno-reorder")
-  set(WARNINGS "${WARNINGS} ${OSX_SUPPRESSIONS}")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
-  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
-elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
-  message("-- Setting gcc options")
-
-  set(WARNINGS "-Wall -Wextra -Wunused-parameter -Wcast-align -Wcast-qual -Wconversion -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-format-attribute -Wmissing-include-dirs -Wpacked -Wredundant-decls -Wunreachable-code")
-  set(LINUX_SUPPRESSIONS "-Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-unused-function -Wno-char-subscripts -Wno-switch -Wno-unused-but-set-parameter -Wno-deprecated -Wno-unused-value -Wno-unused-local-typedefs")
-
-  set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
-  set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
-  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
-else()
-  message("-- Unknown compiler, success is doubtful.")
-endif()
 
 
 
@@ -123,7 +43,7 @@ add_library (mlclient SHARED
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp
-    
+
     ext/pugixml/pugixml.cpp
 )
 
@@ -188,7 +108,12 @@ target_link_libraries (mlclient
 
 # Now build SWIG bindings
 
-FIND_PACKAGE(SWIG REQUIRED)
+IF (WITH_SWIG)
+
+FIND_PACKAGE( SWIG )
+
+IF( SWIG_FOUND )
+
 INCLUDE(${SWIG_USE_FILE})
 
 #INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
@@ -312,13 +237,21 @@ SWIG_LINK_LIBRARIES(mlclientpython
 
 
 
-
+endif()
+# end if swig found
+else()
+  message("-- NOT building SWIG modules (edit ./bin/build-deps-settings.sh|bat with WITH_SWIG=1 to enable)")
+endif()
+# end if with_swig set (off by default)
 
 
 
 
 # INSTALLATION
-install (TARGETS mlclient LIBRARY DESTINATION lib)
+install (TARGETS mlclient LIBRARY DESTINATION lib
+                          ARCHIVE DESTINATION "lib"
+                          RUNTIME DESTINATION "bin"
+                          COMPONENT library )
 install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
 install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
 

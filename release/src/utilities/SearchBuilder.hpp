@@ -33,9 +33,21 @@ namespace utilities {
 
 // QUERY TYPES
 
+/**
+ * \brief A high level abstract class representing a MarkLogic Structured Query
+ * \since 8.0.2
+ * \date 2016-06-08
+ */
 class IQuery {
 public:
+  /**
+   * \brief Default Constructor
+   */
   IQuery() = default;
+
+  /**
+   * \brief Default Destructor
+   */
   virtual ~IQuery() = default;
 
   friend std::ostream& operator<<(std::ostream& os, const IQuery& query);

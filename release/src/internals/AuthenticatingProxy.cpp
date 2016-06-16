@@ -54,7 +54,7 @@ using namespace utility::conversions;       // String conversions
 using namespace web;                        // Common features like URIs.
 using namespace web::http;                  // Common HTTP functionality
 using namespace web::http::client;          // HTTP client features
-using namespace concurrency::streams;       // Asynchronous streams
+//using namespace concurrency::streams;       // Asynchronous streams
 using namespace mlclient;
 
 AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()

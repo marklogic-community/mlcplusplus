@@ -1,4 +1,5 @@
 
+IF (WITH_DOCS)
 
 # API documentation
 # add a target to generate API documentation with Doxygen, and have it always run
@@ -11,3 +12,7 @@ if(DOXYGEN_FOUND)
     COMMENT "Generating API documentation with Doxygen" VERBATIM
   )
 endif(DOXYGEN_FOUND)
+
+else()
+  message("-- NOT building Documentation (edit ./bin/build-deps-settings.sh|bat with WITH_DOCS=1 to enable)")
+endif()

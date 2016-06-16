@@ -24,10 +24,15 @@ namespace mlclient {
  */
 class SearchResultSet {
 public:
+  /**
+   * A public typedef for the iterator. This prevents recoding if we change the implementation in future.
+   */
   typedef std::vector<SearchResult>::const_iterator const_iterator ;
 
   /**
    * \brief Creates a self-advancing result set given the specified search description
+   * \param conn The Connection instance pointer
+   * \param desc The Search Description to use for requests
    */
   SearchResultSet(IConnection* conn,SearchDescription& desc);
 
@@ -37,7 +42,15 @@ public:
   virtual ~SearchResultSet() = default;
 
   // iterator methods around each search result
+  /**
+   * \brief Returns the iterator for this result set
+   * \return The iterator for this result set
+   */
   const_iterator begin() const;
+  /**
+   * \brief Returns a reference to the end of the iterator for this result set
+   * \return A reference to the end of the iterator for this result set
+   */
   const_iterator end() const;
 
   // TODO initially, no request
@@ -54,18 +67,73 @@ public:
 
   /**
    * \brief Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised.
+   * \return The exception instance pointer
    */
   std::exception* getFetchException();
 
+  /**
+   * \brief Returns the sequence number of the first search result
+   *
+   * \note MarkLogic uses 1 based numbers. Thus the first record is at position 1, not position 0
+   * \return The first result's sequence number (lowest is 1)
+   */
   const long getStart();
+
+  /**
+   * \brief Returns the total count of all search results, across all pages
+   * \note MarkLogic Server uses xdmp:estimate to calculate this. Thus for an accurate number your
+   * filtered xdmp estimate should be the same as your unfiltered xdmp estimate. I.e. should be completely
+   * calculable from indexes. Otherwise, this total could be higher than the actual number of results (after filtering).
+   * \return The total number of search results returned.
+   */
   const long getTotal();
+
+  /**
+   * \brief Returns the number of results returned on each page
+   * \note MarkLogic Server defaults to 10 per page. This may or may not be the most performant option, depending on
+   * search options and thus amount of data returned per result. Try a higher number for better throughput for XML/JSON content.
+   * \note This class will automatically fetch the next page of results until they are exhausted, so no need to handle this yourself.
+   * \return The number of results returned per page.
+   */
   const long getPageLength();
+
+  /**
+   * \brief Returns the snippet format. Could be raw, none, or snippet.
+   * \return The string description as returned by the REST API. Usually "raw","none",or "snippet". Could be "custom" depending on search options.
+   */
   const std::string& getSnippetFormat() const;
+
+  /**
+   * \brief Returns the query resolution time for the last page requested, if available.
+   *
+   * Defaults to zero. Uses xsd:duration string format as per the REST API
+   *
+   * \return xsd:duration string description of the time to resolve the query
+   */
   const std::string& getQueryResolutionTime() const;
+
+  /**
+   * \brief Returns the snippet resolution time for the last page requested, if available.
+   *
+   * Defaults to zero. Uses xsd:duration string format as per the REST API
+   *
+   * \return xsd:duration string description of the time to resolve the snippet
+   */
   const std::string& getSnippetResolutionTime() const;
+
+  /**
+   * \brief Returns the total time taken for the last page requested, if available.
+   *
+   * Defaults to zero. Uses xsd:duration string format as per the REST API
+   *
+   * \return xsd:duration string description of the total time taken (includes both snippet and query resolution time)
+   */
   const std::string& getTotalTime() const;
 
 private:
+  bool handleFetchResults(Response * resp);
+  bool fetchNext();
+
   IConnection* mConn;
   SearchDescription& mInitialDescription;
   std::vector<SearchResult> mResults;
