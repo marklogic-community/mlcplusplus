@@ -17,8 +17,8 @@
  * Created on June 26, 2014, 6:00 PM
  */
 
-#include "AuthorizationBuilder.hpp"
-#include "MLCrypto.hpp"
+#include "mlclient/internals/AuthorizationBuilder.hpp"
+#include "mlclient/internals/MLCrypto.hpp"
 
 namespace mlclient {
 

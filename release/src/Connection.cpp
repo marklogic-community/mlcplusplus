@@ -12,14 +12,17 @@
  * limitations under the License.
  */
 
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
-#include "internals/Credentials.hpp"
-#include "internals/AuthenticatingProxy.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
 
-#include "ext/easylogging++.h"
+#include "mlclient/internals/Credentials.hpp"
+#include "mlclient/internals/AuthenticatingProxy.hpp"
+
+#include "mlclient/ext/easylogging++.h"
+
+#include <string>
 #include <sstream>
 
 namespace mlclient {
@@ -130,7 +133,11 @@ Response* Connection::deleteDocument(const std::string& uri) {
 
 Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
-  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
+  std::ostringstream urlss;
+  urlss << "/v1/search?format=json";
+  urlss << "&start=" << desc.getStart();
+  urlss << "&pageLength=" <<  desc.getPageLength();
+  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *desc.getPayload());
 }
 
 Response* Connection::listRootCollections() {

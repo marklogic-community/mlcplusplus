@@ -23,9 +23,9 @@
 #ifndef __MLCLIENT_CONNECTION__
 #define __MLCLIENT_CONNECTION__
 
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
 
 /**
  * \brief the namespace which wraps all Core Public C++ API classes.

@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{d4575b38-6faa-4b8a-8e4f-225c5d40cd53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\utilities">
+      <UniqueIdentifier>{a873dc45-c044-4fbf-b98a-b9ce9b6d8bc5}</UniqueIdentifier>
+      <Extensions>*.h;*.hpp</Extensions>
+    </Filter>
+    <Filter Include="Source Files\src\internals">
+      <UniqueIdentifier>{97662a25-d939-4bb5-adad-b2ccf99eba7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\ext">
+      <UniqueIdentifier>{8dbef3a9-a69b-4e86-9027-697dad50b30e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\ext\pugixml">
+      <UniqueIdentifier>{22fd7d65-98e2-41a2-8e09-fcd272020e30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\release\src\internals\AuthenticatingProxy.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\internals\AuthorizationBuilder.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\CppRestJsonDocumentContent.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\CppRestJsonHelper.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\internals\FakeConnection.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\internals\Credentials.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\internals\MLCrypto.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\ext\pugixml\pugixml.cpp">
+      <Filter>Source Files\src\ext\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\SearchBuilder.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\SearchOptionsBuilder.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\Connection.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\ConnectionWrapper.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\DocumentContent.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\HttpHeaders.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\InvalidFormatException.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\mlclient.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\NoCredentialsException.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\Response.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\ResponseWrapper.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\SearchDescription.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\SearchResult.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\SearchResultSet.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\internals\Conversions.cpp">
+      <Filter>Source Files\src\internals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\release\include\mlclient\Connection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ConnectionWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\CWrapper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\DocumentContent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\HttpHeaders.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\InvalidFormatException.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\mlclient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\mlclient.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\NoCredentialsException.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\Response.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ResponseWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\SearchDescription.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\SearchResult.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ext\easylogging++.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugiconfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\AuthenticatingProxy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\AuthorizationBuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\Conversions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\Credentials.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\FakeConnection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\memory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\MLCrypto.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\SearchBuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

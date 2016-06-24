@@ -22,3 +22,15 @@ libMLCPlusPlus.dylib
 nbproject
 test/mlcpptest
 ~$*.xslx
+packages/*
+.vs
+Debug/*
+Build/Debug
+Build/mlclient.VC.db
+Build/getdoc/Debug
+Build/cgetasstruct/Debug
+Build/cgetdoc/Debug
+Build/tests/Debug
+Build/packages/*
+release/samples/csgetdoc/csgetdoc/bin
+release/samples/csgetdoc/csgetdoc/obj

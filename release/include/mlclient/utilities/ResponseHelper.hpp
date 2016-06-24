@@ -20,8 +20,8 @@
 #ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_
 #define SRC_UTILITIES_RESPONSEHELPER_HPP_
 
-#include "../Response.hpp"
-#include <list>
+#include "mlclient/Response.hpp"
+#include <vector>
 #include <string>
 
 namespace mlclient {

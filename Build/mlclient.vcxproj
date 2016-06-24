@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\cppunit.1.12.1.4\build\native\cppunit.props" Condition="Exists('packages\cppunit.1.12.1.4\build\native\cppunit.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C9E040D2-FF93-48CF-9ACE-2E8FC4F30AAC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MLCLIENT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MLCLIENT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\release\src\Connection.cpp" />
+    <ClCompile Include="..\release\src\ConnectionWrapper.cpp" />
+    <ClCompile Include="..\release\src\DocumentContent.cpp" />
+    <ClCompile Include="..\release\src\ext\pugixml\pugixml.cpp" />
+    <ClCompile Include="..\release\src\HttpHeaders.cpp" />
+    <ClCompile Include="..\release\src\internals\AuthenticatingProxy.cpp" />
+    <ClCompile Include="..\release\src\internals\AuthorizationBuilder.cpp" />
+    <ClCompile Include="..\release\src\internals\Conversions.cpp" />
+    <ClCompile Include="..\release\src\internals\Credentials.cpp" />
+    <ClCompile Include="..\release\src\internals\FakeConnection.cpp" />
+    <ClCompile Include="..\release\src\internals\MLCrypto.cpp" />
+    <ClCompile Include="..\release\src\InvalidFormatException.cpp" />
+    <ClCompile Include="..\release\src\mlclient.cpp" />
+    <ClCompile Include="..\release\src\NoCredentialsException.cpp" />
+    <ClCompile Include="..\release\src\Response.cpp" />
+    <ClCompile Include="..\release\src\ResponseWrapper.cpp" />
+    <ClCompile Include="..\release\src\SearchDescription.cpp" />
+    <ClCompile Include="..\release\src\SearchResult.cpp" />
+    <ClCompile Include="..\release\src\SearchResultSet.cpp" />
+    <ClCompile Include="..\release\src\utilities\CppRestJsonDocumentContent.cpp" />
+    <ClCompile Include="..\release\src\utilities\CppRestJsonHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\SearchBuilder.cpp" />
+    <ClCompile Include="..\release\src\utilities\SearchOptionsBuilder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\release\include\mlclient\Connection.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ConnectionWrapper.h" />
+    <ClInclude Include="..\release\include\mlclient\CWrapper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\DocumentContent.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ext\easylogging++.h" />
+    <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugixml.hpp" />
+    <ClInclude Include="..\release\include\mlclient\HttpHeaders.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\AuthenticatingProxy.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\AuthorizationBuilder.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\Conversions.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\Credentials.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\FakeConnection.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\memory.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\MLCrypto.hpp" />
+    <ClInclude Include="..\release\include\mlclient\InvalidFormatException.hpp" />
+    <ClInclude Include="..\release\include\mlclient\mlclient.h" />
+    <ClInclude Include="..\release\include\mlclient\mlclient.hpp" />
+    <ClInclude Include="..\release\include\mlclient\NoCredentialsException.hpp" />
+    <ClInclude Include="..\release\include\mlclient\Response.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ResponseWrapper.h" />
+    <ClInclude Include="..\release\include\mlclient\SearchDescription.hpp" />
+    <ClInclude Include="..\release\include\mlclient\SearchResult.hpp" />
+    <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\SearchBuilder.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\boost.1.61.0.0\build\native\boost.targets" Condition="Exists('packages\boost.1.61.0.0\build\native\boost.targets')" />
+    <Import Project="packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets" Condition="Exists('packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets')" />
+    <Import Project="packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets" Condition="Exists('packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets')" />
+    <Import Project="packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets" Condition="Exists('packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets')" />
+    <Import Project="packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets" Condition="Exists('packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets')" />
+    <Import Project="packages\cppunit.1.12.1.4\build\native\cppunit.targets" Condition="Exists('packages\cppunit.1.12.1.4\build\native\cppunit.targets')" />
+    <Import Project="packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\boost.1.61.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.61.0.0\build\native\boost.targets'))" />
+    <Error Condition="!Exists('packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets'))" />
+    <Error Condition="!Exists('packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets'))" />
+    <Error Condition="!Exists('packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets'))" />
+    <Error Condition="!Exists('packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets'))" />
+    <Error Condition="!Exists('packages\cppunit.1.12.1.4\build\native\cppunit.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cppunit.1.12.1.4\build\native\cppunit.props'))" />
+    <Error Condition="!Exists('packages\cppunit.1.12.1.4\build\native\cppunit.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cppunit.1.12.1.4\build\native\cppunit.targets'))" />
+    <Error Condition="!Exists('packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+  </Target>
+</Project>

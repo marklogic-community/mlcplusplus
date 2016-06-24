@@ -13,13 +13,13 @@
  *
  */
 
-#include "FakeConnection.hpp"
+#include "mlclient/internals/FakeConnection.hpp"
 #include <string>
 #include <map>
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
-#include "../HttpHeaders.hpp"
+#include "mlclient/HttpHeaders.hpp"
 
 namespace mlclient {
 

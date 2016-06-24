@@ -120,10 +120,16 @@ INCLUDE(${SWIG_USE_FILE})
 
 SET(CMAKE_SWIG_FLAGS "")
 
+
+
+
 # SWIG Python
 
+IF (WITH_PYTHON)
+message( "-- Building SWIG Python bindings" )
+
 FIND_PACKAGE(PythonLibs)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH} ${mlclient_INCLUDE_DIR} )
 
 SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES CPLUSPLUS ON)
 #SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES SWIG_FLAGS "-includeall")
@@ -147,15 +153,84 @@ SWIG_LINK_LIBRARIES(mlclientpython
     ${Casablanca_LIBRARIES}
     ${PYTHON_LIBRARIES}
 )
+SET(CMAKE_SWIG_FLAGS "")
+
+else()
+  message("-- NOT building SWIG Python wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_PYTHON=1 to enable)")
+endif()
+# endif for python with check
+
+
+
+
+
 
 # SWIG C#.NET
 
-# Find C#
-#find_package( CSharp REQUIRED )
-#include( ${CSHARP_USE_FILE} )
+IF (WITH_CSHARP)
+message( "-- Building SWIG CSharp bindings" )
 
-#set(_build 0)
-#set(_revision 0)
+# Find C#
+
+find_package( CSharp REQUIRED )
+include( ${CSHARP_USE_FILE} )
+
+set(SWIG_MODULE_mlclientCSharp_TARGET_NAME "csmlclient")
+
+set_source_files_properties ( csmlclient.i PROPERTIES CPLUSPLUS ON )
+
+  # Make sure the nested directory structure exists
+  set(CSHARP_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpSources CACHE INTERNAL "")
+  set(CSHARP_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpBinaries CACHE INTERNAL "")
+  file(MAKE_DIRECTORY ${CSHARP_SOURCE_DIRECTORY})
+  file(MAKE_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+
+    # Create swig target
+    set(CMAKE_SWIG_OUTDIR ${CSHARP_SOURCE_DIRECTORY})
+    if ( UNIX )
+      #set(CMAKE_SWIG_FLAGS -dllimport \"csmlclient\")
+    else (WIN32 )
+      #set(CMAKE_SWIG_FLAGS -dllimport \"csmlclient\")
+    endif ( UNIX )
+    set(CMAKE_SWIG_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR} -namespace \"mlclient\" ${CMAKE_SWIG_GLOBAL_FLAGS} ${CMAKE_SWIG_FLAGS})
+    set(SWIG_MODULE_mlclientCSharp_EXTRA_DEPS ${SWIG_EXTRA_DEPS}
+      ${CMAKE_CURRENT_SOURCE_DIR}/csmlclient.i
+    ) #  ${CMAKE_CURRENT_SOURCE_DIR}/CSharpTypemapHelper.i
+
+    swig_add_module(csmlclient csharp csmlclient.i)
+
+    target_link_libraries(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} mlclient ${mlclient_LIBRARIES})
+    set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+    if ( UNIX )
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
+    else ( WIN32 )
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
+      foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
+        string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+          PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+          PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+      endforeach( )
+    endif( UNIX )
+
+    # The below needs to be /usr/lib, along with all depdendencies, as C# apps suck at following env variables
+    install (TARGETS csmlclient LIBRARY DESTINATION lib
+                                ARCHIVE DESTINATION "lib"
+                                RUNTIME DESTINATION "bin"
+                                COMPONENT library )
+
+
+SET(CMAKE_SWIG_FLAGS "")
+
+else()
+  message("-- NOT building SWIG C# wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_CSHARP=1 to enable)")
+
+endif()
+# end if c# swig with found
+
 
 
 
@@ -182,6 +257,9 @@ SWIG_LINK_LIBRARIES(mlclientpython
 #    libpugixml.a
 #    ${Casablanca_LIBRARIES}
 #)
+
+
+
 
 # SWIG -Ruby
 
@@ -237,6 +315,7 @@ SWIG_LINK_LIBRARIES(mlclientpython
 
 
 
+
 endif()
 # end if swig found
 else()
@@ -252,8 +331,14 @@ install (TARGETS mlclient LIBRARY DESTINATION lib
                           ARCHIVE DESTINATION "lib"
                           RUNTIME DESTINATION "bin"
                           COMPONENT library )
-install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
-install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
+#install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
+#install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
+#install (FILES ${mlclient_INCLUDE_DIR} DESTINATION include)
+
+file(GLOB MLCPP_HEADERS_MLCLIENT include/mlclient/*.hpp include/mlclient/*.h )
+install(FILES ${MLCPP_HEADERS_MLCLIENT} DESTINATION include/mlclient )
+file(GLOB MLCPP_HEADERS_UTILITIES include/mlclient/utilities/*.hpp include/mlclient/utilities/*.h )
+install(FILES ${MLCPP_HEADERS_UTILITIES} DESTINATION include/mlclient/utilities )
 
 
 # CPack installer

@@ -15,7 +15,7 @@
  * Created by Paul Hoehne on 5/29/14.
  */
 
-#include "Credentials.hpp"
+#include "mlclient/internals/Credentials.hpp"
 #include <sstream>
 #include <iomanip>
 #include <regex> // replaces boost regex in C++11
@@ -23,10 +23,10 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <cpprest/http_client.h>
-#include "MLCrypto.hpp"
-#include "AuthorizationBuilder.hpp"
+#include "mlclient/internals/MLCrypto.hpp"
+#include "mlclient/internals/AuthorizationBuilder.hpp"
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 
@@ -148,7 +148,7 @@ std::string Credentials::authenticate(const std::string& method, const std::stri
   oss << " response=\"" << response << "\",";
   oss << " opaque=\"" << opaque << "\"";
 
-  return U(oss.str());
+  return oss.str();
 }
 
 std::string Credentials::getNonce(void) const {

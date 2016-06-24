@@ -18,10 +18,11 @@
 #ifndef __MLCLIENT__Credentials__
 #define __MLCLIENT__Credentials__
 
+#include <cpprest/http_client.h>
+
 #include <string>
 #include <map>
 #include <cstdint>
-#include <cpprest/http_client.h>
 
 namespace mlclient {
 
@@ -59,7 +60,7 @@ protected:
   /// \param auth_header The contents of the WWW Authenticate header
   /// \return The contents of the Authorization header
   ///
-  utility::string_t authenticate(const std::string& method, const std::string& uri,
+  std::string authenticate(const std::string& method, const std::string& uri,
       const std::string& auth_header);
 
   ///
@@ -71,7 +72,7 @@ protected:
   /// \param uri The path portion of the URI
   /// \return The contents of the Authorization header
   ///
-  utility::string_t authenticate(const std::string& method, const std::string& uri);
+  std::string authenticate(const std::string& method, const std::string& uri);
 
 
   ///

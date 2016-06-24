@@ -8,12 +8,15 @@
 #ifndef SRC_UTILITIES_SEARCHRESULTSET_HPP_
 #define SRC_UTILITIES_SEARCHRESULTSET_HPP_
 
-#include "SearchResult.hpp"
-#include "Connection.hpp"
-#include "SearchDescription.hpp"
+#include "mlclient/SearchResult.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/SearchDescription.hpp"
+
 #include <vector>
 
 namespace mlclient {
+
+class SearchResultSetIterator; // forward declaration
 
 /**
  * \brief A self-advancing result set class
@@ -24,10 +27,11 @@ namespace mlclient {
  */
 class SearchResultSet {
 public:
+
   /**
    * A public typedef for the iterator. This prevents recoding if we change the implementation in future.
    */
-  typedef std::vector<SearchResult>::const_iterator const_iterator ;
+  typedef SearchResultSetIterator const_iterator ;
 
   /**
    * \brief Creates a self-advancing result set given the specified search description
@@ -130,22 +134,17 @@ public:
    */
   const std::string& getTotalTime() const;
 
+  /**
+   * \brief Utility function to return the total number of pages in the result set
+   * \return The total number of pages in the result set
+   */
+  const long getPageCount() const;
+
 private:
-  bool handleFetchResults(Response * resp);
-  bool fetchNext();
+  friend class SearchResultSetIterator;
 
-  IConnection* mConn;
-  SearchDescription& mInitialDescription;
-  std::vector<SearchResult> mResults;
-  std::exception* mFetchException;
-
-  long start;
-  long total;
-  long pageLength;
-  std::string snippetFormat;
-  std::string queryResolutionTime; // W3C Duration String
-  std::string snippetResolutionTime; // W3C Duration String
-  std::string totalTime; // W3C Duration String
+  class Impl; // forward declaration
+  Impl* mImpl;
 };
 
 } // end namespace mlclient

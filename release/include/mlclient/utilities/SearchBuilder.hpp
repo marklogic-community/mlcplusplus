@@ -20,8 +20,10 @@
 #ifndef SRC_UTILITIES_SEARCHBUILDER_HPP_
 #define SRC_UTILITIES_SEARCHBUILDER_HPP_
 
+#include "mlclient/SearchDescription.hpp"
+
 #include <cpprest/http_client.h> // deliberate compile time dependency
-#include "../SearchDescription.hpp"
+
 #include <vector>
 #include <string>
 #include <ostream>

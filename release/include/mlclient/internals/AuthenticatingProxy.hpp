@@ -18,16 +18,17 @@
 #ifndef AUTHENTICATING_PROXY
 #define AUTHENTICATING_PROXY
 
+#include "mlclient/internals/Credentials.hpp"
+
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/HttpHeaders.hpp"
+
 #include <map>
 #include <functional>
 #include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
-#include "../Response.hpp"
-#include "../DocumentContent.hpp"
-#include "Credentials.hpp"
-
-#include "../HttpHeaders.hpp"
 
 namespace mlclient {
 

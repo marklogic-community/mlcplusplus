@@ -1,9 +1,8 @@
 echo off
 
-rem call bin/build-deps-settings.bat
-
 cd bin
 
+rem call build-deps-settings.bat
 
 set BOOST_ROOT_DIR=..\..\casablanca\packages\boost.1.58.0.0
 set BOOST_INCLUDEDIR=..\..\casablanca\packages\boost.1.58.0.0\lib\native\include
@@ -24,6 +23,7 @@ rem VS 2015 = Visual Studio 14 2015 Win64
 
 cmake.exe %CMAKE_OPTIONS% -DOPENSSL_LIBRARIES=%OPENSSL_LIBRARIES% -DOPENSSL_INCLUDE_DIR=%OPENSSL_INCLUDE_DIR% -DOPENSSL_ROOT_DIR=%OPENSSL_ROOT_DIR% -DBOOST_LIBRARYDIR=%BOOST_LIBRARYDIR% -DBOOST_INCLUDEDIR=%BOOST_INCLUDEDIR% -G "Visual Studio 14 2015 Win64" ../release
 
+rem nuget.exe restore mlclient140.sln
 
 cd ..
 

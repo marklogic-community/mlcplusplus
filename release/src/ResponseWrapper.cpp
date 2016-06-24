@@ -13,9 +13,9 @@
  *
  * A header file to provide a C wrapping of the ConnectionFactory C++ class
  */
-#include "ResponseWrapper.h"
-#include "Response.hpp"
-#include "CWrapper.hpp"
+#include "mlclient/ResponseWrapper.h"
+#include "mlclient/Response.hpp"
+#include "mlclient/CWrapper.hpp"
 
 #ifdef __cplusplus
 extern "C" {

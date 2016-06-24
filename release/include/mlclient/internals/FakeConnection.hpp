@@ -20,10 +20,10 @@
 #ifndef SRC_INTERNALS_FAKECONNECTION_HPP_
 #define SRC_INTERNALS_FAKECONNECTION_HPP_
 
-#include "../Connection.hpp"
-#include "../Response.hpp"
-#include "../DocumentContent.hpp"
-#include "../SearchDescription.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
 
 namespace mlclient {
 

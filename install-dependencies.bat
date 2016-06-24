@@ -8,6 +8,22 @@ echo " - git?"
 rem could fall back to simple http fetch of zip file of master instead of using git
 echo " - Microsoft Visual Studio?"
 echo " - Nuget?"
+
+
+$client = new-object System.Net.WebClient
+$client.DownloadFile("https://dist.nuget.org/win-x86-commandline/latest/nuget.exe","bin\nuget.exe")
+
+mkdir Packages
+cd Packages
+..\nuget install OpenSSL
+
+boost
+boost_system-vc140
+openssl.v140.windesktop.msvcstl.static.rt-dyn
+openssl.v140.windesktop.msvcstl.static.rt-dyn.x86
+openssl.v140.windesktop.msvcstl.static.rt-dyn.x64
+
+
 echo " - MSBuild?"
 
 echo "-- Installing dependencies"

@@ -21,9 +21,9 @@
 #ifndef SRC_UTILITIES_PUGIXMLHELPER_HPP_
 #define SRC_UTILITIES_PUGIXMLHELPER_HPP_
 
-#include "../ext/pugixml/pugixml.hpp"
-#include "../Response.hpp"
-#include "../DocumentContent.hpp"
+#include "mlclient/ext/pugixml/pugixml.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
 
 namespace mlclient {
 

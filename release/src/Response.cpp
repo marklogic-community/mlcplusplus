@@ -16,15 +16,15 @@
  * \author Paul Hoehne <paul.hoehne@marklogic.com>
  * \date 2014-05-5
  */
-#include "HttpHeaders.hpp"
-#include "Response.hpp"
+#include "mlclient/HttpHeaders.hpp"
+#include "mlclient/Response.hpp"
+
+#include "mlclient/ext/easylogging++.h"
 
 #include <algorithm>
 #include <regex> // using std::regex as of C++14
 
 #include <cstdint>
-
-#include "ext/easylogging++.h"
 
 namespace mlclient {
 

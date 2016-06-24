@@ -13,7 +13,7 @@
 %exceptionclass NoCredentialsException;
 
 /*
-%exception { 
+%exception {
     try {
         $action
     } catch (mlclient::InvalidFormatException &e) {
@@ -32,19 +32,19 @@
 
 %{
 /* Includes the header in the wrapper code */
-#include "Connection.hpp"
-#include "DocumentContent.hpp"
-#include "HttpHeaders.hpp"
-#include "Response.hpp"
-#include "SearchDescription.hpp"
-#include "InvalidFormatException.hpp"
-#include "NoCredentialsException.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/HttpHeaders.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/InvalidFormatException.hpp"
+#include "mlclient/NoCredentialsException.hpp"
 %}
 
 /* Parse the header file to generate wrappers */
 /* WARNING - THESE MUST BE IN DEPENDENCY ORDER!!! ORDER IS VERY VERY IMPORTANT!!! */
-%include "DocumentContent.hpp"
-%include "HttpHeaders.hpp"
-%include "Response.hpp"
-%include "SearchDescription.hpp"
-%include "Connection.hpp"
+%include "mlclient/DocumentContent.hpp"
+%include "mlclient/HttpHeaders.hpp"
+%include "mlclient/Response.hpp"
+%include "mlclient/SearchDescription.hpp"
+%include "mlclient/Connection.hpp"

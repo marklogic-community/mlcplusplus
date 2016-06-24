@@ -5,7 +5,7 @@
  *      Author: adamfowler
  */
 
-#include "SearchResult.hpp"
+#include "mlclient/SearchResult.hpp"
 
 namespace mlclient {
 

@@ -17,19 +17,20 @@
  *      Author: adamfowler
  */
 
-#include "SearchDescription.hpp"
-#include "DocumentContent.hpp"
-#include "InvalidFormatException.hpp"
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/InvalidFormatException.hpp"
+
+#include "mlclient/ext/easylogging++.h"
+
 #include <string>
 #include <iostream>
-
-#include "ext/easylogging++.h"
 
 namespace mlclient {
 
 class SearchDescription::Impl {
 public:
-  Impl() {
+  Impl() : start(1), pageLength(10) {
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
     qtdc->setContent("{}");
@@ -49,6 +50,8 @@ public:
   std::unique_ptr<ITextDocumentContent> query;
   std::unique_ptr<ITextDocumentContent> options;
   std::unique_ptr<std::string> queryText;
+  long start;
+  long pageLength;
 }; // end SearchDescription::Impl class
 
 
@@ -136,6 +139,22 @@ ITextDocumentContent* SearchDescription::getPayload() const {
   LOG(DEBUG) << "    got payload doc";
   LOG(DEBUG) << "    End getPayload()";
   return payload;
+}
+
+void SearchDescription::setStart(const long start) {
+  mImpl->start = start;
+}
+
+const long SearchDescription::getStart() const {
+  return mImpl->start;
+}
+
+void SearchDescription::setPageLength(const long pageLength) {
+  mImpl->pageLength = pageLength;
+}
+
+const long SearchDescription::getPageLength() const {
+  return mImpl->pageLength;
 }
 
 } // end namespace mlclient

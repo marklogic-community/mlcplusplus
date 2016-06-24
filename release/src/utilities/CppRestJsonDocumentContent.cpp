@@ -19,7 +19,7 @@
  */
 
 #include <cpprest/http_client.h>
-#include "CppRestJsonDocumentContent.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -50,7 +50,8 @@ CppRestJsonDocumentContent::~CppRestJsonDocumentContent() {
 
 std::ostream* CppRestJsonDocumentContent::getStream() const {
   std::ostringstream* os = new std::ostringstream;
-  (*os) << mImpl->value;
+  //(*os) << mImpl->value;
+  mImpl->value.serialize(*os);
   return os;
 }
 
@@ -77,12 +78,13 @@ int CppRestJsonDocumentContent::getLength() const {
 void CppRestJsonDocumentContent::setContent(std::string content) {
   std::ostringstream os;
   os << content;
-  mImpl-> value = web::json::value(os.str());
+  mImpl-> value = web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
 std::string CppRestJsonDocumentContent::getContent() const {
   std::ostringstream os;
-  os << mImpl->value;
+  //os << mImpl->value;
+  mImpl->value.serialize(os);
   return os.str();
 }
 

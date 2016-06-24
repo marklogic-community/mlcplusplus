@@ -22,7 +22,7 @@ set(CMAKE_MACOSX_RPATH 0)
 # See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
 
 
-#set (CMAKE_MODULE_PATH "../cmake/modules")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules )
 
 
 # SYSTEM DETECTION
@@ -107,6 +107,7 @@ else()
 endif()
 
 
+set(mlclient_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 
@@ -128,6 +129,7 @@ set(_OPENSSL_VERSION "")
 find_package(OpenSSL 1.0.0 REQUIRED)
 
 include_directories (AFTER
+  ${mlclient_INCLUDE_DIR}
   ${OPENSSL_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}
   /usr/local/opt/openssl/include

@@ -17,7 +17,7 @@
  * Created on July 7, 2014, 10:27 AM
  */
 
-#include "MLCrypto.hpp"
+#include "mlclient/internals/MLCrypto.hpp"
 
 #include <string>
 #include <iomanip>

@@ -22,7 +22,7 @@
 #ifndef SRC_SEARCHDESCRIPTION_HPP_
 #define SRC_SEARCHDESCRIPTION_HPP_
 
-#include "DocumentContent.hpp"
+#include "mlclient/DocumentContent.hpp"
 
 namespace mlclient {
 
@@ -115,6 +115,33 @@ public:
    * \return A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object.
    */
   ITextDocumentContent* getPayload() const;
+
+
+  /// \name searchdescription_parameters Common REST API call parameters to override options on the fly
+  // @{
+  /**
+   * \brief Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server.
+   */
+  void setStart(const long start);
+
+  /**
+   * \brief Retrieves the start (first result) index. These are 1 not 0 based in MarkLogic Server.
+   * \return The start (first result) index (1 based)
+   */
+  const long getStart() const;
+
+  /**
+   * \brief Sets the number of results to return per page
+   */
+  void setPageLength(const long pageLength);
+
+  /**
+   * \brief Returns the number of results shown per page
+   * \return The number of results per page
+   */
+  const long getPageLength() const;
+  // @}
+
 private:
   class Impl;
   Impl* mImpl;

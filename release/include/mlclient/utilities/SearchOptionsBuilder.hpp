@@ -20,9 +20,11 @@
 #ifndef SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
 #define SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
 
-#include "../SearchDescription.hpp"
-#include "../DocumentContent.hpp"
-#include "SearchBuilder.hpp"
+#include "mlclient/utilities/SearchBuilder.hpp"
+
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/DocumentContent.hpp"
+
 #include <list>
 #include <string>
 

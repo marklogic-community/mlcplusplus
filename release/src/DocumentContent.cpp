@@ -17,13 +17,13 @@
  *      Author: adamfowler
  */
 
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/ext/easylogging++.h"
 #include <string>
 #include <iostream>
 #include <sstream>
 
-#include "ext/easylogging++.h"
 
 namespace mlclient {
 

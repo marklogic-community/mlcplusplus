@@ -20,11 +20,11 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 #define SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/SearchResult.hpp"
 // I don't mind exposing these in an optional helper class
 #include <cpprest/http_client.h>
-#include "../DocumentContent.hpp"
-#include "../Response.hpp"
-#include "../SearchResult.hpp"
 
 namespace mlclient {
 

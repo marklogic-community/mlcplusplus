@@ -17,12 +17,13 @@
  *      Author: adamfowler
  */
 
-#include "HttpHeaders.hpp"
+#include "mlclient/HttpHeaders.hpp"
 
-#include "ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 #include <map>
 #include <string>
+
 
 namespace mlclient {
 
@@ -56,5 +57,4 @@ void HttpHeaders::clear() {
 }
 
 } // end namespace mlclient
-
 

@@ -18,10 +18,10 @@
  * \date 2016-06-09
  */
 
+#include "mlclient/utilities/SearchBuilder.hpp"
+#include "mlclient/utilities/SearchOptionsBuilder.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include <cpprest/http_client.h>
-#include "SearchBuilder.hpp"
-#include "SearchOptionsBuilder.hpp"
-#include "CppRestJsonHelper.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>

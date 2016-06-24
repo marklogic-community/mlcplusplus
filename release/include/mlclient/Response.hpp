@@ -20,7 +20,7 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
-#include "HttpHeaders.hpp"
+#include "mlclient/HttpHeaders.hpp"
 
 #include <iosfwd>
 

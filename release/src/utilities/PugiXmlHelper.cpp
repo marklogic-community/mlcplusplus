@@ -17,16 +17,16 @@
  *      Author: adamfowler
  */
 
-#include "PugiXmlHelper.hpp"
-#include "../DocumentContent.hpp"
-#include "../Response.hpp"
-#include "../InvalidFormatException.hpp"
+#include "mlclient/utilities/PugiXmlHelper.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/InvalidFormatException.hpp"
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "../ext/pugixml/pugixml.hpp"
+#include "mlclient/ext/pugixml/pugixml.hpp"
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 

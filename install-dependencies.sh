@@ -36,6 +36,8 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
     brew install cppunit --universal
     echo "  - Installing libiconv (as Universal binary)"
     brew install libiconv --universal
+    echo "  - Installing Mono (For SWIG CSharp Bindings)"
+    brew install mono
   else
     port=`port --version`
     if [[ "$port" =~ ^port.* ]]; then
@@ -56,6 +58,8 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
       sudo port install cppunit +universal
       echo "  - Installing libiconv (as Universal binary)"
       sudo port install libiconv +universal
+      echo "  - Installing Mono (For SWIG CSharp Bindings)"
+      sudo port install mono
     else
       echo " - FAILURE: Unknown Mac package manager (neither Homebrew or Macports installed)"
       exit 1
@@ -97,7 +101,7 @@ if [[ "$git" =~ ^git.* ]]; then
   cd $ORIG
 else
   if [[ "$curl" =~ ^curl.* ]]; then
-    echo " - Fetching repository using curl"
+    echo " - Fetching repository using curl - NOT YET SUPPORTED"
   else
     echo " - FAILURE: Neither git nor curl is installed - cannot fetch remote repository"
   fi
@@ -118,6 +122,7 @@ mkdir build.debug
 cd build.debug
 cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug
 make -j 4
+echo " - Installing..."
 sudo make install
 cd $ORIG
 
@@ -127,7 +132,12 @@ cd $ORIG
 F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
+printf '# General SWIG enabling' >> $F
 printf 'WITH_SWIG=0\n' >> $F
+printf '# Specific SWIG wrapper enabling' >> $F
+printf 'WITH_PYTHON=0\n' >> $F
+printf 'WITH_CSHARP=0\n' >> $F
+printf '# Other settings' >> $F
 printf 'WITH_TESTS=0\n' >> $F
 printf 'WITH_DOCS=0\n' >> $F
 printf 'WITH_SAMPLES=0\n' >> $F
@@ -135,7 +145,7 @@ printf '# USER EDITABLE SETTINGS END\n' >> $F
 printf 'echo "-- Setting MLCPlusPlus dependency settings"\n' >> $F
 printf 'export CPPRESTSDK_HOME=%s\n' "$CPPREST_FOLDER" >> $F
 printf 'export MLCPLUSPLUS_HOME=%s\n' "$ORIG" >> $F
-printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES"\n' "$OSXU" >> $F
+printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES"\n' "$OSXU" >> $F
 printf 'echo "-- Done"\n' >> $F
 #printf 'exit 0\n' >> $F
 

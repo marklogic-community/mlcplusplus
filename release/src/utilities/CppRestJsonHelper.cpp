@@ -18,16 +18,16 @@
  */
 
 #include <cpprest/http_client.h>
-#include "CppRestJsonHelper.hpp"
-#include "CppRestJsonDocumentContent.hpp"
-#include "../DocumentContent.hpp"
-#include "../Response.hpp"
-#include "../InvalidFormatException.hpp"
-#include "../SearchResult.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/InvalidFormatException.hpp"
+#include "mlclient/SearchResult.hpp"
 
 #include <iostream>
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 
@@ -48,14 +48,14 @@ web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
   std::ostream* dcos(dc.getStream());
   os << dcos;
   delete dcos; // free pointer
-  return web::json::value(os.str());
+  return web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
 // Response conversion
 web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   TIMED_FUNC(CppRestJsonHelper_fromResponse);
   if (resp.getResponseType() == ResponseType::JSON) {
-    return web::json::value::parse(resp.getContent());
+    return web::json::value::parse(utility::conversions::to_string_t(resp.getContent()));
   } else {
     throw InvalidFormatException();
   }
@@ -64,7 +64,7 @@ web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
 web::json::value CppRestJsonHelper::fromSearchResult(const SearchResult& result) {
   TIMED_FUNC(CppRestJsonHelper_fromSearchResult);
   if (result.getFormat() == SearchResult::JSON) {
-    return web::json::value::parse(result.getDetailContent());
+    return web::json::value::parse(utility::conversions::to_string_t(result.getDetailContent()));
   } else {
     throw InvalidFormatException();
   }
@@ -73,4 +73,3 @@ web::json::value CppRestJsonHelper::fromSearchResult(const SearchResult& result)
 } // end utilities namespace
 
 } // end mlclient namespace
-

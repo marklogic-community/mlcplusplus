@@ -22,7 +22,7 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 #define SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 
-#include "../DocumentContent.hpp"
+#include "mlclient/DocumentContent.hpp"
 #include <cpprest/http_client.h>
 
 namespace mlclient {

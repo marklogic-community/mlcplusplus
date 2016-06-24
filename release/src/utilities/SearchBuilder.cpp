@@ -19,16 +19,16 @@
  */
 
 #include <cpprest/http_client.h>
-#include "SearchBuilder.hpp"
-#include "../DocumentContent.hpp"
-#include "CppRestJsonHelper.hpp"
-#include "CppRestJsonDocumentContent.hpp"
+#include "mlclient/utilities/SearchBuilder.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 
