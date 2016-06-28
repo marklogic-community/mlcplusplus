@@ -22,6 +22,7 @@
 #ifndef SRC_SEARCHDESCRIPTION_HPP_
 #define SRC_SEARCHDESCRIPTION_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/DocumentContent.hpp"
 
 namespace mlclient {
@@ -45,14 +46,14 @@ public:
   /**
    * \brief Default Constructor
    */
-  SearchDescription();
+  MLCLIENT_API SearchDescription();
 
   /**
    * \brief Default destructor
    *
    * \note Virtual so allows subclassing
    */
-  virtual ~SearchDescription(); // allows subclassing
+  MLCLIENT_API virtual ~SearchDescription(); // allows subclassing
 
   /**
    * \brief Set the search options content
@@ -63,13 +64,13 @@ public:
    *
    * \param[inout] options The search options as an XML or JSON IDocumentContent instance
    */
-  void setOptions(ITextDocumentContent& options);
+  MLCLIENT_API void setOptions(ITextDocumentContent& options);
 
   /**
    * \brief Returns the options as a document
    * \return A non-editable reference to the underlying search options.
    */
-  const ITextDocumentContent& getOptions() const;
+  MLCLIENT_API const ITextDocumentContent& getOptions() const;
 
   /**
    * \brief Sets the complex query using an XML or JSON IDocumentContent instance
@@ -78,7 +79,7 @@ public:
    *
    * \param[inout] query The TextDocumentContent instance wrapping the XML or JSON query.
    */
-  void setQuery(ITextDocumentContent& query);
+  MLCLIENT_API void setQuery(ITextDocumentContent& query);
 
   /**
    * \brief Returns the complex query as a document
@@ -87,7 +88,7 @@ public:
    *
    * \return A non editable reference to the underlying complex query TextDocumentContent
    */
-  const ITextDocumentContent& getQuery() const;
+  MLCLIENT_API const ITextDocumentContent& getQuery() const;
 
   /**
    * \brief Sets the plain text query text.
@@ -96,14 +97,14 @@ public:
    *
    * \param[inout] qtext The plain text query
    */
-  void setQueryText(std::string qtext);
+  MLCLIENT_API void setQueryText(std::string qtext);
 
   /**
    * \brief Returns the plain text query
    *
    * \return A non-editable reference to the underlying string query text.
    */
-  const std::string& getQueryText() const;
+  MLCLIENT_API const std::string& getQueryText() const;
 
   /**
    * \brief Returns a string representation of the total payload for this search, as passed to MarkLogic Server
@@ -114,7 +115,7 @@ public:
    *
    * \return A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object.
    */
-  ITextDocumentContent* getPayload() const;
+  MLCLIENT_API ITextDocumentContent* getPayload() const;
 
 
   /// \name searchdescription_parameters Common REST API call parameters to override options on the fly
@@ -122,24 +123,24 @@ public:
   /**
    * \brief Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server.
    */
-  void setStart(const long start);
+  MLCLIENT_API void setStart(const long start);
 
   /**
    * \brief Retrieves the start (first result) index. These are 1 not 0 based in MarkLogic Server.
    * \return The start (first result) index (1 based)
    */
-  const long getStart() const;
+  MLCLIENT_API const long getStart() const;
 
   /**
    * \brief Sets the number of results to return per page
    */
-  void setPageLength(const long pageLength);
+  MLCLIENT_API void setPageLength(const long pageLength);
 
   /**
    * \brief Returns the number of results shown per page
    * \return The number of results per page
    */
-  const long getPageLength() const;
+  MLCLIENT_API const long getPageLength() const;
   // @}
 
 private:

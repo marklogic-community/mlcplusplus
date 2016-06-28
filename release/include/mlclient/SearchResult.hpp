@@ -8,6 +8,7 @@
 #ifndef SRC_UTILITIES_SEARCHRESULT_HPP_
 #define SRC_UTILITIES_SEARCHRESULT_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include <string>
 
 namespace mlclient {
@@ -27,31 +28,31 @@ public:
   /**
    * Represents one of the snippetting options in use by the search result
    */
-  enum DETAIL {
+  MLCLIENT_API enum DETAIL {
     SNIPPETS, CONTENT, NONE, CUSTOM
   };
   /**
    * Used to tag the search result content format as JSON
    */
-  static const std::string JSON;
+  MLCLIENT_API static const std::string JSON;
   /**
    * Used to tag the search result content format as XML
    */
-  static const std::string XML;
+  MLCLIENT_API static const std::string XML;
   /**
    * Used to tag the search result content format as Binary
    */
-  static const std::string BINARY;
+  MLCLIENT_API static const std::string BINARY;
 
   /**
    * Empty constructor
    */
-  SearchResult();
+  MLCLIENT_API SearchResult();
   /**
    * Copy constructor
    * \param other The SearchResult to copy (shallow copy)
    */
-  SearchResult(const SearchResult& other) = default;
+  MLCLIENT_API SearchResult(const SearchResult& other) = default;
   /**
    * Detail constructor. Used by SearchResultSet and other search result wrapping functions and classes.
    * \param index The index (position, 1 based) of this result in the total search result list, across all pages
@@ -65,61 +66,61 @@ public:
    * \param mimeType The MIME type of the result content
    * \param format The REST API format of the result (can be "json" or "xml" or "binary" or "text" or "none")
    */
-  SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
+  MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
       const double confidence,const double fitness,const DETAIL& detail,const std::string& detailContent = "",
       const std::string& mimeType = "",const std::string& format = JSON);
-  virtual ~SearchResult() = default;
+  MLCLIENT_API virtual ~SearchResult() = default;
 
   /**
    * \brief Returns the (1 based) index of this result in the total search results, across all pages
    * \return The (1 based) index
    */
-  long getIndex();
+  MLCLIENT_API long getIndex();
   /**
    * \brief Returns the document uri of the result
    * \return The document uri of the result
    */
-  const std::string& getUri() const;
+  MLCLIENT_API const std::string& getUri() const;
   /**
    * \brief Returns the document (more accurately, fragment) XPath of the result
    * \return The document (fragment) XPath of the result
    */
-  const std::string& getPath() const;
+  MLCLIENT_API const std::string& getPath() const;
   /**
    * \brief Returns the calculated search score for this result
    * \return The search score
    */
-  long getScore();
+  MLCLIENT_API long getScore();
   /**
    * \brief Returns the calculated search confidence for this result
    * \return The search confidence
    */
-  double getConfidence();
+  MLCLIENT_API double getConfidence();
   /**
    * \brief Returns the calculated search fitness for this result
    * \return The search fitness
    */
-  double getFitness();
+  MLCLIENT_API double getFitness();
   /**
    * \brief Returns the level of detail of this result
    * \return The level of detail returned for this result
    */
-  const DETAIL& getDetail() const;
+  MLCLIENT_API const DETAIL& getDetail() const;
   /**
    * \brief Returns the raw text content of this result
    * \return The raw text content of this result
    */
-  const std::string& getDetailContent() const;
+  MLCLIENT_API const std::string& getDetailContent() const;
   /**
    * \brief Returns the MIME type of the result
    * \return The MIME type. Could be application/json, application/xml, or any other stored MIME type
    */
-  const std::string& getMimeType() const;
+  MLCLIENT_API const std::string& getMimeType() const;
   /**
    * \brief Returns the short text format of this result
    * \return The short text format of this result. Could be "text" or "json" or "xml" or "none"
    */
-  const std::string& getFormat() const;
+  MLCLIENT_API const std::string& getFormat() const;
 
 private:
   long index;

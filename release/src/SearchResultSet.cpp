@@ -19,65 +19,12 @@
 
 namespace mlclient {
 
-class SearchResultSetIterator {
-public:
-  SearchResultSetIterator(SearchResultSet* set) : mResultSet(set), position(1) {
-    ;
-  }
-
-  SearchResultSetIterator(SearchResultSet* set,long pos) : mResultSet(set), position(pos) {
-    ;
-  }
-
-  SearchResultSetIterator& begin() {
-    const SearchResultSetIterator iter(mResultSet,1);
-    return iter;
-  }
-
-  SearchResultSetIterator& end() {
-    const SearchResultSetIterator iter(mResultSet,mResultSet->getTotal());
-    return iter;
-  }
-
-  bool operator==(const SearchResultSetIterator& other) {
-    return position == other.position;
-  }
-
-  void operator++() {
-    // see if we're at the very end. If so, do nothing
-    // check to see if we're at the end of the current result set, and need to fetch more
-    // otherwise, just increment position
-
-    if (position >= mResultSet->getTotal()) {
-      // at end. No nothing
-    } else {
-      if ((mResultSet->getStart() + mResultSet->getPageLength() - 1) == position) {
-        // fetch next page
-        bool ok = mResultSet->mImpl->fetchNext();
-        // TODO do something if ok == false
-      }
-      ++position;
-    }
-  }
-
-  const SearchResult operator*() {
-    return mResultSet->mImpl->mResults.at(position);
-  }
-
-private:
-  SearchResultSet* mResultSet;
-  long position;
-};
-
-
-
-
 
 
 class SearchResultSet::Impl {
 public:
-  Impl(IConnection* conn,SearchDescription& desc) : mConn(conn), mInitialDescription(desc),
-    mResults(), mFetchException(nullptr), mIter(this), start(0), pageLength(0), total(0),totalTime(""),
+  Impl(SearchResultSet* set,IConnection* conn,SearchDescription& desc) : mConn(conn), mInitialDescription(desc),
+    mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), start(0), pageLength(0), total(0),totalTime(""),
     queryResolutionTime(""),snippetResolutionTime("") {
     ;
   }
@@ -217,7 +164,7 @@ public:
 
 
 SearchResultSet::SearchResultSet(IConnection* conn,SearchDescription& desc) {
-  mImpl = new SearchResultSet::Impl(conn,desc);
+  mImpl = new SearchResultSet::Impl(this,conn,desc);
 }
 
 bool SearchResultSet::fetch() {
@@ -276,6 +223,74 @@ const long SearchResultSet::getPageCount() const {
   // TODO validate type safety of the below
   return (long)std::ceil(((double)mImpl->total) / ((double)mImpl->pageLength));
 }
+
+
+
+
+
+
+
+
+
+SearchResultSetIterator::SearchResultSetIterator() : mResultSet(nullptr), position(1) {
+  ;
+}
+
+SearchResultSetIterator::SearchResultSetIterator(SearchResultSet* set) : mResultSet(set), position(1) {
+  ;
+}
+
+SearchResultSetIterator::SearchResultSetIterator(SearchResultSet* set, long pos) : mResultSet(set), position(pos) {
+  ;
+}
+
+SearchResultSetIterator& SearchResultSetIterator::begin() {
+  SearchResultSetIterator iter(mResultSet, 1);
+  return std::move(iter);
+}
+
+SearchResultSetIterator& SearchResultSetIterator::end() {
+  SearchResultSetIterator iter(mResultSet, mResultSet->getTotal());
+  return std::move(iter);
+}
+
+bool SearchResultSetIterator::operator==(const SearchResultSetIterator& other) {
+  return position == other.position;
+}
+
+void SearchResultSetIterator::operator++() {
+  // see if we're at the very end. If so, do nothing
+  // check to see if we're at the end of the current result set, and need to fetch more
+  // otherwise, just increment position
+
+  if (position >= mResultSet->getTotal()) {
+    // at end. No nothing
+  }
+  else {
+    if ((mResultSet->getStart() + mResultSet->getPageLength() - 1) == position) {
+      // fetch next page
+      bool ok = mResultSet->mImpl->fetchNext();
+      // TODO do something if ok == false
+    }
+    ++position;
+  }
+}
+
+const SearchResult SearchResultSetIterator::operator*() {
+  return mResultSet->mImpl->mResults.at(position);
+}
+
+
+SearchResultSetIterator SearchResultSetIterator::operator=(const SearchResultSetIterator& other) {
+  mResultSet = other.mResultSet;
+  position = other.position;
+  return other;
+}
+
+
+
+
+
 
 
 } // end namespace mlclient

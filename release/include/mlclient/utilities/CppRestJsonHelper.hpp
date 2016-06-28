@@ -20,6 +20,7 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 #define SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/SearchResult.hpp"
@@ -70,7 +71,7 @@ public:
    * \param json The web::json::value to create a IDocumentContent representation of
    * \return A IDocumentContent instance wrapping the value
    */
-  static ITextDocumentContent* toDocument(const web::json::value json);
+  MLCLIENT_API static ITextDocumentContent* toDocument(const web::json::value json);
   /**
    * \brief Creates a web::json::value from a IDocumentContent instance.
    *
@@ -79,7 +80,7 @@ public:
    * \param doc The IDocumentContent instance to create a web::json::value from.
    * \return A Microsoft cpprest API web::json::value instance created from the IDocumentContent.
    */
-  static web::json::value fromDocument(const IDocumentContent& doc);
+  MLCLIENT_API static web::json::value fromDocument(const IDocumentContent& doc);
   /// @}
 
   /// \name cpprestjsonhelper_responseconversion Response conversion functions
@@ -90,9 +91,9 @@ public:
    * \param resp The Response instance to create a web::json::value from.
    * \return A Microsoft cpprest API web::json::value instance created from the Response.
    */
-  static web::json::value fromResponse(const Response& resp);
+  MLCLIENT_API static web::json::value fromResponse(const Response& resp);
 
-  static web::json::value fromSearchResult(const SearchResult& result);
+  MLCLIENT_API static web::json::value fromSearchResult(const SearchResult& result);
   /// @}
 
 };

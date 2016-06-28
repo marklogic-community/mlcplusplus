@@ -20,6 +20,7 @@
 #ifndef SRC_UTILITIES_SEARCHBUILDER_HPP_
 #define SRC_UTILITIES_SEARCHBUILDER_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/SearchDescription.hpp"
 
 #include <cpprest/http_client.h> // deliberate compile time dependency
@@ -40,7 +41,7 @@ namespace utilities {
  * \since 8.0.2
  * \date 2016-06-08
  */
-class IQuery {
+class MLCLIENT_API IQuery {
 public:
   /**
    * \brief Default Constructor
@@ -64,7 +65,7 @@ std::string& operator +(std::string& s, const IQuery& rt);
 
 
 
-class GenericQuery: public IQuery {
+class MLCLIENT_API GenericQuery: public IQuery {
 public:
   GenericQuery();
   ~GenericQuery() = default;
@@ -79,7 +80,7 @@ private:
   std::string value;
 };
 
-class JsonPropertyQuery: public IQuery {
+class MLCLIENT_API JsonPropertyQuery: public IQuery {
 public:
   JsonPropertyQuery();
   ~JsonPropertyQuery() = default;
@@ -96,7 +97,7 @@ private:
 
 // CONTAINER REFERENCES
 
-class IContainerRef {
+class MLCLIENT_API IContainerRef {
 public:
   // TODO define IContainerRef
   IContainerRef() = default;
@@ -110,7 +111,7 @@ protected:
 std::ostream& operator << (std::ostream& os, const IContainerRef& rt);
 std::string& operator +(std::string& s, const IContainerRef& rt);
 
-class JsonPropertyRef : public IContainerRef {
+class MLCLIENT_API JsonPropertyRef : public IContainerRef {
 public:
   JsonPropertyRef();
   ~JsonPropertyRef() = default;
@@ -128,7 +129,7 @@ private:
 
 // MARKLOGIC SUPPORTED TYPES
 
-class ITypedValue {
+class MLCLIENT_API ITypedValue {
 public:
   ITypedValue() = default;
   virtual ~ITypedValue() = default;
@@ -158,9 +159,9 @@ public:
  * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
-class SearchBuilder {
+class MLCLIENT_API SearchBuilder {
 public:
-  enum RangeOperation {
+  MLCLIENT_API enum RangeOperation {
     Equal,NotEqual,LessThan,LessThanOrEqual,MoreThan,MoreThanOrEqual
   };
 

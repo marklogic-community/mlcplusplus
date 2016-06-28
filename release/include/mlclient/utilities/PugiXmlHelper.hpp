@@ -21,6 +21,7 @@
 #ifndef SRC_UTILITIES_PUGIXMLHELPER_HPP_
 #define SRC_UTILITIES_PUGIXMLHELPER_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/ext/pugixml/pugixml.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/DocumentContent.hpp"
@@ -52,7 +53,7 @@ public:
    * \param dc The pugi::xml_document instance to convert
    * \return The IDocumentContent instance wrapping the XML content, with its mime type and content set
    */
-  static ITextDocumentContent* toDocument(const pugi::xml_document& dc);
+  MLCLIENT_API static ITextDocumentContent* toDocument(const pugi::xml_document& dc);
 
   /**
    * \brief Extracts a pugi::xml_document instance from a IDocumentContent object.
@@ -64,7 +65,7 @@ public:
    * \param dc The IDocumentContent instance to extract the XML content from.
    * \return A pugi::xml_document instance (parsed XML) created from the IDocumentContent object provided.
    */
-  static pugi::xml_document* fromDocument(const IDocumentContent& dc);
+  MLCLIENT_API static pugi::xml_document* fromDocument(const IDocumentContent& dc);
 
   // Response conversion
   /**
@@ -75,7 +76,7 @@ public:
    * \param resp The MarkLogic C++ API Response object instance.
    * \return A pugi::xml_document instance (parsed XML tree) created from the Response.
    */
-  static pugi::xml_document* fromResponse(const Response& resp);
+  MLCLIENT_API static pugi::xml_document* fromResponse(const Response& resp);
 
 };
 

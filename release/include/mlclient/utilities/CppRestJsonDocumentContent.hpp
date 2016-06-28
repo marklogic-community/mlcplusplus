@@ -22,6 +22,7 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 #define SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include <cpprest/http_client.h>
 
@@ -47,11 +48,11 @@ public:
   /**
    * \brief Default constructor
    */
-  CppRestJsonDocumentContent();
+  MLCLIENT_API CppRestJsonDocumentContent();
   /**
    * \brief Virtual destructor to allow subclassing
    */
-  virtual ~CppRestJsonDocumentContent();
+  MLCLIENT_API virtual ~CppRestJsonDocumentContent();
 
   /// \name cpprestjsondocumentcontent_overrides Overridden functions from base class
   /// @{
@@ -60,7 +61,7 @@ public:
    *
    * \param json The cpprest API web::json::value instance to copy
    */
-  void setContent(const web::json::value& json);
+  MLCLIENT_API void setContent(const web::json::value& json);
 
   /**
    * \brief Returns the content of this ITextDocumentContent as an ostream.
@@ -71,7 +72,7 @@ public:
    *
    * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  std::ostream* getStream() const override;
+  MLCLIENT_API std::ostream* getStream() const override;
 
   /**
    * \brief Sets the textual content for this document
@@ -80,14 +81,14 @@ public:
    *
    * \param[in] The string content to copy in to this object.
    */
-  void setContent(std::string content) override;
+  MLCLIENT_API void setContent(std::string content) override;
 
   /**
    * \brief Returns the content as a string
    *
    * \return The string representation of the content.
    */
-  std::string getContent() const override;
+  MLCLIENT_API std::string getContent() const override;
 
   /**
    * \brief Returns the MIME type of this content.
@@ -96,7 +97,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  std::string getMimeType() const override;
+  MLCLIENT_API std::string getMimeType() const override;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -105,7 +106,7 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  void setMimeType(const std::string& mt) override;
+  MLCLIENT_API void setMimeType(const std::string& mt) override;
 
 
   /**
@@ -115,7 +116,7 @@ public:
    *
    * \return The number of characters in the string. Does not include C null character.
    */
-  int getLength() const override;
+  MLCLIENT_API int getLength() const override;
 
   /// @}
 
@@ -126,7 +127,7 @@ public:
    *
    * \return The underlying Microsoft cpprest web::json::value object.
    */
-  web::json::value& getJson();
+  MLCLIENT_API web::json::value& getJson();
   /// @}
 
 private:

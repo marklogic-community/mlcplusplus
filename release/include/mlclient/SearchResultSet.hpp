@@ -8,6 +8,7 @@
 #ifndef SRC_UTILITIES_SEARCHRESULTSET_HPP_
 #define SRC_UTILITIES_SEARCHRESULTSET_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/Connection.hpp"
 #include "mlclient/SearchDescription.hpp"
@@ -16,7 +17,7 @@
 
 namespace mlclient {
 
-class SearchResultSetIterator; // forward declaration
+class SearchResultSetIterator; // fwd declaration - see end of file
 
 /**
  * \brief A self-advancing result set class
@@ -38,24 +39,24 @@ public:
    * \param conn The Connection instance pointer
    * \param desc The Search Description to use for requests
    */
-  SearchResultSet(IConnection* conn,SearchDescription& desc);
+  MLCLIENT_API SearchResultSet(IConnection* conn,SearchDescription& desc);
 
   /**
    * \brief Destroys a SearchResultSet and all of its owned resources
    */
-  virtual ~SearchResultSet() = default;
+  MLCLIENT_API virtual ~SearchResultSet() = default;
 
   // iterator methods around each search result
   /**
    * \brief Returns the iterator for this result set
    * \return The iterator for this result set
    */
-  const_iterator begin() const;
+  MLCLIENT_API const_iterator begin() const;
   /**
    * \brief Returns a reference to the end of the iterator for this result set
    * \return A reference to the end of the iterator for this result set
    */
-  const_iterator end() const;
+  MLCLIENT_API const_iterator end() const;
 
   // TODO initially, no request
   // TODO then just make a request at end of a collection
@@ -67,13 +68,13 @@ public:
    * \note You can call the functions begin() and end() immediately after fetch() returns (fetch() uses synchronous request functions in Connection)
    * \return true if no errors were raised, false otherwise
    */
-  bool fetch();
+  MLCLIENT_API bool fetch();
 
   /**
    * \brief Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised.
    * \return The exception instance pointer
    */
-  std::exception* getFetchException();
+  MLCLIENT_API std::exception* getFetchException();
 
   /**
    * \brief Returns the sequence number of the first search result
@@ -81,7 +82,7 @@ public:
    * \note MarkLogic uses 1 based numbers. Thus the first record is at position 1, not position 0
    * \return The first result's sequence number (lowest is 1)
    */
-  const long getStart();
+  MLCLIENT_API const long getStart();
 
   /**
    * \brief Returns the total count of all search results, across all pages
@@ -90,7 +91,7 @@ public:
    * calculable from indexes. Otherwise, this total could be higher than the actual number of results (after filtering).
    * \return The total number of search results returned.
    */
-  const long getTotal();
+  MLCLIENT_API const long getTotal();
 
   /**
    * \brief Returns the number of results returned on each page
@@ -99,13 +100,13 @@ public:
    * \note This class will automatically fetch the next page of results until they are exhausted, so no need to handle this yourself.
    * \return The number of results returned per page.
    */
-  const long getPageLength();
+  MLCLIENT_API const long getPageLength();
 
   /**
    * \brief Returns the snippet format. Could be raw, none, or snippet.
    * \return The string description as returned by the REST API. Usually "raw","none",or "snippet". Could be "custom" depending on search options.
    */
-  const std::string& getSnippetFormat() const;
+  MLCLIENT_API const std::string& getSnippetFormat() const;
 
   /**
    * \brief Returns the query resolution time for the last page requested, if available.
@@ -114,7 +115,7 @@ public:
    *
    * \return xsd:duration string description of the time to resolve the query
    */
-  const std::string& getQueryResolutionTime() const;
+  MLCLIENT_API const std::string& getQueryResolutionTime() const;
 
   /**
    * \brief Returns the snippet resolution time for the last page requested, if available.
@@ -123,7 +124,7 @@ public:
    *
    * \return xsd:duration string description of the time to resolve the snippet
    */
-  const std::string& getSnippetResolutionTime() const;
+  MLCLIENT_API const std::string& getSnippetResolutionTime() const;
 
   /**
    * \brief Returns the total time taken for the last page requested, if available.
@@ -132,19 +133,40 @@ public:
    *
    * \return xsd:duration string description of the total time taken (includes both snippet and query resolution time)
    */
-  const std::string& getTotalTime() const;
+  MLCLIENT_API const std::string& getTotalTime() const;
 
   /**
    * \brief Utility function to return the total number of pages in the result set
    * \return The total number of pages in the result set
    */
-  const long getPageCount() const;
+  MLCLIENT_API const long getPageCount() const;
+
+  friend class SearchResultSetIterator;
 
 private:
-  friend class SearchResultSetIterator;
 
   class Impl; // forward declaration
   Impl* mImpl;
+};
+
+
+class SearchResultSetIterator {
+public:
+  MLCLIENT_API SearchResultSetIterator();
+  MLCLIENT_API SearchResultSetIterator(SearchResultSet* set);
+  MLCLIENT_API SearchResultSetIterator(SearchResultSet* set,long pos);
+
+  MLCLIENT_API SearchResultSetIterator& begin();
+  MLCLIENT_API SearchResultSetIterator& end();
+
+  MLCLIENT_API bool operator==(const SearchResultSetIterator& other);
+  MLCLIENT_API void operator++();
+  MLCLIENT_API const SearchResult operator*();
+  MLCLIENT_API SearchResultSetIterator operator=(const SearchResultSetIterator& other);
+
+private:
+  SearchResultSet* mResultSet;
+  long position;
 };
 
 } // end namespace mlclient

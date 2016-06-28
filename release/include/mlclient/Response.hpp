@@ -20,6 +20,7 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/HttpHeaders.hpp"
 
 #include <iosfwd>
@@ -30,17 +31,17 @@ namespace mlclient {
 /**
  * The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
  */
-enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
+  MLCLIENT_API enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
 
-std::ostream& operator << (std::ostream& os, const ResponseType& rt);
-std::string& operator +(std::string& s, const ResponseType& rt);
+MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseType& rt);
+MLCLIENT_API std::string& operator +(std::string& s, const ResponseType& rt);
 
-const std::string translate(const ResponseType& rt);
+MLCLIENT_API const std::string translate(const ResponseType& rt);
 
 /**
  * The various HTTP response codes. Defaults to UNKNOWN to prevent API failures.
  **/
-enum ResponseCode : int {
+MLCLIENT_API enum ResponseCode : int {
        UNKNOWN_CODE                  = 0,
        CONTINUE                      = 100,
        OK                            = 200,
@@ -83,10 +84,10 @@ enum ResponseCode : int {
 };
 
 
-std::ostream& operator << (std::ostream& os, const ResponseCode& rc);
-std::string& operator +(std::string& s, const ResponseCode& rc);
+MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseCode& rc);
+MLCLIENT_API std::string& operator +(std::string& s, const ResponseCode& rc);
 
-const std::string translate(const ResponseCode& rt);
+MLCLIENT_API const std::string translate(const ResponseCode& rt);
 
 
 
@@ -127,8 +128,8 @@ public:
   ///
   /// Constructor
   ///
-  Response();
-  ~Response();
+  MLCLIENT_API Response();
+  MLCLIENT_API ~Response();
 
   ///
   /// \brief Sets the HTTP response code for the Response.
@@ -138,14 +139,14 @@ public:
   ///
   /// \param[in] code The HTTP response code
   ///
-  void setResponseCode(const ResponseCode& code);
+  MLCLIENT_API void setResponseCode(const ResponseCode& code);
 
   /**
    * \brief Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown.
    *
    * \return A ResponseType enum value representing the MarkLogic response type class. This can be outputted as a string using the << operator.
    */
-  ResponseType getResponseType(void) const;
+  MLCLIENT_API ResponseType getResponseType(void) const;
 
   ///
   /// \brief Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally.
@@ -156,7 +157,7 @@ public:
   ///
   /// \param[in] type The type of response
   ///
-  void setResponseType(const enum ResponseType& type);
+  MLCLIENT_API void setResponseType(const enum ResponseType& type);
 
   ///
   /// \brief Sets the headers received as part of the response.
@@ -166,14 +167,14 @@ public:
   ///
   /// \param[in] headers The HTTP response headers
   ///
-  void setResponseHeaders(const mlclient::HttpHeaders& headers);
+  MLCLIENT_API void setResponseHeaders(const mlclient::HttpHeaders& headers);
 
   ///
   /// \brief Returns the HTTP response code for the response.
   ///
   /// \return The HTTP response code
   ///
-  ResponseCode getResponseCode(void) const;
+  MLCLIENT_API ResponseCode getResponseCode(void) const;
 
   ///
   /// \brief Returns the headers that were returned with the response.
@@ -181,7 +182,7 @@ public:
   /// \return The HTTP response headers
   /// \todo Remove the dependency on the cpprest API
   ///
-  mlclient::HttpHeaders getResponseHeaders(void) const;
+  MLCLIENT_API mlclient::HttpHeaders getResponseHeaders(void) const;
 
 
   ///
@@ -197,14 +198,14 @@ public:
   /// \param[in] off The offset in the buffer after which this function starts writing data to
   /// \return The number of bytes read
   ///
-  size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
+  MLCLIENT_API size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
 
   ///
   /// \brief For text responses (including JSON and XML), returns the response content as a string.
   ///
   /// \return The UTF-8 string
   ///
-  const std::string& getContent() const;
+  MLCLIENT_API const std::string& getContent() const;
 
   /**
    * \brief Sets the string content for this Response
@@ -215,11 +216,11 @@ public:
    *
    * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
    */
-  void setContent(std::string* content);
+  MLCLIENT_API void setContent(std::string* content);
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
-  Response(const Response&) = delete;
-  Response& operator= (const Response&) = delete;
+  MLCLIENT_API Response(const Response&) = delete;
+  MLCLIENT_API Response& operator= (const Response&) = delete;
 
 private:
   class Impl; // forward declare - PIMPL idiom

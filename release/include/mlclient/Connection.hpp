@@ -23,6 +23,7 @@
 #ifndef __MLCLIENT_CONNECTION__
 #define __MLCLIENT_CONNECTION__
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
@@ -48,7 +49,7 @@ public:
    *
    * \since 8.0.0
    */
-  IConnection() = default;
+  MLCLIENT_API IConnection() = default;
 
   /**
    * Destroys a Connection instance.
@@ -69,20 +70,20 @@ public:
    * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
    * \param[in] usessl A bool representation whether to use SSL (i.e. a HTTPS url) or not
    */
-  virtual void configure(const std::string& hostname, const std::string& port, const std::string& username,
+  MLCLIENT_API virtual void configure(const std::string& hostname, const std::string& port, const std::string& username,
       const std::string& password, const bool usessl = false) = 0;
 
   /**
    * \brief Connects or tests the authentication in the connection. May not actually connect.
    * \note Should be called prior to any use of functions. Is not called for the developer
    */
-  virtual bool connect() = 0;
+  MLCLIENT_API virtual bool connect() = 0;
 
   /**
    * \brief Frees up resources held by the connection, until the next call to connect.
    * \note Should be called by a class' destructor
    */
-  virtual void disconnect() = 0;
+  MLCLIENT_API virtual void disconnect() = 0;
 
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
@@ -91,7 +92,7 @@ public:
    *
    * \param[in] The string name (not internal MarkLogic numeric ID) of the database to query.
    */
-  virtual void setDatabaseName(const std::string& db) = 0;
+  MLCLIENT_API virtual void setDatabaseName(const std::string& db) = 0;
 
   /**
    * \brief Returns the database name we're querying/updating. Defaults to Documents.
@@ -100,7 +101,7 @@ public:
    *
    * \return A string representation of the database name (not internal MarkLogic database numeric ID)
    */
-  virtual std::string getDatabaseName() = 0;
+  MLCLIENT_API virtual std::string getDatabaseName() = 0;
 
   // @}
 
@@ -130,7 +131,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  virtual Response* doGet(const std::string& pathAndQuerystring) = 0;
+  MLCLIENT_API virtual Response* doGet(const std::string& pathAndQuerystring) = 0;
 
   /**
    * \brief Performs a HTTP PUT Request against MarkLogic Server.
@@ -152,7 +153,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  virtual Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) = 0;
+  MLCLIENT_API virtual Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) = 0;
 
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
@@ -174,7 +175,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  virtual Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) = 0;
+  MLCLIENT_API virtual Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) = 0;
 
   /// TODO multipart payload
   /**
@@ -196,7 +197,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  virtual Response* doDelete(const std::string& pathAndQueryString) = 0;
+  MLCLIENT_API virtual Response* doDelete(const std::string& pathAndQueryString) = 0;
 
   /// TODO PATCH and other HTTP synonyms
 
@@ -219,7 +220,7 @@ public:
    *
    * \since 8.0.0
    */
-  virtual Response* getDocument(const std::string& uri) = 0; /// TODO add optional call parameters (E.g. fetch properties also)
+  MLCLIENT_API virtual Response* getDocument(const std::string& uri) = 0; /// TODO add optional call parameters (E.g. fetch properties also)
 
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
@@ -235,7 +236,7 @@ public:
    *
    * \since 8.0.0
    */
-  virtual Response* saveDocument(const std::string& uri,const IDocumentContent& payload) = 0;
+  MLCLIENT_API virtual Response* saveDocument(const std::string& uri,const IDocumentContent& payload) = 0;
 
   /**
    * \brief Deletes the specified document by URI
@@ -248,7 +249,7 @@ public:
    *
    * \since 8.0.0
    */
-  virtual Response* deleteDocument(const std::string& uri) = 0;
+  MLCLIENT_API virtual Response* deleteDocument(const std::string& uri) = 0;
 
   /**
    * \brief Performs a search against the MarkLogic database given the provided search query, text and options
@@ -265,21 +266,21 @@ public:
    *
    * \since 8.0.0
    */
-  virtual Response* search(const SearchDescription& desc) = 0;
+  MLCLIENT_API virtual Response* search(const SearchDescription& desc) = 0;
 
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
    */
-  virtual Response* listRootCollections() = 0;
+  MLCLIENT_API virtual Response* listRootCollections() = 0;
 
   /**
    * \brief Lists the immediate child collections of the specified parent Collections.
    * \note Parent collection must start with a /
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
    */
-  virtual Response* listCollections(const std::string& parentCollection) = 0;
+  MLCLIENT_API virtual Response* listCollections(const std::string& parentCollection) = 0;
 
 
   /*
@@ -376,12 +377,12 @@ public:
    *
    * \since 8.0.0
    */
-  Connection();
+  MLCLIENT_API Connection();
 
   /**
    * Destroys a Connection instance.
    */
-  ~Connection();
+  MLCLIENT_API ~Connection();
 
   /// \name connection_configuration Connection configuration functions
   // @{
@@ -397,20 +398,20 @@ public:
    * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
    * \param[in] usessl A bool representation whether to use SSL (i.e. a HTTPS url) or not
    */
-  void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
+  MLCLIENT_API void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
       const bool usessl = false) override;
 
   /**
    * \brief Connects or tests the authentication in the connection. May not actually connect.
    * \note Should be called prior to any use of functions. Is not called for the developer
    */
-  bool connect() override;
+  MLCLIENT_API bool connect() override;
 
   /**
    * \brief Frees up resources held by the connection, until the next call to connect.
    * \note Should be called by a class' destructor
    */
-  void disconnect() override;
+  MLCLIENT_API void disconnect() override;
 
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
@@ -419,7 +420,7 @@ public:
    *
    * \param[in] The string name (not internal MarkLogic numeric ID) of the database to query.
    */
-  void setDatabaseName(const std::string& db) override;
+  MLCLIENT_API void setDatabaseName(const std::string& db) override;
 
   /**
    * \brief Returns the database name we're querying/updating. Defaults to Documents.
@@ -428,7 +429,7 @@ public:
    *
    * \return A string representation of the database name (not internal MarkLogic database numeric ID)
    */
-  std::string getDatabaseName() override;
+  MLCLIENT_API std::string getDatabaseName() override;
 
   // @}
 
@@ -454,7 +455,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  Response* doGet(const std::string& pathAndQuerystring) override;
+  MLCLIENT_API Response* doGet(const std::string& pathAndQuerystring) override;
 
   /**
    * \brief Performs a HTTP PUT Request against MarkLogic Server.
@@ -476,7 +477,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
+  MLCLIENT_API Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
@@ -498,7 +499,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
+  MLCLIENT_API Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
   /**
    * \brief Performs a HTTP DELETE Request against MarkLogic Server.
@@ -519,7 +520,7 @@ public:
    * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
    * web application URL.
    */
-  Response* doDelete(const std::string& pathAndQueryString) override;
+  MLCLIENT_API Response* doDelete(const std::string& pathAndQueryString) override;
 
   // @}
 
@@ -539,7 +540,7 @@ public:
    *
    * \since 8.0.0
    */
-  Response* getDocument(const std::string& uri) override;
+  MLCLIENT_API Response* getDocument(const std::string& uri) override;
 
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
@@ -555,7 +556,7 @@ public:
    *
    * \since 8.0.0
    */
-  Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
+  MLCLIENT_API Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
 
   /**
    * \brief Deletes the specified document by URI
@@ -568,7 +569,7 @@ public:
    *
    * \since 8.0.0
    */
-  Response* deleteDocument(const std::string& uri) override;
+  MLCLIENT_API Response* deleteDocument(const std::string& uri) override;
 
   /**
    * \brief Performs a search against the MarkLogic database given the provided search query, text and options
@@ -585,21 +586,21 @@ public:
    *
    * \since 8.0.0
    */
-  Response* search(const SearchDescription& desc) override;
+  MLCLIENT_API Response* search(const SearchDescription& desc) override;
 
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
    */
-  Response* listRootCollections() override;
+  MLCLIENT_API Response* listRootCollections() override;
 
   /**
    * \brief Lists the immediate child collections of the specified parent Collections.
    * \note Parent collection must start with a /
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
    */
-  Response* listCollections(const std::string& parentCollection) override;
+  MLCLIENT_API Response* listCollections(const std::string& parentCollection) override;
 
 
   // @}

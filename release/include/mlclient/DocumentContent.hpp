@@ -24,6 +24,7 @@
 #ifndef SRC_DOCUMENTCONTENT_HPP_
 #define SRC_DOCUMENTCONTENT_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include <string>
 #include <iosfwd>
 
@@ -48,12 +49,12 @@ public:
   /**
    * The IDocumentContent constructor. Called implicitly by subclasses only.
    */
-  IDocumentContent();
+  MLCLIENT_API IDocumentContent();
 
   /**
    * A virtual destructor, ripe for overloading. REQUIRED to allow subclassing
    */
-  virtual ~IDocumentContent();
+  MLCLIENT_API virtual ~IDocumentContent();
 
   /**
    * \brief Returns the content of this IDocumentContent as an ostream.
@@ -64,7 +65,7 @@ public:
    *
    * \return An ostream instance wrapping the content of this Document Content instance
    */
-  virtual std::ostream* getStream() const = 0;
+  MLCLIENT_API virtual std::ostream* getStream() const = 0;
 
   /**
    * \brief Returns the content of this IDocumentContent as a std::string.
@@ -73,7 +74,7 @@ public:
    *
    * \return A string representing this content;
    */
-  virtual std::string getContent() const = 0;
+  MLCLIENT_API virtual std::string getContent() const = 0;
 
   /**
    * \brief Returns the MIME type of this content.
@@ -82,7 +83,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  virtual std::string getMimeType() const = 0;
+  MLCLIENT_API virtual std::string getMimeType() const = 0;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -91,10 +92,10 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  virtual void setMimeType(const std::string& mt) = 0;
+  MLCLIENT_API virtual void setMimeType(const std::string& mt) = 0;
 
-  static const std::string MIME_JSON; //< The value application/json
-  static const std::string MIME_XML; //< The value application/xml
+  MLCLIENT_API static const std::string MIME_JSON; //< The value application/json
+  MLCLIENT_API static const std::string MIME_XML; //< The value application/xml
 
 };
 
@@ -112,8 +113,8 @@ public:
  */
 class ITextDocumentContent : public IDocumentContent {
 public:
-  ITextDocumentContent();
-  virtual ~ITextDocumentContent();
+  MLCLIENT_API ITextDocumentContent();
+  MLCLIENT_API virtual ~ITextDocumentContent();
 
   /**
    * \brief Sets the textual content for this document
@@ -122,7 +123,7 @@ public:
    *
    * \param[in] The string content to copy in to this object.
    */
-  virtual void setContent(std::string content) = 0;
+  MLCLIENT_API virtual void setContent(std::string content) = 0;
 
   /**
    * \brief Returns the number of characters in the content string.
@@ -131,7 +132,7 @@ public:
    *
    * \return The number of characters in the string. Does not include C null character.
    */
-  virtual int getLength() const = 0;
+  MLCLIENT_API virtual int getLength() const = 0;
 };
 
 
@@ -160,22 +161,22 @@ public:
    *
    * The type will by default be set to JSON. Content will by default be an empty string.
    */
-  GenericTextDocumentContent();
+  MLCLIENT_API GenericTextDocumentContent();
 
   /**
    * \brief deep copy constructor
    */
-  GenericTextDocumentContent(const GenericTextDocumentContent& doc);
+  MLCLIENT_API GenericTextDocumentContent(const GenericTextDocumentContent& doc);
 
   /**
    * \brief deep copy constructor
    */
-  GenericTextDocumentContent(const ITextDocumentContent& doc);
+  MLCLIENT_API GenericTextDocumentContent(const ITextDocumentContent& doc);
 
   /**
    * \brief Pure virtual destructor
    */
-  virtual ~GenericTextDocumentContent();
+  MLCLIENT_API virtual ~GenericTextDocumentContent();
 
   /**
    * \brief Sets the textual content for this document
@@ -184,7 +185,7 @@ public:
    *
    * \param[in] The string content to copy in to this object.
    */
-  void setContent(std::string content) override;
+  MLCLIENT_API void setContent(std::string content) override;
 
   /**
    * \brief Returns the content of this TextDocumentContent as an ostream.
@@ -195,14 +196,14 @@ public:
    *
    * \return An ostream instance wrapping the content of this Text Document Content instance
    */
-  std::ostream* getStream() const override;
+  MLCLIENT_API std::ostream* getStream() const override;
 
   /**
    * \brief Returns the content as a string
    *
    * \return The string representation of the content.
    */
-  std::string getContent() const override;
+  MLCLIENT_API std::string getContent() const override;
 
 
 
@@ -213,7 +214,7 @@ public:
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
-  std::string getMimeType() const override;
+  MLCLIENT_API std::string getMimeType() const override;
 
   /**
    * \brief Sets the MIME type of this content.
@@ -222,7 +223,7 @@ public:
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */
-  void setMimeType(const std::string& mt) override;
+  MLCLIENT_API void setMimeType(const std::string& mt) override;
 
 
   /**
@@ -232,7 +233,7 @@ public:
    *
    * \return The number of characters in the string. Does not include C null character.
    */
-  int getLength() const override;
+  MLCLIENT_API int getLength() const override;
 
 private:
   class Impl;

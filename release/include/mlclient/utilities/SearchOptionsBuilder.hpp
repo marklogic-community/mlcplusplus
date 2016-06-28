@@ -20,6 +20,7 @@
 #ifndef SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
 #define SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/utilities/SearchBuilder.hpp"
 
 #include "mlclient/SearchDescription.hpp"
@@ -50,16 +51,16 @@ namespace utilities {
  */
 class SearchOptionsBuilder {
 public:
-  enum FragmentScope {
+  MLCLIENT_API enum FragmentScope {
     Content,Properties
   };
 
-  SearchOptionsBuilder();
-  ~SearchOptionsBuilder() = default;
+  MLCLIENT_API SearchOptionsBuilder();
+  MLCLIENT_API ~SearchOptionsBuilder() = default;
 
   // public class methods that control the create of a search or query
-  SearchOptionsBuilder* additionalQuery(const IQuery& query);
-  SearchOptionsBuilder* containerConstraint(const IContainerRef& container);
+  MLCLIENT_API SearchOptionsBuilder* additionalQuery(const IQuery& query);
+  MLCLIENT_API SearchOptionsBuilder* containerConstraint(const IContainerRef& container);
   //SearchOptionsBuilder* fieldRangeConstraint(const IContainerRef& container); // use fieldContainerRef() with containerConstraint()
 
   //SearchOptionsBuilder* geoAttributePairConstraint(const IContainerRef& container);
@@ -67,8 +68,8 @@ public:
   //SearchOptionsBuilder* geoElementPairConstraint(const IContainerRef& container);
   //SearchOptionsBuilder* geoPathConstraint(const IContainerRef& container);
 
-  SearchOptionsBuilder* emptySnippet();
-  SearchOptionsBuilder* rawSnippet();
+  MLCLIENT_API SearchOptionsBuilder* emptySnippet();
+  MLCLIENT_API SearchOptionsBuilder* rawSnippet();
 
   //SearchOptionsBuilder* extractAttributeMetadata();
   //SearchOptionsBuilder* extractElementMetadata();
@@ -80,8 +81,8 @@ public:
 
   // TODO grammar options including - grouping, implicit, implicitAnd, implicitOr, joiner
 
-  void fromDocument(const ITextDocumentContent& doc);
-  ITextDocumentContent* toDocument();
+  MLCLIENT_API void fromDocument(const ITextDocumentContent& doc);
+  MLCLIENT_API ITextDocumentContent* toDocument();
 
 private:
   class Impl; // forward declaration - hides underlying API dependencies

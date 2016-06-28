@@ -26,6 +26,7 @@ packages/*
 .vs
 Debug/*
 Build/Debug
+Build/x64
 Build/mlclient.VC.db
 Build/getdoc/Debug
 Build/cgetasstruct/Debug

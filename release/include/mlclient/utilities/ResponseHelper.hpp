@@ -20,6 +20,7 @@
 #ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_
 #define SRC_UTILITIES_RESPONSEHELPER_HPP_
 
+#include "mlclient/mlclient.hpp"
 #include "mlclient/Response.hpp"
 #include <vector>
 #include <string>
@@ -51,7 +52,7 @@ public:
    * \param Response The response to introspect
    * \return True if the Response is an error response
    */
-  static bool isInError(const Response& resp);
+  MLCLIENT_API static bool isInError(const Response& resp);
 
   /**
    * \brief Returns the error message of a Response in error
@@ -60,7 +61,7 @@ public:
    * \param Response The response to introspect
    * \return The string value of the top level error message, if any
    */
-  static std::string getErrorMessage(const Response& resp);
+  MLCLIENT_API static std::string getErrorMessage(const Response& resp);
 
   /**
    * \brief Returns the full error trace information as a string
@@ -68,7 +69,7 @@ public:
    * \param Response The response to introspect
    * \return The full error stack as a string, if available
    */
-  static std::string getErrorDetailAsString(const Response& resp);
+  MLCLIENT_API static std::string getErrorDetailAsString(const Response& resp);
 
   /**
    * \brief Returns a string list of suggestion values. Used with the response from POST /v1/suggest.
@@ -78,7 +79,7 @@ public:
    * \param Response The response to introspect
    * \return A list of suggestion values
    */
-  static std::vector<std::string> getSuggestions(const Response& resp);
+  MLCLIENT_API static std::vector<std::string> getSuggestions(const Response& resp);
 
 
 }; // end ResponseHelper class

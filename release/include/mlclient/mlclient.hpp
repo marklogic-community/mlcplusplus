@@ -14,4 +14,10 @@
 #ifndef MLCLIENT_H
 #define MLCLIENT_H
 
+#ifdef MLCLIENT_EXPORTS
+#define MLCLIENT_API __declspec(dllexport)
+#else
+#define MLCLIENT_API __declspec(dllimport)
+#endif
+
 #endif /* defined(MLCLIENT_H) */

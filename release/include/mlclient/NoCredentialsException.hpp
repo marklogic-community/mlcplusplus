@@ -20,6 +20,7 @@
 #ifndef NOCREDENTIALSEXCEPTION_H
 #define NOCREDENTIALSEXCEPTION_H
 
+#include "mlclient/mlclient.hpp"
 #include <exception>
 #include <stdexcept>
 
@@ -38,7 +39,7 @@ public:
   /**
    * \brief An override of the what() function to provide a better description of the issue.
    */
-  virtual const char* what() const throw() override;
+  MLCLIENT_API virtual const char* what() const throw() override;
 };
 
 } // end namespace mlclient
