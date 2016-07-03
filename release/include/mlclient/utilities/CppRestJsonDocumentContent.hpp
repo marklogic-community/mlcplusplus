@@ -61,7 +61,7 @@ public:
    *
    * \param json The cpprest API web::json::value instance to copy
    */
-  MLCLIENT_API void setContent(const web::json::value& json);
+  MLCLIENT_API void setContent(web::json::value& json);
 
   /**
    * \brief Returns the content of this ITextDocumentContent as an ostream.
@@ -127,7 +127,7 @@ public:
    *
    * \return The underlying Microsoft cpprest web::json::value object.
    */
-  MLCLIENT_API web::json::value& getJson();
+  MLCLIENT_API const web::json::value& getJson() const;
   /// @}
 
 private:

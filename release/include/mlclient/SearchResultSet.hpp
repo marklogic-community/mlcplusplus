@@ -37,9 +37,9 @@ public:
   /**
    * \brief Creates a self-advancing result set given the specified search description
    * \param conn The Connection instance pointer
-   * \param desc The Search Description to use for requests
+   * \param desc The Search Description to use for requests - will be owned by this class
    */
-  MLCLIENT_API SearchResultSet(IConnection* conn,SearchDescription& desc);
+  MLCLIENT_API SearchResultSet(IConnection* conn,SearchDescription* desc);
 
   /**
    * \brief Destroys a SearchResultSet and all of its owned resources
@@ -51,12 +51,12 @@ public:
    * \brief Returns the iterator for this result set
    * \return The iterator for this result set
    */
-  MLCLIENT_API const_iterator begin() const;
+  MLCLIENT_API SearchResultSetIterator* begin() const;
   /**
    * \brief Returns a reference to the end of the iterator for this result set
    * \return A reference to the end of the iterator for this result set
    */
-  MLCLIENT_API const_iterator end() const;
+  MLCLIENT_API SearchResultSetIterator* end() const;
 
   // TODO initially, no request
   // TODO then just make a request at end of a collection
@@ -144,7 +144,6 @@ public:
   friend class SearchResultSetIterator;
 
 private:
-
   class Impl; // forward declaration
   Impl* mImpl;
 };
@@ -156,13 +155,16 @@ public:
   MLCLIENT_API SearchResultSetIterator(SearchResultSet* set);
   MLCLIENT_API SearchResultSetIterator(SearchResultSet* set,long pos);
 
-  MLCLIENT_API SearchResultSetIterator& begin();
-  MLCLIENT_API SearchResultSetIterator& end();
+  MLCLIENT_API SearchResultSetIterator* begin();
+  MLCLIENT_API SearchResultSetIterator* end();
 
   MLCLIENT_API bool operator==(const SearchResultSetIterator& other);
+  MLCLIENT_API bool operator!=(const SearchResultSetIterator& other);
   MLCLIENT_API void operator++();
   MLCLIENT_API const SearchResult operator*();
   MLCLIENT_API SearchResultSetIterator operator=(const SearchResultSetIterator& other);
+
+  MLCLIENT_API const SearchResult& first() const;
 
 private:
   SearchResultSet* mResultSet;

@@ -10,18 +10,18 @@
 #include <iostream>
 #include <string>
 #include "ConnectionFactory.hpp"
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
-#include "NoCredentialsException.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/NoCredentialsException.hpp"
 
 #include "SearchBuilderTest.hpp"
-#include "utilities/SearchBuilder.hpp"
-#include "SearchResultSet.hpp"
-#include "SearchResult.hpp"
+#include "mlclient/utilities/SearchBuilder.hpp"
+#include "mlclient/SearchResultSet.hpp"
+#include "mlclient/SearchResult.hpp"
 
-#include "ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 using namespace mlclient;
 using namespace mlclient::utilities;
@@ -45,13 +45,18 @@ void SearchBuilderTest::testAll() {
   TIMED_FUNC(testAll);
   LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering SearchBuilderTest::testAll";
-  SearchDescription desc; // default empty search object
+  SearchDescription* desc = new SearchDescription; // default empty search object
+  LOG(DEBUG) << "Got blank desc doc";
   GenericTextDocumentContent* tdcOptions = new GenericTextDocumentContent;
-  tdcOptions->setContent("\"options\": {\"transform-results\": {\"apply\": \"raw\"}}");
-  desc.setOptions(*tdcOptions);
+  LOG(DEBUG) << "got options";
+  tdcOptions->setContent("{\"transform-results\": {\"apply\": \"raw\"}}");
+  LOG(DEBUG) << "have set options content";
+  desc->setOptions(*tdcOptions);
+  LOG(DEBUG) << "set search desc options";
 
   // construct search query
   SearchBuilder builder;
+  LOG(DEBUG) << "got blank builder";
   /*
   builder.setQuery(
     SearchBuilder::andQuery(
@@ -73,7 +78,8 @@ void SearchBuilderTest::testAll() {
   );
   */
   ITextDocumentContent& searchDoc = *builder.toDocument();
-  desc.setQuery(searchDoc);
+  LOG(DEBUG) << "got search doc from builder";
+  desc->setQuery(searchDoc);
   LOG(DEBUG) << "  Got a SearchDescription object instance";
 
   SearchResultSet* results = new SearchResultSet(ml,desc);
@@ -88,12 +94,14 @@ void SearchBuilderTest::testAll() {
 
   // get results iterator
   int count = 0;
-  for (auto& iter : *results) {
+  for (SearchResultSetIterator* iter = results->begin();*iter != *(results->end());++(*iter)) {
     LOG(DEBUG) << " Result " << count << ":-";
-    LOG(DEBUG) << "  URI: " << iter.getUri();
-    LOG(DEBUG) << "  Content: " << iter.getDetailContent();
-    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter.getUri()));
-    CPPUNIT_ASSERT_MESSAGE("Result does not have content",0!=blankString.compare(iter.getDetailContent()));
+    LOG(DEBUG) << "  URI: " << iter->first().getUri();
+    LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getContent();
+    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter->first().getUri()));
+    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != iter->first().getDetailContent());
+    ++count;
+    if (count > 20) break;
   }
 
   // NB Response deleted by SearchResultSet fetch() method

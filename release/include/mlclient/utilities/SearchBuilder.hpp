@@ -34,6 +34,17 @@ namespace mlclient {
 namespace utilities {
 
 
+// ENUMS
+/**
+ * The MarkLogic Search Range Query Operation - Unknown (means the API hasn't been told by your own function calls!).
+ */
+MLCLIENT_API enum RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE = 4, EQ = 5, NE = 6 };
+
+MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOperation& rt);
+MLCLIENT_API std::string& operator +(std::string& s, const RangeOperation& rt);
+
+MLCLIENT_API const std::string translate(const RangeOperation& rt);
+
 // QUERY TYPES
 
 /**
@@ -161,10 +172,6 @@ public:
  */
 class MLCLIENT_API SearchBuilder {
 public:
-  MLCLIENT_API enum RangeOperation {
-    Equal,NotEqual,LessThan,LessThanOrEqual,MoreThan,MoreThanOrEqual
-  };
-
   SearchBuilder();
   ~SearchBuilder() = default;
 
@@ -177,9 +184,12 @@ public:
   static IQuery* documentQuery(const std::vector<std::string>& uris);
 
   // public class methods that control the create of a search or query
-  static IQuery* andQuery(const std::vector<IQuery>& queries);
-  static IQuery* orQuery(const std::vector<IQuery>& queries);
-  static IQuery* notQuery(const std::vector<IQuery>& queries);
+  static IQuery* andQuery(const std::vector<IQuery*>& queries);
+  static IQuery* orQuery(const std::vector<IQuery*>& queries);
+  static IQuery* notQuery(const IQuery* query);
+
+  static IQuery* valueQuery(const std::string ref,const std::string value);
+  static IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
 
   // instance methods that control the base search definition
   SearchBuilder* setQuery(IQuery* query); // top level root query

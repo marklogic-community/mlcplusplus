@@ -119,7 +119,8 @@ class GenericTextDocumentContent::Impl {
 public:
   Impl() {
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
-    content = std::unique_ptr<std::string>(new std::string(std::string(""))); // MUST BE INITIALISED
+    content = std::unique_ptr<std::string>(new std::string("{}")); // MUST BE INITIALISED
+    mimeType = "application/json";
   }
   ~Impl() {
     ;
@@ -135,11 +136,17 @@ GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent:
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(*(doc.mImpl->content.get()))); // copy constructor
+  std::ostringstream oss;
+  oss << *(doc.mImpl->content);
+  mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
+  mImpl->mimeType = doc.getMimeType();
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(doc.getContent())); // copy constructor
+  std::ostringstream oss;
+  oss << doc.getContent();
+  mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
+  mImpl->mimeType = doc.getMimeType();
 }
 GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
@@ -151,10 +158,10 @@ void GenericTextDocumentContent::setContent(std::string content) {
   mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
 }
 std::string GenericTextDocumentContent::getContent() const {
-  return std::string(*(mImpl->content)); // Forces copy constructor
+  return *(mImpl->content); // Forces copy constructor
 }
 int GenericTextDocumentContent::getLength() const {
-  return mImpl->content.get()->size();
+  return mImpl->content->size();
 }
 
 std::ostream* GenericTextDocumentContent::getStream() const {

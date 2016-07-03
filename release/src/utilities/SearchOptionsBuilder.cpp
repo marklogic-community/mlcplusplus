@@ -21,6 +21,7 @@
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/utilities/SearchOptionsBuilder.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/ext/easylogging++.h"
 #include <cpprest/http_client.h>
 #include <iostream>
 #include <string>
@@ -81,8 +82,9 @@ void SearchOptionsBuilder::fromDocument(const ITextDocumentContent& doc) {
 }
 
 ITextDocumentContent* SearchOptionsBuilder::toDocument() {
+  TIMED_FUNC(SearchOptionsBuilder_toDocument);
   std::ostringstream oss;
-  oss << "{\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
+  oss << "{\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}}";
   // TODO other JSON attributes
   GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
   tdc->setContent(oss.str());

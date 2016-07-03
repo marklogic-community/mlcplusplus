@@ -34,20 +34,25 @@ namespace mlclient {
 namespace utilities {
 
 // DocumentContent conversion
-ITextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
   TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
-  tdc->setContent(json);
+  tdc->setContent(json); // move constructor used
   tdc->setMimeType("application/json");
-  return tdc; // TODO ensure this doesn't get nixed. Note - uses copy constructor (may eat memory)
+  return tdc; // TODO ensure this doesn't get nixed
 }
 
-web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
-  TIMED_FUNC(CppRestJsonHelper_fromDocument);
+const web::json::value CppRestJsonHelper::fromDocument(const CppRestJsonDocumentContent& dc) {
+  TIMED_FUNC(CppRestJsonHelper_fromDocument_CppRestJsonDocumentContent);
+  return dc.getJson();
+}
+
+const web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
+  TIMED_FUNC(CppRestJsonHelper_fromDocument_IDocumentContent);
   std::ostringstream os;
   std::ostream* dcos(dc.getStream());
   os << dcos;
-  delete dcos; // free pointer
+  //delete dcos; // free pointer
   return web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
@@ -61,14 +66,16 @@ web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   }
 }
 
+/*
 web::json::value CppRestJsonHelper::fromSearchResult(const SearchResult& result) {
   TIMED_FUNC(CppRestJsonHelper_fromSearchResult);
   if (result.getFormat() == SearchResult::JSON) {
-    return web::json::value::parse(utility::conversions::to_string_t(result.getDetailContent()));
+    return ((CppRestJsonDocumentContent)*(result.getDetailContent())).getJson();
   } else {
     throw InvalidFormatException();
   }
 }
+*/
 
 } // end utilities namespace
 

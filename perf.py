@@ -54,10 +54,11 @@ outputfile = open('performance.csv', 'w')
 
 for line in inputfile:
   m = re.match(pat,line)
-  #print line + "   =>   "
-  #print m.groups()
-  st = ",".join(m.groups())
-  outputfile.writelines(st + "\n")
+  if m is not None:
+    #print line + "   =>   "
+    #print m.groups()
+    st = ",".join(m.groups())
+    outputfile.writelines(st + "\n")
 
 inputfile.close()
 outputfile.close()

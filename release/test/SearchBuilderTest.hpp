@@ -13,7 +13,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "ConnectionFactory.hpp"
-#include "Connection.hpp"
+#include "mlclient/Connection.hpp"
 
 
 using namespace mlclient;

@@ -9,6 +9,7 @@
 #define SRC_UTILITIES_SEARCHRESULT_HPP_
 
 #include "mlclient/mlclient.hpp"
+#include "mlclient/DocumentContent.hpp"
 #include <string>
 
 namespace mlclient {
@@ -67,7 +68,7 @@ public:
    * \param format The REST API format of the result (can be "json" or "xml" or "binary" or "text" or "none")
    */
   MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-      const double confidence,const double fitness,const DETAIL& detail,const std::string& detailContent = "",
+      const double confidence,const double fitness,const DETAIL& detail,IDocumentContent* detailContent = nullptr,
       const std::string& mimeType = "",const std::string& format = JSON);
   MLCLIENT_API virtual ~SearchResult() = default;
 
@@ -110,7 +111,7 @@ public:
    * \brief Returns the raw text content of this result
    * \return The raw text content of this result
    */
-  MLCLIENT_API const std::string& getDetailContent() const;
+  MLCLIENT_API const IDocumentContent* getDetailContent() const;
   /**
    * \brief Returns the MIME type of the result
    * \return The MIME type. Could be application/json, application/xml, or any other stored MIME type
@@ -130,7 +131,7 @@ private:
   double confidence;
   double fitness;
   DETAIL detail;
-  std::string detailContent;
+  IDocumentContent* detailContent;
   std::string mimeType;
   std::string format;
 

@@ -13,10 +13,10 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "ConnectionFactory.hpp"
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "NoCredentialsException.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/NoCredentialsException.hpp"
 
 
 using namespace mlclient;

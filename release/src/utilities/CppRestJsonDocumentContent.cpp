@@ -20,6 +20,7 @@
 
 #include <cpprest/http_client.h>
 #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+#include "mlclient/ext/easylogging++.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -30,8 +31,8 @@ namespace utilities {
 
 class CppRestJsonDocumentContent::Impl {
 public:
-  Impl() {
-    value = web::json::value();
+  Impl() : value(web::json::value()) {
+    ;
   };
   ~Impl() {
     ;
@@ -49,18 +50,19 @@ CppRestJsonDocumentContent::~CppRestJsonDocumentContent() {
 }
 
 std::ostream* CppRestJsonDocumentContent::getStream() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getStream);
   std::ostringstream* os = new std::ostringstream;
   //(*os) << mImpl->value;
   mImpl->value.serialize(*os);
   return os;
 }
 
-web::json::value& CppRestJsonDocumentContent::getJson() {
+const web::json::value& CppRestJsonDocumentContent::getJson() const {
   return mImpl->value;
 }
 
-void CppRestJsonDocumentContent::setContent(const web::json::value& json) {
-  mImpl->value = json;
+void CppRestJsonDocumentContent::setContent(web::json::value& json) {
+  mImpl->value = std::move(json); // move constructor
 }
 
 std::string CppRestJsonDocumentContent::getMimeType() const {
@@ -76,12 +78,14 @@ int CppRestJsonDocumentContent::getLength() const {
 }
 
 void CppRestJsonDocumentContent::setContent(std::string content) {
+  TIMED_FUNC(CppRestJsonDocumentContent_setContent);
   std::ostringstream os;
   os << content;
   mImpl-> value = web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
 std::string CppRestJsonDocumentContent::getContent() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getContent);
   std::ostringstream os;
   //os << mImpl->value;
   mImpl->value.serialize(os);

@@ -34,9 +34,11 @@ public:
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
     qtdc->setContent("{}");
+    qtdc->setMimeType(mlclient::IDocumentContent::MIME_JSON);
     query = std::unique_ptr<GenericTextDocumentContent>(qtdc);
     GenericTextDocumentContent* otdc = new GenericTextDocumentContent();
     otdc->setContent("{}");
+    otdc->setMimeType(mlclient::IDocumentContent::MIME_JSON);
     options = std::unique_ptr<GenericTextDocumentContent>(otdc);
     std::string* qt = new std::string("");
     queryText = std::unique_ptr<std::string>(qt);
@@ -58,7 +60,64 @@ public:
 SearchDescription::SearchDescription() : mImpl(new Impl) {
   LOG(DEBUG) << "    SearchDescription::defaultConstructor @" << &*this;
 }
-
+/*
+SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new Impl) {
+  LOG(DEBUG) << "    SearchDescription::copyConstructor @" << &*this;
+  LOG(DEBUG) << "0";
+  ITextDocumentContent* od = new GenericTextDocumentContent();
+  LOG(DEBUG) << 1;
+  if (NULL == desc.mImpl->options) {
+    LOG(DEBUG) << "1.5";
+    od->setContent("{}");
+    LOG(DEBUG) << "1.6";
+    od->setMimeType(mlclient::IDocumentContent::MIME_JSON);
+  } else {
+    LOG(DEBUG) << "1.997";
+    ITextDocumentContent* itdcOp = desc.mImpl->options.get();
+    LOG(DEBUG) << "1.998";
+    LOG(DEBUG) << " options doc is null?: " << (nullptr == itdcOp);
+    if (nullptr == itdcOp) {
+      LOG(DEBUG) << "options ptr is null";
+    }
+    std::string ctnt = itdcOp->getContent();
+    LOG(DEBUG) << "1.999";
+    od->setContent(ctnt); // WTF IS WRONG WITH THIS LINE??????????? BREAK IT DOWN...
+    LOG(DEBUG) << 2;
+    od->setMimeType(desc.mImpl->options->getMimeType());
+  }
+  LOG(DEBUG) << 3;
+  mImpl->options = std::unique_ptr<ITextDocumentContent>(od);
+  LOG(DEBUG) << 4;
+  mImpl->pageLength = desc.mImpl->pageLength;
+  LOG(DEBUG) << 5;
+  ITextDocumentContent* qd = new GenericTextDocumentContent();
+  LOG(DEBUG) << 6;
+  if (NULL == desc.mImpl->query) {
+    LOG(DEBUG) << "6.5";
+    qd->setContent("{}");
+    LOG(DEBUG) << "6.6";
+    qd->setMimeType(mlclient::IDocumentContent::MIME_JSON);
+  } else {
+    LOG(DEBUG) << "6.999";
+    qd->setContent(desc.mImpl->query->getContent());
+    LOG(DEBUG) << 7;
+    qd->setMimeType(desc.mImpl->query->getMimeType());
+  }
+  LOG(DEBUG) << 8;
+  mImpl->query = std::unique_ptr<ITextDocumentContent>(qd);
+  LOG(DEBUG) << 9;
+  if (NULL == desc.mImpl->queryText) {
+    LOG(DEBUG) << "9.1";
+    mImpl->queryText = std::unique_ptr<std::string>(new std::string(""));
+  } else {
+    LOG(DEBUG) << "9.2";
+    mImpl->queryText = std::unique_ptr<std::string>(new std::string(*(desc.mImpl->queryText)));
+  }
+  LOG(DEBUG) << 10;
+  mImpl->start = desc.mImpl->start;
+  LOG(DEBUG) << "    SearchDescription::copyConstructor @ " << &*this << " complete.";
+}
+*/
 SearchDescription::~SearchDescription() {
   LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
   delete mImpl;
@@ -89,14 +148,14 @@ ITextDocumentContent* SearchDescription::getPayload() const {
   TIMED_FUNC(SearchDescription_getPayload);
   LOG(DEBUG) << "    Entering getPayload()";
   // if options has not been initialised, leave blank, but set mime type as same as query
-  if (mImpl->options.get()->getMimeType().empty()) {
-    mImpl->options.get()->setMimeType(mImpl->query.get()->getMimeType());
-  }
+    if (mImpl->options.get()->getMimeType().empty()) {
+      mImpl->options.get()->setMimeType(mImpl->query.get()->getMimeType());
+    }
   LOG(DEBUG) << "    set mime type";
   // we could also have options, but no query (using qtext instead)
-  if (mImpl->query.get()->getMimeType().empty()) {
-    mImpl->query.get()->setMimeType(mImpl->options.get()->getMimeType());
-  }
+    if (mImpl->query.get()->getMimeType().empty()) {
+      mImpl->query.get()->setMimeType(mImpl->options.get()->getMimeType());
+    }
   LOG(DEBUG) << "    set query";
   // or just a blank query and options!
   if (mImpl->options.get()->getMimeType().empty() && mImpl->query.get()->getMimeType().empty()) {
@@ -119,12 +178,20 @@ ITextDocumentContent* SearchDescription::getPayload() const {
       "\"qtext\": \"","<qtext>",
       "\"", "</qtext>",
       ",\"options\":","",
-      "},",""
+      ",",""
   };
   LOG(DEBUG) << "    got elements";
   int offset = 0; // default to JSON
   if (0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType())) {
     offset = 1;
+  }
+  std::string qcontent = mImpl->query.get()->getContent();
+  if (""==qcontent && 0==IDocumentContent::MIME_JSON.compare(mImpl->query.get()->getMimeType())) {
+    qcontent = "{}";
+  }
+  std::string ocontent = mImpl->options.get()->getContent();
+  if (""==ocontent && 0==IDocumentContent::MIME_JSON.compare(mImpl->options.get()->getMimeType())) {
+    ocontent = "{}";
   }
   std::string payloadString =
       elements[0+offset] +

@@ -133,11 +133,16 @@ Response* Connection::deleteDocument(const std::string& uri) {
 
 Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
+  LOG(DEBUG) << "In Connection::search";
   std::ostringstream urlss;
   urlss << "/v1/search?format=json";
   urlss << "&start=" << desc.getStart();
   urlss << "&pageLength=" <<  desc.getPageLength();
-  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *desc.getPayload());
+  LOG(DEBUG) << "  Got page length";
+  ITextDocumentContent* payload = desc.getPayload();
+  LOG(DEBUG) << "  Payload:-";
+  LOG(DEBUG) << payload->getContent();
+  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *payload);
 }
 
 Response* Connection::listRootCollections() {

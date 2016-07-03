@@ -16,9 +16,9 @@
 //  Created by Adam Fowler on 27 Nov 2015.
 //
 
-#include "Connection.hpp"
+#include "mlclient/Connection.hpp"
 #include "ConnectionFactory.hpp"
-#include "internals/FakeConnection.hpp"
+#include "mlclient/internals/FakeConnection.hpp"
 
 using namespace mlclient;
 
