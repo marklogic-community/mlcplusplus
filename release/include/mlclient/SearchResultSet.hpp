@@ -141,6 +141,12 @@ public:
    */
   MLCLIENT_API const long getPageCount() const;
 
+  /**
+   * \brief Sets the maximum number of results to return. Useful if the maximum is larger than the page size.
+   * \note Limits the iterator return to max results
+   */
+  MLCLIENT_API void setMaxResults(long maxResults);
+
   friend class SearchResultSetIterator;
 
 private:

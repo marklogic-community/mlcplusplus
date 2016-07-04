@@ -49,22 +49,22 @@ const std::string translate(const RangeOperation& rt) {
   std::string result;
   switch(rt) {
   case RangeOperation::LE:
-    result = "le";
+    result = "LE";
     break;
   case RangeOperation::LT:
-    result = "lt";
+    result = "LT";
     break;
   case RangeOperation::GE:
-    result = "ge";
+    result = "GE";
     break;
   case RangeOperation::GT:
-    result = "gt";
+    result = "GT";
     break;
   case RangeOperation::EQ:
-    result = "eq";
+    result = "EQ";
     break;
   case RangeOperation::NE:
-    result = "ne";
+    result = "NE";
     break;
   case RangeOperation::UNKNOWN_TYPE:
     result = "RangeOperation::UNKNOWN_TYPE";
@@ -124,11 +124,11 @@ const std::string& GenericQuery::getQuery() const {
 
 
 
-JsonPropertyQuery::JsonPropertyQuery() : value() {
+JsonPropertyQuery::JsonPropertyQuery() : m_value() {
 }
 
 std::ostream& JsonPropertyQuery::write(std::ostream& os) const {
-  os << value;
+  os << m_value;
   return os;
 }
 /*
@@ -147,12 +147,13 @@ std::string& operator +(std::string& s, const JsonPropertyQuery& query) {
 void JsonPropertyQuery::setQuery(const std::string& property,const std::string& value) {
   std::ostringstream oss;
   oss << "{\"container-query\": {\"property\": \"" << property << "\", \"value\": " << value << "}}"; // TODO validate value returns quotes around string and not around numbers, etc.
-  GenericQuery query;
-  query.setQuery(oss.str());
+  //GenericQuery query;
+  //query.setQuery(oss.str());
+  m_value = oss.str();
 }
 
 const std::string& JsonPropertyQuery::getQuery() const {
-  return value;
+  return m_value;
 }
 
 
@@ -215,8 +216,15 @@ public:
     GenericQuery* query = new GenericQuery;
     std::ostringstream oss;
     oss << "{\"" << queryType << "-query\": [";
+    bool first = true;
     for (auto& iter: queries) {
-      oss << (*iter); // TODO ensure comma between queries, and no trailing comma
+      if (first) {
+        first = false;
+      } else {
+        oss << ",";
+      }
+
+      oss << (*iter);
     }
     oss << "]}";
     query->setQuery(oss.str());
@@ -299,6 +307,28 @@ IQuery* SearchBuilder::notQuery(const IQuery* query) {
   std::ostringstream oss;
   oss << "{\"not-query\": {";
   oss << *query;
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+
+IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value) {
+  std::ostringstream oss;
+  oss << "{\"value-query\":{";
+  oss << "\"json-property\": \"" << ref << "\",\"text\": [\"" << value << "\"]";
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+  std::ostringstream oss;
+  oss << "{\"range-query\":{";
+  oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": [\"" << value << "\"],\"range-operator\":\"" << op << "\"";
+  // TODO support other types here too, multiple values, with options, and so on
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());

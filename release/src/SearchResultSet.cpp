@@ -26,8 +26,8 @@ namespace mlclient {
 class SearchResultSet::Impl {
 public:
   Impl(SearchResultSet* set,IConnection* conn,SearchDescription* desc) : mConn(conn), mInitialDescription(desc),
-    mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), start(0), pageLength(0), total(0),totalTime(""),
-    queryResolutionTime(""),snippetResolutionTime("") {
+    mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), mCachedEnd(nullptr), start(0),
+    pageLength(0), total(0),totalTime(""), queryResolutionTime(""),snippetResolutionTime(""),m_maxResults(0) {
     ;
   }
 
@@ -156,6 +156,9 @@ public:
       //LOG(DEBUG) << "  Got new description";
       // override settings in search options for start value
       mInitialDescription->setStart(start + pageLength);
+      if (0 != m_maxResults && m_maxResults < start + pageLength - 1) { // E.g. Page 2, 11 results => 11 < 11 + 10 - 1 => 11 < 20 (i.e. max result requires limiting this page's length)
+        mInitialDescription->setPageLength(m_maxResults - start + 1); // E.g. Page 2, 11 results => 11 - 11 + 1 = 1 results max on page 2
+      }
       //LOG(DEBUG) << "  set start on new description";
 
       Response* resp = mConn->search(*mInitialDescription);
@@ -174,6 +177,7 @@ public:
   std::exception* mFetchException;
 
   SearchResultSetIterator* mIter;
+  SearchResultSetIterator* mCachedEnd;
 
   long start;
   long total;
@@ -182,6 +186,8 @@ public:
   std::string queryResolutionTime; // W3C Duration String
   std::string snippetResolutionTime; // W3C Duration String
   std::string totalTime; // W3C Duration String
+
+  long m_maxResults; // max number of results to return across all requests (total)
 };
 
 
@@ -198,7 +204,10 @@ bool SearchResultSet::fetch() {
   TIMED_FUNC(SearchResultSet_fetch);
   try {
     // perform the request to search in the connection
-    Response* resp = mImpl->mConn->search(*(mImpl->mInitialDescription));
+    if (0 != mImpl -> m_maxResults && mImpl->m_maxResults < mImpl ->start + mImpl->pageLength - 1) { // E.g. Page 2, 11 results => 11 < 11 + 10 - 1 => 11 < 20 (i.e. max result requires limiting this page's length)
+      mImpl->mInitialDescription->setPageLength(mImpl->m_maxResults - mImpl->start + 1); // E.g. Page 2, 11 results => 11 - 11 + 1 = 1 results max on page 2
+    }
+    Response* resp = mImpl->mConn->search(*mImpl->mInitialDescription);
     bool success = mImpl->handleFetchResults(resp);
 
     delete(resp); // TODO ensure this does not invalidate any of our variables in search result set or searchresult instances
@@ -214,15 +223,21 @@ std::exception* SearchResultSet::getFetchException() {
   return mImpl->mFetchException;
 }
 
+void SearchResultSet::setMaxResults(long maxResults) {
+  mImpl->m_maxResults = maxResults;
+}
+
 SearchResultSetIterator* SearchResultSet::begin() const {
   TIMED_FUNC(SearchResultSet_begin);
   //return mImpl->mResults.begin();
-  return mImpl->mIter->begin();
+  SearchResultSetIterator* beginIter = mImpl->mIter->begin();
+  mImpl->mCachedEnd = mImpl->mIter->end(); // cache end iterator to prevent poorly written code from instantiating many iterator instances
+  return beginIter;
 }
 
 SearchResultSetIterator* SearchResultSet::end() const {
   TIMED_FUNC(SearchResultSet_end);
-  return mImpl->mIter->end();
+  return mImpl->mCachedEnd;
 }
 
 
@@ -230,6 +245,11 @@ const long SearchResultSet::getStart() {
   return mImpl->start;
 }
 const long SearchResultSet::getTotal() {
+  if (0 != mImpl->m_maxResults) { // may be returning less than is in the database
+    if (mImpl->m_maxResults < mImpl->total) {
+      return mImpl->m_maxResults;
+    }
+  }
   return mImpl->total;
 }
 const long SearchResultSet::getPageLength() {

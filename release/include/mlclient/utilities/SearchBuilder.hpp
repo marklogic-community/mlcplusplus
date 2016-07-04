@@ -103,7 +103,7 @@ protected:
   std::ostream& write(std::ostream& os) const override;
 
 private:
-  std::string value;
+  std::string m_value;
 };
 
 // CONTAINER REFERENCES
