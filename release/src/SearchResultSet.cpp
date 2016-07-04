@@ -28,7 +28,7 @@ public:
   Impl(SearchResultSet* set,IConnection* conn,SearchDescription* desc) : mConn(conn), mInitialDescription(desc),
     mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), mCachedEnd(nullptr), start(0),
     pageLength(0), total(0),totalTime(""), queryResolutionTime(""),snippetResolutionTime(""),m_maxResults(0) {
-    ;
+    TIMED_FUNC(SearchResultSet_Impl_constructor);
   }
 
 
@@ -48,6 +48,7 @@ public:
     start = value.at(U("start")).as_integer();
 
     // extract metrics, if they exist
+    // TODO better way to check for response metrics being present, without exception throwing
     try {
       const web::json::value& metrics = value.at(U("metrics"));
       queryResolutionTime = utility::conversions::to_utf8string(metrics.at(U("query-resolution-time")).as_string());
@@ -57,24 +58,25 @@ public:
       // no metrics element - possible due to search options
       // silently fail - not a huge issue
       // TODO flag this to support hasMetrics()
+      LOG(DEBUG) << "SearchResultSet::handleFetchResults   COULD NOT PARSE RESPONSE METRICS!!!" << me.what();
     }
 
 
     // take the response, and parse it
-    const web::json::value& resv = value.at(U("results"));
+    // NOT NEEDED const web::json::value& resv = value.at(U("results"));
     const web::json::array& res = value.at(U("results")).as_array();
     //LOG(DEBUG) << "SearchResultSet::handleFetchResults We have a results JSON array";
-    SearchResult::DETAIL detail = SearchResult::DETAIL::NONE;
+    SearchResult::DETAIL detail(SearchResult::DETAIL::NONE);
     //std::string ct;
     mlclient::utilities::CppRestJsonDocumentContent* ct;
     std::string mimeType;
     std::string format;
-    std::string raw = "raw";
-    bool isRaw = (0 == (raw.compare(utility::conversions::to_utf8string(value.at(U("snippet-format")).as_string()))));
+    static std::string raw = "raw"; // always the same
+    bool isRaw = (0 == (raw.compare(snippetFormat)));
 
     for (auto iter = res.begin(); iter != res.end(); ++iter) {
-      auto& rowdata = *iter;
-      const web::json::object& row = rowdata.as_object();
+      //auto& rowdata = *iter;
+      const web::json::object& row = iter->as_object();
       //LOG(DEBUG) << "Row: " << iter->as_string();
       //const web::json::object& row = iter.as_object();
       detail = SearchResult::DETAIL::NONE;
@@ -108,7 +110,7 @@ public:
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row content: " << ct;
 
       } catch (std::exception& e) {
-        LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet...";
+        LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
         // element doesn't exist - no result content, or has a snippet
       } // end content catch
 
@@ -128,7 +130,7 @@ public:
         } catch (std::exception& ex) {
           // no snippet element, must be some sort of content...
           detail = SearchResult::DETAIL::CONTENT;
-          LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less";
+          LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less" << ex.what();
         }
       }
 

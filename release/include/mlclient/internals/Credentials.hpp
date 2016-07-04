@@ -134,7 +134,7 @@ public:
   ///
   /// \param _raw The raw WWW Authenticate header
   ///
-  void parseWWWAthenticateHeader(const std::string& _raw);
+  void parseWWWAuthenticateHeader(const std::string& _raw);
 
   ///
   /// Returns the server provided nonce

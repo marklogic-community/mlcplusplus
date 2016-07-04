@@ -83,14 +83,18 @@ const Credentials& AuthenticatingProxy::getCredentials() const {
 
 Response* AuthenticatingProxy::doRequest(const std::string& method,const std::string& host,const std::string& path,const HttpHeaders& headers, Response* response,const IDocumentContent* body) {
 
-  http_client raw_client(utility::conversions::to_string_t(host));
+  TIMED_FUNC(AuthenticatingProxy_doRequest);
+
+  http_client raw_client(utility::conversions::to_string_t(host)); // TODO can we re-use these???
 
   std::string responseAuthHeaderValue = "";
 
   std::map<std::string,std::string> hs = headers.getHeaders();
 
+  // TODO can we already pre-authenticate?
+
   try {
-    http::http_request req(utility::conversions::to_string_t(method));
+    http::http_request req(utility::conversions::to_string_t(method)); // TODO can we re-use these???
     http_headers restHeaders = req.headers();
     // copy additional headers - e.g. Accept: or Content-type: (For POST/PUT)
     for (auto& iter : hs) {
@@ -99,6 +103,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       }
       restHeaders.add(utility::conversions::to_string_t(iter.first), utility::conversions::to_string_t(iter.second));
     }
+    // TODO common string constants to pre-created variables
     if (!restHeaders.has(U("Accept"))) {
       restHeaders.add(U("Accept"),U("application/json")); // default to JSON response type for MarkLogic
     }
@@ -109,6 +114,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     }
 
     if (nullptr != body) {
+      // TODO Any way to stream the below rather than convert in memory?
       req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
     }
 
@@ -143,6 +149,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       */
 
       //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
+      // TODO replace with setContent(StringDocument()) ??? would it avoid a conversion at all???
       response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get()))); // TODO handle binary response types
     }
     catch (const http_exception& e)
@@ -167,6 +174,8 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     LOG(DEBUG) << "Finishing listing headers fetched from response.";
     */
 
+    // TODO I don't think the following is ever called... verify it.
+    // TODO verify if the first request used is a POST, the following does not error (IT SPECIFIED GET AS THE METHOD!!!)
     try {
       http::http_request req(http::methods::GET);
       req.set_request_uri(web::uri(utility::conversions::to_string_t(path)));

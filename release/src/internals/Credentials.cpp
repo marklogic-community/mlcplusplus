@@ -64,11 +64,12 @@ Credentials::Credentials(const std::string& username, const std::string& passwor
             cnonce(cnonce),
             nonce_count(nc)
 {
-
+  ;
 }
 
 std::string Credentials::generateRandomCnonce() const
 {
+  TIMED_FUNC(Credentials_generateRandomCnonce);
 
   internals::MLCrypto crypto;
   boost::uuids::uuid random_uuid = boost::uuids::random_generator()();
@@ -82,10 +83,12 @@ Credentials::~Credentials() {
 }
 
 bool Credentials::canAuthenticate() const {
+  TIMED_FUNC(Credentials_canAuthenticate);
   return user != L"" && pass != L"" && nonce != "" && realm != "";
 }
 
-void Credentials::parseWWWAthenticateHeader(const std::string& raw) {
+void Credentials::parseWWWAuthenticateHeader(const std::string& raw) {
+  TIMED_FUNC(Credentials_parseWWWAuthenticateHeader);
   std::smatch matches;
   if (std::regex_search(raw, matches, REALM_RE)) {
     realm = matches[1];
@@ -113,12 +116,13 @@ void Credentials::parseWWWAthenticateHeader(const std::string& raw) {
 }
 
 std::string Credentials::authenticate(const std::string& method, const std::string& uri, const std::string& auth_header) {
-  parseWWWAthenticateHeader(auth_header);
+  parseWWWAuthenticateHeader(auth_header);
 
   return authenticate(method, uri);
 }
 
 std::string Credentials::authenticate(const std::string& method, const std::string& uri) {
+  TIMED_FUNC(Credentials_authenticate);
   std::ostringstream oss;
   internals::AuthorizationBuilder builder;
   nonce_count++;
