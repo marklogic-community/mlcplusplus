@@ -128,9 +128,14 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     LOG(DEBUG) << "Finishing listing request headers.";
     */
 
-    pplx::task<http_response> hr = raw_client.request(req);
+    http_response raw_response; // TODO investigate if assignment uses move semantics for speed
 
-    http_response raw_response = hr.get();
+    { // PERFORMANCE BRACE
+      TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+      pplx::task<http_response> hr = raw_client.request(req);
+
+      raw_response = hr.get();
+    } // PERFORMANCE BRACE
     try
     {
       response->setResponseCode((ResponseCode)raw_response.status_code());

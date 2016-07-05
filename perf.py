@@ -11,7 +11,9 @@ func = r'\[[a-zA-Z:]+\s([a-zA-Z:_0-9]+)\(.*\)\]\s'
 
 
 
-func2 = r'\[.+\s[*]?([a-zA-Z:_0-9]+)\(.*\).*\]\s'
+func2 = r'\[.+\s[*&]?([a-zA-Z:_0-9+~ ]+)\(.*\).*\]\s'
+func3 = r'\[([a-zA-Z:_0-9+~ ]+)\]\s'
+func4 = r'\[[a-zA-Z0-9& *]?([a-zA-Z:_0-9+~ ]+)\(.*\).*\]\s'
 
 
 anything = r'.*'
@@ -20,9 +22,13 @@ duration = r'in\s\[(\d*)\sms\]'
 # Join together the above patterns to make one giant pattern that parses
 # the input.
 s_pat = ( executed + func2 + duration)
+s_pat2 = (executed + func3 + duration)
+s_pat3 = (executed + func4 + duration)
 
 # Pre-compile the pattern for speed.
 pat = re.compile(s_pat)
+pat2 = re.compile(s_pat2)
+pat3 = re.compile(s_pat3)
 
 # Test string and the expected output result.
 s_input = "Executed [std::unique_ptr<Response> mlclient::Connection::getDocument(const std::string &)] in [3 ms]"
@@ -59,6 +65,18 @@ for line in inputfile:
     #print m.groups()
     st = ",".join(m.groups())
     outputfile.writelines(st + "\n")
+  else:
+    m = re.match(pat2,line)
+    if m is not None:
+      st = ",".join(m.groups())
+      outputfile.writelines(st + "\n")
+    else:
+      m = re.match(pat3,line)
+      if m is not None:
+        st = ",".join(m.groups())
+        outputfile.writelines(st + "\n")
+      else:
+        print "Line does not match: " + line
 
 inputfile.close()
 outputfile.close()
