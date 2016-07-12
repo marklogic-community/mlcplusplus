@@ -1,8 +1,10 @@
 #!/bin/sh
 
 . settings.sh
-cd $BINDIR
-cmake -G Xcode $SRCDIR
+. ./bin/build-deps-settings.sh
 
-echo "Completed Build Generation for Mac - Now open Xcode, e.g. type 'open bin/mlclient.xcodeproj' and hit <enter>."
+cd $BINDIR
+cmake $CMAKE_OPTIONS -G Xcode $SRCDIR
+
+echo "Completed Build Generation for Mac. To build, type './build.sh' and hit <enter>."
 exit 0

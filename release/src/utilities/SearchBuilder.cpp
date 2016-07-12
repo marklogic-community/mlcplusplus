@@ -19,20 +19,59 @@
  */
 
 #include <cpprest/http_client.h>
-#include "SearchBuilder.hpp"
-#include "../DocumentContent.hpp"
-#include "CppRestJsonHelper.hpp"
-#include "CppRestJsonDocumentContent.hpp"
+#include "mlclient/utilities/SearchBuilder.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 
 namespace utilities {
+
+// RANGE OPERATION FUNCTIONS
+std::ostream& operator << (std::ostream& os, const RangeOperation& rt) {
+  os << translate(rt);
+  return os;
+}
+
+std::string& operator +(std::string& s, const RangeOperation& rt) {
+  s.append(translate(rt));
+  return s;
+}
+
+const std::string translate(const RangeOperation& rt) {
+  std::string result;
+  switch(rt) {
+  case RangeOperation::LE:
+    result = "LE";
+    break;
+  case RangeOperation::LT:
+    result = "LT";
+    break;
+  case RangeOperation::GE:
+    result = "GE";
+    break;
+  case RangeOperation::GT:
+    result = "GT";
+    break;
+  case RangeOperation::EQ:
+    result = "EQ";
+    break;
+  case RangeOperation::NE:
+    result = "NE";
+    break;
+  case RangeOperation::UNKNOWN_TYPE:
+    result = "RangeOperation::UNKNOWN_TYPE";
+    break;
+  }
+  return result;
+}
 
 // IQuery global operators
 
@@ -52,6 +91,7 @@ std::string& operator +(std::string& s, const IQuery& query) {
 
 
 GenericQuery::GenericQuery() : value() {
+  TIMED_FUNC(GenericQuery_defaultConstructor);
 }
 
 std::ostream& GenericQuery::write(std::ostream& os) const {
@@ -74,6 +114,7 @@ std::string& operator +(std::string& s, const GenericQuery& query) {
 */
 
 void GenericQuery::setQuery(const std::string& value) {
+  TIMED_FUNC(GenericQuery_setQuery);
   this->value = value;
 }
 
@@ -85,11 +126,12 @@ const std::string& GenericQuery::getQuery() const {
 
 
 
-JsonPropertyQuery::JsonPropertyQuery() : value() {
+JsonPropertyQuery::JsonPropertyQuery() : m_value() {
+  TIMED_FUNC(JsonPropertyQuery_defaultConstructor);
 }
 
 std::ostream& JsonPropertyQuery::write(std::ostream& os) const {
-  os << value;
+  os << m_value;
   return os;
 }
 /*
@@ -106,14 +148,16 @@ std::string& operator +(std::string& s, const JsonPropertyQuery& query) {
 }*/
 
 void JsonPropertyQuery::setQuery(const std::string& property,const std::string& value) {
+  TIMED_FUNC(JsonPropertyQuery_setQuery);
   std::ostringstream oss;
   oss << "{\"container-query\": {\"property\": \"" << property << "\", \"value\": " << value << "}}"; // TODO validate value returns quotes around string and not around numbers, etc.
-  GenericQuery query;
-  query.setQuery(oss.str());
+  //GenericQuery query;
+  //query.setQuery(oss.str());
+  m_value = oss.str();
 }
 
 const std::string& JsonPropertyQuery::getQuery() const {
-  return value;
+  return m_value;
 }
 
 
@@ -137,6 +181,7 @@ std::string& operator +(std::string& s, const IContainerRef& ref) {
 
 
 JsonPropertyRef::JsonPropertyRef() : value() {
+  TIMED_FUNC(JsonPropertyRef_defaultConstructor);
 }
 
 std::ostream& JsonPropertyRef::write(std::ostream& os) const {
@@ -167,12 +212,24 @@ void JsonPropertyRef::setProperty(const std::string& property) {
 
 class SearchBuilder::Impl {
 public:
-  static IQuery* multiQuery(const std::vector<IQuery>& queries,const std::string& queryType) {
+  Impl() : rootQuery(nullptr) {
+    TIMED_FUNC(SearchBuilder_Impl_defaultConstructor);
+  }
+
+  static IQuery* multiQuery(const std::vector<IQuery*>& queries,const std::string& queryType) {
+    TIMED_FUNC(SearchBuilder_Impl_multiQuery);
     GenericQuery* query = new GenericQuery;
     std::ostringstream oss;
     oss << "{\"" << queryType << "-query\": [";
+    bool first = true;
     for (auto& iter: queries) {
-      oss << iter; // TODO ensure comma between queries, and no trailing comma
+      if (first) {
+        first = false;
+      } else {
+        oss << ",";
+      }
+
+      oss << (*iter);
     }
     oss << "]}";
     query->setQuery(oss.str());
@@ -180,6 +237,7 @@ public:
   };
 
   static std::ostringstream& multiStringProperty(const std::vector<std::string> strings,const std::string& property,std::ostringstream& oss) {
+    TIMED_FUNC(SearchBuilder_Impl_multiStringProperty);
     oss << "\"" << property << "\": [";
     int count = 0;
     int size = strings.size();
@@ -202,7 +260,7 @@ public:
 
 
 SearchBuilder::SearchBuilder(): mImpl(new SearchBuilder::Impl) {
-  ;
+  TIMED_FUNC(SearchBuilder_defaultConstructor);
 }
 
 
@@ -210,6 +268,7 @@ SearchBuilder::SearchBuilder(): mImpl(new SearchBuilder::Impl) {
 
 
 IQuery* SearchBuilder::collectionQuery(const std::vector<std::string>& collections) {
+  TIMED_FUNC(SearchBuilder_collectionQuery);
   std::ostringstream oss;
   oss << "{\"collection-query\": {";
   Impl::multiStringProperty(collections,"uri",oss);
@@ -223,6 +282,7 @@ IQuery* SearchBuilder::collectionQuery(const std::vector<std::string>& collectio
 
 
 IQuery* SearchBuilder::documentQuery(const std::vector<std::string>& uris) {
+  TIMED_FUNC(SearchBuilder_documentQuery);
   std::ostringstream oss;
   oss << "{\"document-query\": {";
   Impl::multiStringProperty(uris,"uri",oss);
@@ -237,29 +297,68 @@ IQuery* SearchBuilder::documentQuery(const std::vector<std::string>& uris) {
 
 
 // public class methods that control the create of a search or query
-IQuery* SearchBuilder::andQuery(const std::vector<IQuery>& queries) {
+IQuery* SearchBuilder::andQuery(const std::vector<IQuery*>& queries) {
+  TIMED_FUNC(SearchBuilder_andQuery);
   return Impl::multiQuery(queries,"and");
 }
 
-IQuery* SearchBuilder::orQuery(const std::vector<IQuery>& queries) {
+IQuery* SearchBuilder::orQuery(const std::vector<IQuery*>& queries) {
+  TIMED_FUNC(SearchBuilder_orQuery);
   return Impl::multiQuery(queries,"or");
 }
 
-IQuery* SearchBuilder::notQuery(const std::vector<IQuery>& queries) {
-  return Impl::multiQuery(queries,"not");
+IQuery* SearchBuilder::notQuery(const IQuery* query) {
+  TIMED_FUNC(SearchBuilder_notQuery);
+  std::ostringstream oss;
+  oss << "{\"not-query\": {";
+  oss << *query;
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+
+IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value) {
+  TIMED_FUNC(SearchBuilder_valueQuery);
+  std::ostringstream oss;
+  oss << "{\"value-query\":{";
+  oss << "\"json-property\": \"" << ref << "\",\"text\": [\"" << value << "\"]";
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+  TIMED_FUNC(SearchBuilder_rangeQuery);
+  std::ostringstream oss;
+  oss << "{\"range-query\":{";
+  oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": [\"" << value << "\"],\"range-operator\":\"" << op << "\"";
+  // TODO support other types here too, multiple values, with options, and so on
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
 }
 
 
 SearchBuilder* SearchBuilder::setQuery(IQuery* query) {
+  TIMED_FUNC(SearchBuilder_setQuery);
   LOG(DEBUG) << "SearchBuilder::setQuery query to stream: " << *query;
   mImpl->rootQuery = query;
   return this;
 }
 
 ITextDocumentContent* SearchBuilder::toDocument() {
+  TIMED_FUNC(SearchBuilder_toDocument);
   std::ostringstream oss;
   //oss << "{\"query\":";
-  oss << *(mImpl->rootQuery);
+  if (nullptr != mImpl->rootQuery) {
+    oss << *(mImpl->rootQuery);
+  } else {
+    oss << "{}";
+  }
   //oss << "}";
   GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
   tdc->setContent(oss.str());

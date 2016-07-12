@@ -1,20 +1,26 @@
 #!/bin/sh
-#cmake clean
-
 . settings.sh
+cd bin
+echo "-- Cleaning away compiled binaries - You may need to run this as root to clear everything"
+#cmake --build . --target clean
 
-#echo "Removing general CMake files"
-#rm -rf CMakeFiles CMakeScripts cmake_install.cmake CMakeCache.txt CPackConfig.cmake CPackSourceConfig.cmake MLCPlusPlusConfig.h
-#echo "Removing Mac build files"
-#rm -rf MLCPlusPlus.build MLCPlusPlus.xcodeproj
-#echo "Removing UNIX build files"
-#rm -rf Makefile *.a *.so Debug *.dylib
-#echo "Removing KDevelop build files"
-#rm -rf MLCPlusPlus.kdevelop MLCPlusPlus.kdevelop.filelist MLCPlusPlus.kdevses
-#echo "Removing Eclipse build files"
-#rm -rf .cproject .project
-echo "Removing binary build files"
-rm -rf $BINDIR/*
+rm -rf $BINDIR/src
+rm -rf $BINDIR/CMakeFiles
+rm -rf $BINDIR/CMakeCache.txt
+rm -rf $BINDIR/CMakeFiles
+rm -rf $BINDIR/CMakeScripts
+rm -rf $BINDIR/CPackConfig.cmake
+rm -rf $BINDIR/CPackSourceConfig.cmake
+rm -rf $BINDIR/cmake_install.cmake
+rm -rf $BINDIR/doxygen
+rm -rf $BINDIR/mlclient.xcodeproj
+rm -rf $BINDIR/mlclientConfig.h
+rm -rf $BINDIR/samples
+rm -rf $BINDIR/src
+rm -rf $BINDIR/test
+rm -rf $BINDIR/mlclient.build
+rm -rf $BINDIR/Makefile
+rm -rf $BINDIR/install_manifest.txt
 
-echo "Completed clean"
+echo "-- Completed clean"
 exit 0

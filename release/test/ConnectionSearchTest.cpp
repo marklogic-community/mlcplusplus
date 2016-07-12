@@ -24,15 +24,15 @@
 #include <string>
 #include "ConnectionSearchTest.hpp"
 #include "ConnectionFactory.hpp"
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
-#include "NoCredentialsException.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
+#include "mlclient/NoCredentialsException.hpp"
 
 #include <string>
 
-#include "ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 using namespace mlclient;
 
@@ -99,7 +99,7 @@ void ConnectionSearchTest::testWordQuery() {
   LOG(DEBUG) << " Entering testWordQuery";
   SearchDescription desc; // default empty search object
   GenericTextDocumentContent queryDoc;
-  queryDoc.setContent("\"query\": {\"word-query\":\"Antidisestablishmentarianism\"}");
+  queryDoc.setContent("{\"word-query\":\"Antidisestablishmentarianism\"}");
   desc.setQuery(queryDoc);
   LOG(DEBUG) << "  Got an initialised SearchDescription object instance";
 

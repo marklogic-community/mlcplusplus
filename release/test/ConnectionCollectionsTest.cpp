@@ -21,15 +21,15 @@
 #include <string>
 #include "ConnectionCollectionsTest.hpp"
 #include "ConnectionFactory.hpp"
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "NoCredentialsException.hpp"
-#include "utilities/ResponseHelper.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/NoCredentialsException.hpp"
+#include "mlclient/utilities/ResponseHelper.hpp"
 
 #include <string>
 
-#include "ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 using namespace mlclient;
 

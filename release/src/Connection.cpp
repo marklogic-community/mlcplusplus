@@ -12,14 +12,17 @@
  * limitations under the License.
  */
 
-#include "Connection.hpp"
-#include "Response.hpp"
-#include "DocumentContent.hpp"
-#include "SearchDescription.hpp"
-#include "internals/Credentials.hpp"
-#include "internals/AuthenticatingProxy.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/SearchDescription.hpp"
 
-#include "ext/easylogging++.h"
+#include "mlclient/internals/Credentials.hpp"
+#include "mlclient/internals/AuthenticatingProxy.hpp"
+
+#include "mlclient/ext/easylogging++.h"
+
+#include <string>
 #include <sstream>
 
 namespace mlclient {
@@ -27,6 +30,7 @@ namespace mlclient {
 class Connection::Impl {
 public:
   Impl() : proxy(), databaseName("Documents"), serverUrl("http://localhost:8002") {
+    TIMED_FUNC(Connection_Impl_defaultConstructor);
     LOG(DEBUG) << "    Connection::Impl::defaultConstructor @" << &*this;
   };
 
@@ -41,14 +45,17 @@ public:
 
 
 Connection::Connection() : mImpl(new Impl) {
+  TIMED_FUNC(Connection_defaultConstructor);
   LOG(DEBUG) << "    Connection::defaultConstructor @" << &*this;
 }
 
 Connection::~Connection() {
+  TIMED_FUNC(Connection_destructor);
   delete mImpl;
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
+  TIMED_FUNC(Connection_configure);
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
   internals::Credentials c(username, password);
   mImpl->proxy.addCredentials(c);
@@ -130,14 +137,25 @@ Response* Connection::deleteDocument(const std::string& uri) {
 
 Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
-  return mImpl->proxy.postSync(mImpl->serverUrl,"/v1/search?format=json", *desc.getPayload());
+  LOG(DEBUG) << "In Connection::search";
+  std::ostringstream urlss;
+  urlss << "/v1/search?format=json";
+  urlss << "&start=" << desc.getStart();
+  urlss << "&pageLength=" <<  desc.getPageLength();
+  LOG(DEBUG) << "  Got page length";
+  ITextDocumentContent* payload = desc.getPayload();
+  LOG(DEBUG) << "  Payload:-";
+  LOG(DEBUG) << payload->getContent();
+  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *payload);
 }
 
 Response* Connection::listRootCollections() {
+  TIMED_FUNC(Connection_listRootCollections);
   return listCollections(""); // TODO Check this works and doesn't require a "/"
 }
 
 Response* Connection::listCollections(const std::string& parentCollection) {
+  TIMED_FUNC(Connection_listCollections);
   std::ostringstream os;
   os << "{\"search\": {\"query\": {\"collection-query\" : {\"uri\": [\"" << parentCollection << "\"]}},";
   os << "\"options\": {\"default-suggestion-source\": {\"collection\": {\"prefix\":\"" << parentCollection << "\"}}}}}";

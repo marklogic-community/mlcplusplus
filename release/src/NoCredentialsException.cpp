@@ -17,7 +17,7 @@
  * \date 2014-05-29
  */
 
-#include "NoCredentialsException.hpp"
+#include "mlclient/NoCredentialsException.hpp"
 
 
 namespace mlclient {

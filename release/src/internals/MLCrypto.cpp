@@ -17,7 +17,8 @@
  * Created on July 7, 2014, 10:27 AM
  */
 
-#include "MLCrypto.hpp"
+#include "mlclient/internals/MLCrypto.hpp"
+#include "mlclient/ext/easylogging++.h"
 
 #include <string>
 #include <iomanip>
@@ -38,6 +39,7 @@ MLCrypto::~MLCrypto() {
 }
 
 std::string MLCrypto::md5(const std::string& raw) const {
+  TIMED_FUNC(MLCrypto_md5);
   uint8_t buffer[16];
 
   MD5_CTX _context;
@@ -49,6 +51,7 @@ std::string MLCrypto::md5(const std::string& raw) const {
 }
 
 std::string MLCrypto::toHex(const uint8_t* bytes, const size_t& length) const {
+  TIMED_FUNC(MLCrypto_toHex);
   std::ostringstream hex_ss;
   hex_ss << std::hex;
   for (size_t i = 0; i < length; i++) { 

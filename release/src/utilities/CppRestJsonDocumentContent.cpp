@@ -19,7 +19,8 @@
  */
 
 #include <cpprest/http_client.h>
-#include "CppRestJsonDocumentContent.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+#include "mlclient/ext/easylogging++.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -30,36 +31,41 @@ namespace utilities {
 
 class CppRestJsonDocumentContent::Impl {
 public:
-  Impl() {
-    value = web::json::value();
+  Impl() : value(web::json::value()) {
+    TIMED_FUNC(CppRestJsonDocumentContent_Impl_defaultConstructor);
   };
   ~Impl() {
-    ;
+    TIMED_FUNC(CppRestJsonDocumentContent_Impl_destructor);
   };
   web::json::value value;
   std::string mimeType;
 };
 
 CppRestJsonDocumentContent::CppRestJsonDocumentContent() : mImpl(new Impl) {
-  ;
+  TIMED_FUNC(CppRestJsonDocumentContent_constructor);
 }
 
 CppRestJsonDocumentContent::~CppRestJsonDocumentContent() {
+  TIMED_FUNC(CppRestJsonDocumentContent_destructor);
   delete mImpl;
 }
 
 std::ostream* CppRestJsonDocumentContent::getStream() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getStream);
   std::ostringstream* os = new std::ostringstream;
-  (*os) << mImpl->value;
+  //(*os) << mImpl->value;
+  mImpl->value.serialize(*os);
   return os;
 }
 
-web::json::value& CppRestJsonDocumentContent::getJson() {
+const web::json::value& CppRestJsonDocumentContent::getJson() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getJson);
   return mImpl->value;
 }
 
-void CppRestJsonDocumentContent::setContent(const web::json::value& json) {
-  mImpl->value = json;
+void CppRestJsonDocumentContent::setContent(web::json::value& json) {
+  TIMED_FUNC(CppRestJsonDocumentContent_setContent);
+  mImpl->value = std::move(json); // move constructor
 }
 
 std::string CppRestJsonDocumentContent::getMimeType() const {
@@ -75,14 +81,17 @@ int CppRestJsonDocumentContent::getLength() const {
 }
 
 void CppRestJsonDocumentContent::setContent(std::string content) {
+  TIMED_FUNC(CppRestJsonDocumentContent_setContent);
   std::ostringstream os;
   os << content;
-  mImpl-> value = web::json::value(os.str());
+  mImpl-> value = web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
 std::string CppRestJsonDocumentContent::getContent() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getContent);
   std::ostringstream os;
-  os << mImpl->value;
+  //os << mImpl->value;
+  mImpl->value.serialize(os);
   return os.str();
 }
 

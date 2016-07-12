@@ -18,9 +18,11 @@
  * \date 2016-06-08
  */
 
+#include "mlclient/utilities/ResponseHelper.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+
 #include <cpprest/http_client.h>
-#include "ResponseHelper.hpp"
-#include "CppRestJsonHelper.hpp"
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -43,26 +45,26 @@ std::string ResponseHelper::getErrorMessage(const Response& resp) {
   // TODO add checks for JSON or XML - don't just assume JSON
   const web::json::value& doc = CppRestJsonHelper::fromResponse(resp);
   const web::json::object& jsonObject = doc.as_object();
-  const std::string message = jsonObject.at("errorResponse").at("messageCode").as_string();
+  const std::string message = utility::conversions::to_utf8string(jsonObject.at(U("errorResponse")).at(U("messageCode")).as_string());
   return message;
 }
 
 std::string ResponseHelper::getErrorDetailAsString(const Response& resp) {
   // TODO add checks for JSON or XML - don't just assume JSON
-  const web::json::value& doc = CppRestJsonHelper::fromResponse(resp);
-  const web::json::object& jsonObject = doc.as_object();
-  const std::string message = jsonObject.at("errorResponse").at("message").as_string();
+  const web::json::value& doc(CppRestJsonHelper::fromResponse(resp));
+  const web::json::object& jsonObject(doc.as_object());
+  const std::string message = utility::conversions::to_utf8string(jsonObject.at(U("errorResponse")).at(U("message")).as_string());
   return message;
 }
 
 std::vector<std::string> ResponseHelper::getSuggestions(const Response& resp) {
   // TODO add checks for JSON or XML - don't just assume JSON
-  const web::json::value& doc = CppRestJsonHelper::fromResponse(resp);
-  const web::json::object& jsonObject = doc.as_object();
-  const web::json::array& suggestionArray = jsonObject.at("suggestions").as_array();
+  const web::json::value doc(CppRestJsonHelper::fromResponse(resp));
+  const web::json::object jsonObject(doc.as_object());
+  const web::json::array suggestionArray(jsonObject.at(U("suggestions")).as_array());
   std::vector<std::string> suggestions;
   for (auto& iter: suggestionArray) {
-    suggestions.push_back(iter.as_string());
+    suggestions.push_back(utility::conversions::to_utf8string(iter.as_string()));
   }
   return suggestions;
 }

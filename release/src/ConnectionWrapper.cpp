@@ -11,11 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "ConnectionWrapper.h"
-#include "Connection.hpp"
+#include "mlclient/ConnectionWrapper.h"
+#include "mlclient/Connection.hpp"
+#include "mlclient/CWrapper.hpp"
 #include <cpprest/json.h>
 #include <stdbool.h>
-#include "CWrapper.hpp"
 
 extern "C" {
 

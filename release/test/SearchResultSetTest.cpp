@@ -6,10 +6,10 @@
  */
 
 #include "SearchResultSetTest.hpp"
-#include "SearchResult.hpp"
-#include "SearchResultSet.hpp"
+#include "mlclient/SearchResult.hpp"
+#include "mlclient/SearchResultSet.hpp"
 
-#include "ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 using namespace mlclient;
 
@@ -42,13 +42,13 @@ void SearchResultSetTest::testEmptySearch() {
   TIMED_FUNC(testEmptySearch);
   LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering SearchResultSetTest::testEmptySearch";
-  SearchDescription desc; // default empty search object
+  SearchDescription* desc = new SearchDescription; // default empty search object
   GenericTextDocumentContent* tdcOptions = new GenericTextDocumentContent;
-  tdcOptions->setContent("\"options\": {\"transform-results\": {\"apply\": \"raw\"}}");
-  desc.setOptions(*tdcOptions);
+  tdcOptions->setContent("{\"transform-results\": {\"apply\": \"raw\"}}");
+  desc->setOptions(*tdcOptions);
   GenericTextDocumentContent* tdcBlankSearch = new GenericTextDocumentContent;
-  tdcBlankSearch->setContent("\"query\": {\"collection-query\": {\"collection\": [\"SomeNonExistentCollection\"]}}"); // TODO wrap with {} rather than using internals
-  desc.setQuery(*tdcBlankSearch);
+  tdcBlankSearch->setContent("{\"collection-query\": {\"uri\": [\"SomeNonExistentCollection\"]}}"); // TODO wrap with {} rather than using internals
+  desc->setQuery(*tdcBlankSearch);
   LOG(DEBUG) << "  Got a blank SearchDescription object instance";
 
   SearchResultSet* results = new SearchResultSet(ml,desc);
@@ -64,9 +64,12 @@ void SearchResultSetTest::testEmptySearch() {
   // TODO validate result set size is zero, error if not (it likely means the search definition was not processed/passed correctly)
 
   // get results iterator
-  for (auto& iter : *results) {
-    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter.getUri()));
-    CPPUNIT_ASSERT_MESSAGE("Result does not have content",0!=blankString.compare(iter.getDetailContent()));
+  int count = 0;
+  for (SearchResultSetIterator* iter = results->begin();*iter != *(results->end());++(*iter)) {
+    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter->first().getUri()));
+    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != iter->first().getDetailContent());
+    ++count;
+    if (count > 30) break;
   }
 
   // NB Response deleted by SearchResultSet fetch() method
@@ -76,13 +79,15 @@ void SearchResultSetTest::testThreePages() {
   TIMED_FUNC(testEmptySearch);
   LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering SearchResultSetTest::testThreePages";
-  SearchDescription desc; // default empty search object
+  const IDocumentContent* finalDocContent;
+  { // start destruction block
+  SearchDescription* desc = new SearchDescription; // default empty search object
   GenericTextDocumentContent* tdcOptions = new GenericTextDocumentContent;
-  tdcOptions->setContent("\"options\": {\"transform-results\": {\"apply\": \"raw\"}}"); // TODO force page size to 10 (server may be different)
-  desc.setOptions(*tdcOptions);
+  tdcOptions->setContent("{\"transform-results\": {\"apply\": \"raw\"}}"); // TODO force page size to 10 (server may be different)
+  desc->setOptions(*tdcOptions);
   GenericTextDocumentContent* tdcBlankSearch = new GenericTextDocumentContent;
-  tdcBlankSearch->setContent("\"query\": {\"collection-query\": {\"collection\": [\"ThreePagesCollection\"]}}"); // TODO wrap with {} rather than using internals
-  desc.setQuery(*tdcBlankSearch);
+  tdcBlankSearch->setContent("{\"collection-query\": {\"uri\": [\"zoo\"]}}"); // TODO wrap with {} rather than using internals
+  desc->setQuery(*tdcBlankSearch);
   LOG(DEBUG) << "  Got a three pages SearchDescription object instance";
 
   SearchResultSet* results = new SearchResultSet(ml,desc);
@@ -99,13 +104,29 @@ void SearchResultSetTest::testThreePages() {
 
   // get results iterator
   int count = 0;
-  for (auto& iter : *results) {
+  //for (auto& iter : *results) {
+  LOG(DEBUG) << "result set total: " << results->getTotal();
+  for (SearchResultSetIterator* iter = results->begin();*iter != *(results->end());++(*iter)) {
     LOG(DEBUG) << " Result " << count << ":-";
-    LOG(DEBUG) << "  URI: " << iter.getUri();
-    LOG(DEBUG) << "  Content: " << iter.getDetailContent();
-    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter.getUri()));
-    CPPUNIT_ASSERT_MESSAGE("Result does not have content",0!=blankString.compare(iter.getDetailContent()));
+    LOG(DEBUG) << "  URI: " << iter->first().getUri();
+    LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getContent();
+    if (0 == count) {
+      finalDocContent = iter->first().getDetailContent();
+    }
+    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter->first().getUri()));
+    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != iter->first().getDetailContent());
+    ++count;
+    //if (count > 30) break;
   }
+
+  delete results;
+
+  } // end destruction block
+
+  // TODO add above to its own section, and test a std:move'd part of one of the result's getDetailContent() outputs, and check it's valid
+
+  LOG(DEBUG) << " First result document content value: " << finalDocContent->getContent();
+  CPPUNIT_ASSERT_MESSAGE(" First Result has not leaked (not nullptr)",nullptr != finalDocContent);
 
   // NB Response deleted by SearchResultSet fetch() method
 }

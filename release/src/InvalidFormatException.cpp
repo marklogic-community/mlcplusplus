@@ -19,7 +19,7 @@
  * \since 8.0.0
  */
 
-#include "InvalidFormatException.hpp"
+#include "mlclient/InvalidFormatException.hpp"
 
 
 namespace mlclient {

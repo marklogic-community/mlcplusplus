@@ -18,59 +18,65 @@
  */
 
 #include <cpprest/http_client.h>
-#include "CppRestJsonHelper.hpp"
-#include "CppRestJsonDocumentContent.hpp"
-#include "../DocumentContent.hpp"
-#include "../Response.hpp"
-#include "../InvalidFormatException.hpp"
-#include "../SearchResult.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+#include "mlclient/DocumentContent.hpp"
+#include "mlclient/Response.hpp"
+#include "mlclient/InvalidFormatException.hpp"
+#include "mlclient/SearchResult.hpp"
 
 #include <iostream>
 
-#include "../ext/easylogging++.h"
+#include "mlclient/ext/easylogging++.h"
 
 namespace mlclient {
 
 namespace utilities {
 
 // DocumentContent conversion
-ITextDocumentContent* CppRestJsonHelper::toDocument(const web::json::value json) {
+ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
   TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
-  tdc->setContent(json);
+  tdc->setContent(json); // move constructor used
   tdc->setMimeType("application/json");
-  return tdc; // TODO ensure this doesn't get nixed. Note - uses copy constructor (may eat memory)
+  return tdc; // TODO ensure this doesn't get nixed
 }
 
-web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
-  TIMED_FUNC(CppRestJsonHelper_fromDocument);
+const web::json::value CppRestJsonHelper::fromDocument(const CppRestJsonDocumentContent& dc) {
+  TIMED_FUNC(CppRestJsonHelper_fromDocument_CppRestJsonDocumentContent);
+  return dc.getJson();
+}
+
+const web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
+  TIMED_FUNC(CppRestJsonHelper_fromDocument_IDocumentContent);
   std::ostringstream os;
   std::ostream* dcos(dc.getStream());
   os << dcos;
-  delete dcos; // free pointer
-  return web::json::value(os.str());
+  //delete dcos; // free pointer
+  return web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 
 // Response conversion
 web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   TIMED_FUNC(CppRestJsonHelper_fromResponse);
   if (resp.getResponseType() == ResponseType::JSON) {
-    return web::json::value::parse(resp.getContent());
+    return web::json::value::parse(utility::conversions::to_string_t(resp.getContent()));
   } else {
     throw InvalidFormatException();
   }
 }
 
+/*
 web::json::value CppRestJsonHelper::fromSearchResult(const SearchResult& result) {
   TIMED_FUNC(CppRestJsonHelper_fromSearchResult);
   if (result.getFormat() == SearchResult::JSON) {
-    return web::json::value::parse(result.getDetailContent());
+    return ((CppRestJsonDocumentContent)*(result.getDetailContent())).getJson();
   } else {
     throw InvalidFormatException();
   }
 }
+*/
 
 } // end utilities namespace
 
 } // end mlclient namespace
-
