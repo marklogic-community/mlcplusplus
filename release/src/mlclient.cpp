@@ -23,6 +23,10 @@
 #define ELPP_PERFORMANCE_MICROSECONDS 1
 #endif
 
+#ifndef ELPP_STACKTRACE_ON_CRASH
+#define ELPP_STACKTRACE_ON_CRASH 1
+#endif
+
 #include "mlclient/ext/easylogging++.h"
 
 INITIALIZE_EASYLOGGINGPP

@@ -31,6 +31,15 @@ public:
     TIMED_FUNC(SearchResultSet_Impl_constructor);
   }
 
+  void incrementIter(web::json::array::const_iterator iter) {
+    TIMED_FUNC(SearchResultSet_Impl_incrementIter);
+    ++iter;
+  }
+
+  bool iterCompare(web::json::array::const_iterator& iter,const web::json::array::const_iterator& jsonArrayIterEnd) {
+    TIMED_FUNC(SearchResultSet_Impl_iterCompare);
+    return (iter != jsonArrayIterEnd);
+  }
 
   bool handleFetchResults(Response * resp) {
     TIMED_FUNC(SearchResultSet_Impl_handleFetchResults);
@@ -38,12 +47,20 @@ public:
 
     // TODO handle request errors
 
-    const web::json::value& value = utilities::CppRestJsonHelper::fromResponse(*resp);
+    const web::json::value value(utilities::CppRestJsonHelper::fromResponse(*resp));
+
+    {
+      TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMetrics()");
 
 
     // extract top level summary information for the result set
     snippetFormat = utility::conversions::to_utf8string(value.at(U("snippet-format")).as_string());
     total = value.at(U("total")).as_integer();
+    if (0 == m_maxResults) {
+      mResults.reserve(total);
+    } else {
+      mResults.reserve(m_maxResults);
+    }
     pageLength = value.at(U("page-length")).as_integer();
     start = value.at(U("start")).as_integer();
 
@@ -54,6 +71,9 @@ public:
       queryResolutionTime = utility::conversions::to_utf8string(metrics.at(U("query-resolution-time")).as_string());
       snippetResolutionTime = utility::conversions::to_utf8string(metrics.at(U("snippet-resolution-time")).as_string());
       totalTime = utility::conversions::to_utf8string(metrics.at(U("total-time")).as_string());
+      CLOG(INFO, "performance") << "Executed [marklogic::rest::search::queryResolutionTime()] in [" << queryResolutionTime.substr(2,queryResolutionTime.length() - 3) << " ms]";
+      CLOG(INFO, "performance") << "Executed [marklogic::rest::search::snippetResolutionTime()] in [" << snippetResolutionTime.substr(2,snippetResolutionTime.length() - 3) << " ms]";
+      CLOG(INFO, "performance") << "Executed [marklogic::rest::search::totalTime()] in [" << totalTime.substr(2,totalTime.length() - 3) << " ms]";
     } catch (std::exception& me) {
       // no metrics element - possible due to search options
       // silently fail - not a huge issue
@@ -61,33 +81,65 @@ public:
       LOG(DEBUG) << "SearchResultSet::handleFetchResults   COULD NOT PARSE RESPONSE METRICS!!!" << me.what();
     }
 
+    } // end timed scope for metrics
+
+
+    // TODO preallocate total results (or limit, if set and lower) in mImpl->mResults vector - speeds up append operations
+
+    //SearchResult::DETAIL detail(SearchResult::DETAIL::NONE);
+    static std::string raw("raw"); // always the same
+    //std::string ct;
+
+    {
+      TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processResultSet()");
+
 
     // take the response, and parse it
     // NOT NEEDED const web::json::value& resv = value.at(U("results"));
-    const web::json::array& res = value.at(U("results")).as_array();
+    const web::json::array res(value.at(U("results")).as_array());
+    //{
+    //  TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::asArray()");
+
+    //  const web::json::array resCount = value.at(U("results")).as_array(); // TODO remove once counted in PERF logger
+    //}
     //LOG(DEBUG) << "SearchResultSet::handleFetchResults We have a results JSON array";
-    SearchResult::DETAIL detail(SearchResult::DETAIL::NONE);
-    //std::string ct;
-    mlclient::utilities::CppRestJsonDocumentContent* ct;
-    std::string mimeType;
-    std::string format;
-    static std::string raw = "raw"; // always the same
     bool isRaw = (0 == (raw.compare(snippetFormat)));
 
-    for (auto iter = res.begin(); iter != res.end(); ++iter) {
+    web::json::array::const_iterator iter(res.begin());
+    const web::json::array::const_iterator jsonArrayIterEnd(res.end()); // see if a single call saves us time... nope
+
+    mlclient::utilities::CppRestJsonDocumentContent* ct;
+    SearchResult::DETAIL detail;
+    std::string mimeType;
+    std::string format;
+    web::json::object row = web::json::value::object().as_object();
+
+    {
+      TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processResultSetLoopOnly()");
+
+    for (; iter != jsonArrayIterEnd;++iter) {
+      {
+      TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processRow()");
       //auto& rowdata = *iter;
-      const web::json::object& row = iter->as_object();
+      row = iter->as_object();
+
+      {
+        TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processRowObject()");
+
+
       //LOG(DEBUG) << "Row: " << iter->as_string();
       //const web::json::object& row = iter.as_object();
       detail = SearchResult::DETAIL::NONE;
       mimeType = "";
       format = SearchResult::JSON;
+      web::json::value ctVal;
       //ct = "";
 
       // if snippet-format = raw
       if (isRaw) {
       try {
-        web::json::value ctVal = row.at(U("content")); // at is rvalue, moved to lvalue by json's move contructor
+        TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContent()");
+        ctVal = row.at(U("content")); // at is rvalue, moved to lvalue by json's move contructor
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got content";
 
 
@@ -111,13 +163,15 @@ public:
 
       } catch (std::exception& e) {
         LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
+        TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContentEXCEPTION()");
         // element doesn't exist - no result content, or has a snippet
       } // end content catch
 
       } else {
 
         try {
-          web::json::value ctVal = row.at(U("matches"));
+          TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatches()");
+          ctVal = row.at(U("matches"));
           // TODO XML, text, binary content support too
           ct = new mlclient::utilities::CppRestJsonDocumentContent();
           ct->setMimeType(IDocumentContent::MIME_JSON);
@@ -131,15 +185,27 @@ public:
           // no snippet element, must be some sort of content...
           detail = SearchResult::DETAIL::CONTENT;
           LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less" << ex.what();
+          TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatchesEXCEPTION()");
         }
       }
 
       // TODO handle empty result or no search metrics in the below - at the moment they could throw!!!
-      SearchResult sr(row.at(U("index")).as_integer(), utility::conversions::to_utf8string(row.at(U("uri")).as_string()),
-        utility::conversions::to_utf8string(row.at(U("path")).as_string()),row.at(U("score")).as_integer(),
-        row.at(U("confidence")).as_double(),row.at(U("fitness")).as_double(),detail,ct,mimeType,format );
-      mResults.push_back(std::move(sr));
+      {
+        TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::appendToVector()");
+      //SearchResult sr(row.at(U("index")).as_integer(), utility::conversions::to_utf8string(row.at(U("uri")).as_string()),
+        //utility::conversions::to_utf8string(row.at(U("path")).as_string()),row.at(U("score")).as_integer(),
+        //row.at(U("confidence")).as_double(),row.at(U("fitness")).as_double(),detail,ct,mimeType,format );
+      mResults.push_back(new SearchResult(row.at(U("index")).as_integer(), utility::conversions::to_utf8string(row.at(U("uri")).as_string()),
+          utility::conversions::to_utf8string(row.at(U("path")).as_string()),row.at(U("score")).as_integer(),
+          row.at(U("confidence")).as_double(),row.at(U("fitness")).as_double(),detail,ct,mimeType,format ));
+      }
+      }
+      }
     } // end loop
+
+    } // end timed scope loop only
+
+    } // end process result set scope
 
     return true;
   };
@@ -175,7 +241,7 @@ public:
 
   IConnection* mConn;
   SearchDescription* mInitialDescription;
-  std::vector<SearchResult> mResults;
+  std::vector<SearchResult*> mResults;
   std::exception* mFetchException;
 
   SearchResultSetIterator* mIter;
@@ -222,11 +288,14 @@ bool SearchResultSet::fetch() {
 }
 
 std::exception* SearchResultSet::getFetchException() {
+  TIMED_FUNC(SearchResultSet_getFetchException);
   return mImpl->mFetchException;
 }
 
 void SearchResultSet::setMaxResults(long maxResults) {
+  TIMED_FUNC(SearchResultSet_setMaxResults);
   mImpl->m_maxResults = maxResults;
+  // TODO preallocate this size in mImpl->mResults vector
 }
 
 SearchResultSetIterator* SearchResultSet::begin() const {
@@ -244,9 +313,11 @@ SearchResultSetIterator* SearchResultSet::end() const {
 
 
 const long SearchResultSet::getStart() {
+  TIMED_FUNC(SearchResultSet_getStart);
   return mImpl->start;
 }
 const long SearchResultSet::getTotal() {
+  TIMED_FUNC(SearchResultSet_getTotal);
   if (0 != mImpl->m_maxResults) { // may be returning less than is in the database
     if (mImpl->m_maxResults < mImpl->total) {
       return mImpl->m_maxResults;
@@ -272,6 +343,7 @@ const std::string& SearchResultSet::getTotalTime() const {
 
 
 const long SearchResultSet::getPageCount() const {
+  TIMED_FUNC(SearchResultSet_getPageCount);
   // TODO validate type safety of the below
   return (long)std::ceil(((double)mImpl->total) / ((double)mImpl->pageLength));
 }
@@ -285,15 +357,15 @@ const long SearchResultSet::getPageCount() const {
 
 
 SearchResultSetIterator::SearchResultSetIterator() : mResultSet(nullptr), position(1) {
-  ;
+  TIMED_FUNC(SearchResultSetIterator_defaultConstructor);
 }
 
 SearchResultSetIterator::SearchResultSetIterator(SearchResultSet* set) : mResultSet(set), position(1) {
-  ;
+  TIMED_FUNC(SearchResultSetIterator_resultSetConstructor);
 }
 
 SearchResultSetIterator::SearchResultSetIterator(SearchResultSet* set, long pos) : mResultSet(set), position(pos) {
-  ;
+  TIMED_FUNC(SearchResultSetIterator_resultSetPositionConstructor);
 }
 
 SearchResultSetIterator* SearchResultSetIterator::begin() {
@@ -319,10 +391,12 @@ SearchResultSetIterator* SearchResultSetIterator::end() {
 }
 
 bool SearchResultSetIterator::operator==(const SearchResultSetIterator& other) {
+  TIMED_FUNC(SearchResultSetIterator_operatorEquals);
   return position == other.position;
 }
 
 bool SearchResultSetIterator::operator!=(const SearchResultSetIterator& other) {
+  TIMED_FUNC(SearchResultSetIterator_operatorInequals);
   return position != other.position;
 }
 
@@ -352,18 +426,20 @@ void SearchResultSetIterator::operator++() {
 
 const SearchResult SearchResultSetIterator::operator*() {
   TIMED_FUNC(SearchResultSetIterator_operatorDereference);
-  return mResultSet->mImpl->mResults.at(position - 1); // MarkLogic Server is 1 based, not 0
+  return *(mResultSet->mImpl->mResults.at(position - 1)); // MarkLogic Server is 1 based, not 0
 }
 
 
 SearchResultSetIterator SearchResultSetIterator::operator=(const SearchResultSetIterator& other) {
+  TIMED_FUNC(SearchResultSetIterator_operatorAssignment);
   mResultSet = other.mResultSet;
   position = other.position;
   return other;
 }
 
 const SearchResult& SearchResultSetIterator::first() const {
-  return mResultSet->mImpl->mResults.at(position - 1); // MarkLogic Server is 1 based, not 0
+  TIMED_FUNC(SearchResultSetIterator_first);
+  return *(mResultSet->mImpl->mResults.at(position - 1)); // MarkLogic Server is 1 based, not 0
 }
 
 

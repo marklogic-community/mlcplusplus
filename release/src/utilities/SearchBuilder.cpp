@@ -91,6 +91,7 @@ std::string& operator +(std::string& s, const IQuery& query) {
 
 
 GenericQuery::GenericQuery() : value() {
+  TIMED_FUNC(GenericQuery_defaultConstructor);
 }
 
 std::ostream& GenericQuery::write(std::ostream& os) const {
@@ -113,6 +114,7 @@ std::string& operator +(std::string& s, const GenericQuery& query) {
 */
 
 void GenericQuery::setQuery(const std::string& value) {
+  TIMED_FUNC(GenericQuery_setQuery);
   this->value = value;
 }
 
@@ -125,6 +127,7 @@ const std::string& GenericQuery::getQuery() const {
 
 
 JsonPropertyQuery::JsonPropertyQuery() : m_value() {
+  TIMED_FUNC(JsonPropertyQuery_defaultConstructor);
 }
 
 std::ostream& JsonPropertyQuery::write(std::ostream& os) const {
@@ -145,6 +148,7 @@ std::string& operator +(std::string& s, const JsonPropertyQuery& query) {
 }*/
 
 void JsonPropertyQuery::setQuery(const std::string& property,const std::string& value) {
+  TIMED_FUNC(JsonPropertyQuery_setQuery);
   std::ostringstream oss;
   oss << "{\"container-query\": {\"property\": \"" << property << "\", \"value\": " << value << "}}"; // TODO validate value returns quotes around string and not around numbers, etc.
   //GenericQuery query;
@@ -177,6 +181,7 @@ std::string& operator +(std::string& s, const IContainerRef& ref) {
 
 
 JsonPropertyRef::JsonPropertyRef() : value() {
+  TIMED_FUNC(JsonPropertyRef_defaultConstructor);
 }
 
 std::ostream& JsonPropertyRef::write(std::ostream& os) const {
@@ -208,7 +213,7 @@ void JsonPropertyRef::setProperty(const std::string& property) {
 class SearchBuilder::Impl {
 public:
   Impl() : rootQuery(nullptr) {
-    ;
+    TIMED_FUNC(SearchBuilder_Impl_defaultConstructor);
   }
 
   static IQuery* multiQuery(const std::vector<IQuery*>& queries,const std::string& queryType) {
@@ -255,7 +260,7 @@ public:
 
 
 SearchBuilder::SearchBuilder(): mImpl(new SearchBuilder::Impl) {
-  ;
+  TIMED_FUNC(SearchBuilder_defaultConstructor);
 }
 
 
@@ -315,6 +320,7 @@ IQuery* SearchBuilder::notQuery(const IQuery* query) {
 
 
 IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value) {
+  TIMED_FUNC(SearchBuilder_valueQuery);
   std::ostringstream oss;
   oss << "{\"value-query\":{";
   oss << "\"json-property\": \"" << ref << "\",\"text\": [\"" << value << "\"]";
@@ -325,6 +331,7 @@ IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value
 }
 
 IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+  TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
   oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": [\"" << value << "\"],\"range-operator\":\"" << op << "\"";

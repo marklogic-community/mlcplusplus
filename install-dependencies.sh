@@ -141,11 +141,13 @@ printf '# Other settings' >> $F
 printf 'WITH_TESTS=0\n' >> $F
 printf 'WITH_DOCS=0\n' >> $F
 printf 'WITH_SAMPLES=0\n' >> $F
+printf '# BUILD_TYPE can be Debug or Release. Release uses compiler optimisations.\n' >> $F
+printf 'BUILD_TYPE=Debug\n' >> $F
 printf '# USER EDITABLE SETTINGS END\n' >> $F
 printf 'echo "-- Setting MLCPlusPlus dependency settings"\n' >> $F
 printf 'export CPPRESTSDK_HOME=%s\n' "$CPPREST_FOLDER" >> $F
 printf 'export MLCPLUSPLUS_HOME=%s\n' "$ORIG" >> $F
-printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES"\n' "$OSXU" >> $F
+printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
 printf 'echo "-- Done"\n' >> $F
 #printf 'exit 0\n' >> $F
 

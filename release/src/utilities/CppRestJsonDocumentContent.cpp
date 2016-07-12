@@ -32,20 +32,21 @@ namespace utilities {
 class CppRestJsonDocumentContent::Impl {
 public:
   Impl() : value(web::json::value()) {
-    ;
+    TIMED_FUNC(CppRestJsonDocumentContent_Impl_defaultConstructor);
   };
   ~Impl() {
-    ;
+    TIMED_FUNC(CppRestJsonDocumentContent_Impl_destructor);
   };
   web::json::value value;
   std::string mimeType;
 };
 
 CppRestJsonDocumentContent::CppRestJsonDocumentContent() : mImpl(new Impl) {
-  ;
+  TIMED_FUNC(CppRestJsonDocumentContent_constructor);
 }
 
 CppRestJsonDocumentContent::~CppRestJsonDocumentContent() {
+  TIMED_FUNC(CppRestJsonDocumentContent_destructor);
   delete mImpl;
 }
 
@@ -58,10 +59,12 @@ std::ostream* CppRestJsonDocumentContent::getStream() const {
 }
 
 const web::json::value& CppRestJsonDocumentContent::getJson() const {
+  TIMED_FUNC(CppRestJsonDocumentContent_getJson);
   return mImpl->value;
 }
 
 void CppRestJsonDocumentContent::setContent(web::json::value& json) {
+  TIMED_FUNC(CppRestJsonDocumentContent_setContent);
   mImpl->value = std::move(json); // move constructor
 }
 

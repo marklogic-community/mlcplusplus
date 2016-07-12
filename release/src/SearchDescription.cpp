@@ -31,6 +31,7 @@ namespace mlclient {
 class SearchDescription::Impl {
 public:
   Impl() : start(1), pageLength(10) {
+    TIMED_FUNC(SearchDescription_Impl_defaultConstructor);
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
     qtdc->setContent("{}");
@@ -46,7 +47,7 @@ public:
   }
 
   ~Impl() {
-    ;
+    TIMED_FUNC(SearchDescription_Impl_destructor);
   }
 
   std::unique_ptr<ITextDocumentContent> query;
@@ -58,6 +59,7 @@ public:
 
 
 SearchDescription::SearchDescription() : mImpl(new Impl) {
+  TIMED_FUNC(SearchDescription_defaultConstructor);
   LOG(DEBUG) << "    SearchDescription::defaultConstructor @" << &*this;
 }
 /*
@@ -119,6 +121,7 @@ SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new 
 }
 */
 SearchDescription::~SearchDescription() {
+  TIMED_FUNC(SearchDescription_destructor);
   LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
   delete mImpl;
   mImpl = NULL;
@@ -127,21 +130,27 @@ SearchDescription::~SearchDescription() {
 
 
 void SearchDescription::setOptions(ITextDocumentContent& options) {
+  TIMED_FUNC(SearchDescription_setOptions);
   mImpl->options = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(options)); // copy constructor
 }
 const ITextDocumentContent& SearchDescription::getOptions() const {
+  TIMED_FUNC(SearchDescription_getOptions);
   return *(mImpl->options.get());
 }
 void SearchDescription::setQuery(ITextDocumentContent& query) {
+  TIMED_FUNC(SearchDescription_setQuery);
   mImpl->query = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(query)); // copy constructor
 }
 const ITextDocumentContent& SearchDescription::getQuery() const {
+  TIMED_FUNC(SearchDescription_getQuery);
   return *(mImpl->query.get());
 }
 void SearchDescription::setQueryText(std::string qtext) {
+  TIMED_FUNC(SearchDescription_setQueryText);
   mImpl->queryText = std::unique_ptr<std::string>(new std::string(qtext));
 }
 const std::string& SearchDescription::getQueryText() const {
+  TIMED_FUNC(SearchDescription_getQueryText);
   return *(mImpl->queryText.get());
 }
 ITextDocumentContent* SearchDescription::getPayload() const {

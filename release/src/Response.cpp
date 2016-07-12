@@ -200,11 +200,12 @@ const std::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 class Response::Impl {
 public:
   Impl() : responseCode(ResponseCode::UNKNOWN_CODE), responseType(ResponseType::UNKNOWN_TYPE)  {
+    TIMED_FUNC(Response_Impl_defaultConstructor);
     LOG(DEBUG) << "    Response::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   };
   ~Impl() {
-    ;
+    TIMED_FUNC(Response_Impl_destructor);
   };
 
 
@@ -240,10 +241,12 @@ public:
 
 
 Response::Response() : mImpl(new Impl) {
+  TIMED_FUNC(Response_defaultConstructor);
   LOG(DEBUG) << "    Response::defaultConstructor @" << &*this;
 }
 
 Response::~Response() {
+  TIMED_FUNC(Response_destructor);
   delete mImpl;
   mImpl = NULL;
 }
@@ -259,6 +262,7 @@ void Response::setResponseType(const enum ResponseType& type) {
 }
 
 void Response::setResponseHeaders(const mlclient::HttpHeaders& headers) {
+  TIMED_FUNC(Response_setResponseHeaders);
   mImpl->headers.clear();
   const std::string& ct = "Content-type";
   std::string value = headers.getHeader(ct);
@@ -290,14 +294,17 @@ HttpHeaders Response::getResponseHeaders(void) const {
 }
 
 size_t Response::read(void* buffer, const size_t& max_size, const size_t off) {
+  // TODO should this do something???
   return 0;
 }
 
 const std::string& Response::getContent() const {
+  TIMED_FUNC(Response_getContent);
   return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
 }
 
 void Response::setContent(std::string* content) {
+  TIMED_FUNC(Response_setContent);
   mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
 }
 

@@ -44,10 +44,12 @@ const std::string IDocumentContent::MIME_XML = "application/xml";       /// Stan
 
 
 IDocumentContent::IDocumentContent() {
+  //TIMED_FUNC(IDocumentContent_defaultConstructor);
   LOG(DEBUG) << "    IDocumentContent::defaultConstructor @" << &*this;
 }
 
 IDocumentContent::~IDocumentContent() {
+  //TIMED_FUNC(IDocumentContent_destructor);
   LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this;
   LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this << " complete.";
 }
@@ -56,10 +58,12 @@ IDocumentContent::~IDocumentContent() {
 
 
 ITextDocumentContent::ITextDocumentContent() {
+  //TIMED_FUNC(ITextDocumentContent_defaultConstructor);
   LOG(DEBUG) << "    ITextDocumentContent::defaultConstructor @" << &*this;
 }
 
 ITextDocumentContent::~ITextDocumentContent() {
+  //TIMED_FUNC(ITextDocumentContent_destructor);
   LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this;
   LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this << " complete.";
 }
@@ -118,6 +122,7 @@ int BinaryDocumentContent::getLength() {
 class GenericTextDocumentContent::Impl {
 public:
   Impl() {
+    TIMED_FUNC(GenericTextDocumentContent_Impl_defaultConstructor);
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("{}")); // MUST BE INITIALISED
     mimeType = "application/json";
@@ -131,10 +136,12 @@ public:
 
 
 GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent::ITextDocumentContent(), mImpl(new Impl) {
+  TIMED_FUNC(GenericTextDocumentContent_defaultConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::defaultConstructor @" << &*this;
   ;
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
+  TIMED_FUNC(GenericTextDocumentContent_copyGenericConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
   std::ostringstream oss;
   oss << *(doc.mImpl->content);
@@ -142,6 +149,7 @@ GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocument
   mImpl->mimeType = doc.getMimeType();
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
+  TIMED_FUNC(GenericTextDocumentContent_copyITextConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
   std::ostringstream oss;
   oss << doc.getContent();
@@ -155,9 +163,11 @@ GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " complete.";
 }
 void GenericTextDocumentContent::setContent(std::string content) {
+  TIMED_FUNC(GenericTextDocumentContent_setContent);
   mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
 }
 std::string GenericTextDocumentContent::getContent() const {
+  TIMED_FUNC(GenericTextDocumentContent_getContent);
   return *(mImpl->content); // Forces copy constructor
 }
 int GenericTextDocumentContent::getLength() const {

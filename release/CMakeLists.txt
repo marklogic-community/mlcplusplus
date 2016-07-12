@@ -106,6 +106,13 @@ else()
   message("CMAKE_CXX_COMPILER_ID=${CMAKE_CXX_COMPILER_ID}")
 endif()
 
+message("-- Build Type: " ${CMAKE_BUILD_TYPE} ) 
+if( ${CMAKE_BUILD_TYPE} MATCHES "Debug")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+else()
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+endif()
+
 
 set(mlclient_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 

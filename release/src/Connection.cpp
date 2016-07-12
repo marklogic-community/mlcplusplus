@@ -30,6 +30,7 @@ namespace mlclient {
 class Connection::Impl {
 public:
   Impl() : proxy(), databaseName("Documents"), serverUrl("http://localhost:8002") {
+    TIMED_FUNC(Connection_Impl_defaultConstructor);
     LOG(DEBUG) << "    Connection::Impl::defaultConstructor @" << &*this;
   };
 
@@ -44,14 +45,17 @@ public:
 
 
 Connection::Connection() : mImpl(new Impl) {
+  TIMED_FUNC(Connection_defaultConstructor);
   LOG(DEBUG) << "    Connection::defaultConstructor @" << &*this;
 }
 
 Connection::~Connection() {
+  TIMED_FUNC(Connection_destructor);
   delete mImpl;
 }
 
 void Connection::configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password, bool usessl) {
+  TIMED_FUNC(Connection_configure);
   mImpl->serverUrl = std::string("http") + (usessl ? "s" : "") + "://" + hostname + ":" + port;
   internals::Credentials c(username, password);
   mImpl->proxy.addCredentials(c);
@@ -146,10 +150,12 @@ Response* Connection::search(const SearchDescription& desc) {
 }
 
 Response* Connection::listRootCollections() {
+  TIMED_FUNC(Connection_listRootCollections);
   return listCollections(""); // TODO Check this works and doesn't require a "/"
 }
 
 Response* Connection::listCollections(const std::string& parentCollection) {
+  TIMED_FUNC(Connection_listCollections);
   std::ostringstream os;
   os << "{\"search\": {\"query\": {\"collection-query\" : {\"uri\": [\"" << parentCollection << "\"]}},";
   os << "\"options\": {\"default-suggestion-source\": {\"collection\": {\"prefix\":\"" << parentCollection << "\"}}}}}";

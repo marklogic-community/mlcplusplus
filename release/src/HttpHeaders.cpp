@@ -28,19 +28,22 @@
 namespace mlclient {
 
 HttpHeaders::HttpHeaders() : mHeaders() {
-  ;
+  //TIMED_FUNC(HttpHeaders_defaultConstructor); // DO NOT LOG AS THIS CLASS IS STATICALLY INITIALISED!!! CAUSES SEG FAULT!!!
 }
 
 void HttpHeaders::setHeaders(const std::map<std::string,std::string>& headers) {
+  TIMED_FUNC(HttpHeaders_setHeaders);
   mHeaders = headers;
 }
 void HttpHeaders::setHeader(const std::string& header,const std::string& value) {
+  TIMED_FUNC(HttpHeaders_setHeader);
   mHeaders.insert(std::pair<std::string,std::string>(header,value));
 }
 
 const std::string& empty = "";
 
 const std::string& HttpHeaders::getHeader(const std::string& header) const {
+  TIMED_FUNC(HttpHeaders_getHeader);
   std::map<std::string,std::string>::const_iterator iter = mHeaders.find(header);
   if (mHeaders.end() == iter) {
     return empty;
@@ -49,10 +52,12 @@ const std::string& HttpHeaders::getHeader(const std::string& header) const {
 }
 
 const std::map<std::string,std::string>& HttpHeaders::getHeaders() const {
+  TIMED_FUNC(HttpHeaders_getHeaders);
   return mHeaders;
 }
 
 void HttpHeaders::clear() {
+  TIMED_FUNC(HttpHeaders_clear);
   mHeaders.clear();
 }
 

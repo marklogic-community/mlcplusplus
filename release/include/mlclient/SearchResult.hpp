@@ -54,6 +54,19 @@ public:
    * \param other The SearchResult to copy (shallow copy)
    */
   MLCLIENT_API SearchResult(const SearchResult& other) = default;
+
+  /**
+   * Move constructor
+   * \param other The SearchResult to move (deep reference move)
+   */
+  MLCLIENT_API SearchResult(SearchResult&& other);
+
+  /**
+   * \brief Destructor
+   */
+  MLCLIENT_API ~SearchResult();
+
+
   /**
    * Detail constructor. Used by SearchResultSet and other search result wrapping functions and classes.
    * \param index The index (position, 1 based) of this result in the total search result list, across all pages
@@ -70,7 +83,6 @@ public:
   MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
       const double confidence,const double fitness,const DETAIL& detail,IDocumentContent* detailContent = nullptr,
       const std::string& mimeType = "",const std::string& format = JSON);
-  MLCLIENT_API virtual ~SearchResult() = default;
 
   /**
    * \brief Returns the (1 based) index of this result in the total search results, across all pages
