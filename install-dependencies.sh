@@ -132,6 +132,7 @@ cd $ORIG
 F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
+printf 'WITH_LOGGING=0\n' >> $F
 printf '# General SWIG enabling' >> $F
 printf 'WITH_SWIG=0\n' >> $F
 printf '# Specific SWIG wrapper enabling' >> $F
@@ -147,7 +148,7 @@ printf '# USER EDITABLE SETTINGS END\n' >> $F
 printf 'echo "-- Setting MLCPlusPlus dependency settings"\n' >> $F
 printf 'export CPPRESTSDK_HOME=%s\n' "$CPPREST_FOLDER" >> $F
 printf 'export MLCPLUSPLUS_HOME=%s\n' "$ORIG" >> $F
-printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
+printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DWITH_LOGGING=$WITH_LOGGING -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
 printf 'echo "-- Done"\n' >> $F
 #printf 'exit 0\n' >> $F
 
