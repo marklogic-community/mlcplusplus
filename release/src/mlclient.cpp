@@ -19,6 +19,12 @@
 
 #include "mlclient/mlclient.hpp"
 
+
+#ifndef WITH_LOGGING
+#define ELPP_DISABLE_LOGS 1
+#define ELPP_NO_DEFAULT_LOG_FILE 1
+#endif
+
 #ifndef ELPP_PERFORMANCE_MICROSECONDS
 #define ELPP_PERFORMANCE_MICROSECONDS 1
 #endif
@@ -33,11 +39,14 @@ INITIALIZE_EASYLOGGINGPP
 
 namespace mlclient {
 int runOnce() {
-    LOG(INFO) << "Registering logger [mlclient]";
+    //LOG(INFO) << "Registering logger [mlclient]";
     el::Loggers::getLogger("mlclient");
 
     el::Configurations defaultConf;
     defaultConf.setToDefault();
+#ifndef WITH_LOGGING
+    defaultConf.setGlobally(el::ConfigurationType::Enabled,"false");
+#endif
     // Values are always std::string
     defaultConf.setGlobally(el::ConfigurationType::Format, "%datetime %level %fbase:%line %msg");
     defaultConf.setGlobally(el::ConfigurationType::ToStandardOutput, "false");
@@ -46,6 +55,9 @@ int runOnce() {
 
     el::Configurations performanceConf;
     performanceConf.setToDefault();
+#ifndef WITH_LOGGING
+    performanceConf.set(el::Level::Info, el::ConfigurationType::Enabled,"false");
+#endif
     performanceConf.set(el::Level::Info, el::ConfigurationType::Format, "%msg");
     performanceConf.set(el::Level::Info, el::ConfigurationType::ToStandardOutput, "false");
     performanceConf.set(el::Level::Info, el::ConfigurationType::Filename,"../performance.log"); /// TODO make output file include version number of this upcoming release

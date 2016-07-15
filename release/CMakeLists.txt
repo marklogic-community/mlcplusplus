@@ -156,6 +156,14 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
 
 link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
 
+
+IF (WITH_LOGGING)
+  message("-- Enabling logging")
+else()
+  message("-- NOT enabling logging")
+endif()
+
+
 add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(samples)
