@@ -14,9 +14,9 @@
 // A C language sample to show fetching a document as a C struct and printing out to screen
 //
 #include <stdio.h>
-#include "ConnectionWrapper.h"
+#include "mlclient/ConnectionWrapper.h"
 #include "ConnectionFactoryWrapper.h"
-#include "ResponseWrapper.h"
+#include "mlclient/ResponseWrapper.h"
 #include "CStruct.h"
 #include "CStructWrapper.h"
 

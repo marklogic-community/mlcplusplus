@@ -137,11 +137,11 @@ std::string Credentials::authenticate(const std::string& method, const std::stri
   oss << std::setfill('0') << std::setw(8) << nonce_count;
   std::string nc = oss.str();
 
-  std::string response = builder.response(a1, nonce, oss.str(), cnonce,
+  std::string response = builder.response(a1, nonce, nc, cnonce,
       qop, a2);
 
   oss.str("");
-  oss << " Digest";
+  oss << "Digest";
   oss << " username=\"" << username << "\",";
   oss << " realm=\"" << realm << "\",";
   oss << " nonce=\"" << nonce << "\",";

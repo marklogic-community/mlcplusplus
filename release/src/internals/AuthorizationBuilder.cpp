@@ -20,6 +20,11 @@
 #include "mlclient/internals/AuthorizationBuilder.hpp"
 #include "mlclient/internals/MLCrypto.hpp"
 
+#include "mlclient/ext/easylogging++.h"
+
+#include <algorithm>
+#include <string>
+
 namespace mlclient {
 
 namespace internals {
@@ -64,7 +69,9 @@ std::string AuthorizationBuilder::methodAndURL(const std::string& method,
 std::string AuthorizationBuilder::methodURLAndBodyHash(const std::string& method,
     const std::string& url, const std::string& bodyHash) {
   MLCrypto crypto;
-  return crypto.md5(method + ":" + url + ":" + bodyHash);
+  std::string str(method);
+  std::transform(str.begin(), str.end(),str.begin(), ::toupper);
+  return crypto.md5(str + ":" + url + ":" + bodyHash);
 }
 
 std::string AuthorizationBuilder::response(const std::string& hash1,
