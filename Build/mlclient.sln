@@ -5,102 +5,6 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mlclient", "mlclient.vcxproj", "{C9E040D2-FF93-48CF-9ACE-2E8FC4F30AAC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6A942D93-87F2-4297-A57D-11B5DD3EEC67}"
-	ProjectSection(SolutionItems) = preProject
-		..\release\src\Connection.cpp = ..\release\src\Connection.cpp
-		..\release\src\Connection.hpp = ..\release\src\Connection.hpp
-		..\release\src\ConnectionWrapper.cpp = ..\release\src\ConnectionWrapper.cpp
-		..\release\src\ConnectionWrapper.h = ..\release\src\ConnectionWrapper.h
-		..\release\src\CWrapper.hpp = ..\release\src\CWrapper.hpp
-		..\release\src\DocumentContent.cpp = ..\release\src\DocumentContent.cpp
-		..\release\src\DocumentContent.hpp = ..\release\src\DocumentContent.hpp
-		..\release\src\HttpHeaders.cpp = ..\release\src\HttpHeaders.cpp
-		..\release\src\HttpHeaders.hpp = ..\release\src\HttpHeaders.hpp
-		..\release\src\InvalidFormatException.cpp = ..\release\src\InvalidFormatException.cpp
-		..\release\src\InvalidFormatException.hpp = ..\release\src\InvalidFormatException.hpp
-		..\release\src\License.txt = ..\release\src\License.txt
-		..\release\src\mlclient-go.i = ..\release\src\mlclient-go.i
-		..\release\src\mlclient-python.i = ..\release\src\mlclient-python.i
-		..\release\src\mlclient-ruby.i = ..\release\src\mlclient-ruby.i
-		..\release\src\mlclient.cpp = ..\release\src\mlclient.cpp
-		..\release\src\mlclient.h = ..\release\src\mlclient.h
-		..\release\src\mlclient.hpp = ..\release\src\mlclient.hpp
-		..\release\src\mlclientConfig.h.in = ..\release\src\mlclientConfig.h.in
-		..\release\src\NoCredentialsException.cpp = ..\release\src\NoCredentialsException.cpp
-		..\release\src\NoCredentialsException.hpp = ..\release\src\NoCredentialsException.hpp
-		..\release\src\Response.cpp = ..\release\src\Response.cpp
-		..\release\src\Response.hpp = ..\release\src\Response.hpp
-		..\release\src\ResponseWrapper.cpp = ..\release\src\ResponseWrapper.cpp
-		..\release\src\ResponseWrapper.h = ..\release\src\ResponseWrapper.h
-		..\release\src\SearchDescription.cpp = ..\release\src\SearchDescription.cpp
-		..\release\src\SearchDescription.hpp = ..\release\src\SearchDescription.hpp
-		..\release\src\SearchResult.cpp = ..\release\src\SearchResult.cpp
-		..\release\src\SearchResult.hpp = ..\release\src\SearchResult.hpp
-		..\release\src\SearchResultSet.cpp = ..\release\src\SearchResultSet.cpp
-		..\release\src\SearchResultSet.hpp = ..\release\src\SearchResultSet.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utilities", "utilities", "{A234299B-3223-4B3F-A5E3-8297E890C7FC}"
-	ProjectSection(SolutionItems) = preProject
-		..\release\src\utilities\CppRestJsonDocumentContent.cpp = ..\release\src\utilities\CppRestJsonDocumentContent.cpp
-		..\release\src\utilities\CppRestJsonDocumentContent.hpp = ..\release\src\utilities\CppRestJsonDocumentContent.hpp
-		..\release\src\utilities\CppRestJsonHelper.cpp = ..\release\src\utilities\CppRestJsonHelper.cpp
-		..\release\src\utilities\CppRestJsonHelper.hpp = ..\release\src\utilities\CppRestJsonHelper.hpp
-		..\release\src\utilities\PugiXmlHelper.cpp = ..\release\src\utilities\PugiXmlHelper.cpp
-		..\release\src\utilities\PugiXmlHelper.hpp = ..\release\src\utilities\PugiXmlHelper.hpp
-		..\release\src\utilities\ResponseHelper.cpp = ..\release\src\utilities\ResponseHelper.cpp
-		..\release\src\utilities\ResponseHelper.hpp = ..\release\src\utilities\ResponseHelper.hpp
-		..\release\src\utilities\SearchBuilder.cpp = ..\release\src\utilities\SearchBuilder.cpp
-		..\release\src\utilities\SearchBuilder.hpp = ..\release\src\utilities\SearchBuilder.hpp
-		..\release\src\utilities\SearchOptionsBuilder.cpp = ..\release\src\utilities\SearchOptionsBuilder.cpp
-		..\release\src\utilities\SearchOptionsBuilder.hpp = ..\release\src\utilities\SearchOptionsBuilder.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "internals", "internals", "{B0366C99-29B5-428C-9DC9-47C03DAD684D}"
-	ProjectSection(SolutionItems) = preProject
-		..\release\src\internals\AuthenticatingProxy.cpp = ..\release\src\internals\AuthenticatingProxy.cpp
-		..\release\src\internals\AuthenticatingProxy.hpp = ..\release\src\internals\AuthenticatingProxy.hpp
-		..\release\src\internals\AuthorizationBuilder.cpp = ..\release\src\internals\AuthorizationBuilder.cpp
-		..\release\src\internals\AuthorizationBuilder.hpp = ..\release\src\internals\AuthorizationBuilder.hpp
-		..\release\src\internals\Credentials.cpp = ..\release\src\internals\Credentials.cpp
-		..\release\src\internals\Credentials.hpp = ..\release\src\internals\Credentials.hpp
-		..\release\src\internals\FakeConnection.cpp = ..\release\src\internals\FakeConnection.cpp
-		..\release\src\internals\FakeConnection.hpp = ..\release\src\internals\FakeConnection.hpp
-		..\release\src\internals\MLCrypto.cpp = ..\release\src\internals\MLCrypto.cpp
-		..\release\src\internals\MLCrypto.hpp = ..\release\src\internals\MLCrypto.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{114D7B22-0BCD-437C-8CC5-690CDC85B348}"
-	ProjectSection(SolutionItems) = preProject
-		..\release\test\ConnectionCollectionsTest.cpp = ..\release\test\ConnectionCollectionsTest.cpp
-		..\release\test\ConnectionCollectionsTest.hpp = ..\release\test\ConnectionCollectionsTest.hpp
-		..\release\test\ConnectionDocumentCrudTest.cpp = ..\release\test\ConnectionDocumentCrudTest.cpp
-		..\release\test\ConnectionDocumentCrudTest.hpp = ..\release\test\ConnectionDocumentCrudTest.hpp
-		..\release\test\ConnectionFactory.cpp = ..\release\test\ConnectionFactory.cpp
-		..\release\test\ConnectionFactory.hpp = ..\release\test\ConnectionFactory.hpp
-		..\release\test\ConnectionSearchTest.cpp = ..\release\test\ConnectionSearchTest.cpp
-		..\release\test\ConnectionSearchTest.hpp = ..\release\test\ConnectionSearchTest.hpp
-		..\release\test\main.cpp = ..\release\test\main.cpp
-		..\release\test\SearchBuilderTest.cpp = ..\release\test\SearchBuilderTest.cpp
-		..\release\test\SearchBuilderTest.hpp = ..\release\test\SearchBuilderTest.hpp
-		..\release\test\SearchResultSetTest.cpp = ..\release\test\SearchResultSetTest.cpp
-		..\release\test\SearchResultSetTest.hpp = ..\release\test\SearchResultSetTest.hpp
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{DCFD4C39-C822-4D35-8842-D5C97D866E12}"
-	ProjectSection(SolutionItems) = preProject
-		..\release\samples\cgetasstruct.c = ..\release\samples\cgetasstruct.c
-		..\release\samples\cgetdoc.c = ..\release\samples\cgetdoc.c
-		..\release\samples\ConnectionFactory.cpp = ..\release\samples\ConnectionFactory.cpp
-		..\release\samples\ConnectionFactory.hpp = ..\release\samples\ConnectionFactory.hpp
-		..\release\samples\ConnectionFactoryWrapper.cpp = ..\release\samples\ConnectionFactoryWrapper.cpp
-		..\release\samples\ConnectionFactoryWrapper.h = ..\release\samples\ConnectionFactoryWrapper.h
-		..\release\samples\CStruct.h = ..\release\samples\CStruct.h
-		..\release\samples\CStructWrapper.cpp = ..\release\samples\CStructWrapper.cpp
-		..\release\samples\CStructWrapper.h = ..\release\samples\CStructWrapper.h
-		..\release\samples\getdoc.cpp = ..\release\samples\getdoc.cpp
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{9C247769-C35C-42EA-BACB-5C0997A132A1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C9E040D2-FF93-48CF-9ACE-2E8FC4F30AAC} = {C9E040D2-FF93-48CF-9ACE-2E8FC4F30AAC}
@@ -172,9 +76,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A234299B-3223-4B3F-A5E3-8297E890C7FC} = {6A942D93-87F2-4297-A57D-11B5DD3EEC67}
-		{B0366C99-29B5-428C-9DC9-47C03DAD684D} = {6A942D93-87F2-4297-A57D-11B5DD3EEC67}
 	EndGlobalSection
 EndGlobal
