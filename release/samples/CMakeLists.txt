@@ -2,23 +2,24 @@
 
 IF (WITH_SAMPLES)
 
+  message("-- Building Samples")
 
-include_directories(../src ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
+include_directories(../src ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR} ccommon cppcommon cgetasstruct cgetdoc cppgetdoc )
 
 add_executable(getdoc
-    getdoc.cpp
-    ConnectionFactory.cpp
+    cppgetdoc/getdoc.cpp
+    cppcommon/ConnectionFactory.cpp
 )
 add_executable(cgetdoc
-    cgetdoc.c
-    ConnectionFactory.cpp
-    ConnectionFactoryWrapper.cpp
+    cgetdoc/cgetdoc.c
+    cppcommon/ConnectionFactory.cpp
+    ccommon/ConnectionFactoryWrapper.cpp
 )
 add_executable(cgetasstruct
-    cgetasstruct.c
-    ConnectionFactory.cpp
-    ConnectionFactoryWrapper.cpp
-    CStructWrapper.cpp
+    cgetasstruct/cgetasstruct.c
+    cppcommon/ConnectionFactory.cpp
+    ccommon/ConnectionFactoryWrapper.cpp
+    cgetasstruct/CStructWrapper.cpp
 )
 target_link_libraries(getdoc mlclient ${Casablanca_LIBRARIES})
 target_link_libraries(cgetdoc mlclient ${Casablanca_LIBRARIES})

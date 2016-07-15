@@ -15,12 +15,12 @@
  *  Created by Paul Hoehne on 27 May 2014.
  */
 
-#include "utilities/CppRestJsonHelper.hpp"
-#include "utilities/PugiXmlHelper.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/PugiXmlHelper.hpp"
 #include <iostream>
 
-#include "Connection.hpp"
-#include "Response.hpp"
+#include "mlclient/Connection.hpp"
+#include "mlclient/Response.hpp"
 #include "ConnectionFactory.hpp"
 
 int main(int argc, const char * argv[])

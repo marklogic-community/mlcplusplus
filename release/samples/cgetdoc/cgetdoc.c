@@ -14,9 +14,9 @@
 // A C language sample to show fetching a document - functionally equivalent to the C++ getdoc.cpp sample app.
 //
 #include <stdio.h>
-#include "ConnectionWrapper.h"
+#include "mlclient/ConnectionWrapper.h"
 #include "ConnectionFactoryWrapper.h"
-#include "ResponseWrapper.h"
+#include "mlclient/ResponseWrapper.h"
 
 int main(int argc, const char * argv[])
 {

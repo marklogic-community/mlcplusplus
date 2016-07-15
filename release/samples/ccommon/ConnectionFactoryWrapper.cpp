@@ -12,7 +12,7 @@
  * limitations under the License.
  *
  */
-#include "ConnectionWrapper.h"
+#include "mlclient/ConnectionWrapper.h"
 #include "ConnectionFactoryWrapper.h"
 #include "ConnectionFactory.hpp"
 

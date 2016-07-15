@@ -14,13 +14,13 @@
  */
 #include "CStructWrapper.h"
 #include "CStruct.h"
-#include "ResponseWrapper.h"
-#include "Response.hpp"
-#include "utilities/CppRestJsonHelper.hpp"
-#include "utilities/PugiXmlHelper.hpp"
+#include "mlclient/ResponseWrapper.h"
+#include "mlclient/Response.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/PugiXmlHelper.hpp"
 #include <cpprest/json.h>
 #include <pugixml.hpp>
-#include "CWrapper.hpp"
+#include "mlclient/CWrapper.hpp"
 
 extern "C" {
 

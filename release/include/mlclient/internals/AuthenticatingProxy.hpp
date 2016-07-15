@@ -130,7 +130,7 @@ private:
    /* Copies Microsoft CPPREST headers to useful mlclient::HttpHeaders class */
    static void copyHeaders(const web::http::http_headers& from, mlclient::HttpHeaders& to);
 
-   Response* doRequest(const std::string& mthd,const std::string& host,const std::string& path,const HttpHeaders& headers,Response* response,const IDocumentContent* body = nullptr);
+   Response* doRequest(const std::string& mthd,const std::string& host,const std::string& path,const HttpHeaders& headers,const IDocumentContent* body = nullptr);
 
    Credentials credentials;
    uint32_t attempts;

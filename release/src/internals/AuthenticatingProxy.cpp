@@ -81,9 +81,10 @@ const Credentials& AuthenticatingProxy::getCredentials() const {
   return credentials;
 }
 
-Response* AuthenticatingProxy::doRequest(const std::string& method,const std::string& host,const std::string& path,const HttpHeaders& headers, Response* response,const IDocumentContent* body) {
+Response* AuthenticatingProxy::doRequest(const std::string& method,const std::string& host,const std::string& path,const HttpHeaders& headers, const IDocumentContent* body) {
 
   TIMED_FUNC(AuthenticatingProxy_doRequest);
+  LOG(DEBUG) << "doRequest: method: " << method << " host: " << host << " path: " << path;
 
   http_client raw_client(utility::conversions::to_string_t(host)); // TODO can we re-use these???
 
@@ -93,9 +94,11 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
   // TODO can we already pre-authenticate?
 
+  bool authorised = true;
+
   try {
     http::http_request req(utility::conversions::to_string_t(method)); // TODO can we re-use these???
-    http_headers restHeaders = req.headers();
+    http_headers& restHeaders = req.headers(); // MUST BE A REFERENCE - DO NOT INVOKE COPY CONSTRUCTOR!!!
     // copy additional headers - e.g. Accept: or Content-type: (For POST/PUT)
     for (auto& iter : hs) {
       if (restHeaders.has(utility::conversions::to_string_t(iter.first))) { // TODO verify that map doesn't handle duplicates for us. If it does, remove this check.
@@ -110,7 +113,10 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     req.set_request_uri(web::uri(utility::conversions::to_string_t(path)));
 
     if (credentials.canAuthenticate()) {
+      LOG(DEBUG) << "Attempting to authenticate on first attempt";
       restHeaders.add(AUTHORIZATION_HEADER_NAME, utility::conversions::to_string_t(credentials.authenticate(("" + method), path)));
+    } else {
+      LOG(DEBUG) << "Not authenticating on first attempt";
     }
 
     if (nullptr != body) {
@@ -133,11 +139,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     { // PERFORMANCE BRACE
       TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
       pplx::task<http_response> hr = raw_client.request(req);
+      LOG(DEBUG) << "Request body: " << req.to_string();
 
       raw_response = hr.get();
     } // PERFORMANCE BRACE
     try
     {
+      Response* response = new Response;
       response->setResponseCode((ResponseCode)raw_response.status_code());
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
@@ -156,6 +164,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
       // TODO replace with setContent(StringDocument()) ??? would it avoid a conversion at all???
       response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get()))); // TODO handle binary response types
+
+      if (response->getResponseCode() != ResponseCode::UNAUTHORIZED) {
+        return response;
+      } else {
+        authorised = false;
+      }
+
     }
     catch (const http_exception& e)
     {
@@ -166,10 +181,12 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     }
 
   } catch(std::exception &e) {
-    std::cerr << e.what() << std::endl;
+    LOG(DEBUG) << "Exception " << e.what();
+    //std::cerr << e.what() << std::endl;
   }
 
-  if (response->getResponseCode() == ResponseCode::UNAUTHORIZED) {
+  if (!authorised) {
+    LOG(DEBUG) << "Unauthorised. Retrying...";
     //LOG(DEBUG) << "UNAUTHORIZED";
     /*
     LOG(DEBUG) << "Listing headers fetched from response:-";
@@ -182,7 +199,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     // TODO I don't think the following is ever called... verify it.
     // TODO verify if the first request used is a POST, the following does not error (IT SPECIFIED GET AS THE METHOD!!!)
     try {
-      http::http_request req(http::methods::GET);
+      http::http_request req(utility::conversions::to_string_t(method));
       req.set_request_uri(web::uri(utility::conversions::to_string_t(path)));
 
       // print out all headers from response
@@ -198,21 +215,32 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       std::map<std::string,std::string>::const_iterator iter;
       std::map<std::string,std::string> hs = headers.getHeaders();
-      http_headers restHeaders = req.headers();
+      http_headers& restHeaders = req.headers(); // MUST BE A REFERENCE - DO NOT INVOKE COPY CONSTRUCTOR!!!
+      /*
       for (auto& iter : hs) {
         if (restHeaders.has(utility::conversions::to_string_t(iter.first))) {
           restHeaders.remove(utility::conversions::to_string_t(iter.first));
         }
         restHeaders.add(utility::conversions::to_string_t(iter.first), utility::conversions::to_string_t(iter.second));
       }
+      */
       if (!restHeaders.has(U("Accept"))) {
         restHeaders.add(U("Accept"),U("application/json")); // default to JSON response type for MarkLogic
       }
-      std::string av = credentials.authenticate(("" + method), path, responseAuthHeaderValue);
+      LOG(DEBUG) << "Generating auth header";
+      LOG(DEBUG) << "Original auth response was: " << responseAuthHeaderValue;
+      std::string av(credentials.authenticate(("" + method), path, responseAuthHeaderValue));
+      LOG(DEBUG) << "Auth header: " << av;
+      LOG(DEBUG) << "Auth header name: " << AUTHORIZATION_HEADER_NAME;
       restHeaders.add(
           AUTHORIZATION_HEADER_NAME,
         utility::conversions::to_string_t(av)
       );
+      LOG(DEBUG) << "Start of request headers";
+      for (auto& iter : req.headers()) {
+        LOG(DEBUG) << "  Request Header: " << iter.first << "='" << iter.second << "'";
+      }
+      LOG(DEBUG) << "End of request headers";
 
       if (nullptr != body) {
         req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
@@ -225,32 +253,40 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Finishing listing request headers.";
       */
 
+      LOG(DEBUG) << "Re-auth Request body: " << req.to_string();
       http_response raw_response = raw_client.request(req).get();
 
       try
       {
-        //LOG(DEBUG) << "Final response...";
+        LOG(DEBUG) << "Final response...";
 
+        Response* response = new Response;
         response->setResponseCode((ResponseCode)raw_response.status_code());
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h);
         response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
+
+        LOG(DEBUG) << response->getContent();
+
+        return response;
       }
       catch (const web::http::http_exception& e)
       {
         // Print error.
-        std::wostringstream ss;
-        ss << "There was an error!!!!" << e.what() << std::endl;
-        std::wcout << ss.str();
+        LOG(DEBUG) << "Error authenticating on second attempt: " << e.what();
+        //std::wostringstream ss;
+        //ss << "There was an error!!!!" << e.what() << std::endl;
+        //std::wcout << ss.str();
       }
 
     } catch(std::exception &e) {
-      std::cerr << e.what() << std::endl;
+      LOG(DEBUG) << "Overall exception: " << e.what();
+      //std::cerr << e.what() << std::endl;
     }
   }
 
-  return response; // return the same inout parameter to indicate more obviously that we change it
+  return nullptr; // return the same inout parameter to indicate more obviously that we change it
 }
 
 Response* AuthenticatingProxy::getSync(const std::string& host,
@@ -258,10 +294,7 @@ Response* AuthenticatingProxy::getSync(const std::string& host,
     const mlclient::HttpHeaders& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_getSync);
-  Response* response = new Response;
-
-  // do initial request
-  this->doRequest(utility::conversions::to_utf8string(http::methods::GET),host,path,headers,response,nullptr);
+  Response* response = this->doRequest(utility::conversions::to_utf8string(http::methods::GET),host,path,headers,nullptr);
 
   return response;
 }
@@ -275,9 +308,7 @@ Response* AuthenticatingProxy::postSync(const std::string& host,
   TIMED_FUNC(AuthenticatingProxy_postSync);
   LOG(DEBUG) << "    Entering postSync";
   LOG(DEBUG) << "    Post content: " << body.getContent();
-  Response* response = new Response;
-
-  doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,response,&body);
+  Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
   LOG(DEBUG) << "    Leaving postSync";
 
   return response;
@@ -289,9 +320,7 @@ Response* AuthenticatingProxy::putSync(const std::string& host,
     const mlclient::HttpHeaders& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_putSync);
-  Response* response = new Response;
-
-  doRequest(utility::conversions::to_utf8string(http::methods::PUT),host,path,headers,response,&body);
+  Response* response = doRequest(utility::conversions::to_utf8string(http::methods::PUT),host,path,headers,&body);
 
   return response;
 }
@@ -301,9 +330,7 @@ Response* AuthenticatingProxy::deleteSync(const std::string& host,
     const mlclient::HttpHeaders& headers)
 {
   TIMED_FUNC(AuthenticatingProxy_deleteSync);
-  Response* response = new Response;
-
-  doRequest(utility::conversions::to_utf8string(http::methods::DEL),host,path,headers,response,nullptr);
+  Response* response = doRequest(utility::conversions::to_utf8string(http::methods::DEL),host,path,headers,nullptr);
 
   return response;
 }
