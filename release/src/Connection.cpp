@@ -20,7 +20,7 @@
 #include "mlclient/internals/Credentials.hpp"
 #include "mlclient/internals/AuthenticatingProxy.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include <string>
 #include <sstream>

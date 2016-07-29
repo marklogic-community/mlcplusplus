@@ -19,10 +19,11 @@
 
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 
 namespace mlclient {
@@ -164,6 +165,7 @@ GenericTextDocumentContent::~GenericTextDocumentContent() {
 }
 void GenericTextDocumentContent::setContent(std::string content) {
   TIMED_FUNC(GenericTextDocumentContent_setContent);
+  LOG(DEBUG) << "GenericTextDocumentContent::setContent: " << content;
   mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
 }
 std::string GenericTextDocumentContent::getContent() const {

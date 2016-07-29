@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\release\test\SearchResultSetTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionCollectionsTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionDocumentCrudTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionSearchTest.hpp" />

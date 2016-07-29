@@ -7,20 +7,27 @@
 
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/DocumentContent.hpp"
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 namespace mlclient {
 
 const std::string SearchResult::JSON = "json";
 const std::string SearchResult::XML = "xml";
 
-SearchResult::SearchResult() : index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(DETAIL::NONE),detailContent(nullptr) {
-  TIMED_FUNC(SearchResult_defaultConstructor);
+class SearchResult::Impl {
+public:
+  Impl() {
+    ;
+  }
+};
+
+SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(DETAIL::NONE),detailContent(nullptr) {
+  //TIMED_FUNC(SearchResult_defaultConstructor);
   LOG(DEBUG) << "    SearchResult::defaultConstructor @" << &*this;
 }
 
 SearchResult::~SearchResult() {
-  TIMED_FUNC(SearchResult_destructor);
+  //TIMED_FUNC(SearchResult_destructor);
   LOG(DEBUG) << "    SearchResult::destructor @" << &*this;
   //delete this->detailContent;
   //detailContent = NULL;
@@ -28,8 +35,8 @@ SearchResult::~SearchResult() {
 
 SearchResult::SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
     const double confidence,const double fitness,const DETAIL& detail,IDocumentContent* own_detailContent,
-    const std::string& mimeType,const std::string& format) {
-  TIMED_FUNC(SearchResult_detailConstructor);
+    const std::string& mimeType,const std::string& format) : mImpl(new Impl) {
+  //TIMED_FUNC(SearchResult_detailConstructor);
   LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
   this->index = index;
   this->uri = uri;
@@ -44,7 +51,7 @@ SearchResult::SearchResult(const long index, const std::string& uri, const std::
 }
 
 SearchResult::SearchResult(SearchResult&& other) {
-  TIMED_FUNC(SearchResult_moveConstructor);
+  //TIMED_FUNC(SearchResult_moveConstructor);
   LOG(DEBUG) << "    SearchResult::moveConstructor @" << &*this;
   this->index = std::move(other.index);
   this->uri = std::move(other.uri);
@@ -81,7 +88,7 @@ const SearchResult::DETAIL& SearchResult::getDetail() const {
   return detail;
 }
 const IDocumentContent* SearchResult::getDetailContent() const {
-  TIMED_FUNC(SearchResult_getDetailContent);
+  //TIMED_FUNC(SearchResult_getDetailContent);
   return detailContent;
 }
 const std::string& SearchResult::getMimeType() const {

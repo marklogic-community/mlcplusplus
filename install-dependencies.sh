@@ -38,6 +38,8 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
     brew install libiconv --universal
     echo "  - Installing Mono (For SWIG CSharp Bindings)"
     brew install mono
+    echo "  - Installing gflags (glog dependency)"
+    brew install gflags
   else
     port=`port --version`
     if [[ "$port" =~ ^port.* ]]; then
@@ -90,6 +92,17 @@ if [[ "$platform" =~ ^Linux.* ]]; then
     fi
   fi
 fi
+
+echo "  - Installing glog from SOURCE (will ask to install as root)..."
+mkdir deps
+cd deps
+git clone https://github.com/google/glog.git
+cd glog
+./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+make -j 8
+sudo make install
+cd ../..
+
 
 # Install cpprest from GitHub
 git=`git --version`

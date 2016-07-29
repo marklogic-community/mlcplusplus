@@ -96,7 +96,7 @@
       </ModuleDefinitionFile>
     </Link>
     <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -175,6 +175,7 @@
     <ClInclude Include="..\release\include\mlclient\internals\memory.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\MLCrypto.hpp" />
     <ClInclude Include="..\release\include\mlclient\InvalidFormatException.hpp" />
+    <ClInclude Include="..\release\include\mlclient\logging.hpp" />
     <ClInclude Include="..\release\include\mlclient\mlclient.h" />
     <ClInclude Include="..\release\include\mlclient\mlclient.hpp" />
     <ClInclude Include="..\release\include\mlclient\NoCredentialsException.hpp" />

@@ -27,7 +27,7 @@
 
 #include <iostream>
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 namespace mlclient {
 

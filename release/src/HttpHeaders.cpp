@@ -19,7 +19,7 @@
 
 #include "mlclient/HttpHeaders.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include <map>
 #include <string>

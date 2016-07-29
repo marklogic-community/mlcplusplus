@@ -16,6 +16,10 @@
 //  Created by Paul Hoehne on 5/27/14.
 //
 
+#include "mlclient/logging.hpp"
+
+
+
 #include <iostream>
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
@@ -24,20 +28,15 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/BriefTestProgressListener.h>
 
-#ifndef ELPP_PERFORMANCE_MICROSECONDS
-#define ELPP_PERFORMANCE_MICROSECONDS 1
-#endif
-
-#include "mlclient/ext/easylogging++.h"
-
-
-INITIALIZE_EASYLOGGINGPP
 
 
 int main(int argc, const char * argv[])
 {
-  START_EASYLOGGINGPP(argc, argv);
+  std::cout << "in main" << std::endl;
 
+  bool wasSuccessful = false;
+
+  /*
   el::Configurations defaultConf;
   defaultConf.setToDefault();
   // Values are always std::string
@@ -53,6 +52,7 @@ int main(int argc, const char * argv[])
   //performanceConf.set(el::Level::Info,el::ConfigurationType::MillisecondsWidth,"6");
   el::Loggers::reconfigureLogger("performance", performanceConf);
   el::Loggers::addFlag(el::LoggingFlag::FixedTimeFormat); // ensures performance numbers are always quoted as seconds, never formatted
+*/
 
   LOG(INFO) << "In tests main";
 
@@ -66,9 +66,13 @@ int main(int argc, const char * argv[])
   //CppUnit::BriefTestProgressListener progress;
   //controller.addListener(&progress);
 
-  CppUnit::TextUi::TestRunner runner;
-  runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-  bool wasSuccessful = runner.run( "", false );
+  try {
+    CppUnit::TextUi::TestRunner runner;
+    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+    wasSuccessful = runner.run( "", true,true,true );
+  } catch (std::exception& e) {
+    LOG(DEBUG) << "EXCEPTION RUNNING TESTS: " << e.what();
+  }
   return wasSuccessful;
 }
 

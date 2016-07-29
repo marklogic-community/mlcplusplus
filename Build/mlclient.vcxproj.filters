@@ -201,5 +201,8 @@
     <ClInclude Include="..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\logging.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

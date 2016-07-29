@@ -25,7 +25,7 @@
 #include "mlclient/Response.hpp"
 #include "mlclient/HttpHeaders.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 
 // JSON and HTTP includes
@@ -139,7 +139,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     { // PERFORMANCE BRACE
       TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
       pplx::task<http_response> hr = raw_client.request(req);
-      LOG(DEBUG) << "Request body: " << req.to_string();
+      LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
     } // PERFORMANCE BRACE
@@ -175,9 +175,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     catch (const http_exception& e)
     {
       // Print error.
-      std::wostringstream ss;
-      ss << "There was an error extracting content from response: " << e.what() << std::endl;
-      LOG(WARNING) << ss.str();
+      LOG(DEBUG) << "There was an error extracting content from response: " << e.what();
     }
 
   } catch(std::exception &e) {
@@ -231,14 +229,14 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Original auth response was: " << responseAuthHeaderValue;
       std::string av(credentials.authenticate(("" + method), path, responseAuthHeaderValue));
       LOG(DEBUG) << "Auth header: " << av;
-      LOG(DEBUG) << "Auth header name: " << AUTHORIZATION_HEADER_NAME;
+      LOG(DEBUG) << "Auth header name: " << utility::conversions::to_utf8string(AUTHORIZATION_HEADER_NAME);
       restHeaders.add(
           AUTHORIZATION_HEADER_NAME,
         utility::conversions::to_string_t(av)
       );
       LOG(DEBUG) << "Start of request headers";
       for (auto& iter : req.headers()) {
-        LOG(DEBUG) << "  Request Header: " << iter.first << "='" << iter.second << "'";
+        LOG(DEBUG) << "  Request Header: " << utility::conversions::to_utf8string(iter.first) << "='" << utility::conversions::to_utf8string(iter.second) << "'";
       }
       LOG(DEBUG) << "End of request headers";
 
@@ -253,7 +251,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Finishing listing request headers.";
       */
 
-      LOG(DEBUG) << "Re-auth Request body: " << req.to_string();
+      LOG(DEBUG) << "Re-auth Request body: " << utility::conversions::to_utf8string(req.to_string());
       http_response raw_response = raw_client.request(req).get();
 
       try

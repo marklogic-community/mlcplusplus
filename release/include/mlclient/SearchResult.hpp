@@ -136,6 +136,9 @@ public:
   MLCLIENT_API const std::string& getFormat() const;
 
 private:
+  class Impl; // forward declaration
+  Impl* mImpl;
+
   long index;
   std::string uri;
   std::string path;

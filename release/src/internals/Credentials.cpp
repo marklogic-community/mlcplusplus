@@ -26,7 +26,7 @@
 #include "mlclient/internals/MLCrypto.hpp"
 #include "mlclient/internals/AuthorizationBuilder.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 namespace mlclient {
 

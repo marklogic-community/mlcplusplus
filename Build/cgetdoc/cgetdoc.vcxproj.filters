@@ -32,5 +32,8 @@
     <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@
 #include "mlclient/SearchResultSet.hpp"
 #include "mlclient/SearchResult.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 using namespace mlclient;
 using namespace mlclient::utilities;
@@ -57,28 +57,31 @@ void SearchBuilderTest::testAll() {
   // construct search query
   SearchBuilder builder;
   LOG(DEBUG) << "got blank builder";
-  /*
+
   builder.setQuery(
-    SearchBuilder::andQuery(
-      std::list<IQuery>{
+    builder.andQuery(
+      std::vector<IQuery*>{
         SearchBuilder::orQuery(
-          std::list<IQuery>{
-            SearchBuilder::collectionQuery(std::list<std::string>{"/some/col1"})
+          std::vector<IQuery*>{
+            SearchBuilder::collectionQuery(std::vector<std::string>{"/some/col1"})
             ,
-            SearchBuilder::collectionQuery(std::list<std::string>{"/some/col2"})
+            SearchBuilder::collectionQuery(std::vector<std::string>{"/some/col2"})
           }
         ),
         SearchBuilder::notQuery(
-          std::list<IQuery>{
-            SearchBuilder::documentQuery(std::list<std::string>{"/some/doc.json"})
-          }
+          SearchBuilder::orQuery(
+            std::vector<IQuery*>{
+              SearchBuilder::documentQuery(std::vector<std::string>{"/some/doc.json"})
+            }
+          )
         )
       }
     )
   );
-  */
+
   ITextDocumentContent& searchDoc = *builder.toDocument();
   LOG(DEBUG) << "got search doc from builder";
+  LOG(DEBUG) << "SearchResultBuilderTest search content: " << searchDoc.getContent();
   desc->setQuery(searchDoc);
   LOG(DEBUG) << "  Got a SearchDescription object instance";
 

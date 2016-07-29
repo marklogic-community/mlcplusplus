@@ -15,9 +15,11 @@
 
 #include "mlclient/internals/FakeConnection.hpp"
 #include <string>
+#include <iostream>
+#include <sstream>
 #include <map>
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include "mlclient/HttpHeaders.hpp"
 

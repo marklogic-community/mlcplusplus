@@ -31,9 +31,13 @@ Build/mlclient.VC.db
 Build/getdoc/Debug
 Build/cgetasstruct/Debug
 Build/cgetdoc/Debug
+Build/cppproducer/Debug
 Build/tests/Debug
 Build/packages/*
 Build/mlclient.VC.VC.opendb
 .gitignore.swp
 release/samples/csgetdoc/csgetdoc/bin
 release/samples/csgetdoc/csgetdoc/obj
+logs
+performance.log
+

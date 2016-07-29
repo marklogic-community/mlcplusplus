@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
     <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp" />
     <ClInclude Include="..\..\release\samples\CStruct.h" />
     <ClInclude Include="..\..\release\samples\CStructWrapper.h" />

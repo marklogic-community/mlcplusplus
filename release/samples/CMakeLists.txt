@@ -21,9 +21,13 @@ add_executable(cgetasstruct
     ccommon/ConnectionFactoryWrapper.cpp
     cgetasstruct/CStructWrapper.cpp
 )
+add_executable(cppproducer
+    cppproducer/producermain.cpp
+)
 target_link_libraries(getdoc mlclient ${Casablanca_LIBRARIES})
 target_link_libraries(cgetdoc mlclient ${Casablanca_LIBRARIES})
 target_link_libraries(cgetasstruct mlclient ${Casablanca_LIBRARIES})
+target_link_libraries(cppproducer mlclient ${Casablanca_LIBRARIES})
 
 else()
   message("-- NOT building Samples (edit ./bin/build-deps-settings.sh|bat with WITH_SAMPLES=1 to enable)")
