@@ -21,7 +21,7 @@
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/utilities/SearchOptionsBuilder.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 #include <cpprest/http_client.h>
 #include <iostream>
 #include <string>

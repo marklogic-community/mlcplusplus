@@ -21,7 +21,7 @@
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/InvalidFormatException.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include <string>
 #include <iostream>
@@ -62,64 +62,64 @@ SearchDescription::SearchDescription() : mImpl(new Impl) {
   TIMED_FUNC(SearchDescription_defaultConstructor);
   LOG(DEBUG) << "    SearchDescription::defaultConstructor @" << &*this;
 }
-/*
+
 SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new Impl) {
   LOG(DEBUG) << "    SearchDescription::copyConstructor @" << &*this;
-  LOG(DEBUG) << "0";
+  //LOG(DEBUG) << "0";
   ITextDocumentContent* od = new GenericTextDocumentContent();
   LOG(DEBUG) << 1;
   if (NULL == desc.mImpl->options) {
-    LOG(DEBUG) << "1.5";
+    //LOG(DEBUG) << "1.5";
     od->setContent("{}");
-    LOG(DEBUG) << "1.6";
+    //LOG(DEBUG) << "1.6";
     od->setMimeType(mlclient::IDocumentContent::MIME_JSON);
   } else {
-    LOG(DEBUG) << "1.997";
+    //LOG(DEBUG) << "1.997";
     ITextDocumentContent* itdcOp = desc.mImpl->options.get();
-    LOG(DEBUG) << "1.998";
-    LOG(DEBUG) << " options doc is null?: " << (nullptr == itdcOp);
+    //LOG(DEBUG) << "1.998";
+    //LOG(DEBUG) << " options doc is null?: " << (nullptr == itdcOp);
     if (nullptr == itdcOp) {
-      LOG(DEBUG) << "options ptr is null";
+      //LOG(DEBUG) << "options ptr is null";
     }
     std::string ctnt = itdcOp->getContent();
-    LOG(DEBUG) << "1.999";
+    //LOG(DEBUG) << "1.999";
     od->setContent(ctnt); // WTF IS WRONG WITH THIS LINE??????????? BREAK IT DOWN...
-    LOG(DEBUG) << 2;
+    //LOG(DEBUG) << 2;
     od->setMimeType(desc.mImpl->options->getMimeType());
   }
-  LOG(DEBUG) << 3;
+  //LOG(DEBUG) << 3;
   mImpl->options = std::unique_ptr<ITextDocumentContent>(od);
-  LOG(DEBUG) << 4;
+  //LOG(DEBUG) << 4;
   mImpl->pageLength = desc.mImpl->pageLength;
-  LOG(DEBUG) << 5;
+  //LOG(DEBUG) << 5;
   ITextDocumentContent* qd = new GenericTextDocumentContent();
-  LOG(DEBUG) << 6;
+  //LOG(DEBUG) << 6;
   if (NULL == desc.mImpl->query) {
-    LOG(DEBUG) << "6.5";
+    //LOG(DEBUG) << "6.5";
     qd->setContent("{}");
-    LOG(DEBUG) << "6.6";
+    //LOG(DEBUG) << "6.6";
     qd->setMimeType(mlclient::IDocumentContent::MIME_JSON);
   } else {
-    LOG(DEBUG) << "6.999";
+    //LOG(DEBUG) << "6.999";
     qd->setContent(desc.mImpl->query->getContent());
-    LOG(DEBUG) << 7;
+    //LOG(DEBUG) << 7;
     qd->setMimeType(desc.mImpl->query->getMimeType());
   }
-  LOG(DEBUG) << 8;
+  //LOG(DEBUG) << 8;
   mImpl->query = std::unique_ptr<ITextDocumentContent>(qd);
-  LOG(DEBUG) << 9;
+  //LOG(DEBUG) << 9;
   if (NULL == desc.mImpl->queryText) {
-    LOG(DEBUG) << "9.1";
+    //LOG(DEBUG) << "9.1";
     mImpl->queryText = std::unique_ptr<std::string>(new std::string(""));
   } else {
-    LOG(DEBUG) << "9.2";
+    //LOG(DEBUG) << "9.2";
     mImpl->queryText = std::unique_ptr<std::string>(new std::string(*(desc.mImpl->queryText)));
   }
-  LOG(DEBUG) << 10;
+  //LOG(DEBUG) << 10;
   mImpl->start = desc.mImpl->start;
   LOG(DEBUG) << "    SearchDescription::copyConstructor @ " << &*this << " complete.";
 }
-*/
+
 SearchDescription::~SearchDescription() {
   TIMED_FUNC(SearchDescription_destructor);
   LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
@@ -139,6 +139,7 @@ const ITextDocumentContent& SearchDescription::getOptions() const {
 }
 void SearchDescription::setQuery(ITextDocumentContent& query) {
   TIMED_FUNC(SearchDescription_setQuery);
+  LOG(DEBUG) << "SearchDescription::setQuery " << query.getContent();
   mImpl->query = std::unique_ptr<ITextDocumentContent>(new GenericTextDocumentContent(query)); // copy constructor
 }
 const ITextDocumentContent& SearchDescription::getQuery() const {

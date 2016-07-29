@@ -16,6 +16,9 @@
 #ifndef MLCLIENT_H
 #define MLCLIENT_H
 
+
+//#include "mlclient/ext/easylogging++.h"
+
 #ifdef _WIN32
 
 #ifdef MLCLIENT_EXPORTS
@@ -23,6 +26,12 @@
 #else
 #define MLCLIENT_API __declspec(dllimport)
 #endif
+
+/*
+namespace mlclient {
+  MLCLIENT_API el::base::type::StoragePointer sharedLoggingRepository();
+}
+*/
 
 #else
 #define MLCLIENT_API

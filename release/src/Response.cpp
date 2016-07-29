@@ -19,7 +19,7 @@
 #include "mlclient/HttpHeaders.hpp"
 #include "mlclient/Response.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include <algorithm>
 #include <regex> // using std::regex as of C++14

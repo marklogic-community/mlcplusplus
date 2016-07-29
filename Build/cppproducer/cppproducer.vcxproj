@@ -19,9 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BDAC5AEF-56AC-4794-9CB6-FBCCF634F074}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
-    <RootNamespace>cgetdoc</RootNamespace>
+    <ProjectGuid>{B69BC9A4-EA91-4DBA-9D0D-465E371D97BF}</ProjectGuid>
+    <RootNamespace>cppproducer</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -29,27 +28,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -69,94 +68,83 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MLCLIENT_DIR)\Build\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\include\;$(MLCLIENT_DIR)\release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\release\samples\cgetdoc.c" />
-    <ClCompile Include="..\..\release\samples\ConnectionFactory.cpp" />
-    <ClCompile Include="..\..\release\samples\ConnectionFactoryWrapper.cpp" />
+    <ClCompile Include="..\..\release\samples\cppproducer\producermain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\release\include\mlclient\Connection.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\ConnectionWrapper.h" />
+    <ClInclude Include="..\..\release\include\mlclient\CWrapper.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\DocumentContent.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\ext\easylogging++.h" />
+    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugixml.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\HttpHeaders.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\AuthenticatingProxy.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\AuthorizationBuilder.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\Conversions.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\Credentials.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\FakeConnection.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\memory.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\internals\MLCrypto.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\InvalidFormatException.hpp" />
     <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
-    <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\mlclient.h" />
+    <ClInclude Include="..\..\release\include\mlclient\mlclient.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\NoCredentialsException.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\Response.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\ResponseWrapper.h" />
+    <ClInclude Include="..\..\release\include\mlclient\SearchDescription.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\SearchResult.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\SearchResultSet.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\ResponseHelper.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\SearchBuilder.hpp" />
+    <ClInclude Include="..\..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

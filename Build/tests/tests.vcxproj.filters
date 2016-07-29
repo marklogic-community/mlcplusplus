@@ -56,5 +56,8 @@
     <ClInclude Include="..\..\release\test\ConnectionSearchTest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/SearchResultSet.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 using namespace mlclient;
 
@@ -84,18 +84,23 @@ void SearchResultSetTest::testThreePages() {
   SearchDescription* desc = new SearchDescription; // default empty search object
   GenericTextDocumentContent* tdcOptions = new GenericTextDocumentContent;
   tdcOptions->setContent("{\"transform-results\": {\"apply\": \"raw\"}}"); // TODO force page size to 10 (server may be different)
+  tdcOptions->setMimeType(IDocumentContent::MIME_JSON);
   desc->setOptions(*tdcOptions);
   GenericTextDocumentContent* tdcBlankSearch = new GenericTextDocumentContent;
   tdcBlankSearch->setContent("{\"collection-query\": {\"uri\": [\"zoo\"]}}"); // TODO wrap with {} rather than using internals
+  tdcBlankSearch->setMimeType(IDocumentContent::MIME_JSON);
+  //LOG(DEBUG) << "SearchResultSetTest search content: " << tdcBlankSearch->getContent();
   desc->setQuery(*tdcBlankSearch);
   LOG(DEBUG) << "  Got a three pages SearchDescription object instance";
 
   SearchResultSet* results = new SearchResultSet(ml,desc);
+  results->setMaxResults(500);
 
-  bool res = results->fetch();
+  bool res = results->fetch(); // BLOCKS
   if (!res) {
     LOG(DEBUG) << "Exception report from fetch() attempt:-";
     LOG(DEBUG) << results->getFetchException()->what();
+    throw results->getFetchException();
   }
   std::string blankString("");
   CPPUNIT_ASSERT_MESSAGE("Fetch operation did not succeed", res);
@@ -106,8 +111,10 @@ void SearchResultSetTest::testThreePages() {
   int count = 0;
   //for (auto& iter : *results) {
   LOG(DEBUG) << "result set total: " << results->getTotal();
-  for (SearchResultSetIterator* iter = results->begin();*iter != *(results->end());++(*iter)) {
-    LOG(DEBUG) << " Result " << count << ":-";
+  SearchResultSetIterator* iter = results->begin();
+  SearchResultSetIterator* end = results->end();
+  for (;(*iter) != (*end);++(*iter)) {
+    LOG(DEBUG) << " Result " << count << " (0 based):-";
     LOG(DEBUG) << "  URI: " << iter->first().getUri();
     LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getContent();
     if (0 == count) {
@@ -118,6 +125,7 @@ void SearchResultSetTest::testThreePages() {
     ++count;
     //if (count > 30) break;
   }
+  LOG(DEBUG) << "Completed iterator loop. Deleting results.";
 
   delete results;
 

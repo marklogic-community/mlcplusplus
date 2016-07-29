@@ -20,7 +20,7 @@
 
 #include <cpprest/http_client.h>
 #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>

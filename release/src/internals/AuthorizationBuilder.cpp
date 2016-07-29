@@ -20,7 +20,7 @@
 #include "mlclient/internals/AuthorizationBuilder.hpp"
 #include "mlclient/internals/MLCrypto.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 #include <algorithm>
 #include <string>

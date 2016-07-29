@@ -25,7 +25,7 @@
 #include "mlclient/Response.hpp"
 #include "mlclient/HttpHeaders.hpp"
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 
 // JSON and HTTP includes
@@ -175,9 +175,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     catch (const http_exception& e)
     {
       // Print error.
-      std::wostringstream ss;
-      ss << "There was an error extracting content from response: " << e.what() << std::endl;
-      LOG(WARNING) << ss.str();
+      LOG(DEBUG) << "There was an error extracting content from response: " << e.what();
     }
 
   } catch(std::exception &e) {

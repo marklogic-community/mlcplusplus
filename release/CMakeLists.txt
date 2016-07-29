@@ -152,6 +152,7 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
   ${Boost_RANDOM_LIBRARY}
   ${Boost_REGEX_LIBRARY}
   ${Boost_UNIT_TEST_FRAMEWORK}
+  libglog.dylib
 )
 
 link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )

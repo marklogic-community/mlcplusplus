@@ -154,6 +154,7 @@
     <ClCompile Include="..\..\release\samples\getdoc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
     <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

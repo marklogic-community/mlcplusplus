@@ -25,7 +25,7 @@ using namespace mlclient;
 
 class ConnectionFactory {
 public:
-  static IConnection* getConnection(void);
+  static IConnection* getConnection();
   static void releaseConnection(IConnection* conn);
 private:
   ConnectionFactory();

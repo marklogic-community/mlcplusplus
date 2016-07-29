@@ -32,7 +32,7 @@
 
 #include <string>
 
-#include "mlclient/ext/easylogging++.h"
+#include "mlclient/logging.hpp"
 
 using namespace mlclient;
 

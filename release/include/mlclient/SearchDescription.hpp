@@ -52,7 +52,7 @@ public:
    * \brief Deep copy constructor
    * \param desc The description to deep copy from
    */
-  //MLCLIENT_API SearchDescription(const SearchDescription& desc);
+  MLCLIENT_API SearchDescription(const SearchDescription& desc);
 
   /**
    * \brief Default destructor
