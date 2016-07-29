@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\glog.0.3.3.0\build\native\glog.props" Condition="Exists('packages\glog.0.3.3.0\build\native\glog.props')" />
-  <Import Project="packages\gflags.2.0.1.0\build\native\gflags.props" Condition="Exists('packages\gflags.2.0.1.0\build\native\gflags.props')" />
   <Import Project="packages\cppunit.1.12.1.4\build\native\cppunit.props" Condition="Exists('packages\cppunit.1.12.1.4\build\native\cppunit.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -98,7 +96,7 @@
       </ModuleDefinitionFile>
     </Link>
     <ProjectReference>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -202,8 +200,6 @@
     <Import Project="packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets" Condition="Exists('packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets')" />
     <Import Project="packages\cppunit.1.12.1.4\build\native\cppunit.targets" Condition="Exists('packages\cppunit.1.12.1.4\build\native\cppunit.targets')" />
     <Import Project="packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
-    <Import Project="packages\gflags.2.0.1.0\build\native\gflags.targets" Condition="Exists('packages\gflags.2.0.1.0\build\native\gflags.targets')" />
-    <Import Project="packages\glog.0.3.3.0\build\native\glog.targets" Condition="Exists('packages\glog.0.3.3.0\build\native\glog.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -217,9 +213,5 @@
     <Error Condition="!Exists('packages\cppunit.1.12.1.4\build\native\cppunit.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cppunit.1.12.1.4\build\native\cppunit.props'))" />
     <Error Condition="!Exists('packages\cppunit.1.12.1.4\build\native\cppunit.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cppunit.1.12.1.4\build\native\cppunit.targets'))" />
     <Error Condition="!Exists('packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
-    <Error Condition="!Exists('packages\gflags.2.0.1.0\build\native\gflags.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\gflags.2.0.1.0\build\native\gflags.props'))" />
-    <Error Condition="!Exists('packages\gflags.2.0.1.0\build\native\gflags.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\gflags.2.0.1.0\build\native\gflags.targets'))" />
-    <Error Condition="!Exists('packages\glog.0.3.3.0\build\native\glog.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glog.0.3.3.0\build\native\glog.props'))" />
-    <Error Condition="!Exists('packages\glog.0.3.3.0\build\native\glog.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glog.0.3.3.0\build\native\glog.targets'))" />
   </Target>
 </Project>

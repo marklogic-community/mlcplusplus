@@ -69,7 +69,11 @@
  #endif
  */
 
+#include "mlclient/logging.hpp"
+#ifndef _WIN32
 #include <glog/logging.h>
+#endif
+#include <ostream>
 /*
 #include "mlclient/logging.hpp"
 
@@ -84,6 +88,16 @@ INITIALIZE_EASYLOGGINGPP
 #define LOG //
 #define CLOG //
 */
+
+
+// in a concrete .cpp
+#ifdef _WIN32
+nullbuf null_obj;
+//wnullbuf wnull_obj;
+std::ostream cnull(&null_obj);
+//std::wostream wcnull(&wnull_obj);
+#endif
+
 namespace mlclient {
 
 // For sharing easyloggingpp configuration
@@ -93,6 +107,7 @@ el::base::type::StoragePointer sharedLoggingRepository() {
 }*/
 
 int runOnce() {
+#ifndef _WIN32
   FLAGS_logtostderr = 0;
 #ifdef _WIN32
   FLAGS_log_dir = "z:\\Documents\\marklogic\\git\\mlodbc\\logs\\";
@@ -101,6 +116,7 @@ int runOnce() {
 #endif
   google::InitGoogleLogging("mlclient");
   google::InstallFailureSignalHandler();
+#endif
 
     //LOG(INFO) << "Registering logger [mlclient]";
   //std::cout << "in mlclient::runOnce()" << std::endl;
