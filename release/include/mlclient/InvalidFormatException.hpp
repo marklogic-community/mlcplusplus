@@ -39,13 +39,10 @@ namespace mlclient {
  * Indicates that the given content type specific operation failed or could not proceed as the underlying content
  * is not of the correct type, or is corrupted. E.g. you've use an XML function on a JSON document.
  */
-class InvalidFormatException : public std::exception {
+class InvalidFormatException : public std::runtime_error {
 public:
-  /**
-   * \brief An override of the what() function to provide a better description of the issue.
-   */
-  MLCLIENT_API virtual const char* what() const throw() override;
-
+  MLCLIENT_API InvalidFormatException();
+  MLCLIENT_API InvalidFormatException(const std::string& msg);
 };
 
 } // end namespace mlclient

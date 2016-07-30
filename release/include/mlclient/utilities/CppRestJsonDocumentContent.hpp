@@ -30,6 +30,117 @@ namespace mlclient {
 
 namespace utilities {
 
+class CppRestJsonContainerNode : public IDocumentNode {
+public:
+  MLCLIENT_API CppRestJsonContainerNode();
+  MLCLIENT_API virtual ~CppRestJsonContainerNode();
+
+  MLCLIENT_API bool isNull() const override;
+  MLCLIENT_API bool isBoolean() const override;
+  MLCLIENT_API bool isInteger() const override;
+  MLCLIENT_API bool isDouble() const override;
+  MLCLIENT_API bool isString() const override;
+
+  MLCLIENT_API bool asBoolean() const override;
+  MLCLIENT_API int32_t asInteger() const override;
+  MLCLIENT_API double asDouble() const override;
+  MLCLIENT_API std::string asString() const override;
+};
+
+class CppRestJsonArrayNode : public CppRestJsonContainerNode {
+public:
+  MLCLIENT_API CppRestJsonArrayNode(web::json::array& root);
+  MLCLIENT_API virtual ~CppRestJsonArrayNode();
+
+  MLCLIENT_API bool isArray() const override;
+  MLCLIENT_API bool isObject() const override;
+
+  MLCLIENT_API IDocumentNode* asArray() const override;
+  MLCLIENT_API IDocumentNode* asObject() const override;
+
+  MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+private:
+  class Impl; // forward declaration
+  Impl* mImpl;
+};
+
+class CppRestJsonObjectNode : public CppRestJsonContainerNode {
+public:
+  MLCLIENT_API CppRestJsonObjectNode(web::json::object& root);
+  MLCLIENT_API virtual ~CppRestJsonObjectNode();
+
+  MLCLIENT_API bool isArray() const override;
+  MLCLIENT_API bool isObject() const override;
+
+  MLCLIENT_API IDocumentNode* asArray() const override;
+  MLCLIENT_API IDocumentNode* asObject() const override;
+
+  MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+private:
+  class Impl; // forward declaration
+  Impl* mImpl;
+};
+
+/**
+ * \class CppRestJsonDocumentNode
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * \since 8.0.2
+ * \date 2016-07-30
+ *
+ * \brief Represents a Node within a CppRestJsonDocumentContent's root web::json::value instance.
+ */
+class CppRestJsonDocumentNode : public IDocumentNode {
+public:
+  MLCLIENT_API CppRestJsonDocumentNode(web::json::value& root);
+  MLCLIENT_API CppRestJsonDocumentNode(CppRestJsonDocumentNode&& from);
+  MLCLIENT_API virtual ~CppRestJsonDocumentNode();
+
+  MLCLIENT_API bool isNull() const override;
+  MLCLIENT_API bool isBoolean() const override;
+  MLCLIENT_API bool isInteger() const override;
+  MLCLIENT_API bool isDouble() const override;
+  MLCLIENT_API bool isString() const override;
+  MLCLIENT_API bool isArray() const override;
+  MLCLIENT_API bool isObject() const override;
+
+  MLCLIENT_API bool asBoolean() const override;
+  MLCLIENT_API int32_t asInteger() const override;
+  MLCLIENT_API double asDouble() const override;
+  MLCLIENT_API std::string asString() const override;
+  MLCLIENT_API IDocumentNode* asArray() const override;
+  MLCLIENT_API IDocumentNode* asObject() const override;
+
+  MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+
+private:
+  class Impl; // forward declaration
+  Impl* mImpl;
+};
+
+/**
+ * \class CppRestJsonDocumentNavigator
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * \since 8.0.2
+ * \date 2016-07-30
+ *
+ * \brief Provides a navigator interface over a CppRestJsonDocumentContent's root web::json::value instance.
+ */
+class CppRestJsonDocumentNavigator : public IDocumentNavigator {
+public:
+  CppRestJsonDocumentNavigator(web::json::value& root);
+  MLCLIENT_API CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from);
+  virtual ~CppRestJsonDocumentNavigator();
+
+  MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+
+private:
+  class Impl; // forward declaration
+  Impl* mImpl;
+};
+
 /**
  * \class CppRestJsonDocumentContent
  * \author Adam Fowler <adam.fowler@marklogic.com>
@@ -117,6 +228,9 @@ public:
    * \return The number of characters in the string. Does not include C null character.
    */
   MLCLIENT_API int getLength() const override;
+
+
+  MLCLIENT_API IDocumentNavigator* navigate() const override;
 
   /// @}
 
