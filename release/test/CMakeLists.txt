@@ -10,6 +10,7 @@ add_executable(mlcpptest
     ConnectionCollectionsTest.cpp
     ConnectionDocumentCrudTest.cpp
     ConnectionSearchTest.cpp
+    DocumentTraversalTest.cpp
     SearchBuilderTest.cpp
     SearchResultSetTest.cpp
 )
