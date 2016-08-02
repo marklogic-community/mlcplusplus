@@ -13,12 +13,14 @@
 #include "mlclient/NoCredentialsException.hpp"
 
 #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+#include "mlclient/utilities/PugiXmlHelper.hpp"
 
 #include "mlclient/logging.hpp"
 
 // We can use the following, because cpprest is an internal API dependency
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include <cpprest/http_client.h>
+#include <string>
 
 namespace mlclient {
 
@@ -119,7 +121,7 @@ public:
     web::json::array::const_iterator iter(res.begin());
     const web::json::array::const_iterator jsonArrayIterEnd(res.end()); // see if a single call saves us time... nope
 
-    mlclient::utilities::CppRestJsonDocumentContent* ct;
+    mlclient::IDocumentContent* ct;
     SearchResult::DETAIL detail;
     std::string mimeType;
     std::string format;
@@ -153,24 +155,13 @@ public:
         ctVal = row.at(U("content")); // at is rvalue, moved to lvalue by json's move contructor
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got content";
 
-
-        //ct = ctVal.as_string(); // not a string!!! It's a JSON object if the response and document are both JSON
-        // assume just JSON for now to get it working TODO don't assume this in future!!!
-        //std::ostringstream rss;
-        //rss << ctVal;
-        //ctVal.serialize(rss);
-        //ct = rss.str();
-        // TODO XML, text, binary content support too
-        ct = new mlclient::utilities::CppRestJsonDocumentContent();
-        ct->setMimeType(IDocumentContent::MIME_JSON);
-        ct->setContent(ctVal); // passes reference to function in cpprestjsondocumentcontent
-
-
         mimeType = utility::conversions::to_utf8string(row.at(U("mimetype")).as_string());
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got mimetype";
         format = utility::conversions::to_utf8string(row.at(U("format")).as_string());
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got format";
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row content: " << ct;
+
+        ct = divineDocumentContent(format,mimeType,ctVal);
 
       } catch (std::exception& e) {
         LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
@@ -183,14 +174,20 @@ public:
         try {
           //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatches()");
           ctVal = row.at(U("matches"));
-          // TODO XML, text, binary content support too
-          ct = new mlclient::utilities::CppRestJsonDocumentContent();
-          ct->setMimeType(IDocumentContent::MIME_JSON);
-          ct->setContent(ctVal);
-          //ct = utility::conversions::to_utf8string(ctVal.as_string());
+
           mimeType = utility::conversions::to_utf8string(row.at(U("mimetype")).as_string());
           format = utility::conversions::to_utf8string(row.at(U("format")).as_string());
           //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got snippet content" << ct;
+
+          /*
+          ct = new mlclient::utilities::CppRestJsonDocumentContent();
+          ct->setMimeType(IDocumentContent::MIME_JSON);
+          ct->setContent(ctVal);
+          */
+          ct = divineDocumentContent(format,mimeType,ctVal);
+          //ct = utility::conversions::to_utf8string(ctVal.as_string());
+
+
           detail = SearchResult::DETAIL::SNIPPETS;
         } catch (std::exception& ex) {
           // no snippet element, must be some sort of content...
@@ -225,6 +222,39 @@ public:
 
     return true;
   };
+
+  ITextDocumentContent* divineDocumentContent(const std::string& format,const std::string& mimeType,web::json::value& ctVal) {
+    //ct = ctVal.as_string(); // not a string!!! It's a JSON object if the response and document are both JSON
+    // assume just JSON for now to get it working TODO don't assume this in future!!!
+    //std::ostringstream rss;
+    //rss << ctVal;
+    //ctVal.serialize(rss);
+    //ct = rss.str();
+    // TODO XML, text, binary content support too
+    ITextDocumentContent* ct;
+    if (0 == strcmp("xml",format.c_str())) {
+      // XML
+      ct = mlclient::utilities::PugiXmlHelper::toDocument(utility::conversions::to_utf8string(ctVal.as_string()));
+
+    } else if (0 == strcmp("json",format.c_str())) {
+      // JSON
+      ct = new mlclient::utilities::CppRestJsonDocumentContent();
+      ((mlclient::utilities::CppRestJsonDocumentContent*)ct)->setContent(ctVal); // passes reference to function in cpprestjsondocumentcontent
+
+    } else if (0 == strcmp("text",format.c_str())) {
+      // TEXT
+      ct = new GenericTextDocumentContent;
+      ((GenericTextDocumentContent*)ct)->setContent(utility::conversions::to_utf8string(ctVal.as_string()));
+    } else if (0 == strcmp("binary",format.c_str())) {
+      // BINARY
+      LOG(DEBUG) << "WARNING: Binary document content not yet supported!!!";
+      ct = new GenericTextDocumentContent;
+      ((GenericTextDocumentContent*)ct)->setContent("Binary support has not yet been added to SearchResultSet.cpp");
+    }
+    ct->setMimeType(mimeType); // don't override the one the server tells us - may be an XML format (E.g. GML), but not application/xml.
+
+    return ct;
+  }
 
   bool fetchInitial() {
     LOG(DEBUG) << "In fetchInitial";

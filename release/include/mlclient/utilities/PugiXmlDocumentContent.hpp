@@ -1,39 +1,26 @@
 /*
- * Copyright (c) MarkLogic Corporation. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
+ * PugiXmlDocumentContent.hpp
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * CppRestJsonDocumentContent.hpp
- *
- * \date 2016-05-01
- * \author Adam Fowler <adam.fowler@marklogic.com>
- * \since 8.0.0
- * \brief Provides a convenience Json IDocumentContent wrapper for use with Microsoft's CPP REST API
+ *  Created on: 30 Jul 2016
+ *      Author: adamfowler
  */
 
-#ifndef SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
-#define SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
+#ifndef INCLUDE_MLCLIENT_UTILITIES_PUGIXMLDOCUMENTCONTENT_HPP_
+#define INCLUDE_MLCLIENT_UTILITIES_PUGIXMLDOCUMENTCONTENT_HPP_
+
 
 #include "mlclient/mlclient.hpp"
 #include "mlclient/DocumentContent.hpp"
-#include <cpprest/http_client.h>
+#include "mlclient/ext/pugixml/pugixml.hpp"
 
 namespace mlclient {
 
 namespace utilities {
 
-class CppRestJsonContainerNode : public IDocumentNode {
+class PugiXmlContainerNode : public IDocumentNode {
 public:
-  MLCLIENT_API CppRestJsonContainerNode();
-  MLCLIENT_API virtual ~CppRestJsonContainerNode();
+  MLCLIENT_API PugiXmlContainerNode();
+  MLCLIENT_API virtual ~PugiXmlContainerNode();
 
   MLCLIENT_API bool isNull() const override;
   MLCLIENT_API bool isBoolean() const override;
@@ -47,10 +34,10 @@ public:
   MLCLIENT_API std::string asString() const override;
 };
 
-class CppRestJsonArrayNode : public CppRestJsonContainerNode {
+class PugiXmlArrayNode : public PugiXmlContainerNode {
 public:
-  MLCLIENT_API CppRestJsonArrayNode(web::json::array& root);
-  MLCLIENT_API virtual ~CppRestJsonArrayNode();
+  MLCLIENT_API PugiXmlArrayNode(const pugi::xml_node& parent,const std::string& key);
+  MLCLIENT_API virtual ~PugiXmlArrayNode();
 
   MLCLIENT_API bool isArray() const override;
   MLCLIENT_API bool isObject() const override;
@@ -65,10 +52,10 @@ private:
   Impl* mImpl;
 };
 
-class CppRestJsonObjectNode : public CppRestJsonContainerNode {
+class PugiXmlObjectNode : public PugiXmlContainerNode {
 public:
-  MLCLIENT_API CppRestJsonObjectNode(web::json::object& root);
-  MLCLIENT_API virtual ~CppRestJsonObjectNode();
+  MLCLIENT_API PugiXmlObjectNode(const pugi::xml_node& root);
+  MLCLIENT_API virtual ~PugiXmlObjectNode();
 
   MLCLIENT_API bool isArray() const override;
   MLCLIENT_API bool isObject() const override;
@@ -84,18 +71,19 @@ private:
 };
 
 /**
- * \class CppRestJsonDocumentNode
+ * \class PugiXmlDocumentNode
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.2
  * \date 2016-07-30
  *
  * \brief Represents a Node within a CppRestJsonDocumentContent's root web::json::value instance.
  */
-class CppRestJsonDocumentNode : public IDocumentNode {
+class PugiXmlDocumentNode : public IDocumentNode {
 public:
-  MLCLIENT_API CppRestJsonDocumentNode(web::json::value& root);
-  MLCLIENT_API CppRestJsonDocumentNode(CppRestJsonDocumentNode&& from);
-  MLCLIENT_API virtual ~CppRestJsonDocumentNode();
+  MLCLIENT_API PugiXmlDocumentNode(const pugi::xml_node& result);
+  MLCLIENT_API PugiXmlDocumentNode(const pugi::xml_node& root,const std::string& key);
+  MLCLIENT_API PugiXmlDocumentNode(PugiXmlDocumentNode&& from);
+  MLCLIENT_API virtual ~PugiXmlDocumentNode();
 
   MLCLIENT_API bool isNull() const override;
   MLCLIENT_API bool isBoolean() const override;
@@ -120,19 +108,23 @@ private:
   Impl* mImpl;
 };
 
+
+IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
+
+
 /**
- * \class CppRestJsonDocumentNavigator
+ * \class PugiXmlDocumentNavigator
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.2
  * \date 2016-07-30
  *
- * \brief Provides a navigator interface over a CppRestJsonDocumentContent's root web::json::value instance.
+ * \brief Provides a navigator interface over a PugiXmlDocumentContent's root pugi::xml_document instance.
  */
-class CppRestJsonDocumentNavigator : public IDocumentNavigator {
+class PugiXmlDocumentNavigator : public IDocumentNavigator {
 public:
-  CppRestJsonDocumentNavigator(web::json::value& root,bool firstElementAsRoot = false);
-  MLCLIENT_API CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from);
-  virtual ~CppRestJsonDocumentNavigator();
+  PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot = false);
+  MLCLIENT_API PugiXmlDocumentNavigator(PugiXmlDocumentNavigator&& from);
+  virtual ~PugiXmlDocumentNavigator();
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
 
@@ -142,37 +134,37 @@ private:
 };
 
 /**
- * \class CppRestJsonDocumentContent
+ * \class PugiXmlDocumentContent
  * \author Adam Fowler <adam.fowler@marklogic.com>
- * \since 8.0.0
- * \date 2016-05-10
+ * \since 8.0.2
+ * \date 2016-07-30
  *
- * \brief An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object.
+ * \brief An ITextDocumentContent instance that wraps a pugixml xml_parse object. (Derived from pugi::xml_document)
  *
- * Used by the CppRestJsonHelper class
+ * Used by the PugiXmlHelper class
  *
- * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
+ * \note This class has an internal dependency on the pugixml API. As this API is shipped within MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
-class CppRestJsonDocumentContent : public ITextDocumentContent {
+class PugiXmlDocumentContent : public ITextDocumentContent {
 public:
   /**
    * \brief Default constructor
    */
-  MLCLIENT_API CppRestJsonDocumentContent();
+  MLCLIENT_API PugiXmlDocumentContent();
   /**
    * \brief Virtual destructor to allow subclassing
    */
-  MLCLIENT_API virtual ~CppRestJsonDocumentContent();
+  MLCLIENT_API virtual ~PugiXmlDocumentContent();
 
-  /// \name cpprestjsondocumentcontent_overrides Overridden functions from base class
+  /// \name pugixmldocumentcontent_overrides Overridden functions from base class
   /// @{
   /**
-   * \brief Sets the content of this document instance from a Microsoft cpprest API web::json::value instance.
+   * \brief Sets the content of this document instance from a pugixml xml_document instance.
    *
-   * \param json The cpprest API web::json::value instance to copy
+   * \param json The pugixml xml_document instance to copy
    */
-  MLCLIENT_API void setContent(web::json::value& json);
+  MLCLIENT_API void setContent(const pugi::xml_document& xml);
 
   /**
    * \brief Returns the content of this ITextDocumentContent as an ostream.
@@ -204,7 +196,7 @@ public:
   /**
    * \brief Returns the MIME type of this content.
    *
-   * E.g. application/json or application/xml
+   * E.g. application/xml or similar form
    *
    * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
    */
@@ -234,14 +226,14 @@ public:
 
   /// @}
 
-  /// \name cpprestjsondocumentcontent_functions These functions are new to this subclass.
+  /// \name pugixmldocumentcontent_functions These functions are new to this subclass.
   /// @{
   /**
-   * \brief Returns the underlying Microsoft cpprest API web::json::value object.
+   * \brief Returns the underlying pugixml xml_document object.
    *
-   * \return The underlying Microsoft cpprest web::json::value object.
+   * \return The underlying pugixml xml_document object.
    */
-  MLCLIENT_API const web::json::value& getJson() const;
+  MLCLIENT_API const pugi::xml_document& getXml() const;
   /// @}
 
 private:
@@ -255,4 +247,6 @@ private:
 } // end mlclient namespace
 
 
-#endif /* SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_ */
+
+
+#endif /* INCLUDE_MLCLIENT_UTILITIES_PUGIXMLDOCUMENTCONTENT_HPP_ */

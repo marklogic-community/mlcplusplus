@@ -20,6 +20,7 @@
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
 #include "mlclient/logging.hpp"
+#include "mlclient/InvalidFormatException.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -41,7 +42,21 @@ const std::string IDocumentContent::MIME_JSON = "application/json";    /// Stand
 const std::string IDocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
 
 
+IDocumentNode::IDocumentNode() {
+  ;
+}
 
+IDocumentNode::~IDocumentNode() {
+  ;
+}
+
+IDocumentNavigator::IDocumentNavigator() {
+  ;
+}
+
+IDocumentNavigator::~IDocumentNavigator() {
+  ;
+}
 
 
 IDocumentContent::IDocumentContent() {
@@ -189,6 +204,10 @@ std::string GenericTextDocumentContent::getMimeType() const {
 
 void GenericTextDocumentContent::setMimeType(const std::string& mt) {
   mImpl->mimeType = std::string(mt); // invokes copy constructor
+}
+
+IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot) const {
+  throw new mlclient::InvalidFormatException("GenericDocumentContent does not yet support navigation");
 }
 
 } // end mlclient namespace

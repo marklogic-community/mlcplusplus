@@ -20,12 +20,15 @@
  */
 
 #include "mlclient/InvalidFormatException.hpp"
-
+#include <exception>
 
 namespace mlclient {
 
-const char* InvalidFormatException::what(void) const throw() {
-  return "Response is not of the required type for requested function/operation to be carried out";
+InvalidFormatException::InvalidFormatException() : std::runtime_error("Response is not of the required type for requested function/operation to be carried out") {
+  ;
+}
+InvalidFormatException::InvalidFormatException(const std::string& msg) : std::runtime_error(msg) {
+  ;
 }
 
 } // end namepace mlclient

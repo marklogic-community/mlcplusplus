@@ -103,6 +103,61 @@ public:
 
 
 
+/**
+ * \brief Acts as a generic lightweight document element interface
+ *
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * \since 8.0.2
+ * \date 2016-07-30
+ */
+class IDocumentNode {
+public:
+  MLCLIENT_API IDocumentNode();
+  MLCLIENT_API virtual ~IDocumentNode();
+
+  MLCLIENT_API virtual bool isNull() const = 0;
+  MLCLIENT_API virtual bool isBoolean() const = 0;
+  MLCLIENT_API virtual bool isInteger() const = 0;
+  MLCLIENT_API virtual bool isDouble() const = 0;
+  MLCLIENT_API virtual bool isString() const = 0;
+  MLCLIENT_API virtual bool isArray() const = 0;
+  MLCLIENT_API virtual bool isObject() const = 0;
+
+  MLCLIENT_API virtual bool asBoolean() const = 0;
+  MLCLIENT_API virtual int32_t asInteger() const = 0;
+  MLCLIENT_API virtual double asDouble() const = 0;
+  MLCLIENT_API virtual std::string asString() const = 0;
+  MLCLIENT_API virtual IDocumentNode* asArray() const = 0;
+  MLCLIENT_API virtual IDocumentNode* asObject() const = 0;
+
+  MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
+  MLCLIENT_API virtual IDocumentNode* at(const int32_t idx) const = 0;
+};
+
+/**
+ * \brief Acts as a generic lightweight document interface
+ *
+ * \author Adam Fowler <adam.fowler@marklogic.com>
+ * \since 8.0.2
+ * \date 2016-07-30
+ */
+class IDocumentNavigator {
+public:
+  MLCLIENT_API IDocumentNavigator();
+  MLCLIENT_API virtual ~IDocumentNavigator();
+
+  MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
+};
+
+
+
+
+
+
+
+
+
+
 
 /**
  * \brief An overarching interface for a Text Document
@@ -133,6 +188,14 @@ public:
    * \return The number of characters in the string. Does not include C null character.
    */
   MLCLIENT_API virtual int getLength() const = 0;
+
+  /**
+   * \brief Returns a way to navigate the document
+   *
+   * \since 8.0.2
+   * \date 2016-07-30
+   */
+  MLCLIENT_API virtual IDocumentNavigator* navigate(bool firstElementAsRoot = false) const = 0;
 };
 
 
@@ -234,6 +297,16 @@ public:
    * \return The number of characters in the string. Does not include C null character.
    */
   MLCLIENT_API int getLength() const override;
+
+  /**
+   * \brief Returns a way to navigate the document
+   *
+   * \since 8.0.2
+   * \date 2016-07-30
+   *
+   * \return The IDocumentNavigator instance to navigate this document with.
+   */
+  MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
 
 private:
   class Impl;

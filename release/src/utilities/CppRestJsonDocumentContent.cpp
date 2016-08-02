@@ -19,8 +19,10 @@
  */
 
 #include <cpprest/http_client.h>
+#include <cpprest/json.h>
 #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include "mlclient/logging.hpp"
+#include "mlclient/InvalidFormatException.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -28,6 +30,246 @@
 namespace mlclient {
 
 namespace utilities {
+
+CppRestJsonContainerNode::CppRestJsonContainerNode() {
+  ;
+}
+CppRestJsonContainerNode::~CppRestJsonContainerNode() {
+  ;
+}
+
+bool CppRestJsonContainerNode::isNull() const {
+  return false;
+}
+bool CppRestJsonContainerNode::isBoolean() const {
+  return false;
+}
+bool CppRestJsonContainerNode::isInteger() const {
+  return false;
+}
+bool CppRestJsonContainerNode::isDouble() const {
+  return false;
+}
+bool CppRestJsonContainerNode::isString() const {
+  return false;
+}
+
+bool CppRestJsonContainerNode::asBoolean() const {
+  throw new mlclient::InvalidFormatException("JSON Container is not a boolean");
+}
+int32_t CppRestJsonContainerNode::asInteger() const {
+  throw new mlclient::InvalidFormatException("JSON Container is not a integer");
+}
+double CppRestJsonContainerNode::asDouble() const {
+  throw new mlclient::InvalidFormatException("JSON Container is not a double");
+}
+std::string CppRestJsonContainerNode::asString() const {
+  throw new mlclient::InvalidFormatException("JSON Container is not a string");
+}
+
+class CppRestJsonArrayNode::Impl {
+public:
+  Impl(web::json::array& arr) : array(arr) {
+    ;
+  };
+
+  web::json::array& array;
+};
+
+CppRestJsonArrayNode::CppRestJsonArrayNode(web::json::array& arr) : mImpl(new Impl(arr)) {
+  ;
+}
+CppRestJsonArrayNode::~CppRestJsonArrayNode() {
+  delete mImpl;
+  mImpl = NULL;
+}
+bool CppRestJsonArrayNode::isArray() const {
+  return true;
+}
+bool CppRestJsonArrayNode::isObject() const {
+  return false;
+}
+
+IDocumentNode* CppRestJsonArrayNode::asArray() const {
+  return (IDocumentNode*)const_cast<CppRestJsonArrayNode*>(this);
+}
+IDocumentNode* CppRestJsonArrayNode::asObject() const {
+  throw mlclient::InvalidFormatException("JSON Container is not an object");
+}
+
+IDocumentNode* CppRestJsonArrayNode::at(const std::string& key) const {
+  throw mlclient::InvalidFormatException("JSON Container Array does not support string key subscripts");
+}
+IDocumentNode* CppRestJsonArrayNode::at(const int32_t idx) const {
+  return new CppRestJsonDocumentNode(mImpl->array.at(idx));
+}
+
+
+
+class CppRestJsonObjectNode::Impl {
+public:
+  Impl(web::json::object& obj) : obj(obj) {
+    ;
+  };
+
+  web::json::object& obj;
+};
+
+CppRestJsonObjectNode::CppRestJsonObjectNode(web::json::object& obj) : mImpl(new Impl(obj)) {
+  ;
+}
+CppRestJsonObjectNode::~CppRestJsonObjectNode() {
+  delete mImpl;
+  mImpl = NULL;
+}
+bool CppRestJsonObjectNode::isArray() const {
+  return false;
+}
+bool CppRestJsonObjectNode::isObject() const {
+  return true;
+}
+
+IDocumentNode* CppRestJsonObjectNode::asArray() const {
+  throw mlclient::InvalidFormatException("JSON Container is not an array");
+}
+IDocumentNode* CppRestJsonObjectNode::asObject() const {
+  return (IDocumentNode*)const_cast<CppRestJsonObjectNode*>(this);
+}
+
+IDocumentNode* CppRestJsonObjectNode::at(const std::string& key) const {
+  return new CppRestJsonDocumentNode(mImpl->obj.at(utility::conversions::to_string_t(key)));
+}
+IDocumentNode* CppRestJsonObjectNode::at(const int32_t idx) const {
+  throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
+}
+
+
+
+
+
+
+class CppRestJsonDocumentNode::Impl {
+public:
+  Impl(web::json::value& root) : root(root) {
+    ;
+  };
+
+  web::json::value& root;
+};
+
+
+CppRestJsonDocumentNode::CppRestJsonDocumentNode(web::json::value& root) : mImpl(new Impl(root)) {
+  std::ostringstream os;
+  root.serialize(os);
+  LOG(DEBUG) << "CppRestJsonDocumentNode:ctor node value: " << os.str();
+  ;
+}
+
+CppRestJsonDocumentNode::CppRestJsonDocumentNode(CppRestJsonDocumentNode&& from) : mImpl(from.mImpl) {
+  from.mImpl = NULL;
+}
+
+CppRestJsonDocumentNode::~CppRestJsonDocumentNode() {
+  delete mImpl;
+  mImpl = NULL;
+}
+
+bool CppRestJsonDocumentNode::isNull() const {
+  return mImpl->root.is_null();
+}
+bool CppRestJsonDocumentNode::isBoolean() const {
+  /*
+  if (mImpl->root.is_boolean()) {
+    LOG(DEBUG) << "CppRest library reports value IS a boolean";
+    return true;
+  }
+  */
+  if (!mImpl->root.is_string()) {
+    return false;
+  }
+  std::string val(asString());
+  return mImpl->root.is_string() && (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
+}
+bool CppRestJsonDocumentNode::isInteger() const {
+  return mImpl->root.is_integer();
+}
+bool CppRestJsonDocumentNode::isDouble() const {
+  return mImpl->root.is_double();
+}
+bool CppRestJsonDocumentNode::isString() const {
+  if (!mImpl->root.is_string()) {
+    return false;
+  }
+  std::string val(utility::conversions::to_utf8string(mImpl->root.as_string()));
+  if ((0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()))) {
+    // boolean string
+    return false;
+  }
+  return mImpl->root.is_string();
+}
+bool CppRestJsonDocumentNode::isArray() const {
+  return mImpl->root.is_array();
+}
+bool CppRestJsonDocumentNode::isObject() const {
+  return mImpl->root.is_object();
+}
+
+bool CppRestJsonDocumentNode::asBoolean() const {
+  //return mImpl->root.as_bool();
+  std::string val(asString());
+  return (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
+}
+int32_t CppRestJsonDocumentNode::asInteger() const {
+  return mImpl->root.as_integer();
+}
+double CppRestJsonDocumentNode::asDouble() const {
+  return mImpl->root.as_double();
+}
+std::string CppRestJsonDocumentNode::asString() const {
+  return utility::conversions::to_utf8string(mImpl->root.as_string());
+}
+IDocumentNode* CppRestJsonDocumentNode::asArray() const {
+  return new CppRestJsonArrayNode(mImpl->root.as_array());
+}
+IDocumentNode* CppRestJsonDocumentNode::asObject() const {
+  return new CppRestJsonObjectNode(mImpl->root.as_object());
+}
+
+IDocumentNode* CppRestJsonDocumentNode::at(const std::string& key) const {
+  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(key)));
+}
+IDocumentNode* CppRestJsonDocumentNode::at(const int32_t idx) const {
+  return new CppRestJsonDocumentNode(mImpl->root.at(idx));
+}
+
+
+class CppRestJsonDocumentNavigator::Impl {
+public:
+  Impl(web::json::value& root) : root(root) {
+    ;
+  };
+
+  web::json::value& root;
+};
+
+CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(web::json::value& root,bool firstElementAsRoot) : mImpl(new Impl(root)) {
+  ;
+}
+
+CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from) : mImpl(from.mImpl) {
+  from.mImpl = NULL;
+}
+CppRestJsonDocumentNavigator::~CppRestJsonDocumentNavigator() {
+  if (NULL != mImpl) {
+    delete mImpl;
+    mImpl = NULL;
+  }
+}
+
+IDocumentNode* CppRestJsonDocumentNavigator::at(const std::string& key) const {
+  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(key))); // uses move constructor
+}
+
 
 class CppRestJsonDocumentContent::Impl {
 public:
@@ -93,6 +335,10 @@ std::string CppRestJsonDocumentContent::getContent() const {
   //os << mImpl->value;
   mImpl->value.serialize(os);
   return os.str();
+}
+
+IDocumentNavigator* CppRestJsonDocumentContent::navigate(bool firstElementAsRoot) const {
+  return new CppRestJsonDocumentNavigator(mImpl->value,firstElementAsRoot);
 }
 
 
