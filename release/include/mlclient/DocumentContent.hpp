@@ -195,7 +195,7 @@ public:
    * \since 8.0.2
    * \date 2016-07-30
    */
-  MLCLIENT_API virtual IDocumentNavigator* navigate() const = 0;
+  MLCLIENT_API virtual IDocumentNavigator* navigate(bool firstElementAsRoot = false) const = 0;
 };
 
 
@@ -306,7 +306,7 @@ public:
    *
    * \return The IDocumentNavigator instance to navigate this document with.
    */
-  MLCLIENT_API IDocumentNavigator* navigate() const override;
+  MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
 
 private:
   class Impl;

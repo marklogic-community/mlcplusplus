@@ -122,7 +122,7 @@ IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
  */
 class PugiXmlDocumentNavigator : public IDocumentNavigator {
 public:
-  PugiXmlDocumentNavigator(const pugi::xml_document& root);
+  PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot = false);
   MLCLIENT_API PugiXmlDocumentNavigator(PugiXmlDocumentNavigator&& from);
   virtual ~PugiXmlDocumentNavigator();
 
@@ -222,7 +222,7 @@ public:
   MLCLIENT_API int getLength() const override;
 
 
-  MLCLIENT_API IDocumentNavigator* navigate() const override;
+  MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
 
   /// @}
 

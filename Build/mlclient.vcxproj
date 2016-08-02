@@ -150,6 +150,7 @@
     <ClCompile Include="..\release\src\SearchResultSet.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\PugiXmlDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\SearchBuilder.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\SearchBuilder.hpp" />

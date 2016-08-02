@@ -282,14 +282,15 @@ IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key) {
 
 class PugiXmlDocumentNavigator::Impl {
 public:
-  Impl(const pugi::xml_document& root) : root(root) {
+  Impl(const pugi::xml_document& root,bool firstElementAsRoot) : root(root), firstElementAsRoot(firstElementAsRoot) {
     ;
   };
 
   const pugi::xml_document& root;
+  bool firstElementAsRoot;
 };
 
-PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(const pugi::xml_document& root) : mImpl(new Impl(root)) {
+PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot) : mImpl(new Impl(root,firstElementAsRoot)) {
   ;
 }
 
@@ -304,7 +305,18 @@ PugiXmlDocumentNavigator::~PugiXmlDocumentNavigator() {
 }
 
 IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {
-  return new PugiXmlDocumentNode(mImpl->root.root().child(key.c_str()));
+  if (!mImpl->firstElementAsRoot) {
+    return new PugiXmlDocumentNode(mImpl->root.root().child(key.c_str()));
+  }
+  // else call child on the top level element
+  const auto& range = mImpl->root.root().children();
+  for (pugi::xml_node_iterator iter = range.begin();iter != range.end();++(iter)) {
+    if (pugi::xml_node_type::node_element == iter->type()) {
+      return new PugiXmlDocumentNode(iter->child(key.c_str()));
+    }
+  }
+  return nullptr; // empty XML document
+
   //return new PugiXmlDocumentNode(mImpl->root.root(),key);
 }
 
@@ -383,8 +395,8 @@ std::string PugiXmlDocumentContent::getContent() const {
   return os.str();
 }
 
-IDocumentNavigator* PugiXmlDocumentContent::navigate() const {
-  return new PugiXmlDocumentNavigator(*(mImpl->value));
+IDocumentNavigator* PugiXmlDocumentContent::navigate(bool firstElementAsRoot) const {
+  return new PugiXmlDocumentNavigator(*(mImpl->value),firstElementAsRoot);
 }
 
 

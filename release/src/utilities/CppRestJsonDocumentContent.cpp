@@ -159,7 +159,9 @@ public:
 
 
 CppRestJsonDocumentNode::CppRestJsonDocumentNode(web::json::value& root) : mImpl(new Impl(root)) {
-  LOG(DEBUG) << "CppRestJsonDocumentNode:ctor node value: " << root;
+  std::ostringstream os;
+  root.serialize(os);
+  LOG(DEBUG) << "CppRestJsonDocumentNode:ctor node value: " << os.str();
   ;
 }
 
@@ -224,7 +226,7 @@ double CppRestJsonDocumentNode::asDouble() const {
   return mImpl->root.as_double();
 }
 std::string CppRestJsonDocumentNode::asString() const {
-  return mImpl->root.as_string();
+  return utility::conversions::to_utf8string(mImpl->root.as_string());
 }
 IDocumentNode* CppRestJsonDocumentNode::asArray() const {
   return new CppRestJsonArrayNode(mImpl->root.as_array());
@@ -250,7 +252,7 @@ public:
   web::json::value& root;
 };
 
-CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(web::json::value& root) : mImpl(new Impl(root)) {
+CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(web::json::value& root,bool firstElementAsRoot) : mImpl(new Impl(root)) {
   ;
 }
 
@@ -335,8 +337,8 @@ std::string CppRestJsonDocumentContent::getContent() const {
   return os.str();
 }
 
-IDocumentNavigator* CppRestJsonDocumentContent::navigate() const {
-  return new CppRestJsonDocumentNavigator(mImpl->value);
+IDocumentNavigator* CppRestJsonDocumentContent::navigate(bool firstElementAsRoot) const {
+  return new CppRestJsonDocumentNavigator(mImpl->value,firstElementAsRoot);
 }
 
 

@@ -130,7 +130,7 @@ private:
  */
 class CppRestJsonDocumentNavigator : public IDocumentNavigator {
 public:
-  CppRestJsonDocumentNavigator(web::json::value& root);
+  CppRestJsonDocumentNavigator(web::json::value& root,bool firstElementAsRoot = false);
   MLCLIENT_API CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from);
   virtual ~CppRestJsonDocumentNavigator();
 
@@ -230,7 +230,7 @@ public:
   MLCLIENT_API int getLength() const override;
 
 
-  MLCLIENT_API IDocumentNavigator* navigate() const override;
+  MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
 
   /// @}
 

@@ -206,7 +206,7 @@ void GenericTextDocumentContent::setMimeType(const std::string& mt) {
   mImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 
-IDocumentNavigator* GenericTextDocumentContent::navigate() const {
+IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot) const {
   throw new mlclient::InvalidFormatException("GenericDocumentContent does not yet support navigation");
 }
 
