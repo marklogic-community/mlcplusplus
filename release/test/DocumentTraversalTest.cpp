@@ -82,7 +82,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   LOG(DEBUG) << "Checking el1";
   LOG(DEBUG) << "  value: " << el1->asString();
   CPPUNIT_ASSERT_MESSAGE("el1 is invalid",strcmp(el1->asString().c_str(),"val1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("el1 is not a string (should be string)",el1->isString());
   CPPUNIT_ASSERT_MESSAGE("el1 is an array (should be string)",!el1->isArray());
   CPPUNIT_ASSERT_MESSAGE("el1 is a boolean (should be string)",!el1->isBoolean());
@@ -90,11 +90,11 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("el1 is an integer (should be string)",!el1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("el1 is a null (should be string)",!el1->isNull());
   CPPUNIT_ASSERT_MESSAGE("el1 is an object (should be string)",!el1->isObject());
-  */
+
   IDocumentNode* el2 = root->at("el2");
   LOG(DEBUG) << "Checking el2";
   CPPUNIT_ASSERT_MESSAGE("el2 is invalid",strcmp(el2->asString().c_str(),"val2") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("el2 is not a string (should be string)",el2->isString());
   CPPUNIT_ASSERT_MESSAGE("el2 is an array (should be string)",!el2->isArray());
   CPPUNIT_ASSERT_MESSAGE("el2 is a boolean (should be string)",!el2->isBoolean());
@@ -102,7 +102,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("el2 is an integer (should be string)",!el2->isInteger());
   CPPUNIT_ASSERT_MESSAGE("el2 is a null (should be string)",!el2->isNull());
   CPPUNIT_ASSERT_MESSAGE("el2 is an object (should be string)",!el2->isObject());
-  */
+
   IDocumentNode* el3 = root->at("el3");
   LOG(DEBUG) << "Checking el3";
   CPPUNIT_ASSERT_MESSAGE("el3 is invalid",el3->asInteger() == 1234);
@@ -115,9 +115,8 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("el3 is an object (should be integer)",!el3->isObject());
   IDocumentNode* el4 = root->at("el4");
   LOG(DEBUG) << "Checking el4";
-  // Not sure why true is not a boolean... research needed in cpprest library...
   CPPUNIT_ASSERT_MESSAGE("el4 is invalid",el4->asBoolean());
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("el4 is not a boolean (should be boolean)",el4->isBoolean());
   CPPUNIT_ASSERT_MESSAGE("el4 is an array (should be boolean)",!el4->isArray());
   CPPUNIT_ASSERT_MESSAGE("el4 is an integer (should be boolean)",!el4->isInteger());
@@ -125,7 +124,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("el4 is a string (should be boolean)",!el4->isString());
   CPPUNIT_ASSERT_MESSAGE("el4 is a null (should be boolean)",!el4->isNull());
   CPPUNIT_ASSERT_MESSAGE("el4 is an object (should be boolean)",!el4->isObject());
-  */
+
   IDocumentNode* el5 = root->at("el5");
   LOG(DEBUG) << "Checking el5";
   CPPUNIT_ASSERT_MESSAGE("el5 is invalid",el5->asDouble() == 123.456);
@@ -149,7 +148,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   LOG(DEBUG) << "Checking arr1el0";
   LOG(DEBUG) << "Checking arr1el0: text: " << arr1el0->asString();
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",strcmp(arr1el0->asString().c_str(),"av1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is not a string (should be string)",arr1el0->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an array (should be string)",!arr1el0->isArray());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is a boolean (should be string)",!arr1el0->isBoolean());
@@ -157,11 +156,11 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an integer (should be string)",!arr1el0->isInteger());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is a null (should be string)",!arr1el0->isNull());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an object (should be string)",!arr1el0->isObject());
-  */
+
   IDocumentNode* arr1el1 = arr1->at(1);
   LOG(DEBUG) << "Checking arr1el1: text: " << arr1el1->asString();
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",strcmp(arr1el1->asString().c_str(),"av2") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is not a string (should be string)",arr1el1->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an array (should be string)",!arr1el1->isArray());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is a boolean (should be string)",!arr1el1->isBoolean());
@@ -169,7 +168,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an integer (should be string)",!arr1el1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is a null (should be string)",!arr1el1->isNull());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an object (should be string)",!arr1el1->isObject());
-  */
+
   IDocumentNode* obj1 = root->at("obj1");
   LOG(DEBUG) << "Checking obj1";
   CPPUNIT_ASSERT_MESSAGE("obj1 is not a object (should be object)",obj1->isObject());
@@ -182,7 +181,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   IDocumentNode* obj1subel1 = obj1->at("subel1");
   LOG(DEBUG) << "Checking obj1subel1";
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",strcmp(obj1subel1->asString().c_str(),"subval1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is not a string (should be string)",obj1subel1->isString());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an array (should be string)",!obj1subel1->isArray());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is a boolean (should be string)",!obj1subel1->isBoolean());
@@ -190,7 +189,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an integer (should be string)",!obj1subel1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is a null (should be string)",!obj1subel1->isNull());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an object (should be string)",!obj1subel1->isObject());
-  */
+
 } catch (std::exception& e) {
   LOG(DEBUG) << "EXCEPTION IN TEST RESULT: " << e.what();
   throw e;
@@ -204,7 +203,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   IDocumentNode* el1 = root->at("el1");
   LOG(DEBUG) << "Checking el1";
   CPPUNIT_ASSERT_MESSAGE("el1 is invalid",strcmp(el1->asString().c_str(),"val1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("el1 is not a string (should be string)",el1->isString());
   CPPUNIT_ASSERT_MESSAGE("el1 is an array (should be string)",!el1->isArray());
   CPPUNIT_ASSERT_MESSAGE("el1 is a boolean (should be string)",!el1->isBoolean());
@@ -212,11 +211,11 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("el1 is an integer (should be string)",!el1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("el1 is a null (should be string)",!el1->isNull());
   CPPUNIT_ASSERT_MESSAGE("el1 is an object (should be string)",!el1->isObject());
-  */
+
   IDocumentNode* el2 = root->at("el2");
   LOG(DEBUG) << "Checking el2";
   CPPUNIT_ASSERT_MESSAGE("el2 is invalid",strcmp(el2->asString().c_str(),"val2") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("el2 is not a string (should be string)",el2->isString());
   CPPUNIT_ASSERT_MESSAGE("el2 is an array (should be string)",!el2->isArray());
   CPPUNIT_ASSERT_MESSAGE("el2 is a boolean (should be string)",!el2->isBoolean());
@@ -224,7 +223,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("el2 is an integer (should be string)",!el2->isInteger());
   CPPUNIT_ASSERT_MESSAGE("el2 is a null (should be string)",!el2->isNull());
   CPPUNIT_ASSERT_MESSAGE("el2 is an object (should be string)",!el2->isObject());
-  */
+
   IDocumentNode* el3 = root->at("el3");
   LOG(DEBUG) << "Checking el3";
   CPPUNIT_ASSERT_MESSAGE("el3 is invalid",el3->asInteger() == 1234);
@@ -271,7 +270,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   IDocumentNode* arr1el0 = arr1->at(0);
   LOG(DEBUG) << "Checking arr1el0";
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",strcmp(arr1el0->asString().c_str(),"av1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is not a string (should be string)",arr1el0->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an array (should be string)",!arr1el0->isArray());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is a boolean (should be string)",!arr1el0->isBoolean());
@@ -279,11 +278,11 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an integer (should be string)",!arr1el0->isInteger());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is a null (should be string)",!arr1el0->isNull());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an object (should be string)",!arr1el0->isObject());
-  */
+
   IDocumentNode* arr1el1 = arr1->at(1);
   LOG(DEBUG) << "Checking arr1el1";
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",strcmp(arr1el1->asString().c_str(),"av2") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is not a string (should be string)",arr1el1->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an array (should be string)",!arr1el1->isArray());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is a boolean (should be string)",!arr1el1->isBoolean());
@@ -291,7 +290,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an integer (should be string)",!arr1el1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is a null (should be string)",!arr1el1->isNull());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an object (should be string)",!arr1el1->isObject());
-  */
+
   IDocumentNode* obj1 = root->at("obj1");
   LOG(DEBUG) << "Checking obj1";
   CPPUNIT_ASSERT_MESSAGE("obj1 is not a object (should be object)",obj1->isObject());
@@ -304,7 +303,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   IDocumentNode* obj1subel1 = obj1->at("subel1");
   LOG(DEBUG) << "Checking obj1subel1";
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",strcmp(obj1subel1->asString().c_str(),"subval1") == 0);
-  /*
+
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is not a string (should be string)",obj1subel1->isString());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an array (should be string)",!obj1subel1->isArray());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is a boolean (should be string)",!obj1subel1->isBoolean());
@@ -312,7 +311,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an integer (should be string)",!obj1subel1->isInteger());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is a null (should be string)",!obj1subel1->isNull());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an object (should be string)",!obj1subel1->isObject());
-  */
+
   } catch (std::exception& e) {
     LOG(DEBUG) << "EXCEPTION IN TEST RESULT N: " << e.what();
     throw e;

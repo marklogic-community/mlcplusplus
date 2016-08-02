@@ -139,11 +139,17 @@ IDocumentNode* PugiXmlObjectNode::asObject() const {
 }
 
 IDocumentNode* PugiXmlObjectNode::at(const std::string& key) const {
-  return new PugiXmlDocumentNode(std::move(mImpl->obj.child(key.c_str())));
+  LOG(DEBUG) << "at(" << key << ") called on '" << mImpl->obj.name() << "' of type: " << mImpl->obj.type();
+  return mlclient::utilities::createNode(mImpl->obj,key);
 }
 IDocumentNode* PugiXmlObjectNode::at(const int32_t idx) const {
   throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
 }
+
+
+
+
+
 
 
 class PugiXmlDocumentNode::Impl {
@@ -204,9 +210,10 @@ bool PugiXmlDocumentNode::isArray() const {
   return false;
 }
 bool PugiXmlDocumentNode::isObject() const {
-  bool isObj = !isInteger() && !isDouble() && !isBoolean() && (mImpl->root.type() == pugi::xml_node_type::node_element || mImpl->root.type() == pugi::xml_node_type::node_document);
-  LOG(DEBUG) << "isObject() result for '" << mImpl->root.name() << "'?: " << isObj;
-  return isObj;
+  //bool isObj = !isInteger() && !isDouble() && !isBoolean() && (mImpl->root.type() == pugi::xml_node_type::node_element || mImpl->root.type() == pugi::xml_node_type::node_document);
+  //LOG(DEBUG) << "isObject() result for '" << mImpl->root.name() << "'?: " << isObj;
+  //return isObj;
+  return false;
 }
 
 bool PugiXmlDocumentNode::asBoolean() const {
@@ -225,21 +232,11 @@ IDocumentNode* PugiXmlDocumentNode::asArray() const {
   return nullptr;
 }
 IDocumentNode* PugiXmlDocumentNode::asObject() const {
-  return new PugiXmlObjectNode(mImpl->root);
+  return nullptr;
 }
 
 IDocumentNode* PugiXmlDocumentNode::at(const std::string& key) const {
-  const auto& range = mImpl->root.children(key.c_str());
-  if (range.begin() == range.end() || (++(range.begin())) == range.end()) {
-    LOG(DEBUG) << "Found an element with a single child of '" << key << "', creating PugiXmlDocumentNode...";
-    return new PugiXmlDocumentNode(mImpl->root.child(key.c_str()));
-  }
-  LOG(DEBUG) << "Found an element with multiple children of '" << key << "', creating PugiXmlArrayNode...";
-  for (pugi::xml_named_node_iterator iter = range.begin();iter != range.end();++iter) {
-    LOG(DEBUG) << "  Child type: " << iter->type() << " name: " << iter->name();
-  }
-  // is array
-  return new PugiXmlArrayNode(mImpl->root,key);
+  return mlclient::utilities::createNode(mImpl->root,key);
 }
 IDocumentNode* PugiXmlDocumentNode::at(const int32_t idx) const {
   const auto& iter = mImpl->root.children().begin();
@@ -253,7 +250,31 @@ IDocumentNode* PugiXmlDocumentNode::at(const int32_t idx) const {
 }
 
 
-
+IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key) {
+  const auto& range = parent.children(key.c_str());
+  if (range.begin() == range.end() || (++(range.begin())) == range.end()) {
+    // Could be an Object or a String
+    bool isObject = false;
+    pugi::xml_node child = parent.child(key.c_str());
+    const auto& childRange = child.children();
+    for (pugi::xml_node_iterator iter = childRange.begin();iter != childRange.end();++iter) {
+      isObject = isObject || iter->type() == pugi::xml_node_type::node_element;
+    }
+    if (isObject) {
+      LOG(DEBUG) << " This node is a Pugi XML object node (has one or more element children)";
+      return new PugiXmlObjectNode(child);
+    }
+    LOG(DEBUG) << "Found an element with a single child of '" << key << "', creating PugiXmlDocumentNode...";
+    return new PugiXmlDocumentNode(child);
+  }
+  // is an object if one or more children are themselves nodes
+  LOG(DEBUG) << "Found an element with multiple children of '" << key << "', creating PugiXmlArrayNode...";
+  for (pugi::xml_named_node_iterator iter = range.begin();iter != range.end();++iter) {
+    LOG(DEBUG) << "  Child type: " << iter->type() << " name: " << iter->name();
+  }
+  // is array
+  return new PugiXmlArrayNode(parent,key);
+}
 
 
 

@@ -108,6 +108,10 @@ private:
   Impl* mImpl;
 };
 
+
+IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
+
+
 /**
  * \class PugiXmlDocumentNavigator
  * \author Adam Fowler <adam.fowler@marklogic.com>
