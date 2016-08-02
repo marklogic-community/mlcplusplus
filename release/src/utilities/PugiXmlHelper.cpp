@@ -18,6 +18,7 @@
  */
 
 #include "mlclient/utilities/PugiXmlHelper.hpp"
+#include "mlclient/utilities/PugiXmlDocumentContent.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/InvalidFormatException.hpp"
@@ -34,14 +35,21 @@ namespace utilities {
 
 // DocumentContent conversion
 ITextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
-  TIMED_FUNC(PugiXmlHelper_toDocument);
-  GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
-  std::ostringstream os;
-  os << dc;
-  tdc->setContent(os.str());
+  TIMED_FUNC(PugiXmlHelper_toDocument_xmldocument);
+  //GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
+  PugiXmlDocumentContent* tdc = new PugiXmlDocumentContent;
+  tdc->setContent(dc);
   tdc->setMimeType("application/xml");
   return tdc;
 }
+
+ITextDocumentContent* PugiXmlHelper::toDocument(const std::string& content) {
+  TIMED_FUNC(PugiXmlHelper_toDocument_string);
+  pugi::xml_document* doc = new pugi::xml_document;
+  pugi::xml_parse_result result = doc->load_string(content.c_str());
+  return toDocument(*doc);
+}
+
 pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(PugiXmlHelper_fromDocument);
   // TODO handle invalid cast exception

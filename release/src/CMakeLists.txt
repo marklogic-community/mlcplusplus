@@ -40,6 +40,7 @@ add_library (mlclient SHARED
     utilities/CppRestJsonHelper.cpp
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
+    utilities/PugiXmlDocumentContent.cpp
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp

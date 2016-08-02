@@ -23,15 +23,18 @@ using namespace mlclient;
 
 class DocumentTraversalTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(DocumentTraversalTest);
-    CPPUNIT_TEST(testJsonTraversal);
+  CPPUNIT_TEST(testJsonTraversal);
+  CPPUNIT_TEST(testXmlTraversal);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testJsonTraversal(void);
+  void testXmlTraversal(void);
 
-  void testResult(ITextDocumentContent* doc);
+  void testResult(IDocumentNode* root);
+  void testResultN(IDocumentNavigator* root);
 private:
   IConnection* ml;
 };

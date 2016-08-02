@@ -144,6 +144,10 @@ IDocumentNode* CppRestJsonObjectNode::at(const int32_t idx) const {
 }
 
 
+
+
+
+
 class CppRestJsonDocumentNode::Impl {
 public:
   Impl(web::json::value& root) : root(root) {
@@ -155,6 +159,7 @@ public:
 
 
 CppRestJsonDocumentNode::CppRestJsonDocumentNode(web::json::value& root) : mImpl(new Impl(root)) {
+  LOG(DEBUG) << "CppRestJsonDocumentNode:ctor node value: " << root;
   ;
 }
 
@@ -171,7 +176,17 @@ bool CppRestJsonDocumentNode::isNull() const {
   return mImpl->root.is_null();
 }
 bool CppRestJsonDocumentNode::isBoolean() const {
-  return mImpl->root.is_boolean();
+  /*
+  if (mImpl->root.is_boolean()) {
+    LOG(DEBUG) << "CppRest library reports value IS a boolean";
+    return true;
+  }
+  */
+  if (!mImpl->root.is_string()) {
+    return false;
+  }
+  std::string val(asString());
+  return mImpl->root.is_string() && (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
 }
 bool CppRestJsonDocumentNode::isInteger() const {
   return mImpl->root.is_integer();
@@ -180,6 +195,14 @@ bool CppRestJsonDocumentNode::isDouble() const {
   return mImpl->root.is_double();
 }
 bool CppRestJsonDocumentNode::isString() const {
+  if (!mImpl->root.is_string()) {
+    return false;
+  }
+  std::string val(utility::conversions::to_utf8string(mImpl->root.as_string()));
+  if ((0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()))) {
+    // boolean string
+    return false;
+  }
   return mImpl->root.is_string();
 }
 bool CppRestJsonDocumentNode::isArray() const {
@@ -190,7 +213,9 @@ bool CppRestJsonDocumentNode::isObject() const {
 }
 
 bool CppRestJsonDocumentNode::asBoolean() const {
-  return mImpl->root.as_bool();
+  //return mImpl->root.as_bool();
+  std::string val(asString());
+  return (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
 }
 int32_t CppRestJsonDocumentNode::asInteger() const {
   return mImpl->root.as_integer();
@@ -199,7 +224,7 @@ double CppRestJsonDocumentNode::asDouble() const {
   return mImpl->root.as_double();
 }
 std::string CppRestJsonDocumentNode::asString() const {
-  return utility::conversions::to_utf8string(mImpl->root.as_string());
+  return mImpl->root.as_string();
 }
 IDocumentNode* CppRestJsonDocumentNode::asArray() const {
   return new CppRestJsonArrayNode(mImpl->root.as_array());

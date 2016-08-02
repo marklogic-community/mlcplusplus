@@ -56,6 +56,13 @@ public:
   MLCLIENT_API static ITextDocumentContent* toDocument(const pugi::xml_document& dc);
 
   /**
+   * \brief Converts a std::string instance to a MarkLogic C++ API IDocumentContent instance.
+   * \param content The std::string instance to convert
+   * \return The IDocumentContent instance wrapping the XML content, with its mime type and content set
+   */
+  MLCLIENT_API static ITextDocumentContent* toDocument(const std::string& content);
+
+  /**
    * \brief Extracts a pugi::xml_document instance from a IDocumentContent object.
    *
    * This is useful when retrieving a document from MarkLogic Server and then processing the underlying XML.
