@@ -26,6 +26,16 @@ matrix:
       env: COMPILER=g++-6 BOOST_VERSION=default
       compiler: gcc
 
+    # Clang 3.8
+    - os: linux
+      env: LLVM_VERSION=3.8.0 BOOST_VERSION=default
+      compiler: clang
+
+    # Xcode 7.3
+    - os: osx
+      env: BOOST_VERSION=default
+      osx_image: xcode7.3
+      
 script:
 - ./build.sh && cd ./bin/test && ./mlcpptest
 branches:
