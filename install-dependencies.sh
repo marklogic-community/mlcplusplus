@@ -95,7 +95,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
 fi
 
 echo "  - Installing glog from SOURCE (will ask to install as root)..."
-mkdir deps
+mkdir -p deps
 cd deps
 git clone https://github.com/google/glog.git
 cd glog
@@ -145,7 +145,7 @@ fi
 # Build dependencies
 echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will prompt for sudo password to install"
 cd $CPPREST_FOLDER
-mkdir build.debug
+mkdir -p build.debug
 cd build.debug
 cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug
 make -j 4
@@ -156,7 +156,7 @@ cd $ORIG
 # Test dependencies where possible (E.g. build and execute sample CPP file)
 
 # Output patchs to ./bin/build-deps-settings.sh
-mkdir $ORIG/bin
+mkdir -p $ORIG/bin
 F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
