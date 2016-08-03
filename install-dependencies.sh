@@ -74,7 +74,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
 
   if [[ "$platform" =~ .*Ubuntu.* ]]; then
     echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
-    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev
+    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
@@ -101,8 +101,13 @@ git clone https://github.com/google/glog.git
 cd glog
 # The following fixes a known bug with travis and the ./missing file on more recent autoconf versions
 autoreconf --force --install
-./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
-make -j 8
+
+if [[ "$platform" =~ ^Darwin.* ]]; then
+  ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+else
+  ./configure
+fi
+make -j 4
 sudo make install
 cd ../..
 
@@ -145,6 +150,7 @@ cd $ORIG
 # Test dependencies where possible (E.g. build and execute sample CPP file)
 
 # Output patchs to ./bin/build-deps-settings.sh
+mkdir $ORIG/bin
 F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
