@@ -104,12 +104,18 @@ autoreconf --force --install
 
 if [[ "$platform" =~ ^Darwin.* ]]; then
   ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+  make -j 4
+  sudo make install
+  cd ../..
 else
-  ./configure
+  # silly ubuntu workaround - should work on all linux
+  mkdir build && cd build
+  export CXXFLAGS="-fPIC" && cmake .. && make VERBOSE=1
+  make
+
+  sudo make install
+  cd ../../..
 fi
-make -j 4
-sudo make install
-cd ../..
 
 
 # Install cpprest from GitHub
