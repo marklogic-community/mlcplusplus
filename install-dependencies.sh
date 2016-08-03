@@ -74,7 +74,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
 
   if [[ "$platform" =~ .*Ubuntu.* ]]; then
     echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
-    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake
+    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
