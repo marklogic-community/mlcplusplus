@@ -1,7 +1,7 @@
 language: cpp
-install: ./gen-unix.sh
+install:
+- ./gen-unix.sh
 compiler:
-- clang
 - gcc
 before_install:
 - sudo ./install-dependencies.sh
