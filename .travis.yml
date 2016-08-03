@@ -15,6 +15,6 @@ script:
 - ./build.sh && cd ./bin/test && ./mlcpptest
 branches:
   only:
-- master
-- develop
-- feature-24
+  - master
+  - develop
+  - feature-24
