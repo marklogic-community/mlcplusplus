@@ -1,14 +1,20 @@
 language: cpp
 install: ./gen-unix.sh
-compiler: gcc
+compiler:
+- clang
+- gcc
 before_install:
-	- sudo apt-get update -qq
-	- sudo apt-get install -qq [packages list]
+	- sudo ./install-dependencies.sh
+	- export WITHOUT_MARKLOGIC=1
 git:
   depth: 3
-# whitelist
+os:
+	- linux
+	- osx
+script:
+	- ./build.sh && cd ./bin/test && ./mlcpptest
 branches:
   only:
     - master
     - develop
-    - /^feature-.*$/
+		- feature-24

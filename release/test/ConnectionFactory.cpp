@@ -27,8 +27,11 @@ IConnection* ConnectionFactory::getConnection() {
   // ALTER THE BELOW FOR YOUR OWN SYSTEM DURING TESTING
   //conn->configure("192.168.123.4","8122","admin","admin",false);
   // TODO change this based on a setting or compiler flag
-  //static mlclient::internals::FakeConnection* conn = new mlclient::internals::FakeConnection;
+#ifdef WITHOUT_MARKLOGIC
+  static mlclient::internals::FakeConnection* conn = new mlclient::internals::FakeConnection;
+#else
   static mlclient::Connection* conn = new mlclient::Connection;
+#endif
   static bool configured = false;
   if (!configured) {
     conn->configure("192.168.123.4","8122","admin","admin",false);
