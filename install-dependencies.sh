@@ -63,8 +63,9 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
       echo "  - Installing Mono (For SWIG CSharp Bindings)"
       sudo port install mono
     else
-      echo " - FAILURE: Unknown Mac package manager (neither Homebrew or Macports installed)"
-      exit 1
+      echo " - WARNING: Unknown Mac package manager (neither Homebrew or Macports installed), trying to proceed anyway..."
+
+      #exit 1
     fi
   fi
 fi
@@ -87,8 +88,8 @@ if [[ "$platform" =~ ^Linux.* ]]; then
       echo " - Using the Yum package manager - will prompt for sudo password"
       sudo yum install boost gcc git make boost-devel openssl openssl-devel cmake
     else
-      echo " - FAILURE: No yum package manager installed"
-      exit 1
+      echo " - WARNING: No Linux package manager installed, trying to proceed anyway..."
+      #exit 1
     fi
   fi
 fi
@@ -98,6 +99,8 @@ mkdir deps
 cd deps
 git clone https://github.com/google/glog.git
 cd glog
+# The following fixes a known bug with travis and the ./missing file on more recent autoconf versions
+autoreconf --force --install
 ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
 make -j 8
 sudo make install
