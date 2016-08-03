@@ -31,7 +31,7 @@ namespace mlclient {
 /**
  * The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
  */
-  MLCLIENT_API enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
+MLCLIENT_API enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const ResponseType& rt);
@@ -157,7 +157,7 @@ public:
   ///
   /// \param[in] type The type of response
   ///
-  MLCLIENT_API void setResponseType(const enum ResponseType& type);
+  MLCLIENT_API void setResponseType(const ResponseType& type);
 
   ///
   /// \brief Sets the headers received as part of the response.

@@ -40,6 +40,10 @@ elseif(UNIX) # This includes OSX
   #find_package(OpenSSL REQUIRED)
 
   option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
+  SET(GLOG_LIB libglog.so)
+  SET(CPPREST_LIB libcpprest.so)
+  SET(LIBSSL_LIB /usr/lib/x86_64-linux-gnu/libssl.so)
+  SET(LIBCRYPTO_LIB /usr/lib/x86_64-linux-gnu/libcrypto.so)
 elseif(WIN32)
   option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
 
@@ -63,6 +67,10 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch i386 -arch x86_64")
         SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -arch i386 -arch x86_64")
     ENDIF ()
+    SET(GLOG_LIB "libglog.dylib")
+    SET(CPPREST_LIB libcpprest.dylib)
+    SET(LIBSSL_LIB libssl.dylib)
+    SET(LIBCRYPTO_LIB libcrypto.dylib)
 ENDIF ()
 
 
@@ -152,7 +160,10 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
   ${Boost_RANDOM_LIBRARY}
   ${Boost_REGEX_LIBRARY}
   ${Boost_UNIT_TEST_FRAMEWORK}
-  libglog.dylib
+  ${GLOG_LIB}
+  ${LIBSSL_LIB}
+  ${LIBCRYPTO_LIB}
+  ${CPPREST_LIB}
 )
 
 link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )

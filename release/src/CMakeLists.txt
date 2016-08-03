@@ -96,11 +96,13 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 #  )
 
 target_link_libraries (mlclient
-    libcpprest.dylib
 #    libcommon_utilities.dylib
-    libssl.dylib
-    libcrypto.dylib
 #    libpugixml.a
+    ${GLOG_LIB}
+    ${OPENSSL_LIBRARIES}
+    ${LIBSSL_LIB}
+    ${LIBCRYPTO_LIB}
+    ${CPPREST_LIB}
     ${Casablanca_LIBRARIES}
 )
 

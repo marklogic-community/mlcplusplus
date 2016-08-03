@@ -74,7 +74,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
 
   if [[ "$platform" =~ .*Ubuntu.* ]]; then
     echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
-    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf
+    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf libcppunit-dev
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
@@ -110,7 +110,7 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 else
   # silly ubuntu workaround - should work on all linux
   mkdir build && cd build
-  export CXXFLAGS="-fPIC" && cmake .. && make VERBOSE=1
+  export CXXFLAGS="-fPIC" && cmake .. -DBUILD_SHARED_LIBS=1 && make VERBOSE=1
   make
 
   sudo make install
@@ -161,12 +161,12 @@ F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
 printf 'WITH_LOGGING=1\n' >> $F
-printf '# General SWIG enabling' >> $F
+printf '# General SWIG enabling\n' >> $F
 printf 'WITH_SWIG=0\n' >> $F
-printf '# Specific SWIG wrapper enabling' >> $F
+printf '# Specific SWIG wrapper enabling\n' >> $F
 printf 'WITH_PYTHON=0\n' >> $F
 printf 'WITH_CSHARP=0\n' >> $F
-printf '# Other settings' >> $F
+printf '# Other settings\n' >> $F
 printf 'WITH_TESTS=1\n' >> $F
 printf 'WITH_DOCS=0\n' >> $F
 printf 'WITH_SAMPLES=0\n' >> $F
