@@ -4,17 +4,17 @@ compiler:
 - clang
 - gcc
 before_install:
-	- sudo ./install-dependencies.sh
-	- export WITHOUT_MARKLOGIC=1
+- sudo ./install-dependencies.sh
+- export WITHOUT_MARKLOGIC=1
 git:
   depth: 3
 os:
-	- linux
-	- osx
+- linux
+- osx
 script:
-	- ./build.sh && cd ./bin/test && ./mlcpptest
+- ./build.sh && cd ./bin/test && ./mlcpptest
 branches:
   only:
-    - master
-    - develop
-		- feature-24
+  - master
+  - develop
+	- feature-24
