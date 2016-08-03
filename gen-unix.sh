@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. settings.sh
+. ./settings.sh
 . ./bin/build-deps-settings.sh
 
 cd $BINDIR

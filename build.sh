@@ -1,7 +1,7 @@
 #!/bin/sh
-. settings.sh
+. ./settings.sh
 cd bin
-. build-deps-settings.sh
+. ./build-deps-settings.sh
 echo "-- Building mlclient"
 # target name not specified as it's called different things on different platforms! Default is the all target.
 cmake --build .
