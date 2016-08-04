@@ -71,7 +71,7 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 
       #exit 1
     fi
-  fi
+  fi 
 fi
 if [[ "$platform" =~ ^Linux.* ]]; then
   echo "-- On a Linux machine"
