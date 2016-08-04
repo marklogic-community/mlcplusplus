@@ -13,10 +13,10 @@ before_install:
 - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
 - BOOST_VERSION="1.58.0"
-  ############################################################################
-  # Install Boost headers
-  ############################################################################
-  - |
+############################################################################
+# Install Boost headers
+############################################################################
+- |
     if [[ "${BOOST_VERSION}" != "" ]]; then
       BOOST_DIR=${DEPS_DIR}/boost-${BOOST_VERSION}
       if [[ -z "$(ls -A ${BOOST_DIR})" ]]; then
@@ -35,7 +35,7 @@ before_install:
   ############################################################################
   # Install a recent CMake (unless already installed on OS X)
   ############################################################################
-  - |
+- |
     if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
       CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz"
       mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
@@ -46,7 +46,7 @@ before_install:
   ############################################################################
   # Install Boost.Build
   ############################################################################
-  - |
+- |
     if [[ "${BOOST_BUILD}" == "true" ]]; then
       (cd ${BOOST_DIR}/tools/build && ./bootstrap.sh && ./b2 install --prefix=${DEPS_DIR}/b2)
       export PATH=${DEPS_DIR}/b2/bin:${PATH}
@@ -54,7 +54,7 @@ before_install:
   ############################################################################
   # Install Clang, libc++ and libc++abi
   ############################################################################
-  - |
+- |
     if [[ "${LLVM_VERSION}" != "" ]]; then
       LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
       if [[ -z "$(ls -A ${LLVM_DIR})" ]]; then
