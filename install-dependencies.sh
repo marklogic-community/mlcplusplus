@@ -20,6 +20,8 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 
   # Find which package manager is in use
   brew=`brew --version`
+  echo "  - Updating brew formulae"
+  brew update
   if [[ "$brew" =~ ^Homebrew.* ]]; then
     echo " - Using Homebrew package manager"
     if [[ "$curl" =~ .*command.* ]]; then
@@ -111,10 +113,11 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
   cd ../..
 else
   # silly ubuntu workaround - should work on all linux
-  mkdir build && cd build
-  export CXXFLAGS="-fPIC" && cmake .. -DBUILD_SHARED_LIBS=1 && make VERBOSE=1
-  make
-
+  mkdir build
+  cd build
+  export CXXFLAGS="-fPIC"
+  cmake .. -DBUILD_SHARED_LIBS=1
+  make VERBOSE=1
   sudo make install
   cd ../../..
 fi

@@ -6,11 +6,11 @@ addons:
       - g++-6
     sources: &sources
       - ubuntu-toolchain-r-test
-
+sudo: required
 install:
 - ./gen-unix.sh
-compiler:
-- gcc
+#compiler:
+#- gcc
 before_install:
 - ./install-dependencies.sh
 - export WITHOUT_MARKLOGIC=1
