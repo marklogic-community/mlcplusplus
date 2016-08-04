@@ -2,6 +2,8 @@
 
 echo "-- Install dependencies for the Mac or Linux environments"
 
+mkdir -p bin
+
 BASE="$(dirname "$PWD")"
 ORIG=$PWD
 CPPREST=cpprestsdk

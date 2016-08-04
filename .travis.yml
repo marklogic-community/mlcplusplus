@@ -12,7 +12,7 @@ install:
 compiler:
 - gcc
 before_install:
-- sudo ./install-dependencies.sh
+- ./install-dependencies.sh
 - export WITHOUT_MARKLOGIC=1
 git:
   depth: 3
@@ -35,9 +35,11 @@ matrix:
     - os: osx
       env: BOOST_VERSION=default
       osx_image: xcode7.3
-      
+
 script:
-- ./build.sh && cd ./bin/test && ./mlcpptest
+- ./build.sh
+- cd ./bin/test
+- ./mlcpptest
 branches:
   only:
   - master
