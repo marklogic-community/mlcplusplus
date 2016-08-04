@@ -71,7 +71,7 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 
       #exit 1
     fi
-  fi 
+  fi
 fi
 if [[ "$platform" =~ ^Linux.* ]]; then
   echo "-- On a Linux machine"
@@ -118,7 +118,7 @@ else
   mkdir build
   cd build
   export CXXFLAGS="-fPIC"
-  cmake .. -DBUILD_SHARED_LIBS=1
+  cmake .. -DBUILD_SHARED_LIBS=1 ${CMAKE_OPTIONS}
   make VERBOSE=1
   sudo make install
   cd ../../..
@@ -154,7 +154,7 @@ echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will
 cd $CPPREST_FOLDER
 mkdir -p build.debug
 cd build.debug
-cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug
+cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug ${CMAKE_OPTIONS}
 make -j 4
 echo " - Installing..."
 sudo make install
@@ -183,7 +183,7 @@ printf '# USER EDITABLE SETTINGS END\n' >> $F
 printf 'echo "-- Setting MLCPlusPlus dependency settings"\n' >> $F
 printf 'export CPPRESTSDK_HOME=%s\n' "$CPPREST_FOLDER" >> $F
 printf 'export MLCPLUSPLUS_HOME=%s\n' "$ORIG" >> $F
-printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DWITH_LOGGING=$WITH_LOGGING -DWITHOUT_MARKLOGIC=$WITHOUT_MARKLOGIC -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
+printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DWITH_LOGGING=$WITH_LOGGING -DWITHOUT_MARKLOGIC=$WITHOUT_MARKLOGIC $CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
 printf 'echo "-- Done"\n' >> $F
 #printf 'exit 0\n' >> $F
 
