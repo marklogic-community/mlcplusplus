@@ -80,7 +80,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
     echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
     sudo add-apt-repository -y ppa:boost-latest/ppa
     sudo apt-get -y update
-    sudo apt-get -y install g++ git make libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf libcppunit-dev
+    sudo apt-get -y install g++ git make gflags libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf libcppunit-dev
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
@@ -92,7 +92,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
     fi
     if [[ "$yum" =~ ^yum.* ]]; then
       echo " - Using the Yum package manager - will prompt for sudo password"
-      sudo yum install boost gcc git make boost-devel openssl openssl-devel cmake
+      sudo yum install boost gcc git make gflags boost-devel openssl openssl-devel cmake
     else
       echo " - WARNING: No Linux package manager installed, trying to proceed anyway..."
       #exit 1
@@ -100,6 +100,7 @@ if [[ "$platform" =~ ^Linux.* ]]; then
   fi
 fi
 
+echo "CMAKE_OPTIONS= ${CMAKE_OPTIONS}"
 echo "  - Installing glog from SOURCE (will ask to install as root)..."
 mkdir -p deps
 cd deps

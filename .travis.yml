@@ -78,6 +78,7 @@ before_install:
     fi
 - cd ${TRAVIS_BUILD_DIR}
 - export WITHOUT_MARKLOGIC=1
+- echo "CMAKE_OPTIONS= ${CMAKE_OPTIONS}"
 - ./install-dependencies.sh
 git:
   depth: 3
