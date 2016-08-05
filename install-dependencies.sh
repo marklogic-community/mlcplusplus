@@ -108,7 +108,11 @@ git clone https://github.com/google/glog.git
 cd glog
 
 if [[ "$platform" =~ ^Darwin.* ]]; then
-  ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+  if [[ "$FORCE_ARCH" =~ ^x86_64.* ]]; then
+    ./configure 'LDFLAGS=-arch x86_64' 'CFLAGS=-arch x86_64' 'CXXFLAGS=-arch x86_64'
+  else
+    ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+  fi
   make -j 4
   sudo make install
   cd ../..
@@ -146,7 +150,11 @@ OSXU=
 if [[ "$platform" =~ ^Darwin.* ]]; then
   # Patch cpprest's CMake file to support OS X universal builds
   echo "-- Patching cpprest to support Mac OS X Universal builds"
-  OSXU=-DOSX_UNIVERSAL=1
+  if [[ "$FORCE_ARCH" =~ ^x86_64.* ]]; then
+    OSXU=
+  else
+    OSXU=-DOSX_UNIVERSAL=1
+  fi
   sed -E -i -e '/.*Compiler.*/r release/dependencies/cpprest-cmake.txt' $CPPREST_FOLDER/Release/CMakeLists.txt
 fi
 
