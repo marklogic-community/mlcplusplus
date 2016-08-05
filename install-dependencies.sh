@@ -106,8 +106,6 @@ mkdir -p deps
 cd deps
 git clone https://github.com/google/glog.git
 cd glog
-# The following fixes a known bug with travis and the ./missing file on more recent autoconf versions
-autoreconf --force --install
 
 if [[ "$platform" =~ ^Darwin.* ]]; then
   ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
@@ -115,10 +113,12 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
   sudo make install
   cd ../..
 else
+  # The following fixes a known bug with travis and the ./missing file on more recent autoconf versions
+  autoreconf --force --install
   # silly ubuntu workaround - should work on all linux
   mkdir build
   cd build
-  export CXXFLAGS="-fPIC"
+  export CXXFLAGS="-fPIC -Wno-redundant-move"
   cmake .. -DBUILD_SHARED_LIBS=1 ${CMAKE_OPTIONS}
   make VERBOSE=1
   sudo make install
@@ -132,7 +132,7 @@ echo "-- Downloading Microsoft's cpprest SDK (aka casablanca)"
 if [[ "$git" =~ ^git.* ]]; then
   echo " - Fetching repository master using git"
   cd $BASE
-  git clone https://github.com/Microsoft/cpprestsdk.git $CPPREST
+  git clone https://github.com/Microsoft/cpprestsdk.git --branch development --single-branch $CPPREST
   cd $ORIG
 else
   if [[ "$curl" =~ ^curl.* ]]; then
@@ -155,7 +155,7 @@ echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will
 cd $CPPREST_FOLDER
 mkdir -p build.debug
 cd build.debug
-cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug ${CMAKE_OPTIONS}
+cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug ${CMAKE_OPTIONS} -DWERROR=0
 make -j 4
 echo " - Installing..."
 sudo make install
