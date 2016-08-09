@@ -150,8 +150,11 @@ public:
 
 
 
-
-
+/**
+ * \brief The mode determines whether the QueryBuilder will generate JSON based queries, xml based queries, or an or query of all types (DEFAULT).
+ * \note Useful when you have a mix of documents of both types. See also setDefaultXmlNamespace().
+ */
+enum QueryBuilderMode {ALL,XML,JSON};
 
 
 /**
@@ -188,11 +191,20 @@ public:
   static IQuery* orQuery(const std::vector<IQuery*>& queries);
   static IQuery* notQuery(const IQuery* query);
 
-  static IQuery* valueQuery(const std::string ref,const std::string value);
-  static IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  IQuery* valueQuery(const std::string ref,const std::string value);
+  IQuery* jsonValueQuery(const std::string ref,const std::string value);
+  IQuery* xmlValueQuery(const std::string ref,const std::string value);
+  IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  IQuery* jsonRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  IQuery* xmlRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
 
   // instance methods that control the base search definition
   SearchBuilder* setQuery(IQuery* query); // top level root query
+
+  void setDefaultXmlNamespace(const std::string& ns);
+  const std::string& getDefaultXmlNamespace() const;
+  void setMode(const QueryBuilderMode mode);
+  const QueryBuilderMode getMode() const;
 
   ITextDocumentContent* toDocument();
 

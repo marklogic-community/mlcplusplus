@@ -212,7 +212,7 @@ void JsonPropertyRef::setProperty(const std::string& property) {
 
 class SearchBuilder::Impl {
 public:
-  Impl() : rootQuery(nullptr) {
+  Impl() : rootQuery(nullptr), mode(QueryBuilderMode::ALL), defaultXmlNamespace("") {
     TIMED_FUNC(SearchBuilder_Impl_defaultConstructor);
   }
 
@@ -253,6 +253,8 @@ public:
   }
 
   IQuery* rootQuery;
+  QueryBuilderMode mode;
+  std::string defaultXmlNamespace;
 }; // end Impl class
 
 
@@ -264,6 +266,18 @@ SearchBuilder::SearchBuilder(): mImpl(new SearchBuilder::Impl) {
 }
 
 
+void SearchBuilder::setDefaultXmlNamespace(const std::string& ns) {
+  mImpl->defaultXmlNamespace = ns;
+}
+const std::string& SearchBuilder::getDefaultXmlNamespace() const {
+  return mImpl->defaultXmlNamespace;
+}
+void SearchBuilder::setMode(const QueryBuilderMode mode) {
+  mImpl->mode = mode;
+}
+const QueryBuilderMode SearchBuilder::getMode() const {
+  return mImpl->mode;
+}
 
 
 
@@ -318,11 +332,22 @@ IQuery* SearchBuilder::notQuery(const IQuery* query) {
   return qry;
 }
 
-
 IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value) {
+  if (QueryBuilderMode::ALL == mImpl->mode) {
+    return SearchBuilder::orQuery(std::vector<IQuery*>{SearchBuilder::jsonValueQuery(ref,value),SearchBuilder::xmlValueQuery(ref,value)});
+  } else if (QueryBuilderMode::XML == mImpl->mode) {
+    return SearchBuilder::xmlValueQuery(ref,value);
+  } else {
+    return SearchBuilder::jsonValueQuery(ref,value);
+  }
+}
+
+
+IQuery* SearchBuilder::jsonValueQuery(const std::string ref, const std::string value) {
   TIMED_FUNC(SearchBuilder_valueQuery);
   std::ostringstream oss;
   oss << "{\"value-query\":{";
+  // TODO WARNING BUG FOR JSON FIELDS: https://bugtrack.marklogic.com/41348 USE RANGE QUERIES INSTEAD (which sucks)
   oss << "\"json-property\": \"" << ref << "\",\"text\": [\"" << value << "\"]";
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
@@ -330,11 +355,47 @@ IQuery* SearchBuilder::valueQuery(const std::string ref, const std::string value
   return qry;
 }
 
+IQuery* SearchBuilder::xmlValueQuery(const std::string ref, const std::string value) {
+  TIMED_FUNC(SearchBuilder_valueQuery);
+  std::ostringstream oss;
+  oss << "{\"value-query\":{";
+  // TODO WARNING BUG FOR JSON FIELDS: https://bugtrack.marklogic.com/41348 USE RANGE QUERIES INSTEAD (which sucks)
+  oss << "\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"},\"text\": [\"" << value << "\"]";
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
 IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+  if (QueryBuilderMode::ALL == mImpl->mode) {
+    // TODO WARNING This function in ALL mode will not work due to bug: https://bugtrack.marklogic.com/41350
+    return SearchBuilder::orQuery(std::vector<IQuery*>{SearchBuilder::jsonRangeQuery(ref,op,value),SearchBuilder::xmlRangeQuery(ref,op,value)});
+  } else if (QueryBuilderMode::XML == mImpl->mode) {
+    return SearchBuilder::xmlRangeQuery(ref,op,value);
+  } else {
+    return SearchBuilder::jsonRangeQuery(ref,op,value);
+  }
+}
+
+IQuery* SearchBuilder::jsonRangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
   TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
-  oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": [\"" << value << "\"],\"range-operator\":\"" << op << "\"";
+  oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
+  // TODO support other types here too, multiple values, with options, and so on
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+  TIMED_FUNC(SearchBuilder_rangeQuery);
+  std::ostringstream oss;
+  oss << "{\"range-query\":{";
+  oss << "\"type\": \"xs:integer\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
+  oss << ",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
