@@ -2,6 +2,8 @@
 
 echo "-- Install dependencies for the Mac or Linux environments"
 
+mkdir -p bin
+
 BASE="$(dirname "$PWD")"
 ORIG=$PWD
 CPPREST=cpprestsdk
@@ -18,6 +20,8 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
 
   # Find which package manager is in use
   brew=`brew --version`
+  echo "  - Updating brew formulae"
+  brew update
   if [[ "$brew" =~ ^Homebrew.* ]]; then
     echo " - Using Homebrew package manager"
     if [[ "$curl" =~ .*command.* ]]; then
@@ -63,8 +67,9 @@ if [[ "$platform" =~ ^Darwin.* ]]; then
       echo "  - Installing Mono (For SWIG CSharp Bindings)"
       sudo port install mono
     else
-      echo " - FAILURE: Unknown Mac package manager (neither Homebrew or Macports installed)"
-      exit 1
+      echo " - WARNING: Unknown Mac package manager (neither Homebrew or Macports installed), trying to proceed anyway..."
+
+      #exit 1
     fi
   fi
 fi
@@ -73,7 +78,9 @@ if [[ "$platform" =~ ^Linux.* ]]; then
 
   if [[ "$platform" =~ .*Ubuntu.* ]]; then
     echo "-- Fetching dependencies for Ubuntu - will prompt for sudo password"
-    sudo apt-get install g++ git make libboost-all-dev libssl-dev cmake
+    sudo add-apt-repository -y ppa:boost-latest/ppa
+    sudo apt-get -y update
+    sudo apt-get -y install g++ git make gflags libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf libcppunit-dev
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
@@ -85,23 +92,42 @@ if [[ "$platform" =~ ^Linux.* ]]; then
     fi
     if [[ "$yum" =~ ^yum.* ]]; then
       echo " - Using the Yum package manager - will prompt for sudo password"
-      sudo yum install boost gcc git make boost-devel openssl openssl-devel cmake
+      sudo yum install boost gcc git make gflags boost-devel openssl openssl-devel cmake
     else
-      echo " - FAILURE: No yum package manager installed"
-      exit 1
+      echo " - WARNING: No Linux package manager installed, trying to proceed anyway..."
+      #exit 1
     fi
   fi
 fi
 
+echo "CMAKE_OPTIONS= ${CMAKE_OPTIONS}"
 echo "  - Installing glog from SOURCE (will ask to install as root)..."
-mkdir deps
+mkdir -p deps
 cd deps
 git clone https://github.com/google/glog.git
 cd glog
-./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
-make -j 8
-sudo make install
-cd ../..
+
+if [[ "$platform" =~ ^Darwin.* ]]; then
+  if [[ "$FORCE_ARCH" =~ ^x86_64.* ]]; then
+    ./configure 'LDFLAGS=-arch x86_64' 'CFLAGS=-arch x86_64' 'CXXFLAGS=-arch x86_64'
+  else
+    ./configure 'LDFLAGS=-arch i386 -arch x86_64' 'CFLAGS=-arch i386 -arch x86_64' 'CXXFLAGS=-arch i386 -arch x86_64'
+  fi
+  make -j 4
+  sudo make install
+  cd ../..
+else
+  # The following fixes a known bug with travis and the ./missing file on more recent autoconf versions
+  autoreconf --force --install
+  # silly ubuntu workaround - should work on all linux
+  mkdir build
+  cd build
+  export CXXFLAGS="-fPIC -Wno-redundant-move"
+  cmake .. -DBUILD_SHARED_LIBS=1 ${CMAKE_OPTIONS}
+  make VERBOSE=1
+  sudo make install
+  cd ../../..
+fi
 
 
 # Install cpprest from GitHub
@@ -110,7 +136,7 @@ echo "-- Downloading Microsoft's cpprest SDK (aka casablanca)"
 if [[ "$git" =~ ^git.* ]]; then
   echo " - Fetching repository master using git"
   cd $BASE
-  git clone https://github.com/Microsoft/cpprestsdk.git $CPPREST
+  git clone https://github.com/Microsoft/cpprestsdk.git --branch development --single-branch $CPPREST
   cd $ORIG
 else
   if [[ "$curl" =~ ^curl.* ]]; then
@@ -124,16 +150,20 @@ OSXU=
 if [[ "$platform" =~ ^Darwin.* ]]; then
   # Patch cpprest's CMake file to support OS X universal builds
   echo "-- Patching cpprest to support Mac OS X Universal builds"
-  OSXU=-DOSX_UNIVERSAL=1
+  if [[ "$FORCE_ARCH" =~ ^x86_64.* ]]; then
+    OSXU=
+  else
+    OSXU=-DOSX_UNIVERSAL=1
+  fi
   sed -E -i -e '/.*Compiler.*/r release/dependencies/cpprest-cmake.txt' $CPPREST_FOLDER/Release/CMakeLists.txt
 fi
 
 # Build dependencies
 echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will prompt for sudo password to install"
 cd $CPPREST_FOLDER
-mkdir build.debug
+mkdir -p build.debug
 cd build.debug
-cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug
+cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug ${CMAKE_OPTIONS} -DWERROR=0
 make -j 4
 echo " - Installing..."
 sudo make install
@@ -142,17 +172,18 @@ cd $ORIG
 # Test dependencies where possible (E.g. build and execute sample CPP file)
 
 # Output patchs to ./bin/build-deps-settings.sh
+mkdir -p $ORIG/bin
 F=$ORIG/bin/build-deps-settings.sh
 printf '#!/bin/sh\n' > $F
 printf '# USER EDITABLE SETTINGS BEGIN\n' >> $F
-printf 'WITH_LOGGING=0\n' >> $F
-printf '# General SWIG enabling' >> $F
+printf 'WITH_LOGGING=1\n' >> $F
+printf '# General SWIG enabling\n' >> $F
 printf 'WITH_SWIG=0\n' >> $F
-printf '# Specific SWIG wrapper enabling' >> $F
+printf '# Specific SWIG wrapper enabling\n' >> $F
 printf 'WITH_PYTHON=0\n' >> $F
 printf 'WITH_CSHARP=0\n' >> $F
-printf '# Other settings' >> $F
-printf 'WITH_TESTS=0\n' >> $F
+printf '# Other settings\n' >> $F
+printf 'WITH_TESTS=1\n' >> $F
 printf 'WITH_DOCS=0\n' >> $F
 printf 'WITH_SAMPLES=0\n' >> $F
 printf '# BUILD_TYPE can be Debug or Release. Release uses compiler optimisations.\n' >> $F
@@ -161,7 +192,7 @@ printf '# USER EDITABLE SETTINGS END\n' >> $F
 printf 'echo "-- Setting MLCPlusPlus dependency settings"\n' >> $F
 printf 'export CPPRESTSDK_HOME=%s\n' "$CPPREST_FOLDER" >> $F
 printf 'export MLCPLUSPLUS_HOME=%s\n' "$ORIG" >> $F
-printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DWITH_LOGGING=$WITH_LOGGING -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
+printf 'export CMAKE_OPTIONS="%s -DWITH_SWIG=$WITH_SWIG -DWITH_CSHARP=$WITH_CSHARP -DWITH_PYTHON=$WITH_PYTHON -DWITH_TESTS=$WITH_TESTS -DWITH_DOCS=$WITH_DOCS -DWITH_SAMPLES=$WITH_SAMPLES -DWITH_LOGGING=$WITH_LOGGING -DWITHOUT_MARKLOGIC=$WITHOUT_MARKLOGIC $CMAKE_OPTIONS -DCMAKE_BUILD_TYPE=$BUILD_TYPE"\n' "$OSXU" >> $F
 printf 'echo "-- Done"\n' >> $F
 #printf 'exit 0\n' >> $F
 

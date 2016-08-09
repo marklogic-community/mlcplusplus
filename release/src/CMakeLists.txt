@@ -27,6 +27,9 @@ add_library (mlclient SHARED
     SearchDescription.cpp
     SearchResult.cpp
     SearchResultSet.cpp
+    
+    Permission.cpp
+    Document.cpp
 
     internals/AuthenticatingProxy.cpp
     internals/AuthorizationBuilder.cpp
@@ -41,6 +44,7 @@ add_library (mlclient SHARED
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
     utilities/PugiXmlDocumentContent.cpp
+    utilities/DocumentHelper.cpp
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp
@@ -96,11 +100,13 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 #  )
 
 target_link_libraries (mlclient
-    libcpprest.dylib
 #    libcommon_utilities.dylib
-    libssl.dylib
-    libcrypto.dylib
 #    libpugixml.a
+    ${GLOG_LIB}
+    ${OPENSSL_LIBRARIES}
+    ${LIBSSL_LIB}
+    ${LIBCRYPTO_LIB}
+    ${CPPREST_LIB}
     ${Casablanca_LIBRARIES}
 )
 

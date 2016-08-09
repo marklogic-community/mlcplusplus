@@ -42,6 +42,11 @@ ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
   return tdc; // TODO ensure this doesn't get nixed
 }
 
+ITextDocumentContent* CppRestJsonHelper::toDocument(const Response& resp) {
+  web::json::value val = CppRestJsonHelper::fromResponse(resp);
+  return CppRestJsonHelper::toDocument(val);
+}
+
 const web::json::value CppRestJsonHelper::fromDocument(const CppRestJsonDocumentContent& dc) {
   TIMED_FUNC(CppRestJsonHelper_fromDocument_CppRestJsonDocumentContent);
   return dc.getJson();
@@ -64,6 +69,28 @@ web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   } else {
     throw InvalidFormatException();
   }
+}
+
+std::vector<Permission> CppRestJsonHelper::permissionsFromResponse(const Response& resp) {
+  web::json::value root = fromResponse(resp);
+  web::json::value perms = root.at(utility::conversions::to_string_t("permissions"));
+  web::json::array arr = perms.as_array();
+  std::vector<Permission> permissions;
+  for (auto iter = arr.begin();iter != arr.end();++iter) {
+    web::json::value p = *iter;
+    web::json::value caps = p.at(utility::conversions::to_string_t("capabilities"));
+    web::json::array capArray = caps.as_array();
+    for (auto capIter = capArray.begin();capIter != capArray.end();++capIter) {
+      web::json::value cap = *capIter;
+      permissions.push_back(
+          std::move(
+              Permission(utility::conversions::to_utf8string(p.at(utility::conversions::to_string_t("role-name")).as_string()),
+                         toCapability(utility::conversions::to_utf8string(cap.as_string())))
+          )
+      );
+    }
+  }
+  return permissions;
 }
 
 /*

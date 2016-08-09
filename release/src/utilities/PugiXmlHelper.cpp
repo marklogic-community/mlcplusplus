@@ -50,6 +50,10 @@ ITextDocumentContent* PugiXmlHelper::toDocument(const std::string& content) {
   return toDocument(*doc);
 }
 
+ITextDocumentContent* PugiXmlHelper::toDocument(const Response& resp) {
+  return toDocument(*fromResponse(resp));
+}
+
 pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(PugiXmlHelper_fromDocument);
   // TODO handle invalid cast exception

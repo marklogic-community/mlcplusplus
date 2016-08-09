@@ -1,5 +1,5 @@
 #!/bin/sh
-. settings.sh
+. ./settings.sh
 cd bin
 echo "-- Cleaning away compiled binaries - You may need to run this as root to clear everything"
 #cmake --build . --target clean

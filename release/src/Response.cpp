@@ -222,7 +222,7 @@ public:
   ResponseType parseContentTypeHeader(const std::string& content) {
     TIMED_FUNC(Response_parseContentTypeHeader);
     std::smatch matches;
-    enum ResponseType result = ResponseType::BINARY;
+    ResponseType result = ResponseType::BINARY;
     if (std::regex_search(content, matches, content_type_re)) {
       std::string major = matches[1];
       std::string minor = matches[2];
@@ -261,7 +261,7 @@ void Response::setResponseCode(const ResponseCode& code) {
   mImpl->responseCode = code;
 }
 
-void Response::setResponseType(const enum ResponseType& type) {
+void Response::setResponseType(const ResponseType& type) {
   mImpl->responseType = type;
 }
 

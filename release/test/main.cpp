@@ -69,7 +69,7 @@ int main(int argc, const char * argv[])
   try {
     CppUnit::TextUi::TestRunner runner;
     runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-    wasSuccessful = runner.run( "", true,true,true );
+    wasSuccessful = runner.run( "", false,true,true );
   } catch (std::exception& e) {
     LOG(DEBUG) << "EXCEPTION RUNNING TESTS: " << e.what();
   }

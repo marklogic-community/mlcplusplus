@@ -25,6 +25,7 @@
 #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/SearchResult.hpp"
+#include "mlclient/Permission.hpp"
 // I don't mind exposing these in an optional helper class
 #include <cpprest/http_client.h>
 
@@ -73,6 +74,8 @@ public:
    * \return A IDocumentContent instance wrapping the value
    */
   MLCLIENT_API static ITextDocumentContent* toDocument(web::json::value& json);
+
+  MLCLIENT_API static ITextDocumentContent* toDocument(const Response& resp);
   /**
    * \brief Creates a web::json::value from a IDocumentContent instance.
    *
@@ -94,6 +97,8 @@ public:
    * \return A Microsoft cpprest API web::json::value instance created from the Response.
    */
   MLCLIENT_API static web::json::value fromResponse(const Response& resp);
+
+  MLCLIENT_API static std::vector<Permission> permissionsFromResponse(const Response& resp);
 
   //MLCLIENT_API static web::json::value fromSearchResult(const SearchResult& result);
   /// @}

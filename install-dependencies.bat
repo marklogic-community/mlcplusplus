@@ -38,6 +38,7 @@ echo " - Downloading Microsoft's cpprest (casablanca) dependencies..."
 echo "-- Building Microsoft's cpprest (casablanca) library for %PLATFORM%"
 
 echo "-- Creating .\bin\build-deps-settings.bat"
+mkdir bin
 
 echo "-- Testing dependencies by building test programme"
 
