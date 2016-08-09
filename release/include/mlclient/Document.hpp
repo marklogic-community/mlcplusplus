@@ -26,22 +26,38 @@ namespace mlclient {
 class Document {
 public:
   Document();
-  virtual ~Document();
+  Document(const std::string& uri);
+  Document(const std::string& uri,IDocumentContent* own_content);
+  Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties);
+  Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties,std::vector<Permission> own_permissions);
+  virtual ~Document() = default;
 
   const std::string& getUri() const;
   void setUri(const std::string& uri);
+  const bool hasUri() const;
+
+  const std::vector<std::string> getCollections() const;
+  void setCollections(const std::vector<std::string>& collections);
+  const bool hasCollections() const;
 
   const IDocumentContent* getContent() const;
+  const bool hasContent() const;
   void setContent(IDocumentContent* own_content);
 
   const IDocumentContent* getProperties() const;
+  const bool hasProperties() const;
   void setProperties(IDocumentContent* own_properties);
 
   const std::vector<Permission> getPermissions() const;
+  const bool hasPermissions() const;
   void setPermissions(std::vector<Permission> own_permissions);
 
 private:
-
+  std::string uri;
+  IDocumentContent* content;
+  IDocumentContent* properties;
+  std::vector<Permission> permissions;
+  std::vector<std::string> collections;
 };
 
 } // end namespace mlclient

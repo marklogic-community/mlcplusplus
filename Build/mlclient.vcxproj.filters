@@ -109,6 +109,15 @@
     <ClCompile Include="..\release\src\utilities\PugiXmlDocumentContent.cpp">
       <Filter>Source Files\src\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\release\src\utilities\DocumentHelper.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\Permission.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\Document.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -208,6 +217,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlDocumentContent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentHelper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

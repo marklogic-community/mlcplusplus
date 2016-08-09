@@ -27,6 +27,7 @@
 #include "mlclient/Response.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
+#include <mlclient/Document.hpp>
 
 /**
  * \brief the namespace which wraps all Core Public C++ API classes.
@@ -223,6 +224,46 @@ public:
   MLCLIENT_API virtual Response* getDocument(const std::string& uri) = 0; /// TODO add optional call parameters (E.g. fetch properties also)
 
   /**
+   *
+   * \brief Retrieves a document from the server, at the given document URI (MarkLogic unique document ID, within the Document object)
+   *
+   * \note This method differs from getDocument(const std::string& uri) in that it populates the document specified, rather than returning
+   * a document from the method (or within the response). This method fetches ALL of document content AND properties AND collections AND permissions
+   *
+   * Performs a GET /v1/documents?uri HTTP call, fetching all document information.
+   *
+   * \param[inout] inout_document The document to fetch from MarkLogic Server. MUST have a URI.
+   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   *
+   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
+   * or permission is denied for this request.
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* getDocument(Document& inout_document) = 0;
+
+  /**
+   * \brief Populates the content of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentContent(Document& inout_document) = 0;
+
+  /**
+   * \brief Populates the properties of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentProperties(Document& inout_document) = 0;
+
+  /**
+   * \brief Populates the permissions of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentPermissions(Document& inout_document) = 0;
+
+  /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
    * Performs a call to PUT /v1/documents?ext in order to save a Document to MarkLogic Server
@@ -237,6 +278,21 @@ public:
    * \since 8.0.0
    */
   MLCLIENT_API virtual Response* saveDocument(const std::string& uri,const IDocumentContent& payload) = 0;
+
+  /**
+   * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
+   *
+   * Performs a call to PUT /v1/documents?ext in order to save a Document to MarkLogic Server
+   *
+   * \param[in] Document The \link Document \endlink to send to MarkLogic Server. Must have a URI and Content DocumentContent instance.
+   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   *
+   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
+   * or permission is denied for this request.
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* saveDocument(const Document& doc) = 0;
 
   /**
    * \brief Deletes the specified document by URI
@@ -543,6 +599,46 @@ public:
   MLCLIENT_API Response* getDocument(const std::string& uri) override;
 
   /**
+   *
+   * \brief Retrieves a document from the server, at the given document URI (MarkLogic unique document ID, within the Document object)
+   *
+   * \note This method differs from getDocument(const std::string& uri) in that it populates the document specified, rather than returning
+   * a document from the method (or within the response). This method fetches ALL of document content AND properties AND collections AND permissions
+   *
+   * Performs a GET /v1/documents?uri HTTP call, fetching all document information.
+   *
+   * \param[inout] inout_document The document to fetch from MarkLogic Server. MUST have a URI.
+   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   *
+   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
+   * or permission is denied for this request.
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* getDocument(Document& inout_document) override;
+
+  /**
+   * \brief Populates the content of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentContent(Document& inout_document) override;
+
+  /**
+   * \brief Populates the properties of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentProperties(Document& inout_document) override;
+
+  /**
+   * \brief Populates the permissions of the specified document (MUST have a uri).
+   *
+   * See getDocument(Document&) for details.
+   */
+  MLCLIENT_API virtual Response* getDocumentPermissions(Document& inout_document) override;
+
+  /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
    * Performs a call to PUT /v1/documents?ext in order to save a Document to MarkLogic Server
@@ -557,6 +653,8 @@ public:
    * \since 8.0.0
    */
   MLCLIENT_API Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
+
+  MLCLIENT_API Response* saveDocument(const Document& doc) override;
 
   /**
    * \brief Deletes the specified document by URI

@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="..\release\src\Connection.cpp" />
     <ClCompile Include="..\release\src\ConnectionWrapper.cpp" />
+    <ClCompile Include="..\release\src\Document.cpp" />
     <ClCompile Include="..\release\src\DocumentContent.cpp" />
     <ClCompile Include="..\release\src\ext\pugixml\pugixml.cpp" />
     <ClCompile Include="..\release\src\HttpHeaders.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="..\release\src\InvalidFormatException.cpp" />
     <ClCompile Include="..\release\src\mlclient.cpp" />
     <ClCompile Include="..\release\src\NoCredentialsException.cpp" />
+    <ClCompile Include="..\release\src\Permission.cpp" />
     <ClCompile Include="..\release\src\Response.cpp" />
     <ClCompile Include="..\release\src\ResponseWrapper.cpp" />
     <ClCompile Include="..\release\src\SearchDescription.cpp" />
@@ -150,6 +152,7 @@
     <ClCompile Include="..\release\src\SearchResultSet.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\DocumentHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp" />
@@ -187,6 +190,7 @@
     <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp" />

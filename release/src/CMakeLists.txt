@@ -27,6 +27,9 @@ add_library (mlclient SHARED
     SearchDescription.cpp
     SearchResult.cpp
     SearchResultSet.cpp
+    
+    Permission.cpp
+    Document.cpp
 
     internals/AuthenticatingProxy.cpp
     internals/AuthorizationBuilder.cpp
@@ -41,6 +44,7 @@ add_library (mlclient SHARED
     utilities/CppRestJsonDocumentContent.cpp
     utilities/PugiXmlHelper.cpp
     utilities/PugiXmlDocumentContent.cpp
+    utilities/DocumentHelper.cpp
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp

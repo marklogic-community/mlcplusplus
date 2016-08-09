@@ -15,10 +15,14 @@
 #include "mlclient/Connection.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/DocumentContent.hpp"
+#include "mlclient/Document.hpp"
 #include "mlclient/SearchDescription.hpp"
 
 #include "mlclient/internals/Credentials.hpp"
 #include "mlclient/internals/AuthenticatingProxy.hpp"
+
+#include "mlclient/utilities/DocumentHelper.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
 
 #include "mlclient/logging.hpp"
 
@@ -121,11 +125,46 @@ Response* Connection::getDocument(const std::string& uri) {
   return mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?uri=" + uri); // TODO escape URI for URL rules
 }
 
+Response* Connection::getDocument(Document& inout_document) {
+  TIMED_FUNC(Connection_getDocument__Document);
+  // TODO other categories too
+  Response* resp = mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?category=content&uri=" + inout_document.getUri()); // TODO escape URI for URL rules
+  mlclient::utilities::DocumentHelper::fromResponse(*resp,inout_document);
+  return resp;
+}
+
+Response* Connection::getDocumentContent(Document& inout_document) {
+  TIMED_FUNC(Connection_getDocument__Document);
+  Response* resp = mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?category=content&uri=" + inout_document.getUri()); // TODO escape URI for URL rules
+  mlclient::utilities::DocumentHelper::fromResponse(*resp,inout_document);
+  return resp;
+}
+
+Response* Connection::getDocumentProperties(Document& inout_document) {
+  TIMED_FUNC(Connection_getDocument__Document);
+  Response* resp = mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?category=properties&uri=" + inout_document.getUri()); // TODO escape URI for URL rules
+  inout_document.setProperties(mlclient::utilities::DocumentHelper::contentFromResponse(*resp));
+  return resp;
+}
+
+Response* Connection::getDocumentPermissions(Document& inout_document) {
+  TIMED_FUNC(Connection_getDocument__Document);
+  Response* resp = mImpl->proxy.getSync(mImpl->serverUrl, "/v1/documents?category=permissions&uri=" + inout_document.getUri()); // TODO escape URI for URL rules
+  std::vector<Permission> perms(mlclient::utilities::CppRestJsonHelper::permissionsFromResponse(*resp));
+  inout_document.setPermissions(perms);
+  return resp;
+}
+
 Response* Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_saveDocument);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       "/v1/documents?uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
       payload);
+}
+
+Response* Connection::saveDocument(const Document& doc) {
+  TIMED_FUNC(Connection_saveDocument__Document);
+  return saveDocument(doc.getUri(),*(doc.getContent()));
 }
 
 Response* Connection::deleteDocument(const std::string& uri) {

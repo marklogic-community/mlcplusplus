@@ -62,6 +62,8 @@ public:
    */
   MLCLIENT_API static ITextDocumentContent* toDocument(const std::string& content);
 
+  MLCLIENT_API static ITextDocumentContent* toDocument(const Response& resp);
+
   /**
    * \brief Extracts a pugi::xml_document instance from a IDocumentContent object.
    *
