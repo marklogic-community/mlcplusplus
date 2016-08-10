@@ -185,7 +185,7 @@ JsonPropertyRef::JsonPropertyRef() : value() {
 }
 
 std::ostream& JsonPropertyRef::write(std::ostream& os) const {
-  os << value;
+  os << "\"json-property\":\"" << value << "\"";
   return os;
 }
 /*
@@ -202,7 +202,7 @@ std::string& operator +(std::string& s, const JsonPropertyRef& rt) {
 }*/
 
 void JsonPropertyRef::setProperty(const std::string& property) {
-  // TODO set the property json
+  value = property;
 }
 
 

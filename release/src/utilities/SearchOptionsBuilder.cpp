@@ -708,7 +708,7 @@ std::string& operator +(std::string& s, const ValuesInfo& rt) {
 }
 const std::string translate(const ValuesInfo& rt) {
   std::ostringstream os;
-  os << "\"values\": {\"style\":\"consistent\",\"name\":\"" << rt.getName() << "\"";
+  os << "{\"style\":\"consistent\",\"name\":\"" << rt.getName() << "\"";
   if (rt.hasLexicon()) {
     os << "," << *(rt.getLexicon()); // NEED TO IMPLEMENT WRITE VIRTUAL PURE FUNCTION AND FRIEND IT
   }
@@ -828,15 +828,15 @@ ITextDocumentContent* SearchOptionsBuilder::toDocument() {
   oss << "{\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
   // values options, if present
   if (0 != mImpl->values.size()) {
-    oss << "\"values\":[";
+    oss << ",\"values\":[";
     bool first = true;
     for (auto iter = mImpl->values.begin();iter != mImpl->values.end();++iter) {
       if (first) {
         first = false;
-      } {
+      } else {
         oss << ",";
       }
-      oss << "{" << *(iter) << "}"; // uses class' << unary operator
+      oss << *(iter); // uses class' << unary operator
     }
     oss << "]";
   }
