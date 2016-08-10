@@ -188,6 +188,14 @@ Response* Connection::search(const SearchDescription& desc) {
   return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *payload);
 }
 
+Response* Connection::saveSearchOptions(const std::string& name,const IDocumentContent* optionsDoc) {
+  TIMED_FUNC(Connection_saveSearchOptions);
+  LOG(DEBUG) << "In Connection::saveSearchOptions";
+  std::ostringstream urlss;
+  urlss << "/v1/config/query/" << name;
+  return mImpl->proxy.putSync(mImpl->serverUrl,urlss.str(), *optionsDoc);
+}
+
 Response* Connection::listRootCollections() {
   TIMED_FUNC(Connection_listRootCollections);
   return listCollections(""); // TODO Check this works and doesn't require a "/"

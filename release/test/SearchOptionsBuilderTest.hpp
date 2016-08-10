@@ -1,12 +1,12 @@
 /*
- * SearchBuilderTest.hpp
+ * SearchoptionsBuilderTest.hpp
  *
- *  Created on: 26 May 2016
+ *  Created on: 10 Aug 2016
  *      Author: adamfowler
  */
 
-#ifndef TEST_SEARCHBUILDERTEST_HPP_
-#define TEST_SEARCHBUILDERTEST_HPP_
+#ifndef TEST_SEARCHOPTIONSBUILDERTEST_HPP_
+#define TEST_SEARCHOPTIONSBUILDERTEST_HPP_
 
 #include <cppunit/Test.h>
 #include <cppunit/TestCase.h>
@@ -18,17 +18,19 @@
 
 using namespace mlclient;
 
-class SearchBuilderTest : public CppUnit::TestCase {
-  CPPUNIT_TEST_SUITE(SearchBuilderTest);
+class SearchOptionsBuilderTest : public CppUnit::TestCase {
+  CPPUNIT_TEST_SUITE(SearchOptionsBuilderTest);
     CPPUNIT_TEST(testAll);
+    CPPUNIT_TEST(testSave);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testAll(void);
+  void testSave(void);
 private:
   IConnection* ml;
 };
 
-#endif /* TEST_SEARCHBUILDERTEST_HPP_ */
+#endif /* TEST_SEARCHOPTIONSBUILDERTEST_HPP_ */

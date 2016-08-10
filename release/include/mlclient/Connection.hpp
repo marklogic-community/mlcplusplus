@@ -324,6 +324,15 @@ public:
    */
   MLCLIENT_API virtual Response* search(const SearchDescription& desc) = 0;
 
+  /**
+   * \brief Saves search options to the server.
+   *
+   * \param[in] name The name of the options on the server
+   * \param[in] optionsDoc The document containing the options
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* saveSearchOptions(const std::string& name,const IDocumentContent* optionsDoc) = 0;
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
@@ -677,7 +686,7 @@ public:
    * Performs a POST /v1/search HTTP POST to MarkLogic Server
    *
    * \param[in] desc The SearchDescription defining the search, options, and query string
-   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   * \return A unique_ptr for the \link Response \endlink object. The caller is responsible for deleting the pointer.
    *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
@@ -686,6 +695,15 @@ public:
    */
   MLCLIENT_API Response* search(const SearchDescription& desc) override;
 
+  /**
+   * \brief Saves search options to the server.
+   *
+   * \param[in] name The name of the options on the server
+   * \param[in] optionsDoc The document containing the options
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API Response* saveSearchOptions(const std::string& name,const IDocumentContent* optionsDoc) override;
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character

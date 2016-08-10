@@ -362,7 +362,7 @@ public:
       const std::map<ValuesOption::t,std::string>& valuesOption);
 
   MLCLIENT_API void fromDocument(const ITextDocumentContent& doc);
-  MLCLIENT_API ITextDocumentContent* toDocument();
+  MLCLIENT_API ITextDocumentContent* toDocument(bool asObject = false);
 
 private:
   class Impl; // forward declaration - hides underlying API dependencies
