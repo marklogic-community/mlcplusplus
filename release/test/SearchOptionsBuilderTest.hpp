@@ -21,12 +21,14 @@ using namespace mlclient;
 class SearchOptionsBuilderTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(SearchOptionsBuilderTest);
     CPPUNIT_TEST(testAll);
+    CPPUNIT_TEST(testSave);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testAll(void);
+  void testSave(void);
 private:
   IConnection* ml;
 };

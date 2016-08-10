@@ -129,7 +129,7 @@ std::string& operator +(std::string& s, const FragmentScope::t& rt) {
 const std::string translate(const FragmentScope::t& rt) {
   switch (rt) {
   case FragmentScope::CONTENT:
-    return "content";
+    return "documents";
   case FragmentScope::PROPERTIES:
     return "properties";
   }
@@ -450,7 +450,7 @@ const std::string translate(const RangeOptions& rt) {
   }
   // TODO bucket and computed bucket
   if (rt.hasFacetOptions()) {
-    os << "\"facet-options\":[";
+    os << "\"facet-option\":[";
     std::map<FacetOption::t,std::string> fo = rt.getFacetOptions();
     bool first = true;
     for (auto iter = fo.begin();iter != fo.end();++iter) {
@@ -822,10 +822,13 @@ void SearchOptionsBuilder::fromDocument(const ITextDocumentContent& doc) {
   // TODO complete this, parse, and extract values
 }
 
-ITextDocumentContent* SearchOptionsBuilder::toDocument() {
+ITextDocumentContent* SearchOptionsBuilder::toDocument(bool asObject) {
   TIMED_FUNC(SearchOptionsBuilder_toDocument);
   std::ostringstream oss;
-  oss << "{\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
+  if (asObject) {
+    oss << "{\"options\":{";
+  }
+  oss << "\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
   // values options, if present
   if (0 != mImpl->values.size()) {
     oss << ",\"values\":[";
@@ -842,6 +845,9 @@ ITextDocumentContent* SearchOptionsBuilder::toDocument() {
   }
   // TODO other JSON attributes
   oss << "}";
+  if (asObject) {
+    oss << "}";
+  }
 
   GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
   tdc->setContent(oss.str());
