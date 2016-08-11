@@ -216,6 +216,8 @@ public:
    * \param[in] uri The URI of the document to fetch from MarkLogic Server
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testGetJson and \ref ConnectionDocumentCrudTest::testGetXml and \ref ConnectionDocumentCrudTest::testGetText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -272,6 +274,8 @@ public:
    * \param[in] payload The \link DocumentContent \endlink to send to MarkLogic Server
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testSaveJson and \ref ConnectionDocumentCrudTest::testSaveXml and \ref ConnectionDocumentCrudTest::testSaveText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -300,6 +304,8 @@ public:
    * \param[in] uri The document URI to delete
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testDeleteJson and \ref ConnectionDocumentCrudTest::testDeleteXml and \ref ConnectionDocumentCrudTest::testDeleteText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -316,6 +322,9 @@ public:
    *
    * \param[in] desc The SearchDescription defining the search, options, and query string
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
+   *
+   * \test Tested directly by \ref ConnectionSearchTest::testEmptySearch and \ref ConnectionSearchTest::testQueryText and \ref ConnectionSearchTest::testWordQuery
+   *       Tested indirectly by tests within \ref SearchBuilderTest and \ref SearchResultSetTest
    *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
@@ -347,6 +356,8 @@ public:
    * \param[in] optionsName The name of the options on the server
    * \param[in] optionsDoc The document containing the options
    *
+   * \test Tested by SearchOptionsBuilderTest::testSave
+   *
    * \since 8.0.2
    */
   MLCLIENT_API virtual Response* saveSearchOptions(const std::string& optionsName,const IDocumentContent* optionsDoc) = 0;
@@ -357,6 +368,8 @@ public:
    * \note What is returned from the call is entirely dependent upon the search options configuration used.
    *
    * \note Invokes GET /v1/values/VALUESNAME?options=OPTIONSNAME
+   *
+   * \test Tested by ConnectionValuesTest::testValues
    *
    * \param[in] valuesName The name of the values Configuration within the search options to use
    * \param[in] optionsName The name of the installed search options to specify (no default)
@@ -381,6 +394,8 @@ public:
    * \note Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName
    * variable is passed to the 'values' parameter on the querystring of the request.
    *
+   * \test Tested by ConnectionValuesTest::testValuesExtension
+   *
    * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
    * \param[in] valuesName The name of the values Configuration within the search options to use
    * \param[in] optionsName The name of the installed search options to specify (no default)
@@ -395,6 +410,8 @@ public:
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
    *
+   * \test Tested by ConnectionCollectionsTest::testListRootCollections
+   *
    * \since 8.0.2
    */
   MLCLIENT_API virtual Response* listRootCollections() = 0;
@@ -403,6 +420,8 @@ public:
    * \brief Lists the immediate child collections of the specified parent Collections.
    * \note Parent collection must start with a /
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   *
+   * \test Tested indirectly by ConnectionCollectionsTest::testListRootCollections (the Connection::listRootCollections function calls this function directly)
    *
    * \since 8.0.2
    */

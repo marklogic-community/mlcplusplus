@@ -24,12 +24,12 @@ namespace mlclient {
  * A SearchResult in MarkLogic Server consistent of not just the result itself, but also its metadata.
  * Indeed, using the "none" snippet option means no content is returned, leaving just the metadata.
  */
-MLCLIENT_API class SearchResult {
+class SearchResult {
 public:
   /**
    * Represents one of the snippetting options in use by the search result
    */
-  MLCLIENT_API enum DETAIL {
+  enum DETAIL {
     SNIPPETS, CONTENT, NONE, CUSTOM
   };
   /**

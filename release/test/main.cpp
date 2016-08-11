@@ -32,6 +32,9 @@
 
 int main(int argc, const char * argv[])
 {
+
+  mlclient::reconfigureLogging(argc,argv);
+
   std::cout << "in main" << std::endl;
 
   bool wasSuccessful = false;

@@ -27,6 +27,10 @@
 #define MLCLIENT_API __declspec(dllimport)
 #endif
 
+#include <ostream>
+#include <sstream>
+#include <string>
+
 /*
 namespace mlclient {
   MLCLIENT_API el::base::type::StoragePointer sharedLoggingRepository();

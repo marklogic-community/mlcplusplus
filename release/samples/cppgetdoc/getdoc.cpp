@@ -15,20 +15,26 @@
  *  Created by Paul Hoehne on 27 May 2014.
  */
 
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include "mlclient/utilities/PugiXmlHelper.hpp"
-#include <iostream>
-
-#include "mlclient/Connection.hpp"
-#include "mlclient/Response.hpp"
 #include "ConnectionFactory.hpp"
+
+#include <mlclient/utilities/CppRestJsonHelper.hpp>
+#include <mlclient/utilities/PugiXmlHelper.hpp>
+
+#include <mlclient/Connection.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/logging.hpp>
+
+#include <iostream>
 
 int main(int argc, const char * argv[])
 {
   using namespace mlclient;
   using namespace mlclient::utilities;
 
-  std::cout << "Running getdoc..." << std::endl;
+  mlclient::reconfigureLogging(argc,argv);
+
+  //std::cout << "Running getdoc..." << std::endl;
+  LOG(DEBUG) << "Running getdoc...";
 
   Connection* ml = ConnectionFactory::getConnection();
 
@@ -40,11 +46,21 @@ int main(int argc, const char * argv[])
   const Response* rp = ml->getDocument(uri); // MUST keep local reference to unique_ptr for this to work!!!
 
   ResponseType rt = rp->getResponseType();
-  std::cout << "Response type: " << rt << std::endl;
-  if (ResponseType::JSON == rt) { std::cout << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(*rp) << std::endl; }
-  if (ResponseType::XML == rt) { std::cout << "This is XML doc " << uri << ": " << std::endl;PugiXmlHelper::fromResponse(*rp)->save(std::cout); std::cout << std::endl; }
+  //std::cout << "Response type: " << rt << std::endl;
+  LOG(DEBUG) << "Response type: " << rt;
+  if (ResponseType::JSON == rt) {
+    //std::cout << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(*rp) << std::endl;
+    LOG(DEBUG) << "This is JSON doc " << uri << ": " << std::endl << CppRestJsonHelper::fromResponse(*rp);
+  }
+  if (ResponseType::XML == rt) {
+    //std::cout << "This is XML doc " << uri << ": " << std::endl;
+    //PugiXmlHelper::fromResponse(*rp)->save(std::cout); std::cout << std::endl;
+    LOG(DEBUG) << "This is XML doc " << uri << ": ";
+    PugiXmlHelper::fromResponse(*rp)->save(LOG(DEBUG)); // TODO check this works as expected
+  }
 
-  std::cout << "getdoc complete" << std::endl;
+  //std::cout << "getdoc complete" << std::endl;
+  LOG(DEBUG) << "getdoc complete";
   return 0;
 }
 

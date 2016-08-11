@@ -9,7 +9,7 @@
 #ifndef INCLUDE_MLCLIENT_LOGGING_HPP_
 #define INCLUDE_MLCLIENT_LOGGING_HPP_
 
-#include "mlclient/mlclient.hpp"
+#include <mlclient/mlclient.hpp>
 
 #include <ostream>
 #include <sstream>
@@ -61,6 +61,8 @@ struct basic_nullbuf : std::basic_streambuf<Ch, Traits> {
 typedef basic_nullbuf<char> nullbuf;
 typedef basic_nullbuf<wchar_t> wnullbuf;
 
+//MLCLIENT_API typedef std::ostream MLLOGSTREAM;
+
 // buffers and streams
 // in some .h
 extern std::ostream cnull;
@@ -87,6 +89,50 @@ extern std::ostream cnull;
 // END LOGGING INIT
 
 namespace mlclient {
+
+/**
+ * \brief LoggingConfiguration to use
+ *
+ * Use alongside \link reconfigureLogging() \endlink .
+ */
+struct LoggingConfiguration {
+  /** \brief The folder to log to **/
+  std::string folder = "";
+
+  /** \brief The level. INFO or DEBUG strings **/
+  std::string level = "INFO";
+
+  /** Log to stdout too? */
+  bool toerr = false;
+};
+
+/*
+ * \brief Initialises logging, once, globally, for this library only.
+ *
+ * \note Normally called once via a global function in mlclient.cpp.
+ *
+ * \since 8.0.2
+ */
+void libraryLoggingInit();
+
+/**
+ * \brief Reconfigure logging from command line args
+ *
+ * --log-folder "/some/folder/location" Specifies the folder within which logging is done (and enables file logging), disabled by default
+ * --log-level INFO|DEBUG Specify either INFO or DEBUG log level. Defaults to INFO in Release builds, or DEBUG in Debug builds.
+ * --log-stdout true Specify log messages should also be copied to stdout (the terminal, typically). Defaults to false
+ *
+ * \since 8.0.2
+ */
+MLCLIENT_API void reconfigureLogging(int argc,const char * argv[]);
+
+/**
+ * \brief Reconfigures logging from a LoggingConfiguration struct
+ *
+ * \param[in] config The LoggingConfiguration to use
+ */
+MLCLIENT_API void reconfigureLoggingSettings(const LoggingConfiguration& config);
+
 } // end namespace mlclient
 
 #endif /* INCLUDE_MLCLIENT_LOGGING_HPP_ */

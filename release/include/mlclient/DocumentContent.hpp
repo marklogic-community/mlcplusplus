@@ -43,7 +43,7 @@ namespace mlclient {
  *
  * \note This is an abstract class designed for extending, and cannot be instantiated directly.
  */
-MLCLIENT_API class IDocumentContent {
+class IDocumentContent {
 public:
   // default constructor creation by compiler
   /**
