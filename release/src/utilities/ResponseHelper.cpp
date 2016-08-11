@@ -21,6 +21,8 @@
 #include "mlclient/utilities/ResponseHelper.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
 
+#include "mlclient/logging.hpp"
+
 #include <cpprest/http_client.h>
 
 #include <iostream>
@@ -67,6 +69,29 @@ std::vector<std::string> ResponseHelper::getSuggestions(const Response& resp) {
     suggestions.push_back(utility::conversions::to_utf8string(iter.as_string()));
   }
   return suggestions;
+}
+
+double ResponseHelper::getAggregateResult(const Response& resp,const std::string& aggName) {
+  // TODO add checks for JSON or XML - don't just assume JSON
+  const web::json::value doc(CppRestJsonHelper::fromResponse(resp));
+  const web::json::object jsonObject(doc.as_object());
+  const web::json::object vr(jsonObject.at(U("values-response")).as_object());
+  const web::json::array aggArray(vr.at(U("aggregate-result")).as_array());
+
+  for (auto& iter: aggArray) {
+    const web::json::object agg = iter.as_object();
+    if (0 == strcmp(aggName.c_str(), utility::conversions::to_utf8string(agg.at(U("name")).as_string()).c_str())) {
+      std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string()); // TODO possible to have non double response from range index aggregates???
+      LOG(DEBUG) << "ResponseHelper::getAggregateResult: Double string: " << doubleString;
+      // Encoded as a string in the response, NOT as a number - must convert in C++
+      std::istringstream i(doubleString);
+         double x;
+         if (!(i >> x))
+           return -1; // format failure - TODO decide if we should throw an InvalidFormatException here
+         return x;
+    }
+  }
+  return -1; // TODO return negative infinity, or some other such error result
 }
 
 } // end namespace utilities

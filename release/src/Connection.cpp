@@ -196,6 +196,13 @@ Response* Connection::saveSearchOptions(const std::string& name,const IDocumentC
   return mImpl->proxy.putSync(mImpl->serverUrl,urlss.str(), *optionsDoc);
 }
 
+Response* Connection::values(const std::string& valuesName,const std::string& optionsName) {
+  TIMED_FUNC(Connection_valuesAggregate);
+  std::ostringstream urlss;
+  urlss << "/v1/values/" << valuesName << "?options=" << optionsName;
+  return mImpl->proxy.getSync(mImpl->serverUrl,urlss.str());
+}
+
 Response* Connection::listRootCollections() {
   TIMED_FUNC(Connection_listRootCollections);
   return listCollections(""); // TODO Check this works and doesn't require a "/"
