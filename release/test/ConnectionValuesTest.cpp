@@ -88,7 +88,7 @@ void ConnectionValuesTest::testValuesExtension(void) {
     LOG(DEBUG) << "    Detail: " << mlclient::utilities::ResponseHelper::getErrorDetailAsString(*response);
   } else {
     LOG(DEBUG) << "  Response is NOT in error";
-    double result = mlclient::utilities::ResponseHelper::getAggregateResult(*response,"avg"); // Aggregate name, NOT configuration name within options (BUG?)
+    double result = mlclient::utilities::ResponseHelper::getAggregateResult(*response,"avg"); // Aggregate name, NOT configuration name within options (TODO log BUG for this)
     LOG(DEBUG) << "  Double aggregate result(Rounded by output stream - value IS correct): " << result; // gets rounded as standard by IO stream
     CPPUNIT_ASSERT_MESSAGE("Response is in error",!inError);
     CPPUNIT_ASSERT_MESSAGE("Result is -1 (values result not found in response)",-1 != result);
