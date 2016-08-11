@@ -8,6 +8,7 @@ add_executable(mlcpptest
     main.cpp
     ConnectionFactory.cpp
     ConnectionCollectionsTest.cpp
+    ConnectionValuesTest.cpp
     ConnectionDocumentCrudTest.cpp
     ConnectionSearchTest.cpp
     DocumentTraversalTest.cpp

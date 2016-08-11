@@ -81,6 +81,15 @@ public:
    */
   MLCLIENT_API static std::vector<std::string> getSuggestions(const Response& resp);
 
+  /**
+   * \brief Returns a double result from the specified aggregate in the result set
+   *
+   * \param[in] resp The Response object
+   * \param[in] aggName The aggregate name to return (a single response allows multiple to be returned)
+   * \return double The double typed aggregate result
+   */
+  MLCLIENT_API static double getAggregateResult(const Response& resp,const std::string& aggName);
+
 
 }; // end ResponseHelper class
 

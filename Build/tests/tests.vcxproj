@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\cppunit.1.12.1.4\build\native\cppunit.props" Condition="Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -89,6 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\release\include;..\release\samples;..\release\test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,6 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\release\include;..\release\samples;..\release\test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -150,8 +153,11 @@
     <ClCompile Include="..\..\release\test\ConnectionDocumentCrudTest.cpp" />
     <ClCompile Include="..\..\release\test\ConnectionFactory.cpp" />
     <ClCompile Include="..\..\release\test\ConnectionSearchTest.cpp" />
+    <ClCompile Include="..\..\release\test\ConnectionValuesTest.cpp" />
+    <ClCompile Include="..\..\release\test\DocumentTraversalTest.cpp" />
     <ClCompile Include="..\..\release\test\main.cpp" />
     <ClCompile Include="..\..\release\test\SearchBuilderTest.cpp" />
+    <ClCompile Include="..\..\release\test\SearchOptionsBuilderTest.cpp" />
     <ClCompile Include="..\..\release\test\SearchResultSetTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,10 +165,29 @@
     <ClInclude Include="..\..\release\test\ConnectionCollectionsTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionDocumentCrudTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionSearchTest.hpp" />
+    <ClInclude Include="..\..\release\test\ConnectionValuesTest.hpp" />
+    <ClInclude Include="..\..\release\test\DocumentTraversalTest.hpp" />
     <ClInclude Include="..\..\release\test\SearchBuilderTest.hpp" />
+    <ClInclude Include="..\..\release\test\SearchOptionsBuilderTest.hpp" />
     <ClInclude Include="..\..\release\test\SearchResultSetTest.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mlclient.vcxproj">
+      <Project>{c9e040d2-ff93-48cf-9ace-2e8fc4f30aac}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\cppunit.1.12.1.4\build\native\cppunit.targets" Condition="Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cppunit.1.12.1.4\build\native\cppunit.props'))" />
+    <Error Condition="!Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cppunit.1.12.1.4\build\native\cppunit.targets'))" />
+  </Target>
 </Project>
