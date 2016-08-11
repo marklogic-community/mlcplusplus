@@ -188,6 +188,20 @@ Response* Connection::search(const SearchDescription& desc) {
   return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *payload);
 }
 
+Response* Connection::searchExtension(const std::string& extensionName,const SearchDescription& desc) {
+  TIMED_FUNC(Connection_searchExtension);
+  LOG(DEBUG) << "In Connection::searchExtension";
+  std::ostringstream urlss;
+  urlss << "/v1/resources/" << extensionName << "?format=json";
+  urlss << "&rs:start=" << desc.getStart();
+  urlss << "&rs:pageLength=" <<  desc.getPageLength();
+  LOG(DEBUG) << "  Got page length";
+  ITextDocumentContent* payload = desc.getPayload();
+  LOG(DEBUG) << "  Payload:-";
+  LOG(DEBUG) << payload->getContent();
+  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(), *payload);
+}
+
 Response* Connection::saveSearchOptions(const std::string& name,const IDocumentContent* optionsDoc) {
   TIMED_FUNC(Connection_saveSearchOptions);
   LOG(DEBUG) << "In Connection::saveSearchOptions";
@@ -201,6 +215,17 @@ Response* Connection::values(const std::string& valuesName,const std::string& op
   std::ostringstream urlss;
   urlss << "/v1/values/" << valuesName << "?options=" << optionsName;
   return mImpl->proxy.getSync(mImpl->serverUrl,urlss.str());
+}
+
+Response* Connection::valuesExtension(const std::string& extensionName,const std::string& valuesName,
+    const std::string& optionsName,const SearchDescription& desc) {
+  TIMED_FUNC(Connection_valuesAggregate);
+  std::ostringstream urlss;
+  urlss << "/v1/resources/" << extensionName << "?rs:values=" << valuesName << "&rs:options=" << optionsName;
+  ITextDocumentContent* payload = desc.getPayload();
+  LOG(DEBUG) << "  Payload:-";
+  LOG(DEBUG) << payload->getContent();
+  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(),*payload);
 }
 
 Response* Connection::listRootCollections() {

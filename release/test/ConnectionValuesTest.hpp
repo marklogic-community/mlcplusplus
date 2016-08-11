@@ -20,12 +20,14 @@ using namespace mlclient;
 class ConnectionValuesTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(ConnectionValuesTest);
     CPPUNIT_TEST(testValues);
+    CPPUNIT_TEST(testValuesExtension);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testValues(void);
+  void testValuesExtension(void);
 private:
   IConnection* ml;
 };
