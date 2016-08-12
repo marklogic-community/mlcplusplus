@@ -64,7 +64,7 @@ public:
    */
   MLCLIENT_API virtual ~IQuery() = default;
 
-  friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
+  MLCLIENT_API friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
 
 protected:
   MLCLIENT_API virtual std::ostream& write(std::ostream& os) const = 0;

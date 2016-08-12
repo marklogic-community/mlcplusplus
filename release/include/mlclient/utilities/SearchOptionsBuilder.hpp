@@ -231,7 +231,7 @@ public:
   MLCLIENT_API virtual void setLexiconType(LexiconType type) = 0;
   MLCLIENT_API virtual const LexiconType getLexiconType() const = 0;
 
-  friend std::ostream& operator<<(std::ostream& os, const ILexiconRef& ref);
+  MLCLIENT_API friend std::ostream& operator<<(std::ostream& os, const ILexiconRef& ref);
 
 protected:
   virtual std::ostream& write(std::ostream& os) const = 0;
