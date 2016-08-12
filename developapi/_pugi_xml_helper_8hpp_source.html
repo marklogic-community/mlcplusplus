@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/utilities/PugiXmlHelper.hpp Source File</title>
+<title>MLCPlusPlus: include/mlclient/utilities/PugiXmlHelper.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7b5d38f1875f1b693f62ca6a108a1129.html">utilities</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li><li class="navelem"><a class="el" href="dir_dfba0838f21917b210a05e569b0c250a.html">utilities</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,43 +95,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef SRC_UTILITIES_PUGIXMLHELPER_HPP_</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define SRC_UTILITIES_PUGIXMLHELPER_HPP_</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;pugixml.hpp&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../Response.hpp&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../DocumentContent.hpp&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>utilities {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a> {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="comment">// IDocumentContent conversion</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span>  <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#adeeb796d03dd51becf80598060eefdaf">toDocument</a>(<span class="keyword">const</span> pugi::xml_document&amp; dc);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">static</span> pugi::xml_document* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a5427cb837d708fe0a3503972605a24ce">fromDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a>&amp; dc);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="comment">// Response conversion</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>  <span class="keyword">static</span> pugi::xml_document* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a0ce6782a3b9e82ae92a5e52d0b8dcc5e">fromResponse</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// end utilities namespace</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_PUGIXMLHELPER_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_adeeb796d03dd51becf80598060eefdaf"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#adeeb796d03dd51becf80598060eefdaf">mlclient::utilities::PugiXmlHelper::toDocument</a></div><div class="ttdeci">static ITextDocumentContent * toDocument(const pugi::xml_document &amp;dc)</div><div class="ttdoc">Converts a pugi::xml_document instance to a MarkLogic C++ API IDocumentContent instance. </div></div>
-<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">An overarching interface for a Text Document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:113</div></div>
-<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:125</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_a5427cb837d708fe0a3503972605a24ce"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a5427cb837d708fe0a3503972605a24ce">mlclient::utilities::PugiXmlHelper::fromDocument</a></div><div class="ttdeci">static pugi::xml_document * fromDocument(const IDocumentContent &amp;dc)</div><div class="ttdoc">Extracts a pugi::xml_document instance from a IDocumentContent object. </div></div>
-<div class="ttc" id="classmlclient_1_1_i_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></div><div class="ttdoc">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...</div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:45</div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:33</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">mlclient::utilities::PugiXmlHelper</a></div><div class="ttdoc">Uses the pugixml library to provide convenience XML parsing functionality. </div><div class="ttdef"><b>Definition:</b> PugiXmlHelper.hpp:44</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_a0ce6782a3b9e82ae92a5e52d0b8dcc5e"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a0ce6782a3b9e82ae92a5e52d0b8dcc5e">mlclient::utilities::PugiXmlHelper::fromResponse</a></div><div class="ttdeci">static pugi::xml_document * fromResponse(const Response &amp;resp)</div><div class="ttdoc">Extracts a pugi::xml_document instance directly from the Response object. </div></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;mlclient/mlclient.hpp&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;mlclient/ext/pugixml/pugixml.hpp&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;mlclient/Response.hpp&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_document_content_8hpp.html">mlclient/DocumentContent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">namespace </span>utilities {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">PugiXmlHelper</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="comment">// IDocumentContent conversion</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a391f98e93779b6547f18eb51e9ce113d">toDocument</a>(<span class="keyword">const</span> <a class="code" href="classpugi_1_1xml__document.html">pugi::xml_document</a>&amp; dc);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a391f98e93779b6547f18eb51e9ce113d">toDocument</a>(<span class="keyword">const</span> std::string&amp; content);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a391f98e93779b6547f18eb51e9ce113d">toDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classpugi_1_1xml__document.html">pugi::xml_document</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a56f82ee758de32df0738267c88c6807d">fromDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a>&amp; dc);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="comment">// Response conversion</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classpugi_1_1xml__document.html">pugi::xml_document</a>* <a class="code" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#ac4a8f5fc27ce99de3f03c2fac9fbb05c">fromResponse</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <span class="comment">// end utilities namespace</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_PUGIXMLHELPER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_ac4a8f5fc27ce99de3f03c2fac9fbb05c"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#ac4a8f5fc27ce99de3f03c2fac9fbb05c">mlclient::utilities::PugiXmlHelper::fromResponse</a></div><div class="ttdeci">static MLCLIENT_API pugi::xml_document * fromResponse(const Response &amp;resp)</div><div class="ttdoc">Extracts a pugi::xml_document instance directly from the Response object. </div></div>
+<div class="ttc" id="classpugi_1_1xml__document_html"><div class="ttname"><a href="classpugi_1_1xml__document.html">pugi::xml_document</a></div><div class="ttdef"><b>Definition:</b> pugixml.hpp:952</div></div>
+<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">An overarching interface for a Text Document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:169</div></div>
+<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:126</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_a391f98e93779b6547f18eb51e9ce113d"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a391f98e93779b6547f18eb51e9ce113d">mlclient::utilities::PugiXmlHelper::toDocument</a></div><div class="ttdeci">static MLCLIENT_API ITextDocumentContent * toDocument(const pugi::xml_document &amp;dc)</div><div class="ttdoc">Converts a pugi::xml_document instance to a MarkLogic C++ API IDocumentContent instance. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></div><div class="ttdoc">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...</div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:46</div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:35</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html">mlclient::utilities::PugiXmlHelper</a></div><div class="ttdoc">Uses the pugixml library to provide convenience XML parsing functionality. </div><div class="ttdef"><b>Definition:</b> PugiXmlHelper.hpp:45</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_pugi_xml_helper_html_a56f82ee758de32df0738267c88c6807d"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a56f82ee758de32df0738267c88c6807d">mlclient::utilities::PugiXmlHelper::fromDocument</a></div><div class="ttdeci">static MLCLIENT_API pugi::xml_document * fromDocument(const IDocumentContent &amp;dc)</div><div class="ttdoc">Extracts a pugi::xml_document instance from a IDocumentContent object. </div></div>
+<div class="ttc" id="_document_content_8hpp_html"><div class="ttname"><a href="_document_content_8hpp.html">DocumentContent.hpp</a></div><div class="ttdoc">Contains classes and enums to handle document content (not properties, permissions, uri etc.) for basic content types (text,binary,json,xml) being used with MarkLogic Server. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

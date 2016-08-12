@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['what',['what',['../classmlclient_1_1_invalid_format_exception.html#ad18b7a305e6768f07b8683c0e168c304',1,'mlclient::InvalidFormatException::what()'],['../classmlclient_1_1_no_credentials_exception.html#ae9df0a71170f161b0857f9ef7b8b6351',1,'mlclient::NoCredentialsException::what()']]]
+  ['navigate',['navigate',['../classmlclient_1_1_i_text_document_content.html#a1ef6ac941c24a4c608dbbf95d47ffd3f',1,'mlclient::ITextDocumentContent::navigate()'],['../classmlclient_1_1_generic_text_document_content.html#ab9f0c496dc863049da1639bfc2b244a2',1,'mlclient::GenericTextDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a736a5c01ef0a0ce473042bb36df70279',1,'mlclient::utilities::CppRestJsonDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afde977f0237ff12a056af147bdd4741d',1,'mlclient::utilities::PugiXmlDocumentContent::navigate()']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/DocumentContent.hpp File Reference</title>
+<title>MLCPlusPlus: include/mlclient/DocumentContent.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,7 +98,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Contains classes and enums to handle document content (not properties, permissions, uri etc.) for basic content types (text,binary,json,xml) being used with MarkLogic Server.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<div class="textblock"><code>#include &quot;mlclient/mlclient.hpp&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;iosfwd&gt;</code><br />
 </div>
 <p><a href="_document_content_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -106,10 +107,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof).  <a href="classmlclient_1_1_i_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the internal content of a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>. It can be XML, JSON, String or Binary (or a sub type thereof).  <a href="classmlclient_1_1_i_document_content.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_node.html">mlclient::IDocumentNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a generic lightweight document element interface.  <a href="classmlclient_1_1_i_document_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_navigator.html">mlclient::IDocumentNavigator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a generic lightweight document interface.  <a href="classmlclient_1_1_i_document_navigator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An overarching interface for a Text Document.  <a href="classmlclient_1_1_i_text_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An overarching interface for a Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>.  <a href="classmlclient_1_1_i_text_document_content.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_generic_text_document_content.html">mlclient::GenericTextDocumentContent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> (and thus <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a>) that holds all data in a string.  <a href="classmlclient_1_1_generic_text_document_content.html#details">More...</a><br /></td></tr>

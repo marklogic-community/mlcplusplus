@@ -124,13 +124,13 @@ Using the MLCPlusPlus library in your C++ application</h1>
 <p>Simply create a Connection class, call configure to set up the connection parameters, then call a function!</p>
 <p>The API documentation can be found here: <a href="http://adamfowleruk.github.io/mlcplusplus/api/index.html">http://adamfowleruk.github.io/mlcplusplus/api/index.html</a></p>
 <p>To use this class, add the following include:- </p><div class="fragment"><div class="line">{C++}</div>
-<div class="line"><span class="preprocessor">#include &lt;mlclient/Connection.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_connection_8hpp.html">mlclient/Connection.hpp</a>&gt;</span></div>
 </div><!-- fragment --><p>Then declare you are using the right namespace, or create a connection instance, and use it:-</p>
 <div class="fragment"><div class="line">{C++}</div>
 <div class="line"><a class="code" href="classmlclient_1_1_connection.html">mlclient::Connection</a>* conn = <span class="keyword">new</span> Connection();</div>
-<div class="line">conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#a769a2073f7d09bc7f80e0a42587b0de0">configure</a>(<span class="stringliteral">&quot;localhost&quot;</span>,<span class="stringliteral">&quot;8050&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="keyword">false</span>);</div>
-<div class="line"><a class="code" href="classmlclient_1_1_response.html">mlclient::Response</a>* resp = conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#adad12f7f19c4fa6fe991b8a70e2f85a9">getDocument</a>(<span class="stringliteral">&quot;/some/uri.json&quot;</span>);</div>
-<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Doc content: &quot;</span> &lt;&lt; resp-&gt;<a class="code" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a>() &lt;&lt; std::endl;</div>
+<div class="line">conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#a94730373b161a41c4cafd1771fcad57f">configure</a>(<span class="stringliteral">&quot;localhost&quot;</span>,<span class="stringliteral">&quot;8050&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="stringliteral">&quot;admin&quot;</span>,<span class="keyword">false</span>);</div>
+<div class="line"><a class="code" href="classmlclient_1_1_response.html">mlclient::Response</a>* resp = conn-&gt;<a class="code" href="classmlclient_1_1_connection.html#a9456f042efcb2c121821c00a5a7408b2">getDocument</a>(<span class="stringliteral">&quot;/some/uri.json&quot;</span>);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Doc content: &quot;</span> &lt;&lt; resp-&gt;<a class="code" href="classmlclient_1_1_response.html#a91c2ff92401a46f128652df91db2db00">getContent</a>() &lt;&lt; std::endl;</div>
 </div><!-- fragment --><p>You may want to consider creating a ConnectionFactory to manage your connection. See the tests folder for an example of a singleton that manages a single connection instance for use between requests.</p>
 <h1><a class="anchor" id="sec_compilingtests"></a>
 Compiling the tests</h1>

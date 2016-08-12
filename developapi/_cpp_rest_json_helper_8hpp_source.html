@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/utilities/CppRestJsonHelper.hpp Source File</title>
+<title>MLCPlusPlus: include/mlclient/utilities/CppRestJsonHelper.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7b5d38f1875f1b693f62ca6a108a1129.html">utilities</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li><li class="navelem"><a class="el" href="dir_dfba0838f21917b210a05e569b0c250a.html">utilities</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -113,46 +113,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define SRC_UTILITIES_CPPRESTJSONHELPER_HPP_</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// I don&#39;t mind exposing these in an optional helper class</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;cpprest/http_client.h&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../DocumentContent.hpp&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;../Response.hpp&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;../SearchResult.hpp&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span>utilities {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">   58</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a> {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;mlclient/mlclient.hpp&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_document_content_8hpp.html">mlclient/DocumentContent.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;mlclient/utilities/CppRestJsonDocumentContent.hpp&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;mlclient/Response.hpp&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;mlclient/SearchResult.hpp&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;mlclient/Permission.hpp&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// I don&#39;t mind exposing these in an optional helper class</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;cpprest/http_client.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">namespace </span>utilities {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">   61</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">CppRestJsonHelper</a>() = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#adaeb5213b9be3d09eab78b7adeebd2b5">toDocument</a>(<span class="keyword">const</span> web::json::value json);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">static</span> web::json::value <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9">fromDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a>&amp; doc);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">static</span> web::json::value <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a549fde831bf5144b19c029e710fecb80">fromResponse</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">static</span> web::json::value fromSearchResult(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_search_result.html">SearchResult</a>&amp; result);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;};</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;} <span class="comment">// end utilities namespace</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_CPPRESTJSONHELPER_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_adaeb5213b9be3d09eab78b7adeebd2b5"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#adaeb5213b9be3d09eab78b7adeebd2b5">mlclient::utilities::CppRestJsonHelper::toDocument</a></div><div class="ttdeci">static ITextDocumentContent * toDocument(const web::json::value json)</div><div class="ttdoc">Creates a IDocumentContent instance based on a cpprest API web::json::value instance. </div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></div><div class="ttdoc">This class provides utility functions to handle JSON data. </div><div class="ttdef"><b>Definition:</b> CppRestJsonHelper.hpp:58</div></div>
-<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">An overarching interface for a Text Document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:113</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_a9453c8574f5455c41712c81c02c090c9"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a9453c8574f5455c41712c81c02c090c9">mlclient::utilities::CppRestJsonHelper::fromDocument</a></div><div class="ttdeci">static web::json::value fromDocument(const IDocumentContent &amp;doc)</div><div class="ttdoc">Creates a web::json::value from a IDocumentContent instance. </div></div>
-<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:125</div></div>
-<div class="ttc" id="classmlclient_1_1_i_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></div><div class="ttdoc">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...</div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:45</div></div>
-<div class="ttc" id="classmlclient_1_1_search_result_html"><div class="ttname"><a href="classmlclient_1_1_search_result.html">mlclient::SearchResult</a></div><div class="ttdef"><b>Definition:</b> SearchResult.hpp:16</div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:33</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_a549fde831bf5144b19c029e710fecb80"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a549fde831bf5144b19c029e710fecb80">mlclient::utilities::CppRestJsonHelper::fromResponse</a></div><div class="ttdeci">static web::json::value fromResponse(const Response &amp;resp)</div><div class="ttdoc">Creates a web::json::value from a Response object. </div></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a59d2d85146edddd3eb23952c8d5cc543">toDocument</a>(web::json::value&amp; json);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a59d2d85146edddd3eb23952c8d5cc543">toDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <span class="keyword">const</span> web::json::value <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#ac4945fd15c6f028757650bc70cd3442b">fromDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a>&amp; doc);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <span class="keyword">const</span> web::json::value <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#ac4945fd15c6f028757650bc70cd3442b">fromDocument</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html">CppRestJsonDocumentContent</a>&amp; doc);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  MLCLIENT_API <span class="keyword">static</span> web::json::value <a class="code" href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a48bd37d846b20bec96d8085e1f83f561">fromResponse</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  MLCLIENT_API <span class="keyword">static</span> std::vector&lt;Permission&gt; permissionsFromResponse(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="comment">//MLCLIENT_API static web::json::value fromSearchResult(const SearchResult&amp; result);</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;};</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;} <span class="comment">// end utilities namespace</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_CPPRESTJSONHELPER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_a48bd37d846b20bec96d8085e1f83f561"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a48bd37d846b20bec96d8085e1f83f561">mlclient::utilities::CppRestJsonHelper::fromResponse</a></div><div class="ttdeci">static MLCLIENT_API web::json::value fromResponse(const Response &amp;resp)</div><div class="ttdoc">Creates a web::json::value from a Response object. </div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html">mlclient::utilities::CppRestJsonHelper</a></div><div class="ttdoc">This class provides utility functions to handle JSON data. </div><div class="ttdef"><b>Definition:</b> CppRestJsonHelper.hpp:61</div></div>
+<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">An overarching interface for a Text Document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:169</div></div>
+<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:126</div></div>
+<div class="ttc" id="classmlclient_1_1_i_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></div><div class="ttdoc">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...</div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:46</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html">mlclient::utilities::CppRestJsonDocumentContent</a></div><div class="ttdoc">An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. </div><div class="ttdef"><b>Definition:</b> CppRestJsonDocumentContent.hpp:157</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_a59d2d85146edddd3eb23952c8d5cc543"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a59d2d85146edddd3eb23952c8d5cc543">mlclient::utilities::CppRestJsonHelper::toDocument</a></div><div class="ttdeci">static MLCLIENT_API ITextDocumentContent * toDocument(web::json::value &amp;json)</div><div class="ttdoc">Creates a IDocumentContent instance based on a cpprest API web::json::value instance. </div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:35</div></div>
+<div class="ttc" id="_document_content_8hpp_html"><div class="ttname"><a href="_document_content_8hpp.html">DocumentContent.hpp</a></div><div class="ttdoc">Contains classes and enums to handle document content (not properties, permissions, uri etc.) for basic content types (text,binary,json,xml) being used with MarkLogic Server. </div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_cpp_rest_json_helper_html_ac4945fd15c6f028757650bc70cd3442b"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#ac4945fd15c6f028757650bc70cd3442b">mlclient::utilities::CppRestJsonHelper::fromDocument</a></div><div class="ttdeci">static MLCLIENT_API const web::json::value fromDocument(const IDocumentContent &amp;doc)</div><div class="ttdoc">Creates a web::json::value from a IDocumentContent instance. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

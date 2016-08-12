@@ -98,65 +98,507 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">mlclient::SearchResult Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a single search result. Wraps all REST API search result metadata and content.  
+ <a href="classmlclient_1_1_search_result.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_search_result_8hpp_source.html">SearchResult.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae4f330242d9cc3e3df23f708bfdfb4e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4f330242d9cc3e3df23f708bfdfb4e8"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DETAIL</b> { <b>SNIPPETS</b>, 
+<tr class="memitem:a18992fa277c632e1142239ba6fef218d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">Detail</a> { <b>SNIPPETS</b>, 
 <b>CONTENT</b>, 
-<b>NONE</b>
- }<tr class="separator:ae4f330242d9cc3e3df23f708bfdfb4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<b>NONE</b>, 
+<b>CUSTOM</b>
+ }<tr class="separator:a18992fa277c632e1142239ba6fef218d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a646d3308cc0179aa09f4e7b0142ba414"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a646d3308cc0179aa09f4e7b0142ba414"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResult</b> (const <a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a> &amp;other)=default</td></tr>
-<tr class="separator:a646d3308cc0179aa09f4e7b0142ba414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bbf9490e5907819134ca86f2b577a8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bbf9490e5907819134ca86f2b577a8c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResult</b> (const long index, const std::string &amp;uri, const std::string &amp;path, const long score, const double confidence, const double fitness, const DETAIL &amp;detail, const std::string &amp;detailContent=&quot;&quot;, const std::string &amp;mimeType=&quot;&quot;, const std::string &amp;format=JSON)</td></tr>
-<tr class="separator:a8bbf9490e5907819134ca86f2b577a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80bbe27620a4f2a396a5142da3d41122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80bbe27620a4f2a396a5142da3d41122"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>getIndex</b> ()</td></tr>
-<tr class="separator:a80bbe27620a4f2a396a5142da3d41122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0513ae0491c72a139f23894cbc3f7fa0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0513ae0491c72a139f23894cbc3f7fa0"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getUri</b> () const </td></tr>
-<tr class="separator:a0513ae0491c72a139f23894cbc3f7fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4937b474328e11a8c08f3c9f7a2d5fd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4937b474328e11a8c08f3c9f7a2d5fd3"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPath</b> () const </td></tr>
-<tr class="separator:a4937b474328e11a8c08f3c9f7a2d5fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af014a37200c58cac823f2cd6a7846fe8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af014a37200c58cac823f2cd6a7846fe8"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>getScore</b> ()</td></tr>
-<tr class="separator:af014a37200c58cac823f2cd6a7846fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963a94a8e36596dc9f8fdb12cbf7f630"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a963a94a8e36596dc9f8fdb12cbf7f630"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getConfidence</b> ()</td></tr>
-<tr class="separator:a963a94a8e36596dc9f8fdb12cbf7f630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab26ad8928348a63b8b2f5a5318ecf6b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab26ad8928348a63b8b2f5a5318ecf6b1"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getFitness</b> ()</td></tr>
-<tr class="separator:ab26ad8928348a63b8b2f5a5318ecf6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebaf9cc6ea2ceccc0c2345610ba20dd7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebaf9cc6ea2ceccc0c2345610ba20dd7"></a>
-const DETAIL &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getDetail</b> () const </td></tr>
-<tr class="separator:aebaf9cc6ea2ceccc0c2345610ba20dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af918b73dc23c6ecad35931d1b5cb2bf6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af918b73dc23c6ecad35931d1b5cb2bf6"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getDetailContent</b> () const </td></tr>
-<tr class="separator:af918b73dc23c6ecad35931d1b5cb2bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a426ad598dd6ba761a16e028dc812f73b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a426ad598dd6ba761a16e028dc812f73b"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMimeType</b> () const </td></tr>
-<tr class="separator:a426ad598dd6ba761a16e028dc812f73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae74cba7c73f1492517dbbd67b3385f2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae74cba7c73f1492517dbbd67b3385f2a"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFormat</b> () const </td></tr>
-<tr class="separator:ae74cba7c73f1492517dbbd67b3385f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cba8ff16a586b882658935f9b74c3a"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a30cba8ff16a586b882658935f9b74c3a">SearchResult</a> ()</td></tr>
+<tr class="separator:a30cba8ff16a586b882658935f9b74c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3121856446d7d1a5cbd6c2da94c46eb3"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a3121856446d7d1a5cbd6c2da94c46eb3">SearchResult</a> (const <a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a> &amp;other)=default</td></tr>
+<tr class="separator:a3121856446d7d1a5cbd6c2da94c46eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce0da6985adba542967cf3c2a783701"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a0ce0da6985adba542967cf3c2a783701">SearchResult</a> (<a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a> &amp;&amp;other)</td></tr>
+<tr class="separator:a0ce0da6985adba542967cf3c2a783701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927167d127eab774e4363f2aa050604d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a927167d127eab774e4363f2aa050604d"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a927167d127eab774e4363f2aa050604d">~SearchResult</a> ()</td></tr>
+<tr class="memdesc:a927167d127eab774e4363f2aa050604d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a927167d127eab774e4363f2aa050604d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6404d94bd4a7527562d921905b508037"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a6404d94bd4a7527562d921905b508037">SearchResult</a> (const long index, const std::string &amp;uri, const std::string &amp;path, const long score, const double confidence, const double fitness, const <a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">Detail</a> &amp;detail, <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> *detailContent=nullptr, const std::string &amp;mimeType=&quot;&quot;, const std::string &amp;format=<a class="el" href="classmlclient_1_1_search_result.html#a1002d2c5daf79fbe3dcbef93ee4e1a53">JSON</a>)</td></tr>
+<tr class="separator:a6404d94bd4a7527562d921905b508037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc0c5e629df4e206ceabb538a3979ff9"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#adc0c5e629df4e206ceabb538a3979ff9">getIndex</a> ()</td></tr>
+<tr class="memdesc:adc0c5e629df4e206ceabb538a3979ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the (1 based) index of this result in the total search results, across all pages.  <a href="#adc0c5e629df4e206ceabb538a3979ff9">More...</a><br /></td></tr>
+<tr class="separator:adc0c5e629df4e206ceabb538a3979ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30ae98e12b248736712e2d48572c798f"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a30ae98e12b248736712e2d48572c798f">getUri</a> () const </td></tr>
+<tr class="memdesc:a30ae98e12b248736712e2d48572c798f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the document uri of the result.  <a href="#a30ae98e12b248736712e2d48572c798f">More...</a><br /></td></tr>
+<tr class="separator:a30ae98e12b248736712e2d48572c798f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ebf1d550c960dbc6f137d5ed5031784"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a0ebf1d550c960dbc6f137d5ed5031784">getPath</a> () const </td></tr>
+<tr class="memdesc:a0ebf1d550c960dbc6f137d5ed5031784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the document (more accurately, fragment) XPath of the result.  <a href="#a0ebf1d550c960dbc6f137d5ed5031784">More...</a><br /></td></tr>
+<tr class="separator:a0ebf1d550c960dbc6f137d5ed5031784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dbc1526ca5fd2d8248dd5ec844c6d22"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a3dbc1526ca5fd2d8248dd5ec844c6d22">getScore</a> ()</td></tr>
+<tr class="memdesc:a3dbc1526ca5fd2d8248dd5ec844c6d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the calculated search score for this result.  <a href="#a3dbc1526ca5fd2d8248dd5ec844c6d22">More...</a><br /></td></tr>
+<tr class="separator:a3dbc1526ca5fd2d8248dd5ec844c6d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96bf390fc898a6a97060dddc52a20148"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a96bf390fc898a6a97060dddc52a20148">getConfidence</a> ()</td></tr>
+<tr class="memdesc:a96bf390fc898a6a97060dddc52a20148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the calculated search confidence for this result.  <a href="#a96bf390fc898a6a97060dddc52a20148">More...</a><br /></td></tr>
+<tr class="separator:a96bf390fc898a6a97060dddc52a20148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ab3f60f0df03b34ad3c01add9d1cde5"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a1ab3f60f0df03b34ad3c01add9d1cde5">getFitness</a> ()</td></tr>
+<tr class="memdesc:a1ab3f60f0df03b34ad3c01add9d1cde5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the calculated search fitness for this result.  <a href="#a1ab3f60f0df03b34ad3c01add9d1cde5">More...</a><br /></td></tr>
+<tr class="separator:a1ab3f60f0df03b34ad3c01add9d1cde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2012b159131a608076b796bc3eed4c7"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const <a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">Detail</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#af2012b159131a608076b796bc3eed4c7">getDetail</a> () const </td></tr>
+<tr class="memdesc:af2012b159131a608076b796bc3eed4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the level of detail of this result.  <a href="#af2012b159131a608076b796bc3eed4c7">More...</a><br /></td></tr>
+<tr class="separator:af2012b159131a608076b796bc3eed4c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e389e27a51fbdf0df8288add372e6b7"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a8e389e27a51fbdf0df8288add372e6b7">getDetailContent</a> () const </td></tr>
+<tr class="memdesc:a8e389e27a51fbdf0df8288add372e6b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw text content of this result.  <a href="#a8e389e27a51fbdf0df8288add372e6b7">More...</a><br /></td></tr>
+<tr class="separator:a8e389e27a51fbdf0df8288add372e6b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a00d3819ddbbf601dd4e850dda046a4"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a6a00d3819ddbbf601dd4e850dda046a4">getMimeType</a> () const </td></tr>
+<tr class="memdesc:a6a00d3819ddbbf601dd4e850dda046a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the MIME type of the result.  <a href="#a6a00d3819ddbbf601dd4e850dda046a4">More...</a><br /></td></tr>
+<tr class="separator:a6a00d3819ddbbf601dd4e850dda046a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07704cf00f49d54cbfd8238580a7a015"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a07704cf00f49d54cbfd8238580a7a015">getFormat</a> () const </td></tr>
+<tr class="memdesc:a07704cf00f49d54cbfd8238580a7a015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short text format of this result.  <a href="#a07704cf00f49d54cbfd8238580a7a015">More...</a><br /></td></tr>
+<tr class="separator:a07704cf00f49d54cbfd8238580a7a015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a07e4c99e4462c779325acf174d774bd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e4c99e4462c779325acf174d774bd1"></a>
-static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>JSON</b></td></tr>
-<tr class="separator:a07e4c99e4462c779325acf174d774bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58acb5f433e5a7bfaf28b8366375c42d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58acb5f433e5a7bfaf28b8366375c42d"></a>
-static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>XML</b></td></tr>
-<tr class="separator:a58acb5f433e5a7bfaf28b8366375c42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1002d2c5daf79fbe3dcbef93ee4e1a53"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#a1002d2c5daf79fbe3dcbef93ee4e1a53">JSON</a></td></tr>
+<tr class="separator:a1002d2c5daf79fbe3dcbef93ee4e1a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ae18b607131f705480cdebc2ad9f55"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#ae1ae18b607131f705480cdebc2ad9f55">XML</a></td></tr>
+<tr class="separator:ae1ae18b607131f705480cdebc2ad9f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91bb138faa1ccf1975ace0b66ac419d"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html#af91bb138faa1ccf1975ace0b66ac419d">BINARY</a></td></tr>
+<tr class="separator:af91bb138faa1ccf1975ace0b66ac419d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a single search result. Wraps all REST API search result metadata and content. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016-06-08</dd></dl>
+<p>A <a class="el" href="classmlclient_1_1_search_result.html" title="Represents a single search result. Wraps all REST API search result metadata and content. ">SearchResult</a> in MarkLogic Server consistent of not just the result itself, but also its metadata. Indeed, using the "none" snippet option means no content is returned, leaving just the metadata. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a18992fa277c632e1142239ba6fef218d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">mlclient::SearchResult::Detail</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Represents one of the snippetting options in use by the search result </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a30cba8ff16a586b882658935f9b74c3a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::SearchResult::SearchResult </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Empty constructor </p>
+
+</div>
+</div>
+<a class="anchor" id="a3121856446d7d1a5cbd6c2da94c46eb3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::SearchResult::SearchResult </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Copy constructor </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classmlclient_1_1_search_result.html" title="Represents a single search result. Wraps all REST API search result metadata and content. ">SearchResult</a> to copy (shallow copy) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0ce0da6985adba542967cf3c2a783701"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::SearchResult::SearchResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Move constructor </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classmlclient_1_1_search_result.html" title="Represents a single search result. Wraps all REST API search result metadata and content. ">SearchResult</a> to move (deep reference move) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6404d94bd4a7527562d921905b508037"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::SearchResult::SearchResult </td>
+          <td>(</td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>uri</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>score</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>confidence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>fitness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">Detail</a> &amp;&#160;</td>
+          <td class="paramname"><em>detail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> *&#160;</td>
+          <td class="paramname"><em>detailContent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>mimeType</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="classmlclient_1_1_search_result.html#a1002d2c5daf79fbe3dcbef93ee4e1a53">JSON</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Detail constructor. Used by <a class="el" href="classmlclient_1_1_search_result_set.html" title="A self-advancing result set class. ">SearchResultSet</a> and other search result wrapping functions and classes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index (position, 1 based) of this result in the total search result list, across all pages </td></tr>
+    <tr><td class="paramname">uri</td><td>The document URI this search result represents </td></tr>
+    <tr><td class="paramname">path</td><td>The XPath representing this document (more accurately, MarkLogic Fragment) </td></tr>
+    <tr><td class="paramname">score</td><td>The search score calculated for this result </td></tr>
+    <tr><td class="paramname">confidence</td><td>The search confidence calculated for this result </td></tr>
+    <tr><td class="paramname">fitness</td><td>The search fitness calculated for this result </td></tr>
+    <tr><td class="paramname">detail</td><td>The level of snippet detail returned from the result </td></tr>
+    <tr><td class="paramname">detailContent</td><td>The raw text content of the search result </td></tr>
+    <tr><td class="paramname">mimeType</td><td>The MIME type of the result content </td></tr>
+    <tr><td class="paramname">format</td><td>The REST API format of the result (can be "json" or "xml" or "binary" or "text" or "none") </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a96bf390fc898a6a97060dddc52a20148"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API double mlclient::SearchResult::getConfidence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the calculated search confidence for this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The search confidence </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af2012b159131a608076b796bc3eed4c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const <a class="el" href="classmlclient_1_1_search_result.html#a18992fa277c632e1142239ba6fef218d">Detail</a>&amp; mlclient::SearchResult::getDetail </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the level of detail of this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The level of detail returned for this result </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8e389e27a51fbdf0df8288add372e6b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a>* mlclient::SearchResult::getDetailContent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the raw text content of this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The raw text content of this result </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1ab3f60f0df03b34ad3c01add9d1cde5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API double mlclient::SearchResult::getFitness </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the calculated search fitness for this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The search fitness </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a07704cf00f49d54cbfd8238580a7a015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string&amp; mlclient::SearchResult::getFormat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the short text format of this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The short text format of this result. Could be "text" or "json" or "xml" or "none" </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adc0c5e629df4e206ceabb538a3979ff9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API long mlclient::SearchResult::getIndex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the (1 based) index of this result in the total search results, across all pages. </p>
+<dl class="section return"><dt>Returns</dt><dd>The (1 based) index </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a00d3819ddbbf601dd4e850dda046a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string&amp; mlclient::SearchResult::getMimeType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the MIME type of the result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The MIME type. Could be application/json, application/xml, or any other stored MIME type </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0ebf1d550c960dbc6f137d5ed5031784"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string&amp; mlclient::SearchResult::getPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the document (more accurately, fragment) XPath of the result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The document (fragment) XPath of the result </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3dbc1526ca5fd2d8248dd5ec844c6d22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API long mlclient::SearchResult::getScore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the calculated search score for this result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The search score </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a30ae98e12b248736712e2d48572c798f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string&amp; mlclient::SearchResult::getUri </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the document uri of the result. </p>
+<dl class="section return"><dt>Returns</dt><dd>The document uri of the result </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af91bb138faa1ccf1975ace0b66ac419d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string mlclient::SearchResult::BINARY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used to tag the search result content format as Binary </p>
+
+</div>
+</div>
+<a class="anchor" id="a1002d2c5daf79fbe3dcbef93ee4e1a53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string mlclient::SearchResult::JSON</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used to tag the search result content format as JSON </p>
+
+</div>
+</div>
+<a class="anchor" id="ae1ae18b607131f705480cdebc2ad9f55"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string mlclient::SearchResult::XML</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used to tag the search result content format as XML </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_search_result_8hpp_source.html">SearchResult.hpp</a></li>
+<li>include/mlclient/<a class="el" href="_search_result_8hpp_source.html">SearchResult.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

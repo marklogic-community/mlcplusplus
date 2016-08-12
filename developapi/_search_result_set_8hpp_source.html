@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/SearchResultSet.hpp Source File</title>
+<title>MLCPlusPlus: include/mlclient/SearchResultSet.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -101,60 +101,113 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SRC_UTILITIES_SEARCHRESULTSET_HPP_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SRC_UTILITIES_SEARCHRESULTSET_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;SearchResult.hpp&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_connection_8hpp.html">Connection.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_search_description_8hpp.html">SearchDescription.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;mlclient/mlclient.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;mlclient/SearchResult.hpp&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_connection_8hpp.html">mlclient/Connection.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_search_description_8hpp.html">mlclient/SearchDescription.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_result_set.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">typedef</span> std::list&lt;SearchResult&gt;::const_iterator const_iterator ;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <a class="code" href="classmlclient_1_1_search_result_set.html#a09b346f3d39812d876e9041af0fa7301">SearchResultSet</a>(<a class="code" href="classmlclient_1_1_i_connection.html">IConnection</a>* conn,<a class="code" href="classmlclient_1_1_search_description.html">SearchDescription</a>&amp; desc);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a8498ac974f338d35e47acc6b7beeddac">~SearchResultSet</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="comment">// iterator methods around each search result</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  const_iterator begin() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  const_iterator end() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="comment">// TODO initially, no request</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="comment">// TODO then just make a request at end of a collection</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="comment">// TODO in future though, specify how many pages we pre-fetch asynchronously between page processing operations (provide subclass of iterator)</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classmlclient_1_1_search_result_set.html#aca734f56b0108e20c63e252db996cf9d">fetch</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  std::exception* <a class="code" href="classmlclient_1_1_search_result_set.html#a4bb005ee6e8f1ff7fcf990e4d5c315ba">getFetchException</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <a class="code" href="classmlclient_1_1_i_connection.html">IConnection</a>* mConn;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <a class="code" href="classmlclient_1_1_search_description.html">SearchDescription</a>&amp; mInitialDescription;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  std::list&lt;SearchResult&gt; mResults;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  std::exception* mFetchException;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordtype">long</span> start;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordtype">long</span> total;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordtype">long</span> pageLength;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  std::string snippetFormat;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  std::string queryResolutionTime; <span class="comment">// W3C Duration String</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  std::string snippetResolutionTime; <span class="comment">// W3C Duration String</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  std::string totalTime; <span class="comment">// W3C Duration String</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;} <span class="comment">// end namespace mlclient</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_SEARCHRESULTSET_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classmlclient_1_1_search_result_set_html_a4bb005ee6e8f1ff7fcf990e4d5c315ba"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a4bb005ee6e8f1ff7fcf990e4d5c315ba">mlclient::SearchResultSet::getFetchException</a></div><div class="ttdeci">std::exception * getFetchException()</div><div class="ttdoc">Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised...</div></div>
-<div class="ttc" id="classmlclient_1_1_search_result_set_html_a8498ac974f338d35e47acc6b7beeddac"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a8498ac974f338d35e47acc6b7beeddac">mlclient::SearchResultSet::~SearchResultSet</a></div><div class="ttdeci">virtual ~SearchResultSet()=default</div><div class="ttdoc">Destroys a SearchResultSet and all of its owned resources. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_result_set_html_a09b346f3d39812d876e9041af0fa7301"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a09b346f3d39812d876e9041af0fa7301">mlclient::SearchResultSet::SearchResultSet</a></div><div class="ttdeci">SearchResultSet(IConnection *conn, SearchDescription &amp;desc)</div><div class="ttdoc">Creates a self-advancing result set given the specified search description. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_result_set_html_aca734f56b0108e20c63e252db996cf9d"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#aca734f56b0108e20c63e252db996cf9d">mlclient::SearchResultSet::fetch</a></div><div class="ttdeci">bool fetch()</div><div class="ttdoc">Uses the provided Connection and SearchDescription to perform a request, and initial this object and ...</div></div>
-<div class="ttc" id="classmlclient_1_1_i_connection_html"><div class="ttname"><a href="classmlclient_1_1_i_connection.html">mlclient::IConnection</a></div><div class="ttdoc">Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...</div><div class="ttdef"><b>Definition:</b> Connection.hpp:41</div></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span>SearchResultSetIterator; <span class="comment">// fwd declaration - see end of file</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_result_set.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_result_set.html#aa3e88d6827ec33a932c24e25f0377732">   35</a></span>&#160;  <span class="keyword">typedef</span> <a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a> <a class="code" href="classmlclient_1_1_search_result_set.html#aa3e88d6827ec33a932c24e25f0377732">const_iterator</a> ;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_result_set.html#a4d52dbdce25bc9c4a9cef17ebfb3e185">SearchResultSet</a>(<a class="code" href="classmlclient_1_1_i_connection.html">IConnection</a>* conn,<a class="code" href="classmlclient_1_1_search_description.html">SearchDescription</a>* desc);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  MLCLIENT_API <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a4295ab621db4abdaf16eb860c6d10b24">~SearchResultSet</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="comment">// iterator methods around each search result</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span>  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a>* <a class="code" href="classmlclient_1_1_search_result_set.html#a77c6a328b91846c6a2d7a81ee16f52a6">begin</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a>* <a class="code" href="classmlclient_1_1_search_result_set.html#a94e37fc00f7357d3bf8f3e7a68c46671">end</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="comment">// TODO initially, no request</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="comment">// TODO then just make a request at end of a collection</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="comment">// TODO in future though, specify how many pages we pre-fetch asynchronously between page processing operations (provide subclass of iterator)</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  MLCLIENT_API <span class="keywordtype">bool</span> <a class="code" href="classmlclient_1_1_search_result_set.html#ac4755a7f44f075ce047020ac5765ecf1">fetch</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  MLCLIENT_API std::exception* <a class="code" href="classmlclient_1_1_search_result_set.html#a4be482fcac51b47580039e299a11cdc0">getFetchException</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a5090e48e72828ad5eefa41f35a136b3f">getStart</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a0344ba483d11c5f12fd484a217e0212c">getTotal</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a6bd96eb10a11af13de8fd1d6d2a2ee4e">getPageLength</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_result_set.html#a7a1a325ca168b95074343395611746ac">getSnippetFormat</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_result_set.html#a2991c99518ebbcde43853f6d75bb9f3d">getQueryResolutionTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_result_set.html#a1be44365f9afbfcefe4a0ac5d9346189">getSnippetResolutionTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_result_set.html#a53da644eb5938bb16495bab350e6d057">getTotalTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_result_set.html#adea67ea687ba7dfc1ebc74937221ad89">getPageCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_result_set.html#a704789e3237ea8a068a40febbc8e0421">setMaxResults</a>(<span class="keywordtype">long</span> maxResults);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <span class="keyword">class </span>Impl; <span class="comment">// forward declaration</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  Impl* mImpl;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;};</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_result_set_iterator.html">  158</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a> {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a>();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  MLCLIENT_API SearchResultSetIterator(<a class="code" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a>* set);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  MLCLIENT_API SearchResultSetIterator(<a class="code" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a>* set,<span class="keywordtype">long</span> pos);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  MLCLIENT_API SearchResultSetIterator* begin();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  MLCLIENT_API SearchResultSetIterator* end();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  MLCLIENT_API <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> SearchResultSetIterator&amp; other);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  MLCLIENT_API <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> SearchResultSetIterator&amp; other);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> operator++();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_search_result.html">SearchResult</a> operator*();</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  MLCLIENT_API SearchResultSetIterator operator=(<span class="keyword">const</span> SearchResultSetIterator&amp; other);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_search_result.html">SearchResult</a>&amp; first() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <a class="code" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a>* mResultSet;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="keywordtype">long</span> position;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;};</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;} <span class="comment">// end namespace mlclient</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_UTILITIES_SEARCHRESULTSET_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a6bd96eb10a11af13de8fd1d6d2a2ee4e"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a6bd96eb10a11af13de8fd1d6d2a2ee4e">mlclient::SearchResultSet::getPageLength</a></div><div class="ttdeci">MLCLIENT_API const long getPageLength()</div><div class="ttdoc">Returns the number of results returned on each page. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_ac4755a7f44f075ce047020ac5765ecf1"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#ac4755a7f44f075ce047020ac5765ecf1">mlclient::SearchResultSet::fetch</a></div><div class="ttdeci">MLCLIENT_API bool fetch()</div><div class="ttdoc">Uses the provided Connection and SearchDescription to perform a request, and initial this object and ...</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_aa3e88d6827ec33a932c24e25f0377732"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#aa3e88d6827ec33a932c24e25f0377732">mlclient::SearchResultSet::const_iterator</a></div><div class="ttdeci">SearchResultSetIterator const_iterator</div><div class="ttdef"><b>Definition:</b> SearchResultSet.hpp:35</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a53da644eb5938bb16495bab350e6d057"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a53da644eb5938bb16495bab350e6d057">mlclient::SearchResultSet::getTotalTime</a></div><div class="ttdeci">MLCLIENT_API const std::string &amp; getTotalTime() const </div><div class="ttdoc">Returns the total time taken for the last page requested, if available. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a94e37fc00f7357d3bf8f3e7a68c46671"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a94e37fc00f7357d3bf8f3e7a68c46671">mlclient::SearchResultSet::end</a></div><div class="ttdeci">MLCLIENT_API SearchResultSetIterator * end() const </div><div class="ttdoc">Returns a reference to the end of the iterator for this result set. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a2991c99518ebbcde43853f6d75bb9f3d"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a2991c99518ebbcde43853f6d75bb9f3d">mlclient::SearchResultSet::getQueryResolutionTime</a></div><div class="ttdeci">MLCLIENT_API const std::string &amp; getQueryResolutionTime() const </div><div class="ttdoc">Returns the query resolution time for the last page requested, if available. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a7a1a325ca168b95074343395611746ac"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a7a1a325ca168b95074343395611746ac">mlclient::SearchResultSet::getSnippetFormat</a></div><div class="ttdeci">MLCLIENT_API const std::string &amp; getSnippetFormat() const </div><div class="ttdoc">Returns the snippet format. Could be raw, none, or snippet. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_adea67ea687ba7dfc1ebc74937221ad89"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#adea67ea687ba7dfc1ebc74937221ad89">mlclient::SearchResultSet::getPageCount</a></div><div class="ttdeci">MLCLIENT_API const long getPageCount() const </div><div class="ttdoc">Utility function to return the total number of pages in the result set. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a77c6a328b91846c6a2d7a81ee16f52a6"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a77c6a328b91846c6a2d7a81ee16f52a6">mlclient::SearchResultSet::begin</a></div><div class="ttdeci">MLCLIENT_API SearchResultSetIterator * begin() const </div><div class="ttdoc">Returns the iterator for this result set. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a1be44365f9afbfcefe4a0ac5d9346189"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a1be44365f9afbfcefe4a0ac5d9346189">mlclient::SearchResultSet::getSnippetResolutionTime</a></div><div class="ttdeci">MLCLIENT_API const std::string &amp; getSnippetResolutionTime() const </div><div class="ttdoc">Returns the snippet resolution time for the last page requested, if available. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_connection_html"><div class="ttname"><a href="classmlclient_1_1_i_connection.html">mlclient::IConnection</a></div><div class="ttdoc">Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...</div><div class="ttdef"><b>Definition:</b> Connection.hpp:43</div></div>
 <div class="ttc" id="_connection_8hpp_html"><div class="ttname"><a href="_connection_8hpp.html">Connection.hpp</a></div><div class="ttdoc">Provides the definition of the Connection class. No enums or constants are defined. </div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:33</div></div>
-<div class="ttc" id="classmlclient_1_1_search_result_set_html"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html">mlclient::SearchResultSet</a></div><div class="ttdoc">A self-advancing result set class. </div><div class="ttdef"><b>Definition:</b> SearchResultSet.hpp:25</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a5090e48e72828ad5eefa41f35a136b3f"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a5090e48e72828ad5eefa41f35a136b3f">mlclient::SearchResultSet::getStart</a></div><div class="ttdeci">MLCLIENT_API const long getStart()</div><div class="ttdoc">Returns the sequence number of the first search result. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a0344ba483d11c5f12fd484a217e0212c"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a0344ba483d11c5f12fd484a217e0212c">mlclient::SearchResultSet::getTotal</a></div><div class="ttdeci">MLCLIENT_API const long getTotal()</div><div class="ttdoc">Returns the total count of all search results, across all pages. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a4be482fcac51b47580039e299a11cdc0"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a4be482fcac51b47580039e299a11cdc0">mlclient::SearchResultSet::getFetchException</a></div><div class="ttdeci">MLCLIENT_API std::exception * getFetchException()</div><div class="ttdoc">Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised...</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_html"><div class="ttname"><a href="classmlclient_1_1_search_result.html">mlclient::SearchResult</a></div><div class="ttdoc">Represents a single search result. Wraps all REST API search result metadata and content. </div><div class="ttdef"><b>Definition:</b> SearchResult.hpp:27</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a704789e3237ea8a068a40febbc8e0421"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a704789e3237ea8a068a40febbc8e0421">mlclient::SearchResultSet::setMaxResults</a></div><div class="ttdeci">MLCLIENT_API void setMaxResults(long maxResults)</div><div class="ttdoc">Sets the maximum number of results to return. Useful if the maximum is larger than the page size...</div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:35</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_iterator_html"><div class="ttname"><a href="classmlclient_1_1_search_result_set_iterator.html">mlclient::SearchResultSetIterator</a></div><div class="ttdef"><b>Definition:</b> SearchResultSet.hpp:158</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html">mlclient::SearchResultSet</a></div><div class="ttdoc">A self-advancing result set class. </div><div class="ttdef"><b>Definition:</b> SearchResultSet.hpp:29</div></div>
 <div class="ttc" id="_search_description_8hpp_html"><div class="ttname"><a href="_search_description_8hpp.html">SearchDescription.hpp</a></div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html"><div class="ttname"><a href="classmlclient_1_1_search_description.html">mlclient::SearchDescription</a></div><div class="ttdoc">A POD class representing input to the POST of /v1/search - i.e. all search configuration. </div><div class="ttdef"><b>Definition:</b> SearchDescription.hpp:43</div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html"><div class="ttname"><a href="classmlclient_1_1_search_description.html">mlclient::SearchDescription</a></div><div class="ttdoc">A POD class representing input to the POST of /v1/search - i.e. all search configuration. </div><div class="ttdef"><b>Definition:</b> SearchDescription.hpp:44</div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a4295ab621db4abdaf16eb860c6d10b24"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a4295ab621db4abdaf16eb860c6d10b24">mlclient::SearchResultSet::~SearchResultSet</a></div><div class="ttdeci">virtual MLCLIENT_API ~SearchResultSet()=default</div><div class="ttdoc">Destroys a SearchResultSet and all of its owned resources. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_result_set_html_a4d52dbdce25bc9c4a9cef17ebfb3e185"><div class="ttname"><a href="classmlclient_1_1_search_result_set.html#a4d52dbdce25bc9c4a9cef17ebfb3e185">mlclient::SearchResultSet::SearchResultSet</a></div><div class="ttdeci">MLCLIENT_API SearchResultSet(IConnection *conn, SearchDescription *desc)</div><div class="ttdoc">Creates a self-advancing result set given the specified search description. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

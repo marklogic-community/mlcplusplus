@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/utilities/ResponseHelper.hpp Source File</title>
+<title>MLCPlusPlus: include/mlclient/utilities/ResponseHelper.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7b5d38f1875f1b693f62ca6a108a1129.html">utilities</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li><li class="navelem"><a class="el" href="dir_dfba0838f21917b210a05e569b0c250a.html">utilities</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -110,40 +110,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * \author Adam Fowler &lt;adam.fowler@marklogic.com&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../Response.hpp&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span>utilities {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define SRC_UTILITIES_RESPONSEHELPER_HPP_</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;mlclient/mlclient.hpp&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;mlclient/Response.hpp&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_response_helper.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a> {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a0cffeedcd4fa73663c6fe7440dba3104">isInError</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">static</span> std::string <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#abe287dda66374f733b99b2bf4dab5b99">getErrorMessage</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">static</span> std::string <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a85dd3c1faa4ff29c6e01f609ac134c16">getErrorDetailAsString</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <span class="keyword">static</span> std::list&lt;std::string&gt; <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a59fd8e2c54fb4ca33540d05fbd2be39f">getSuggestions</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}; <span class="comment">// end ResponseHelper class</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;} <span class="comment">// end namespace utilities</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;} <span class="comment">// end namespace mlclient</span></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html">mlclient::utilities::ResponseHelper</a></div><div class="ttdoc">This class provides utility functions to ease the use of Response objects. </div><div class="ttdef"><b>Definition:</b> ResponseHelper.hpp:39</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a59fd8e2c54fb4ca33540d05fbd2be39f"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a59fd8e2c54fb4ca33540d05fbd2be39f">mlclient::utilities::ResponseHelper::getSuggestions</a></div><div class="ttdeci">static std::list&lt; std::string &gt; getSuggestions(const Response &amp;resp)</div><div class="ttdoc">Returns a string list of suggestion values. Used with the response from POST /v1/suggest. </div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a85dd3c1faa4ff29c6e01f609ac134c16"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a85dd3c1faa4ff29c6e01f609ac134c16">mlclient::utilities::ResponseHelper::getErrorDetailAsString</a></div><div class="ttdeci">static std::string getErrorDetailAsString(const Response &amp;resp)</div><div class="ttdoc">Returns the full error trace information as a string Throws an exception if the response is not in er...</div></div>
-<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:125</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_abe287dda66374f733b99b2bf4dab5b99"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#abe287dda66374f733b99b2bf4dab5b99">mlclient::utilities::ResponseHelper::getErrorMessage</a></div><div class="ttdeci">static std::string getErrorMessage(const Response &amp;resp)</div><div class="ttdoc">Returns the error message of a Response in error Throws an exception if the response is not in error...</div></div>
-<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a0cffeedcd4fa73663c6fe7440dba3104"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a0cffeedcd4fa73663c6fe7440dba3104">mlclient::utilities::ResponseHelper::isInError</a></div><div class="ttdeci">static bool isInError(const Response &amp;resp)</div><div class="ttdoc">Returns whether the specified response is a MarkLogic error response. </div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:33</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>utilities {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classmlclient_1_1utilities_1_1_response_helper.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  ~<a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html">ResponseHelper</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a6305cc2920bbdcd2887a3daa7052bb9b">isInError</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  MLCLIENT_API <span class="keyword">static</span> std::string <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a7c09012ef72575aa5e3a2545fef2f033">getErrorMessage</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  MLCLIENT_API <span class="keyword">static</span> std::string <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a678dfb388ac3a5ce1bdb2166f7c5f361">getErrorDetailAsString</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  MLCLIENT_API <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a3a43f85b5d3e899fe271f7b33947fad8">getSuggestions</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  MLCLIENT_API <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classmlclient_1_1utilities_1_1_response_helper.html#a0e7bf585d6ed891e5ee6a03f28f6f555">getAggregateResult</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_response.html">Response</a>&amp; resp,<span class="keyword">const</span> std::string&amp; aggName);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}; <span class="comment">// end ResponseHelper class</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// end namespace utilities</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;} <span class="comment">// end namespace mlclient</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a7c09012ef72575aa5e3a2545fef2f033"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a7c09012ef72575aa5e3a2545fef2f033">mlclient::utilities::ResponseHelper::getErrorMessage</a></div><div class="ttdeci">static MLCLIENT_API std::string getErrorMessage(const Response &amp;resp)</div><div class="ttdoc">Returns the error message of a Response in error Throws an exception if the response is not in error...</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html">mlclient::utilities::ResponseHelper</a></div><div class="ttdoc">This class provides utility functions to ease the use of Response objects. </div><div class="ttdef"><b>Definition:</b> ResponseHelper.hpp:43</div></div>
+<div class="ttc" id="classmlclient_1_1_response_html"><div class="ttname"><a href="classmlclient_1_1_response.html">mlclient::Response</a></div><div class="ttdoc">Encapsulates a response from a MarkLogic server REST API. </div><div class="ttdef"><b>Definition:</b> Response.hpp:126</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a678dfb388ac3a5ce1bdb2166f7c5f361"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a678dfb388ac3a5ce1bdb2166f7c5f361">mlclient::utilities::ResponseHelper::getErrorDetailAsString</a></div><div class="ttdeci">static MLCLIENT_API std::string getErrorDetailAsString(const Response &amp;resp)</div><div class="ttdoc">Returns the full error trace information as a string Throws an exception if the response is not in er...</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a3a43f85b5d3e899fe271f7b33947fad8"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a3a43f85b5d3e899fe271f7b33947fad8">mlclient::utilities::ResponseHelper::getSuggestions</a></div><div class="ttdeci">static MLCLIENT_API std::vector&lt; std::string &gt; getSuggestions(const Response &amp;resp)</div><div class="ttdoc">Returns a string list of suggestion values. Used with the response from POST /v1/suggest. </div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a6305cc2920bbdcd2887a3daa7052bb9b"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a6305cc2920bbdcd2887a3daa7052bb9b">mlclient::utilities::ResponseHelper::isInError</a></div><div class="ttdeci">static MLCLIENT_API bool isInError(const Response &amp;resp)</div><div class="ttdoc">Returns whether the specified response is a MarkLogic error response. </div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:35</div></div>
+<div class="ttc" id="classmlclient_1_1utilities_1_1_response_helper_html_a0e7bf585d6ed891e5ee6a03f28f6f555"><div class="ttname"><a href="classmlclient_1_1utilities_1_1_response_helper.html#a0e7bf585d6ed891e5ee6a03f28f6f555">mlclient::utilities::ResponseHelper::getAggregateResult</a></div><div class="ttdeci">static MLCLIENT_API double getAggregateResult(const Response &amp;resp, const std::string &amp;aggName)</div><div class="ttdoc">Returns a double result from the specified aggregate in the result set. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
