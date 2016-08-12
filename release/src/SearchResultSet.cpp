@@ -122,7 +122,7 @@ public:
     const web::json::array::const_iterator jsonArrayIterEnd(res.end()); // see if a single call saves us time... nope
 
     mlclient::IDocumentContent* ct;
-    SearchResult::DETAIL detail;
+    SearchResult::Detail detail;
     std::string mimeType;
     std::string format;
     web::json::object row = web::json::value::object().as_object();
@@ -142,7 +142,7 @@ public:
 
       //LOG(DEBUG) << "Row: " << iter->as_string();
       //const web::json::object& row = iter.as_object();
-      detail = SearchResult::DETAIL::NONE;
+      detail = SearchResult::Detail::NONE;
       mimeType = "";
       format = SearchResult::JSON;
       web::json::value ctVal;
@@ -188,10 +188,10 @@ public:
           //ct = utility::conversions::to_utf8string(ctVal.as_string());
 
 
-          detail = SearchResult::DETAIL::SNIPPETS;
+          detail = SearchResult::Detail::SNIPPETS;
         } catch (std::exception& ex) {
           // no snippet element, must be some sort of content...
-          detail = SearchResult::DETAIL::CONTENT;
+          detail = SearchResult::Detail::CONTENT;
           LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less" << ex.what();
           //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatchesEXCEPTION()");
         }

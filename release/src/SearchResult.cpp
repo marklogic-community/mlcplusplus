@@ -21,7 +21,7 @@ public:
   }
 };
 
-SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(DETAIL::NONE),detailContent(nullptr) {
+SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(Detail::NONE),detailContent(nullptr) {
   //TIMED_FUNC(SearchResult_defaultConstructor);
   LOG(DEBUG) << "    SearchResult::defaultConstructor @" << &*this;
 }
@@ -34,7 +34,7 @@ SearchResult::~SearchResult() {
 }
 
 SearchResult::SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-    const double confidence,const double fitness,const DETAIL& detail,IDocumentContent* own_detailContent,
+    const double confidence,const double fitness,const Detail& detail,IDocumentContent* own_detailContent,
     const std::string& mimeType,const std::string& format) : mImpl(new Impl) {
   //TIMED_FUNC(SearchResult_detailConstructor);
   LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
@@ -84,7 +84,7 @@ double SearchResult::getConfidence() {
 double SearchResult::getFitness() {
   return fitness;
 }
-const SearchResult::DETAIL& SearchResult::getDetail() const {
+const SearchResult::Detail& SearchResult::getDetail() const {
   return detail;
 }
 const IDocumentContent* SearchResult::getDetailContent() const {

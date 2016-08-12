@@ -38,7 +38,7 @@ namespace utilities {
 /**
  * The MarkLogic Search Range Query Operation - Unknown (means the API hasn't been told by your own function calls!).
  */
-enum RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE = 4, EQ = 5, NE = 6 };
+enum class RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE = 4, EQ = 5, NE = 6 };
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOperation& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOperation& rt);
@@ -154,7 +154,7 @@ public:
  * \brief The mode determines whether the QueryBuilder will generate JSON based queries, xml based queries, or an or query of all types (DEFAULT).
  * \note Useful when you have a mix of documents of both types. See also setDefaultXmlNamespace().
  */
-enum QueryBuilderMode {ALL,XML,JSON};
+enum class QueryBuilderMode {ALL,XML,JSON};
 
 
 /**

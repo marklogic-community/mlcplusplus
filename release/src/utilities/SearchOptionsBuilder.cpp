@@ -34,15 +34,15 @@ namespace mlclient {
 namespace utilities {
 
 
-std::ostream& operator << (std::ostream& os, const RangeIndexType::t& rt) {
+std::ostream& operator << (std::ostream& os, const RangeIndexType& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const RangeIndexType::t& rt) {
+std::string& operator +(std::string& s, const RangeIndexType& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const RangeIndexType::t& rt) {
+const std::string translate(const RangeIndexType& rt) {
   switch (rt) {
   case RangeIndexType::ANY_URI:
     return "xs:anyURI";
@@ -85,15 +85,15 @@ const std::string translate(const RangeIndexType::t& rt) {
 
 
 
-std::ostream& operator << (std::ostream& os, const AggregateBuiltIn::t& rt) {
+std::ostream& operator << (std::ostream& os, const AggregateBuiltIn& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const AggregateBuiltIn::t& rt) {
+std::string& operator +(std::string& s, const AggregateBuiltIn& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const AggregateBuiltIn::t& rt) {
+const std::string translate(const AggregateBuiltIn& rt) {
   switch (rt) {
   case AggregateBuiltIn::AVG:
     return "avg";
@@ -118,15 +118,15 @@ const std::string translate(const AggregateBuiltIn::t& rt) {
 
 
 
-std::ostream& operator << (std::ostream& os, const FragmentScope::t& rt) {
+std::ostream& operator << (std::ostream& os, const FragmentScope& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const FragmentScope::t& rt) {
+std::string& operator +(std::string& s, const FragmentScope& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const FragmentScope::t& rt) {
+const std::string translate(const FragmentScope& rt) {
   switch (rt) {
   case FragmentScope::CONTENT:
     return "documents";
@@ -137,15 +137,15 @@ const std::string translate(const FragmentScope::t& rt) {
 
 
 
-std::ostream& operator << (std::ostream& os, const FacetOption::t& rt) {
+std::ostream& operator << (std::ostream& os, const FacetOption& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const FacetOption::t& rt) {
+std::string& operator +(std::string& s, const FacetOption& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const FacetOption::t& rt) {
+const std::string translate(const FacetOption& rt) {
   switch (rt) {
   case FacetOption::ANY:
     return "any";
@@ -201,15 +201,15 @@ const std::string translate(const FacetOption::t& rt) {
 }
 
 
-std::ostream& operator << (std::ostream& os, const RangeOption::t& rt) {
+std::ostream& operator << (std::ostream& os, const RangeOption& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const RangeOption::t& rt) {
+std::string& operator +(std::string& s, const RangeOption& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const RangeOption::t& rt) {
+const std::string translate(const RangeOption& rt) {
   switch (rt) {
   case RangeOption::CACHED:
     return "cached";
@@ -233,15 +233,15 @@ const std::string translate(const RangeOption::t& rt) {
 }
 
 
-std::ostream& operator << (std::ostream& os, const ValuesOption::t& rt) {
+std::ostream& operator << (std::ostream& os, const ValuesOption& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const ValuesOption::t& rt) {
+std::string& operator +(std::string& s, const ValuesOption& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const ValuesOption::t& rt) {
+const std::string translate(const ValuesOption& rt) {
   switch (rt) {
   case ValuesOption::ORDERED:
     return "ordered";
@@ -311,10 +311,10 @@ RangeOptions::~RangeOptions() {
   container = NULL; // Do not delete - may be used elsewhere
 }
 
-void RangeOptions::setType(const RangeIndexType::t type) {
+void RangeOptions::setType(const RangeIndexType type) {
   this->type = type;
 }
-const RangeIndexType::t RangeOptions::getType() const {
+const RangeIndexType RangeOptions::getType() const {
   return type;
 }
 
@@ -335,62 +335,62 @@ const IContainerRef* RangeOptions::getContainer() const {
   return container;
 }
 
-void RangeOptions::setFragmentScope(const FragmentScope::t& scope) {
+void RangeOptions::setFragmentScope(const FragmentScope& scope) {
   fragmentScope = scope;
 }
-const FragmentScope::t RangeOptions::getFragmentScope() const {
+const FragmentScope RangeOptions::getFragmentScope() const {
   return fragmentScope;
 }
 
 void RangeOptions::clearFacetOptions() {
   facetOptions.clear();
 }
-void RangeOptions::addFacetOptionWithValue(const FacetOption::t& option,const std::string& value) {
+void RangeOptions::addFacetOptionWithValue(const FacetOption& option,const std::string& value) {
   // TODO add sanity checks here too, and catch any invalid values trying to slip in
-  facetOptions.insert(std::pair<FacetOption::t,std::string>(option,value));
+  facetOptions.insert(std::pair<FacetOption,std::string>(option,value));
 }
-void RangeOptions::addFacetOption(const FacetOption::t& option) {
+void RangeOptions::addFacetOption(const FacetOption& option) {
   if (FacetOption::CHECKED == option) {
-    facetOptions.erase(FacetOption::t::UNCHECKED);
+    facetOptions.erase(FacetOption::UNCHECKED);
   }
   if (FacetOption::UNCHECKED == option) {
-    facetOptions.erase(FacetOption::t::CHECKED);
+    facetOptions.erase(FacetOption::CHECKED);
   }
   if (FacetOption::ASCENDING == option) {
-    facetOptions.erase(FacetOption::t::DESCENDING);
+    facetOptions.erase(FacetOption::DESCENDING);
   }
   if (FacetOption::DESCENDING == option) {
-    facetOptions.erase(FacetOption::t::ASCENDING);
+    facetOptions.erase(FacetOption::ASCENDING);
   }
   if (FacetOption::DOCUMENT == option) {
-    facetOptions.erase(FacetOption::t::PROPERTIES);
+    facetOptions.erase(FacetOption::PROPERTIES);
   }
   if (FacetOption::PROPERTIES == option) {
-    facetOptions.erase(FacetOption::t::DOCUMENT);
+    facetOptions.erase(FacetOption::DOCUMENT);
   }
   if (FacetOption::FREQUENCY_ORDER == option) {
-    facetOptions.erase(FacetOption::t::ITEM_ORDER);
+    facetOptions.erase(FacetOption::ITEM_ORDER);
   }
   if (FacetOption::ITEM_ORDER == option) {
-    facetOptions.erase(FacetOption::t::FREQUENCY_ORDER);
+    facetOptions.erase(FacetOption::FREQUENCY_ORDER);
   }
-  facetOptions.insert(std::pair<FacetOption::t,std::string>(option,"true"));
+  facetOptions.insert(std::pair<FacetOption,std::string>(option,"true"));
 }
 const bool RangeOptions::hasFacetOptions() const {
   return 0 != facetOptions.size();
 }
-const std::map<FacetOption::t,std::string> RangeOptions::getFacetOptions() const {
+const std::map<FacetOption,std::string> RangeOptions::getFacetOptions() const {
   return facetOptions;
 }
 
 void RangeOptions::clearRangeOptions() {
   rangeOptions.clear();
 }
-void RangeOptions::addRangeOptionWithValue(const RangeOption::t& option,const std::string& value) {
+void RangeOptions::addRangeOptionWithValue(const RangeOption& option,const std::string& value) {
   // TODO add checks here, including checks for invalid values
-  rangeOptions.insert(std::pair<RangeOption::t,std::string>(option,value));
+  rangeOptions.insert(std::pair<RangeOption,std::string>(option,value));
 }
-void RangeOptions::addRangeOption(const RangeOption::t& option) {
+void RangeOptions::addRangeOption(const RangeOption& option) {
   if (RangeOption::CACHED == option) {
     rangeOptions.erase(RangeOption::UNCACHED);
   }
@@ -409,12 +409,12 @@ void RangeOptions::addRangeOption(const RangeOption::t& option) {
     rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
     rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
   }
-  rangeOptions.insert(std::pair<RangeOption::t,std::string>(option,"true"));
+  rangeOptions.insert(std::pair<RangeOption,std::string>(option,"true"));
 }
 const bool RangeOptions::hasRangeOptions() const {
   return 0 != rangeOptions.size();
 }
-const std::map<RangeOption::t,std::string> RangeOptions::getRangeOptions() const {
+const std::map<RangeOption,std::string> RangeOptions::getRangeOptions() const {
   return rangeOptions;
 }
 
@@ -451,7 +451,7 @@ const std::string translate(const RangeOptions& rt) {
   // TODO bucket and computed bucket
   if (rt.hasFacetOptions()) {
     os << "\"facet-option\":[";
-    std::map<FacetOption::t,std::string> fo = rt.getFacetOptions();
+    std::map<FacetOption,std::string> fo = rt.getFacetOptions();
     bool first = true;
     for (auto iter = fo.begin();iter != fo.end();++iter) {
       if (first) {
@@ -472,7 +472,7 @@ const std::string translate(const RangeOptions& rt) {
   }
   if (rt.hasRangeOptions()) {
     os << "\"range-options\":[";
-    std::map<RangeOption::t,std::string> fo = rt.getRangeOptions();
+    std::map<RangeOption,std::string> fo = rt.getRangeOptions();
     bool first = true;
     for (auto iter = fo.begin();iter != fo.end();++iter) {
       if (first) {
@@ -501,7 +501,7 @@ AggregateInfo::AggregateInfo() : bAggregateBuiltIn(false), aggregate(AggregateBu
 }
 
 // Other member functions
-void AggregateInfo::setAggregate(const AggregateBuiltIn::t aggregate) {
+void AggregateInfo::setAggregate(const AggregateBuiltIn aggregate) {
   this->aggregate = aggregate;
   bAggregateBuiltIn = true;
   bCustomAggregate = false;
@@ -515,7 +515,7 @@ void AggregateInfo::setAggregate(const std::string& udfName,const std::string& u
 const bool AggregateInfo::isAggregateBuiltin() const {
   return bAggregateBuiltIn;
 }
-const AggregateBuiltIn::t AggregateInfo::getAggregate() const {
+const AggregateBuiltIn AggregateInfo::getAggregate() const {
   if (!bAggregateBuiltIn) {
     throw InvalidFormatException("Aggregate is not a built in. Use getUdfName and getUdfPath instead");
   }
@@ -566,15 +566,15 @@ const std::string translate(const AggregateInfo& rt) {
 
 
 
-std::ostream& operator << (std::ostream& os, const LexiconType::t& rt) {
+std::ostream& operator << (std::ostream& os, const LexiconType& rt) {
   os << translate(rt);
   return os;
 }
-std::string& operator +(std::string& s, const LexiconType::t& rt) {
+std::string& operator +(std::string& s, const LexiconType& rt) {
   s.append(translate(rt));
   return s;
 }
-const std::string translate(const LexiconType::t& rt) {
+const std::string translate(const LexiconType& rt) {
   switch (rt) {
   case LexiconType::COLLECTION:
     return "collection";
@@ -620,10 +620,10 @@ const RangeOptions RangeLexiconRef::getRange() const {
   return range;
 }
 
-void RangeLexiconRef::setLexiconType(LexiconType::t type) {
+void RangeLexiconRef::setLexiconType(LexiconType type) {
   this->type = type;
 }
-const LexiconType::t RangeLexiconRef::getLexiconType() const {
+const LexiconType RangeLexiconRef::getLexiconType() const {
   return type;
 }
 std::ostream& RangeLexiconRef::write(std::ostream& os) const {
@@ -690,10 +690,10 @@ const AggregateInfo ValuesInfo::getAggregate() const {
 const bool ValuesInfo::hasValuesOptions() const {
   return 0 != valuesOptions.size();
 }
-void ValuesInfo::setValuesOptions(std::map<ValuesOption::t,std::string> options) {
+void ValuesInfo::setValuesOptions(std::map<ValuesOption,std::string> options) {
   valuesOptions = options;
 }
-const std::map<ValuesOption::t,std::string> ValuesInfo::getValuesOptions() const {
+const std::map<ValuesOption,std::string> ValuesInfo::getValuesOptions() const {
   return valuesOptions;
 }
 
@@ -792,7 +792,7 @@ SearchOptionsBuilder* SearchOptionsBuilder::rawSnippet() {
 
 
 SearchOptionsBuilder* SearchOptionsBuilder::valuesRangeAggregate(const std::string& name,const RangeOptions& range,
-    const AggregateInfo& aggregate,const std::map<ValuesOption::t,std::string>& valuesOptions) {
+    const AggregateInfo& aggregate,const std::map<ValuesOption,std::string>& valuesOptions) {
   ValuesInfo vi;
   vi.setAggregate(aggregate);
   RangeLexiconRef* rr = new RangeLexiconRef;
@@ -806,7 +806,7 @@ SearchOptionsBuilder* SearchOptionsBuilder::valuesRangeAggregate(const std::stri
 }
 // also support non aggregate, values listing, configuration
 SearchOptionsBuilder* SearchOptionsBuilder::valuesRange(const std::string& name,const RangeOptions& range,
-    const std::map<ValuesOption::t,std::string>& valuesOptions) {
+    const std::map<ValuesOption,std::string>& valuesOptions) {
   ValuesInfo vi;
   RangeLexiconRef* rr = new RangeLexiconRef;
   rr->setLexiconType(LexiconType::RANGE);

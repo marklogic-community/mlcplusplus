@@ -318,7 +318,7 @@ private:
  *
  * There are many ways to encode a Binary document as a string. This enum allows them to be described.
  */
-enum BinaryEncoding : int {
+enum class BinaryEncoding : int {
   HEX = 1,     //< Hexadecimal representation i.e. as characters 0-F
   BIN = 2      //< As binary, rather than encoded. Used in multi-part mime
 };

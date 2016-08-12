@@ -18,7 +18,7 @@ namespace mlclient {
 /**
  * \brief A capability associated with a (Document) permission in MarkLogic Server.
  */
-enum Capability {
+enum class Capability {
   EXECUTE, INSERT, READ, UPDATE
 };
 

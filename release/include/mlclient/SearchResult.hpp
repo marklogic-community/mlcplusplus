@@ -29,7 +29,7 @@ public:
   /**
    * Represents one of the snippetting options in use by the search result
    */
-  enum DETAIL {
+  enum class Detail {
     SNIPPETS, CONTENT, NONE, CUSTOM
   };
   /**
@@ -81,7 +81,7 @@ public:
    * \param format The REST API format of the result (can be "json" or "xml" or "binary" or "text" or "none")
    */
   MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-      const double confidence,const double fitness,const DETAIL& detail,IDocumentContent* detailContent = nullptr,
+      const double confidence,const double fitness,const Detail& detail,IDocumentContent* detailContent = nullptr,
       const std::string& mimeType = "",const std::string& format = JSON);
 
   /**
@@ -118,7 +118,7 @@ public:
    * \brief Returns the level of detail of this result
    * \return The level of detail returned for this result
    */
-  MLCLIENT_API const DETAIL& getDetail() const;
+  MLCLIENT_API const Detail& getDetail() const;
   /**
    * \brief Returns the raw text content of this result
    * \return The raw text content of this result
@@ -145,7 +145,7 @@ private:
   long score;
   double confidence;
   double fitness;
-  DETAIL detail;
+  Detail detail;
   IDocumentContent* detailContent;
   std::string mimeType;
   std::string format;
