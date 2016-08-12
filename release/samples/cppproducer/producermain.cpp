@@ -1,5 +1,5 @@
 
-#include "mlclient/logging.hpp"
+#include <mlclient/logging.hpp>
 
 
 #include <cpprest/http_client.h>
@@ -50,6 +50,9 @@ private:
 
 int main(int argc, const char * argv[])
 {
+
+  mlclient::reconfigureLogging(argc,argv);
+
   std::cout << "In Main Func" << std::endl;
   //std::cout << "Easy logging started" << std::endl;
 /*

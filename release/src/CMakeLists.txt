@@ -18,6 +18,7 @@ include_directories("${PROJECT_BINARY_DIR}")
 add_library (mlclient SHARED
     Connection.cpp
     mlclient.cpp
+    logging.cpp
     NoCredentialsException.cpp
     HttpHeaders.cpp
     Response.cpp

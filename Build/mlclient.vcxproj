@@ -143,6 +143,7 @@
     <ClCompile Include="..\release\src\internals\FakeConnection.cpp" />
     <ClCompile Include="..\release\src\internals\MLCrypto.cpp" />
     <ClCompile Include="..\release\src\InvalidFormatException.cpp" />
+    <ClCompile Include="..\release\src\logging.cpp" />
     <ClCompile Include="..\release\src\mlclient.cpp" />
     <ClCompile Include="..\release\src\NoCredentialsException.cpp" />
     <ClCompile Include="..\release\src\Permission.cpp" />

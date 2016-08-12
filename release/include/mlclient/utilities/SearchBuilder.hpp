@@ -38,7 +38,7 @@ namespace utilities {
 /**
  * The MarkLogic Search Range Query Operation - Unknown (means the API hasn't been told by your own function calls!).
  */
-MLCLIENT_API enum RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE = 4, EQ = 5, NE = 6 };
+enum class RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE = 4, EQ = 5, NE = 6 };
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOperation& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOperation& rt);
@@ -52,37 +52,37 @@ MLCLIENT_API const std::string translate(const RangeOperation& rt);
  * \since 8.0.2
  * \date 2016-06-08
  */
-class MLCLIENT_API IQuery {
+class IQuery {
 public:
   /**
    * \brief Default Constructor
    */
-  IQuery() = default;
+  MLCLIENT_API IQuery() = default;
 
   /**
    * \brief Default Destructor
    */
-  virtual ~IQuery() = default;
+  MLCLIENT_API virtual ~IQuery() = default;
 
-  friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
+  MLCLIENT_API friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
 
 protected:
-  virtual std::ostream& write(std::ostream& os) const = 0;
+  MLCLIENT_API virtual std::ostream& write(std::ostream& os) const = 0;
 };
 
 
-std::ostream& operator << (std::ostream& os, const IQuery& rt);
-std::string& operator +(std::string& s, const IQuery& rt);
+MLCLIENT_API std::ostream& operator << (std::ostream& os, const IQuery& rt);
+MLCLIENT_API std::string& operator +(std::string& s, const IQuery& rt);
 
 
 
-class MLCLIENT_API GenericQuery: public IQuery {
+class GenericQuery: public IQuery {
 public:
-  GenericQuery();
-  ~GenericQuery() = default;
+  MLCLIENT_API GenericQuery();
+  MLCLIENT_API ~GenericQuery() = default;
 
-  void setQuery(const std::string& value);
-  const std::string& getQuery() const;
+  MLCLIENT_API void setQuery(const std::string& value);
+  MLCLIENT_API const std::string& getQuery() const;
 
 protected:
   std::ostream& write(std::ostream& os) const override;
@@ -91,13 +91,13 @@ private:
   std::string value;
 };
 
-class MLCLIENT_API JsonPropertyQuery: public IQuery {
+class JsonPropertyQuery: public IQuery {
 public:
-  JsonPropertyQuery();
-  ~JsonPropertyQuery() = default;
+  MLCLIENT_API JsonPropertyQuery();
+  MLCLIENT_API ~JsonPropertyQuery() = default;
 
-  void setQuery(const std::string& property,const std::string& value);
-  const std::string& getQuery() const;
+  MLCLIENT_API void setQuery(const std::string& property,const std::string& value);
+  MLCLIENT_API const std::string& getQuery() const;
 
 protected:
   std::ostream& write(std::ostream& os) const override;
@@ -108,11 +108,11 @@ private:
 
 // CONTAINER REFERENCES
 
-class MLCLIENT_API IContainerRef {
+class IContainerRef {
 public:
   // TODO define IContainerRef
-  IContainerRef() = default;
-  virtual ~IContainerRef() = default;
+  MLCLIENT_API IContainerRef() = default;
+  MLCLIENT_API virtual ~IContainerRef() = default;
 
   friend std::ostream& operator<<(std::ostream& os, const IContainerRef& ref);
 
@@ -122,13 +122,13 @@ protected:
 std::ostream& operator << (std::ostream& os, const IContainerRef& rt);
 std::string& operator +(std::string& s, const IContainerRef& rt);
 
-class MLCLIENT_API JsonPropertyRef : public IContainerRef {
+class JsonPropertyRef : public IContainerRef {
 public:
-  JsonPropertyRef();
-  ~JsonPropertyRef() = default;
+  MLCLIENT_API JsonPropertyRef();
+  MLCLIENT_API ~JsonPropertyRef() = default;
 
-  void setProperty(const std::string& property);
-  const std::string getRef();
+  MLCLIENT_API void setProperty(const std::string& property);
+  MLCLIENT_API const std::string getRef();
 
 protected:
   std::ostream& write(std::ostream& os) const override;
@@ -140,10 +140,10 @@ private:
 
 // MARKLOGIC SUPPORTED TYPES
 
-class MLCLIENT_API ITypedValue {
+class ITypedValue {
 public:
-  ITypedValue() = default;
-  virtual ~ITypedValue() = default;
+  MLCLIENT_API ITypedValue() = default;
+  MLCLIENT_API virtual ~ITypedValue() = default;
 };
 
 
@@ -154,7 +154,7 @@ public:
  * \brief The mode determines whether the QueryBuilder will generate JSON based queries, xml based queries, or an or query of all types (DEFAULT).
  * \note Useful when you have a mix of documents of both types. See also setDefaultXmlNamespace().
  */
-enum QueryBuilderMode {ALL,XML,JSON};
+enum class QueryBuilderMode {ALL,XML,JSON};
 
 
 /**
@@ -173,40 +173,40 @@ enum QueryBuilderMode {ALL,XML,JSON};
  * \note This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API)
  * , this does not introduce any extra dependencies.
  */
-class MLCLIENT_API SearchBuilder {
+class SearchBuilder {
 public:
-  SearchBuilder();
-  ~SearchBuilder() = default;
+  MLCLIENT_API SearchBuilder();
+  MLCLIENT_API ~SearchBuilder() = default;
 
   // public static methods that create query terms and option constraints
-  static IQuery* collectionQuery(const std::vector<std::string>& collections);
+  MLCLIENT_API static IQuery* collectionQuery(const std::vector<std::string>& collections);
   //static IQuery& createWordQuery(const IContainerRef& container,const std::string& value);
   //static IQuery& createValueQuery(const IContainerRef& container,const ITypedValue& value);
   //static IQuery& createRangeQuery(const IContainerRef& container,const SearchBuilder::RangeOperation operation,const ITypedValue& value);
   //static IQuery& createConstraintQuery(const std::string& constraintName,const ITypedValue& value);
-  static IQuery* documentQuery(const std::vector<std::string>& uris);
+  MLCLIENT_API static IQuery* documentQuery(const std::vector<std::string>& uris);
 
   // public class methods that control the create of a search or query
-  static IQuery* andQuery(const std::vector<IQuery*>& queries);
-  static IQuery* orQuery(const std::vector<IQuery*>& queries);
-  static IQuery* notQuery(const IQuery* query);
+  MLCLIENT_API static IQuery* andQuery(const std::vector<IQuery*>& queries);
+  MLCLIENT_API static IQuery* orQuery(const std::vector<IQuery*>& queries);
+  MLCLIENT_API static IQuery* notQuery(const IQuery* query);
 
-  IQuery* valueQuery(const std::string ref,const std::string value);
-  IQuery* jsonValueQuery(const std::string ref,const std::string value);
-  IQuery* xmlValueQuery(const std::string ref,const std::string value);
-  IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
-  IQuery* jsonRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
-  IQuery* xmlRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* valueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* jsonValueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* xmlValueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* jsonRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* xmlRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
 
   // instance methods that control the base search definition
-  SearchBuilder* setQuery(IQuery* query); // top level root query
+  MLCLIENT_API SearchBuilder* setQuery(IQuery* query); // top level root query
 
-  void setDefaultXmlNamespace(const std::string& ns);
-  const std::string& getDefaultXmlNamespace() const;
-  void setMode(const QueryBuilderMode mode);
-  const QueryBuilderMode getMode() const;
+  MLCLIENT_API void setDefaultXmlNamespace(const std::string& ns);
+  MLCLIENT_API const std::string& getDefaultXmlNamespace() const;
+  MLCLIENT_API void setMode(const QueryBuilderMode mode);
+  MLCLIENT_API const QueryBuilderMode getMode() const;
 
-  ITextDocumentContent* toDocument();
+  MLCLIENT_API ITextDocumentContent* toDocument();
 
 private:
   class Impl; // forward declaration

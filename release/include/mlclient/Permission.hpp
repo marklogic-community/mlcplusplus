@@ -18,7 +18,7 @@ namespace mlclient {
 /**
  * \brief A capability associated with a (Document) permission in MarkLogic Server.
  */
-MLCLIENT_API enum Capability {
+enum class Capability {
   EXECUTE, INSERT, READ, UPDATE
 };
 
@@ -33,7 +33,7 @@ MLCLIENT_API Capability toCapability(const std::string& capString);
 /**
  * \brief Represents a single MarkLogic Permission
  */
-MLCLIENT_API class Permission {
+class Permission {
 public:
   Permission(const std::string& role,const Capability& capability);
   Permission(Permission&& other); // move ctor

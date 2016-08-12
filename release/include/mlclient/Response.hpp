@@ -31,7 +31,7 @@ namespace mlclient {
 /**
  * The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
  */
-MLCLIENT_API enum ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
+enum class ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const ResponseType& rt);
@@ -41,7 +41,7 @@ MLCLIENT_API const std::string translate(const ResponseType& rt);
 /**
  * The various HTTP response codes. Defaults to UNKNOWN to prevent API failures.
  **/
-MLCLIENT_API enum ResponseCode : int {
+enum class ResponseCode : int {
        UNKNOWN_CODE                  = 0,
        CONTINUE                      = 100,
        OK                            = 200,

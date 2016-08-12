@@ -216,6 +216,8 @@ public:
    * \param[in] uri The URI of the document to fetch from MarkLogic Server
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testGetJson and \ref ConnectionDocumentCrudTest::testGetXml and \ref ConnectionDocumentCrudTest::testGetText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -272,6 +274,8 @@ public:
    * \param[in] payload The \link DocumentContent \endlink to send to MarkLogic Server
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testSaveJson and \ref ConnectionDocumentCrudTest::testSaveXml and \ref ConnectionDocumentCrudTest::testSaveText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -300,6 +304,8 @@ public:
    * \param[in] uri The document URI to delete
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested by \ref ConnectionDocumentCrudTest::testDeleteJson and \ref ConnectionDocumentCrudTest::testDeleteXml and \ref ConnectionDocumentCrudTest::testDeleteText
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -317,6 +323,9 @@ public:
    * \param[in] desc The SearchDescription defining the search, options, and query string
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
    *
+   * \test Tested directly by \ref ConnectionSearchTest::testEmptySearch and \ref ConnectionSearchTest::testQueryText and \ref ConnectionSearchTest::testWordQuery
+   *       Tested indirectly by tests within \ref SearchBuilderTest and \ref SearchResultSetTest
+   *
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
@@ -325,10 +334,29 @@ public:
   MLCLIENT_API virtual Response* search(const SearchDescription& desc) = 0;
 
   /**
+   * \brief Performs a search against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
+   *
+   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
+   *
+   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
+   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
+   *
+   * See also \link Connection::valuesExtension \endlink for similar functionality for aggregate/values extensions
+   *
+   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
+   * \param[in] desc The SearchDescription defining the search, options, and query string
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* searchExtension(const std::string& extensionName,const SearchDescription& desc) = 0;
+
+  /**
    * \brief Saves search options to the server.
    *
    * \param[in] optionsName The name of the options on the server
    * \param[in] optionsDoc The document containing the options
+   *
+   * \test Tested by SearchOptionsBuilderTest::testSave
    *
    * \since 8.0.2
    */
@@ -339,14 +367,52 @@ public:
    *
    * \note What is returned from the call is entirely dependent upon the search options configuration used.
    *
+   * \note Invokes GET /v1/values/VALUESNAME?options=OPTIONSNAME
+   *
+   * \test Tested by ConnectionValuesTest::testValues
+   *
    * \param[in] valuesName The name of the values Configuration within the search options to use
    * \param[in] optionsName The name of the installed search options to specify (no default)
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* values(const std::string& valuesName,const std::string& optionsName) = 0;
+
+
+  /**
+   * \brief Performs a values against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
+   *
+   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
+   *
+   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
+   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
+   *
+   * See also \link Connection::searchExtension \endlink for similar functionality for aggregate/values extensions
+   *
+   * Invokes POST /v1/values/VALUESNAME?options=OPTIONSNAME and not GET
+   *
+   * \note Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName
+   * variable is passed to the 'values' parameter on the querystring of the request.
+   *
+   * \test Tested by ConnectionValuesTest::testValuesExtension
+   *
+   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
+   * \param[in] valuesName The name of the values Configuration within the search options to use
+   * \param[in] optionsName The name of the installed search options to specify (no default)
+   * \param[in] desc The SearchDescription defining the search, options, and query string
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* valuesExtension(const std::string& extensionName,const std::string& valuesName,
+      const std::string& optionsName,const SearchDescription& desc) = 0;
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   *
+   * \test Tested by ConnectionCollectionsTest::testListRootCollections
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* listRootCollections() = 0;
 
@@ -354,6 +420,10 @@ public:
    * \brief Lists the immediate child collections of the specified parent Collections.
    * \note Parent collection must start with a /
    * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   *
+   * \test Tested indirectly by ConnectionCollectionsTest::testListRootCollections (the Connection::listRootCollections function calls this function directly)
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* listCollections(const std::string& parentCollection) = 0;
 
@@ -706,6 +776,23 @@ public:
   MLCLIENT_API Response* search(const SearchDescription& desc) override;
 
   /**
+   * \brief Performs a search against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
+   *
+   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
+   *
+   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
+   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
+   *
+   * See also \link Connection::valuesExtension \endlink for similar functionality for aggregate/values extensions
+   *
+   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
+   * \param[in] desc The SearchDescription defining the search, options, and query string
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API Response* searchExtension(const std::string& extensionName,const SearchDescription& desc) override;
+
+  /**
    * \brief Saves search options to the server.
    *
    * \param[in] name The name of the options on the server
@@ -724,6 +811,31 @@ public:
    * \param[in] optionsName The name of the installed search options to specify (no default)
    */
   MLCLIENT_API Response* values(const std::string& valuesName,const std::string& optionsName) override;
+
+  /**
+   * \brief Performs a values against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
+   *
+   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
+   *
+   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
+   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
+   *
+   * See also \link Connection::searchExtension \endlink for similar functionality for aggregate/values extensions
+   *
+   * \note Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName
+   * variable is passed to the 'values' parameter on the querystring of the request.
+   *
+   * Invokes POST /v1/values/VALUESNAME?options=OPTIONSNAME and not GET
+   *
+   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
+   * \param[in] valuesName The name of the values Configuration within the search options to use
+   * \param[in] optionsName The name of the installed search options to specify (no default)
+   * \param[in] desc The SearchDescription defining the search, options, and query string
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API Response* valuesExtension(const std::string& extensionName,const std::string& valuesName,
+      const std::string& optionsName,const SearchDescription& desc) override;
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
