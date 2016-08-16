@@ -16,6 +16,7 @@
 #ifndef MLCLIENT_H
 #define MLCLIENT_H
 
+#include <memory>
 
 //#include "mlclient/ext/easylogging++.h"
 
@@ -40,5 +41,14 @@ namespace mlclient {
 #else
 #define MLCLIENT_API
 #endif
+
+namespace mlclient {
+  // note: this implementation does not disable this overload for array types
+  template<typename T, typename... Args>
+  std::unique_ptr<T> make_unique(Args&&... args)
+  {
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+  }
+} // end namespace mlclient
 
 #endif /* defined(MLCLIENT_H) */

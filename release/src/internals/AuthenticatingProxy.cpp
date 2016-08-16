@@ -142,6 +142,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
+
     } // PERFORMANCE BRACE
     try
     {

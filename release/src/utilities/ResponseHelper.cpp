@@ -18,10 +18,11 @@
  * \date 2016-06-08
  */
 
-#include "mlclient/utilities/ResponseHelper.hpp"
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include <mlclient/utilities/ResponseHelper.hpp>
+#include <mlclient/utilities/CppRestJsonHelper.hpp>
 
-#include "mlclient/logging.hpp"
+#include <mlclient/logging.hpp>
+#include <mlclient/ValuesResult.hpp>
 
 #include <cpprest/http_client.h>
 
@@ -69,6 +70,29 @@ std::vector<std::string> ResponseHelper::getSuggestions(const Response& resp) {
     suggestions.push_back(utility::conversions::to_utf8string(iter.as_string()));
   }
   return suggestions;
+}
+
+void ResponseHelper::getAggregateResults(const Response& resp,ValuesResult& vr) {
+  const web::json::value doc(CppRestJsonHelper::fromResponse(resp));
+  const web::json::object jsonObject(doc.as_object());
+  const web::json::object valr(jsonObject.at(U("values-response")).as_object());
+  const web::json::array aggArray(valr.at(U("aggregate-result")).as_array());
+
+  for (auto& iter: aggArray) {
+    const web::json::object agg = iter.as_object();
+    std::string aggName = utility::conversions::to_utf8string(agg.at(U("name")).as_string());
+    std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());
+    double val;
+    std::istringstream i(doubleString);
+       double x;
+       if (!(i >> x))
+         val = -1; // format failure - TODO decide if we should throw an InvalidFormatException here
+       val = x;
+    ValuesResultAggregate vra;
+    vra.name = aggName;
+    vra.value = val;
+    vr.addAggregate(std::move(vra));
+  }
 }
 
 double ResponseHelper::getAggregateResult(const Response& resp,const std::string& aggName) {

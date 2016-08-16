@@ -52,10 +52,14 @@ IDocumentContent* genOptions() {
   ro.setType(RangeIndexType::INT);
   AggregateInfo aggInfo;
   aggInfo.setAggregate(AggregateBuiltIn::AVG);
+  AggregateInfo aggInfo2;
+  aggInfo2.setAggregate(AggregateBuiltIn::SUM);
 
   std::map<ValuesOption,std::string> vos;
   vos.insert(std::pair<ValuesOption,std::string>(ValuesOption::SKIP,"2"));
-  builder.additionalQuery(*colQuery)->rawSnippet()->valuesRangeAggregate("ageavg",ro,aggInfo,vos);
+  builder.additionalQuery(*colQuery)->rawSnippet()
+         ->valuesRangeAggregate("ageavg",ro,aggInfo,vos)
+         ->valuesRangeAggregate("agesum",ro,aggInfo2,vos);
   ITextDocumentContent* json = builder.toDocument(true);
 
   return json;

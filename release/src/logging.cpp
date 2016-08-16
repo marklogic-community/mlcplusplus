@@ -97,6 +97,8 @@ namespace mlclient {
 
 
 void libraryLoggingInit() {
+  FLAGS_logtostderr = 0; // default
+
   LoggingConfiguration config;
   config.level = "INFO";
   config.toerr = false;
@@ -178,20 +180,24 @@ void reconfigureLogging(int argc,const char * argv[]) {
 }
 
 void reconfigureLoggingSettings(const LoggingConfiguration& config) {
+  static bool configured = false;
   // The following is a hack as google logging hates Win32 currently
 #ifndef _WIN32
-  if (config.toerr) {
-    FLAGS_logtostderr = 1;
-  } else {
+  //if (true == config.toerr) {
+  //  FLAGS_logtostderr = 1;
+  //} else {
     FLAGS_logtostderr = 0;
-  }
+  //}
   // reconfigure logger with the new settings
   FLAGS_log_dir = config.folder;
 
   // TODO handle log level
 
-  //google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
-  //google::InstallFailureSignalHandler();
+  if (!configured) {
+    google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
+    google::InstallFailureSignalHandler();
+    configured = true;
+  }
 #endif
 }
 

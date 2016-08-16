@@ -20,8 +20,9 @@
 #ifndef SRC_UTILITIES_RESPONSEHELPER_HPP_
 #define SRC_UTILITIES_RESPONSEHELPER_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/Response.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/ValuesResult.hpp>
 #include <vector>
 #include <string>
 
@@ -89,6 +90,13 @@ public:
    * \return double The double typed aggregate result
    */
   MLCLIENT_API static double getAggregateResult(const Response& resp,const std::string& aggName);
+
+  /**
+   * \brief Extracts all aggregate results and places them in the provided ValuesResult holder
+   * \param[in] resp The response to parse
+   * \param[inout] vr The ValuesResult object to populate
+   */
+  MLCLIENT_API static void getAggregateResults(const Response& resp,ValuesResult& vr);
 
 
 }; // end ResponseHelper class

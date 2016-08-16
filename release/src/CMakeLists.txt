@@ -28,6 +28,8 @@ add_library (mlclient SHARED
     SearchDescription.cpp
     SearchResult.cpp
     SearchResultSet.cpp
+    ValuesResult.cpp
+    ValuesResultSet.cpp
     
     Permission.cpp
     Document.cpp

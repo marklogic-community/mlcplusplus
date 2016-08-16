@@ -15,6 +15,7 @@ add_executable(mlcpptest
     SearchBuilderTest.cpp
     SearchOptionsBuilderTest.cpp
     SearchResultSetTest.cpp
+    ValuesResultSetTest.cpp
 )
 target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES} ${GLOG_LIB})
 
