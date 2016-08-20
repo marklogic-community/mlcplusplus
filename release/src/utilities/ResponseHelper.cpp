@@ -81,7 +81,8 @@ void ResponseHelper::getAggregateResults(const Response& resp,ValuesResult& vr) 
   for (auto& iter: aggArray) {
     const web::json::object agg = iter.as_object();
     std::string aggName = utility::conversions::to_utf8string(agg.at(U("name")).as_string());
-    auto& valIter = agg.find(U("_value"));
+    /*
+    const auto& valIter = agg.find(U("_value"));
     if (valIter != agg.end()) {
       std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());
       double val;
@@ -96,6 +97,7 @@ void ResponseHelper::getAggregateResults(const Response& resp,ValuesResult& vr) 
       vra.value = val;
       vr.addAggregate(std::move(vra));
     } // end valIter if
+    */
   } // end aggArray iter
 }
 
@@ -109,7 +111,7 @@ void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResul
     const web::json::object agg = iter.as_object();
     std::string aggName = utility::conversions::to_utf8string(agg.at(U("name")).as_string());
 
-    auto& mapIter = agg.find(U("map"));
+    const auto& mapIter = agg.find(U("map"));
     if (mapIter != agg.end()) {
       // got a map
       // Check if it is a single, or an array, of maps
@@ -119,7 +121,7 @@ void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResul
       vra.type = ValuesResultAggregateType::COMPLEX_MAP_ARRAY;
       vra.name = aggName;
       vra.value = 0;
-      vra.complexValue(std::map<std::string,std::string>);
+      vra.complexValue = std::map<std::string,std::string>();
 
       // loop through each map
       // extract each value and create our own map<string,string>
@@ -130,10 +132,12 @@ void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResul
         web::json::array mapArray = mapVal.as_array();
         for (auto& mapIter: mapArray) {
           const web::json::object mapObj = iter.as_object();
-          auto& entryIter = mapObj.find(U("entry"));
-          for (;entryIter != mapObj.end();++entryIter) {
-            const web::json::object entryObj = entryIter->;
+          /*
+          const auto& entryIter = mapObj.find(U("entry"));
+          for (;entryIter != mapObj.end();++(entryIter)) {
+            //const web::json::object entryObj = entryIter->;
           }
+          */
         }
       } else {
         if (mapVal.is_object()) {
@@ -142,7 +146,7 @@ void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResul
       }
       vr.addAggregate(std::move(vra));
     } else {
-      auto& valIter = agg.find(U("_value"));
+      const auto& valIter = agg.find(U("_value"));
       if (valIter != agg.end()) {
         // got a single value
         std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());

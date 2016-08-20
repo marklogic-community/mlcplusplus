@@ -106,7 +106,7 @@ public:
    * \param[in] resp The response to parse
    * \param[inout] vr The ValuesResult object to populate
    */
-  MLCLIENT_API static void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResult& vr);
+  MLCLIENT_API static void getComplexAggregateResults(const Response& resp,ValuesResult& vr);
 
 
 }; // end ResponseHelper class
