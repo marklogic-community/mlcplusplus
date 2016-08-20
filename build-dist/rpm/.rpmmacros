@@ -1,0 +1,3 @@
+%_topdir  %(echo $PWD)/rpmbuild
+%_tmppath %{_topdir}/tmp
+%_ver %(echo ../../version.txt)
