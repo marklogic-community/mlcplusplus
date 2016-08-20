@@ -16,5 +16,6 @@ install -m 755 ../../bin/src/libmlclient.so $FOLDER/usr/local/lib/
 
 tar -zvcf rpmbuild/SOURCES/mlclient-$VER.tar.gz $FOLDER
 
+cp .rpmmacros ~/.rpmmacros
 cd rpmbuild
 rpmbuild -ba SPECS/mlclient.spec
