@@ -44,3 +44,5 @@ performance.log
 release/**/*.o
 release/samples/**/*.zip
 release/samples/**/*.xml
+build-dist/osx/mlclient/pkgbuild
+deps
