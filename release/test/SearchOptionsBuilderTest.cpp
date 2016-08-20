@@ -44,22 +44,39 @@ IDocumentContent* genOptions() {
   SearchBuilder sb;
   IQuery* colQuery = sb.collectionQuery(std::vector<std::string>{"zoo"});
   SearchOptionsBuilder builder;
+
+  RangeOptions roGroupBy;
+  JsonPropertyRef* elRefGB = new JsonPropertyRef;
+  elRefGB->setProperty("family");
+  roGroupBy.setContainer(elRefGB);
+  roGroupBy.setType(RangeIndexType::STRING);
+  // Defaults to codepoint collation, so leave as that (tests the default mechanism!)
+
   RangeOptions ro;
   ro.addFacetOptionWithValue(FacetOption::LIMIT,"10");
   JsonPropertyRef* elRef = new JsonPropertyRef;
   elRef->setProperty("age");
   ro.setContainer(elRef);
   ro.setType(RangeIndexType::INT);
+
   AggregateInfo aggInfo;
   aggInfo.setAggregate(AggregateBuiltIn::AVG);
   AggregateInfo aggInfo2;
   aggInfo2.setAggregate(AggregateBuiltIn::SUM);
+  AggregateInfo aggInfo3;
+  aggInfo3.setAggregate("groupandaggregate","native/groupandaggregate");
+
 
   std::map<ValuesOption,std::string> vos;
   vos.insert(std::pair<ValuesOption,std::string>(ValuesOption::SKIP,"2"));
+
+
+  std::map<ValuesOption,std::string> vosBlank;
+
   builder.additionalQuery(*colQuery)->rawSnippet()
          ->valuesRangeAggregate("ageavg",ro,aggInfo,vos)
-         ->valuesRangeAggregate("agesum",ro,aggInfo2,vos);
+         ->valuesRangeAggregate("agesum",ro,aggInfo2,vos)
+         ->valuesRangeAggregate("animalmeanageudf",roGroupBy,aggInfo3,vosBlank);
   ITextDocumentContent* json = builder.toDocument(true);
 
   return json;

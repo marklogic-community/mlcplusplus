@@ -81,18 +81,85 @@ void ResponseHelper::getAggregateResults(const Response& resp,ValuesResult& vr) 
   for (auto& iter: aggArray) {
     const web::json::object agg = iter.as_object();
     std::string aggName = utility::conversions::to_utf8string(agg.at(U("name")).as_string());
-    std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());
-    double val;
-    std::istringstream i(doubleString);
-       double x;
-       if (!(i >> x))
-         val = -1; // format failure - TODO decide if we should throw an InvalidFormatException here
-       val = x;
-    ValuesResultAggregate vra;
-    vra.name = aggName;
-    vra.value = val;
-    vr.addAggregate(std::move(vra));
-  }
+    auto& valIter = agg.find(U("_value"));
+    if (valIter != agg.end()) {
+      std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());
+      double val;
+      std::istringstream i(doubleString);
+      double x;
+      if (!(i >> x))
+        val = -1; // format failure - TODO decide if we should throw an InvalidFormatException here
+      val = x;
+      ValuesResultAggregate vra;
+      vra.type = ValuesResultAggregateType::SIMPLE_DOUBLE;
+      vra.name = aggName;
+      vra.value = val;
+      vr.addAggregate(std::move(vra));
+    } // end valIter if
+  } // end aggArray iter
+}
+
+void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResult& vr) {
+  const web::json::value doc(CppRestJsonHelper::fromResponse(resp));
+  const web::json::object jsonObject(doc.as_object());
+  const web::json::object valr(jsonObject.at(U("values-response")).as_object());
+  const web::json::array aggArray(valr.at(U("aggregate-result")).as_array());
+
+  for (auto& iter: aggArray) {
+    const web::json::object agg = iter.as_object();
+    std::string aggName = utility::conversions::to_utf8string(agg.at(U("name")).as_string());
+
+    auto& mapIter = agg.find(U("map"));
+    if (mapIter != agg.end()) {
+      // got a map
+      // Check if it is a single, or an array, of maps
+      web::json::value mapVal = agg.at(U("map"));
+
+      ValuesResultAggregate vra;
+      vra.type = ValuesResultAggregateType::COMPLEX_MAP_ARRAY;
+      vra.name = aggName;
+      vra.value = 0;
+      vra.complexValue(std::map<std::string,std::string>);
+
+      // loop through each map
+      // extract each value and create our own map<string,string>
+      // add value to results list
+
+      if (mapVal.is_array()) {
+        // multiple
+        web::json::array mapArray = mapVal.as_array();
+        for (auto& mapIter: mapArray) {
+          const web::json::object mapObj = iter.as_object();
+          auto& entryIter = mapObj.find(U("entry"));
+          for (;entryIter != mapObj.end();++entryIter) {
+            const web::json::object entryObj = entryIter->;
+          }
+        }
+      } else {
+        if (mapVal.is_object()) {
+
+        }
+      }
+      vr.addAggregate(std::move(vra));
+    } else {
+      auto& valIter = agg.find(U("_value"));
+      if (valIter != agg.end()) {
+        // got a single value
+        std::string doubleString = utility::conversions::to_utf8string(agg.at(U("_value")).as_string());
+        double val;
+        std::istringstream i(doubleString);
+        double x;
+        if (!(i >> x))
+          val = -1; // format failure - TODO decide if we should throw an InvalidFormatException here
+        val = x;
+        ValuesResultAggregate vra;
+        vra.type = ValuesResultAggregateType::SIMPLE_DOUBLE;
+        vra.name = aggName;
+        vra.value = val;
+        vr.addAggregate(std::move(vra));
+      } // end valIter if
+    } // end mapIter if
+  } // end aggArray iter
 }
 
 double ResponseHelper::getAggregateResult(const Response& resp,const std::string& aggName) {

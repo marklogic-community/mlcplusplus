@@ -97,8 +97,6 @@ namespace mlclient {
 
 
 void libraryLoggingInit() {
-  FLAGS_logtostderr = 0; // default
-
   LoggingConfiguration config;
   config.level = "INFO";
   config.toerr = false;

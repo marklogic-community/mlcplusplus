@@ -61,22 +61,12 @@ void ConnectionValuesTest::testValues(void) {
   delete response;
 }
 
-void ConnectionValuesTest::testValuesExtension(void) {
-  TIMED_FUNC(testValuesExtension);
+void ConnectionValuesTest::testValuesUDF(void) {
+  TIMED_FUNC(testValuesUDF);
   LOG(DEBUG) << " --------------------------------------------";
-  LOG(DEBUG) << " Entering ConnectionValuesTest::testValuesExtension";
+  LOG(DEBUG) << " Entering ConnectionValuesTest::testValuesUDF";
 
-
-  SearchDescription* desc = new SearchDescription; // default empty search object
-  SearchBuilder* builder = new SearchBuilder;
-  IQuery* colQuery = builder->collectionQuery(std::vector<std::string>{"zoo"});
-  ITextDocumentContent* searchDoc = builder->toDocument();
-  LOG(DEBUG) << "got search doc from builder";
-  LOG(DEBUG) << "testValuesExtension search content: " << searchDoc->getContent();
-  desc->setQuery(*searchDoc);
-  LOG(DEBUG) << "  Got a SearchDescription object instance";
-
-  const Response* response = ml->valuesExtension("customvalues","ageavg","mlcplusplustest01",*desc);
+  const Response* response = ml->values("animalmeanageudf","mlcplusplustest01");
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -88,7 +78,35 @@ void ConnectionValuesTest::testValuesExtension(void) {
     LOG(DEBUG) << "    Detail: " << mlclient::utilities::ResponseHelper::getErrorDetailAsString(*response);
   } else {
     LOG(DEBUG) << "  Response is NOT in error";
-    double result = mlclient::utilities::ResponseHelper::getAggregateResult(*response,"avg"); // Aggregate name, NOT configuration name within options (TODO log BUG for this)
+    double result = mlclient::utilities::ResponseHelper::getAggregateResult(*response,"groupandaggregate"); // Aggregate name, NOT configuration name within options (TODO log BUG for this)
+    LOG(DEBUG) << "  Double aggregate result(Rounded by output stream - value IS correct): " << result; // gets rounded as standard by IO stream
+    CPPUNIT_ASSERT_MESSAGE("Response is in error",!inError);
+    CPPUNIT_ASSERT_MESSAGE("Result is -1 (values result not found in response)",-1 != result);
+  }
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+  delete response;
+}
+
+void ConnectionValuesTest::testValuesExtension(void) {
+  TIMED_FUNC(testValuesExtention);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering ConnectionValuesTest::testValuesExtention";
+
+  SearchDescription desc; // default empty search object
+  const Response* response = ml->valuesExtension("tuplesext","agesum","mlcplusplustest02",desc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+  bool inError = mlclient::utilities::ResponseHelper::isInError(*response);
+  if (inError) {
+    LOG(DEBUG) << "  Response IS in error";
+    LOG(DEBUG) << "    Message: " << mlclient::utilities::ResponseHelper::getErrorMessage(*response);
+    LOG(DEBUG) << "    Detail: " << mlclient::utilities::ResponseHelper::getErrorDetailAsString(*response);
+  } else {
+    LOG(DEBUG) << "  Response is NOT in error";
+    double result = mlclient::utilities::ResponseHelper::getAggregateResult(*response,"agesum"); // Aggregate name, NOT configuration name within options (TODO log BUG for this)
     LOG(DEBUG) << "  Double aggregate result(Rounded by output stream - value IS correct): " << result; // gets rounded as standard by IO stream
     CPPUNIT_ASSERT_MESSAGE("Response is in error",!inError);
     CPPUNIT_ASSERT_MESSAGE("Result is -1 (values result not found in response)",-1 != result);

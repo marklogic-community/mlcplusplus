@@ -98,6 +98,16 @@ public:
    */
   MLCLIENT_API static void getAggregateResults(const Response& resp,ValuesResult& vr);
 
+  /**
+   * \brief Extracts all complex aggregate results and places them in the provided ValuesResult holder
+   *
+   * \note UDFs don't just return double values, they can return multiple values, and arrays of them (multiple map:map() objects)
+   *
+   * \param[in] resp The response to parse
+   * \param[inout] vr The ValuesResult object to populate
+   */
+  MLCLIENT_API static void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResult& vr);
+
 
 }; // end ResponseHelper class
 

@@ -221,11 +221,13 @@ Response* Connection::valuesExtension(const std::string& extensionName,const std
     const std::string& optionsName,const SearchDescription& desc) {
   TIMED_FUNC(Connection_valuesAggregate);
   std::ostringstream urlss;
-  urlss << "/v1/resources/" << extensionName << "?rs:values=" << valuesName << "&rs:options=" << optionsName;
-  ITextDocumentContent* payload = desc.getPayload();
-  LOG(DEBUG) << "  Payload:-";
-  LOG(DEBUG) << payload->getContent();
-  return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(),*payload);
+  urlss << "/v1/resources/" << extensionName;// << "?rs:values=" << valuesName << "&rs:options=" << optionsName;
+  //ITextDocumentContent* payload = desc.getPayload();
+  //LOG(DEBUG) << "  Payload:-";
+  //LOG(DEBUG) << payload->getContent();
+  return mImpl->proxy.getSync(mImpl->serverUrl,urlss.str());
+  // TODO replace this with POST once working...
+  //return mImpl->proxy.postSync(mImpl->serverUrl,urlss.str(),*payload);
 }
 
 Response* Connection::listRootCollections() {

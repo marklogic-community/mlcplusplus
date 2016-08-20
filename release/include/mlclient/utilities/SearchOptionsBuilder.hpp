@@ -146,6 +146,9 @@ public:
   MLCLIENT_API void setType(const RangeIndexType type);
   MLCLIENT_API const RangeIndexType getType() const;
 
+  MLCLIENT_API void setCollation(const std::string& collation = "http://marklogic.com/collation/codepoint"); // TODO correct value.
+  MLCLIENT_API const std::string getCollation() const;
+
   MLCLIENT_API void setFacet(const bool facet);
   MLCLIENT_API const bool getFacet() const;
 
@@ -174,6 +177,7 @@ public:
 
 private:
   RangeIndexType type;
+  std::string collation;
   bool facet;
   IContainerRef* container;
 

@@ -26,7 +26,6 @@ namespace mlclient {
 
 
 int runOnce() {
-  FLAGS_logtostderr = 0; // default
   libraryLoggingInit();
   return 0;
 }

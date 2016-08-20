@@ -27,6 +27,31 @@ struct ValuesResultValue {
 };
 
 /**
+ * \brief Represents the type of response received from the aggregate
+ *
+ * There are multiple formats returned from the MarkLogic REST API's aggregate calls.
+ * The OOTB aggregates return a simple vlaue element, which is a double encoded as a string.
+ * The REST API can also return full map:map() results from UDFs that use this capability.
+ * This is either a single map of string keys to typed values, or an array of maps.
+ *
+ * \note Currently there is a bug in the REST API that causes it only to return the first
+ * numeric value from the first element in the map array. This also has side effects for very
+ * large numbers. https://bugtrack.marklogic.com/41650
+ *
+ * This implementation is therefore necessarily flexible at the cost of programmatic precision and ease.
+ *
+ * The SIMPLE_DOUBLE response will be used for all OOTB aggregates from MarkLogic, and any UDF
+ * aggregate that returns a single double value. COMPLEX_MAP_ARRAY will be used where a single map instance
+ * is returned, or an array is returned. This is because this tier cannot detect from the response whether
+ * the UDF only returns one map by design, or just happened to return a single map instance on this one occasion.
+ *
+ * \since 8.0.2
+ */
+enum class ValuesResultAggregateType {
+  SIMPLE_DOUBLE,COMPLEX_MAP_ARRAY
+};
+
+/**
  * \brief Represents a single aggregate result from a values lookup
  *
  * \note POD type
@@ -35,7 +60,9 @@ struct ValuesResultValue {
  */
 struct ValuesResultAggregate {
   std::string name;
+  ValuesResultAggregateType type;
   double value;
+  std::map<std::string,std::string> complexValue;
 };
 
 /**
