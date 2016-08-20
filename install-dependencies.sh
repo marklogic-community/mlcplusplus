@@ -84,15 +84,16 @@ if [[ "$platform" =~ ^Linux.* ]]; then
   else
     redhat=`cat /etc/redhat-release`
     yum=`yum --version`
-    if [[ "$redhat" =~ ^CentOS.* ]]; then
+    if [[ "$redhat" =~ .*CentOS.* ]]; then
       echo "-- Fetching dependencies for CentOS"
     fi
-    if [[ "$redhat" =~ ^Redhat.* ]]; then
+    if [[ "$redhat" =~ .*Redhat.* ]]; then
       echo "-- Fetching dependencies for Redhat Enterprise Linux"
     fi
-    if [[ "$yum" =~ ^yum.* ]]; then
+    if [[ "$yum" =~ .*yum-.* ]]; then
       echo " - Using the Yum package manager - will prompt for sudo password"
-      sudo yum install boost gcc git make gflags boost-devel openssl openssl-devel cmake
+      # TODO find where gflags boost-chrono-dev and boost-random-dev and cppunit-dev live
+      sudo yum install boost gcc gcc-c++ git make boost-devel openssl libtool openssl-devel cmake autoconf
     else
       echo " - WARNING: No Linux package manager installed, trying to proceed anyway..."
       #exit 1
@@ -104,6 +105,7 @@ echo "CMAKE_OPTIONS= ${CMAKE_OPTIONS}"
 echo "  - Installing glog from SOURCE (will ask to install as root)..."
 mkdir -p deps
 cd deps
+rm -rf glog
 git clone https://github.com/google/glog.git
 cd glog
 
@@ -161,6 +163,7 @@ fi
 # Build dependencies
 echo "-- Building and installing Microsoft's cpprest SDK (aka casablanca) - will prompt for sudo password to install"
 cd $CPPREST_FOLDER
+rm -rf build.debug
 mkdir -p build.debug
 cd build.debug
 cmake ../Release $OSXU -DCMAKE_BUILD_TYPE=Debug ${CMAKE_OPTIONS} -DWERROR=0
