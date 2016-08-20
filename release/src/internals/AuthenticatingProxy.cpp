@@ -24,6 +24,7 @@
 #include "mlclient/NoCredentialsException.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/HttpHeaders.hpp"
+#include "mlclient/DocumentSet.hpp"
 
 #include "mlclient/logging.hpp"
 
@@ -309,6 +310,55 @@ Response* AuthenticatingProxy::postSync(const std::string& host,
   LOG(DEBUG) << "    Post content: " << body.getContent();
   Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
   LOG(DEBUG) << "    Leaving postSync";
+
+  return response;
+}
+
+void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long startIdx,const long endIdx, std::ostringstream& sout) {
+  //for (list<Document>::iterator it=set.begin(); it!=set.end(); ++it) {
+  for (long i = startIdx;i <= endIdx;i++) {
+    const Document& it = set.at(i);
+    sout << "--BOUNDARY\r\n";
+
+    const IDocumentContent* idc = it.getContent();
+    std::string content = idc->getContent(); // TODO support binary objects
+
+    sout << "Content-Type: " << idc->getMimeType() << "\r\n";
+    sout << "Content-Disposition: attachment;filename=\"" << it.getUri() << "\"\r\n";
+    sout << "Content-Length: " << content.size() << "\r\n";
+
+    sout << "\r\n";
+
+    // TODO send properties and permissions too
+
+    sout << content << "\r\n";
+  }
+
+  sout << "--BOUNDARY--\r\n" << std::endl;
+
+  //cout << "DUMP BULK PAYLOAD - START" << endl;
+  //cout << bulkPayload << endl;
+  //cout << "DUMP BULK PAYLOAD - END" << endl;
+
+}
+
+Response* AuthenticatingProxy::multiPostSync(const std::string& host,const std::string& path,
+    const DocumentSet& allContent, const long startPosInclusive,
+    const long endPosInclusive, const mlclient::HttpHeaders& commonHeaders) {
+  TIMED_FUNC(AuthenticatingProxy_multiPostSync);
+  LOG(DEBUG) << "    Entering multiPostSync";
+
+  GenericTextDocumentContent body;
+  body.setMimeType("multipart/mixed");
+  std::ostringstream content;
+  buildBulkPayload(allContent,startPosInclusive,endPosInclusive,content);
+  body.setContent(content.str());
+
+  HttpHeaders headers = commonHeaders; // copy assignment operator
+
+  LOG(DEBUG) << "    Multi Post content: " << body.getContent();
+  Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
+  LOG(DEBUG) << "    Leaving multiPostSync";
 
   return response;
 }

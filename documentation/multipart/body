@@ -1,0 +1,43 @@
+--BOUNDARY
+Content-Type: application/xml
+Content-Disposition: inline; category=metadata
+Content-Length: 554
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rapi:metadata xmlns:rapi="http://marklogic.com/rest-api">
+  <rapi:quality>1</rapi:quality>
+  <prop:properties xmlns:prop="http://marklogic.com/xdmp/property">
+    <my-prop>my first property</my-prop>
+  </prop:properties>
+  <rapi:collections>
+    <rapi:collection>my-first-coll</rapi:collection>
+  </rapi:collections>
+  <rapi:permissions>
+    <rapi:permission>
+      <rapi:role-name>readers</rapi:role-name>
+      <rapi:capability>read</rapi:capability>
+    </rapi:permission>
+  </rapi:permissions>
+</rapi:metadata>
+--BOUNDARY
+Content-Type: application/xml
+Content-Disposition: attachment; filename="doc1.xml"
+Content-Length: 60
+
+<?xml version="1.0" encoding="UTF-8"?>
+<root>some xml</root>
+--BOUNDARY
+Content-Type: application/json
+Content-Disposition: attachment; filename="doc2.json"
+Content-Length: 22
+
+{ "key": "some json" }
+--BOUNDARY
+Content-Type: application/xml
+Content-Disposition: attachment; filename="doc3.xml"
+Content-Length: 60
+
+<?xml version="1.0" encoding="UTF-8"?>
+<root>some xml</root>
+--BOUNDARY--
+

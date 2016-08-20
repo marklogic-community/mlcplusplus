@@ -28,6 +28,7 @@
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
 #include <mlclient/Document.hpp>
+#include <mlclient/DocumentSet.hpp>
 
 /**
  * \brief the namespace which wraps all Core Public C++ API classes.
@@ -279,9 +280,28 @@ public:
    * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
    * or permission is denied for this request.
    *
+   * \note This function call was renamed in 8.0.2 to saveDocumentContent from saveDocument to better reflect its usage.
+   *
    * \since 8.0.0
    */
-  MLCLIENT_API virtual Response* saveDocument(const std::string& uri,const IDocumentContent& payload) = 0;
+  MLCLIENT_API virtual Response* saveDocumentContent(const std::string& uri,const IDocumentContent& payload) = 0;
+
+  /**
+   * \brief Saves a set of documents as a single batch to MarkLogic Server
+   *
+   * See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.
+   *
+   * \note Uses a single REST call and multi-part MIME support in the REST API
+   *
+   * \param documents The set of documents to upload
+   * \param startPosInclusive The first index of the document in the set to upload
+   * \param endPostInclusive The last index of the document in the set to upload
+   * \return The Response object
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API virtual Response* saveDocuments(const DocumentSet& documents,const long startPosInclusive,
+      const long endPosInclusive) = 0;
 
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
@@ -741,7 +761,24 @@ public:
    *
    * \since 8.0.0
    */
-  MLCLIENT_API Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
+  MLCLIENT_API Response* saveDocumentContent(const std::string& uri,const IDocumentContent& payload) override;
+
+  /**
+   * \brief Saves a set of documents as a single batch to MarkLogic Server
+   *
+   * See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.
+   *
+   * \note Uses a single REST call and multi-part MIME support in the REST API
+   *
+   * \param documents The set of documents to upload
+   * \param startPosInclusive The first index of the document in the set to upload
+   * \param endPostInclusive The last index of the document in the set to upload
+   * \return The Response object
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API Response* saveDocuments(const DocumentSet& documents,const long startPosInclusive,
+      const long endPosInclusive) override;
 
   MLCLIENT_API Response* saveDocument(const Document& doc) override;
 

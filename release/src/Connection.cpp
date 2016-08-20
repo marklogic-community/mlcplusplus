@@ -155,16 +155,23 @@ Response* Connection::getDocumentPermissions(Document& inout_document) {
   return resp;
 }
 
-Response* Connection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
-  TIMED_FUNC(Connection_saveDocument);
+Response* Connection::saveDocumentContent(const std::string& uri,const IDocumentContent& payload) {
+  TIMED_FUNC(Connection_saveDocumentContent);
   return mImpl->proxy.putSync(mImpl->serverUrl,
       "/v1/documents?uri=" + uri, // TODO directory (non uri) version // TODO check for URL parsing // TODO fix JSON hard coding here
       payload);
 }
 
+Response* Connection::saveDocuments(const DocumentSet& documents,const long startPosInclusive,
+      const long endPosInclusive) {
+  TIMED_FUNC(Connection_saveDocuments);
+  return mImpl->proxy.multiPostSync(mImpl->serverUrl,"/v1/documents",documents,startPosInclusive,endPosInclusive);
+}
+
 Response* Connection::saveDocument(const Document& doc) {
   TIMED_FUNC(Connection_saveDocument__Document);
-  return saveDocument(doc.getUri(),*(doc.getContent()));
+  // TODO handle docuemnt properties, permissions, etc. too via PUT /v1/documents
+  return saveDocumentContent(doc.getUri(),*(doc.getContent()));
 }
 
 Response* Connection::deleteDocument(const std::string& uri) {

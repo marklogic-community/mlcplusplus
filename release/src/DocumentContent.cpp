@@ -25,7 +25,7 @@
 #include <iostream>
 #include <sstream>
 #include <memory>
-
+#include <fstream>
 
 namespace mlclient {
 
@@ -209,5 +209,63 @@ void GenericTextDocumentContent::setMimeType(const std::string& mt) {
 IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot) const {
   throw new mlclient::InvalidFormatException("GenericDocumentContent does not yet support navigation");
 }
+
+
+
+class FileDocumentContent::Impl {
+public:
+  Impl(std::string f) : file(f), mime("application/json"), fs() {
+    ;
+  }
+  ~Impl() {
+    ; // fstream automatically destroyed
+  }
+
+  std::string file;
+  std::string mime;
+  std::ifstream fs;
+};
+
+
+FileDocumentContent::FileDocumentContent(std::string file) : mImpl(mlclient::make_unique<Impl>(file)) {
+  ;
+}
+
+FileDocumentContent::~FileDocumentContent() {
+  ;
+}
+
+std::ostream* FileDocumentContent::getStream() const {
+  std::string str(getContent());
+  std::ostringstream* os = new std::ostringstream;
+  (*os) << str;
+  return os;
+}
+
+std::string FileDocumentContent::getContent() const {
+  mImpl->fs.open(mImpl->file,std::fstream::in);
+  std::string str;
+
+  mImpl->fs.seekg(0, std::ios::end);
+  str.reserve(mImpl->fs.tellg());
+  mImpl->fs.seekg(0, std::ios::beg);
+
+  str.assign((std::istreambuf_iterator<char>(mImpl->fs)),
+             (std::istreambuf_iterator<char>()));
+
+  mImpl->fs.close();
+
+  return str;
+}
+
+std::string FileDocumentContent::getMimeType() const {
+  return mImpl->mime;
+}
+
+void FileDocumentContent::setMimeType(const std::string& mt) {
+  mImpl->mime = mt;
+}
+
+
 
 } // end mlclient namespace
