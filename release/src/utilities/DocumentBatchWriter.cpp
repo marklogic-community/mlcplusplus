@@ -87,65 +87,83 @@ public:
 
     long maxIterations = ceil(set.size() / parallelTasks);
 
+    LOG(DEBUG) << "Creating tasks to write " << set.size() << " Documents";
+
     pplx::task<void>* fetchTask;
     for (long i = 0;i < parallelTasks;i++) {
-      fetchTask = new pplx::task<void>([&refImpl,&i,&maxIterations] () {
-        LOG(DEBUG) << "Began document batch writer task...";
+      fetchTask = new pplx::task<void>([&refImpl,i,&maxIterations] () {
+        long myi = i;
+
+        LOG(DEBUG) << "Began document batch writer task... " << myi;
         for (long j = 0;j < maxIterations;j++) {
           // calculate segment start and finish
-          long startIdx = ((j * refImpl.parallelTasks) + i) * refImpl.batchSize;
-          long endIdx = startIdx + refImpl.batchSize;
+          long startIdx = ((j * refImpl.parallelTasks) + myi) * refImpl.batchSize;
+          long endIdx = startIdx + refImpl.batchSize - 1;
 
-          try {
-            LOG(DEBUG) << "In try";
-
-
-            // sanity check values for this set
-
-            Response* resp = refImpl.mConn->saveDocuments(refImpl.set,startIdx,endIdx);
-            LOG(DEBUG) << "Got response";
-
-            // update complete
-            std::vector<std::string> myUris;
-            for (long idx = startIdx; idx <= endIdx;idx++) {
-              std::string uri = refImpl.set.at(idx).getUri();
-              refImpl.completeUris.push_back(uri);
-              myUris.push_back(uri);
+          if (startIdx >= refImpl.set.size()) {
+            LOG(DEBUG) << "Start index is out of range: " << startIdx;
+            j = maxIterations;
+          } else {
+            if (endIdx >= refImpl.set.size()) {
+              LOG(DEBUG) << "End index is out of range: " << endIdx;
+              // must be on last part of set
+              endIdx = refImpl.set.size() - 1;
+              LOG(DEBUG) << "End index now: " << endIdx;
             }
-            refImpl.checkComplete();
+            LOG(DEBUG) << "Batch writer thread " << myi << " writing documents from index " << startIdx << " to " << endIdx;
 
-            // check ok and notify
-            if (ResponseHelper::isInError(*resp)) {
-              std::exception* exc = new InvalidFormatException(ResponseHelper::getErrorDetailAsString(*resp)); // TODO better exception wrapper
-              for (auto& tell: refImpl.toNotify) {
-                tell->batchOperationComplete(myUris,false,exc);
+            try {
+              LOG(DEBUG) << "In try";
+
+
+              // sanity check values for this set
+
+              Response* resp = refImpl.mConn->saveDocuments(refImpl.set,startIdx,endIdx);
+              LOG(DEBUG) << "Got response";
+
+              // update complete
+              std::vector<std::string> myUris;
+              for (long idx = startIdx; idx <= endIdx;idx++) {
+                std::string uri = refImpl.set.at(idx).getUri();
+                refImpl.completeUris.push_back(uri);
+                myUris.push_back(uri);
               }
-              delete(exc);
-            } else {
+              refImpl.checkComplete();
+
+              // check ok and notify
+              if (ResponseHelper::isInError(*resp)) {
+                std::exception* exc = new InvalidFormatException(ResponseHelper::getErrorDetailAsString(*resp)); // TODO better exception wrapper
+                for (auto& tell: refImpl.toNotify) {
+                  tell->batchOperationComplete(myUris,false,exc);
+                }
+                delete(exc);
+              } else {
+                for (auto& tell: refImpl.toNotify) {
+                  tell->batchOperationComplete(myUris,true,nullptr);
+                }
+              }
+
+              LOG(DEBUG) << "Deleting response";
+              delete(resp);
+              LOG(DEBUG) << "Response deleted";
+            } catch (std::exception& ref) {
+              LOG(DEBUG) << "Exception in batch document upload task: " << ref.what();
+
+              std::vector<std::string> myUris;
+              for (long idx = startIdx; idx <= endIdx;idx++) {
+                std::string uri = refImpl.set.at(idx).getUri();
+                myUris.push_back(uri);
+              }
               for (auto& tell: refImpl.toNotify) {
-                tell->batchOperationComplete(myUris,true,nullptr);
+                tell->batchOperationComplete(myUris,false,&ref);
               }
             }
 
-            LOG(DEBUG) << "Deleting response";
-            delete(resp);
-            LOG(DEBUG) << "Response deleted";
-          } catch (std::exception& ref) {
-            LOG(DEBUG) << "Exception in batch document upload task: " << ref.what();
-
-            std::vector<std::string> myUris;
-            for (long idx = startIdx; idx <= endIdx;idx++) {
-              std::string uri = refImpl.set.at(idx).getUri();
-              myUris.push_back(uri);
-            }
-            for (auto& tell: refImpl.toNotify) {
-              tell->batchOperationComplete(myUris,false,&ref);
-            }
-          }
+          } // end if out of bounds
 
         } // end iteration for
 
-        LOG(DEBUG) << "End document upload batch task: " << i;
+        LOG(DEBUG) << "End document upload batch task: " << myi;
       });
       LOG(DEBUG) << "adding task";
       refImpl.tasks.insert(std::pair<long,pplx::task<void>*>(i,fetchTask)); // end task initialisation

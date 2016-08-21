@@ -83,8 +83,12 @@ void DocumentBatchWriterTest::testFolder(void) {
 
   DocumentSet set;
 
-  DocumentBatchHelper::addFilesToDocumentSet("../../testdata/documents/recursive",true,"/mlcpptest/",
+  DocumentBatchHelper::addFilesToDocumentSet("testdata/documents/recursive","testdata/documents/recursive",true,"/mlcpptest/",
       collections,perms,nullptr,set);
+
+  LOG(DEBUG) << "DocumentBatchWriterTest: set size: " << set.size();
+
+  writer.assignDocuments(std::move(set));
 
   writer.send();
 
@@ -95,14 +99,15 @@ void DocumentBatchWriterTest::testFolder(void) {
   LOG(DEBUG) << "Exception is nullptr?: " << (nullptr == obs.ex);
   CPPUNIT_ASSERT_MESSAGE("Exception returned during batch write",(nullptr == obs.ex));
 
-  CPPUNIT_ASSERT_MESSAGE("Writer not set to complete",writer.isComplete());
-  CPPUNIT_ASSERT_MESSAGE("Writer set to cancelled",writer.isCancelled());
-  CPPUNIT_ASSERT_MESSAGE("Writer not set to finished",writer.isFinished());
   Progress p = writer.getProgress();
   LOG(DEBUG) << "Document set size: " << set.size() << ", complete size: " << p.completed;
   LOG(DEBUG) << "Progress: Complete: " << p.completed << ", total: " << p.total << ", pct: " << p.percentageComplete;
   LOG(DEBUG) << "Progress: duration: " << p.duration << ", est remaining duration: " << p.durationEstimateRemaining;
   CPPUNIT_ASSERT_MESSAGE("Document set size not equal to completed size",(set.size() == p.completed));
+
+  CPPUNIT_ASSERT_MESSAGE("Writer not set to finished",writer.isFinished());
+  CPPUNIT_ASSERT_MESSAGE("Writer set to cancelled",writer.isCancelled());
+  CPPUNIT_ASSERT_MESSAGE("Writer not set to complete",writer.isComplete());
 }
 
 

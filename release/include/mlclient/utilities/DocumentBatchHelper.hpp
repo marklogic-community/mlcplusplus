@@ -28,7 +28,7 @@ public:
    *
    * \since 8.0.2
    */
-  static void addFilesToDocumentSet(const std::string& folder,const bool stripBase,const std::string& appendBase,
+  static void addFilesToDocumentSet(const std::string& folder,const std::string& baseFolder,const bool stripBase,const std::string& appendBase,
       const std::vector<std::string>& collections,const std::vector<Permission>& permissions,IDocumentContent* properties,DocumentSet& addTo,
       bool showHiddenDirs = false);
 

@@ -352,9 +352,15 @@ Response* AuthenticatingProxy::multiPostSync(const std::string& host,const std::
   body.setMimeType("multipart/mixed");
   std::ostringstream content;
   buildBulkPayload(allContent,startPosInclusive,endPosInclusive,content);
-  body.setContent(content.str());
+  std::string ct = content.str();
+  body.setContent(ct);
 
   HttpHeaders headers = commonHeaders; // copy assignment operator
+  headers.setHeader("Content-type","multipart/mixed; boundary=BOUNDARY");
+  headers.setHeader("Accept","application/json");
+  std::ostringstream os;
+  os << ct.length();
+  headers.setHeader("Content-Length",os.str());
 
   LOG(DEBUG) << "    Multi Post content: " << body.getContent();
   Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
