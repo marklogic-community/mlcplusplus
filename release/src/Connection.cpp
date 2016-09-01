@@ -170,8 +170,10 @@ Response* Connection::saveDocuments(const DocumentSet& documents,const long star
 
 Response* Connection::saveDocument(const Document& doc) {
   TIMED_FUNC(Connection_saveDocument__Document);
-  // TODO handle docuemnt properties, permissions, etc. too via PUT /v1/documents
-  return saveDocumentContent(doc.getUri(),*(doc.getContent()));
+  DocumentSet set;
+  set.push_back(doc);
+  return mImpl->proxy.multiPostSync(mImpl->serverUrl,"/v1/documents",set,0,set.size() - 1);
+  //return saveDocumentContent(doc.getUri(),*(doc.getContent()));
 }
 
 Response* Connection::deleteDocument(const std::string& uri) {

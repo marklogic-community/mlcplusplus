@@ -293,6 +293,8 @@ public:
    *
    * \note Uses a single REST call and multi-part MIME support in the REST API
    *
+   * \test Tested By DocumentBatchWriterTest
+   *
    * \param documents The set of documents to upload
    * \param startPosInclusive The first index of the document in the set to upload
    * \param endPostInclusive The last index of the document in the set to upload
@@ -307,6 +309,8 @@ public:
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
    * Performs a call to PUT /v1/documents?ext in order to save a Document to MarkLogic Server
+   *
+   * \test Underlying code tested By DocumentBatchWriterTest
    *
    * \param[in] Document The \link Document \endlink to send to MarkLogic Server. Must have a URI and Content DocumentContent instance.
    * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
