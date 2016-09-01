@@ -320,7 +320,7 @@ void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long sta
     const Document& it = set.at(i);
     sout << "--BOUNDARY\r\n";
 
-    // TODO send properties, collections and permissions too
+    // send properties, collections and permissions too
 
     GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
     std::ostringstream pos;
@@ -329,7 +329,7 @@ void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long sta
     pos << "<rapi:metadata xmlns:rapi=\"http://marklogic.com/rest-api\">";
     pos << "  <rapi:quality>1</rapi:quality>";
     pos << "  <prop:properties xmlns:prop=\"http://marklogic.com/xdmp/property\">";
-    // TODO specify properties here
+    // specify properties here
     //pos << "    <my-prop>my first property</my-prop>";
     pos << "  </prop:properties>";
     pos << "  <rapi:collections>";
@@ -339,11 +339,13 @@ void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long sta
     }
     pos << "  </rapi:collections>";
     pos << "  <rapi:permissions>";
-    // TODO perms here
-    //pos << "    <rapi:permission>";
-    //pos << "      <rapi:role-name>readers</rapi:role-name>";
-    //pos << "      <rapi:capability>read</rapi:capability>";
-    //pos << "    </rapi:permission>";
+    const std::vector<Permission> perms = it.getPermissions();
+    for (auto permIter = perms.begin(); permIter != perms.end();++permIter) {
+      pos << "    <rapi:permission>";
+      pos << "      <rapi:role-name>" << permIter->getRole() << "</rapi:role-name>";
+      pos << "      <rapi:capability>" << permIter->getCapability() << "</rapi:capability>";
+      pos << "    </rapi:permission>";
+    }
     pos << "  </rapi:permissions>";
     pos << "</rapi:metadata>";
     tdc->setContent(pos.str());

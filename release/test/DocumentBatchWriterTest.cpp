@@ -80,6 +80,7 @@ void DocumentBatchWriterTest::testFolder(void) {
   std::vector<std::string> collections;
   collections.emplace_back("mlcpptest");
   std::vector<Permission> perms;
+  perms.emplace_back("admin",Capability::EXECUTE); // good test as this isn't normally default assigned
 
   DocumentSet set;
 
