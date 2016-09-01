@@ -160,6 +160,8 @@
     <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\SearchBuilder.cpp" />
     <ClCompile Include="..\release\src\utilities\SearchOptionsBuilder.cpp" />
+    <ClCompile Include="..\release\src\ValuesResult.cpp" />
+    <ClCompile Include="..\release\src\ValuesResultSet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -198,6 +200,8 @@
     <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\SearchBuilder.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ValuesResult.hpp" />
+    <ClInclude Include="..\release\include\mlclient\ValuesResultSet.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

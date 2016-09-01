@@ -89,7 +89,7 @@ CResponse * ml_connection_saveDocument(const CConnection *conn,const char *uri,c
   Connection *t = (Connection *)conn;
   GenericTextDocumentContent tdc;
   tdc.setContent(std::string(payload));
-  return (CResponse*)(new CWrapper<Response>(t->saveDocument(std::string(uri),tdc)));
+  return (CResponse*)(new CWrapper<Response>(t->saveDocumentContent(std::string(uri),tdc)));
 }
 
 CResponse * ml_connection_deleteDocument(const CConnection *conn,const char *uri) {

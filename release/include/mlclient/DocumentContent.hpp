@@ -314,6 +314,59 @@ private:
 };
 
 /**
+ * \brief Wraps a file system file ready for its upload to MarkLogic Server
+ *
+ * \since 8.0.2
+ */
+class FileDocumentContent : public IDocumentContent {
+public:
+  FileDocumentContent(std::string file);
+  virtual ~FileDocumentContent();
+
+  /**
+   * \brief Returns the content of this IDocumentContent as an ostream.
+   *
+   * This allows streaming to a HTTP request, and works for binary and string content.
+   *
+   * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
+   *
+   * \return An ostream instance wrapping the content of this Document Content instance
+   */
+  MLCLIENT_API std::ostream* getStream() const override;
+
+  /**
+   * \brief Returns the content of this IDocumentContent as a std::string.
+   *
+   * This allows streaming of a HTTP request, with data encoded as a string.
+   *
+   * \return A string representing this content;
+   */
+  MLCLIENT_API std::string getContent() const override;
+
+  /**
+   * \brief Returns the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \return The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server)
+   */
+  MLCLIENT_API std::string getMimeType() const override;
+
+  /**
+   * \brief Sets the MIME type of this content.
+   *
+   * E.g. application/json or application/xml
+   *
+   * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
+   */
+  MLCLIENT_API void setMimeType(const std::string& mt) override;
+
+private:
+  class Impl;
+  std::unique_ptr<Impl> mImpl;
+};
+
+/**
  * \brief An enumeration for use with the BinaryDocumentContent class.
  *
  * There are many ways to encode a Binary document as a string. This enum allows them to be described.

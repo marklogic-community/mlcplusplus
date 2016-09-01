@@ -52,6 +52,9 @@ public:
   const bool hasPermissions() const;
   void setPermissions(std::vector<Permission> own_permissions);
 
+  bool operator==(const Document& other);
+  bool operator!=(const Document& other);
+
 private:
   std::string uri;
   IDocumentContent* content;

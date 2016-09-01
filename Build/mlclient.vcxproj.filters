@@ -121,6 +121,12 @@
     <ClCompile Include="..\release\src\logging.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\release\src\ValuesResult.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\ValuesResultSet.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -223,6 +229,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\release\include\mlclient\utilities\DocumentHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ValuesResult.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\ValuesResultSet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -28,6 +28,8 @@ add_library (mlclient SHARED
     SearchDescription.cpp
     SearchResult.cpp
     SearchResultSet.cpp
+    ValuesResult.cpp
+    ValuesResultSet.cpp
     
     Permission.cpp
     Document.cpp
@@ -46,6 +48,8 @@ add_library (mlclient SHARED
     utilities/PugiXmlHelper.cpp
     utilities/PugiXmlDocumentContent.cpp
     utilities/DocumentHelper.cpp
+    utilities/DocumentBatchHelper.cpp
+    utilities/DocumentBatchWriter.cpp
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp

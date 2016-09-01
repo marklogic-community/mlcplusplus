@@ -41,4 +41,8 @@ release/samples/csgetdoc/csgetdoc/bin
 release/samples/csgetdoc/csgetdoc/obj
 logs
 performance.log
-
+release/**/*.o
+release/samples/**/*.zip
+release/samples/**/*.xml
+build-dist/osx/mlclient/pkgbuild
+deps

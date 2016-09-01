@@ -22,6 +22,7 @@
 
 #include "mlclient/Response.hpp"
 #include "mlclient/DocumentContent.hpp"
+#include "mlclient/DocumentSet.hpp"
 #include "mlclient/HttpHeaders.hpp"
 
 #include <map>
@@ -97,6 +98,18 @@ public:
       const std::string& path,
       const IDocumentContent& body,
       const mlclient::HttpHeaders& headers = blankHeaders);
+  /**
+   * \brief A Synchronous HTTP POST with multi part MIME content
+   *
+   * \param[in] host The hostname or IP Address to communicate with
+   * \param[in] path The URL path (E.g. /v1/documents) to invoke
+   * \param[in] body The set of content to send as the POST body
+   * \param[in\ headers The HTTP Headers to use (Optional. Defaults to a blank set of headers) - that are common to all content
+   * \return A Response pointer that the call is responsible for deleting
+   */
+  Response* multiPostSync(const std::string& host,const std::string& path,
+      const DocumentSet& allContent,const long startPosInclusive,
+      const long endPosInclusive, const mlclient::HttpHeaders& commonHeaders = blankHeaders);
 
   /**
    * \brief A Synchronous HTTP PUT to a remote MarkLogic REST API URL
@@ -126,6 +139,7 @@ public:
 private:
    AuthenticatingProxy(const AuthenticatingProxy& rhs); // hide copy constructor - not a valid operation
 
+   void buildBulkPayload(const DocumentSet& set,const long startIdx,const long endIdx, std::ostringstream& out);
 
    /* Copies Microsoft CPPREST headers to useful mlclient::HttpHeaders class */
    static void copyHeaders(const web::http::http_headers& from, mlclient::HttpHeaders& to);

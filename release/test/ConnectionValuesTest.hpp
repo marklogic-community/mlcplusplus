@@ -20,6 +20,7 @@ using namespace mlclient;
 class ConnectionValuesTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(ConnectionValuesTest);
     CPPUNIT_TEST(testValues);
+    CPPUNIT_TEST(testValuesUDF);
     CPPUNIT_TEST(testValuesExtension);
   CPPUNIT_TEST_SUITE_END();
 public:
@@ -27,6 +28,7 @@ public:
   void tearDown();
 
   void testValues(void);
+  void testValuesUDF(void);
   void testValuesExtension(void);
 private:
   IConnection* ml;

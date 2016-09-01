@@ -303,7 +303,8 @@ const std::string translate(const ValuesOption& rt) {
   }
 }
 
-RangeOptions::RangeOptions() : type(RangeIndexType::STRING), facet(false), container(nullptr), fragmentScope(FragmentScope::CONTENT),
+RangeOptions::RangeOptions() : type(RangeIndexType::STRING), collation("http://marklogic.com/collation/codepoint"),
+    facet(false), container(nullptr), fragmentScope(FragmentScope::CONTENT),
     facetOptions(), rangeOptions() {
   ;
 }
@@ -316,6 +317,13 @@ void RangeOptions::setType(const RangeIndexType type) {
 }
 const RangeIndexType RangeOptions::getType() const {
   return type;
+}
+
+void RangeOptions::setCollation(const std::string& collation) {
+  this->collation = collation;
+}
+const std::string RangeOptions::getCollation() const {
+  return collation;
 }
 
 void RangeOptions::setFacet(const bool facet) {
@@ -432,7 +440,10 @@ const std::string translate(const RangeOptions& rt) {
   std::ostringstream os;
   os << "\"range\":{";
   os << "\"type\":\"" << rt.getType() << "\",";
-  // TODO collation if string
+  // collation if string
+  if (rt.getType() == RangeIndexType::STRING) {
+    os << "\"collation\":\"" << rt.getCollation() << "\",";
+  }
   os << "\"facet\":";
   if (rt.getFacet()) {
     os << "true";

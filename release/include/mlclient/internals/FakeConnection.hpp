@@ -231,7 +231,7 @@ public:
    *
    * \since 8.0.0
    */
-  Response* saveDocument(const std::string& uri,const IDocumentContent& payload) override;
+  Response* saveDocumentContent(const std::string& uri,const IDocumentContent& payload) override;
 
   /**
    * \brief Deletes the specified document by URI

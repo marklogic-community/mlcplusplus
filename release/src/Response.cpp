@@ -309,6 +309,7 @@ const std::string& Response::getContent() const {
 
 void Response::setContent(std::string* content) {
   TIMED_FUNC(Response_setContent);
+  LOG(DEBUG) << "Setting response body @" << &*this << " to: " << *content;
   mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
 }
 

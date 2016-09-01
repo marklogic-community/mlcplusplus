@@ -108,9 +108,9 @@ Response* FakeConnection::doDelete(const std::string& pathAndQuerystring) {
   return response;
 }
 
-Response* FakeConnection::saveDocument(const std::string& uri,const IDocumentContent& payload) {
-  TIMED_FUNC(FakeConnection_saveDocument);
-  LOG(DEBUG) << "  Entering FakeConnection::saveDocument";
+Response* FakeConnection::saveDocumentContent(const std::string& uri,const IDocumentContent& payload) {
+  TIMED_FUNC(FakeConnection_saveDocumentContent);
+  LOG(DEBUG) << "  Entering FakeConnection::saveDocumentContent";
 
   IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
   mImpl->documents.insert(std::pair<std::string,IDocumentContent*>(uri,dp));

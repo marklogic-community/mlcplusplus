@@ -24,6 +24,7 @@
 #include "mlclient/NoCredentialsException.hpp"
 #include "mlclient/Response.hpp"
 #include "mlclient/HttpHeaders.hpp"
+#include "mlclient/DocumentSet.hpp"
 
 #include "mlclient/logging.hpp"
 
@@ -142,6 +143,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
+
     } // PERFORMANCE BRACE
     try
     {
@@ -308,6 +310,100 @@ Response* AuthenticatingProxy::postSync(const std::string& host,
   LOG(DEBUG) << "    Post content: " << body.getContent();
   Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
   LOG(DEBUG) << "    Leaving postSync";
+
+  return response;
+}
+
+void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long startIdx,const long endIdx, std::ostringstream& sout) {
+  //for (list<Document>::iterator it=set.begin(); it!=set.end(); ++it) {
+  for (long i = startIdx;i <= endIdx;i++) {
+    const Document& it = set.at(i);
+    sout << "--BOUNDARY\r\n";
+
+    // send properties, collections and permissions too
+
+    GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
+    std::ostringstream pos;
+    // TODO specify MIME type based on MIME type of properties document (could be JSON or XML)
+    pos << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+    pos << "<rapi:metadata xmlns:rapi=\"http://marklogic.com/rest-api\">";
+    pos << "  <rapi:quality>1</rapi:quality>";
+    pos << "  <prop:properties xmlns:prop=\"http://marklogic.com/xdmp/property\">";
+    // specify properties here
+    //pos << "    <my-prop>my first property</my-prop>";
+    pos << "  </prop:properties>";
+    pos << "  <rapi:collections>";
+    const std::vector<std::string> cols = it.getCollections();
+    for (auto colsIter = cols.begin(); colsIter != cols.end();++colsIter) {
+      pos << "    <rapi:collection>" << *colsIter << "</rapi:collection>";
+    }
+    pos << "  </rapi:collections>";
+    pos << "  <rapi:permissions>";
+    const std::vector<Permission> perms = it.getPermissions();
+    for (auto permIter = perms.begin(); permIter != perms.end();++permIter) {
+      pos << "    <rapi:permission>";
+      pos << "      <rapi:role-name>" << permIter->getRole() << "</rapi:role-name>";
+      pos << "      <rapi:capability>" << permIter->getCapability() << "</rapi:capability>";
+      pos << "    </rapi:permission>";
+    }
+    pos << "  </rapi:permissions>";
+    pos << "</rapi:metadata>";
+    tdc->setContent(pos.str());
+    tdc->setMimeType(mlclient::IDocumentContent::MIME_XML);
+
+    // metadata FIRST
+    sout << "Content-Type: " << tdc->getMimeType() << "\r\n";
+    sout << "Content-Disposition: attachment; filename=\"" << it.getUri() << "\"; category=metadata\r\n";
+    sout << "Content-Length: " << tdc->getLength() << "\r\n";
+    sout << "\r\n";
+    sout << tdc->getContent();
+    sout << "\r\n";
+
+    sout << "--BOUNDARY\r\n";
+
+    const IDocumentContent* idc = it.getContent();
+    std::string content = idc->getContent(); // TODO support binary objects
+
+    sout << "Content-Type: " << idc->getMimeType() << "\r\n";
+    sout << "Content-Disposition: attachment;filename=\"" << it.getUri() << "\"\r\n";
+    sout << "Content-Length: " << content.size() << "\r\n";
+
+    sout << "\r\n";
+
+    sout << content << "\r\n";
+  }
+
+  sout << "--BOUNDARY--\r\n" << std::endl;
+
+  //cout << "DUMP BULK PAYLOAD - START" << endl;
+  //cout << bulkPayload << endl;
+  //cout << "DUMP BULK PAYLOAD - END" << endl;
+
+}
+
+Response* AuthenticatingProxy::multiPostSync(const std::string& host,const std::string& path,
+    const DocumentSet& allContent, const long startPosInclusive,
+    const long endPosInclusive, const mlclient::HttpHeaders& commonHeaders) {
+  TIMED_FUNC(AuthenticatingProxy_multiPostSync);
+  LOG(DEBUG) << "    Entering multiPostSync";
+
+  GenericTextDocumentContent body;
+  body.setMimeType("multipart/mixed");
+  std::ostringstream content;
+  buildBulkPayload(allContent,startPosInclusive,endPosInclusive,content);
+  std::string ct = content.str();
+  body.setContent(ct);
+
+  HttpHeaders headers = commonHeaders; // copy assignment operator
+  headers.setHeader("Content-type","multipart/mixed; boundary=BOUNDARY");
+  headers.setHeader("Accept","application/json");
+  std::ostringstream os;
+  os << ct.length();
+  headers.setHeader("Content-Length",os.str());
+
+  LOG(DEBUG) << "    Multi Post content: " << body.getContent();
+  Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
+  LOG(DEBUG) << "    Leaving multiPostSync";
 
   return response;
 }

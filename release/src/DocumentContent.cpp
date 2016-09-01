@@ -25,7 +25,8 @@
 #include <iostream>
 #include <sstream>
 #include <memory>
-
+#include <fstream>
+#include <map>
 
 namespace mlclient {
 
@@ -209,5 +210,86 @@ void GenericTextDocumentContent::setMimeType(const std::string& mt) {
 IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot) const {
   throw new mlclient::InvalidFormatException("GenericDocumentContent does not yet support navigation");
 }
+
+
+
+class FileDocumentContent::Impl {
+public:
+  Impl(std::string f) : file(f), mime("application/json"), fs(), mimeMap() {
+
+    mimeMap.insert(std::pair<std::string,std::string>("xml","application/xml"));
+    mimeMap.insert(std::pair<std::string,std::string>("json","application/json"));
+    mimeMap.insert(std::pair<std::string,std::string>("txt","application/text"));
+
+    mimeMap.insert(std::pair<std::string,std::string>("jpg","image/jpeg"));
+    mimeMap.insert(std::pair<std::string,std::string>("png","image/png"));
+    mimeMap.insert(std::pair<std::string,std::string>("gif","image/gif"));
+    mimeMap.insert(std::pair<std::string,std::string>("doc","application/msword"));
+    mimeMap.insert(std::pair<std::string,std::string>("docx","application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+    mimeMap.insert(std::pair<std::string,std::string>("ppt","application/vnd.ms-powerpoint"));
+    mimeMap.insert(std::pair<std::string,std::string>("pptx","application/vnd.openxmlformats-officedocument.presentationml.presentation"));
+
+    // get file extension
+    std::string ext = file.substr(file.find_last_of(".") + 1);
+    // TODO to lower case this extension
+    // derive mime type
+    auto loc = mimeMap.find(ext);
+    if (mimeMap.end() != loc) {
+      mime = loc->second;
+    }
+  }
+  ~Impl() {
+    ; // fstream automatically destroyed
+  }
+
+  std::string file;
+  std::string mime;
+  std::ifstream fs;
+
+private:
+  std::map<std::string,std::string> mimeMap; // TODO handle this statically
+};
+
+
+FileDocumentContent::FileDocumentContent(std::string file) : mImpl(mlclient::make_unique<Impl>(file)) {
+  ;
+}
+
+FileDocumentContent::~FileDocumentContent() {
+  ;
+}
+
+std::ostream* FileDocumentContent::getStream() const {
+  std::string str(getContent());
+  std::ostringstream* os = new std::ostringstream;
+  (*os) << str;
+  return os;
+}
+
+std::string FileDocumentContent::getContent() const {
+  mImpl->fs.open(mImpl->file,std::fstream::in);
+  std::string str;
+
+  mImpl->fs.seekg(0, std::ios::end);
+  str.reserve(mImpl->fs.tellg());
+  mImpl->fs.seekg(0, std::ios::beg);
+
+  str.assign((std::istreambuf_iterator<char>(mImpl->fs)),
+             (std::istreambuf_iterator<char>()));
+
+  mImpl->fs.close();
+
+  return str;
+}
+
+std::string FileDocumentContent::getMimeType() const {
+  return mImpl->mime;
+}
+
+void FileDocumentContent::setMimeType(const std::string& mt) {
+  mImpl->mime = mt; // TODO enforce to lower case on this input
+}
+
+
 
 } // end mlclient namespace

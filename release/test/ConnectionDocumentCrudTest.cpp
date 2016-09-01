@@ -63,7 +63,7 @@ void ConnectionDocumentCrudTest::testSaveJson(void) {
   GenericTextDocumentContent tdc;
   tdc.setMimeType("application/json");
   tdc.setContent(json);
-  const Response* response = ml->saveDocument(jsonUri,tdc);
+  const Response* response = ml->saveDocumentContent(jsonUri,tdc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -113,7 +113,7 @@ void ConnectionDocumentCrudTest::testSaveXml(void) {
   GenericTextDocumentContent tdc;
   tdc.setMimeType("application/xml");
   tdc.setContent(xml);
-  const Response* response = ml->saveDocument(xmlUri,tdc);
+  const Response* response = ml->saveDocumentContent(xmlUri,tdc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
@@ -165,7 +165,7 @@ void ConnectionDocumentCrudTest::testSaveText(void) {
   GenericTextDocumentContent tdc;
   tdc.setMimeType("plain/text");
   tdc.setContent(text);
-  const Response* response = ml->saveDocument(textUri,tdc);
+  const Response* response = ml->saveDocumentContent(textUri,tdc);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
