@@ -320,6 +320,45 @@ void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long sta
     const Document& it = set.at(i);
     sout << "--BOUNDARY\r\n";
 
+    // TODO send properties, collections and permissions too
+
+    GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
+    std::ostringstream pos;
+    // TODO specify MIME type based on MIME type of properties document (could be JSON or XML)
+    pos << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+    pos << "<rapi:metadata xmlns:rapi=\"http://marklogic.com/rest-api\">";
+    pos << "  <rapi:quality>1</rapi:quality>";
+    pos << "  <prop:properties xmlns:prop=\"http://marklogic.com/xdmp/property\">";
+    // TODO specify properties here
+    //pos << "    <my-prop>my first property</my-prop>";
+    pos << "  </prop:properties>";
+    pos << "  <rapi:collections>";
+    const std::vector<std::string> cols = it.getCollections();
+    for (auto colsIter = cols.begin(); colsIter != cols.end();++colsIter) {
+      pos << "    <rapi:collection>" << *colsIter << "</rapi:collection>";
+    }
+    pos << "  </rapi:collections>";
+    pos << "  <rapi:permissions>";
+    // TODO perms here
+    //pos << "    <rapi:permission>";
+    //pos << "      <rapi:role-name>readers</rapi:role-name>";
+    //pos << "      <rapi:capability>read</rapi:capability>";
+    //pos << "    </rapi:permission>";
+    pos << "  </rapi:permissions>";
+    pos << "</rapi:metadata>";
+    tdc->setContent(pos.str());
+    tdc->setMimeType(mlclient::IDocumentContent::MIME_XML);
+
+    // metadata FIRST
+    sout << "Content-Type: " << tdc->getMimeType() << "\r\n";
+    sout << "Content-Disposition: attachment; filename=\"" << it.getUri() << "\"; category=metadata\r\n";
+    sout << "Content-Length: " << tdc->getLength() << "\r\n";
+    sout << "\r\n";
+    sout << tdc->getContent();
+    sout << "\r\n";
+
+    sout << "--BOUNDARY\r\n";
+
     const IDocumentContent* idc = it.getContent();
     std::string content = idc->getContent(); // TODO support binary objects
 
@@ -328,8 +367,6 @@ void AuthenticatingProxy::buildBulkPayload(const DocumentSet& set,const long sta
     sout << "Content-Length: " << content.size() << "\r\n";
 
     sout << "\r\n";
-
-    // TODO send properties and permissions too
 
     sout << content << "\r\n";
   }
