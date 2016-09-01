@@ -251,6 +251,7 @@ void DocumentBatchWriter::wait() const {
 }
 
 const bool DocumentBatchWriter::isComplete() const {
+  mImpl->checkComplete();
   return mImpl->complete;
 }
 

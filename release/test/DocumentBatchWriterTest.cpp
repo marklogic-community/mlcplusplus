@@ -88,6 +88,8 @@ void DocumentBatchWriterTest::testFolder(void) {
 
   LOG(DEBUG) << "DocumentBatchWriterTest: set size: " << set.size();
 
+  long setSize = set.size(); // set is reassigned by the next line, move!
+
   writer.assignDocuments(std::move(set));
 
   writer.send();
@@ -100,13 +102,13 @@ void DocumentBatchWriterTest::testFolder(void) {
   CPPUNIT_ASSERT_MESSAGE("Exception returned during batch write",(nullptr == obs.ex));
 
   Progress p = writer.getProgress();
-  LOG(DEBUG) << "Document set size: " << set.size() << ", complete size: " << p.completed;
+  LOG(DEBUG) << "Document set size: " << setSize << ", complete size: " << p.completed;
   LOG(DEBUG) << "Progress: Complete: " << p.completed << ", total: " << p.total << ", pct: " << p.percentageComplete;
   LOG(DEBUG) << "Progress: duration: " << p.duration << ", est remaining duration: " << p.durationEstimateRemaining;
-  CPPUNIT_ASSERT_MESSAGE("Document set size not equal to completed size",(set.size() == p.completed));
+  CPPUNIT_ASSERT_MESSAGE("Document set size not equal to completed size",(setSize == p.completed));
 
   CPPUNIT_ASSERT_MESSAGE("Writer not set to finished",writer.isFinished());
-  CPPUNIT_ASSERT_MESSAGE("Writer set to cancelled",writer.isCancelled());
+  CPPUNIT_ASSERT_MESSAGE("Writer set to cancelled",!writer.isCancelled());
   CPPUNIT_ASSERT_MESSAGE("Writer not set to complete",writer.isComplete());
 }
 

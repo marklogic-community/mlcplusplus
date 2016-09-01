@@ -43,15 +43,16 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
         doc.setCollections(collections);
         doc.setPermissions(permissions);
         doc.setProperties(properties);
-        std::string fname = std::string(folder + "/" + epdf->d_name);
+        LOG(DEBUG) << "d_name: " << epdf->d_name;
+        std::string fname = std::string(folder);
         if (stripBase) {
           fname = fname.substr(0,baseFolder.length());
         }
-        doc.setUri(std::string(appendBase + fname));
+        doc.setUri(std::string(appendBase + fname + "/" + epdf->d_name));
         LOG(DEBUG) << "Found document: " << doc.getUri();
         FileDocumentContent* fdc = new FileDocumentContent(folder + "/" + epdf->d_name);
 
-        // TODO make filedc set mime type correctly based on extension
+        // NB FileDocumentContent's constructor uses the extension to determine the MIME type, or defaults to application/json
 
         doc.setContent(fdc);
         addTo.push_back(std::move(doc)); // moved by called function

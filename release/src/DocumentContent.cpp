@@ -26,6 +26,7 @@
 #include <sstream>
 #include <memory>
 #include <fstream>
+#include <map>
 
 namespace mlclient {
 
@@ -214,8 +215,28 @@ IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot
 
 class FileDocumentContent::Impl {
 public:
-  Impl(std::string f) : file(f), mime("application/json"), fs() {
-    ;
+  Impl(std::string f) : file(f), mime("application/json"), fs(), mimeMap() {
+
+    mimeMap.insert(std::pair<std::string,std::string>("xml","application/xml"));
+    mimeMap.insert(std::pair<std::string,std::string>("json","application/json"));
+    mimeMap.insert(std::pair<std::string,std::string>("txt","application/text"));
+
+    mimeMap.insert(std::pair<std::string,std::string>("jpg","image/jpeg"));
+    mimeMap.insert(std::pair<std::string,std::string>("png","image/png"));
+    mimeMap.insert(std::pair<std::string,std::string>("gif","image/gif"));
+    mimeMap.insert(std::pair<std::string,std::string>("doc","application/msword"));
+    mimeMap.insert(std::pair<std::string,std::string>("docx","application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+    mimeMap.insert(std::pair<std::string,std::string>("ppt","application/vnd.ms-powerpoint"));
+    mimeMap.insert(std::pair<std::string,std::string>("pptx","application/vnd.openxmlformats-officedocument.presentationml.presentation"));
+
+    // get file extension
+    std::string ext = file.substr(file.find_last_of(".") + 1);
+    // TODO to lower case this extension
+    // derive mime type
+    auto loc = mimeMap.find(ext);
+    if (mimeMap.end() != loc) {
+      mime = loc->second;
+    }
   }
   ~Impl() {
     ; // fstream automatically destroyed
@@ -224,6 +245,9 @@ public:
   std::string file;
   std::string mime;
   std::ifstream fs;
+
+private:
+  std::map<std::string,std::string> mimeMap; // TODO handle this statically
 };
 
 
@@ -263,7 +287,7 @@ std::string FileDocumentContent::getMimeType() const {
 }
 
 void FileDocumentContent::setMimeType(const std::string& mt) {
-  mImpl->mime = mt;
+  mImpl->mime = mt; // TODO enforce to lower case on this input
 }
 
 
