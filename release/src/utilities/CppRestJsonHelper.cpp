@@ -55,9 +55,7 @@ const web::json::value CppRestJsonHelper::fromDocument(const CppRestJsonDocument
 const web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(CppRestJsonHelper_fromDocument_IDocumentContent);
   std::ostringstream os;
-  std::ostream* dcos(dc.getStream());
-  os << dcos;
-  //delete dcos; // free pointer
+  os << dc.getStream()->get();
   return web::json::value::parse(utility::conversions::to_string_t(os.str()));
 }
 

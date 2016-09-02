@@ -48,6 +48,10 @@ class ConnectionDocumentCrudTest : public CppUnit::TestCase {
     CPPUNIT_TEST(testSaveText);
     CPPUNIT_TEST(testGetText);
     CPPUNIT_TEST(testDeleteText);
+
+    CPPUNIT_TEST(testSavePNG);
+    CPPUNIT_TEST(testGetPNG);
+    CPPUNIT_TEST(testDeletePNG);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
@@ -64,14 +68,20 @@ public:
   void testSaveText(void);
   void testGetText(void);
   void testDeleteText(void);
+
+  void testSavePNG(void);
+  void testGetPNG(void);
+  void testDeletePNG(void);
 private:
   IConnection* ml;
   std::string json;
   std::string xml;
   std::string text;
+  std::string pngFile;
   std::string jsonUri;
   std::string xmlUri;
   std::string textUri;
+  std::string pngUri;
 };
 
 #endif /* defined(__Scratch__ConnectionDocumentCrudTest__) */

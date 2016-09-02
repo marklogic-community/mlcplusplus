@@ -292,12 +292,14 @@ CppRestJsonDocumentContent::~CppRestJsonDocumentContent() {
   delete mImpl;
 }
 
-std::ostream* CppRestJsonDocumentContent::getStream() const {
+std::istream* CppRestJsonDocumentContent::getStream() const {
   TIMED_FUNC(CppRestJsonDocumentContent_getStream);
   std::ostringstream* os = new std::ostringstream;
   //(*os) << mImpl->value;
   mImpl->value.serialize(*os);
-  return os;
+  std::istringstream* is = new std::istringstream(os->str());
+  delete os;
+  return is;
 }
 
 const web::json::value& CppRestJsonDocumentContent::getJson() const {

@@ -59,9 +59,7 @@ pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   // TODO handle invalid cast exception
 
   std::ostringstream os;
-  std::ostream* dcos(dc.getStream());
-  os << dcos;
-  delete dcos; // free pointer
+  os << dc.getStream()->get();
 
   pugi::xml_document* doc = new pugi::xml_document;
   pugi::xml_parse_result result = doc->load_string(os.str().c_str());

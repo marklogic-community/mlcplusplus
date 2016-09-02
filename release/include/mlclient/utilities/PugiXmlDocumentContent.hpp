@@ -167,15 +167,15 @@ public:
   MLCLIENT_API void setContent(const pugi::xml_document& xml);
 
   /**
-   * \brief Returns the content of this ITextDocumentContent as an ostream.
+   * \brief Returns the content of this ITextDocumentContent as an istream.
    *
    * This allows streaming to a HTTP request of this string content.
    *
    * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
    *
-   * \return An ostream instance wrapping the content of this Text Document Content instance
+   * \return An istream instance wrapping the content of this Text Document Content instance
    */
-  MLCLIENT_API std::ostream* getStream() const override;
+  MLCLIENT_API std::istream* getStream() const override;
 
   /**
    * \brief Sets the textual content for this document

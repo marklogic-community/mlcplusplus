@@ -34,12 +34,14 @@
 #include <cpprest/json.h>
 #include <cpprest/http_headers.h>
 #include <cpprest/base_uri.h>
+#include <cpprest/interopstream.h>
 
 // XML includes
 #include "mlclient/ext/pugixml/pugixml.hpp"
 
 #include <string>
 #include <iostream>
+#include <istream>
 
 
 namespace mlclient {
@@ -67,7 +69,9 @@ AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
 
 void AuthenticatingProxy::copyHeaders(const web::http::http_headers& from, mlclient::HttpHeaders& to) {
   std::map<std::string,std::string> headers;
+  LOG(DEBUG) << "Headers:-";
   for (auto& it : from) {
+    LOG(DEBUG) << "  Header: " << it.first << " = " << it.second;
     to.setHeader(utility::conversions::to_utf8string(it.first), utility::conversions::to_utf8string(it.second));
   }
 }
@@ -123,6 +127,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     if (nullptr != body) {
       // TODO Any way to stream the below rather than convert in memory?
       req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
+      //req.set_body(*(body->getStream()),utility::conversions::to_string_t(body->getMimeType()));
     }
 
     /*
@@ -151,7 +156,19 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       response->setResponseCode((ResponseCode)raw_response.status_code());
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
-      response->setResponseHeaders(h); // THIS DOESN'T SET ANYTHING
+      response->setResponseHeaders(h); // also sets response type via Content-type header
+      if (response->getResponseType() == ResponseType::BINARY) {
+        LOG(DEBUG) << "AuthenticatingProxy - Got binary response";
+        std::vector<unsigned char> vec = raw_response.extract_vector().get();
+        // convert to binary content, or store for now...
+        std::string* str = new std::string;
+        str->reserve(vec.size());
+        str->assign(vec.begin(),vec.end());
+        response->setContent(str);
+      } else {
+        LOG(DEBUG) << "AuthenticatingProxy - Got text response";
+        response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
+      }
       responseAuthHeaderValue = utility::conversions::to_utf8string(raw_response.headers()[WWW_AUTHENTICATE_HEADER]);
 
       /*
@@ -165,7 +182,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       //std::unique_ptr<std::string> c(new std::string(raw_response.extract_string().get()));
       // TODO replace with setContent(StringDocument()) ??? would it avoid a conversion at all???
-      response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get()))); // TODO handle binary response types
+      //response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get()))); // TODO handle binary response types
 
       if (response->getResponseCode() != ResponseCode::UNAUTHORIZED) {
         return response;
@@ -244,6 +261,15 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       if (nullptr != body) {
         req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
+        //concurrency::streams::stdio_istream
+        //std::istream* isp = body->getStream();
+        //concurrency::streams::stdio_istream is(*isp);
+        //req.set_body(is, utility::conversions::to_string_t(body->getMimeType()));
+
+        //std::ifstream InFile( FileName, std::ifstream::binary );
+        //std::vector<unsigned char> data( ( std::istreambuf_iterator<unsigned char>( *isp ) ), std::istreambuf_iterator<unsigned char>() );
+        //req.headers().add(U("Content-type"),utility::conversions::to_string_t(body->getMimeType()));
+        //req.set_body(data);
       }
       /*
       LOG(DEBUG) << "Listing request headers post auth calculation:-";
@@ -264,8 +290,19 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
         response->setResponseCode((ResponseCode)raw_response.status_code());
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
-        response->setResponseHeaders(h);
-        response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
+        response->setResponseHeaders(h); // also sets response type via Content-type header
+        if (response->getResponseType() == ResponseType::BINARY) {
+          LOG(DEBUG) << "AuthenticatingProxy - Got binary response";
+          std::vector<unsigned char> vec = raw_response.extract_vector().get();
+          // convert to binary content, or store for now...
+          std::string* str = new std::string;
+          str->reserve(vec.size());
+          str->assign(vec.begin(),vec.end());
+          response->setContent(str);
+        } else {
+          LOG(DEBUG) << "AuthenticatingProxy - Got text response";
+          response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
+        }
 
         LOG(DEBUG) << response->getContent();
 
