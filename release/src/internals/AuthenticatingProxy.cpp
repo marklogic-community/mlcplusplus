@@ -101,6 +101,10 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
   bool authorised = true;
 
+  utility::string_t bodyString;
+  utility::string_t mimeString;
+
+
   try {
     http::http_request req(utility::conversions::to_string_t(method)); // TODO can we re-use these???
     http_headers& restHeaders = req.headers(); // MUST BE A REFERENCE - DO NOT INVOKE COPY CONSTRUCTOR!!!
@@ -125,8 +129,17 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     }
 
     if (nullptr != body) {
+      bodyString = utility::conversions::to_string_t(body->getContent());
+      mimeString = utility::conversions::to_string_t(body->getMimeType());
+      // GOD AWFUL HACK
+      if ("multipart/mime" == mimeString) {
+        mimeString = "multipart/mime; boundary=BOUNDARY";
+      }
+      LOG(DEBUG) << "Body is not null on FIRST try";
+      LOG(DEBUG) << "  mimeString: " << mimeString;
+      LOG(DEBUG) << "  bodyString: " << bodyString;
       // TODO Any way to stream the below rather than convert in memory?
-      req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
+      req.set_body(bodyString,mimeString);
       //req.set_body(*(body->getStream()),utility::conversions::to_string_t(body->getMimeType()));
     }
 
@@ -145,7 +158,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     { // PERFORMANCE BRACE
       TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
       pplx::task<http_response> hr = raw_client.request(req);
-      LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
+      //LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
 
@@ -233,14 +246,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       std::map<std::string,std::string>::const_iterator iter;
       std::map<std::string,std::string> hs = headers.getHeaders();
       http_headers& restHeaders = req.headers(); // MUST BE A REFERENCE - DO NOT INVOKE COPY CONSTRUCTOR!!!
-      /*
       for (auto& iter : hs) {
-        if (restHeaders.has(utility::conversions::to_string_t(iter.first))) {
+        if (restHeaders.has(utility::conversions::to_string_t(iter.first))) { // TODO verify that map doesn't handle duplicates for us. If it does, remove this check.
           restHeaders.remove(utility::conversions::to_string_t(iter.first));
         }
         restHeaders.add(utility::conversions::to_string_t(iter.first), utility::conversions::to_string_t(iter.second));
       }
-      */
+      // TODO common string constants to pre-created variables
       if (!restHeaders.has(U("Accept"))) {
         restHeaders.add(U("Accept"),U("application/json")); // default to JSON response type for MarkLogic
       }
@@ -260,7 +272,11 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "End of request headers";
 
       if (nullptr != body) {
-        req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
+        LOG(DEBUG) << "Body is not null on retry";
+        LOG(DEBUG) << "  mimeString: " << mimeString;
+        LOG(DEBUG) << "  bodyString: " << bodyString;
+        req.set_body(bodyString,mimeString);
+        //req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
         //concurrency::streams::stdio_istream
         //std::istream* isp = body->getStream();
         //concurrency::streams::stdio_istream is(*isp);
@@ -270,6 +286,8 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
         //std::vector<unsigned char> data( ( std::istreambuf_iterator<unsigned char>( *isp ) ), std::istreambuf_iterator<unsigned char>() );
         //req.headers().add(U("Content-type"),utility::conversions::to_string_t(body->getMimeType()));
         //req.set_body(data);
+      } else {
+        LOG(DEBUG) << "Body IS null on retry";
       }
       /*
       LOG(DEBUG) << "Listing request headers post auth calculation:-";
@@ -279,8 +297,15 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "Finishing listing request headers.";
       */
 
-      LOG(DEBUG) << "Re-auth Request body: " << utility::conversions::to_utf8string(req.to_string());
-      http_response raw_response = raw_client.request(req).get();
+      http_response raw_response;// = raw_client.request(req).get();
+      { // PERFORMANCE BRACE
+        TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+        pplx::task<http_response> hr = raw_client.request(req);
+        //LOG(DEBUG) << "Retry Request body: " << utility::conversions::to_utf8string(req.to_string());
+
+        raw_response = hr.get();
+
+      } // PERFORMANCE BRACE
 
       try
       {
@@ -438,7 +463,7 @@ Response* AuthenticatingProxy::multiPostSync(const std::string& host,const std::
   os << ct.length();
   headers.setHeader("Content-Length",os.str());
 
-  LOG(DEBUG) << "    Multi Post content: " << body.getContent();
+  //LOG(DEBUG) << "    Multi Post content: " << body.getContent();
   Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
   LOG(DEBUG) << "    Leaving multiPostSync";
 
