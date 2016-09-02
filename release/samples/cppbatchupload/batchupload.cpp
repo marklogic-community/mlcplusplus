@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *  main.cpp
+ *  batchupload.cpp
  *  Created by Adam Fowler on 02 Sep 2016.
  */
 
@@ -60,8 +60,8 @@ int main(int argc, const char * argv[])
   if (argc < 3) {
     std::cout << "Must specify the root load folder as first parameter" << std::endl;
     std::cout << "Must specify the collection as second parameter" << std::endl;
-    std::cout << "Usage: " << argv[0] << ": <folder> <collection>" << std::endl;
-    std::cout << "Example Usage: " << argv[0] << ": ./some/folder mydocs" << std::endl;
+    std::cout << "Usage: " << argv[0] << " <folder> <collection>" << std::endl;
+    std::cout << "Example Usage: " << argv[0] << " ./some/folder mydocs" << std::endl;
     return 1;
   }
 
