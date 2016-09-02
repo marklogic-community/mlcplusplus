@@ -23,6 +23,6 @@ using namespace mlclient;
 Connection* ConnectionFactory::getConnection() {
   Connection* conn = new Connection;
   // ALTER THE BELOW FOR YOUR OWN SYSTEM DURING TESTING
-  conn->configure("192.168.123.4","6697","admin","admin",false);
+  conn->configure("192.168.123.4","8122","admin","admin",false);
   return conn;
 }
