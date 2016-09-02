@@ -36,7 +36,7 @@ enum class ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, B
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseType& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const ResponseType& rt);
 
-MLCLIENT_API const std::string translate(const ResponseType& rt);
+MLCLIENT_API const std::string translate_responsetype(const ResponseType& rt);
 
 /**
  * The various HTTP response codes. Defaults to UNKNOWN to prevent API failures.
@@ -87,7 +87,7 @@ enum class ResponseCode : int {
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ResponseCode& rc);
 MLCLIENT_API std::string& operator +(std::string& s, const ResponseCode& rc);
 
-MLCLIENT_API const std::string translate(const ResponseCode& rt);
+MLCLIENT_API const std::string translate_responsecode(const ResponseCode& rt);
 
 
 

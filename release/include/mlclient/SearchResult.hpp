@@ -14,6 +14,14 @@
 
 namespace mlclient {
 
+
+/**
+ * Represents the format of the results
+ */
+enum class Format {
+  JSON, XML, BINARY, NONE, TEXT
+};
+
 /**
  * \brief Represents a single search result. Wraps all REST API search result metadata and content.
  *
@@ -32,18 +40,6 @@ public:
   enum class Detail {
     SNIPPETS, CONTENT, NONE, CUSTOM
   };
-  /**
-   * Used to tag the search result content format as JSON
-   */
-  MLCLIENT_API static const std::string JSON;
-  /**
-   * Used to tag the search result content format as XML
-   */
-  MLCLIENT_API static const std::string XML;
-  /**
-   * Used to tag the search result content format as Binary
-   */
-  MLCLIENT_API static const std::string BINARY;
 
   /**
    * Empty constructor
@@ -60,6 +56,20 @@ public:
    * \param other The SearchResult to move (deep reference move)
    */
   MLCLIENT_API SearchResult(SearchResult&& other);
+
+  /**
+   * Move assignment operator
+   *
+   * \note If this is not defined, it is implicitly deleted by the compiler
+   */
+  MLCLIENT_API SearchResult& operator= (SearchResult&& other);
+
+  /**
+   * Copy assignment operator
+   *
+   * \note If this is not defined, it is implicitly deleted by the compiler
+   */
+  SearchResult& operator= (const SearchResult&& other);
 
   /**
    * \brief Destructor
@@ -82,7 +92,7 @@ public:
    */
   MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
       const double confidence,const double fitness,const Detail& detail,IDocumentContent* detailContent = nullptr,
-      const std::string& mimeType = "",const std::string& format = JSON);
+      const std::string& mimeType = "",const Format& format = Format::JSON);
 
   /**
    * \brief Returns the (1 based) index of this result in the total search results, across all pages
@@ -133,7 +143,7 @@ public:
    * \brief Returns the short text format of this result
    * \return The short text format of this result. Could be "text" or "json" or "xml" or "none"
    */
-  MLCLIENT_API const std::string& getFormat() const;
+  MLCLIENT_API const Format& getFormat() const;
 
 private:
   class Impl; // forward declaration
@@ -148,7 +158,7 @@ private:
   Detail detail;
   IDocumentContent* detailContent;
   std::string mimeType;
-  std::string format;
+  Format format;
 
 };
 

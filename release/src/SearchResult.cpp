@@ -11,9 +11,6 @@
 
 namespace mlclient {
 
-const std::string SearchResult::JSON = "json";
-const std::string SearchResult::XML = "xml";
-
 class SearchResult::Impl {
 public:
   Impl() {
@@ -21,7 +18,7 @@ public:
   }
 };
 
-SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(Detail::NONE),detailContent(nullptr) {
+SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(Detail::NONE),detailContent(nullptr), format(Format::JSON) {
   //TIMED_FUNC(SearchResult_defaultConstructor);
   LOG(DEBUG) << "    SearchResult::defaultConstructor @" << &*this;
 }
@@ -35,7 +32,7 @@ SearchResult::~SearchResult() {
 
 SearchResult::SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
     const double confidence,const double fitness,const Detail& detail,IDocumentContent* own_detailContent,
-    const std::string& mimeType,const std::string& format) : mImpl(new Impl) {
+    const std::string& mimeType,const Format& format) : mImpl(new Impl) {
   //TIMED_FUNC(SearchResult_detailConstructor);
   LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
   this->index = index;
@@ -53,6 +50,8 @@ SearchResult::SearchResult(const long index, const std::string& uri, const std::
 SearchResult::SearchResult(SearchResult&& other) {
   //TIMED_FUNC(SearchResult_moveConstructor);
   LOG(DEBUG) << "    SearchResult::moveConstructor @" << &*this;
+  mImpl = other.mImpl;
+  other.mImpl = nullptr;
   this->index = std::move(other.index);
   this->uri = std::move(other.uri);
   this->path = std::move(other.path);
@@ -64,6 +63,40 @@ SearchResult::SearchResult(SearchResult&& other) {
   this->mimeType = std::move(other.mimeType);
   this->format = std::move(other.format);
   this->confidence = std::move(other.confidence);
+}
+
+SearchResult& SearchResult::operator= (const SearchResult&& other) {
+  LOG(DEBUG) << "    SearchResult::copy assignment operator @" << &*this;
+
+  this->index = other.index;
+  this->uri = other.uri;
+  this->path = other.path;
+  this->score = other.score;
+  this->fitness = other.fitness;
+  this->detail = other.detail;
+  this->detailContent = other.detailContent;
+  this->mimeType = other.mimeType;
+  this->format = other.format;
+  this->confidence = other.confidence;
+  return *this;
+}
+
+SearchResult& SearchResult::operator= (SearchResult&& other) {
+  LOG(DEBUG) << "    SearchResult::move assignment operator @" << &*this;
+  mImpl = other.mImpl;
+  other.mImpl = nullptr;
+  this->index = std::move(other.index);
+  this->uri = std::move(other.uri);
+  this->path = std::move(other.path);
+  this->score = std::move(other.score);
+  this->fitness = std::move(other.fitness);
+  this->detail = std::move(other.detail);
+  this->detailContent = other.detailContent;
+  other.detailContent = NULL;
+  this->mimeType = std::move(other.mimeType);
+  this->format = std::move(other.format);
+  this->confidence = std::move(other.confidence);
+  return *this;
 }
 
 long SearchResult::getIndex() {
@@ -94,7 +127,7 @@ const IDocumentContent* SearchResult::getDetailContent() const {
 const std::string& SearchResult::getMimeType() const {
   return mimeType;
 }
-const std::string& SearchResult::getFormat() const {
+const Format& SearchResult::getFormat() const {
   return format;
 }
 

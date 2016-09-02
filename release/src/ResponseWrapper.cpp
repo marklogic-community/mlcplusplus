@@ -56,7 +56,7 @@ const int ml_response_GetResponseCode(CResponse *resp) {
 
 const char* const ml_responsecodes_translate(int code) {
   using namespace mlclient;
-  static const char* cd = mlclient::translate((ResponseCode)code).c_str();
+  static const char* cd = mlclient::translate_responsecode((ResponseCode)code).c_str();
   return cd;
 }
 

@@ -44,7 +44,7 @@ namespace mlclient {
  * @return
  */
 std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
-  os << translate(rt);
+  os << translate_responsetype(rt);
   return os;
 }
 
@@ -55,11 +55,11 @@ std::ostream& operator << (std::ostream& os, const ResponseType& rt) {
  * @return
  */
 std::string& operator +(std::string& s, const ResponseType& rt) {
-  s.append(translate(rt));
+  s.append(translate_responsetype(rt));
   return s;
 }
 
-const std::string translate(const ResponseType& rt) {
+const std::string translate_responsetype(const ResponseType& rt) {
   std::ostringstream os;
   os << "Unknown Response Type: "  << (int)rt;
   std::string result = os.str();
@@ -88,17 +88,17 @@ const std::string translate(const ResponseType& rt) {
  * Response Code operator - allows string output of code in human readable form
  */
 std::ostream& operator << (std::ostream& os, const ResponseCode& rc) {
-  os << translate(rc);
+  os << translate_responsecode(rc);
   return os;
 }
 
 
 std::string& operator+(std::string& s,const ResponseCode& rc) {
-  s.append(translate(rc));
+  s.append(translate_responsecode(rc));
   return s;
 }
 
-const std::string translate(const ResponseCode& val) {
+const std::string translate_responsecode(const ResponseCode& val) {
   std::ostringstream os;
   os << "Unknown Response Code: " << (int)val;
   std::string result = os.str();

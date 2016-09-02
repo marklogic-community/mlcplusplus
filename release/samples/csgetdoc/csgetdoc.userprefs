@@ -1,8 +1,7 @@
 ﻿<Properties StartupItem="csgetdoc/csgetdoc.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../bin/src/CSharpSources/Connection.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="csgetdoc/Program.cs" Line="7" Column="11" />
-      <File FileName="../../../bin/src/CSharpSources/Connection.cs" Line="55" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

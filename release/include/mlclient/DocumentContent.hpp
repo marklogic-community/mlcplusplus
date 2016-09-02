@@ -54,7 +54,7 @@ public:
   /**
    * A virtual destructor, ripe for overloading. REQUIRED to allow subclassing
    */
-  MLCLIENT_API virtual ~IDocumentContent();
+  MLCLIENT_API virtual ~IDocumentContent() = 0;
 
   /**
    * \brief Returns the content of this IDocumentContent as an istream.

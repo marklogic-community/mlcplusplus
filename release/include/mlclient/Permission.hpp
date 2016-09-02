@@ -26,7 +26,7 @@ enum class Capability {
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const Capability& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const Capability& rt);
 
-MLCLIENT_API const std::string translate(const Capability& rt);
+MLCLIENT_API const std::string translate_capability(const Capability& rt);
 
 MLCLIENT_API Capability toCapability(const std::string& capString);
 
@@ -55,7 +55,7 @@ private:
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const Permission& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const Permission& rt);
 
-MLCLIENT_API const std::string translate(const Permission& rt);
+MLCLIENT_API const std::string translate_permission(const Permission& rt);
 
 
 } // end namespace mlclient

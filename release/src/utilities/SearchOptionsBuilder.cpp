@@ -35,14 +35,14 @@ namespace utilities {
 
 
 std::ostream& operator << (std::ostream& os, const RangeIndexType& rt) {
-  os << translate(rt);
+  os << translate_rangeindextype(rt);
   return os;
 }
 std::string& operator +(std::string& s, const RangeIndexType& rt) {
-  s.append(translate(rt));
+  s.append(translate_rangeindextype(rt));
   return s;
 }
-const std::string translate(const RangeIndexType& rt) {
+const std::string translate_rangeindextype(const RangeIndexType& rt) {
   switch (rt) {
   case RangeIndexType::ANY_URI:
     return "xs:anyURI";
@@ -86,14 +86,14 @@ const std::string translate(const RangeIndexType& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const AggregateBuiltIn& rt) {
-  os << translate(rt);
+  os << translate_aggregatebuiltin(rt);
   return os;
 }
 std::string& operator +(std::string& s, const AggregateBuiltIn& rt) {
-  s.append(translate(rt));
+  s.append(translate_aggregatebuiltin(rt));
   return s;
 }
-const std::string translate(const AggregateBuiltIn& rt) {
+const std::string translate_aggregatebuiltin(const AggregateBuiltIn& rt) {
   switch (rt) {
   case AggregateBuiltIn::AVG:
     return "avg";
@@ -119,14 +119,14 @@ const std::string translate(const AggregateBuiltIn& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const FragmentScope& rt) {
-  os << translate(rt);
+  os << translate_fragmentscope(rt);
   return os;
 }
 std::string& operator +(std::string& s, const FragmentScope& rt) {
-  s.append(translate(rt));
+  s.append(translate_fragmentscope(rt));
   return s;
 }
-const std::string translate(const FragmentScope& rt) {
+const std::string translate_fragmentscope(const FragmentScope& rt) {
   switch (rt) {
   case FragmentScope::CONTENT:
     return "documents";
@@ -138,14 +138,14 @@ const std::string translate(const FragmentScope& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const FacetOption& rt) {
-  os << translate(rt);
+  os << translate_facetoption(rt);
   return os;
 }
 std::string& operator +(std::string& s, const FacetOption& rt) {
-  s.append(translate(rt));
+  s.append(translate_facetoption(rt));
   return s;
 }
-const std::string translate(const FacetOption& rt) {
+const std::string translate_facetoption(const FacetOption& rt) {
   switch (rt) {
   case FacetOption::ANY:
     return "any";
@@ -202,14 +202,14 @@ const std::string translate(const FacetOption& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const RangeOption& rt) {
-  os << translate(rt);
+  os << translate_rangeoption(rt);
   return os;
 }
 std::string& operator +(std::string& s, const RangeOption& rt) {
-  s.append(translate(rt));
+  s.append(translate_rangeoption(rt));
   return s;
 }
-const std::string translate(const RangeOption& rt) {
+const std::string translate_rangeoption(const RangeOption& rt) {
   switch (rt) {
   case RangeOption::CACHED:
     return "cached";
@@ -234,14 +234,14 @@ const std::string translate(const RangeOption& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const ValuesOption& rt) {
-  os << translate(rt);
+  os << translate_valuesoption(rt);
   return os;
 }
 std::string& operator +(std::string& s, const ValuesOption& rt) {
-  s.append(translate(rt));
+  s.append(translate_valuesoption(rt));
   return s;
 }
-const std::string translate(const ValuesOption& rt) {
+const std::string translate_valuesoption(const ValuesOption& rt) {
   switch (rt) {
   case ValuesOption::ORDERED:
     return "ordered";
@@ -429,14 +429,14 @@ const std::map<RangeOption,std::string> RangeOptions::getRangeOptions() const {
 
 
 std::ostream& operator << (std::ostream& os, const RangeOptions& rt) {
-  os << translate(rt);
+  os << translate_rangeoptions(rt);
   return os;
 }
 std::string& operator +(std::string& s, const RangeOptions& rt) {
-  s.append(translate(rt));
+  s.append(translate_rangeoptions(rt));
   return s;
 }
-const std::string translate(const RangeOptions& rt) {
+const std::string translate_rangeoptions(const RangeOptions& rt) {
   std::ostringstream os;
   os << "\"range\":{";
   os << "\"type\":\"" << rt.getType() << "\",";
@@ -550,14 +550,14 @@ const std::string AggregateInfo::getUdfPath() const {
 
 
 std::ostream& operator << (std::ostream& os, const AggregateInfo& rt) {
-  os << translate(rt);
+  os << translate_aggregateinfo(rt);
   return os;
 }
 std::string& operator +(std::string& s, const AggregateInfo& rt) {
-  s.append(translate(rt));
+  s.append(translate_aggregateinfo(rt));
   return s;
 }
-const std::string translate(const AggregateInfo& rt) {
+const std::string translate_aggregateinfo(const AggregateInfo& rt) {
   std::ostringstream os;
   if (rt.isAggregateBuiltin() || rt.isCustomAggregate()) {
     os << "\"aggregate\":{";
@@ -578,14 +578,14 @@ const std::string translate(const AggregateInfo& rt) {
 
 
 std::ostream& operator << (std::ostream& os, const LexiconType& rt) {
-  os << translate(rt);
+  os << translate_lexicontype(rt);
   return os;
 }
 std::string& operator +(std::string& s, const LexiconType& rt) {
-  s.append(translate(rt));
+  s.append(translate_lexicontype(rt));
   return s;
 }
-const std::string translate(const LexiconType& rt) {
+const std::string translate_lexicontype(const LexiconType& rt) {
   switch (rt) {
   case LexiconType::COLLECTION:
     return "collection";
@@ -643,14 +643,14 @@ std::ostream& RangeLexiconRef::write(std::ostream& os) const {
 }
 
 std::ostream& operator << (std::ostream& os, const RangeLexiconRef& rt) {
-  os << translate(rt);
+  os << translate_rangelexiconref(rt);
   return os;
 }
 std::string& operator +(std::string& s, const RangeLexiconRef& rt) {
-  s.append(translate(rt));
+  s.append(translate_rangelexiconref(rt));
   return s;
 }
-const std::string translate(const RangeLexiconRef& rt) {
+const std::string translate_rangelexiconref(const RangeLexiconRef& rt) {
   std::ostringstream os;
   os << rt.getRange(); // direct pass through
   return os.str();
@@ -710,14 +710,14 @@ const std::map<ValuesOption,std::string> ValuesInfo::getValuesOptions() const {
 
 
 std::ostream& operator << (std::ostream& os, const ValuesInfo& rt) {
-  os << translate(rt);
+  os << translate_valuesinfo(rt);
   return os;
 }
 std::string& operator +(std::string& s, const ValuesInfo& rt) {
-  s.append(translate(rt));
+  s.append(translate_valuesinfo(rt));
   return s;
 }
-const std::string translate(const ValuesInfo& rt) {
+const std::string translate_valuesinfo(const ValuesInfo& rt) {
   std::ostringstream os;
   os << "{\"style\":\"consistent\",\"name\":\"" << rt.getName() << "\"";
   if (rt.hasLexicon()) {

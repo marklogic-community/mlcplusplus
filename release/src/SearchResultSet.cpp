@@ -124,7 +124,7 @@ public:
     mlclient::IDocumentContent* ct;
     SearchResult::Detail detail;
     std::string mimeType;
-    std::string format;
+    Format format;
     web::json::object row = web::json::value::object().as_object();
 
     {
@@ -144,7 +144,7 @@ public:
       //const web::json::object& row = iter.as_object();
       detail = SearchResult::Detail::NONE;
       mimeType = "";
-      format = SearchResult::JSON;
+      format = Format::JSON;
       web::json::value ctVal;
       //ct = "";
 
@@ -157,11 +157,22 @@ public:
 
         mimeType = utility::conversions::to_utf8string(row.at(U("mimetype")).as_string());
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got mimetype";
-        format = utility::conversions::to_utf8string(row.at(U("format")).as_string());
+        std::string formatStr = utility::conversions::to_utf8string(row.at(U("format")).as_string());
+        if ("json" == formatStr) {
+          format = Format::JSON;
+        } else if ("xml" == formatStr) {
+          format = Format::XML;
+        } else if ("binary" == formatStr) {
+          format = Format::BINARY;
+        } else if ("text" == formatStr) {
+          format = Format::TEXT;
+        } else {
+          format = Format::NONE;
+        }
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got format";
         //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row content: " << ct;
 
-        ct = divineDocumentContent(format,mimeType,ctVal);
+        ct = divineDocumentContent(formatStr,mimeType,ctVal);
 
       } catch (std::exception& e) {
         LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
@@ -176,15 +187,26 @@ public:
           ctVal = row.at(U("matches"));
 
           mimeType = utility::conversions::to_utf8string(row.at(U("mimetype")).as_string());
-          format = utility::conversions::to_utf8string(row.at(U("format")).as_string());
+          std::string formatStr = utility::conversions::to_utf8string(row.at(U("format")).as_string());
           //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got snippet content" << ct;
+          if ("json" == formatStr) {
+            format = Format::JSON;
+          } else if ("xml" == formatStr) {
+            format = Format::XML;
+          } else if ("binary" == formatStr) {
+            format = Format::BINARY;
+          } else if ("text" == formatStr) {
+            format = Format::TEXT;
+          } else {
+            format = Format::NONE;
+          }
 
           /*
           ct = new mlclient::utilities::CppRestJsonDocumentContent();
           ct->setMimeType(IDocumentContent::MIME_JSON);
           ct->setContent(ctVal);
           */
-          ct = divineDocumentContent(format,mimeType,ctVal);
+          ct = divineDocumentContent(formatStr,mimeType,ctVal);
           //ct = utility::conversions::to_utf8string(ctVal.as_string());
 
 
