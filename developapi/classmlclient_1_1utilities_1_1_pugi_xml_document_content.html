@@ -126,9 +126,9 @@ virtual MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:a05ef2301b69220d6e79f41821b98e7a2"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a05ef2301b69220d6e79f41821b98e7a2">setContent</a> (const <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;xml)</td></tr>
 <tr class="memdesc:a05ef2301b69220d6e79f41821b98e7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the content of this document instance from a pugixml xml_document instance.  <a href="#a05ef2301b69220d6e79f41821b98e7a2">More...</a><br /></td></tr>
 <tr class="separator:a05ef2301b69220d6e79f41821b98e7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3de1751a6971ba3130b5a2de223f9081"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a3de1751a6971ba3130b5a2de223f9081">getStream</a> () const  override</td></tr>
-<tr class="memdesc:a3de1751a6971ba3130b5a2de223f9081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an ostream.  <a href="#a3de1751a6971ba3130b5a2de223f9081">More...</a><br /></td></tr>
-<tr class="separator:a3de1751a6971ba3130b5a2de223f9081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da4aec7c217d56592351fad32ffba98"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a7da4aec7c217d56592351fad32ffba98">getStream</a> () const  override</td></tr>
+<tr class="memdesc:a7da4aec7c217d56592351fad32ffba98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an istream.  <a href="#a7da4aec7c217d56592351fad32ffba98">More...</a><br /></td></tr>
+<tr class="separator:a7da4aec7c217d56592351fad32ffba98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99031702fb28c9f2b6b6b843919fc91b"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a99031702fb28c9f2b6b6b843919fc91b">setContent</a> (std::string content) override</td></tr>
 <tr class="memdesc:a99031702fb28c9f2b6b6b843919fc91b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the textual content for this document.  <a href="#a99031702fb28c9f2b6b6b843919fc91b">More...</a><br /></td></tr>
 <tr class="separator:a99031702fb28c9f2b6b6b843919fc91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,7 +261,7 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a class="anchor" id="a3de1751a6971ba3130b5a2de223f9081"></a>
+<a class="anchor" id="a7da4aec7c217d56592351fad32ffba98"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -269,7 +269,7 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">MLCLIENT_API std::ostream* mlclient::utilities::PugiXmlDocumentContent::getStream </td>
+          <td class="memname">MLCLIENT_API std::istream* mlclient::utilities::PugiXmlDocumentContent::getStream </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -282,12 +282,12 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 </table>
 </div><div class="memdoc">
 
-<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an ostream. </p>
+<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an istream. </p>
 <p>This allows streaming to a HTTP request of this string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>An ostream instance wrapping the content of this Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An istream instance wrapping the content of this Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
 
-<p>Implements <a class="el" href="classmlclient_1_1_i_document_content.html#a3aa6f9b6b86276b41a5aadc3164febaf">mlclient::IDocumentContent</a>.</p>
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_content.html#a87dbdd7e43ac68860874435fdc88922e">mlclient::IDocumentContent</a>.</p>
 
 </div>
 </div>

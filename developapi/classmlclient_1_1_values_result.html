@@ -107,6 +107,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef6e8dcbaa2190a0d6fe2407024259e8"></a>
 MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
 <tr class="separator:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7975dcf5564a2bf8ff9457b7d9cc2e39"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (<a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&amp;other)</td></tr>
+<tr class="separator:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a645ce88c493462dbe6982633eb4b862c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a645ce88c493462dbe6982633eb4b862c"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (const <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;other)</td></tr>
+<tr class="separator:a645ce88c493462dbe6982633eb4b862c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd214c4d9a1654343cee4be56929fa4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cd214c4d9a1654343cee4be56929fa4"></a>
 MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addValue</b> (const <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &amp;value)</td></tr>
 <tr class="separator:a7cd214c4d9a1654343cee4be56929fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,18 +122,21 @@ MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values
 <tr class="memitem:a324c56b154343280190acee95a38ee28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a324c56b154343280190acee95a38ee28"></a>
 MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addAggregate</b> (const <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &amp;aggregate)</td></tr>
 <tr class="separator:a324c56b154343280190acee95a38ee28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cedc5f5a9deecf8b5d775b68fdfb865"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cedc5f5a9deecf8b5d775b68fdfb865"></a>
-MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAggregates</b> () const </td></tr>
-<tr class="separator:a5cedc5f5a9deecf8b5d775b68fdfb865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a0d3756c6be500926c1a4cc96c346f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89a0d3756c6be500926c1a4cc96c346f"></a>
+MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasAggregates</b> () const </td></tr>
+<tr class="separator:a89a0d3756c6be500926c1a4cc96c346f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a353b456a580264eebc8411eaf8a414af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a353b456a580264eebc8411eaf8a414af"></a>
+MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><b>getAggregateCount</b> () const </td></tr>
+<tr class="separator:a353b456a580264eebc8411eaf8a414af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf7be0a41de54e62eccf92d02259aaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebf7be0a41de54e62eccf92d02259aaa"></a>
+MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>aggregateBegin</b> () const </td></tr>
+<tr class="separator:aebf7be0a41de54e62eccf92d02259aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6c50dadb3c6a104f8edf15c093c9a92"></a>
+MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>aggregateEnd</b> () const </td></tr>
+<tr class="separator:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade2c6bd3a08e8091d43caded34ef8ae7"></a>
 MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setTimes</b> (const std::string &amp;valuesResolutionTime, const std::string &amp;aggregateResolutionTime, const std::string &amp;totalTime)</td></tr>
 <tr class="separator:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf06daf2a4ccd87fef1376e4b7ed0f84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf06daf2a4ccd87fef1376e4b7ed0f84"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const std::string &amp;name)</td></tr>
-<tr class="separator:acf06daf2a4ccd87fef1376e4b7ed0f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a571a6daa43f2dfdebe6ea22783741d08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a571a6daa43f2dfdebe6ea22783741d08"></a>
-MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const </td></tr>
-<tr class="separator:a571a6daa43f2dfdebe6ea22783741d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1007ef38c889d82162ba7bddeff9c131"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1007ef38c889d82162ba7bddeff9c131"></a>
 MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setType</b> (const mlclient::utilities::RangeIndexType &amp;type)</td></tr>
 <tr class="separator:a1007ef38c889d82162ba7bddeff9c131"><td class="memSeparator" colspan="2">&#160;</td></tr>

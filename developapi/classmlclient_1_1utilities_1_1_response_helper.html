@@ -119,6 +119,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a0e7bf585d6ed891e5ee6a03f28f6f555">getAggregateResult</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp, const std::string &amp;aggName)</td></tr>
 <tr class="memdesc:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a double result from the specified aggregate in the result set.  <a href="#a0e7bf585d6ed891e5ee6a03f28f6f555">More...</a><br /></td></tr>
 <tr class="separator:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ba7cb07b7d3dd9620cc60c2a5472e8"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a85ba7cb07b7d3dd9620cc60c2a5472e8">getAggregateResults</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp, <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;vr)</td></tr>
+<tr class="memdesc:a85ba7cb07b7d3dd9620cc60c2a5472e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts all aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder.  <a href="#a85ba7cb07b7d3dd9620cc60c2a5472e8">More...</a><br /></td></tr>
+<tr class="separator:a85ba7cb07b7d3dd9620cc60c2a5472e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a199042f7b809064f39e061af1a1ed956"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a199042f7b809064f39e061af1a1ed956">getComplexAggregateResults</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp, <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;vr)</td></tr>
+<tr class="memdesc:a199042f7b809064f39e061af1a1ed956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts all complex aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder.  <a href="#a199042f7b809064f39e061af1a1ed956">More...</a><br /></td></tr>
+<tr class="separator:a199042f7b809064f39e061af1a1ed956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides utility functions to ease the use of <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> objects. </p>
@@ -168,6 +174,93 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>double The double typed aggregate result </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a85ba7cb07b7d3dd9620cc60c2a5472e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static MLCLIENT_API void mlclient::utilities::ResponseHelper::getAggregateResults </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td>
+          <td class="paramname"><em>resp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>vr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Extracts all aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">resp</td><td>The response to parse </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vr</td><td>The <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> object to populate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a199042f7b809064f39e061af1a1ed956"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static MLCLIENT_API void mlclient::utilities::ResponseHelper::getComplexAggregateResults </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td>
+          <td class="paramname"><em>resp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>vr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Extracts all complex aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder. </p>
+<dl class="section note"><dt>Note</dt><dd>UDFs don't just return double values, they can return multiple values, and arrays of them (multiple map:map() objects)</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">resp</td><td>The response to parse </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">vr</td><td>The <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> object to populate </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

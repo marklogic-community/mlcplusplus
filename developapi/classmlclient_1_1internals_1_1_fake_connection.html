@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a08993a40b25df23c7ccca68fd68cd795 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a08993a40b25df23c7ccca68fd68cd795">getDocumentPermissions</a> (<a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;inout_document)=0</td></tr>
 <tr class="memdesc:a08993a40b25df23c7ccca68fd68cd795 inherit pub_methods_classmlclient_1_1_i_connection"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates the permissions of the specified document (MUST have a uri).  <a href="#a08993a40b25df23c7ccca68fd68cd795">More...</a><br /></td></tr>
 <tr class="separator:a08993a40b25df23c7ccca68fd68cd795 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2be0a1db1f52d602d0d9863567e078 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a9e2be0a1db1f52d602d0d9863567e078">saveDocuments</a> (const <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;documents, const long startPosInclusive, const long endPosInclusive)=0</td></tr>
+<tr class="memdesc:a9e2be0a1db1f52d602d0d9863567e078 inherit pub_methods_classmlclient_1_1_i_connection"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a set of documents as a single batch to MarkLogic Server.  <a href="#a9e2be0a1db1f52d602d0d9863567e078">More...</a><br /></td></tr>
+<tr class="separator:a9e2be0a1db1f52d602d0d9863567e078 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a35d805f695ac7c0ccb4bad1d03703 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a62a35d805f695ac7c0ccb4bad1d03703">saveDocument</a> (const <a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;doc)=0</td></tr>
 <tr class="memdesc:a62a35d805f695ac7c0ccb4bad1d03703 inherit pub_methods_classmlclient_1_1_i_connection"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a62a35d805f695ac7c0ccb4bad1d03703">More...</a><br /></td></tr>
 <tr class="separator:a62a35d805f695ac7c0ccb4bad1d03703 inherit pub_methods_classmlclient_1_1_i_connection"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,9 +194,9 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
 <tr class="memitem:aac31e04366f4b9b88fb61d122afc96da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#aac31e04366f4b9b88fb61d122afc96da">getDocument</a> (const std::string &amp;uri) override</td></tr>
 <tr class="memdesc:aac31e04366f4b9b88fb61d122afc96da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a document from the server, at the given document URI (MarkLogic unique document ID)  <a href="#aac31e04366f4b9b88fb61d122afc96da">More...</a><br /></td></tr>
 <tr class="separator:aac31e04366f4b9b88fb61d122afc96da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a387487fe5d851c3ce1268116fc85cf02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a387487fe5d851c3ce1268116fc85cf02">saveDocument</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload) override</td></tr>
-<tr class="memdesc:a387487fe5d851c3ce1268116fc85cf02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a387487fe5d851c3ce1268116fc85cf02">More...</a><br /></td></tr>
-<tr class="separator:a387487fe5d851c3ce1268116fc85cf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84dacbd78315e0f776bfb902b6ec5787"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a84dacbd78315e0f776bfb902b6ec5787">saveDocumentContent</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload) override</td></tr>
+<tr class="memdesc:a84dacbd78315e0f776bfb902b6ec5787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a84dacbd78315e0f776bfb902b6ec5787">More...</a><br /></td></tr>
+<tr class="separator:a84dacbd78315e0f776bfb902b6ec5787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23df410e9531d788e3513794d84015a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a23df410e9531d788e3513794d84015a6">deleteDocument</a> (const std::string &amp;uri) override</td></tr>
 <tr class="memdesc:a23df410e9531d788e3513794d84015a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the specified document by URI.  <a href="#a23df410e9531d788e3513794d84015a6">More...</a><br /></td></tr>
 <tr class="separator:a23df410e9531d788e3513794d84015a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -682,7 +685,7 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
 
 </div>
 </div>
-<a class="anchor" id="a387487fe5d851c3ce1268116fc85cf02"></a>
+<a class="anchor" id="a84dacbd78315e0f776bfb902b6ec5787"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -690,7 +693,7 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::internals::FakeConnection::saveDocument </td>
+          <td class="memname"><a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::internals::FakeConnection::saveDocumentContent </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>uri</em>, </td>
@@ -732,7 +735,7 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
 </dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a145a9d749610a0d46fe4de6e419992fa">mlclient::IConnection</a>.</p>
+<p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a34e2014c15e67a1487906ef57f31909d">mlclient::IConnection</a>.</p>
 
 </div>
 </div>

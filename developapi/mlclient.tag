@@ -6,6 +6,7 @@
     <filename>_connection_8hpp</filename>
     <includes id="_document_content_8hpp" name="DocumentContent.hpp" local="yes" imported="no">mlclient/DocumentContent.hpp</includes>
     <includes id="_search_description_8hpp" name="SearchDescription.hpp" local="yes" imported="no">mlclient/SearchDescription.hpp</includes>
+    <includes id="_document_set_8hpp" name="DocumentSet.hpp" local="no" imported="no">mlclient/DocumentSet.hpp</includes>
     <class kind="class">mlclient::IConnection</class>
     <class kind="class">mlclient::Connection</class>
     <namespace>mlclient</namespace>
@@ -102,6 +103,7 @@
     <class kind="class">mlclient::IDocumentNavigator</class>
     <class kind="class">mlclient::ITextDocumentContent</class>
     <class kind="class">mlclient::GenericTextDocumentContent</class>
+    <class kind="class">mlclient::FileDocumentContent</class>
     <namespace>mlclient</namespace>
     <member kind="enumeration">
       <type></type>
@@ -111,6 +113,26 @@
       <arglist></arglist>
       <enumvalue file="namespacemlclient.html" anchor="ad47ff6baab050e78452eb2167a2a3b54a58c9566f3c750ce7147b045fdd14202b">HEX</enumvalue>
       <enumvalue file="namespacemlclient.html" anchor="ad47ff6baab050e78452eb2167a2a3b54a35d3245a21b0942070419ef6602d239e">BIN</enumvalue>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>DocumentSet.hpp</name>
+    <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/include/mlclient/</path>
+    <filename>_document_set_8hpp</filename>
+    <namespace>mlclient</namespace>
+    <member kind="typedef">
+      <type>std::vector&lt; Document &gt;</type>
+      <name>DocumentSet</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>ab61bc9af3d081c084f28073c63fdbda1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::vector&lt; Document &gt;::const_iterator</type>
+      <name>DocumentIterator</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>af4bcdd3248b070cb3faca6f86186ec1d</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -237,6 +259,16 @@
     <namespace>mlclient</namespace>
   </compound>
   <compound kind="file">
+    <name>DocumentBatchHelper.hpp</name>
+    <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/include/mlclient/utilities/</path>
+    <filename>_document_batch_helper_8hpp</filename>
+    <includes id="_document_content_8hpp" name="DocumentContent.hpp" local="no" imported="no">mlclient/DocumentContent.hpp</includes>
+    <includes id="_document_set_8hpp" name="DocumentSet.hpp" local="no" imported="no">mlclient/DocumentSet.hpp</includes>
+    <class kind="class">mlclient::utilities::DocumentBatchHelper</class>
+    <namespace>mlclient</namespace>
+    <namespace>mlclient::utilities</namespace>
+  </compound>
+  <compound kind="file">
     <name>PugiXmlHelper.hpp</name>
     <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/include/mlclient/utilities/</path>
     <filename>_pugi_xml_helper_8hpp</filename>
@@ -286,6 +318,13 @@
       <anchorfile>classmlclient_1_1internals_1_1_authenticating_proxy.html</anchorfile>
       <anchor>a1bab8a4346bf2b71b2f660e4828bd711</anchor>
       <arglist>(const std::string &amp;host, const std::string &amp;path, const IDocumentContent &amp;body, const mlclient::HttpHeaders &amp;headers=blankHeaders)</arglist>
+    </member>
+    <member kind="function">
+      <type>Response *</type>
+      <name>multiPostSync</name>
+      <anchorfile>classmlclient_1_1internals_1_1_authenticating_proxy.html</anchorfile>
+      <anchor>a8c1460626e09c8d7c18d438c1c750425</anchor>
+      <arglist>(const std::string &amp;host, const std::string &amp;path, const DocumentSet &amp;allContent, const long startPosInclusive, const long endPosInclusive, const mlclient::HttpHeaders &amp;commonHeaders=blankHeaders)</arglist>
     </member>
     <member kind="function">
       <type>Response *</type>
@@ -466,10 +505,17 @@
     </member>
     <member kind="function">
       <type>MLCLIENT_API Response *</type>
-      <name>saveDocument</name>
+      <name>saveDocumentContent</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a43121182cf31ffb61ef6838140b02cbd</anchor>
+      <anchor>a17c6ec458e420630edaeb099b5482313</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload) override</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API Response *</type>
+      <name>saveDocuments</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a89f26ceb86c718f7a504fbddbd5d5be6</anchor>
+      <arglist>(const DocumentSet &amp;documents, const long startPosInclusive, const long endPosInclusive) override</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API Response *</type>
@@ -634,10 +680,17 @@
     </member>
     <member kind="function">
       <type>MLCLIENT_API Response *</type>
-      <name>saveDocument</name>
+      <name>saveDocumentContent</name>
       <anchorfile>classmlclient_1_1_connection.html</anchorfile>
-      <anchor>a43121182cf31ffb61ef6838140b02cbd</anchor>
+      <anchor>a17c6ec458e420630edaeb099b5482313</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload) override</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API Response *</type>
+      <name>saveDocuments</name>
+      <anchorfile>classmlclient_1_1_connection.html</anchorfile>
+      <anchor>a89f26ceb86c718f7a504fbddbd5d5be6</anchor>
+      <arglist>(const DocumentSet &amp;documents, const long startPosInclusive, const long endPosInclusive) override</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API Response *</type>
@@ -739,10 +792,10 @@
       <arglist>(web::json::value &amp;json)</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::ostream *</type>
+      <type>MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
-      <anchor>a3bf334ec82add6c1c91533c7eba48fc3</anchor>
+      <anchor>a235ebb39e2d621b4ce7372e9ec8c90be</anchor>
       <arglist>() const  override</arglist>
     </member>
     <member kind="function">
@@ -802,10 +855,10 @@
       <arglist>(web::json::value &amp;json)</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::ostream *</type>
+      <type>MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html</anchorfile>
-      <anchor>a3bf334ec82add6c1c91533c7eba48fc3</anchor>
+      <anchor>a235ebb39e2d621b4ce7372e9ec8c90be</anchor>
       <arglist>() const  override</arglist>
     </member>
     <member kind="function">
@@ -1024,6 +1077,42 @@
     <filename>classmlclient_1_1_document.html</filename>
   </compound>
   <compound kind="class">
+    <name>mlclient::utilities::DocumentBatchHelper</name>
+    <filename>classmlclient_1_1utilities_1_1_document_batch_helper.html</filename>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>addFilesToDocumentSet</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_document_batch_helper.html</anchorfile>
+      <anchor>a26b28e91444d3c7cfe56ef4f24c204fb</anchor>
+      <arglist>(const std::string &amp;folder, const std::string &amp;baseFolder, const bool stripBase, const std::string &amp;appendBase, const std::vector&lt; std::string &gt; &amp;collections, const std::vector&lt; Permission &gt; &amp;permissions, IDocumentContent *properties, DocumentSet &amp;addTo, bool showHiddenDirs=false)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::utilities::DocumentBatchWriter</name>
+    <filename>classmlclient_1_1utilities_1_1_document_batch_writer.html</filename>
+    <member kind="function">
+      <type>const bool</type>
+      <name>isComplete</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
+      <anchor>aa48d42514284f724faf575fbfd0e29f5</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>const bool</type>
+      <name>isCancelled</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
+      <anchor>a2ab81b3edf53524d6099eba871e17233</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>const bool</type>
+      <name>isFinished</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
+      <anchor>a1ba1466a0f6b41b6659b9d5bd72e81e1</anchor>
+      <arglist>() const </arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>mlclient::utilities::DocumentHelper</name>
     <filename>classmlclient_1_1utilities_1_1_document_helper.html</filename>
     <member kind="function" static="yes">
@@ -1201,9 +1290,9 @@
     </member>
     <member kind="function">
       <type>Response *</type>
-      <name>saveDocument</name>
+      <name>saveDocumentContent</name>
       <anchorfile>classmlclient_1_1internals_1_1_fake_connection.html</anchorfile>
-      <anchor>a387487fe5d851c3ce1268116fc85cf02</anchor>
+      <anchor>a84dacbd78315e0f776bfb902b6ec5787</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload) override</arglist>
     </member>
     <member kind="function">
@@ -1219,6 +1308,39 @@
       <anchorfile>classmlclient_1_1internals_1_1_fake_connection.html</anchorfile>
       <anchor>a7d9c3a99d890555bbbae83724220ce0e</anchor>
       <arglist>(const SearchDescription &amp;desc) override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::FileDocumentContent</name>
+    <filename>classmlclient_1_1_file_document_content.html</filename>
+    <base>mlclient::IDocumentContent</base>
+    <member kind="function">
+      <type>MLCLIENT_API std::istream *</type>
+      <name>getStream</name>
+      <anchorfile>classmlclient_1_1_file_document_content.html</anchorfile>
+      <anchor>a0b4d2ff97352ccb172e309d860c39af9</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API std::string</type>
+      <name>getContent</name>
+      <anchorfile>classmlclient_1_1_file_document_content.html</anchorfile>
+      <anchor>aa844fe80c0aeb1136c44780c9a37f755</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API std::string</type>
+      <name>getMimeType</name>
+      <anchorfile>classmlclient_1_1_file_document_content.html</anchorfile>
+      <anchor>a03a383671f0435a8716740f7fb97a2e4</anchor>
+      <arglist>() const  override</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API void</type>
+      <name>setMimeType</name>
+      <anchorfile>classmlclient_1_1_file_document_content.html</anchorfile>
+      <anchor>abd36cdc094d45fffba6ba251b2ed9273</anchor>
+      <arglist>(const std::string &amp;mt) override</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1266,10 +1388,10 @@
       <arglist>(std::string content) override</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::ostream *</type>
+      <type>MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1_generic_text_document_content.html</anchorfile>
-      <anchor>a907e8099200a29f5011bdc792e56839c</anchor>
+      <anchor>a6e36d71587856cea729a9473fa528ce3</anchor>
       <arglist>() const  override</arglist>
     </member>
     <member kind="function">
@@ -1311,6 +1433,10 @@
   <compound kind="class">
     <name>mlclient::HttpHeaders</name>
     <filename>classmlclient_1_1_http_headers.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>mlclient::utilities::IBatchNotifiable</name>
+    <filename>classmlclient_1_1utilities_1_1_i_batch_notifiable.html</filename>
   </compound>
   <compound kind="class">
     <name>mlclient::IConnection</name>
@@ -1429,10 +1555,17 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API Response *</type>
-      <name>saveDocument</name>
+      <name>saveDocumentContent</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a145a9d749610a0d46fe4de6e419992fa</anchor>
+      <anchor>a34e2014c15e67a1487906ef57f31909d</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual MLCLIENT_API Response *</type>
+      <name>saveDocuments</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>a9e2be0a1db1f52d602d0d9863567e078</anchor>
+      <arglist>(const DocumentSet &amp;documents, const long startPosInclusive, const long endPosInclusive)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API Response *</type>
@@ -1597,10 +1730,17 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API Response *</type>
-      <name>saveDocument</name>
+      <name>saveDocumentContent</name>
       <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
-      <anchor>a145a9d749610a0d46fe4de6e419992fa</anchor>
+      <anchor>a34e2014c15e67a1487906ef57f31909d</anchor>
       <arglist>(const std::string &amp;uri, const IDocumentContent &amp;payload)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual MLCLIENT_API Response *</type>
+      <name>saveDocuments</name>
+      <anchorfile>classmlclient_1_1_i_connection.html</anchorfile>
+      <anchor>a9e2be0a1db1f52d602d0d9863567e078</anchor>
+      <arglist>(const DocumentSet &amp;documents, const long startPosInclusive, const long endPosInclusive)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API Response *</type>
@@ -1688,10 +1828,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual MLCLIENT_API std::ostream *</type>
+      <type>virtual MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1_i_document_content.html</anchorfile>
-      <anchor>a3aa6f9b6b86276b41a5aadc3164febaf</anchor>
+      <anchor>a87dbdd7e43ac68860874435fdc88922e</anchor>
       <arglist>() const  =0</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -1862,6 +2002,10 @@
     <name>mlclient::Permission</name>
     <filename>classmlclient_1_1_permission.html</filename>
   </compound>
+  <compound kind="struct">
+    <name>mlclient::utilities::Progress</name>
+    <filename>structmlclient_1_1utilities_1_1_progress.html</filename>
+  </compound>
   <compound kind="class">
     <name>mlclient::utilities::PugiXmlArrayNode</name>
     <filename>classmlclient_1_1utilities_1_1_pugi_xml_array_node.html</filename>
@@ -1898,10 +2042,10 @@
       <arglist>(const pugi::xml_document &amp;xml)</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::ostream *</type>
+      <type>MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_pugi_xml_document_content.html</anchorfile>
-      <anchor>a3de1751a6971ba3130b5a2de223f9081</anchor>
+      <anchor>a7da4aec7c217d56592351fad32ffba98</anchor>
       <arglist>() const  override</arglist>
     </member>
     <member kind="function">
@@ -1961,10 +2105,10 @@
       <arglist>(const pugi::xml_document &amp;xml)</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::ostream *</type>
+      <type>MLCLIENT_API std::istream *</type>
       <name>getStream</name>
       <anchorfile>classmlclient_1_1utilities_1_1_pugi_xml_document_content.html</anchorfile>
-      <anchor>a3de1751a6971ba3130b5a2de223f9081</anchor>
+      <anchor>a7da4aec7c217d56592351fad32ffba98</anchor>
       <arglist>() const  override</arglist>
     </member>
     <member kind="function">
@@ -2184,6 +2328,20 @@
       <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
       <anchor>a0e7bf585d6ed891e5ee6a03f28f6f555</anchor>
       <arglist>(const Response &amp;resp, const std::string &amp;aggName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MLCLIENT_API void</type>
+      <name>getAggregateResults</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>a85ba7cb07b7d3dd9620cc60c2a5472e8</anchor>
+      <arglist>(const Response &amp;resp, ValuesResult &amp;vr)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MLCLIENT_API void</type>
+      <name>getComplexAggregateResults</name>
+      <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
+      <anchor>a199042f7b809064f39e061af1a1ed956</anchor>
+      <arglist>(const Response &amp;resp, ValuesResult &amp;vr)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2654,18 +2812,25 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>MLCLIENT_API const long</type>
+      <name>getTotal</name>
+      <anchorfile>classmlclient_1_1_values_result_set.html</anchorfile>
+      <anchor>ae5050c64adb345dd1558c3cd947ecd0e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
       <type>MLCLIENT_API ValuesIterator *</type>
       <name>begin</name>
       <anchorfile>classmlclient_1_1_values_result_set.html</anchorfile>
-      <anchor>a127fcfe53f3c352cba874af74892dbe3</anchor>
-      <arglist>() const </arglist>
+      <anchor>a0f9c524b8c269a460812ab82cc70638d</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API ValuesIterator *</type>
       <name>end</name>
       <anchorfile>classmlclient_1_1_values_result_set.html</anchorfile>
-      <anchor>aa474a2f014691a748a497923ccb34ac0</anchor>
-      <arglist>() const </arglist>
+      <anchor>abc52a076de66c95e6f3c20883f6e8c2a</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API bool</type>
@@ -2776,6 +2941,7 @@
     <namespace>mlclient::utilities</namespace>
     <class kind="class">mlclient::Connection</class>
     <class kind="class">mlclient::Document</class>
+    <class kind="class">mlclient::FileDocumentContent</class>
     <class kind="class">mlclient::GenericTextDocumentContent</class>
     <class kind="class">mlclient::HttpHeaders</class>
     <class kind="class">mlclient::IConnection</class>
@@ -2797,6 +2963,20 @@
     <class kind="struct">mlclient::ValuesResultAggregate</class>
     <class kind="class">mlclient::ValuesResultSet</class>
     <class kind="struct">mlclient::ValuesResultValue</class>
+    <member kind="typedef">
+      <type>std::vector&lt; Document &gt;</type>
+      <name>DocumentSet</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>ab61bc9af3d081c084f28073c63fdbda1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::vector&lt; Document &gt;::const_iterator</type>
+      <name>DocumentIterator</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>af4bcdd3248b070cb3faca6f86186ec1d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>BinaryEncoding</name>
@@ -2875,6 +3055,15 @@
       <enumvalue file="namespacemlclient.html" anchor="ac8a0790b90fd9b1df837c9476659fb23a2210ac0628249cd94f48da970567a831">GATEWAY_TIMEOUT</enumvalue>
       <enumvalue file="namespacemlclient.html" anchor="ac8a0790b90fd9b1df837c9476659fb23aede7ad622f9c071f0cf49c5e3fd8877b">HTTP_VERSION_NOT_SUPPORTED</enumvalue>
     </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>ValuesResultAggregateType</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>a779f5c828b0a87bbb4b9fee51c6eb3cd</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacemlclient.html" anchor="a779f5c828b0a87bbb4b9fee51c6eb3cdad5e69c7de3ce010c1aade8e8f9495797">SIMPLE_DOUBLE</enumvalue>
+      <enumvalue file="namespacemlclient.html" anchor="a779f5c828b0a87bbb4b9fee51c6eb3cda43892e920fee9b94afcc184bfda20af5">COMPLEX_MAP_ARRAY</enumvalue>
+    </member>
     <member kind="function">
       <type>MLCLIENT_API void</type>
       <name>reconfigureLogging</name>
@@ -2901,14 +3090,18 @@
     <class kind="class">mlclient::utilities::CppRestJsonDocumentNode</class>
     <class kind="class">mlclient::utilities::CppRestJsonHelper</class>
     <class kind="class">mlclient::utilities::CppRestJsonObjectNode</class>
+    <class kind="class">mlclient::utilities::DocumentBatchHelper</class>
+    <class kind="class">mlclient::utilities::DocumentBatchWriter</class>
     <class kind="class">mlclient::utilities::DocumentHelper</class>
     <class kind="class">mlclient::utilities::GenericQuery</class>
+    <class kind="class">mlclient::utilities::IBatchNotifiable</class>
     <class kind="class">mlclient::utilities::IContainerRef</class>
     <class kind="class">mlclient::utilities::ILexiconRef</class>
     <class kind="class">mlclient::utilities::IQuery</class>
     <class kind="class">mlclient::utilities::ITypedValue</class>
     <class kind="class">mlclient::utilities::JsonPropertyQuery</class>
     <class kind="class">mlclient::utilities::JsonPropertyRef</class>
+    <class kind="struct">mlclient::utilities::Progress</class>
     <class kind="class">mlclient::utilities::PugiXmlArrayNode</class>
     <class kind="class">mlclient::utilities::PugiXmlContainerNode</class>
     <class kind="class">mlclient::utilities::PugiXmlDocumentContent</class>

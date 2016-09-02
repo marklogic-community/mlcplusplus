@@ -126,9 +126,9 @@ virtual MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ab13ad566cef40ea220ef00c5f0fe243d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#ab13ad566cef40ea220ef00c5f0fe243d">setContent</a> (web::json::value &amp;json)</td></tr>
 <tr class="memdesc:ab13ad566cef40ea220ef00c5f0fe243d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the content of this document instance from a Microsoft cpprest API web::json::value instance.  <a href="#ab13ad566cef40ea220ef00c5f0fe243d">More...</a><br /></td></tr>
 <tr class="separator:ab13ad566cef40ea220ef00c5f0fe243d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bf334ec82add6c1c91533c7eba48fc3"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a3bf334ec82add6c1c91533c7eba48fc3">getStream</a> () const  override</td></tr>
-<tr class="memdesc:a3bf334ec82add6c1c91533c7eba48fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an ostream.  <a href="#a3bf334ec82add6c1c91533c7eba48fc3">More...</a><br /></td></tr>
-<tr class="separator:a3bf334ec82add6c1c91533c7eba48fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235ebb39e2d621b4ce7372e9ec8c90be"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a235ebb39e2d621b4ce7372e9ec8c90be">getStream</a> () const  override</td></tr>
+<tr class="memdesc:a235ebb39e2d621b4ce7372e9ec8c90be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an istream.  <a href="#a235ebb39e2d621b4ce7372e9ec8c90be">More...</a><br /></td></tr>
+<tr class="separator:a235ebb39e2d621b4ce7372e9ec8c90be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52594a811341eb11ca1f8541074e88c3"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a52594a811341eb11ca1f8541074e88c3">setContent</a> (std::string content) override</td></tr>
 <tr class="memdesc:a52594a811341eb11ca1f8541074e88c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the textual content for this document.  <a href="#a52594a811341eb11ca1f8541074e88c3">More...</a><br /></td></tr>
 <tr class="separator:a52594a811341eb11ca1f8541074e88c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,7 +279,7 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a class="anchor" id="a3bf334ec82add6c1c91533c7eba48fc3"></a>
+<a class="anchor" id="a235ebb39e2d621b4ce7372e9ec8c90be"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -287,7 +287,7 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">MLCLIENT_API std::ostream* mlclient::utilities::CppRestJsonDocumentContent::getStream </td>
+          <td class="memname">MLCLIENT_API std::istream* mlclient::utilities::CppRestJsonDocumentContent::getStream </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -300,12 +300,12 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 </table>
 </div><div class="memdoc">
 
-<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an ostream. </p>
+<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> as an istream. </p>
 <p>This allows streaming to a HTTP request of this string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>An ostream instance wrapping the content of this Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An istream instance wrapping the content of this Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
 
-<p>Implements <a class="el" href="classmlclient_1_1_i_document_content.html#a3aa6f9b6b86276b41a5aadc3164febaf">mlclient::IDocumentContent</a>.</p>
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_content.html#a87dbdd7e43ac68860874435fdc88922e">mlclient::IDocumentContent</a>.</p>
 
 </div>
 </div>

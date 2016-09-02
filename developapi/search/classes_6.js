@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['ibatchnotifiable',['IBatchNotifiable',['../classmlclient_1_1utilities_1_1_i_batch_notifiable.html',1,'mlclient::utilities']]],
   ['iconnection',['IConnection',['../classmlclient_1_1_i_connection.html',1,'mlclient']]],
   ['icontainerref',['IContainerRef',['../classmlclient_1_1utilities_1_1_i_container_ref.html',1,'mlclient::utilities']]],
   ['idocumentcontent',['IDocumentContent',['../classmlclient_1_1_i_document_content.html',1,'mlclient']]],

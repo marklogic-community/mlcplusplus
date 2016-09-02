@@ -24,5 +24,6 @@ var searchData=
   ['mlclient',['mlclient',['../namespacemlclient.html',1,'']]],
   ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6fef8a6eb60b68444b0b52b1bccb72a8',1,'mlclient::internals::MLCrypto::MLCrypto()'],['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6149bbe955b9a203bb606c4b4cd3d0ae',1,'mlclient::internals::MLCrypto::MLCrypto(const MLCrypto &amp;orig)']]],
   ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html',1,'mlclient::internals']]],
+  ['multipostsync',['multiPostSync',['../classmlclient_1_1internals_1_1_authenticating_proxy.html#a8c1460626e09c8d7c18d438c1c750425',1,'mlclient::internals::AuthenticatingProxy']]],
   ['utilities',['utilities',['../namespacemlclient_1_1utilities.html',1,'mlclient']]]
 ];

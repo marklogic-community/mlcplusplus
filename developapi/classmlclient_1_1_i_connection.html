@@ -165,9 +165,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a08993a40b25df23c7ccca68fd68cd795"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a08993a40b25df23c7ccca68fd68cd795">getDocumentPermissions</a> (<a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;inout_document)=0</td></tr>
 <tr class="memdesc:a08993a40b25df23c7ccca68fd68cd795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates the permissions of the specified document (MUST have a uri).  <a href="#a08993a40b25df23c7ccca68fd68cd795">More...</a><br /></td></tr>
 <tr class="separator:a08993a40b25df23c7ccca68fd68cd795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a145a9d749610a0d46fe4de6e419992fa"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a145a9d749610a0d46fe4de6e419992fa">saveDocument</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
-<tr class="memdesc:a145a9d749610a0d46fe4de6e419992fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a145a9d749610a0d46fe4de6e419992fa">More...</a><br /></td></tr>
-<tr class="separator:a145a9d749610a0d46fe4de6e419992fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e2014c15e67a1487906ef57f31909d"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a34e2014c15e67a1487906ef57f31909d">saveDocumentContent</a> (const std::string &amp;uri, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;payload)=0</td></tr>
+<tr class="memdesc:a34e2014c15e67a1487906ef57f31909d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a34e2014c15e67a1487906ef57f31909d">More...</a><br /></td></tr>
+<tr class="separator:a34e2014c15e67a1487906ef57f31909d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2be0a1db1f52d602d0d9863567e078"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a9e2be0a1db1f52d602d0d9863567e078">saveDocuments</a> (const <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;documents, const long startPosInclusive, const long endPosInclusive)=0</td></tr>
+<tr class="memdesc:a9e2be0a1db1f52d602d0d9863567e078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a set of documents as a single batch to MarkLogic Server.  <a href="#a9e2be0a1db1f52d602d0d9863567e078">More...</a><br /></td></tr>
+<tr class="separator:a9e2be0a1db1f52d602d0d9863567e078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a35d805f695ac7c0ccb4bad1d03703"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#a62a35d805f695ac7c0ccb4bad1d03703">saveDocument</a> (const <a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;doc)=0</td></tr>
 <tr class="memdesc:a62a35d805f695ac7c0ccb4bad1d03703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a62a35d805f695ac7c0ccb4bad1d03703">More...</a><br /></td></tr>
 <tr class="separator:a62a35d805f695ac7c0ccb4bad1d03703"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -378,7 +381,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>Tested by ConnectionDocumentCrudTest::testDeleteJson and ConnectionDocumentCrudTest::testDeleteXml and ConnectionDocumentCrudTest::testDeleteText</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000005">Test:</a></b></dt><dd>Tested by ConnectionDocumentCrudTest::testDeleteJson and ConnectionDocumentCrudTest::testDeleteXml and ConnectionDocumentCrudTest::testDeleteText</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
@@ -853,7 +856,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Parent collection must start with a / </dd>
 <dd>
 Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd>Tested indirectly by ConnectionCollectionsTest::testListRootCollections (the <a class="el" href="classmlclient_1_1_connection.html#a790cdfa2d5842ac076002989617f12d5" title="Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not con...">Connection::listRootCollections</a> function calls this function directly)</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000011">Test:</a></b></dt><dd>Tested indirectly by ConnectionCollectionsTest::testListRootCollections (the <a class="el" href="classmlclient_1_1_connection.html#a790cdfa2d5842ac076002989617f12d5" title="Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not con...">Connection::listRootCollections</a> function calls this function directly)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#af904a48e7f2b016d4c6159fc4b1e5831">mlclient::Connection</a>.</p>
@@ -883,14 +886,14 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
 
 <p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character. </p>
 <dl class="section note"><dt>Note</dt><dd>Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000008">Test:</a></b></dt><dd>Tested by ConnectionCollectionsTest::testListRootCollections</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>Tested by ConnectionCollectionsTest::testListRootCollections</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a790cdfa2d5842ac076002989617f12d5">mlclient::Connection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a145a9d749610a0d46fe4de6e419992fa"></a>
+<a class="anchor" id="a62a35d805f695ac7c0ccb4bad1d03703"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -899,6 +902,50 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
       <table class="memname">
         <tr>
           <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::saveDocument </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;&#160;</td>
+          <td class="paramname"><em>doc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
+<p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>Underlying code tested By DocumentBatchWriterTest</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a></td><td>The <a class="el" href="classmlclient_1_1_document.html">Document</a> to send to MarkLogic Server. Must have a URI and Content DocumentContent instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a182fb20168a38dc3c2ce010cd2f27d51">mlclient::Connection</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34e2014c15e67a1487906ef57f31909d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::saveDocumentContent </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>uri</em>, </td>
@@ -939,13 +986,14 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>This function call was renamed in 8.0.2 to saveDocumentContent from saveDocument to better reflect its usage.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a43121182cf31ffb61ef6838140b02cbd">mlclient::Connection</a>, and <a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a387487fe5d851c3ce1268116fc85cf02">mlclient::internals::FakeConnection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a17c6ec458e420630edaeb099b5482313">mlclient::Connection</a>, and <a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a84dacbd78315e0f776bfb902b6ec5787">mlclient::internals::FakeConnection</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a62a35d805f695ac7c0ccb4bad1d03703"></a>
+<a class="anchor" id="a9e2be0a1db1f52d602d0d9863567e078"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -953,11 +1001,27 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::saveDocument </td>
+          <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::IConnection::saveDocuments </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;&#160;</td>
-          <td class="paramname"><em>doc</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&#160;</td>
+          <td class="paramname"><em>documents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>startPosInclusive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>endPosInclusive</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -967,24 +1031,22 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
 </table>
 </div><div class="memdoc">
 
-<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
-<p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
+<p>Saves a set of documents as a single batch to MarkLogic Server. </p>
+<p>See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.</p>
+<dl class="section note"><dt>Note</dt><dd>Uses a single REST call and multi-part MIME support in the REST API</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>Tested By DocumentBatchWriterTest</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a></td><td>The <a class="el" href="classmlclient_1_1_document.html">Document</a> to send to MarkLogic Server. Must have a URI and Content DocumentContent instance. </td></tr>
+    <tr><td class="paramname">documents</td><td>The set of documents to upload </td></tr>
+    <tr><td class="paramname">startPosInclusive</td><td>The first index of the document in the set to upload </td></tr>
+    <tr><td class="paramname">endPostInclusive</td><td>The last index of the document in the set to upload </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a182fb20168a38dc3c2ce010cd2f27d51">mlclient::Connection</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a89f26ceb86c718f7a504fbddbd5d5be6">mlclient::Connection</a>.</p>
 
 </div>
 </div>
@@ -1028,7 +1090,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </table>
   </dd>
 </dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000005">Test:</a></b></dt><dd>Tested by SearchOptionsBuilderTest::testSave</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000007">Test:</a></b></dt><dd>Tested by SearchOptionsBuilderTest::testSave</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a5c8b82ff0f799f16db0c4ad4556ef89f">mlclient::Connection</a>.</p>
@@ -1067,7 +1129,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>Tested directly by ConnectionSearchTest::testEmptySearch and ConnectionSearchTest::testQueryText and ConnectionSearchTest::testWordQuery Tested indirectly by tests within SearchBuilderTest and SearchResultSetTest</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000006">Test:</a></b></dt><dd>Tested directly by ConnectionSearchTest::testEmptySearch and ConnectionSearchTest::testQueryText and ConnectionSearchTest::testWordQuery Tested indirectly by tests within SearchBuilderTest and SearchResultSetTest</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
@@ -1201,7 +1263,7 @@ This could be used to effectively create 'stored procedures' that took a search 
 <dl class="section note"><dt>Note</dt><dd>What is returned from the call is entirely dependent upon the search options configuration used.</dd>
 <dd>
 Invokes GET /v1/values/VALUESNAME?options=OPTIONSNAME</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000006">Test:</a></b></dt><dd>Tested by ConnectionValuesTest::testValues</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000008">Test:</a></b></dt><dd>Tested by ConnectionValuesTest::testValues</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">valuesName</td><td>The name of the values Configuration within the search options to use </td></tr>
@@ -1266,7 +1328,7 @@ This could be used to effectively create 'stored procedures' that took a search 
 <p>See also <a class="el" href="classmlclient_1_1_connection.html#aacc13387f10b8e34c25a22f3d4ef308d">Connection::searchExtension</a> for similar functionality for aggregate/values extensions</p>
 <p>Invokes POST /v1/values/VALUESNAME?options=OPTIONSNAME and not GET</p>
 <dl class="section note"><dt>Note</dt><dd>Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName variable is passed to the 'values' parameter on the querystring of the request.</dd></dl>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000007">Test:</a></b></dt><dd>Tested by ConnectionValuesTest::testValuesExtension</dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd>Tested by ConnectionValuesTest::testValuesExtension</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">extensionName</td><td>The REST API extension name (file name without .xqy or .sjs) to invoke </td></tr>

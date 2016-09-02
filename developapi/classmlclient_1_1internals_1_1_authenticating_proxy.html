@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1bab8a4346bf2b71b2f660e4828bd711"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_authenticating_proxy.html#a1bab8a4346bf2b71b2f660e4828bd711">postSync</a> (const std::string &amp;host, const std::string &amp;path, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;body, const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;headers=blankHeaders)</td></tr>
 <tr class="memdesc:a1bab8a4346bf2b71b2f660e4828bd711"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Synchronous HTTP POST to a remote MarkLogic REST API URL.  <a href="#a1bab8a4346bf2b71b2f660e4828bd711">More...</a><br /></td></tr>
 <tr class="separator:a1bab8a4346bf2b71b2f660e4828bd711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c1460626e09c8d7c18d438c1c750425"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_authenticating_proxy.html#a8c1460626e09c8d7c18d438c1c750425">multiPostSync</a> (const std::string &amp;host, const std::string &amp;path, const <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;allContent, const long startPosInclusive, const long endPosInclusive, const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;commonHeaders=blankHeaders)</td></tr>
+<tr class="memdesc:a8c1460626e09c8d7c18d438c1c750425"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Synchronous HTTP POST with multi part MIME content.  <a href="#a8c1460626e09c8d7c18d438c1c750425">More...</a><br /></td></tr>
+<tr class="separator:a8c1460626e09c8d7c18d438c1c750425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71cf2df60bc54f17ee576013c98202c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1internals_1_1_authenticating_proxy.html#a71cf2df60bc54f17ee576013c98202c4">putSync</a> (const std::string &amp;host, const std::string &amp;path, const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;body, const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;headers=blankHeaders)</td></tr>
 <tr class="memdesc:a71cf2df60bc54f17ee576013c98202c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Synchronous HTTP PUT to a remote MarkLogic REST API URL.  <a href="#a71cf2df60bc54f17ee576013c98202c4">More...</a><br /></td></tr>
 <tr class="separator:a71cf2df60bc54f17ee576013c98202c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -266,6 +269,67 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8c1460626e09c8d7c18d438c1c750425"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmlclient_1_1_response.html">Response</a>* mlclient::internals::AuthenticatingProxy::multiPostSync </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&#160;</td>
+          <td class="paramname"><em>allContent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>startPosInclusive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>endPosInclusive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;&#160;</td>
+          <td class="paramname"><em>commonHeaders</em> = <code>blankHeaders</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A Synchronous HTTP POST with multi part MIME content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">host</td><td>The hostname or IP Address to communicate with </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>The URL path (E.g. /v1/documents) to invoke </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">body</td><td>The set of content to send as the POST body </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

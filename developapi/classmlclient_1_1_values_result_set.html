@@ -109,15 +109,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4c5d2323b4e92698f699fdd6053c0333"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c5d2323b4e92698f699fdd6053c0333"></a>
 MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResultSet</b> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
 <tr class="separator:a4c5d2323b4e92698f699fdd6053c0333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa67bbf1e00680120f23a3f6a4d9630e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa67bbf1e00680120f23a3f6a4d9630e6"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResultSet</b> (const <a class="el" href="classmlclient_1_1_values_result_set.html">ValuesResultSet</a> &amp;other)=delete</td></tr>
+<tr class="separator:aa67bbf1e00680120f23a3f6a4d9630e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a82a7b36617615c0cc99651fc042742"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a82a7b36617615c0cc99651fc042742"></a>
 MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addLookup</b> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
 <tr class="separator:a9a82a7b36617615c0cc99651fc042742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a127fcfe53f3c352cba874af74892dbe3"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a127fcfe53f3c352cba874af74892dbe3">begin</a> () const </td></tr>
-<tr class="memdesc:a127fcfe53f3c352cba874af74892dbe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the iterator for this values result set.  <a href="#a127fcfe53f3c352cba874af74892dbe3">More...</a><br /></td></tr>
-<tr class="separator:a127fcfe53f3c352cba874af74892dbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa474a2f014691a748a497923ccb34ac0"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#aa474a2f014691a748a497923ccb34ac0">end</a> () const </td></tr>
-<tr class="memdesc:aa474a2f014691a748a497923ccb34ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the end of the iterator for this values result set.  <a href="#aa474a2f014691a748a497923ccb34ac0">More...</a><br /></td></tr>
-<tr class="separator:aa474a2f014691a748a497923ccb34ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5050c64adb345dd1558c3cd947ecd0e"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#ae5050c64adb345dd1558c3cd947ecd0e">getTotal</a> () const </td></tr>
+<tr class="memdesc:ae5050c64adb345dd1558c3cd947ecd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of lookups we have results for.  <a href="#ae5050c64adb345dd1558c3cd947ecd0e">More...</a><br /></td></tr>
+<tr class="separator:ae5050c64adb345dd1558c3cd947ecd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f9c524b8c269a460812ab82cc70638d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a0f9c524b8c269a460812ab82cc70638d">begin</a> ()</td></tr>
+<tr class="memdesc:a0f9c524b8c269a460812ab82cc70638d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the iterator for this values result set.  <a href="#a0f9c524b8c269a460812ab82cc70638d">More...</a><br /></td></tr>
+<tr class="separator:a0f9c524b8c269a460812ab82cc70638d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc52a076de66c95e6f3c20883f6e8c2a"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#abc52a076de66c95e6f3c20883f6e8c2a">end</a> ()</td></tr>
+<tr class="memdesc:abc52a076de66c95e6f3c20883f6e8c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the end of the iterator for this values result set.  <a href="#abc52a076de66c95e6f3c20883f6e8c2a">More...</a><br /></td></tr>
+<tr class="separator:abc52a076de66c95e6f3c20883f6e8c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a100125a6be4cf105b5675cc7189a5539"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539">fetch</a> ()</td></tr>
 <tr class="memdesc:a100125a6be4cf105b5675cc7189a5539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses the provided <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> to perform a request, and initialise this object and the list of values results.  <a href="#a100125a6be4cf105b5675cc7189a5539">More...</a><br /></td></tr>
 <tr class="separator:a100125a6be4cf105b5675cc7189a5539"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,7 +152,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a127fcfe53f3c352cba874af74892dbe3"></a>
+<a class="anchor" id="a0f9c524b8c269a460812ab82cc70638d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -154,7 +160,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
           <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a>* mlclient::ValuesResultSet::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -164,7 +170,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
 
 </div>
 </div>
-<a class="anchor" id="aa474a2f014691a748a497923ccb34ac0"></a>
+<a class="anchor" id="abc52a076de66c95e6f3c20883f6e8c2a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -172,7 +178,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
           <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a>* mlclient::ValuesResultSet::end </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -196,7 +202,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
 </div><div class="memdoc">
 
 <p>Uses the provided <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> to perform a request, and initialise this object and the list of values results. </p>
-<dl class="section note"><dt>Note</dt><dd>You can call the functions <a class="el" href="classmlclient_1_1_values_result_set.html#a127fcfe53f3c352cba874af74892dbe3" title="Returns the iterator for this values result set. ">begin()</a> and <a class="el" href="classmlclient_1_1_values_result_set.html#aa474a2f014691a748a497923ccb34ac0" title="Returns a reference to the end of the iterator for this values result set. ">end()</a> immediately after <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a> returns (they will block)</dd>
+<dl class="section note"><dt>Note</dt><dd>You can call the functions <a class="el" href="classmlclient_1_1_values_result_set.html#a0f9c524b8c269a460812ab82cc70638d" title="Returns the iterator for this values result set. ">begin()</a> and <a class="el" href="classmlclient_1_1_values_result_set.html#abc52a076de66c95e6f3c20883f6e8c2a" title="Returns a reference to the end of the iterator for this values result set. ">end()</a> immediately after <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a> returns (they will block)</dd>
 <dd>
 This function actually sends one request out per aggregate or lexicon lookup request</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if no errors were raised, false otherwise </dd></dl>
@@ -218,6 +224,24 @@ This function actually sends one request out per aggregate or lexicon lookup req
 
 <p>Returns the exception, if any, encountered by <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a>. nullptr is returned if no exception raised. </p>
 <dl class="section return"><dt>Returns</dt><dd>The exception instance pointer </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae5050c64adb345dd1558c3cd947ecd0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const long mlclient::ValuesResultSet::getTotal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the total number of lookups we have results for. </p>
+<dl class="section return"><dt>Returns</dt><dd>total The total number of lookups we have results for </dd></dl>
 
 </div>
 </div>

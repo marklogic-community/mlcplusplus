@@ -20,5 +20,6 @@ var searchData=
   ['ml_5fresponse_5flength',['ml_response_length',['../_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9',1,'ResponseWrapper.h']]],
   ['ml_5fresponse_5fstring',['ml_response_String',['../_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e',1,'ResponseWrapper.h']]],
   ['ml_5fresponsecodes_5ftranslate',['ml_responsecodes_translate',['../_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5',1,'ResponseWrapper.h']]],
-  ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6fef8a6eb60b68444b0b52b1bccb72a8',1,'mlclient::internals::MLCrypto::MLCrypto()'],['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6149bbe955b9a203bb606c4b4cd3d0ae',1,'mlclient::internals::MLCrypto::MLCrypto(const MLCrypto &amp;orig)']]]
+  ['mlcrypto',['MLCrypto',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6fef8a6eb60b68444b0b52b1bccb72a8',1,'mlclient::internals::MLCrypto::MLCrypto()'],['../classmlclient_1_1internals_1_1_m_l_crypto.html#a6149bbe955b9a203bb606c4b4cd3d0ae',1,'mlclient::internals::MLCrypto::MLCrypto(const MLCrypto &amp;orig)']]],
+  ['multipostsync',['multiPostSync',['../classmlclient_1_1internals_1_1_authenticating_proxy.html#a8c1460626e09c8d7c18d438c1c750425',1,'mlclient::internals::AuthenticatingProxy']]]
 ];
