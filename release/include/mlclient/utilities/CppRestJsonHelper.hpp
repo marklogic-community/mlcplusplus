@@ -27,7 +27,7 @@
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/Permission.hpp"
 // I don't mind exposing these in an optional helper class
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 
 namespace mlclient {
 

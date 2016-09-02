@@ -23,8 +23,6 @@
 #include "mlclient/mlclient.hpp"
 #include "mlclient/SearchDescription.hpp"
 
-#include <cpprest/http_client.h> // deliberate compile time dependency
-
 #include <vector>
 #include <string>
 #include <ostream>

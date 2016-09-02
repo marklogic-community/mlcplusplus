@@ -24,7 +24,7 @@
 
 #include "mlclient/mlclient.hpp"
 #include "mlclient/DocumentContent.hpp"
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 
 namespace mlclient {
 

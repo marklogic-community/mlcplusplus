@@ -81,4 +81,11 @@ void Document::setPermissions(std::vector<Permission> own_permissions) {
   permissions = own_permissions;
 }
 
+bool Document::operator==(const Document& other) {
+  return uri == other.uri;
+}
+bool Document::operator!=(const Document& other) {
+  return uri != other.uri;
+}
+
 } // end namespace mlclient
