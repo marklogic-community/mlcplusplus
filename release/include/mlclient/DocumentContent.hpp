@@ -57,7 +57,7 @@ public:
   MLCLIENT_API virtual ~IDocumentContent();
 
   /**
-   * \brief Returns the content of this IDocumentContent as an ostream.
+   * \brief Returns the content of this IDocumentContent as an istream.
    *
    * This allows streaming to a HTTP request, and works for binary and string content.
    *
@@ -65,7 +65,7 @@ public:
    *
    * \return An ostream instance wrapping the content of this Document Content instance
    */
-  MLCLIENT_API virtual std::ostream* getStream() const = 0;
+  MLCLIENT_API virtual std::istream* getStream() const = 0;
 
   /**
    * \brief Returns the content of this IDocumentContent as a std::string.
@@ -251,15 +251,15 @@ public:
   MLCLIENT_API void setContent(std::string content) override;
 
   /**
-   * \brief Returns the content of this TextDocumentContent as an ostream.
+   * \brief Returns the content of this TextDocumentContent as an istream.
    *
    * This allows streaming to a HTTP request of this string content.
    *
    * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
    *
-   * \return An ostream instance wrapping the content of this Text Document Content instance
+   * \return An istream instance wrapping the content of this Text Document Content instance
    */
-  MLCLIENT_API std::ostream* getStream() const override;
+  MLCLIENT_API std::istream* getStream() const override;
 
   /**
    * \brief Returns the content as a string
@@ -324,15 +324,15 @@ public:
   virtual ~FileDocumentContent();
 
   /**
-   * \brief Returns the content of this IDocumentContent as an ostream.
+   * \brief Returns the content of this IDocumentContent as an istream.
    *
    * This allows streaming to a HTTP request, and works for binary and string content.
    *
    * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
    *
-   * \return An ostream instance wrapping the content of this Document Content instance
+   * \return An istream instance wrapping the content of this Document Content instance
    */
-  MLCLIENT_API std::ostream* getStream() const override;
+  MLCLIENT_API std::istream* getStream() const override;
 
   /**
    * \brief Returns the content of this IDocumentContent as a std::string.
@@ -473,15 +473,15 @@ enum class BinaryEncoding : int {
 
 
   /**
-   * \brief Returns the content of this TextDocumentContent as an ostream.
+   * \brief Returns the content of this TextDocumentContent as an istream.
    *
    * This allows streaming to a HTTP request of this string content.
    *
    * \note The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.
    *
-   * \return An ostream instance wrapping the content of this Text Document Content instance
+   * \return An istream instance wrapping the content of this Text Document Content instance
    */
-  //virtual std::ostream* getStream() const override = 0;
+  //virtual std::istream* getStream() const override = 0;
 
 
 //private:

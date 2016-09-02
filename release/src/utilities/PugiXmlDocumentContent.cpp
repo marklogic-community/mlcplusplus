@@ -348,12 +348,14 @@ PugiXmlDocumentContent::~PugiXmlDocumentContent() {
   delete mImpl;
 }
 
-std::ostream* PugiXmlDocumentContent::getStream() const {
+std::istream* PugiXmlDocumentContent::getStream() const {
   TIMED_FUNC(PugiXmlDocumentContent_getStream);
   std::ostringstream* os = new std::ostringstream;
   //(*os) << mImpl->value;
   mImpl->value->save(*os);
-  return os;
+  std::istringstream* is = new std::istringstream(os->str());
+  delete os;
+  return is;
 }
 
 const pugi::xml_document& PugiXmlDocumentContent::getXml() const {

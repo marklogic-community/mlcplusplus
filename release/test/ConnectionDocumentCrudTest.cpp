@@ -42,9 +42,11 @@ void ConnectionDocumentCrudTest::setUp(void) {
   json = "{\"first\":\"value1\",\"second\":\"value2\"}";
   xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<doc><first>value1</first><second>value2</second></doc>";
   text = "Some very nice text document";
+  pngFile = "documentation/mlclient.png";
   jsonUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.json";
   xmlUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.xml";
   textUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.txt";
+  pngUri = "/mlclient/tests/ConnectionDocumentCrudTest/doc.png";
 }
 
 void ConnectionDocumentCrudTest::tearDown(void) {
@@ -199,6 +201,57 @@ void ConnectionDocumentCrudTest::testDeleteText(void) {
   LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering testDeleteText";
   const Response* response = ml->deleteDocument(textUri);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 204 No Content",ResponseCode::NO_CONTENT == response->getResponseCode());
+  delete response;
+}
+
+
+void ConnectionDocumentCrudTest::testSavePNG(void) {
+  TIMED_FUNC(testSavePNG);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering testSavePNG";
+  // Note not using the Json or Xml helpers as we're not testing them here
+  FileDocumentContent tdc(pngFile);
+  tdc.setMimeType("image/png");
+  const Response* response = ml->saveDocumentContent(pngUri,tdc);
+
+  LOG(DEBUG) << "  Response Type: " << response->getResponseType();
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 201 Created",ResponseCode::CREATED == response->getResponseCode());
+  delete response;
+}
+
+void ConnectionDocumentCrudTest::testGetPNG(void) {
+  TIMED_FUNC(testGetPNG);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering testGetPNG";
+  const Response* response = ml->getDocument(pngUri);
+
+  ResponseType rt = response->getResponseType();
+  LOG(DEBUG) << "  Response Type: " << rt;
+  LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
+  LOG(DEBUG) << "  Response Content: " << response->getContent();
+
+  CPPUNIT_ASSERT_MESSAGE("The response is not a BINARY response", ResponseType::BINARY  == response->getResponseType());
+
+  //CPPUNIT_ASSERT_MESSAGE("The TEXT response content is modified compared to the original", 0 == text.compare(response->getContent()));
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
+  delete response;
+}
+
+
+void ConnectionDocumentCrudTest::testDeletePNG(void) {
+  TIMED_FUNC(testDeletePNG);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering testDeletePNG";
+  const Response* response = ml->deleteDocument(pngUri);
 
   LOG(DEBUG) << "  Response Type: " << response->getResponseType();
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();

@@ -19,7 +19,6 @@
 
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/SearchDescription.hpp"
-#include "mlclient/logging.hpp"
 #include "mlclient/InvalidFormatException.hpp"
 #include <string>
 #include <iostream>
@@ -27,6 +26,7 @@
 #include <memory>
 #include <fstream>
 #include <map>
+#include "mlclient/logging.hpp"
 
 namespace mlclient {
 
@@ -192,10 +192,11 @@ int GenericTextDocumentContent::getLength() const {
   return mImpl->content->size();
 }
 
-std::ostream* GenericTextDocumentContent::getStream() const {
+std::istream* GenericTextDocumentContent::getStream() const {
   TIMED_FUNC(GenericTextDocumentContent_getStream);
-  std::ostringstream* os = new std::ostringstream;
-  (*os) << mImpl->content.get();
+  std::istringstream* os = new std::istringstream(*(mImpl->content));
+  //std::ostringstream* os = new std::ostringstream;
+  //(*os) << mImpl->content.get();
   return os;
 }
 
@@ -259,14 +260,16 @@ FileDocumentContent::~FileDocumentContent() {
   ;
 }
 
-std::ostream* FileDocumentContent::getStream() const {
-  std::string str(getContent());
-  std::ostringstream* os = new std::ostringstream;
-  (*os) << str;
-  return os;
+std::istream* FileDocumentContent::getStream() const {
+  std::ifstream* is = new std::ifstream(mImpl->file, std::ifstream::in);
+  //std::string str(getContent());
+  //std::ostringstream* os = new std::ostringstream;
+  //(*os) << str;
+  return is;
 }
 
 std::string FileDocumentContent::getContent() const {
+  LOG(DEBUG) << "FileDocumentContent::getContent() entered";
   mImpl->fs.open(mImpl->file,std::fstream::in);
   std::string str;
 
@@ -278,6 +281,8 @@ std::string FileDocumentContent::getContent() const {
              (std::istreambuf_iterator<char>()));
 
   mImpl->fs.close();
+
+  LOG(DEBUG) << "FileDocumentContent::getContent() returning: " << str;
 
   return str;
 }
