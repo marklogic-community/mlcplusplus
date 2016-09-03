@@ -205,8 +205,7 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
 <tr class="separator:a7d9c3a99d890555bbbae83724220ce0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the Fake idiom. Provides a Fake connection to MarkLogic for testing. </p>
-<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-15</dd></dl>
 <p>This class operates on documents as if it were MarkLogic Server, storing them in memory. Search methods return the first n records as requested in the <a class="el" href="classmlclient_1_1_search_description.html" title="A POD class representing input to the POST of /v1/search - i.e. all search configuration. ">SearchDescription</a> (default: first 10). </p>
@@ -223,8 +222,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Creates a <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> instance. </p>
 <p>Defaults connection to admin/admin, localhost, nossl, port 8002, and the Documents database.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
@@ -333,8 +330,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Connects or tests the authentication in the connection. May not actually connect. </p>
 <dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a62b6796afd2354dcc0af0574282fd461">mlclient::IConnection</a>.</p>
@@ -362,8 +357,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Deletes the specified document by URI. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The document URI to delete </td></tr>
@@ -403,8 +396,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Frees up resources held by the connection, until the next call to connect. </p>
 <dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a59fc665d5052673448a689a346877b7e">mlclient::IConnection</a>.</p>
@@ -432,8 +423,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP DELETE Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a HTTP DELETE REST request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -477,8 +466,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP GET Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP GET request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -532,8 +519,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP POST Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP POST request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -588,8 +573,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP PUT Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP PUT request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -633,8 +616,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the database name we're querying/updating. Defaults to Documents. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the database name (not internal MarkLogic database numeric ID) </dd></dl>
 
@@ -663,8 +644,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Retrieves a document from the server, at the given document URI (MarkLogic unique document ID) </p>
 <p>Performs a GET /v1/documents?uri HTTP call</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -716,8 +695,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
 <p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -760,8 +737,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a search against the MarkLogic database given the provided search query, text and options. </p>
 <p>Uses a <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> value object to wrap complex search parameters for MarkLogic Server.</p>
 <p>Performs a POST /v1/search HTTP POST to MarkLogic Server</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -804,8 +779,6 @@ wrap_rest Convenience wrapper function calls for common MarkLogic REST API calls
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the name of the database to query/update. Defaults to Documents. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -3270,7 +3270,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>MarkLogic C/C++ API Documentation</title>
+    <title>MarkLogic Connect Client API Collection Documentation</title>
     <filename>index</filename>
     <docanchor file="index" title="Support">sec_support</docanchor>
     <docanchor file="index" title="Copyright">sec_legal</docanchor>

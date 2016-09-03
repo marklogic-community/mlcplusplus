@@ -152,8 +152,7 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr class="separator:a9dbac95a2fb3ae0f900e4d185c29dfbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A POD class representing input to the POST of /v1/search - i.e. all search configuration. </p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<div class="textblock"><dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-25</dd></dl>
 <p>May contain just query text, a complex query, options, or a mix thereof.</p>
@@ -180,8 +179,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Default destructor. </p>
 <dl class="section note"><dt>Note</dt><dd>Virtual so allows subclassing </dd></dl>
 
 </div>
@@ -199,8 +196,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the options as a document. </p>
 <dl class="section return"><dt>Returns</dt><dd>A non-editable reference to the underlying search options. </dd></dl>
 
 </div>
@@ -217,8 +212,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the number of results shown per page. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of results per page </dd></dl>
 
 </div>
@@ -235,8 +228,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns a string representation of the total payload for this search, as passed to MarkLogic Server. </p>
 <p>Includes search complex query, query text, and options document, if supplied.</p>
 <p>Used as the raw input to POST /v1/search, and encompasses all search configuration</p>
 <dl class="section return"><dt>Returns</dt><dd>A TextDocumentContent (Which may be XML or JSON) wrapping the entire search request. Caller is responsible for deleting this object. </dd></dl>
@@ -255,8 +246,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the complex query as a document. </p>
 <dl class="section note"><dt>Note</dt><dd>Does not return a representation of the query text as a cts:query - use ::getQueryText for that</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A non editable reference to the underlying complex query TextDocumentContent </dd></dl>
 
@@ -274,8 +263,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the plain text query. </p>
 <dl class="section return"><dt>Returns</dt><dd>A non-editable reference to the underlying string query text. </dd></dl>
 
 </div>
@@ -292,8 +279,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Retrieves the start (first result) index. These are 1 not 0 based in MarkLogic Server. </p>
 <dl class="section return"><dt>Returns</dt><dd>The start (first result) index (1 based) </dd></dl>
 
 </div>
@@ -311,8 +296,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Set the search options content. </p>
 <p>Could be either an XML or JSON description of search options.</p>
 <p>See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -337,8 +320,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets the complex query using an XML or JSON <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance. </p>
 <p>See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -362,8 +343,6 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets the plain text query text. </p>
 <p>This can be used at the same time as a complex query in POST /v1/search (i.e. in <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a> )</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

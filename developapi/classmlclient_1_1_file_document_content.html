@@ -145,8 +145,7 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 <tr class="separator:a91731e3a2a550129cafa23f505a597a6 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Wraps a file system file ready for its upload to MarkLogic Server. </p>
-<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+<div class="textblock"><dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aa844fe80c0aeb1136c44780c9a37f755"></a>
 <div class="memitem">
@@ -168,8 +167,6 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as a std::string. </p>
 <p>This allows streaming of a HTTP request, with data encoded as a string.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string representing this content; </dd></dl>
 
@@ -197,8 +194,6 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the MIME type of this content. </p>
 <p>E.g. application/json or application/xml</p>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server) </dd></dl>
 
@@ -226,8 +221,6 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as an istream. </p>
 <p>This allows streaming to a HTTP request, and works for binary and string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>An istream instance wrapping the content of this <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
@@ -257,8 +250,6 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the MIME type of this content. </p>
 <p>E.g. application/json or application/xml</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

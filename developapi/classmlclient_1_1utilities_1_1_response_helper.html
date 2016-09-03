@@ -127,8 +127,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a199042f7b809064f39e061af1a1ed956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class provides utility functions to ease the use of <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> objects. </p>
-<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-06-08</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This class has an external dependency on Microsoft's C++ cpprest API. As this API is required to use MarkLogic's C++ wrapper (this API) , this does not introduce any extra dependencies. </dd></dl>
@@ -164,8 +163,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns a double result from the specified aggregate in the result set. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">resp</td><td>The <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object </td></tr>
@@ -208,8 +205,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Extracts all aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">resp</td><td>The response to parse </td></tr>
@@ -251,8 +246,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Extracts all complex aggregate results and places them in the provided <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values / Connection::values call results. ...">ValuesResult</a> holder. </p>
 <dl class="section note"><dt>Note</dt><dd>UDFs don't just return double values, they can return multiple values, and arrays of them (multiple map:map() objects)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -285,8 +278,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the full error trace information as a string Throws an exception if the response is not in error. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a></td><td>The response to introspect </td></tr>
@@ -318,8 +309,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the error message of a <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> in error Throws an exception if the response is not in error. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a></td><td>The response to introspect </td></tr>
@@ -351,8 +340,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns a string list of suggestion values. Used with the response from POST /v1/suggest. </p>
 <p>Returns a blank list if the response does not contain suggestions. Throws an exception if response is in error.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -385,8 +372,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns whether the specified response is a MarkLogic error response. </p>
 <dl class="section note"><dt>Note</dt><dd>Some MarkLogic error response do NOT return a HTTP 500, so this is an important method to learn!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

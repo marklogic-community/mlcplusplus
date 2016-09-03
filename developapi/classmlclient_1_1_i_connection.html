@@ -200,8 +200,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a50942c2e1b4255b3aa433efb26e93b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass, or a real <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> subclass. </p>
-<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'er'+'@ma'+'rk'+'log'+'ic'+'.co'+'m'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowe<span style="display: none;">.nosp@m.</span>r@mar<span style="display: none;">.nosp@m.</span>klog<span style="display: none;">.nosp@m.</span>ic.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'er'+'@ma'+'rk'+'log'+'ic'+'.co'+'m'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowe<span style="display: none;">.nosp@m.</span>r@mar<span style="display: none;">.nosp@m.</span>klog<span style="display: none;">.nosp@m.</span>ic.co<span style="display: none;">.nosp@m.</span>m</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-15 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -225,8 +224,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Creates a <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> instance. </p>
 <p>Defaults connection to admin/admin, localhost, nossl, port 8002, and the Documents database.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
@@ -343,8 +340,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Connects or tests the authentication in the connection. May not actually connect. </p>
 <dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a727c9d325eedebc7ccc8ed7cbefd453e">mlclient::Connection</a>, and <a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a9973040a19ee0269c527814198f97307">mlclient::internals::FakeConnection</a>.</p>
@@ -372,8 +367,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Deletes the specified document by URI. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The document URI to delete </td></tr>
@@ -414,8 +407,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Frees up resources held by the connection, until the next call to connect. </p>
 <dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor </dd></dl>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a56a8416e511507a8a1b42d2065032b16">mlclient::Connection</a>, and <a class="el" href="classmlclient_1_1internals_1_1_fake_connection.html#a3aa2c739a2bbaa8e5e101c5c56fd931b">mlclient::internals::FakeConnection</a>.</p>
@@ -443,8 +434,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>TODO multipart payload. </p>
 <p>Performs a HTTP DELETE Request against MarkLogic Server.</p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a HTTP DELETE REST request to an arbitrary URL on MarkLogic Server</p>
@@ -489,8 +478,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP GET Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP GET request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -544,8 +531,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP POST Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP POST request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -600,8 +585,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a HTTP PUT Request against MarkLogic Server. </p>
 <p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
 <p>Performs a RESTful HTTP PUT request to an arbitrary URL on MarkLogic Server</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
@@ -645,8 +628,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the database name we're querying/updating. Defaults to Documents. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the database name (not internal MarkLogic database numeric ID) </dd></dl>
 
@@ -675,8 +656,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Retrieves a document from the server, at the given document URI (MarkLogic unique document ID) </p>
 <p>Performs a GET /v1/documents?uri HTTP call</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -719,8 +698,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>TODO add optional call parameters (E.g. fetch properties also) </p>
 <p>Retrieves a document from the server, at the given document URI (MarkLogic unique document ID, within the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object)</p>
 <dl class="section note"><dt>Note</dt><dd>This method differs from <a class="el" href="classmlclient_1_1_i_connection.html#a3e57f048d29086c67c052c2c657b2a3f" title="Retrieves a document from the server, at the given document URI (MarkLogic unique document ID) ...">getDocument(const std::string&amp; uri)</a> in that it populates the document specified, rather than returning a document from the method (or within the response). This method fetches ALL of document content AND properties AND collections AND permissions</dd></dl>
 <p>Performs a GET /v1/documents?uri HTTP call, fetching all document information.</p>
@@ -764,8 +741,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Populates the content of the specified document (MUST have a uri). </p>
 <p>See <a class="el" href="classmlclient_1_1_i_connection.html#a280818f153bd49f32df4dad793c97653" title="TODO add optional call parameters (E.g. fetch properties also) ">getDocument(Document&amp;)</a> for details. </p>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a9adbe1d784cd76d23565f856ce3bfc4a">mlclient::Connection</a>.</p>
@@ -793,8 +768,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Populates the permissions of the specified document (MUST have a uri). </p>
 <p>See <a class="el" href="classmlclient_1_1_i_connection.html#a280818f153bd49f32df4dad793c97653" title="TODO add optional call parameters (E.g. fetch properties also) ">getDocument(Document&amp;)</a> for details. </p>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a43d3221b859e35ff8618db48839611cb">mlclient::Connection</a>.</p>
@@ -822,8 +795,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Populates the properties of the specified document (MUST have a uri). </p>
 <p>See <a class="el" href="classmlclient_1_1_i_connection.html#a280818f153bd49f32df4dad793c97653" title="TODO add optional call parameters (E.g. fetch properties also) ">getDocument(Document&amp;)</a> for details. </p>
 
 <p>Implemented in <a class="el" href="classmlclient_1_1_connection.html#a7e68508b31fd3a94572dcdf7c274bce2">mlclient::Connection</a>.</p>
@@ -851,8 +822,6 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Lists the immediate child collections of the specified parent Collections. </p>
 <dl class="section note"><dt>Note</dt><dd>Parent collection must start with a / </dd>
 <dd>
 Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl>
@@ -883,8 +852,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character. </p>
 <dl class="section note"><dt>Note</dt><dd>Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl>
 <dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>Tested by ConnectionCollectionsTest::testListRootCollections</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
@@ -914,8 +881,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
 <p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
 <dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>Underlying code tested By DocumentBatchWriterTest</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -968,8 +933,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
 <p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1030,8 +993,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Saves a set of documents as a single batch to MarkLogic Server. </p>
 <p>See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.</p>
 <dl class="section note"><dt>Note</dt><dd>Uses a single REST call and multi-part MIME support in the REST API</dd></dl>
 <dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>Tested By DocumentBatchWriterTest</dd></dl>
@@ -1081,8 +1042,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Saves search options to the server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">optionsName</td><td>The name of the options on the server </td></tr>
@@ -1118,8 +1077,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a search against the MarkLogic database given the provided search query, text and options. </p>
 <p>Uses a <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> value object to wrap complex search parameters for MarkLogic Server.</p>
 <p>Performs a POST /v1/search HTTP POST to MarkLogic Server</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1173,8 +1130,6 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database</dd></dl
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a search against a REST extension that is compatible with POST /v1/search (i.e. <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a>) </p>
 <dl class="section note"><dt>Note</dt><dd>Useful when your extension places extra criteria on the search that the REST API does not support.</dd>
 <dd>
 This could be used to effectively create 'stored procedures' that took a search to restrict the documents the work occurs over, returning a result set just like <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a> (i.e. POST /v1/search)</dd></dl>
@@ -1213,8 +1168,6 @@ This could be used to effectively create 'stored procedures' that took a search 
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the name of the database to query/update. Defaults to Documents. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1258,8 +1211,6 @@ This could be used to effectively create 'stored procedures' that took a search 
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the search options configuration used. </p>
 <dl class="section note"><dt>Note</dt><dd>What is returned from the call is entirely dependent upon the search options configuration used.</dd>
 <dd>
 Invokes GET /v1/values/VALUESNAME?options=OPTIONSNAME</dd></dl>
@@ -1320,8 +1271,6 @@ Invokes GET /v1/values/VALUESNAME?options=OPTIONSNAME</dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Performs a values against a REST extension that is compatible with POST /v1/search (i.e. <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a>) </p>
 <dl class="section note"><dt>Note</dt><dd>Useful when your extension places extra criteria on the search that the REST API does not support.</dd>
 <dd>
 This could be used to effectively create 'stored procedures' that took a search to restrict the documents the work occurs over, returning a result set just like <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a> (i.e. POST /v1/search)</dd></dl>
