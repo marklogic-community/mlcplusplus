@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="csgetdoc/csgetdoc.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="csgetdoc/Source Files/Connection.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../bin/src/CSharpSources/Connection.cs">
     <Files>
-      <File FileName="csgetdoc/Source Files/Connection.cs" Line="103" Column="1" />
-      <File FileName="csgetdoc/Source Files/mlclientcsharpPINVOKE.cs" Line="1" Column="1" />
       <File FileName="csgetdoc/Program.cs" Line="5" Column="18" />
+      <File FileName="../../../bin/src/CSharpSources/csmlclientCSHARP_wrap.cxx" Line="13" Column="1" />
+      <File FileName="../../../bin/src/CSharpSources/Connection.cs" Line="108" Column="3" />
+      <File FileName="../../../bin/src/CSharpSources/mlclientcsharpPINVOKE.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
