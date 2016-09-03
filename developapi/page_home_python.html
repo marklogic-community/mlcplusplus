@@ -85,16 +85,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section warning"><dt>Warning</dt><dd>Python support was added purely because it was easy to add. No real development or testing effort is being expended on Python. Please see the <a href="https://github.com/marklogic/python_api">MarkLogic Python Driver Project</a> for a supported Python driver.</dd></dl>
 <h1><a class="anchor" id="sec_home_python_features"></a>
 Features</h1>
-<p>TODO</p>
+<p>The Python API supports the same features as the C++ API.</p>
 <h1><a class="anchor" id="sec_home_python_install"></a>
 Installation</h1>
-<p>TODO</p>
+<ul>
+<li>Grab the Binaries for your platform - TODO link</li>
+<li>Create a simple Python script using the required import</li>
+</ul>
 <h1><a class="anchor" id="sec_home_python_quickstart"></a>
 Quickstart</h1>
-<p>TODO</p>
+<p>Here is some sample code. The full detail can be found <a href="https://github.com/adamfowleruk/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py">in the Python basic sample</a>.</p>
+<p>As you can see, the above sample simply connects to a MarkLogic REST API HTTP endpoint and fetches the raw text content of the JSON document with the specified document ID (URI).</p>
 <h1><a class="anchor" id="sec_home_python_langspecific"></a>
 Language Specific Features</h1>
 <p>This section describes language specific features. I.e. features provided for the Idioms developers of this language would expect.</p>
+<p>Unfortunately some C++ methods from the core API are overloaded with different call parameters. This is not currently supported by the SWIG Python generator. This will be resolved in a future version, as other languages have the same restriction.</p>
+<p>Python Classes are generated on a 1:1 basis with C++ classes. SWIG Python does support the STL iterator and collection mechanisms, mapping them on to Python idioms. There are known non-STL compliance issues with the current iterators, and so you may experience some issues using iterators (E.g. via SearchResultSet or DocumentSet). Please <a href="https://github.com/adamfowleruk/mlcplusplus/issues">log an issue on GitHub</a> if you have any problems.</p>
+<p>C++ operators such as &gt;&gt; and &lt;&lt; and +, =, ++, &ndash;, are not mapped to Python idioms currently. == is mapped to eq() and != is mapped to ne().</p>
 <h2><a class="anchor" id="Function"></a>
 name patterns</h2>
 <p>TODO</p>

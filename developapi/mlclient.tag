@@ -3223,7 +3223,7 @@
     <docanchor file="page_home_c" title="Installation">sec_home_c_install</docanchor>
     <docanchor file="page_home_c" title="Quickstart">sec_home_c_quickstart</docanchor>
     <docanchor file="page_home_c" title="Language Specific Features">sec_home_c_langspecific</docanchor>
-    <docanchor file="page_home_csharp" title="name patterns">Function</docanchor>
+    <docanchor file="page_home_python" title="name patterns">Function</docanchor>
     <docanchor file="page_home_c" title="Extending">sec_home_c_extending</docanchor>
   </compound>
   <compound kind="page">
@@ -3246,6 +3246,16 @@
     <docanchor file="page_home_csharp" title="Quickstart">sec_home_csharp_quickstart</docanchor>
     <docanchor file="page_home_csharp" title="Language Specific Features">sec_home_csharp_langspecific</docanchor>
     <docanchor file="page_home_csharp" title="Extending">sec_home_csharp_extending</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>page_home_python</name>
+    <title>Python Documentation</title>
+    <filename>page_home_python</filename>
+    <docanchor file="page_home_python" title="Features">sec_home_python_features</docanchor>
+    <docanchor file="page_home_python" title="Installation">sec_home_python_install</docanchor>
+    <docanchor file="page_home_python" title="Quickstart">sec_home_python_quickstart</docanchor>
+    <docanchor file="page_home_python" title="Language Specific Features">sec_home_python_langspecific</docanchor>
+    <docanchor file="page_home_python" title="Extending">sec_home_python_extending</docanchor>
   </compound>
   <compound kind="page">
     <name>page_install</name>
