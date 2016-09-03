@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['test_20list',['Test List',['../test.html',1,'']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['marklogic_20c_2fc_2b_2b_20api_20documentation',['MarkLogic C/C++ API Documentation',['../index.html',1,'']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: Main Page</title>
+<title>MLCPlusPlus: MarkLogic C/C++ API Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,10 +78,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">MLCPlusPlus Documentation</div>  </div>
+<div class="title">MarkLogic C/C++ API Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="sec_Contents"></a>
+Contents</h1>
+<ul>
+<li><a class="el" href="index.html#sec_Overview">Overview</a> </li>
+<li><a class="el" href="index.html#sec_Install">Install</a> </li>
+<li><a class="el" href="index.html#sec_DevGuide">Application Development Guide</a> </li>
+<li><a class="el" href="index.html#sec_Design">Design</a> </li>
+<li><a class="el" href="index.html#sec_Examples">Examples</a> </li>
+<li><a class="el" href="index.html#sec_SeeAlso">See Also</a></li>
+</ul>
+<h1><a class="anchor" id="sec_Overview"></a>
+Overview</h1>
+<p>The MarkLogic C and C++ API provides a wrapper API around the MarkLogic Server REST API. The API is primarily aimed at Synchronous client application use, rather than Asynchronous use, although this may be supported in the future.</p>
+<p>The core project is around a C++ client library for MarkLogic, but using this base we have created wrappers for other languages too. Choose the language you are targeting for specific how-to guides.</p>
+<p>| [</p><div class="image">
+<img src="images/cpp.png"  alt="C++"/>
+</div>
+<p>](home-cpp) | </p><div class="image">
+<img src="images/c.jpg"  alt="C"/>
+</div>
+<p> | </p><div class="image">
+<img src="images/csharp.png"  alt="C#"/>
+</div>
+<p> | </p><div class="image">
+<img src="image/python.png"  alt="Python"/>
+</div>
+<p> |</p>
+<p>MarkLogic Server version 8.0-4 and above is supported by this API. There is a single required dependency - on the Microsoft cpprest (aka Casablanca) C++ based REST API. This is a cross platform API that supports Windows, Mac, Linux, OS X and other platforms.</p>
+<p>There are no other required dependencies, although in many applications you may wish to use the cpprest API via the CppRestJsonHelper class in order to work with JSON documents, or the PugiXmlHelper class to work with XML documents. In order to use PUGI XML you will need to install the pugixml package for your target system.</p>
+<p>This API wrapper abstracts out the underlying security mechanism, allowing developers to quickly and easily connect to a database on MarkLogic Server and start using it. Defaults for MarkLogic are assumed throughout the API, with overrides accepted where applicable. (E.g. Digest authentication).</p>
+<p>The main class you will use in applications is the Connection class. This provides convenience methods to configure a connection (i.e. authentication and server settings), and to perform common REST API functions. E.g. a POST to /v1/search is wrapped by a convenient Connection::search method.</p>
+<p>The API documentation includes examples for commonly used functions. Be sure to also look at the /samples folder for C and C++ command line applications showing common usage.</p>
+<p>We hope you enjoy using the API and find it useful. Please do log any issues or feature requests on our GitHub Issues page <a href="https://github.com/adamfowleruk/mlcplusplus/issues">https://github.com/adamfowleruk/mlcplusplus/issues</a> , to allow us to improve this API!</p>
+<h1><a class="anchor" id="sec_Install"></a>
+Install</h1>
+<p>To install MLCPlusPlus follow the instructions on the <a class="el" href="">Install page </a></p>
+<h1><a class="anchor" id="sec_DevGuide"></a>
+Application Development Guide</h1>
+<p>There is a comprehensive <a class="el" href="page_devguide.html">Application Developers Guide page </a> which is akin to the Java Application Developer's Guide. Read this for code excerpts and API explanatory notes.</p>
+<h1><a class="anchor" id="sec_Design"></a>
+Design</h1>
+<p>The API uses the Microsoft cpprest (Casablanca) C++ library to provide rest support. All the interaction with this API is hidden from the application developer, so no knowledge of this API is required to use the C/C++ MarkLogic API.</p>
+<p>You may though find it useful to familiarise yourself with this API if you plan on using and processing JSON documents in your C++ application, as the cpprest API provides many convenience functions for parsing and working with JSON documents. Use of cpprest is not required though.</p>
+<p>If you do wish to use cpprest, then please also check out the CppRestJsonHelper class as this provides convenience methods to take a cpprest JSON object and save it to or read it from MarkLogic using this API.</p>
+<p>There are four parts of the MarkLogic C/C++ API:- </p><ul>
+<li>Core Public API - The main classes application developers will use </li>
+<li>Core Private API - The internal API that you should never use directly </li>
+<li>Utility API - C++ classes that provide extended functionality. Examples are a SearchBuilder, or the JSON and XML library specific helper classes. These are not in the core public API to prevent forcing required dependencies on all developers. </li>
+<li>C wrapper API - C functions that wrap the Core C++ API to allow use from pure C applications. All core Connection and Response functions are supported.</li>
+</ul>
+<p>For detail of the design of the API please see the <a class="el" href="page__design.html">Design page </a> .</p>
+<h1><a class="anchor" id="sec_Examples"></a>
+Examples</h1>
+<p>Example code is embedded throughout the API documentation. Each class summary and method will have a brief snippet of sample code available to complete a common task.</p>
+<p>Sample basic applications are also available in the /samples folder on the GitHub page: <a href="https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples">https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples</a></p>
+<p>Each function has a test routine available for it. There are also test routines available for all bug reports as part of regression testing. This are located in the /test folder in the GitHub repository, here: <a href="https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/test">https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/test</a> .</p>
+<p>If you would like a particular use case based example creating, please log a documentation issue on out GitHub issues page <a href="https://github.com/adamfowleruk/mlcplusplus/issues">https://github.com/adamfowleruk/mlcplusplus/issues</a> - don't suffer in silence! We want to hear as much feedback as possible to make this the best quality API available for MarkLogic Server.</p>
+<h1><a class="anchor" id="sec_SeeAlso"></a>
+See Also</h1>
+<p>Below are a variety of additional sources of information relevant to the MarkLogic C/C++ API</p>
+<ul>
+<li>Summary documentation is available on the GitHub Project Home Page <a href="http://github.com/adamfowleruk/mlcplusplus">http://github.com/adamfowleruk/mlcplusplus</a> .</li>
+<li>GitHub issues tracker - for bug reports and feature/documentation/example requests. This can be found here: <a href="https://github.com/adamfowleruk/mlcplusplus/issues">https://github.com/adamfowleruk/mlcplusplus/issues</a></li>
+</ul>
+<h1><a class="anchor" id="sec_ApiDocs"></a>
+API Documentation</h1>
+<p>You can link to the mlclient (this API) API documentation using our tag 'mlclient'. To get a copy of our documentation clone our repository and check out the gh-pages branch. Alternatively you can download a zip of it here: <a href="https://github.com/adamfowleruk/mlcplusplus/archive/gh-pages.zip">https://github.com/adamfowleruk/mlcplusplus/archive/gh-pages.zip</a></p>
+<p>Dependency documentation can be found below:-</p><ul>
+<li>Microsoft Casablanca cpprest library - <a href="http://microsoft.github.io/cpprestsdk/namespaces.html">http://microsoft.github.io/cpprestsdk/namespaces.html</a></li>
+<li>pugixml lightweight XML parser library - <a href="http://pugixml.org/docs/manual.html">http://pugixml.org/docs/manual.html</a> </li>
+</ul>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
