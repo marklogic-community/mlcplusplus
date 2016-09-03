@@ -1,0 +1,32 @@
+/*!
+\page page_home_csharp C# Documentation
+\brief The main page for C+# coding documentation.
+
+This is the home page for C# support.
+
+\section sec_home_csharp_features Features
+
+TODO
+
+\section sec_home_csharp_install Installation
+
+TODO
+
+\section sec_home_csharp_quickstart Quickstart
+
+TODO
+
+\section sec_home_csharp_langspecific Language Specific Features
+
+This section describes language specific features. I.e. features provided for the Idioms developers of this language
+would expect.
+
+\subsection Function name patterns
+
+TODO
+
+\section sec_home_csharp_extending Extending
+
+TODO
+
+*/

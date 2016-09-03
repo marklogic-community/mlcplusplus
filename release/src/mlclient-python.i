@@ -1,17 +1,18 @@
 %module mlclientpython
 
-%ignore operator=; 
-%ignore operator*; 
+
+%ignore operator=;
+%ignore operator*;
 %ignore operator->;
-%ignore operator--; 
-%ignore operator++;  
-%ignore operator-; 
-%ignore operator+; 
-%ignore *::operator+; 
-%ignore operator<<; 
-%ignore *::operator<<; 
-%ignore operator>>; 
-%ignore *::operator>>; 
+%ignore operator--;
+%ignore operator++;
+%ignore operator-;
+%ignore operator+;
+%ignore *::operator+;
+%ignore operator<<;
+%ignore *::operator<<;
+%ignore operator>>;
+%ignore *::operator>>;
 
 %feature("director:except") {
   throw Swig::DirectorMethodException($error);
@@ -40,6 +41,8 @@
     }
 }
 */
+
+%feature("autodoc", "3");
 
 %{
 /* Includes the header in the wrapper code */

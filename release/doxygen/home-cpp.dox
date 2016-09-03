@@ -1,0 +1,57 @@
+/*!
+\page page_home_cpp C++ Documentation
+\brief The main page for C++ coding documentation.
+
+This is the home page for C++ support.
+
+\section sec_home_cpp_features Features
+
+C++ support includes ALL features, as it is the base API. These features are:-
+
+- Core MarkLogic Features Supported
+ - Authentication - Digest and Application (none) supported
+ - Connection to a REST API port - does NOT specify the database in each call - relies on server side configuration
+- Document functionality
+ - Create, Read, Update, delete
+ - Support for JSON, XML, Text, and Binary
+ - Save a document, its collections, permissions, and other properties in one hit
+ - Batch document saving
+- Search functionality
+ - POST /v1/search with support for querytext, structured query, and search options
+ - Save search options
+- Lexicon and Co-occurence functionality
+ - Lexicon lookup support, including UDF support
+ - Convenience method to lookup collections underneath the specified collection, or the root collections
+- Triple store functionality
+ - None yet, but you can create a document that contains triples in MarkLogic sem:triples format, and save that
+- Management API functionality
+ - None yet
+- Utility / Convenience classes
+ - DocumentBatchHelper and DocumentBatchWriter - given a base folder and basic settings, uploads all files with the requisite metadata
+ - SearchResultSet - batches and fetches each page of results, with its own iterator implementation so the network requests are transparent to the caller
+ - ValuesResultSet - perform multiple values lookups in a single call
+ - SearchBuilder - Abstracts structured query format away from your code
+ - SearchOptionsBuilder - ABstracts search options format away from your code
+
+\section sec_home_cpp_install Installation
+
+TODO
+
+\section sec_home_cpp_quickstart Quickstart
+
+TODO
+
+\section sec_home_cpp_langspecific Language Specific Features
+
+This section describes language specific features. I.e. features provided for the Idioms developers of this language
+would expect.
+
+\subsection Support for C++ STL Iterators and Collections
+
+TODO
+
+\section sec_home_cpp_extending Extending
+
+TODO
+
+*/

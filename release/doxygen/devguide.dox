@@ -1,5 +1,6 @@
 /*!
 \page page_devguide Application Developers Guide
+\brief Main C++ Developer Guide
 \tableofcontents
 
 \section sec_introduction Introduction to the C++ API
