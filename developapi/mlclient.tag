@@ -3224,6 +3224,12 @@
     <name>page_home_cpp</name>
     <title>C++ Documentation</title>
     <filename>page_home_cpp</filename>
+    <docanchor file="page_home_cpp" title="Features">sec_home_cpp_features</docanchor>
+    <docanchor file="page_home_cpp" title="Installation">sec_home_cpp_install</docanchor>
+    <docanchor file="page_home_cpp" title="Quickstart">sec_home_cpp_quickstart</docanchor>
+    <docanchor file="page_home_cpp" title="Language Specific Features">sec_home_cpp_langspecific</docanchor>
+    <docanchor file="page_home_cpp" title="for C++ STL Iterators and Collections">Support</docanchor>
+    <docanchor file="page_home_cpp" title="Extending">sec_home_cpp_extending</docanchor>
   </compound>
   <compound kind="page">
     <name>page_home_csharp</name>
