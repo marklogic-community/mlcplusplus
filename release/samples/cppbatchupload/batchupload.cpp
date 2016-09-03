@@ -65,7 +65,7 @@ int main(int argc, const char * argv[])
     return 1;
   }
 
-  Connection* ml = ConnectionFactory::getConnection();
+  IConnection* ml = ConnectionFactory::getConnection();
 
 
 
@@ -105,4 +105,3 @@ int main(int argc, const char * argv[])
   std::cout << "batch upload complete" << std::endl;
   return 0;
 }
-

@@ -15,8 +15,8 @@
  *  Created by Adam Fowler on 27 Nov 2015.
  */
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/Connection.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/Connection.hpp>
 
 using namespace mlclient;
 

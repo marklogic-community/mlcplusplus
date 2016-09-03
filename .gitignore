@@ -30,6 +30,11 @@ Build/Release
 Build/x64
 Build/mlclient.VC.db
 Build/getdoc/Debug
+Build/csmlclient/Debug
+Build/csmlclient/bin
+Build/csmlclient/Dependencies
+Build/csmlclient/obj
+Build/csmlclient/Source Files
 Build/cgetasstruct/Debug
 Build/cgetdoc/Debug
 Build/cppproducer/Debug
@@ -39,6 +44,9 @@ Build/mlclient.VC.VC.opendb
 .gitignore.swp
 release/samples/csgetdoc/csgetdoc/bin
 release/samples/csgetdoc/csgetdoc/obj
+release/samples/csgetdoc/csgetdoc/Dependencies
+release/samples/csgetdoc/csgetdoc/Source Files
+release/samples/csgetdoc/csgetdoc/mlclient.dll
 logs
 performance.log
 release/**/*.o

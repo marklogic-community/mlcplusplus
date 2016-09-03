@@ -30,6 +30,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -81,8 +82,9 @@
       <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <FloatingPointModel>Strict</FloatingPointModel>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -175,13 +177,13 @@
     <ClInclude Include="..\release\include\mlclient\Document.hpp" />
     <ClInclude Include="..\release\include\mlclient\DocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\DocumentSet.hpp" />
-    <ClInclude Include="..\release\include\mlclient\ext\easylogging++.h" />
     <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugiconfig.hpp" />
     <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugixml.hpp" />
     <ClInclude Include="..\release\include\mlclient\HttpHeaders.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\AuthenticatingProxy.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\AuthorizationBuilder.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\Conversions.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\cpprestfwd.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\Credentials.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\FakeConnection.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\memory.hpp" />

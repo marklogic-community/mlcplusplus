@@ -15,7 +15,7 @@
  *  Created by Paul Hoehne on 27 May 2014.
  */
 
-#include "cppcommon/ConnectionFactory.hpp"
+#include "../cppcommon/ConnectionFactory.hpp"
 
 #include <mlclient/utilities/CppRestJsonHelper.hpp>
 #include <mlclient/utilities/PugiXmlHelper.hpp>
@@ -66,4 +66,3 @@ int main(int argc, const char * argv[])
   LOG(DEBUG) << "getdoc complete";
   return 0;
 }
-

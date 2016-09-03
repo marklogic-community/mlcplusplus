@@ -36,3 +36,25 @@ Known issues:-
  - 227 Tests assume content already exists in MarkLogic - https://github.com/adamfowleruk/mlcplusplus/issues/227
  - 226 Iterators do not match STL norms - https://github.com/adamfowleruk/mlcplusplus/issues/226
  - 217 Logging does not work the same cross platform - https://github.com/adamfowleruk/mlcplusplus/issues/217
+ - Tests don't build on Windows -
+
+## Known incompatibilities with previous versions
+
+### Factories return IConnection pointer, not Connection pointer
+
+In order to allow future replacement of HTTP for other protocols, and allow a FakeConnection for automated testing
+where no MarkLogic instance was available, I've created an abstract class called IConnection. This should be used
+instead of Connection wherever possible in order to allow the switch out from one Connection implementation to
+another transparently from your code.
+
+Thus the ConnectionFactory classes in samples and tests both return an IConnection pointer now. You will need
+to recode your apps where you use a ConnectionFactory so that they return an IConnection pointer.
+
+## Future planned incompatibilities / deprecations
+
+### Unicode string
+
+It is highly likely in the 8.0.3 release that all instances of std::string will be replaced by std::wstring. The
+same goes for char being replaced by wchar.
+
+Developers should plan for this extra conversion overhead in future releases.

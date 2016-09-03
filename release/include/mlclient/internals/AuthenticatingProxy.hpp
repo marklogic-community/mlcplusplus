@@ -53,7 +53,7 @@ class AuthenticatingProxy {
 
 
 
-public:    
+public:
   ///
   /// Constructor
   ///

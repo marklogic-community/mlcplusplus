@@ -40,7 +40,7 @@ int main(int argc, const char * argv[])
     return 1;
   }
 
-  Connection* ml = ConnectionFactory::getConnection();
+  IConnection* ml = ConnectionFactory::getConnection();
   SearchDescription desc;
   desc.setQueryText(argv[1]);
   Response* response = ml->search(desc);
@@ -57,4 +57,3 @@ int main(int argc, const char * argv[])
   delete ml;
   return 0;
 }
-

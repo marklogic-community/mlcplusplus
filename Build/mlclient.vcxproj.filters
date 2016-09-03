@@ -180,9 +180,6 @@
     <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\release\include\mlclient\ext\easylogging++.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugiconfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -256,6 +253,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\release\include\mlclient\DocumentSet.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\internals\cpprestfwd.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

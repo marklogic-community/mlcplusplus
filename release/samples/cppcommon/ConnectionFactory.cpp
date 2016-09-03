@@ -16,7 +16,7 @@
  */
 
 #include <mlclient/Connection.hpp>
-#include "cppcommon/ConnectionFactory.hpp"
+#include "ConnectionFactory.hpp"
 
 using namespace mlclient;
 

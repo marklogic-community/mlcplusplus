@@ -21,8 +21,9 @@
 #ifndef CONNECTIONWRAPPER_H
 #define CONNECTIONWRAPPER_H
 
+#include <mlclient/mlclient.h>
+
 #include <mlclient/ResponseWrapper.h>
-#include <mlclient/mlclient.hpp>
 
 ///
 /// \typedef CConnection A wrapper for a C++ Connection instance's void* pointer.

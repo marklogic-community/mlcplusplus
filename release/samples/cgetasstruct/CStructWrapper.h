@@ -14,7 +14,7 @@
 // A C wrapper for a C function that takes a sample JSON doc and puts it inside a C struct
 //
 #include "CStruct.h"
-#include "mlclient/ResponseWrapper.h"
+#include <mlclient/ResponseWrapper.h>
 
 #ifndef CSTRUCTWRAPPER_H
 #define CSTRUCTWRAPPER_H

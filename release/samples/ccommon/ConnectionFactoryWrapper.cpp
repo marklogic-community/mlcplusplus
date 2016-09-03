@@ -13,8 +13,8 @@
  *
  */
 #include <mlclient/ConnectionWrapper.h>
-#include "ccommon/ConnectionFactoryWrapper.h"
-#include "cppcommon/ConnectionFactory.hpp"
+#include "ConnectionFactoryWrapper.h"
+#include "../cppcommon/ConnectionFactory.hpp"
 
 extern "C" {
 

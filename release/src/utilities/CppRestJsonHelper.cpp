@@ -18,16 +18,16 @@
  */
 
 #include <cpprest/http_client.h>
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-#include "mlclient/DocumentContent.hpp"
-#include "mlclient/Response.hpp"
-#include "mlclient/InvalidFormatException.hpp"
-#include "mlclient/SearchResult.hpp"
+#include <mlclient/utilities/CppRestJsonHelper.hpp>
+#include <mlclient/utilities/CppRestJsonDocumentContent.hpp>
+#include <mlclient/DocumentContent.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/InvalidFormatException.hpp>
+#include <mlclient/SearchResult.hpp>
 
 #include <iostream>
 
-#include "mlclient/logging.hpp"
+#include <mlclient/logging.hpp>
 
 namespace mlclient {
 

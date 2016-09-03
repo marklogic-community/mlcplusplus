@@ -23,7 +23,7 @@
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include "mlclient/InvalidFormatException.hpp"
 #include "mlclient/logging.hpp"
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 #include <iostream>
 #include <string>
 #include <sstream>

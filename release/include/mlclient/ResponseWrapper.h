@@ -22,7 +22,7 @@
 #ifndef RESPONSEWRAPPER_H
 #define RESPONSEWRAPPER_H
 
-#include <mlclient/mlclient.hpp>
+#include <mlclient/mlclient.h>
 
 /// \brief Holding typedef to wrap a CWrapper<Response>* pointer as a C variable.
 typedef void CResponse;

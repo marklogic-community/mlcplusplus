@@ -27,6 +27,7 @@ namespace mlclient {
 
 namespace utilities {
 
+#ifdef _WIN32
   std::string ws2s(const std::wstring& s)
   {
     int len;
@@ -50,6 +51,7 @@ namespace utilities {
     delete[] buf;
     return r;
   }
+#endif
 
 void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const std::string& baseFolder,const bool stripBase,const std::string& appendBase,
     const std::vector<std::string>& collections,const std::vector<Permission>& permissions,IDocumentContent* properties,DocumentSet& addTo,
@@ -88,7 +90,7 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
         // directory
         addFilesToDocumentSet(std::string(folder + "/" + dname), baseFolder, stripBase, // TODO platform independent file separator
           appendBase, collections, permissions, properties, addTo, showHiddenDirs);
-      } else 
+      } else
       if (FILE_ATTRIBUTE_NORMAL == (FILE_ATTRIBUTE_NORMAL & epdf->dwFileAttributes)) {
 
 
@@ -137,5 +139,3 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
 
 } // end namespace utilities
 } // end namespace mlclient
-
-

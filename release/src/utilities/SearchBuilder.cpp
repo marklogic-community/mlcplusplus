@@ -18,7 +18,7 @@
  * \date 2016-06-09
  */
 
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"

@@ -19,7 +19,7 @@
 
 // We can use the following, because cpprest is an internal API dependency
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 #include <string>
 
 namespace mlclient {
@@ -31,7 +31,7 @@ public:
   Impl(SearchResultSet* set,IConnection* conn,SearchDescription* desc) : mConn(conn), mInitialDescription(desc),
     mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), mCachedEnd(nullptr), start(0),
     pageLength(0), total(0),totalTime(""), queryResolutionTime(""),snippetResolutionTime(""),m_maxResults(0), lastFetched(-1),
-    fetchTask(nullptr), fetchMtx(), resultsMtx() {
+    fetchTask(nullptr) /*, fetchMtx(), resultsMtx()*/ {
 
     //TIMED_FUNC(SearchResultSet_Impl_constructor);
     LOG(DEBUG) << "In SearchResultSet::Impl ctor";
@@ -56,7 +56,7 @@ public:
 
     const web::json::value value(utilities::CppRestJsonHelper::fromResponse(*resp));
 
-    std::unique_lock<std::mutex> lck (resultsMtx,std::defer_lock);
+    //std::unique_lock<std::mutex> lck (resultsMtx,std::defer_lock);
 
     {
       //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMetrics()");
@@ -66,13 +66,13 @@ public:
     snippetFormat = utility::conversions::to_utf8string(value.at(U("snippet-format")).as_string());
     total = value.at(U("total")).as_integer();
     if (0 == m_maxResults) {
-      lck.lock();
+      //lck.lock();
       mResults.reserve(total);
-      lck.unlock();
+      //lck.unlock();
     } else {
-      lck.lock();
+      //lck.lock();
       mResults.reserve(m_maxResults);
-      lck.unlock();
+      //lck.unlock();
     }
     pageLength = value.at(U("page-length")).as_integer();
     start = value.at(U("start")).as_integer();
@@ -226,13 +226,13 @@ public:
         //utility::conversions::to_utf8string(row.at(U("path")).as_string()),row.at(U("score")).as_integer(),
         //row.at(U("confidence")).as_double(),row.at(U("fitness")).as_double(),detail,ct,mimeType,format );
 
-        lck.lock();
+        //lck.lock();
       mResults.push_back(new SearchResult(row.at(U("index")).as_integer(), utility::conversions::to_utf8string(row.at(U("uri")).as_string()),
           utility::conversions::to_utf8string(row.at(U("path")).as_string()),row.at(U("score")).as_integer(),
           row.at(U("confidence")).as_double(),row.at(U("fitness")).as_double(),detail,ct,mimeType,format ));
       lastFetched = mResults.size() - 1;
 
-      lck.unlock();
+      //lck.unlock();
       }
       }
       }
@@ -284,8 +284,8 @@ public:
     // make this async
     Impl& mImpl = (*this);
 
-    std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
-    lck.lock();
+    //std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
+    //lck.lock();
 
     fetchTask = new pplx::task<void>([&mImpl] () {
       LOG(DEBUG) << "Began initial fetch task...";
@@ -315,7 +315,7 @@ public:
     // No way to avoid this blocking really.
     fetchTask->wait();
 
-    lck.unlock();
+    //lck.unlock();
 
     return true;
   };
@@ -346,8 +346,8 @@ public:
 
     LOG(DEBUG) << "Creating new fetch task...";
 
-    std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
-    lck.lock();
+    //std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
+    //lck.lock();
 
     // TODO make this async
     Impl& mImpl(*this);
@@ -389,16 +389,16 @@ public:
 
 
     }); // end task block
-    lck.unlock();
+    //lck.unlock();
 
     return true;
   };
 
   SearchResult* getResult(long position) {
-    std::unique_lock<std::mutex> lck (resultsMtx,std::defer_lock);
-    lck.lock();
+    //std::unique_lock<std::mutex> lck (resultsMtx,std::defer_lock);
+    //lck.lock();
     SearchResult* res = mResults.at(position);
-    lck.unlock();
+    //lck.unlock();
     return res;
   }
 
@@ -408,15 +408,15 @@ public:
 
   void wait() {
     LOG(DEBUG) << "In wait()";
-    std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
-    lck.lock();
+    //std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
+    //lck.lock();
     if (fetchTask->is_done()) {
       LOG(DEBUG) << "  Returning: Task is complete";
       return;
     }
     LOG(DEBUG) << "  Waiting for completion";
     fetchTask->wait();
-    lck.unlock();
+    //lck.unlock();
   };
 
   IConnection* mConn;
@@ -441,8 +441,8 @@ public:
   // 0 based - i.e. for 500 results, at start it would be -1, at end it would 499
   long lastFetched;
   pplx::task<void>* fetchTask;
-  std::mutex fetchMtx;
-  std::mutex resultsMtx;
+  //std::mutex fetchMtx;
+  //std::mutex resultsMtx;
 };
 
 

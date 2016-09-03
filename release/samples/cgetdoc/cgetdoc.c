@@ -15,7 +15,7 @@
 //
 #include <stdio.h>
 #include <mlclient/ConnectionWrapper.h>
-#include "ccommon/ConnectionFactoryWrapper.h"
+#include "../ccommon/ConnectionFactoryWrapper.h"
 #include <mlclient/ResponseWrapper.h>
 
 int main(int argc, const char * argv[])
