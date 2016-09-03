@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['marklogic_20c_2fc_2b_2b_20api_20documentation',['MarkLogic C/C++ API Documentation',['../index.html',1,'']]],
   ['md5',['md5',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a473f2e32bf5bbd591b272036e4c0a679',1,'mlclient::internals::MLCrypto']]],
   ['methodandurl',['methodAndURL',['../classmlclient_1_1internals_1_1_authorization_builder.html#a4b4304ed3182ccdcc40d96f078605c52',1,'mlclient::internals::AuthorizationBuilder']]],
   ['methodurlandbodyhash',['methodURLAndBodyHash',['../classmlclient_1_1internals_1_1_authorization_builder.html#a45e027ce65223f141a5f6b43be0200d6',1,'mlclient::internals::AuthorizationBuilder']]],

@@ -3226,17 +3226,4 @@
     <docanchor file="page_install" title="Using the MLCPlusPlus library in your C++ application">sec_using</docanchor>
     <docanchor file="page_install" title="Compiling the tests">sec_compilingtests</docanchor>
   </compound>
-  <compound kind="page">
-    <name>index</name>
-    <title>MarkLogic C/C++ API Documentation</title>
-    <filename>index</filename>
-    <docanchor file="index" title="Contents">sec_Contents</docanchor>
-    <docanchor file="index" title="Overview">sec_Overview</docanchor>
-    <docanchor file="index" title="Install">sec_Install</docanchor>
-    <docanchor file="index" title="Application Development Guide">sec_DevGuide</docanchor>
-    <docanchor file="index" title="Design">sec_Design</docanchor>
-    <docanchor file="index" title="Examples">sec_Examples</docanchor>
-    <docanchor file="index" title="See Also">sec_SeeAlso</docanchor>
-    <docanchor file="index" title="API Documentation">sec_ApiDocs</docanchor>
-  </compound>
 </tagfile>
