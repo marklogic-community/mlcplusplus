@@ -3216,9 +3216,24 @@
     <docanchor file="page_devguide" title="General Troubleshooting Techniques">sec_troubletechs</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_home_c</name>
+    <title>C Documentation</title>
+    <filename>page_home_c</filename>
+  </compound>
+  <compound kind="page">
     <name>page_home_cpp</name>
-    <title>C++ Support Home Page</title>
+    <title>C++ Documentation</title>
     <filename>page_home_cpp</filename>
+  </compound>
+  <compound kind="page">
+    <name>page_home_csharp</name>
+    <title>C# Documentation</title>
+    <filename>page_home_csharp</filename>
+  </compound>
+  <compound kind="page">
+    <name>page_home_python</name>
+    <title>Python Documentation</title>
+    <filename>page_home_python</filename>
   </compound>
   <compound kind="page">
     <name>page_install</name>

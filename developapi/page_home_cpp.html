@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: C++ Support Home Page</title>
+<title>MLCPlusPlus: C++ Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,10 +78,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">C++ Support Home Page </div>  </div>
+<div class="title">C++ Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is the home page for C++ support. </p>
+<div class="textblock"><p>This is the home page for C++ support.</p>
+<p>sec_home_cpp_features Features</p>
+<p>C++ support includes ALL features, as it is the base API. These features are:-</p>
+<ul>
+<li>Core MarkLogic Features Supported<ul>
+<li>Authentication - Digest and Application (none) supported</li>
+<li>Connection to a REST API port - does NOT specify the database in each call - relies on server side configuration</li>
+</ul>
+</li>
+<li>Document functionality<ul>
+<li>Create, Read, Update, delete</li>
+<li>Support for JSON, XML, Text, and Binary</li>
+<li>Save a document, its collections, permissions, and other properties in one hit</li>
+<li>Batch document saving</li>
+</ul>
+</li>
+<li>Search functionality<ul>
+<li>POST /v1/search with support for querytext, structured query, and search options</li>
+<li>Save search options</li>
+</ul>
+</li>
+<li>Lexicon and Co-occurence functionality<ul>
+<li>Lexicon lookup support, including UDF support</li>
+<li>Convenience method to lookup collections underneath the specified collection, or the root collections</li>
+</ul>
+</li>
+<li>Triple store functionality<ul>
+<li>None yet, but you can create a document that contains triples in MarkLogic sem:triples format, and save that</li>
+</ul>
+</li>
+<li>Management API functionality<ul>
+<li>None yet</li>
+</ul>
+</li>
+<li>Utility / Convenience classes<ul>
+<li>DocumentBatchHelper and DocumentBatchWriter - given a base folder and basic settings, uploads all files with the requisite metadata</li>
+<li>SearchResultSet - batches and fetches each page of results, with its own iterator implementation so the network requests are transparent to the caller</li>
+<li>ValuesResultSet - perform multiple values lookups in a single call</li>
+<li>SearchBuilder - Abstracts structured query format away from your code</li>
+<li>SearchOptionsBuilder - ABstracts search options format away from your code</li>
+</ul>
+</li>
+</ul>
+<p>sec_home_cpp_install Installation</p>
+<p>TODO</p>
+<p>sec_home_cpp_quickstart Quickstart</p>
+<p>TODO</p>
+<p>sec_home_cpp_langspecific Language Specific Features</p>
+<p>This section describes language specific features. I.e. features provided for the Idioms developers of this language would expect.</p>
+<h3>Support for C++ STL Iterators and Collections</h3>
+<p>TODO</p>
+<p>sec_home_cpp_extending Extending</p>
+<p>TODO </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
