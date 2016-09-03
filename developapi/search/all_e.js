@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['python_20documentation',['Python Documentation',['../page_home_python.html',1,'']]],
   ['parsewwwauthenticateheader',['parseWWWAuthenticateHeader',['../classmlclient_1_1internals_1_1_credentials.html#ac22af4ce831b8495d1f23c3976b43f57',1,'mlclient::internals::Credentials']]],
   ['permission',['Permission',['../classmlclient_1_1_permission.html',1,'mlclient']]],
   ['postsync',['postSync',['../classmlclient_1_1internals_1_1_authenticating_proxy.html#a1bab8a4346bf2b71b2f660e4828bd711',1,'mlclient::internals::AuthenticatingProxy']]],

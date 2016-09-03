@@ -3223,7 +3223,7 @@
     <docanchor file="page_home_c" title="Installation">sec_home_c_install</docanchor>
     <docanchor file="page_home_c" title="Quickstart">sec_home_c_quickstart</docanchor>
     <docanchor file="page_home_c" title="Language Specific Features">sec_home_c_langspecific</docanchor>
-    <docanchor file="page_home_python" title="name patterns">Function</docanchor>
+    <docanchor file="page_home_csharp" title="name patterns">Function</docanchor>
     <docanchor file="page_home_c" title="Extending">sec_home_c_extending</docanchor>
   </compound>
   <compound kind="page">
@@ -3248,16 +3248,6 @@
     <docanchor file="page_home_csharp" title="Extending">sec_home_csharp_extending</docanchor>
   </compound>
   <compound kind="page">
-    <name>page_home_python</name>
-    <title>Python Documentation</title>
-    <filename>page_home_python</filename>
-    <docanchor file="page_home_python" title="Features">sec_home_python_features</docanchor>
-    <docanchor file="page_home_python" title="Installation">sec_home_python_install</docanchor>
-    <docanchor file="page_home_python" title="Quickstart">sec_home_python_quickstart</docanchor>
-    <docanchor file="page_home_python" title="Language Specific Features">sec_home_python_langspecific</docanchor>
-    <docanchor file="page_home_python" title="Extending">sec_home_python_extending</docanchor>
-  </compound>
-  <compound kind="page">
     <name>page_install</name>
     <title>Installing MLCPlusPlus</title>
     <filename>page_install</filename>
@@ -3272,13 +3262,7 @@
     <name>index</name>
     <title>MarkLogic C/C++ API Documentation</title>
     <filename>index</filename>
-    <docanchor file="index" title="Contents">sec_Contents</docanchor>
-    <docanchor file="index" title="Overview">sec_Overview</docanchor>
-    <docanchor file="index" title="Install">sec_Install</docanchor>
-    <docanchor file="index" title="Application Development Guide">sec_DevGuide</docanchor>
-    <docanchor file="index" title="Design">sec_Design</docanchor>
-    <docanchor file="index" title="Examples">sec_Examples</docanchor>
-    <docanchor file="index" title="See Also">sec_SeeAlso</docanchor>
-    <docanchor file="index" title="API Documentation">sec_ApiDocs</docanchor>
+    <docanchor file="index" title="Support">sec_support</docanchor>
+    <docanchor file="index" title="Copyright">sec_legal</docanchor>
   </compound>
 </tagfile>
