@@ -9,7 +9,7 @@
 #ifndef INCLUDE_MLCLIENT_PERMISSION_HPP_
 #define INCLUDE_MLCLIENT_PERMISSION_HPP_
 
-#include "mlclient/mlclient.hpp"
+#include <mlclient/mlclient.hpp>
 #include <string>
 #include <iosfwd>
 
@@ -35,17 +35,17 @@ MLCLIENT_API Capability toCapability(const std::string& capString);
  */
 class Permission {
 public:
-  Permission(const std::string& role,const Capability& capability);
-  Permission(Permission&& other); // move ctor
-  Permission(const Permission& other) = default; // copy ctor
-  virtual ~Permission() = default;
+  MLCLIENT_API Permission(const std::string& role,const Capability& capability);
+  MLCLIENT_API Permission(Permission&& other); // move ctor
+  MLCLIENT_API Permission(const Permission& other) = default; // copy ctor
+  MLCLIENT_API virtual ~Permission() = default;
 
-  Permission& operator=(const Permission& other) = default; // default copy assignment operator
+  MLCLIENT_API Permission& operator=(const Permission& other) = default; // default copy assignment operator
 
-  const std::string& getRole() const;
-  void setRole(const std::string& role);
-  const Capability& getCapability() const;
-  void setCapability(const Capability& capability);
+  MLCLIENT_API const std::string& getRole() const;
+  MLCLIENT_API void setRole(const std::string& role);
+  MLCLIENT_API const Capability& getCapability() const;
+  MLCLIENT_API void setCapability(const Capability& capability);
 
 private:
   std::string role;

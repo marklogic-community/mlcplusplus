@@ -90,12 +90,20 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\release\include;..\release\samples;..\release\test;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\release\include;..\..\release\samples;..\..\release\test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\Debug\mlclient.lib;..\packages\cppunit.1.12.1.4\build\native\lib\v120\Win32\Debug\cppunitd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\Debug;..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -154,22 +162,25 @@
     <ClCompile Include="..\..\release\test\ConnectionFactory.cpp" />
     <ClCompile Include="..\..\release\test\ConnectionSearchTest.cpp" />
     <ClCompile Include="..\..\release\test\ConnectionValuesTest.cpp" />
+    <ClCompile Include="..\..\release\test\DocumentBatchWriterTest.cpp" />
     <ClCompile Include="..\..\release\test\DocumentTraversalTest.cpp" />
     <ClCompile Include="..\..\release\test\main.cpp" />
     <ClCompile Include="..\..\release\test\SearchBuilderTest.cpp" />
     <ClCompile Include="..\..\release\test\SearchOptionsBuilderTest.cpp" />
     <ClCompile Include="..\..\release\test\SearchResultSetTest.cpp" />
+    <ClCompile Include="..\..\release\test\ValuesResultSetTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionCollectionsTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionDocumentCrudTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionSearchTest.hpp" />
     <ClInclude Include="..\..\release\test\ConnectionValuesTest.hpp" />
+    <ClInclude Include="..\..\release\test\DocumentBatchWriterTest.hpp" />
     <ClInclude Include="..\..\release\test\DocumentTraversalTest.hpp" />
     <ClInclude Include="..\..\release\test\SearchBuilderTest.hpp" />
     <ClInclude Include="..\..\release\test\SearchOptionsBuilderTest.hpp" />
     <ClInclude Include="..\..\release\test\SearchResultSetTest.hpp" />
+    <ClInclude Include="..\..\release\test\ValuesResultSetTest.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -182,6 +193,12 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\cppunit.1.12.1.4\build\native\cppunit.targets" Condition="Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.targets')" />
+    <Import Project="..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\boost.1.61.0.0\build\native\boost.targets" Condition="Exists('..\packages\boost.1.61.0.0\build\native\boost.targets')" />
+    <Import Project="..\packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets" Condition="Exists('..\packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets')" />
+    <Import Project="..\packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets" Condition="Exists('..\packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets')" />
+    <Import Project="..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets" Condition="Exists('..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets')" />
+    <Import Project="..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets" Condition="Exists('..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -189,5 +206,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cppunit.1.12.1.4\build\native\cppunit.props'))" />
     <Error Condition="!Exists('..\packages\cppunit.1.12.1.4\build\native\cppunit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cppunit.1.12.1.4\build\native\cppunit.targets'))" />
+    <Error Condition="!Exists('..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.61.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.61.0.0\build\native\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_system-vc140.1.61.0.0\build\native\boost_system-vc140.targets'))" />
+    <Error Condition="!Exists('..\packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\zlib.v140.windesktop.msvcstl.static.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.static.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.1.0.2.1\build\native\openssl.v140.windesktop.msvcstl.static.rt-dyn.x86.targets'))" />
   </Target>
 </Project>

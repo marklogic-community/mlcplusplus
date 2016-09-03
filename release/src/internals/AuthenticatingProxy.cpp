@@ -71,7 +71,7 @@ void AuthenticatingProxy::copyHeaders(const web::http::http_headers& from, mlcli
   std::map<std::string,std::string> headers;
   LOG(DEBUG) << "Headers:-";
   for (auto& it : from) {
-    LOG(DEBUG) << "  Header: " << it.first << " = " << it.second;
+    LOG(DEBUG) << "  Header: " << utility::conversions::to_utf8string(it.first) << " = " << utility::conversions::to_utf8string(it.second);
     to.setHeader(utility::conversions::to_utf8string(it.first), utility::conversions::to_utf8string(it.second));
   }
 }
@@ -132,12 +132,12 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       bodyString = utility::conversions::to_string_t(body->getContent());
       mimeString = utility::conversions::to_string_t(body->getMimeType());
       // GOD AWFUL HACK
-      if ("multipart/mime" == mimeString) {
-        mimeString = "multipart/mime; boundary=BOUNDARY";
+      if (utility::conversions::to_string_t("multipart/mime") == mimeString) {
+        mimeString = utility::conversions::to_string_t("multipart/mime; boundary=BOUNDARY");
       }
       LOG(DEBUG) << "Body is not null on FIRST try";
-      LOG(DEBUG) << "  mimeString: " << mimeString;
-      LOG(DEBUG) << "  bodyString: " << bodyString;
+      LOG(DEBUG) << "  mimeString: " << utility::conversions::to_utf8string(mimeString);
+      LOG(DEBUG) << "  bodyString: " << utility::conversions::to_utf8string(bodyString);
       // TODO Any way to stream the below rather than convert in memory?
       req.set_body(bodyString,mimeString);
       //req.set_body(*(body->getStream()),utility::conversions::to_string_t(body->getMimeType()));
@@ -273,8 +273,8 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       if (nullptr != body) {
         LOG(DEBUG) << "Body is not null on retry";
-        LOG(DEBUG) << "  mimeString: " << mimeString;
-        LOG(DEBUG) << "  bodyString: " << bodyString;
+        LOG(DEBUG) << "  mimeString: " << utility::conversions::to_utf8string(mimeString);
+        LOG(DEBUG) << "  bodyString: " << utility::conversions::to_utf8string(bodyString);
         req.set_body(bodyString,mimeString);
         //req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
         //concurrency::streams::stdio_istream

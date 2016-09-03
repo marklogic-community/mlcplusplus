@@ -16,21 +16,33 @@
     <Filter Include="Source Files\samples">
       <UniqueIdentifier>{d70e548f-ae18-49c7-8c66-e88034b35b2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\samples\cppgetdoc">
+      <UniqueIdentifier>{eaad3e30-71b1-4b06-ac5b-880a452dfb0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\samples\cppcommon">
+      <UniqueIdentifier>{e459e8db-eac6-4e8f-8fa8-31d4632ebc4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\release\samples\ConnectionFactory.cpp">
-      <Filter>Source Files\samples</Filter>
+    <ClCompile Include="..\..\release\samples\cppgetdoc\getdoc.cpp">
+      <Filter>Source Files\samples\cppgetdoc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\release\samples\getdoc.cpp">
-      <Filter>Source Files\samples</Filter>
+    <ClCompile Include="..\..\release\samples\cppcommon\ConnectionFactory.cpp">
+      <Filter>Source Files\samples\cppcommon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp">
+    <ClInclude Include="..\..\release\samples\cppcommon\ConnectionFactory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
+    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugixml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugiconfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

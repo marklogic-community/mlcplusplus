@@ -22,7 +22,7 @@ using namespace mlclient;
 
 class ConnectionFactory {
 public:
-  static Connection* getConnection(void);
+  static IConnection* getConnection(void);
 private:
   ConnectionFactory();
   virtual ~ConnectionFactory();

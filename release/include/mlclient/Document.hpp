@@ -12,6 +12,7 @@
 
 #include <mlclient/DocumentContent.hpp>
 #include <mlclient/Permission.hpp>
+#include <mlclient/mlclient.hpp>
 #include <vector>
 
 namespace mlclient {
@@ -25,35 +26,35 @@ namespace mlclient {
  */
 class Document {
 public:
-  Document();
-  Document(const std::string& uri);
-  Document(const std::string& uri,IDocumentContent* own_content);
-  Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties);
-  Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties,std::vector<Permission> own_permissions);
-  virtual ~Document() = default;
+  MLCLIENT_API Document();
+  MLCLIENT_API Document(const std::string& uri);
+  MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content);
+  MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties);
+  MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties,std::vector<Permission> own_permissions);
+  MLCLIENT_API virtual ~Document() = default;
 
-  const std::string& getUri() const;
-  void setUri(const std::string& uri);
-  const bool hasUri() const;
+  MLCLIENT_API const std::string& getUri() const;
+  MLCLIENT_API void setUri(const std::string& uri);
+  MLCLIENT_API const bool hasUri() const;
 
-  const std::vector<std::string> getCollections() const;
-  void setCollections(const std::vector<std::string>& collections);
-  const bool hasCollections() const;
+  MLCLIENT_API const std::vector<std::string> getCollections() const;
+  MLCLIENT_API void setCollections(const std::vector<std::string>& collections);
+  MLCLIENT_API const bool hasCollections() const;
 
-  const IDocumentContent* getContent() const;
-  const bool hasContent() const;
-  void setContent(IDocumentContent* own_content);
+  MLCLIENT_API const IDocumentContent* getContent() const;
+  MLCLIENT_API const bool hasContent() const;
+  MLCLIENT_API void setContent(IDocumentContent* own_content);
 
-  const IDocumentContent* getProperties() const;
-  const bool hasProperties() const;
-  void setProperties(IDocumentContent* own_properties);
+  MLCLIENT_API const IDocumentContent* getProperties() const;
+  MLCLIENT_API const bool hasProperties() const;
+  MLCLIENT_API void setProperties(IDocumentContent* own_properties);
 
-  const std::vector<Permission> getPermissions() const;
-  const bool hasPermissions() const;
-  void setPermissions(std::vector<Permission> own_permissions);
+  MLCLIENT_API const std::vector<Permission> getPermissions() const;
+  MLCLIENT_API const bool hasPermissions() const;
+  MLCLIENT_API void setPermissions(std::vector<Permission> own_permissions);
 
-  bool operator==(const Document& other);
-  bool operator!=(const Document& other);
+  MLCLIENT_API bool operator==(const Document& other);
+  MLCLIENT_API bool operator!=(const Document& other);
 
 private:
   std::string uri;

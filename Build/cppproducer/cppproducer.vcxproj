@@ -76,6 +76,14 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(MLCLIENT_DIR)\Build\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\build\native\include\;$(MLCLIENT_DIR)\release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>..\Debug\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Debug;..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -111,40 +119,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\release\samples\cppcommon\ConnectionFactory.cpp" />
     <ClCompile Include="..\..\release\samples\cppproducer\producermain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\include\mlclient\Connection.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\ConnectionWrapper.h" />
-    <ClInclude Include="..\..\release\include\mlclient\CWrapper.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\DocumentContent.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\ext\easylogging++.h" />
-    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugiconfig.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugixml.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\HttpHeaders.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\AuthenticatingProxy.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\AuthorizationBuilder.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\Conversions.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\Credentials.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\FakeConnection.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\memory.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\internals\MLCrypto.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\InvalidFormatException.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\mlclient.h" />
-    <ClInclude Include="..\..\release\include\mlclient\mlclient.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\NoCredentialsException.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\Response.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\ResponseWrapper.h" />
-    <ClInclude Include="..\..\release\include\mlclient\SearchDescription.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\SearchResult.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\SearchResultSet.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\ResponseHelper.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\SearchBuilder.hpp" />
-    <ClInclude Include="..\..\release\include\mlclient\utilities\SearchOptionsBuilder.hpp" />
+    <ClInclude Include="..\..\release\samples\cppcommon\ConnectionFactory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

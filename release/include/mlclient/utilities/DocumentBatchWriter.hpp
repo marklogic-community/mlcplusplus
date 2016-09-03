@@ -12,6 +12,8 @@
 #include <mlclient/Document.hpp>
 #include <mlclient/Connection.hpp>
 
+#include <mlclient/mlclient.hpp>
+
 namespace mlclient {
 
 namespace utilities {
@@ -36,9 +38,9 @@ struct Progress {
  */
 class IBatchNotifiable {
 public:
-  virtual ~IBatchNotifiable();
+  MLCLIENT_API virtual ~IBatchNotifiable();
 
-  virtual void batchOperationComplete(const std::vector<std::string> out_uris,bool success,std::exception* problem) = 0;
+  MLCLIENT_API virtual void batchOperationComplete(const std::vector<std::string> out_uris,bool success,std::exception* problem) = 0;
 };
 
 /**
@@ -48,43 +50,43 @@ public:
  */
 class DocumentBatchWriter {
 public:
-  DocumentBatchWriter(IConnection* conn);
-  DocumentBatchWriter(const DocumentBatchWriter& other) = delete;
-  ~DocumentBatchWriter();
+  MLCLIENT_API DocumentBatchWriter(IConnection* conn);
+  MLCLIENT_API DocumentBatchWriter(const DocumentBatchWriter& other) = delete;
+  MLCLIENT_API ~DocumentBatchWriter();
 
-  void assignDocuments(DocumentSet&& set);
+  MLCLIENT_API void assignDocuments(DocumentSet&& set);
 
-  void setBatchParameters(const int parallelTasks,const int batchSize,const TransactionMode& mode);
-  const int getParallelTasks() const;
-  const int getBatchSize() const;
-  const TransactionMode getMode() const;
+  MLCLIENT_API void setBatchParameters(const int parallelTasks,const int batchSize,const TransactionMode& mode);
+  MLCLIENT_API const int getParallelTasks() const;
+  MLCLIENT_API const int getBatchSize() const;
+  MLCLIENT_API const TransactionMode getMode() const;
 
-  void addBatchListener(IBatchNotifiable* notifiable);
-  void removeBatchListener(IBatchNotifiable* notifiable);
+  MLCLIENT_API void addBatchListener(IBatchNotifiable* notifiable);
+  MLCLIENT_API void removeBatchListener(IBatchNotifiable* notifiable);
 
-  void send();
-  void stop();
+  MLCLIENT_API void send();
+  MLCLIENT_API void stop();
 
-  void wait() const;
+  MLCLIENT_API void wait() const;
 
   /**
    * \brief Has this class ran to completion?
    */
-  const bool isComplete() const;
+  MLCLIENT_API const bool isComplete() const;
 
   /**
    * \brief Has this class been cancelled?
    */
-  const bool isCancelled() const;
+  MLCLIENT_API const bool isCancelled() const;
 
   /**
    * \brief Are all asynchronous operations completed?
    *
    * \note This class can still be working after stop() has been called. E.g. if a batch upload request is in progress
    */
-  const bool isFinished() const;
+  MLCLIENT_API const bool isFinished() const;
 
-  const Progress getProgress() const;
+  MLCLIENT_API const Progress getProgress() const;
 private:
   class Impl;
   std::unique_ptr<Impl> mImpl;

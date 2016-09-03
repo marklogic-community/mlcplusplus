@@ -12,9 +12,9 @@
  * limitations under the License.
  *
  */
-#include "mlclient/ConnectionWrapper.h"
-#include "ConnectionFactoryWrapper.h"
-#include "ConnectionFactory.hpp"
+#include <mlclient/ConnectionWrapper.h>
+#include "ccommon/ConnectionFactoryWrapper.h"
+#include "cppcommon/ConnectionFactory.hpp"
 
 extern "C" {
 

@@ -127,6 +127,12 @@
     <ClCompile Include="..\release\src\ValuesResultSet.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\release\src\utilities\DocumentBatchHelper.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\DocumentBatchWriter.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -235,6 +241,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\release\include\mlclient\ValuesResultSet.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\Permission.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\Document.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\DocumentSet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

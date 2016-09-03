@@ -11,6 +11,7 @@
 #include <mlclient/Document.hpp>
 #include <mlclient/DocumentContent.hpp>
 #include <mlclient/DocumentSet.hpp>
+#include <mlclient/mlclient.hpp>
 
 namespace mlclient {
 
@@ -28,7 +29,7 @@ public:
    *
    * \since 8.0.2
    */
-  static void addFilesToDocumentSet(const std::string& folder,const std::string& baseFolder,const bool stripBase,const std::string& appendBase,
+  MLCLIENT_API static void addFilesToDocumentSet(const std::string& folder,const std::string& baseFolder,const bool stripBase,const std::string& appendBase,
       const std::vector<std::string>& collections,const std::vector<Permission>& permissions,IDocumentContent* properties,DocumentSet& addTo,
       bool showHiddenDirs = false);
 

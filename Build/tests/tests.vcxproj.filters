@@ -48,6 +48,12 @@
     <ClCompile Include="..\..\release\test\SearchOptionsBuilderTest.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\release\test\DocumentBatchWriterTest.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\release\test\ValuesResultSetTest.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\release\test\SearchBuilderTest.hpp">
@@ -65,9 +71,6 @@
     <ClInclude Include="..\..\release\test\ConnectionSearchTest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\release\test\ConnectionValuesTest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -75,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\release\test\SearchOptionsBuilderTest.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\release\test\ValuesResultSetTest.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\release\test\DocumentBatchWriterTest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

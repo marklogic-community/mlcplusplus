@@ -35,11 +35,233 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\BinaryEncoding.cs">
-      <Link>GeneratedFiles\BinaryEncoding.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\AggregateBuiltIn.cs">
+      <Link>GeneratedFiles\AggregateBuiltIn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\AggregateInfo.cs">
+      <Link>GeneratedFiles\AggregateInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\Connection.cs">
       <Link>GeneratedFiles\Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonArrayNode.cs">
+      <Link>GeneratedFiles\CppRestJsonArrayNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonContainerNode.cs">
+      <Link>GeneratedFiles\CppRestJsonContainerNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentContent.cs">
+      <Link>GeneratedFiles\CppRestJsonDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNavigator.cs">
+      <Link>GeneratedFiles\CppRestJsonDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNode.cs">
+      <Link>GeneratedFiles\CppRestJsonDocumentNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonHelper.cs">
+      <Link>GeneratedFiles\CppRestJsonHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonObjectNode.cs">
+      <Link>GeneratedFiles\CppRestJsonObjectNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentBatchHelper.cs">
+      <Link>GeneratedFiles\DocumentBatchHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentBatchWriter.cs">
+      <Link>GeneratedFiles\DocumentBatchWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentHelper.cs">
+      <Link>GeneratedFiles\DocumentHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FacetOption.cs">
+      <Link>GeneratedFiles\FacetOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FragmentScope.cs">
+      <Link>GeneratedFiles\FragmentScope.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\GenericQuery.cs">
+      <Link>GeneratedFiles\GenericQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IBatchNotifiable.cs">
+      <Link>GeneratedFiles\IBatchNotifiable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IContainerRef.cs">
+      <Link>GeneratedFiles\IContainerRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ILexiconRef.cs">
+      <Link>GeneratedFiles\ILexiconRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IQuery.cs">
+      <Link>GeneratedFiles\IQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ITypedValue.cs">
+      <Link>GeneratedFiles\ITypedValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\JsonPropertyQuery.cs">
+      <Link>GeneratedFiles\JsonPropertyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\JsonPropertyRef.cs">
+      <Link>GeneratedFiles\JsonPropertyRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\LexiconType.cs">
+      <Link>GeneratedFiles\LexiconType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcsharp.cs">
+      <Link>GeneratedFiles\mlclientcsharp.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcsharpPINVOKE.cs">
+      <Link>GeneratedFiles\mlclientcsharpPINVOKE.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Progress.cs">
+      <Link>GeneratedFiles\Progress.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlArrayNode.cs">
+      <Link>GeneratedFiles\PugiXmlArrayNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlContainerNode.cs">
+      <Link>GeneratedFiles\PugiXmlContainerNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentContent.cs">
+      <Link>GeneratedFiles\PugiXmlDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNavigator.cs">
+      <Link>GeneratedFiles\PugiXmlDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNode.cs">
+      <Link>GeneratedFiles\PugiXmlDocumentNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlHelper.cs">
+      <Link>GeneratedFiles\PugiXmlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlObjectNode.cs">
+      <Link>GeneratedFiles\PugiXmlObjectNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\QueryBuilderMode.cs">
+      <Link>GeneratedFiles\QueryBuilderMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeIndexType.cs">
+      <Link>GeneratedFiles\RangeIndexType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeLexiconRef.cs">
+      <Link>GeneratedFiles\RangeLexiconRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOperation.cs">
+      <Link>GeneratedFiles\RangeOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOption.cs">
+      <Link>GeneratedFiles\RangeOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOptions.cs">
+      <Link>GeneratedFiles\RangeOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ResponseHelper.cs">
+      <Link>GeneratedFiles\ResponseHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchBuilder.cs">
+      <Link>GeneratedFiles\SearchBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchOptionsBuilder.cs">
+      <Link>GeneratedFiles\SearchOptionsBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResultSet.cs">
+      <Link>GeneratedFiles\SearchResultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResultSetIterator.cs">
+      <Link>GeneratedFiles\SearchResultSetIterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_int32_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_int32_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_p_char.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_p_char.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_document.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_pugi__xml_document.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_node.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_pugi__xml_node.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__exception.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__exception.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__istream.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__istream.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_std__string_std__string_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__mapT_std__string_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__string.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__string.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__Document_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_mlclient__Document_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__Permission_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_mlclient__Permission_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_std__string_t.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_std__vectorT_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_void.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_void.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__array.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_web__json__array.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__object.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_web__json__object.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__value.cs">
+      <Link>GeneratedFiles\SWIGTYPE_p_web__json__value.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\TransactionMode.cs">
+      <Link>GeneratedFiles\TransactionMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesInfo.cs">
+      <Link>GeneratedFiles\ValuesInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesIterator.cs">
+      <Link>GeneratedFiles\ValuesIterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesOption.cs">
+      <Link>GeneratedFiles\ValuesOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultSet.cs">
+      <Link>GeneratedFiles\ValuesResultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\BinaryEncoding.cs">
+      <Link>GeneratedFiles\BinaryEncoding.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Capability.cs">
+      <Link>GeneratedFiles\Capability.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Document.cs">
+      <Link>GeneratedFiles\Document.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FileDocumentContent.cs">
+      <Link>GeneratedFiles\FileDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Format.cs">
+      <Link>GeneratedFiles\Format.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\GenericTextDocumentContent.cs">
       <Link>GeneratedFiles\GenericTextDocumentContent.cs</Link>
@@ -53,8 +275,20 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentContent.cs">
       <Link>GeneratedFiles\IDocumentContent.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentNavigator.cs">
+      <Link>GeneratedFiles\IDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentNode.cs">
+      <Link>GeneratedFiles\IDocumentNode.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ITextDocumentContent.cs">
       <Link>GeneratedFiles\ITextDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\LoggingConfiguration.cs">
+      <Link>GeneratedFiles\LoggingConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Permission.cs">
+      <Link>GeneratedFiles\Permission.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\Response.cs">
       <Link>GeneratedFiles\Response.cs</Link>
@@ -65,26 +299,23 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ResponseType.cs">
       <Link>GeneratedFiles\ResponseType.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_std__string_std__string_t.cs">
-      <Link>GeneratedFiles\SWIGTYPE_p_std__mapT_std__string_std__string_t.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__ostream.cs">
-      <Link>GeneratedFiles\SWIGTYPE_p_std__ostream.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__string.cs">
-      <Link>GeneratedFiles\SWIGTYPE_p_std__string.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_void.cs">
-      <Link>GeneratedFiles\SWIGTYPE_p_void.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchDescription.cs">
       <Link>GeneratedFiles\SearchDescription.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcsharp.cs">
-      <Link>GeneratedFiles\mlclientcsharp.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResult.cs">
+      <Link>GeneratedFiles\SearchResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcsharpPINVOKE.cs">
-      <Link>GeneratedFiles\mlclientcsharpPINVOKE.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResult.cs">
+      <Link>GeneratedFiles\ValuesResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregate.cs">
+      <Link>GeneratedFiles\ValuesResultAggregate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregateType.cs">
+      <Link>GeneratedFiles\ValuesResultAggregateType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultValue.cs">
+      <Link>GeneratedFiles\ValuesResultValue.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
