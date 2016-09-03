@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['folder',['folder',['../structmlclient_1_1_logging_configuration.html#a37148601380a58492d80c06dbf452bee',1,'mlclient::LoggingConfiguration']]]
+  ['level',['level',['../structmlclient_1_1_logging_configuration.html#a65722232a3227f30d6af31abf590a007',1,'mlclient::LoggingConfiguration']]]
 ];

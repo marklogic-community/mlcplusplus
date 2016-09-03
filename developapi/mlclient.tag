@@ -15,82 +15,82 @@
     <name>ConnectionWrapper.h</name>
     <path>/Users/adamfowler/Documents/marklogic/git/mlcplusplus/release/include/mlclient/</path>
     <filename>_connection_wrapper_8h</filename>
-    <includes id="_response_wrapper_8h" name="ResponseWrapper.h" local="yes" imported="no">mlclient/ResponseWrapper.h</includes>
+    <includes id="_response_wrapper_8h" name="ResponseWrapper.h" local="no" imported="no">mlclient/ResponseWrapper.h</includes>
     <member kind="function">
-      <type>CConnection *</type>
+      <type>MLCLIENT_API CConnection *</type>
       <name>ml_connection_new</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a0f9f96ce7400bf0f66d951c499f039ce</anchor>
+      <anchor>ae51d0c89f69858afc306e0db9dc40bf8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>MLCLIENT_API void</type>
       <name>ml_connection_delete</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a613b334d14483b593a62a82dd357d093</anchor>
+      <anchor>a9a4c39d112c4914b5986edb882b529cd</anchor>
       <arglist>(CConnection *t)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>MLCLIENT_API void</type>
       <name>ml_connection_configure</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a39f47ecbe026017cb9964e238481fd5b</anchor>
+      <anchor>a45b61af5db0a2e53bacbb157b61db733</anchor>
       <arglist>(const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_doGet</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a6bbf29f4338b15cb35bfae191b192f24</anchor>
+      <anchor>a022e306b067719c6e082ea31435281dc</anchor>
       <arglist>(const CConnection *conn, const char *pathAndQuerystring)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_doPut</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>ae660f9102176c5099c8ff98d786e4ba9</anchor>
+      <anchor>a0856b09ce1d065d015c8b9f5d934684d</anchor>
       <arglist>(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_doPost</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>affdd087058b68446b0ce50f0bbdacad3</anchor>
+      <anchor>ac4842aa4c201590f1bab895e68cb66be</anchor>
       <arglist>(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_doDelete</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>abd4486855d9fce5a784eecb44388f446</anchor>
+      <anchor>af2c0fae28024c6ee3d72dfd856205da7</anchor>
       <arglist>(const CConnection *conn, const char *path)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_getDocument</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>adef37c84afd3c6aa67f0d00ab8cbf28b</anchor>
+      <anchor>a20ee2cb689da7b31499bc600b50935b8</anchor>
       <arglist>(const CConnection *conn, const char *uri)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_saveDocument</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a2980636057bdddf93031b906335be937</anchor>
+      <anchor>ac2693382bd036a27e68b9af519e90d5e</anchor>
       <arglist>(const CConnection *conn, const char *uri, const char *payload)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_deleteDocument</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>afdaa9f1f5c99bd4d22b33ab013fdd4a4</anchor>
+      <anchor>af26f1c488eba5e8eb92410b7980a905f</anchor>
       <arglist>(const CConnection *conn, const char *uri)</arglist>
     </member>
     <member kind="function">
-      <type>CResponse *</type>
+      <type>MLCLIENT_API CResponse *</type>
       <name>ml_connection_search</name>
       <anchorfile>_connection_wrapper_8h.html</anchorfile>
-      <anchor>a72f44f2378058efa160a27dd356bc75c</anchor>
+      <anchor>a66fa6cc9bccdeb608458ff920c063a06</anchor>
       <arglist>(const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</arglist>
     </member>
   </compound>
@@ -208,45 +208,45 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>MLCLIENT_API void</type>
       <name>ml_response_delete</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a578dea9925aa14f3355f616a8987e485</anchor>
+      <anchor>a6d10ca625ff125a3449ad605ca74af99</anchor>
       <arglist>(CResponse *t)</arglist>
     </member>
     <member kind="function">
-      <type>const int</type>
+      <type>MLCLIENT_API const int</type>
       <name>ml_response_length</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a2879bf705ca85736d538e3398bf73bc9</anchor>
+      <anchor>a8a115c63d5bc023dff43031e46dadf7f</anchor>
       <arglist>(CResponse *t)</arglist>
     </member>
     <member kind="function">
-      <type>const char *const</type>
+      <type>MLCLIENT_API const char *const</type>
       <name>ml_response_String</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a7faed8268459bce88a0481b4a9dad94e</anchor>
+      <anchor>a06b4c25815ae6793fe1166d81e5a4d1f</anchor>
       <arglist>(CResponse *t)</arglist>
     </member>
     <member kind="function">
-      <type>const int</type>
+      <type>MLCLIENT_API const int</type>
       <name>ml_response_GetResponseType</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a271df6f53d508c26f9e9029491e82b52</anchor>
+      <anchor>a275c7c1c833b6fea89852de7d29bd55e</anchor>
       <arglist>(CResponse *t)</arglist>
     </member>
     <member kind="function">
-      <type>const int</type>
+      <type>MLCLIENT_API const int</type>
       <name>ml_response_GetResponseCode</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a9971b2bb07a09aded1639586af7487ae</anchor>
+      <anchor>a6ab1ef7e6b3bbd69b1920a214ddeb689</anchor>
       <arglist>(CResponse *t)</arglist>
     </member>
     <member kind="function">
-      <type>const char *const</type>
+      <type>MLCLIENT_API const char *const</type>
       <name>ml_responsecodes_translate</name>
       <anchorfile>_response_wrapper_8h.html</anchorfile>
-      <anchor>a63a21f0f72515ddd2b258a43ef34a7e5</anchor>
+      <anchor>a9b55cc6cdcaa9e670e154d1052863fba</anchor>
       <arglist>(int code)</arglist>
     </member>
   </compound>
@@ -1080,10 +1080,10 @@
     <name>mlclient::utilities::DocumentBatchHelper</name>
     <filename>classmlclient_1_1utilities_1_1_document_batch_helper.html</filename>
     <member kind="function" static="yes">
-      <type>static void</type>
+      <type>static MLCLIENT_API void</type>
       <name>addFilesToDocumentSet</name>
       <anchorfile>classmlclient_1_1utilities_1_1_document_batch_helper.html</anchorfile>
-      <anchor>a26b28e91444d3c7cfe56ef4f24c204fb</anchor>
+      <anchor>aaf3b2c47d246085a115426cb05d3ef49</anchor>
       <arglist>(const std::string &amp;folder, const std::string &amp;baseFolder, const bool stripBase, const std::string &amp;appendBase, const std::vector&lt; std::string &gt; &amp;collections, const std::vector&lt; Permission &gt; &amp;permissions, IDocumentContent *properties, DocumentSet &amp;addTo, bool showHiddenDirs=false)</arglist>
     </member>
   </compound>
@@ -1091,24 +1091,24 @@
     <name>mlclient::utilities::DocumentBatchWriter</name>
     <filename>classmlclient_1_1utilities_1_1_document_batch_writer.html</filename>
     <member kind="function">
-      <type>const bool</type>
+      <type>MLCLIENT_API const bool</type>
       <name>isComplete</name>
       <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
-      <anchor>aa48d42514284f724faf575fbfd0e29f5</anchor>
+      <anchor>a74cf27d56d87a71845014e8d9182414c</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>const bool</type>
+      <type>MLCLIENT_API const bool</type>
       <name>isCancelled</name>
       <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
-      <anchor>a2ab81b3edf53524d6099eba871e17233</anchor>
+      <anchor>afe5344e5aaa094f0bda0ac96e702d03f</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>const bool</type>
+      <type>MLCLIENT_API const bool</type>
       <name>isFinished</name>
       <anchorfile>classmlclient_1_1utilities_1_1_document_batch_writer.html</anchorfile>
-      <anchor>a1ba1466a0f6b41b6659b9d5bd72e81e1</anchor>
+      <anchor>a484a29fe03fce83380928a3e58cc800d</anchor>
       <arglist>() const </arglist>
     </member>
   </compound>
@@ -1820,12 +1820,12 @@
       <anchor>a086d89454998056b283bcad56e780025</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
+    <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API</type>
       <name>~IDocumentContent</name>
       <anchorfile>classmlclient_1_1_i_document_content.html</anchorfile>
-      <anchor>ad6e526a204c35ca42153d4484bc751a5</anchor>
-      <arglist>()</arglist>
+      <anchor>a540378b9f20716c53cbef978b01b0d39</anchor>
+      <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual MLCLIENT_API std::istream *</type>
@@ -2511,6 +2511,20 @@
       <arglist>(SearchResult &amp;&amp;other)</arglist>
     </member>
     <member kind="function">
+      <type>MLCLIENT_API SearchResult &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
+      <anchor>a72fde9d4cbe40236f60b7bdb329825ae</anchor>
+      <arglist>(SearchResult &amp;&amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>SearchResult &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
+      <anchor>a22c34b576940349f73c8ca8dafedfc94</anchor>
+      <arglist>(const SearchResult &amp;&amp;other)</arglist>
+    </member>
+    <member kind="function">
       <type>MLCLIENT_API</type>
       <name>~SearchResult</name>
       <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
@@ -2521,8 +2535,8 @@
       <type>MLCLIENT_API</type>
       <name>SearchResult</name>
       <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
-      <anchor>a6404d94bd4a7527562d921905b508037</anchor>
-      <arglist>(const long index, const std::string &amp;uri, const std::string &amp;path, const long score, const double confidence, const double fitness, const Detail &amp;detail, IDocumentContent *detailContent=nullptr, const std::string &amp;mimeType=&quot;&quot;, const std::string &amp;format=JSON)</arglist>
+      <anchor>a74a8fe5fd29d3d5238fd29f9c393b936</anchor>
+      <arglist>(const long index, const std::string &amp;uri, const std::string &amp;path, const long score, const double confidence, const double fitness, const Detail &amp;detail, IDocumentContent *detailContent=nullptr, const std::string &amp;mimeType=&quot;&quot;, const Format &amp;format=Format::JSON)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API long</type>
@@ -2588,32 +2602,11 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API const std::string &amp;</type>
+      <type>MLCLIENT_API const Format &amp;</type>
       <name>getFormat</name>
       <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
-      <anchor>a07704cf00f49d54cbfd8238580a7a015</anchor>
+      <anchor>a84d918ced60244cd876fc351ca0b69f5</anchor>
       <arglist>() const </arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static MLCLIENT_API const std::string</type>
-      <name>JSON</name>
-      <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
-      <anchor>a1002d2c5daf79fbe3dcbef93ee4e1a53</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static MLCLIENT_API const std::string</type>
-      <name>XML</name>
-      <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
-      <anchor>ae1ae18b607131f705480cdebc2ad9f55</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static MLCLIENT_API const std::string</type>
-      <name>BINARY</name>
-      <anchorfile>classmlclient_1_1_search_result.html</anchorfile>
-      <anchor>af91bb138faa1ccf1975ace0b66ac419d</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3057,6 +3050,18 @@
     </member>
     <member kind="enumeration">
       <type></type>
+      <name>Format</name>
+      <anchorfile>namespacemlclient.html</anchorfile>
+      <anchor>ab1cd81178c7ab61a41b52c2d93e7d5e4</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacemlclient.html" anchor="ab1cd81178c7ab61a41b52c2d93e7d5e4a0ecd11c1d7a287401d148a23bbd7a2f8">JSON</enumvalue>
+      <enumvalue file="namespacemlclient.html" anchor="ab1cd81178c7ab61a41b52c2d93e7d5e4a3501bb093d363810b671059b9cfed3f8">XML</enumvalue>
+      <enumvalue file="namespacemlclient.html" anchor="ab1cd81178c7ab61a41b52c2d93e7d5e4a98ad0e8750ae10ad556ed7a62affb452">BINARY</enumvalue>
+      <enumvalue file="namespacemlclient.html" anchor="ab1cd81178c7ab61a41b52c2d93e7d5e4ab50339a10e1de285ac99d4c3990b8693">NONE</enumvalue>
+      <enumvalue file="namespacemlclient.html" anchor="ab1cd81178c7ab61a41b52c2d93e7d5e4a61a96ffcb251bb9bf0abf8fec19d0ea8">TEXT</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
       <name>ValuesResultAggregateType</name>
       <anchorfile>namespacemlclient.html</anchorfile>
       <anchor>a779f5c828b0a87bbb4b9fee51c6eb3cd</anchor>
@@ -3215,7 +3220,7 @@
     <title>Installing MLCPlusPlus</title>
     <filename>page_install</filename>
     <docanchor file="page_install" title="Get Casablanca">sec_getcasablanca</docanchor>
-    <docanchor file="page_install">sec_getpugixml</docanchor>
+    <docanchor file="page_install" title="Using PUGI XML">sec_getpugixml</docanchor>
     <docanchor file="page_install" title="Building the MLCPlusPlus library from source">sec_buildit</docanchor>
     <docanchor file="page_install" title="Installing MLCPlusPlus globally in your system">sec_install_for_dev</docanchor>
     <docanchor file="page_install" title="Using the MLCPlusPlus library in your C++ application">sec_using</docanchor>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['binary',['BINARY',['../classmlclient_1_1_search_result.html#af91bb138faa1ccf1975ace0b66ac419d',1,'mlclient::SearchResult']]]
+  ['folder',['folder',['../structmlclient_1_1_logging_configuration.html#a37148601380a58492d80c06dbf452bee',1,'mlclient::LoggingConfiguration']]]
 ];

@@ -259,6 +259,16 @@ Enumerations</h2></td></tr>
 <br />
  }<tr class="separator:ac8a0790b90fd9b1df837c9476659fb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
+<tr class="memitem:ab1cd81178c7ab61a41b52c2d93e7d5e4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ab1cd81178c7ab61a41b52c2d93e7d5e4">Format</a> { <br />
+&#160;&#160;<b>JSON</b>, 
+<b>XML</b>, 
+<b>BINARY</b>, 
+<b>NONE</b>, 
+<br />
+&#160;&#160;<b>TEXT</b>
+<br />
+ }<tr class="separator:ab1cd81178c7ab61a41b52c2d93e7d5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
 <tr class="memitem:a779f5c828b0a87bbb4b9fee51c6eb3cd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd">ValuesResultAggregateType</a> { <b>SIMPLE_DOUBLE</b>, 
 <b>COMPLEX_MAP_ARRAY</b>
  }<tr class="memdesc:a779f5c828b0a87bbb4b9fee51c6eb3cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the type of response received from the aggregate.  <a href="namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd">More...</a><br /></td></tr>
@@ -290,9 +300,9 @@ MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="botto
 <tr class="memitem:a6a04e6a2528724eacdbb2c4c60f883b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a04e6a2528724eacdbb2c4c60f883b3"></a>
 MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
 <tr class="separator:a6a04e6a2528724eacdbb2c4c60f883b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12cb138f80d5f7d1d5fe6f15d4d3817"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa12cb138f80d5f7d1d5fe6f15d4d3817"></a>
-MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
-<tr class="separator:aa12cb138f80d5f7d1d5fe6f15d4d3817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eacedc7dd25dd58c8b3d0c81a0f8479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eacedc7dd25dd58c8b3d0c81a0f8479"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_capability</b> (const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
+<tr class="separator:a9eacedc7dd25dd58c8b3d0c81a0f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc2f87da3163aae2c67beb93dd6ddc3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc2f87da3163aae2c67beb93dd6ddc3e"></a>
 MLCLIENT_API <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&#160;</td><td class="memItemRight" valign="bottom"><b>toCapability</b> (const std::string &amp;capString)</td></tr>
 <tr class="separator:abc2f87da3163aae2c67beb93dd6ddc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,27 +312,27 @@ MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="botto
 <tr class="memitem:a78b6b81f67c1ef071a0d245b3ea19de9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78b6b81f67c1ef071a0d245b3ea19de9"></a>
 MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
 <tr class="separator:a78b6b81f67c1ef071a0d245b3ea19de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af02363f1930aec4a07da2b5b1c713dd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af02363f1930aec4a07da2b5b1c713dd3"></a>
-MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
-<tr class="separator:af02363f1930aec4a07da2b5b1c713dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9094de7141a21dcc90f56c5748cb8eb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9094de7141a21dcc90f56c5748cb8eb7"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_permission</b> (const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
+<tr class="separator:a9094de7141a21dcc90f56c5748cb8eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa32fbc042e37a796736e4424f881721"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa32fbc042e37a796736e4424f881721"></a>
 MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
 <tr class="separator:aaa32fbc042e37a796736e4424f881721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e25ff023841d85a1a3aa675e7802be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02e25ff023841d85a1a3aa675e7802be"></a>
 MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
 <tr class="separator:a02e25ff023841d85a1a3aa675e7802be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09256a89fd189a3aa18c452c9d459aa4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09256a89fd189a3aa18c452c9d459aa4"></a>
-MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:a09256a89fd189a3aa18c452c9d459aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f609d416d7555149bc93d1ade7538ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f609d416d7555149bc93d1ade7538ec"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_responsetype</b> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:a5f609d416d7555149bc93d1ade7538ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d3442e0de30ec73f0f986f667edbe3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82d3442e0de30ec73f0f986f667edbe3"></a>
 MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
 <tr class="separator:a82d3442e0de30ec73f0f986f667edbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9670a4e4e5d2e2285e2d2022c1a8117"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9670a4e4e5d2e2285e2d2022c1a8117"></a>
 MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
 <tr class="separator:ad9670a4e4e5d2e2285e2d2022c1a8117"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42e17d4fc6c6e9092ced29c1b40b8f6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42e17d4fc6c6e9092ced29c1b40b8f6d"></a>
-MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
-<tr class="separator:a42e17d4fc6c6e9092ced29c1b40b8f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1edf78e97a903b6a711532781b30b188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1edf78e97a903b6a711532781b30b188"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_responsecode</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
+<tr class="separator:a1edf78e97a903b6a711532781b30b188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>the namespace which wraps all Core Public C++ API classes. </p>
@@ -378,6 +388,27 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
 
 <p>An enumeration for use with the BinaryDocumentContent class. </p>
 <p>There are many ways to encode a Binary document as a string. This enum allows them to be described. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab1cd81178c7ab61a41b52c2d93e7d5e4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacemlclient.html#ab1cd81178c7ab61a41b52c2d93e7d5e4">mlclient::Format</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Represents the format of the results </p>
 
 </div>
 </div>

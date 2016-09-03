@@ -102,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef INCLUDE_MLCLIENT_PERMISSION_HPP_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define INCLUDE_MLCLIENT_PERMISSION_HPP_</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;mlclient/mlclient.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;mlclient/mlclient.hpp&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iosfwd&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
@@ -116,23 +116,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;MLCLIENT_API std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; rt);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;MLCLIENT_API std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; rt);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;MLCLIENT_API <span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; rt);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;MLCLIENT_API <span class="keyword">const</span> std::string translate_capability(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; rt);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;MLCLIENT_API <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> toCapability(<span class="keyword">const</span> std::string&amp; capString);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classmlclient_1_1_permission.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_permission.html">Permission</a> {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <a class="code" href="classmlclient_1_1_permission.html">Permission</a>(<span class="keyword">const</span> std::string&amp; role,<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; capability);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <a class="code" href="classmlclient_1_1_permission.html">Permission</a>(<a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp;&amp; other); <span class="comment">// move ctor</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="classmlclient_1_1_permission.html">Permission</a>(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; other) = <span class="keywordflow">default</span>; <span class="comment">// copy ctor</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classmlclient_1_1_permission.html">Permission</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_permission.html">Permission</a>(<span class="keyword">const</span> std::string&amp; role,<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; capability);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  MLCLIENT_API Permission(Permission&amp;&amp; other); <span class="comment">// move ctor</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  MLCLIENT_API Permission(<span class="keyword">const</span> Permission&amp; other) = <span class="keywordflow">default</span>; <span class="comment">// copy ctor</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  MLCLIENT_API <span class="keyword">virtual</span> ~Permission() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; other) = <span class="keywordflow">default</span>; <span class="comment">// default copy assignment operator</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  MLCLIENT_API Permission&amp; operator=(<span class="keyword">const</span> Permission&amp; other) = <span class="keywordflow">default</span>; <span class="comment">// default copy assignment operator</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">const</span> std::string&amp; getRole() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordtype">void</span> setRole(<span class="keyword">const</span> std::string&amp; role);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; getCapability() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordtype">void</span> setCapability(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; capability);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; getRole() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> setRole(<span class="keyword">const</span> std::string&amp; role);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; getCapability() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> setCapability(<span class="keyword">const</span> <a class="code" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&amp; capability);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  std::string role;</div>
@@ -142,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;MLCLIENT_API std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; rt);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;MLCLIENT_API std::string&amp; operator +(std::string&amp; s, <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; rt);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;MLCLIENT_API <span class="keyword">const</span> std::string translate(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; rt);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;MLCLIENT_API <span class="keyword">const</span> std::string translate_permission(<span class="keyword">const</span> <a class="code" href="classmlclient_1_1_permission.html">Permission</a>&amp; rt);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// end namespace mlclient</span></div>

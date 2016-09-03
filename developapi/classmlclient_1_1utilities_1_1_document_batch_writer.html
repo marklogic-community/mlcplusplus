@@ -104,67 +104,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a09a80f5fd5195323d89e078dbe11a76e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09a80f5fd5195323d89e078dbe11a76e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
-<tr class="separator:a09a80f5fd5195323d89e078dbe11a76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5457215f3aa9b304b94c15fefcdbb9be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5457215f3aa9b304b94c15fefcdbb9be"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (const <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html">DocumentBatchWriter</a> &amp;other)=delete</td></tr>
-<tr class="separator:a5457215f3aa9b304b94c15fefcdbb9be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3f9d992d08db14a5957171e08f339ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3f9d992d08db14a5957171e08f339ed"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignDocuments</b> (<a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&amp;set)</td></tr>
-<tr class="separator:aa3f9d992d08db14a5957171e08f339ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36693e3c2dad038800eedaefb39d7d95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36693e3c2dad038800eedaefb39d7d95"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBatchParameters</b> (const int parallelTasks, const int batchSize, const TransactionMode &amp;mode)</td></tr>
-<tr class="separator:a36693e3c2dad038800eedaefb39d7d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b0818295c0dea05f3808589b59f3d4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b0818295c0dea05f3808589b59f3d4d"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>getParallelTasks</b> () const </td></tr>
-<tr class="separator:a4b0818295c0dea05f3808589b59f3d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace93bc0f7403d093d2128fbff048f00b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace93bc0f7403d093d2128fbff048f00b"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>getBatchSize</b> () const </td></tr>
-<tr class="separator:ace93bc0f7403d093d2128fbff048f00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0053ab550971b74359798c86210fe157"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0053ab550971b74359798c86210fe157"></a>
-const TransactionMode&#160;</td><td class="memItemRight" valign="bottom"><b>getMode</b> () const </td></tr>
-<tr class="separator:a0053ab550971b74359798c86210fe157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae305a4a776238a198315625c9447387c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae305a4a776238a198315625c9447387c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
-<tr class="separator:ae305a4a776238a198315625c9447387c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8afa5becbf3e0c5e1b2d07ad0123c44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8afa5becbf3e0c5e1b2d07ad0123c44"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
-<tr class="separator:af8afa5becbf3e0c5e1b2d07ad0123c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9ea8ea1609bcbaa651176129dfe5af4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9ea8ea1609bcbaa651176129dfe5af4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> ()</td></tr>
-<tr class="separator:ad9ea8ea1609bcbaa651176129dfe5af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d43d907690b1bbe864110121898b7df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d43d907690b1bbe864110121898b7df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="separator:a1d43d907690b1bbe864110121898b7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a697821b78b3d4e67d6ffdc214b0244bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a697821b78b3d4e67d6ffdc214b0244bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>wait</b> () const </td></tr>
-<tr class="separator:a697821b78b3d4e67d6ffdc214b0244bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa48d42514284f724faf575fbfd0e29f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa48d42514284f724faf575fbfd0e29f5"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#aa48d42514284f724faf575fbfd0e29f5">isComplete</a> () const </td></tr>
-<tr class="memdesc:aa48d42514284f724faf575fbfd0e29f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class ran to completion? <br /></td></tr>
-<tr class="separator:aa48d42514284f724faf575fbfd0e29f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ab81b3edf53524d6099eba871e17233"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ab81b3edf53524d6099eba871e17233"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a2ab81b3edf53524d6099eba871e17233">isCancelled</a> () const </td></tr>
-<tr class="memdesc:a2ab81b3edf53524d6099eba871e17233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class been cancelled? <br /></td></tr>
-<tr class="separator:a2ab81b3edf53524d6099eba871e17233"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ba1466a0f6b41b6659b9d5bd72e81e1"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a1ba1466a0f6b41b6659b9d5bd72e81e1">isFinished</a> () const </td></tr>
-<tr class="memdesc:a1ba1466a0f6b41b6659b9d5bd72e81e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are all asynchronous operations completed?  <a href="#a1ba1466a0f6b41b6659b9d5bd72e81e1">More...</a><br /></td></tr>
-<tr class="separator:a1ba1466a0f6b41b6659b9d5bd72e81e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac22f01e4007a26428e99a3ef44c9571"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac22f01e4007a26428e99a3ef44c9571"></a>
-const <a class="el" href="structmlclient_1_1utilities_1_1_progress.html">Progress</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProgress</b> () const </td></tr>
-<tr class="separator:aac22f01e4007a26428e99a3ef44c9571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf6b417569ec8f6f8a7556524278959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bf6b417569ec8f6f8a7556524278959"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
+<tr class="separator:a8bf6b417569ec8f6f8a7556524278959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a434f0fe37626853a4bc79f9db805e630"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a434f0fe37626853a4bc79f9db805e630"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (const <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html">DocumentBatchWriter</a> &amp;other)=delete</td></tr>
+<tr class="separator:a434f0fe37626853a4bc79f9db805e630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8a774dbb3097da8087591e8614ffa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e8a774dbb3097da8087591e8614ffa1"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>assignDocuments</b> (<a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&amp;set)</td></tr>
+<tr class="separator:a9e8a774dbb3097da8087591e8614ffa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0647a0d283ad02b7e6322a0f01e5007"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0647a0d283ad02b7e6322a0f01e5007"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setBatchParameters</b> (const int parallelTasks, const int batchSize, const TransactionMode &amp;mode)</td></tr>
+<tr class="separator:ac0647a0d283ad02b7e6322a0f01e5007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cdbcb32447332960065a3989f0068ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cdbcb32447332960065a3989f0068ec"></a>
+MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><b>getParallelTasks</b> () const </td></tr>
+<tr class="separator:a5cdbcb32447332960065a3989f0068ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4022825ecdda4a737a144222b51bea03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4022825ecdda4a737a144222b51bea03"></a>
+MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><b>getBatchSize</b> () const </td></tr>
+<tr class="separator:a4022825ecdda4a737a144222b51bea03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae86a4a0eb89e7ca8a759aab36e7e3a17"></a>
+MLCLIENT_API const TransactionMode&#160;</td><td class="memItemRight" valign="bottom"><b>getMode</b> () const </td></tr>
+<tr class="separator:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeea1bc1ca86ebeb6494821a47a82e3ab"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="separator:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ad20ecfc0a85c51ac1f2dc42b99601c"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>removeBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="separator:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33513013acb21b4076040b7964a47460"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33513013acb21b4076040b7964a47460"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> ()</td></tr>
+<tr class="separator:a33513013acb21b4076040b7964a47460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f0c297771d40b04292210cfb77958d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f0c297771d40b04292210cfb77958d9"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="separator:a2f0c297771d40b04292210cfb77958d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c3361aee41499df23e8cb1834e14f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55c3361aee41499df23e8cb1834e14f4"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>wait</b> () const </td></tr>
+<tr class="separator:a55c3361aee41499df23e8cb1834e14f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cf27d56d87a71845014e8d9182414c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74cf27d56d87a71845014e8d9182414c"></a>
+MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a74cf27d56d87a71845014e8d9182414c">isComplete</a> () const </td></tr>
+<tr class="memdesc:a74cf27d56d87a71845014e8d9182414c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class ran to completion? <br /></td></tr>
+<tr class="separator:a74cf27d56d87a71845014e8d9182414c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5344e5aaa094f0bda0ac96e702d03f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe5344e5aaa094f0bda0ac96e702d03f"></a>
+MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#afe5344e5aaa094f0bda0ac96e702d03f">isCancelled</a> () const </td></tr>
+<tr class="memdesc:afe5344e5aaa094f0bda0ac96e702d03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class been cancelled? <br /></td></tr>
+<tr class="separator:afe5344e5aaa094f0bda0ac96e702d03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a484a29fe03fce83380928a3e58cc800d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a484a29fe03fce83380928a3e58cc800d">isFinished</a> () const </td></tr>
+<tr class="memdesc:a484a29fe03fce83380928a3e58cc800d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are all asynchronous operations completed?  <a href="#a484a29fe03fce83380928a3e58cc800d">More...</a><br /></td></tr>
+<tr class="separator:a484a29fe03fce83380928a3e58cc800d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a165978a3d88c4147ca7ab30e25dc829a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a165978a3d88c4147ca7ab30e25dc829a"></a>
+MLCLIENT_API const <a class="el" href="structmlclient_1_1utilities_1_1_progress.html">Progress</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProgress</b> () const </td></tr>
+<tr class="separator:a165978a3d88c4147ca7ab30e25dc829a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages a batched document upload/write operation. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1ba1466a0f6b41b6659b9d5bd72e81e1"></a>
+<a class="anchor" id="a484a29fe03fce83380928a3e58cc800d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool mlclient::utilities::DocumentBatchWriter::isFinished </td>
+          <td class="memname">MLCLIENT_API const bool mlclient::utilities::DocumentBatchWriter::isFinished </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
