@@ -94,8 +94,17 @@ Installation</h1>
 </ul>
 <h1><a class="anchor" id="sec_home_python_quickstart"></a>
 Quickstart</h1>
-<p>Here is some sample code. The full detail can be found <a href="https://github.com/adamfowleruk/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py">in the Python basic sample</a>.</p>
-<p>As you can see, the above sample simply connects to a MarkLogic REST API HTTP endpoint and fetches the raw text content of the JSON document with the specified document ID (URI).</p>
+<p>Here is some sample code. The full detail can be found <a href="https://github.com/adamfowleruk/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py">in the Python basic sample</a>. </p><pre class="fragment">#!/usr/bin/python
+
+import mlclientpython
+
+connection = mlclientpython.Connection();
+connection.configure("192.168.123.4","9797","admin","admin",False);
+
+response = connection.getDocument("/some/doc.json")
+
+print "Document content: ", response.getContent()
+</pre><p>As you can see, the above sample simply connects to a MarkLogic REST API HTTP endpoint and fetches the raw text content of the JSON document with the specified document ID (URI).</p>
 <h1><a class="anchor" id="sec_home_python_langspecific"></a>
 Language Specific Features</h1>
 <p>This section describes language specific features. I.e. features provided for the Idioms developers of this language would expect.</p>
