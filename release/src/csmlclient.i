@@ -7,6 +7,21 @@
 %exceptionclass InvalidFormatException;
 %exceptionclass NoCredentialsException;
 
+
+
+
+
+
+/*
+TODO add STL support
+TODO figure out how to support DocumentSet given it's a typedef of std::vector, not a real C++ class in our library!
+*/
+
+
+
+
+
+
 /*
 %exception {
     try {

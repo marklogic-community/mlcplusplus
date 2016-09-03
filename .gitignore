@@ -48,11 +48,11 @@ Build/tests/Release
 Build/packages/*
 Build/mlclient.VC.VC.opendb
 .gitignore.swp
-release/samples/csgetdoc/csgetdoc/bin
-release/samples/csgetdoc/csgetdoc/obj
-release/samples/csgetdoc/csgetdoc/Dependencies
-release/samples/csgetdoc/csgetdoc/Source Files
-release/samples/csgetdoc/csgetdoc/mlclient.dll
+release/samples/**/**/bin
+release/samples/**/**/obj
+release/samples/**/**/Dependencies
+release/samples/**/**/Source Files
+release/samples/**/**/*.dll
 logs
 performance.log
 release/**/*.o
