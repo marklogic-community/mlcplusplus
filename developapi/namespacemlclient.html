@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 
 <p>the namespace which wraps all Core Public C++ API classes.  
-</p>
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -334,7 +334,9 @@ MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom
 MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_responsecode</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
 <tr class="separator:a1edf78e97a903b6a711532781b30b188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>the namespace which wraps all Core Public C++ API classes. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="af4bcdd3248b070cb3faca6f86186ec1d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -344,6 +346,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Provides an Iterator over a set of document instances. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 </div>
@@ -357,6 +361,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Represents a set of <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object instances. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 </div>
@@ -379,6 +385,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>An enumeration for use with the BinaryDocumentContent class. </p>
 <p>There are many ways to encode a Binary document as a string. This enum allows them to be described. </p>
 
 </div>
@@ -463,6 +471,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Represents the type of response received from the aggregate. </p>
 <p>There are multiple formats returned from the MarkLogic REST API's aggregate calls. The OOTB aggregates return a simple vlaue element, which is a double encoded as a string. The REST API can also return full map:map() results from UDFs that use this capability. This is either a single map of string keys to typed values, or an array of maps.</p>
 <dl class="section note"><dt>Note</dt><dd>Currently there is a bug in the REST API that causes it only to return the first numeric value from the first element in the map array. This also has side effects for very large numbers. <a href="https://bugtrack.marklogic.com/41650">https://bugtrack.marklogic.com/41650</a></dd></dl>
 <p>This implementation is therefore necessarily flexible at the cost of programmatic precision and ease.</p>
@@ -495,6 +505,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reconfigure logging from command line args. </p>
 <p>&ndash;log-folder "/some/folder/location" Specifies the folder within which logging is done (and enables file logging), disabled by default &ndash;log-level INFO|DEBUG Specify either INFO or DEBUG log level. Defaults to INFO in Release builds, or DEBUG in Debug builds. &ndash;log-stdout true Specify log messages should also be copied to stdout (the terminal, typically). Defaults to false</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
@@ -513,6 +525,8 @@ MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reconfigures logging from a <a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> struct. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>The <a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> to use </td></tr>

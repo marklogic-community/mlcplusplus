@@ -131,6 +131,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns an IDocumentContent* instance from a response. Retrieves content only, and only for a single document. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> does not have a mime type of application/xml or application/json or plain/text, or if a parsing error occurs.</td></tr>
@@ -168,6 +170,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>A very, very simple function to take the content from a response and wrap in a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object. </p>
 <dl class="section note"><dt>Note</dt><dd>You should normally use contentFromResponse(resp) only. This function ONLY returns the content wrapped as a document for convenience. More sophisticated methods in the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> class handle all fields and multi-part responses.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
@@ -216,6 +220,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>A very, very simple function to take the content from a response and wrap in a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object. </p>
 <dl class="section note"><dt>Note</dt><dd>You should normally use contentFromResponse(resp) only. This function ONLY returns the content wrapped as a document for convenience. More sophisticated methods in the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> class handle all fields and multi-part responses.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">

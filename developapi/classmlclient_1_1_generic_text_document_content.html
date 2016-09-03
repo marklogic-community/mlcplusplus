@@ -167,7 +167,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 <tr class="separator:a91731e3a2a550129cafa23f505a597a6 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<div class="textblock"><p>This class is a specialisation of <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> (and thus <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a>) that holds all data in a string. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-12</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a></dd></dl>
 <p>This class is used as the data holding class for all JSON and XML documents. There are no JSON or XML specialisations (Use the JSON and XML helper classes in the <a class="el" href="namespacemlclient_1_1utilities.html">utilities</a> namespace instead to create, modify, or introspect the JSON/XML.) </p>
@@ -184,6 +185,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructs a blank text document. </p>
 <p>The type will by default be set to JSON. Content will by default be an empty string. </p>
 
 </div>
@@ -209,6 +212,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the content as a string. </p>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the content. </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_document_content.html#a0e840e72ae60363cd6b44f0554241592">mlclient::IDocumentContent</a>.</p>
@@ -235,6 +240,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the number of characters in the content string. </p>
 <dl class="section note"><dt>Note</dt><dd>This number does not include C null characters - just std::string length</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of characters in the string. Does not include C null character. </dd></dl>
 
@@ -262,6 +269,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the MIME type of this content. </p>
 <p>E.g. application/json or application/xml</p>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the MIME type. Does not include encoding (always assume UTF-8 for MarkLogic Server) </dd></dl>
 
@@ -289,6 +298,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the content of this TextDocumentContent as an istream. </p>
 <p>This allows streaming to a HTTP request of this string content.</p>
 <dl class="section note"><dt>Note</dt><dd>The stream may be read from asynchronously, so do not destroy the underlying content after returning the stream.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>An istream instance wrapping the content of this Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Content instance </dd></dl>
@@ -318,6 +329,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a way to navigate the document. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-07-30</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> instance to navigate this document with. </dd></dl>
@@ -347,6 +360,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Sets the textual content for this document. </p>
 <p>Assumes content string is non null</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -380,6 +395,8 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Sets the MIME type of this content. </p>
 <p>E.g. application/json or application/xml</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

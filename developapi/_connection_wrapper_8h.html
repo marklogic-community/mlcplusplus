@@ -145,7 +145,8 @@ Functions</h2></td></tr>
 <tr class="separator:a66fa6cc9bccdeb608458ff920c063a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<div class="textblock"><p>A header file to provide a C wrapping of the Connection C++ class. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -196,6 +197,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Configured the CConnection given the specified properties. </p>
 <p>See Connection::configure for details.</p>
 <dl class="section note"><dt>Note</dt><dd>Assumes digest authentication is being used.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -225,6 +228,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Safely deletes a CConnection instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>The CConnection pointer to delete. </td></tr>
@@ -257,6 +262,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Deletes a document by URI from MarkLogic server, on the specified connection instance. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-23 </dd></dl>
 
@@ -285,6 +292,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs a generic DELETE request to a MarkLogic REST API (or extension) endpoint. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -313,6 +322,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs a generic GET request to a MarkLogic REST API (or extension) endpoint. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -347,6 +358,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs a generic POST request to a MarkLogic REST API (or extension) endpoint. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -381,6 +394,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs a generic PUT request to a MarkLogic REST API (or extension) endpoint. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -409,6 +424,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fetches a document by URI from MarkLogic server, on the specified connection instance. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -426,6 +443,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a new blank CConnection instance. </p>
 <dl class="section note"><dt>Note</dt><dd>Caller is responsible for the pointer. Use ml_connection_delete to safely clean it up.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A CConnection type instance pointer. </dd></dl>
 
@@ -460,6 +479,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Saves a document by URI from MarkLogic server, on the specified connection instance. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 
@@ -500,6 +521,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Performs a search on MarkLogic server, using the specified connection instance. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 

@@ -125,7 +125,8 @@ static MLCLIENT_API std::vector&lt; <a class="el" href="classmlclient_1_1_permis
 <tr class="separator:a95ad4114987a164c14508a46574b7d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
+<div class="textblock"><p>This class provides utility functions to handle JSON data. </p>
+<dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-25</dd></dl>
 <p>This is a non-instantiable class with static functions to handle conversion of data between raw cpprest web::json::value and <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> objects.</p>
@@ -154,6 +155,8 @@ static MLCLIENT_API std::vector&lt; <a class="el" href="classmlclient_1_1_permis
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates a web::json::value from a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Don't call this on a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a> instance - use <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a2de79c91ec94662acceb7cfad0a0e919" title="Returns the underlying Microsoft cpprest API web::json::value object. ">CppRestJsonDocumentContent::getJson()</a> instead </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
@@ -192,6 +195,8 @@ static MLCLIENT_API std::vector&lt; <a class="el" href="classmlclient_1_1_permis
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates a web::json::value from a <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">An</td><td><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a> if the document does not have the mime type of application/json, or if there is a parse error. </td></tr>
@@ -229,6 +234,8 @@ static MLCLIENT_API std::vector&lt; <a class="el" href="classmlclient_1_1_permis
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance based on a cpprest API web::json::value instance. </p>
 <dl class="section note"><dt>Note</dt><dd>Actually returns a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a> instance (A subclass of TextDocumentContent)</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

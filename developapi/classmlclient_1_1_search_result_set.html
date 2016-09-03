@@ -165,7 +165,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
 <tr class="separator:a7c337bb7c4aa5ae6b96723c8ef0bd3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Sometimes it is useful to advance beyond 1 page of search results in MarkLogic. This class allows this to happen whilst carrying out any additional page requests to the underlying <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> when needed. </p>
+<div class="textblock"><p>A self-advancing result set class. </p>
+<p>Sometimes it is useful to advance beyond 1 page of search results in MarkLogic. This class allows this to happen whilst carrying out any additional page requests to the underlying <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> when needed. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="aa3e88d6827ec33a932c24e25f0377732"></a>
 <div class="memitem">
@@ -204,6 +205,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a self-advancing result set given the specified search description. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">conn</td><td>The <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> instance pointer </td></tr>
@@ -227,6 +230,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the iterator for this result set. </p>
 <dl class="section return"><dt>Returns</dt><dd>The iterator for this result set </dd></dl>
 
 </div>
@@ -243,6 +248,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a reference to the end of the iterator for this result set. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the end of the iterator for this result set </dd></dl>
 
 </div>
@@ -259,6 +266,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Uses the provided <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> and <a class="el" href="classmlclient_1_1_search_description.html" title="A POD class representing input to the POST of /v1/search - i.e. all search configuration. ">SearchDescription</a> to perform a request, and initial this object and the list of results. </p>
 <dl class="section note"><dt>Note</dt><dd>You can call the functions <a class="el" href="classmlclient_1_1_search_result_set.html#a77c6a328b91846c6a2d7a81ee16f52a6" title="Returns the iterator for this result set. ">begin()</a> and <a class="el" href="classmlclient_1_1_search_result_set.html#a94e37fc00f7357d3bf8f3e7a68c46671" title="Returns a reference to the end of the iterator for this result set. ">end()</a> immediately after <a class="el" href="classmlclient_1_1_search_result_set.html#ac4755a7f44f075ce047020ac5765ecf1" title="Uses the provided Connection and SearchDescription to perform a request, and initial this object and ...">fetch()</a> returns (<a class="el" href="classmlclient_1_1_search_result_set.html#ac4755a7f44f075ce047020ac5765ecf1" title="Uses the provided Connection and SearchDescription to perform a request, and initial this object and ...">fetch()</a> uses synchronous request functions in <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a>) </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if no errors were raised, false otherwise </dd></dl>
 
@@ -276,6 +285,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the exception, if any, encountered by <a class="el" href="classmlclient_1_1_search_result_set.html#ac4755a7f44f075ce047020ac5765ecf1" title="Uses the provided Connection and SearchDescription to perform a request, and initial this object and ...">fetch()</a>. nullptr is returned if no exception raised. </p>
 <dl class="section return"><dt>Returns</dt><dd>The exception instance pointer </dd></dl>
 
 </div>
@@ -292,6 +303,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Utility function to return the total number of pages in the result set. </p>
 <dl class="section return"><dt>Returns</dt><dd>The total number of pages in the result set </dd></dl>
 
 </div>
@@ -308,6 +321,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>SearchResultSetItera
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the number of results returned on each page. </p>
 <dl class="section note"><dt>Note</dt><dd>MarkLogic Server defaults to 10 per page. This may or may not be the most performant option, depending on search options and thus amount of data returned per result. Try a higher number for better throughput for XML/JSON content. </dd>
 <dd>
 This class will automatically fetch the next page of results until they are exhausted, so no need to handle this yourself. </dd></dl>
@@ -327,6 +342,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the query resolution time for the last page requested, if available. </p>
 <p>Defaults to zero. Uses xsd:duration string format as per the REST API</p>
 <dl class="section return"><dt>Returns</dt><dd>xsd:duration string description of the time to resolve the query </dd></dl>
 
@@ -344,6 +361,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the snippet format. Could be raw, none, or snippet. </p>
 <dl class="section return"><dt>Returns</dt><dd>The string description as returned by the REST API. Usually "raw","none",or "snippet". Could be "custom" depending on search options. </dd></dl>
 
 </div>
@@ -360,6 +379,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the snippet resolution time for the last page requested, if available. </p>
 <p>Defaults to zero. Uses xsd:duration string format as per the REST API</p>
 <dl class="section return"><dt>Returns</dt><dd>xsd:duration string description of the time to resolve the snippet </dd></dl>
 
@@ -377,6 +398,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the sequence number of the first search result. </p>
 <dl class="section note"><dt>Note</dt><dd>MarkLogic uses 1 based numbers. Thus the first record is at position 1, not position 0 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The first result's sequence number (lowest is 1) </dd></dl>
 
@@ -394,6 +417,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the total count of all search results, across all pages. </p>
 <dl class="section note"><dt>Note</dt><dd>MarkLogic Server uses xdmp:estimate to calculate this. Thus for an accurate number your filtered xdmp estimate should be the same as your unfiltered xdmp estimate. I.e. should be completely calculable from indexes. Otherwise, this total could be higher than the actual number of results (after filtering). </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The total number of search results returned. </dd></dl>
 
@@ -411,6 +436,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the total time taken for the last page requested, if available. </p>
 <p>Defaults to zero. Uses xsd:duration string format as per the REST API</p>
 <dl class="section return"><dt>Returns</dt><dd>xsd:duration string description of the total time taken (includes both snippet and query resolution time) </dd></dl>
 
@@ -429,6 +456,8 @@ This class will automatically fetch the next page of results until they are exha
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the maximum number of results to return. Useful if the maximum is larger than the page size. </p>
 <dl class="section note"><dt>Note</dt><dd>Limits the iterator return to max results </dd></dl>
 
 </div>

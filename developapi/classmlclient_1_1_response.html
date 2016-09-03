@@ -141,7 +141,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
 <tr class="separator:aff483fa9a7197ba858716074b7da2a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
+<div class="textblock"><p>Encapsulates a response from a MarkLogic server REST API. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2014-06-05</dd></dl>
 <p>Note that a response can be XML, JSON, text, or binary content. This holds the raw response</p><ul>
 <li>If you want to process the response use one of the utility classes based on the output of the Content-type response header.</li>
@@ -177,6 +178,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>For text responses (including JSON and XML), returns the response content as a string. </p>
 <dl class="section return"><dt>Returns</dt><dd>The UTF-8 string </dd></dl>
 
 </div>
@@ -194,6 +197,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the HTTP response code for the response. </p>
 <dl class="section return"><dt>Returns</dt><dd>The HTTP response code </dd></dl>
 
 </div>
@@ -211,6 +216,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the headers that were returned with the response. </p>
 <dl class="section return"><dt>Returns</dt><dd>The HTTP response headers </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Remove the dependency on the cpprest API </dd></dl>
 
@@ -229,6 +236,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ResponseType enum value representing the MarkLogic response type class. This can be outputted as a string using the &lt;&lt; operator. </dd></dl>
 
 </div>
@@ -262,6 +271,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reads the raw response in to a buffer. Used for Binary responses. </p>
 <p>For binary responses, reads up to max_size bytes into buffer, starting at a given offset. For example, if an image is returned, it can be saved to a file, reading 4 k chunks. The actual number of bytes read is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -288,6 +299,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>. </p>
 <p>This should only be set by the MarkLogic C++ API itself, never by a developer using the API.</p>
 <dl class="section note"><dt>Note</dt><dd>This function takes ownership of the content pointer using std::move</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -312,6 +325,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the HTTP response code for the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>. </p>
 <p>This is normally set when the response is received. It should not be set otherwise.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -335,6 +350,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the headers received as part of the response. </p>
 <p>This is set when the response is received but should not be set otherwise.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -358,6 +375,8 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally. </p>
 <p>This is normally set when the response is received. It should not be set otherwise.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
