@@ -3216,6 +3216,11 @@
     <docanchor file="page_devguide" title="General Troubleshooting Techniques">sec_troubletechs</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_home_cpp</name>
+    <title>C++ Support Home Page</title>
+    <filename>page_home_cpp</filename>
+  </compound>
+  <compound kind="page">
     <name>page_install</name>
     <title>Installing MLCPlusPlus</title>
     <filename>page_install</filename>
