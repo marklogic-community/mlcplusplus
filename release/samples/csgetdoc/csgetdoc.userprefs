@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="csgetdoc/csgetdoc.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../bin/src/CSharpSources/Connection.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="csgetdoc/Program.cs">
     <Files>
       <File FileName="csgetdoc/Program.cs" Line="5" Column="18" />
       <File FileName="../../../bin/src/CSharpSources/csmlclientCSHARP_wrap.cxx" Line="1" Column="1" />

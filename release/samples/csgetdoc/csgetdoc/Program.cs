@@ -12,7 +12,7 @@ namespace csgetdoc
 
 			mlclient.Connection conn = new mlclient.Connection();
 			conn.configure("192.168.123.4", "8122", "admin", "admin", false);
-			string uri = "/zoo/animals/tiger.json";
+			string uri = "/some/doc.json";
 			Console.WriteLine("Fetching: " + uri);
 			mlclient.Response resp = conn.getDocument(uri);
 			mlclient.ResponseType rt = resp.getResponseType();

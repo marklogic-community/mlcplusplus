@@ -29,4 +29,36 @@ TODO
 
 TODO
 
+\section sec_home_csharp_troubleshooting
+
+The most common issue is the libraries not being found. If you run this command:-
+
+    sudo dtruss mono csgetdoc.exe
+
+Then you will see a whole bunch of output. Crucially, you will see a set of lines like these:-
+
+    stat64("libcsmlclient\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
+    stat64("/Users/adamfowler/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/local/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/lib/libcsmlclient\0", 0x7FFF597ED708, 0x1B6)		 = -1 Err#2
+    open_nocancel("libcsmlclient.la\0", 0x0, 0x1B6)		 = -1 Err#2
+    stat64("libcsmlclient.dylib\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
+    stat64("/Users/adamfowler/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/local/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = 0 0
+    open("/usr/local/lib/libcsmlclient.dylib\0", 0x0, 0x0)		 = 4 0
+    pread(0x4, "\312\376\272\276\0", 0x1000, 0x0)		 = 4096 0
+
+If instead of the above successful finding of libcsmlclient.dylib you see only library names that do not exist,
+then you have a mismatched library issue.
+
+Easiest way to solve this is to take csmlclient.so (the output of SWIG C# generation), and do this:-
+
+    sudo cp ./bin/src/csmlclient.so /usr/local/lib/libcsmlclient.dylib
+
+Then execute the mono command again.
+
+If you still have issues then you may have a permissions problem. Try:-
+
+    sudo mono csgetdoc.exe 
+
 */
