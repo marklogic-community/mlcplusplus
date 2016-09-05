@@ -15,7 +15,7 @@
 import mlclientpython
 
 connection = mlclientpython.Connection();
-connection.configure("192.168.123.4","9797","admin","admin",False);
+connection.configure("192.168.123.4","8122","admin","admin",False);
 
 response = connection.getDocument("/some/doc.json")
 

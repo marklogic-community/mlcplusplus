@@ -1,4 +1,16 @@
 /*
+ * Copyright (c) MarkLogic Corporation. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * PugiXmlDocumentContent.hpp
  *
  *  Created on: 30 Jul 2016
@@ -9,14 +21,21 @@
 #define INCLUDE_MLCLIENT_UTILITIES_PUGIXMLDOCUMENTCONTENT_HPP_
 
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/DocumentContent.hpp"
-#include "mlclient/ext/pugixml/pugixml.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/DocumentContent.hpp>
+#include <mlclient/ext/pugixml/pugixml.hpp>
 
 namespace mlclient {
 
 namespace utilities {
 
+/**
+ * \brief Document Traversal API generic container for Pugi XML
+ *
+ * See IDocumentNode for details.
+ *
+ * \since 8.0.2
+ */
 class PugiXmlContainerNode : public IDocumentNode {
 public:
   MLCLIENT_API PugiXmlContainerNode();
@@ -34,6 +53,13 @@ public:
   MLCLIENT_API std::string asString() const override;
 };
 
+/**
+ * \brief Document Traversal API array container for Pugi XML
+ *
+ * See IDocumentNode for details.
+ *
+ * \since 8.0.2
+ */
 class PugiXmlArrayNode : public PugiXmlContainerNode {
 public:
   MLCLIENT_API PugiXmlArrayNode(const pugi::xml_node& parent,const std::string& key);
@@ -52,6 +78,13 @@ private:
   Impl* mImpl;
 };
 
+/**
+ * \brief Document Traversal API Object container for Pugi XML
+ *
+ * See IDocumentNode for details.
+ *
+ * \since 8.0.2
+ */
 class PugiXmlObjectNode : public PugiXmlContainerNode {
 public:
   MLCLIENT_API PugiXmlObjectNode(const pugi::xml_node& root);
@@ -76,7 +109,7 @@ private:
  * \since 8.0.2
  * \date 2016-07-30
  *
- * \brief Represents a Node within a CppRestJsonDocumentContent's root web::json::value instance.
+ * \brief Represents a Node within a pugi::xml::document instance.
  */
 class PugiXmlDocumentNode : public IDocumentNode {
 public:
@@ -108,7 +141,13 @@ private:
   Impl* mImpl;
 };
 
-
+/**
+ * \brief Helper method to create an IDocumentNode instance from a pugi xml document node instance, and the name of its child.
+ *
+ * \param parent The parent PUGI XML node instance
+ * \param key The name of the child key underneath the node provided
+ * \return The IDocumentNode pointer instance (caller OWNS and must delete this instance)
+ */
 IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
 
 
@@ -122,10 +161,32 @@ IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
  */
 class PugiXmlDocumentNavigator : public IDocumentNavigator {
 public:
+  /**
+   * \brief Creates a Pugi XML based Document Navigator for the Document Traversal API
+   *
+   * \param root The PUGI XML document to wrap
+   * \param firstElementAsRoot Whether to start with the root (document) element (false) or the first actual node element (true)
+   */
   PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot = false);
+  /**
+   * \brief Move constructor for moving ownership of this instance.
+   *
+   * \param from The object instance to move the ownership of resources from
+   */
   MLCLIENT_API PugiXmlDocumentNavigator(PugiXmlDocumentNavigator&& from);
+  /**
+   * \brief Pugi XML destructor
+   */
   virtual ~PugiXmlDocumentNavigator();
 
+  /**
+   * \brief Returns the IDocumentNode at the specified key location
+   *
+   * See IDocumentNavigator for details.
+   *
+   * \param key The name of the node to return
+   * \return The node at that named location. nullptr if it doesn't exist
+   */
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
 
 private:
@@ -222,6 +283,12 @@ public:
   MLCLIENT_API int getLength() const override;
 
 
+  /**
+   * \brief Returns an IDocumentNavigator instance, as per the Document Traversal API
+   *
+   * \param firstElementAsRoot Whether the root XML element is the Document node (false) or the first full XML element (true).
+   * \return The IDocumentNavigator instance (caller OWNS the pointer, this class does not delete it)
+   */
   MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
 
   /// @}

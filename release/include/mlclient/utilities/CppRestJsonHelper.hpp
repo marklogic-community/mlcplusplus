@@ -20,12 +20,12 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 #define SRC_UTILITIES_CPPRESTJSONHELPER_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/DocumentContent.hpp"
-#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-#include "mlclient/Response.hpp"
-#include "mlclient/SearchResult.hpp"
-#include "mlclient/Permission.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/DocumentContent.hpp>
+#include <mlclient/utilities/CppRestJsonDocumentContent.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/SearchResult.hpp>
+#include <mlclient/Permission.hpp>
 // I don't mind exposing these in an optional helper class
 #include <cpprest/json.h>
 
@@ -75,7 +75,17 @@ public:
    */
   MLCLIENT_API static ITextDocumentContent* toDocument(web::json::value& json);
 
+  /**
+   * \brief Converts the Response directory to an ITextDocumentContent instance.
+   *
+   * \since 8.0.2
+   * \date 2016-07-30
+   *
+   * \param resp The Response instance to create a web::json::value from.
+   * \return A ITextDocumentContent instance representing the response
+   */
   MLCLIENT_API static ITextDocumentContent* toDocument(const Response& resp);
+
   /**
    * \brief Creates a web::json::value from a IDocumentContent instance.
    *
@@ -85,7 +95,19 @@ public:
    * \return A Microsoft cpprest API web::json::value instance created from the IDocumentContent.
    */
   MLCLIENT_API static const web::json::value fromDocument(const IDocumentContent& doc);
+
+  /**
+   * \brief Creates a web::json::value from a CppRestJsonDocumentContent instance.
+   *
+   * This is very efficient as the CppRestJsonDocumentContent effectively just wraps a web::json::value
+   *
+   * \param doc the CppRestJsonDocumentContent instance to extract the web::json::value from
+   * \return A Microsoft cpprest API web::json::value instance extracted from the CppRestJsonDocumentContent.
+   *
+   * \since 8.0.2
+   */
   MLCLIENT_API static const web::json::value fromDocument(const CppRestJsonDocumentContent& doc);
+
   /// @}
 
   /// \name cpprestjsonhelper_responseconversion Response conversion functions
@@ -98,7 +120,17 @@ public:
    */
   MLCLIENT_API static web::json::value fromResponse(const Response& resp);
 
-  MLCLIENT_API static std::vector<Permission> permissionsFromResponse(const Response& resp);
+  /**
+   * \brief Extracts a PermissionSet from a document metadata fetch response
+   * \throw An InvalidFormatException if the document does not have the mime type of application/json, or if there is a parse error.
+   * \param resp The Response instance to create a web::json::value from.
+   * \return The PermissionSet extracted from the response
+   *
+   * \note PermissionSet is a typedef for std::vector<Permission>.
+   *
+   * \since 8.0.2
+   */
+  MLCLIENT_API static PermissionSet permissionsFromResponse(const Response& resp);
 
   //MLCLIENT_API static web::json::value fromSearchResult(const SearchResult& result);
   /// @}

@@ -20,8 +20,8 @@
 #ifndef RESPONSE_H
 #define RESPONSE_H
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/HttpHeaders.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/HttpHeaders.hpp>
 
 #include <iosfwd>
 
@@ -29,7 +29,7 @@ namespace mlclient {
 
 
 /**
- * The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
+ * \brief The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY.
  */
 enum class ResponseType : int { UNKNOWN_TYPE = 0, XML = 1, JSON = 2, TEXT = 3, BINARY = 4 };
 
@@ -39,7 +39,7 @@ MLCLIENT_API std::string& operator +(std::string& s, const ResponseType& rt);
 MLCLIENT_API const std::string translate_responsetype(const ResponseType& rt);
 
 /**
- * The various HTTP response codes. Defaults to UNKNOWN to prevent API failures.
+ * \brief The various HTTP response codes. Defaults to UNKNOWN to prevent API failures.
  **/
 enum class ResponseCode : int {
        UNKNOWN_CODE                  = 0,
@@ -180,7 +180,6 @@ public:
   /// \brief Returns the headers that were returned with the response.
   ///
   /// \return The HTTP response headers
-  /// \todo Remove the dependency on the cpprest API
   ///
   MLCLIENT_API mlclient::HttpHeaders getResponseHeaders(void) const;
 

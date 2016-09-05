@@ -21,10 +21,10 @@
 #ifndef SRC_UTILITIES_PUGIXMLHELPER_HPP_
 #define SRC_UTILITIES_PUGIXMLHELPER_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/ext/pugixml/pugixml.hpp"
-#include "mlclient/Response.hpp"
-#include "mlclient/DocumentContent.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/ext/pugixml/pugixml.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/DocumentContent.hpp>
 
 namespace mlclient {
 
@@ -59,9 +59,21 @@ public:
    * \brief Converts a std::string instance to a MarkLogic C++ API IDocumentContent instance.
    * \param content The std::string instance to convert
    * \return The IDocumentContent instance wrapping the XML content, with its mime type and content set
+   *
+   * \throw InvalidFormatException If the string content does not have the application/xml mime type, or if parsing fails.
    */
   MLCLIENT_API static ITextDocumentContent* toDocument(const std::string& content);
 
+  /**
+   * \brief Creates an ITextDocumentContent instances from the response
+   *
+   * \since 8.0.2
+   *
+   * \param resp The MarkLogic C++ API Response object instance.
+   * \return The IDocumentContent instance wrapping the XML content in the response, with its mime type and content set
+   *
+   * \throw InvalidFormatException If the Response does not have the application/xml mime type, or if parsing fails.
+   */
   MLCLIENT_API static ITextDocumentContent* toDocument(const Response& resp);
 
   /**

@@ -8,7 +8,6 @@ CPackSourceConfig.cmake
 MLCPlusPlusConfig.h
 bin/*
 doc/*
-Makefile
 MLCPlusPlus.kdevelop
 MLCPlusPlus.kdevelop.filelist
 MLCPlusPlus.kdevses

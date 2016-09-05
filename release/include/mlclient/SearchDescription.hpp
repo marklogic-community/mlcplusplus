@@ -22,8 +22,8 @@
 #ifndef SRC_SEARCHDESCRIPTION_HPP_
 #define SRC_SEARCHDESCRIPTION_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/DocumentContent.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/DocumentContent.hpp>
 
 namespace mlclient {
 
@@ -128,6 +128,8 @@ public:
   // @{
   /**
    * \brief Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server.
+   *
+   * \param start The point in the result set to begin returning results from the server
    */
   MLCLIENT_API void setStart(const long start);
 
@@ -139,6 +141,7 @@ public:
 
   /**
    * \brief Sets the number of results to return per page
+   * \param pageLength The number of results per page to return
    */
   MLCLIENT_API void setPageLength(const long pageLength);
 

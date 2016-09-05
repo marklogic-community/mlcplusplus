@@ -8,8 +8,8 @@
 #ifndef SRC_UTILITIES_SEARCHRESULT_HPP_
 #define SRC_UTILITIES_SEARCHRESULT_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/DocumentContent.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/DocumentContent.hpp>
 #include <string>
 
 namespace mlclient {
@@ -25,12 +25,14 @@ enum class Format {
 /**
  * \brief Represents a single search result. Wraps all REST API search result metadata and content.
  *
+ * A SearchResult in MarkLogic Server consistent of not just the result itself, but also its metadata.
+ * Indeed, using the "none" snippet option means no content is returned, leaving just the metadata.
+ *
+ * \note Supports std::move and C++11 move semantics.
+ *
  * \since 8.0.2
  *
  * \date 2016-06-08
- *
- * A SearchResult in MarkLogic Server consistent of not just the result itself, but also its metadata.
- * Indeed, using the "none" snippet option means no content is returned, leaving just the metadata.
  */
 class SearchResult {
 public:
