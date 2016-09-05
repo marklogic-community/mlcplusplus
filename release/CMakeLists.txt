@@ -14,7 +14,7 @@ set (mlclient_VERSION_REVISION 2)
 # EDITABLE SETTINGS END
 
 # POLICY SETTING OVERRIDES
-set(CMAKE_MACOSX_RPATH 0)
+set(CMAKE_MACOSX_RPATH 1)
 
 # SYSTEM DETECTION
 
@@ -114,7 +114,7 @@ else()
   message("CMAKE_CXX_COMPILER_ID=${CMAKE_CXX_COMPILER_ID}")
 endif()
 
-message("-- Build Type: " ${CMAKE_BUILD_TYPE} ) 
+message("-- Build Type: " ${CMAKE_BUILD_TYPE} )
 if( ${CMAKE_BUILD_TYPE} MATCHES "Debug")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 else()
