@@ -23,23 +23,22 @@ tar czf ../../dist/osx-raw/mlclient-include.tar.gz mlclient
 zip -q -r ../../dist/windows-raw/mlclient-include.zip mlclient -x .DS_Store
 cd ../..
 
+
+cp Build/Debug/csmlclient.dll dist/all-raw/
+cp bin/src/CSharpSources/*.cs dist/all-raw/cssource/
+cp bin/src/*.exe dist/all-raw/cssamples/
+
 cp bin/src/libmlclient.dylib dist/osx-raw/Debug-Universal/
 cp bin/src/libcpprest.2.8.dylib dist/osx-raw/Debug-Universal/
 cp bin/src/CSharpBinaries/libmlclientcs.dylib dist/osx-raw/Debug-Universal/
-cp bin/src/CSharpSources/*.cs dist/all-raw/cssource/
-cp bin/src/*.exe dist/all-raw/cssamples/
 cp bin/src/_mlclientpython.so dist/osx-raw/Debug-Universal/
 
-cp Build/Debug/mlclientcs.dll dist/windows-raw/Debug-x86/
-cp Build/Debug/csmlclient.dll dist/windows-raw/Debug-x86/
 cp Build/Debug/mlclient.dll dist/windows-raw/Debug-x86/
 cp Build/Debug/cpprest140d_2_8.dll dist/windows-raw/Debug-x86/
 cp Build/Debug/mlclient.lib dist/windows-raw/Debug-x86/
 cp Build/Debug/mlclient.exp dist/windows-raw/Debug-x86/
 cp Build/Debug/*.exe dist/windows-raw/Debug-x86/
 
-cp Build/Release/mlclientcs.dll dist/windows-raw/Release-x86/
-cp Build/Release/csmlclient.dll dist/windows-raw/Release-x86/
 cp Build/Release/mlclient.dll dist/windows-raw/Release-x86/
 cp Build/Release/cpprest140_2_8.dll dist/windows-raw/Release-x86/
 cp Build/Release/mlclient.lib dist/windows-raw/Release-x86/
