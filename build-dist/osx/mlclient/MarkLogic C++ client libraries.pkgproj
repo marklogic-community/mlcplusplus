@@ -430,22 +430,6 @@
 													<key>GID</key>
 													<integer>0</integer>
 													<key>PATH</key>
-													<string>bin/src/csmlclient.so</string>
-													<key>PATH_TYPE</key>
-													<integer>3</integer>
-													<key>PERMISSIONS</key>
-													<integer>493</integer>
-													<key>TYPE</key>
-													<integer>3</integer>
-													<key>UID</key>
-													<integer>0</integer>
-												</dict>
-												<dict>
-													<key>CHILDREN</key>
-													<array/>
-													<key>GID</key>
-													<integer>0</integer>
-													<key>PATH</key>
 													<string>bin/src/libcpprest.2.8.dylib</string>
 													<key>PATH_TYPE</key>
 													<integer>3</integer>
@@ -463,6 +447,22 @@
 													<integer>0</integer>
 													<key>PATH</key>
 													<string>bin/src/libmlclient.dylib</string>
+													<key>PATH_TYPE</key>
+													<integer>3</integer>
+													<key>PERMISSIONS</key>
+													<integer>493</integer>
+													<key>TYPE</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+												<dict>
+													<key>CHILDREN</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>PATH</key>
+													<string>bin/src/CSharpBinaries/libmlclientcs.dylib</string>
 													<key>PATH_TYPE</key>
 													<integer>3</integer>
 													<key>PERMISSIONS</key>
@@ -1501,7 +1501,39 @@
 													<key>GID</key>
 													<integer>0</integer>
 													<key>PATH</key>
+													<string>bin/samples/cppbatchupload</string>
+													<key>PATH_TYPE</key>
+													<integer>3</integer>
+													<key>PERMISSIONS</key>
+													<integer>493</integer>
+													<key>TYPE</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+												<dict>
+													<key>CHILDREN</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>PATH</key>
 													<string>bin/samples/cppproducer</string>
+													<key>PATH_TYPE</key>
+													<integer>3</integer>
+													<key>PERMISSIONS</key>
+													<integer>493</integer>
+													<key>TYPE</key>
+													<integer>3</integer>
+													<key>UID</key>
+													<integer>0</integer>
+												</dict>
+												<dict>
+													<key>CHILDREN</key>
+													<array/>
+													<key>GID</key>
+													<integer>0</integer>
+													<key>PATH</key>
+													<string>bin/samples/cppsearch</string>
 													<key>PATH_TYPE</key>
 													<integer>3</integer>
 													<key>PERMISSIONS</key>
