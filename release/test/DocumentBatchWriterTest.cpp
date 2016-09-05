@@ -40,7 +40,7 @@ public:
     ;
   }
 
-  void batchOperationComplete(const std::vector<std::string> uris,bool success,std::exception* exc) override {
+  void batchOperationComplete(const DocumentUriSet uris,bool success,std::exception* exc) override {
     LOG(DEBUG) << "Written files in a batch (OK?: " << success << ") :-";
     for (auto& it : uris) {
       LOG(DEBUG) << "  " << it;
@@ -77,9 +77,9 @@ void DocumentBatchWriterTest::testFolder(void) {
 
   DocumentBatchWriter writer(ml);
   writer.addBatchListener(&obs);
-  std::vector<std::string> collections;
+  CollectionSet collections;
   collections.emplace_back("mlcpptest");
-  std::vector<Permission> perms;
+  PermissionSet perms;
   perms.emplace_back("admin",Capability::EXECUTE); // good test as this isn't normally default assigned
 
   DocumentSet set;

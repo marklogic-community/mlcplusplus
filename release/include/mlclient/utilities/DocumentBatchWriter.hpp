@@ -40,7 +40,7 @@ class IBatchNotifiable {
 public:
   MLCLIENT_API virtual ~IBatchNotifiable();
 
-  MLCLIENT_API virtual void batchOperationComplete(const std::vector<std::string> out_uris,bool success,std::exception* problem) = 0;
+  MLCLIENT_API virtual void batchOperationComplete(const DocumentUriSet out_uris,bool success,std::exception* problem) = 0;
 };
 
 /**

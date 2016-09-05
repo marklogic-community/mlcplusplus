@@ -63,7 +63,7 @@ using namespace web::http::client;          // HTTP client features
 //using namespace concurrency::streams;       // Asynchronous streams
 using namespace mlclient;
 
-AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
+AuthenticatingProxy::AuthenticatingProxy() : credentials(),attempts(0),restMutex()
 {
 }
 
@@ -157,10 +157,15 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
     { // PERFORMANCE BRACE
       TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+
+      // Hold a mutex so that MarkLogic does not hit a DEADLOCK concurrent lock REST issue
+      std::unique_lock<std::mutex> lck (restMutex,std::defer_lock);
+      lck.lock();
       pplx::task<http_response> hr = raw_client.request(req);
       //LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
+      lck.unlock();
 
     } // PERFORMANCE BRACE
     try
@@ -300,10 +305,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       http_response raw_response;// = raw_client.request(req).get();
       { // PERFORMANCE BRACE
         TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+        std::unique_lock<std::mutex> lck (restMutex,std::defer_lock);
+        lck.lock();
         pplx::task<http_response> hr = raw_client.request(req);
         //LOG(DEBUG) << "Retry Request body: " << utility::conversions::to_utf8string(req.to_string());
 
         raw_response = hr.get();
+        lck.unlock();
 
       } // PERFORMANCE BRACE
 

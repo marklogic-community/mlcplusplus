@@ -18,6 +18,51 @@
 namespace mlclient {
 
 /**
+ * \brief Typedef for a Collection as a string
+ *
+ * \since 8.0.2
+ */
+typedef std::string Collection;
+
+/**
+ * \brief Represents a set of Collection object instances.
+ *
+ * \since 8.0.2
+ */
+typedef std::vector<Collection> CollectionSet;
+
+/**
+ * \brief Provides an Iterator over a set of Collection instances.
+ *
+ * \since 8.0.2
+ */
+typedef std::vector<Collection>::const_iterator CollectionIterator;
+
+
+/**
+ * \brief Typedef for a Document URI as a string
+ *
+ * \since 8.0.2
+ */
+typedef std::string DocumentUri;
+
+/**
+ * \brief Represents a set of DocumentUri object instances.
+ *
+ * \since 8.0.2
+ */
+typedef std::vector<DocumentUri> DocumentUriSet;
+
+/**
+ * \brief Provides an Iterator over a set of DocumentUri instances.
+ *
+ * \since 8.0.2
+ */
+typedef std::vector<DocumentUri>::const_iterator DocumentUriIterator;
+
+
+
+/**
  * \brief Provides a representation of a MarkLogic Document.
  * \since 8.0.2
  * \date 2016-08-04
@@ -30,15 +75,15 @@ public:
   MLCLIENT_API Document(const std::string& uri);
   MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content);
   MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties);
-  MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties,std::vector<Permission> own_permissions);
+  MLCLIENT_API Document(const std::string& uri,IDocumentContent* own_content,IDocumentContent* own_properties,PermissionSet own_permissions);
   MLCLIENT_API virtual ~Document() = default;
 
   MLCLIENT_API const std::string& getUri() const;
   MLCLIENT_API void setUri(const std::string& uri);
   MLCLIENT_API const bool hasUri() const;
 
-  MLCLIENT_API const std::vector<std::string> getCollections() const;
-  MLCLIENT_API void setCollections(const std::vector<std::string>& collections);
+  MLCLIENT_API const CollectionSet getCollections() const;
+  MLCLIENT_API void setCollections(const CollectionSet& collections);
   MLCLIENT_API const bool hasCollections() const;
 
   MLCLIENT_API const IDocumentContent* getContent() const;
@@ -49,9 +94,9 @@ public:
   MLCLIENT_API const bool hasProperties() const;
   MLCLIENT_API void setProperties(IDocumentContent* own_properties);
 
-  MLCLIENT_API const std::vector<Permission> getPermissions() const;
+  MLCLIENT_API const PermissionSet getPermissions() const;
   MLCLIENT_API const bool hasPermissions() const;
-  MLCLIENT_API void setPermissions(std::vector<Permission> own_permissions);
+  MLCLIENT_API void setPermissions(PermissionSet own_permissions);
 
   MLCLIENT_API bool operator==(const Document& other);
   MLCLIENT_API bool operator!=(const Document& other);
@@ -60,8 +105,8 @@ private:
   std::string uri;
   IDocumentContent* content;
   IDocumentContent* properties;
-  std::vector<Permission> permissions;
-  std::vector<std::string> collections;
+  PermissionSet permissions;
+  CollectionSet collections;
 };
 
 } // end namespace mlclient

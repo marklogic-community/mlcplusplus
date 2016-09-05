@@ -13,20 +13,19 @@
 namespace mlclient {
 
 
-/**
- * \brief Represents a set of Document object instances.
- *
- * \since 8.0.2
- */
-typedef std::vector<Document> DocumentSet;
+  /**
+   * \brief Represents a set of Document object instances.
+   *
+   * \since 8.0.2
+   */
+  typedef std::vector<Document> DocumentSet;
 
-/**
- * \brief Provides an Iterator over a set of document instances.
- *
- * \since 8.0.2
- */
-typedef std::vector<Document>::const_iterator DocumentIterator;
-
+  /**
+   * \brief Provides an Iterator over a set of document instances.
+   *
+   * \since 8.0.2
+   */
+  typedef std::vector<Document>::const_iterator DocumentIterator;
 
 
 
