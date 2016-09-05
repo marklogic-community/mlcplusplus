@@ -90,7 +90,22 @@ Features</h1>
 <h1><a class="anchor" id="sec_home_python_install"></a>
 Installation</h1>
 <ul>
-<li>Grab the Binaries for your platform - TODO link</li>
+<li>Grab the Binaries for your platform<ul>
+<li>Easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_pkg.html">Install Package</a></li>
+</ul>
+</li>
+<li>Not so easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_raw.html">Mac raw compiled libraries</a></li>
+<li>Windows: Use the <a class="el" href="page_win_install_raw.html">Windows raw compiled libraries</a></li>
+</ul>
+</li>
+<li>Hard way<ul>
+<li>All Platforms: Build from source. Read the <a class="el" href="page_install.html">Source Install Guide</a> for full instructions. Not for the faint hearted</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Create a simple Python script using the required import</li>
 </ul>
 <h1><a class="anchor" id="sec_home_python_quickstart"></a>
@@ -100,7 +115,7 @@ Quickstart</h1>
 import mlclientpython
 
 connection = mlclientpython.Connection();
-connection.configure("192.168.123.4","9797","admin","admin",False);
+connection.configure("192.168.123.4","8122","admin","admin",False);
 
 response = connection.getDocument("/some/doc.json")
 
@@ -112,8 +127,8 @@ Language Specific Features</h1>
 <p>Unfortunately some C++ methods from the core API are overloaded with different call parameters. This is not currently supported by the SWIG Python generator. This will be resolved in a future version, as other languages have the same restriction.</p>
 <p>Python Classes are generated on a 1:1 basis with C++ classes. SWIG Python does support the STL iterator and collection mechanisms, mapping them on to Python idioms. There are known non-STL compliance issues with the current iterators, and so you may experience some issues using iterators (E.g. via SearchResultSet or DocumentSet). Please <a href="https://github.com/adamfowleruk/mlcplusplus/issues">log an issue on GitHub</a> if you have any problems.</p>
 <p>C++ operators such as &gt;&gt; and &lt;&lt; and +, =, ++, &ndash;, are not mapped to Python idioms currently. == is mapped to eq() and != is mapped to ne().</p>
-<h2><a class="anchor" id="Function"></a>
-name patterns</h2>
+<h2><a class="anchor" id="sec_home_python_functions"></a>
+Function name patterns</h2>
 <p>TODO</p>
 <h1><a class="anchor" id="sec_home_python_extending"></a>
 Extending</h1>

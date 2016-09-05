@@ -85,39 +85,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is the home page for C# support.</p>
 <h1><a class="anchor" id="sec_home_csharp_features"></a>
 Features</h1>
-<p>TODO</p>
+<p>The C# API has all the same features as the C++ API, but maps all functionality and classes on to their C# equivalent. The C# API should look and feel exactly like any other native C# API.</p>
+<p>Be aware that the C# API will need the C++ API (libmlclient.dylib/so or mlclient.dll) to be installed in the library search path your your environment. I.e. in /usr/local/lib or similar in Mac and Linux, and in the same folder as your EXE file in Windows.</p>
 <h1><a class="anchor" id="sec_home_csharp_install"></a>
 Installation</h1>
-<p>TODO</p>
+<p>First install the C++ compiled libraries</p>
+<p>There are several ways to install the C++ library</p>
+<ul>
+<li>Easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_pkg.html">Install Package</a></li>
+</ul>
+</li>
+<li>Not so easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_raw.html">Mac raw compiled libraries</a></li>
+<li>Windows: Use the <a class="el" href="page_win_install_raw.html">Windows raw compiled libraries</a></li>
+</ul>
+</li>
+<li>Hard way<ul>
+<li>All Platforms: Build from source. Read the <a class="el" href="page_install.html">Source Install Guide</a> for full instructions. Not for the faint hearted</li>
+</ul>
+</li>
+</ul>
+<p>Now installed the C# source packages and samples</p>
+<p>These can be found at: <a href="https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/all-raw">https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/all-raw</a></p>
+<p>On windows, the easiest thing to do is copy all these EXE files and DLL libraries to the same folder. Then simply open a command prompt, cd to the folder they are in, and run one of the sample apps.</p>
+<p>On mac, you will need to ensure the dylib files are in /usr/local/lib or a similar global path. The exe samples can then be run like this in a terminal window:- </p><pre class="fragment">sudo mono csgetdoc.exe
+</pre><p>For some reason root access is currently required for mono to run and find the libraries. This may be a permissions issue with mono on my machine, but it's worth knowing about.</p>
+<p>Linux is the same as mac, but you will be using .so files instead of .dylib files, but the install location is the same.</p>
 <h1><a class="anchor" id="sec_home_csharp_quickstart"></a>
 Quickstart</h1>
-<p>TODO</p>
+<p>All the samples have been pre-built for you in Windows! Feel free to just download and run them from the command prompt.</p>
+<p>You can read their source code, or even grab the Visual Studio solution files, from the samples folders starting with 'cs' in their name: <a href="https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples">https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples</a></p>
 <h1><a class="anchor" id="sec_home_csharp_langspecific"></a>
 Language Specific Features</h1>
 <p>This section describes language specific features. I.e. features provided for the Idioms developers of this language would expect.</p>
-<h2><a class="anchor" id="Function"></a>
-name patterns</h2>
-<p>TODO</p>
+<h2><a class="anchor" id="sec_home_csharp_functions"></a>
+Function name patterns</h2>
+<p>Collections in C++ are mapped on to their C# equivalent. std::vector becomes a List, Iterators become IEnumerable instances, and std::maps become Dictionary instances.</p>
+<p>Similarly, function names now have capital initial letters in C# instead of lowercase letters in C++. The same is true of getters and setters, which can be accessed in C# via the properties paradigm.</p>
+<p>This all means the C# API should feel very familiar to a C# developer.</p>
 <h1><a class="anchor" id="sec_home_csharp_extending"></a>
 Extending</h1>
-<p>TODO</p>
+<p>All abstract classes in the C++ API are marked as being extendible in C# itself. You should be able to create, for example, your own subclasses of IDocumentContent, IBatchNotifiable, and so on as you see fit. They should work transparently with the C# and C++ APIs.</p>
 <h1><a class="anchor" id="sec_home_csharp_troubleshooting"></a>
 sec_home_csharp_troubleshooting</h1>
 <p>The most common issue is the libraries not being found. If you run this command:- </p><pre class="fragment">sudo dtruss mono csgetdoc.exe
-</pre><p>Then you will see a whole bunch of output. Crucially, you will see a set of lines like these:- </p><pre class="fragment">stat64("libcsmlclient\0", 0x7FFF597ECF18, 0x1B6)     = -1 Err#2
-stat64("/Users/adamfowler/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)     = -1 Err#2
-stat64("/usr/local/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)    = -1 Err#2
-stat64("/usr/lib/libcsmlclient\0", 0x7FFF597ED708, 0x1B6)    = -1 Err#2
-open_nocancel("libcsmlclient.la\0", 0x0, 0x1B6)    = -1 Err#2
-stat64("libcsmlclient.dylib\0", 0x7FFF597ECF18, 0x1B6)     = -1 Err#2
-stat64("/Users/adamfowler/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)     = -1 Err#2
-stat64("/usr/local/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)    = 0 0
-open("/usr/local/lib/libcsmlclient.dylib\0", 0x0, 0x0)     = 4 0
+</pre><p>Then you will see a whole bunch of output. Crucially, you will see a set of lines like these:- </p><pre class="fragment">stat64("libmlclientcs\0", 0x7FFF597ECF18, 0x1B6)     = -1 Err#2
+stat64("/Users/adamfowler/lib/libmlclientcs\0", 0x7FFF597ED6F8, 0x1B6)     = -1 Err#2
+stat64("/usr/local/lib/libmlclientcs\0", 0x7FFF597ED6F8, 0x1B6)    = -1 Err#2
+stat64("/usr/lib/libmlclientcs\0", 0x7FFF597ED708, 0x1B6)    = -1 Err#2
+open_nocancel("libmlclientcs.la\0", 0x0, 0x1B6)    = -1 Err#2
+stat64("libmlclientcs.dylib\0", 0x7FFF597ECF18, 0x1B6)     = -1 Err#2
+stat64("/Users/adamfowler/lib/libmlclientcs.dylib\0", 0x7FFF597ED6F8, 0x1B6)     = -1 Err#2
+stat64("/usr/local/lib/libmlclientcs.dylib\0", 0x7FFF597ED6F8, 0x1B6)    = 0 0
+open("/usr/local/lib/libmlclientcs.dylib\0", 0x0, 0x0)     = 4 0
 pread(0x4, "\312\376\272\276\0", 0x1000, 0x0)    = 4096 0
-</pre><p>If instead of the above successful finding of libcsmlclient.dylib you see only library names that do not exist, then you have a mismatched library issue.</p>
-<p>Easiest way to solve this is to take csmlclient.so (the output of SWIG C# generation), and do this:- </p><pre class="fragment">sudo cp ./bin/src/csmlclient.so /usr/local/lib/libcsmlclient.dylib
+</pre><p>If instead of the above successful finding of libmlclientcs.dylib you see only library names that do not exist, then you have a mismatched library issue.</p>
+<p>Easiest way to solve this is to take libmlclientcs.dylib (the output of SWIG C# generation), and do this:- </p><pre class="fragment">sudo cp ./bin/src/libmlclientcs.dylib /usr/local/lib/libcsmlclient.dylib
 </pre><p>Then execute the mono command again.</p>
-<p>If you still have issues then you may have a permissions problem. Try:- </p><pre class="fragment">sudo mono csgetdoc.exe </pre> </div></div><!-- contents -->
+<p>If you still have issues then you may have a permissions problem. Try:- </p><pre class="fragment">sudo mono csgetdoc.exe</pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

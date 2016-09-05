@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MarkLogic Connect: Related Pages</title>
+<title>MarkLogic Connect: Mac Installation from the raw dylib library files</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -76,28 +75,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Related Pages</div>  </div>
+<div class="title">Mac Installation from the raw dylib library files </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page__c_wrapper.html" target="_self">C Language Wrapper</a></td><td class="desc">Describes the C API wrapper for this C++ API </td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_design.html" target="_self">Design</a></td><td class="desc">Introduction to the basic approach and design of the API </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_devguide.html" target="_self">Application Developers Guide</a></td><td class="desc">Main C++ Developer Guide </td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_home_c.html" target="_self">C Documentation</a></td><td class="desc">The main page for C coding documentation </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_home_cpp.html" target="_self">C++ Documentation</a></td><td class="desc">The main page for C++ coding documentation </td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_home_csharp.html" target="_self">C# Documentation</a></td><td class="desc">The main page for C+# coding documentation </td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_home_python.html" target="_self">Python Documentation</a></td><td class="desc">The main page for Python coding documentation </td></tr>
-<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_install.html" target="_self">Installing MLCPlusPlus</a></td><td class="desc">C++ Installing and building from Source Guide </td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_mac_install_pkg.html" target="_self">Mac Installation from the Package installer</a></td><td class="desc">How to install on a Mac using the provided pkg file </td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_mac_install_raw.html" target="_self">Mac Installation from the raw dylib library files</a></td><td class="desc">How to install on a Mac using the provided dylib library files </td></tr>
-<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="page_win_install_raw.html" target="_self">Mac Installation from the raw dylib library files</a></td><td class="desc">How to install on a Mac using the provided dylib library files </td></tr>
-<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="test.html" target="_self">Test List</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><p>How to install on a Mac using the provided dylib library files</p>
+<p>Pull down the libraries and source from here: <a href="https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/windows-raw">https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/windows-raw</a></p>
+<h1><a class="anchor" id="sec_win_install_raw_include"></a>
+Install include files</h1>
+<p>Unzip the include files archive, and copy the 'mlclient' folder in to a folder of your choice.</p>
+<h1><a class="anchor" id="sec_win_install_raw_libs"></a>
+Install compiled libraries</h1>
+<p>Unzip the library archive and place all files in to the same folder as your EXE files. Note the archive for windows includes the sample EXE files too</p>
+<h1><a class="anchor" id="sec_win_install_raw_deps"></a>
+Install dependencies</h1>
+<p>You will need to ensure the following system wide dependencies are installed.</p>
+<ul>
+<li>Open SSL at least version 1.0.2 or above</li>
+<li>Boost libraries - really boost, boost-system, boost-chrono, boost-thread, boost-atomic</li>
+<li>Google Glog - logging libraries, only installable from source</li>
+</ul>
+<p>You can run install-dependencies.bat to grab all these from source, or nuget in Visual Studio. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

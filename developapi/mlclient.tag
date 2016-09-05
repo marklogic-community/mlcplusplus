@@ -4708,10 +4708,10 @@
     <filename>page__c_wrapper</filename>
   </compound>
   <compound kind="page">
-    <name>page_Design</name>
+    <name>page_design</name>
     <title>Design</title>
-    <filename>page__design</filename>
-    <docanchor file="page__design" title="C++ Public API">The</docanchor>
+    <filename>page_design</filename>
+    <docanchor file="page_design" title="C++ Public API">The</docanchor>
   </compound>
   <compound kind="page">
     <name>page_devguide</name>
@@ -4780,7 +4780,7 @@
     <docanchor file="page_home_c" title="Installation">sec_home_c_install</docanchor>
     <docanchor file="page_home_c" title="Quickstart">sec_home_c_quickstart</docanchor>
     <docanchor file="page_home_c" title="Language Specific Features">sec_home_c_langspecific</docanchor>
-    <docanchor file="page_home_python" title="name patterns">Function</docanchor>
+    <docanchor file="page_home_c" title="name patterns">Function</docanchor>
     <docanchor file="page_home_c" title="Extending">sec_home_c_extending</docanchor>
   </compound>
   <compound kind="page">
@@ -4791,7 +4791,9 @@
     <docanchor file="page_home_cpp" title="Installation">sec_home_cpp_install</docanchor>
     <docanchor file="page_home_cpp" title="Quickstart">sec_home_cpp_quickstart</docanchor>
     <docanchor file="page_home_cpp" title="Language Specific Features">sec_home_cpp_langspecific</docanchor>
-    <docanchor file="page_home_cpp" title="for C++ STL Iterators and Collections">Support</docanchor>
+    <docanchor file="page_home_cpp" title="Support for C++ STL Iterators and Collections">sec_home_cpp_langspecific_stl</docanchor>
+    <docanchor file="page_home_cpp" title="Pointers and move semantics">sec_home_cpp_langspecific_pointers</docanchor>
+    <docanchor file="page_home_cpp" title="Developer&apos;s guide">sec_home_cpp_devguide</docanchor>
     <docanchor file="page_home_cpp" title="Extending">sec_home_cpp_extending</docanchor>
   </compound>
   <compound kind="page">
@@ -4802,6 +4804,7 @@
     <docanchor file="page_home_csharp" title="Installation">sec_home_csharp_install</docanchor>
     <docanchor file="page_home_csharp" title="Quickstart">sec_home_csharp_quickstart</docanchor>
     <docanchor file="page_home_csharp" title="Language Specific Features">sec_home_csharp_langspecific</docanchor>
+    <docanchor file="page_home_csharp" title="Function name patterns">sec_home_csharp_functions</docanchor>
     <docanchor file="page_home_csharp" title="Extending">sec_home_csharp_extending</docanchor>
     <docanchor file="page_home_csharp">sec_home_csharp_troubleshooting</docanchor>
   </compound>
@@ -4813,6 +4816,7 @@
     <docanchor file="page_home_python" title="Installation">sec_home_python_install</docanchor>
     <docanchor file="page_home_python" title="Quickstart">sec_home_python_quickstart</docanchor>
     <docanchor file="page_home_python" title="Language Specific Features">sec_home_python_langspecific</docanchor>
+    <docanchor file="page_home_python" title="Function name patterns">sec_home_python_functions</docanchor>
     <docanchor file="page_home_python" title="Extending">sec_home_python_extending</docanchor>
   </compound>
   <compound kind="page">
@@ -4827,10 +4831,33 @@
     <docanchor file="page_install" title="Compiling the tests">sec_compilingtests</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_mac_install_pkg</name>
+    <title>Mac Installation from the Package installer</title>
+    <filename>page_mac_install_pkg</filename>
+    <docanchor file="page_mac_install_pkg" title="Install dependencies">sec_mac_install_pkg_deps</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>page_mac_install_raw</name>
+    <title>Mac Installation from the raw dylib library files</title>
+    <filename>page_mac_install_raw</filename>
+    <docanchor file="page_mac_install_raw" title="Install include files">sec_mac_install_raw_include</docanchor>
+    <docanchor file="page_mac_install_raw" title="Install compiled libraries">sec_mac_install_raw_libs</docanchor>
+    <docanchor file="page_mac_install_raw" title="Install dependencies">sec_mac_install_raw_deps</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>page_win_install_raw</name>
+    <title>Mac Installation from the raw dylib library files</title>
+    <filename>page_win_install_raw</filename>
+    <docanchor file="page_win_install_raw" title="Install include files">sec_win_install_raw_include</docanchor>
+    <docanchor file="page_win_install_raw" title="Install compiled libraries">sec_win_install_raw_libs</docanchor>
+    <docanchor file="page_win_install_raw" title="Install dependencies">sec_win_install_raw_deps</docanchor>
+  </compound>
+  <compound kind="page">
     <name>index</name>
     <title>MarkLogic Connect Client API Collection Documentation</title>
     <filename>index</filename>
     <docanchor file="index" title="Support">sec_support</docanchor>
     <docanchor file="index" title="Copyright">sec_legal</docanchor>
+    <docanchor file="index" title="Developer&apos;s guide">sec_devguidelink</docanchor>
   </compound>
 </tagfile>

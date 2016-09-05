@@ -122,25 +122,115 @@ Features</h1>
 <li>SearchResultSet - batches and fetches each page of results, with its own iterator implementation so the network requests are transparent to the caller</li>
 <li>ValuesResultSet - perform multiple values lookups in a single call</li>
 <li>SearchBuilder - Abstracts structured query format away from your code</li>
-<li>SearchOptionsBuilder - ABstracts search options format away from your code</li>
+<li>SearchOptionsBuilder - Abstracts search options format away from your code</li>
 </ul>
 </li>
 </ul>
 <h1><a class="anchor" id="sec_home_cpp_install"></a>
 Installation</h1>
-<p>TODO</p>
+<p>There are several ways to install the C++ library</p>
+<ul>
+<li>Easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_pkg.html">Install Package</a></li>
+</ul>
+</li>
+<li>Not so easy way<ul>
+<li>Mac: Use the <a class="el" href="page_mac_install_raw.html">Mac raw compiled libraries</a></li>
+<li>Windows: Use the <a class="el" href="page_win_install_raw.html">Windows raw compiled libraries</a></li>
+</ul>
+</li>
+<li>Hard way<ul>
+<li>All Platforms: Build from source. Read the <a class="el" href="page_install.html">Source Install Guide</a> for full instructions. Not for the faint hearted</li>
+</ul>
+</li>
+</ul>
 <h1><a class="anchor" id="sec_home_cpp_quickstart"></a>
 Quickstart</h1>
-<p>TODO</p>
+<p>Once you've installed the C++ API libraries and header files, you're ready to write some code!</p>
+<p>Create a cpp source file. I'll assume you call it getdoc.cpp. This'll be a main file, so will look like the below:- </p><pre class="fragment">int main(int argc, const char * argv[])
+{
+</pre><p> TODO do something </p><pre class="fragment">  return 0;
+}
+</pre><p>Now you need to shell this out to create a connection, and document the steps for fetching a document.</p>
+<pre class="fragment">#include &lt;mlclient/Connection.hpp&gt;
+#include &lt;mlclient/Response.hpp&gt;
+#include &lt;mlclient/logging.hpp&gt;
+
+#include &lt;iostream&gt;
+
+int main(int argc, const char * argv[])
+{
+  using namespace mlclient;
+  using namespace mlclient::utilities;
+
+  mlclient::reconfigureLogging(argc,argv); // configures logging from the command prompt, if required
+</pre><p>start the app</p>
+<p>create a connection IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);</p>
+<p>get document URI</p>
+<p>Fetch document</p>
+<p>Output info about the response and document</p>
+<p>End the app </p><pre class="fragment">  return 0;
+}
+</pre><p>Naturally change the connection settings for your MarkLogic system and it's REST API endpoint configured for your target content database.</p>
+<p>Now we can shell it out further, taking input from the command line, and simply spitting out the whole document to standard out (the command shell):-</p>
+<pre class="fragment">#include &lt;mlclient/Connection.hpp&gt;
+#include &lt;mlclient/Response.hpp&gt;
+#include &lt;mlclient/logging.hpp&gt;
+
+#include &lt;iostream&gt;
+
+int main(int argc, const char * argv[])
+{
+  using namespace mlclient;
+  using namespace mlclient::utilities;
+
+  mlclient::reconfigureLogging(argc,argv); // configures logging from the command prompt, if required
+
+  std::cout &lt;&lt; "Running getdoc..." &lt;&lt; std::endl;
+
+  IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);
+
+  std::string uri = "/some/doc.json";
+  if (argc &gt; 1) {
+    uri = std::string(argv[1]);
+  }
+
+  const Response* rp = ml-&gt;getDocument(uri);
+
+  ResponseType rt = rp-&gt;getResponseType();
+  std::cout &lt;&lt; "Response type: " &lt;&lt; rt &lt;&lt; std::endl;
+  std::cout &lt;&lt; "Content: " &lt;&lt; rp-&gt;getContent();
+
+  std::cout &lt;&lt; "getdoc complete" &lt;&lt; std::endl;
+  return 0;
+}
+</pre><p>Now compile this app using your platform's compiler, open a command prompt, and run the programme. You should see something like this:-</p>
+<p>You can use this pattern for most apps. See the release/samples/cpp&lt;something&gt; folders for examples.</p>
+<p>Congrats! You've just written your first working C++ application!!!</p>
 <h1><a class="anchor" id="sec_home_cpp_langspecific"></a>
 Language Specific Features</h1>
 <p>This section describes language specific features. I.e. features provided for the Idioms developers of this language would expect.</p>
-<h2><a class="anchor" id="Support"></a>
-for C++ STL Iterators and Collections</h2>
-<p>TODO</p>
+<h2><a class="anchor" id="sec_home_cpp_langspecific_stl"></a>
+Support for C++ STL Iterators and Collections</h2>
+<p>The Core API provides a set of classes to iterator over search results and values (lexicon lookup) results. These are STL iterator compatible.</p>
+<dl class="section warning"><dt>Warning</dt><dd>There is an outstanding issue where the Iterators are not quite STL compatible. View their API documentation for specific and up to date information.</dd></dl>
+<p>Most collections used in the API are std::vector based. Several type's defined are actually specialisations of std::vector, std::map, or std::string. This makes the API somewhat future proof in case of internal API changes, so only a recompile will be required. (They also really help me write wrappers for other languages, like C#!).</p>
+<h2><a class="anchor" id="sec_home_cpp_langspecific_pointers"></a>
+Pointers and move semantics</h2>
+<p>At the moment anything created by the Core API and designed to be managed by your application tends to return a pointer type. E.g. creation of a connection, or returning of a Response from MarkLogic.</p>
+<p>In future this may well change to use C++11 move semantics entirely. Move semantics are already being used in newer parts of the API. This fact is documented in the core documentation introduction for those particular classes.</p>
+<p>Move semantics prevents widespread copying, and removes the hanging pointer issue. Furthermore, std::unique_ptr instances are increasingly being used within the core API itself, to further remove the chance of hanging pointers.</p>
+<p>If you are not familiar with move semantics in C++11 I suggest you read up on it now. 8.0.3 or 8.0.4 of this API may well move entirely to move semantics.</p>
+<h1><a class="anchor" id="sec_home_cpp_devguide"></a>
+Developer's guide</h1>
+<p>Be sure to read the full, in-depth, <a class="el" href="page_devguide.html">C++ Developer's Guide</a>. This covers most programming tasks you are likely to need.</p>
 <h1><a class="anchor" id="sec_home_cpp_extending"></a>
 Extending</h1>
-<p>TODO </p>
+<p>Additional 'value add' functionality is easy to add to the C++ API. This is pretty much the pattern taken by the classes in the <a class="el" href="namespacemlclient_1_1utilities.html" title="A non-required utilities namespace. Be aware that classes in this namespace may have external depende...">mlclient::utilities</a> namespace. None of these classes are core, but all build on the core API to perform valuable functions.</p>
+<p>Have a look at the Helper classes in particular to find common bits of code that you may well need. Especially useful is the batch document upload helper function in DocumentBatchHelper.</p>
+<p>For an example on how to wrap your application's API to create an IDocumentContent subclass using your own JSON, XML, or other Document API, look at the PugiXmlDocumentContent and CppRestJsonDocumentContent classes.</p>
+<p>If you need to support a REST API endpoint the core API does not yet support, then be sure to read the API documentation for IConnection::doGet IConnection::doPost IConnection::doPut and IConnection::doDelete as these allow you to easily pass information to any MarkLogic REST API endpoint, including REST extensions. This saves you having to write your own REST handling code for extensions, and re-uses all the security, session, and HTTP connection handling code yourself.</p>
+<p>For any extensions you cannot write without source code changes, please file an issue at <a href="https://github.com/adamfowleruk/mlcplusplus/issues">https://github.com/adamfowleruk/mlcplusplus/issues</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
