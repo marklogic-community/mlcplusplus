@@ -149,7 +149,7 @@ Quickstart</h1>
 <p>Once you've installed the C++ API libraries and header files, you're ready to write some code!</p>
 <p>Create a cpp source file. I'll assume you call it getdoc.cpp. This'll be a main file, so will look like the below:- </p><pre class="fragment">int main(int argc, const char * argv[])
 {
-  \\\\ TODO do something
+  \\ TODO do something
 
   return 0;
 }
@@ -166,12 +166,21 @@ int main(int argc, const char * argv[])
   using namespace mlclient::utilities;
 
   mlclient::reconfigureLogging(argc,argv); // configures logging from the command prompt, if required
-</pre><p>start the app</p>
-<p>create a connection IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);</p>
-<p>get document URI</p>
-<p>Fetch document</p>
-<p>Output info about the response and document</p>
-<p>End the app </p><pre class="fragment">  return 0;
+
+  \\ start the app
+
+  \\ create a connection
+  IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);
+
+  \\ get document URI
+
+  \\ Fetch document
+
+  \\ Output info about the response and document
+
+  \\ End the app
+
+  return 0;
 }
 </pre><p>Naturally change the connection settings for your MarkLogic system and it's REST API endpoint configured for your target content database.</p>
 <p>Now we can shell it out further, taking input from the command line, and simply spitting out the whole document to standard out (the command shell):-</p>
