@@ -15,12 +15,12 @@
  *  Created by Adam Fowler on 27 Nov 2015.
  */
 
-#include "mlclient/Connection.hpp"
+#include <mlclient/Connection.hpp>
 #include "ConnectionFactory.hpp"
 
 using namespace mlclient;
 
-Connection* ConnectionFactory::getConnection() {
+IConnection* ConnectionFactory::getConnection() {
   Connection* conn = new Connection;
   // ALTER THE BELOW FOR YOUR OWN SYSTEM DURING TESTING
   conn->configure("192.168.123.4","8122","admin","admin",false);

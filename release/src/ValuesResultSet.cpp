@@ -10,6 +10,7 @@
 #include <mlclient/utilities/ResponseHelper.hpp>
 
 #include <mlclient/logging.hpp>
+#include <cpprest/http_client.h>
 
 #include <map>
 #include <vector>

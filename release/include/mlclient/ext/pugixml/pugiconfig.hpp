@@ -14,6 +14,10 @@
 #ifndef HEADER_PUGICONFIG_HPP
 #define HEADER_PUGICONFIG_HPP
 
+#ifdef _WIN32
+#define PUGIXML_API __declspec(dllexport)
+#endif
+
 // Uncomment this to enable wchar_t mode
 // #define PUGIXML_WCHAR_MODE
 

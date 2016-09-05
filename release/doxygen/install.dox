@@ -1,5 +1,6 @@
 /**
 \page page_install Installing MLCPlusPlus
+\brief C++ Installing and building from Source Guide
 
 \section sec_getcasablanca Get Casablanca
 
@@ -16,7 +17,7 @@ Now in the casablanca folder issue `sudo make install`
 
 Once built, continue below.
 
-\section sec_getpugixml
+\section sec_getpugixml Using PUGI XML
 
 PugiXML is a lightweight XML library. This is needed for building MLC++, but is not required for you in your
 applications if you're not using XML - there is no 'public' dependency on pugixml in the API. (i.e. no public API

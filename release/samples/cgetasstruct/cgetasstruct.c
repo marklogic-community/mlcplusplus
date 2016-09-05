@@ -14,9 +14,9 @@
 // A C language sample to show fetching a document as a C struct and printing out to screen
 //
 #include <stdio.h>
-#include "mlclient/ConnectionWrapper.h"
-#include "ConnectionFactoryWrapper.h"
-#include "mlclient/ResponseWrapper.h"
+#include <mlclient/ConnectionWrapper.h>
+#include "../ccommon/ConnectionFactoryWrapper.h"
+#include <mlclient/ResponseWrapper.h>
 #include "CStruct.h"
 #include "CStructWrapper.h"
 
@@ -26,7 +26,7 @@ int main(int argc, const char * argv[])
 
   CConnection* ml = ml_samples_connectionfactory_getConnection();
 
-  char* uri = "/some/doc.json";
+  const char* uri = "/some/doc.json";
   if (argc > 1) {
     uri = argv[1];
   }

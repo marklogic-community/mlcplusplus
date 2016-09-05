@@ -89,12 +89,17 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\release\samples;..\..\release\test;..\..\release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\Debug\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Debug;..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.8.0\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -121,13 +126,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\internals;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\ext\pugixml;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient\utilities;Z:\Documents\marklogic\git\mlcplusplus\release\samples;Z:\Documents\marklogic\git\mlcplusplus\release\test;Z:\Documents\marklogic\git\mlcplusplus\release\include\mlclient;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\release\include;..\..\release\samples;..\..\release\test;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\Release\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,13 +156,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\release\samples\cgetdoc.c" />
-    <ClCompile Include="..\..\release\samples\ConnectionFactory.cpp" />
-    <ClCompile Include="..\..\release\samples\ConnectionFactoryWrapper.cpp" />
+    <ClInclude Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.h" />
+    <ClInclude Include="..\..\release\samples\cppcommon\ConnectionFactory.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp" />
-    <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp" />
+    <ClCompile Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.cpp" />
+    <ClCompile Include="..\..\release\samples\cgetdoc\cgetdoc.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\..\release\samples\cppcommon\ConnectionFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

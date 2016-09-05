@@ -13,7 +13,7 @@
 //
 // A header file to provide a C wrapping of the ConnectionFactory C++ class
 //
-#include "mlclient/ConnectionWrapper.h"
+#include <mlclient/ConnectionWrapper.h>
 
 #ifdef __cplusplus
 extern "C" {

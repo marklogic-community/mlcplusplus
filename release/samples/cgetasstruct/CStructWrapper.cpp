@@ -14,13 +14,12 @@
  */
 #include "CStructWrapper.h"
 #include "CStruct.h"
-#include "mlclient/ResponseWrapper.h"
-#include "mlclient/Response.hpp"
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include "mlclient/utilities/PugiXmlHelper.hpp"
+#include <mlclient/ResponseWrapper.h>
+#include <mlclient/Response.hpp>
+#include <mlclient/utilities/CppRestJsonHelper.hpp>
+#include <mlclient/utilities/PugiXmlHelper.hpp>
 #include <cpprest/json.h>
-#include <pugixml.hpp>
-#include "mlclient/CWrapper.hpp"
+#include <mlclient/CWrapper.hpp>
 
 extern "C" {
 
@@ -43,14 +42,14 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     // This code has to be custom as C and C++ DO NOT do introspection of a struct
     //std::cout << "Web JSON string value: " << t->String() << std::endl;
     const web::json::value& jsonValue = CppRestJsonHelper::fromResponse(t);
-    std::cout << "Web JSON value&: " << jsonValue << std::endl;
+    std::cout << "Web JSON value&: "; jsonValue.serialize(std::cout);std::cout << std::endl;
     const web::json::object& jsonObject = jsonValue.as_object();
-    static const std::string firstString = jsonObject.at("first").as_string(); // COPY VALUE
+    static const std::string firstString = utility::conversions::to_utf8string(jsonObject.at(U("first")).as_string()); // COPY VALUE
     std::cout << "first value string: " << firstString << std::endl;
     static const char* first = firstString.c_str();
     std::cout << "first value char*: " << first << std::endl;
     obj->first = const_cast<char*>(first);
-    static const std::string secondString = jsonObject.at("second").as_string(); // keeps parent string around
+    static const std::string secondString = utility::conversions::to_utf8string(jsonObject.at(U("second")).as_string()); // keeps parent string around
     static const char* second = secondString.c_str(); // creates pointer to contained c string
     obj->second = const_cast<char*>(second); // no longer a hanging pointer
   } else {

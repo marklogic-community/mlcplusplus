@@ -25,7 +25,7 @@ namespace mlclient {
  * \return
  */
 std::ostream& operator << (std::ostream& os, const Capability& rt) {
-  os << translate(rt);
+  os << translate_capability(rt);
   return os;
 }
 
@@ -36,11 +36,11 @@ std::ostream& operator << (std::ostream& os, const Capability& rt) {
  * \return The string representation
  */
 std::string& operator +(std::string& s, const Capability& rt) {
-  s.append(translate(rt));
+  s.append(translate_capability(rt));
   return s;
 }
 
-const std::string translate(const Capability& rt) {
+const std::string translate_capability(const Capability& rt) {
   std::ostringstream os;
   os << "Unknown Capability Type: "  << (int)rt;
   std::string result = os.str();
@@ -120,7 +120,7 @@ void Permission::setCapability(const Capability& capability) {
  * \return
  */
 std::ostream& operator << (std::ostream& os, const Permission& rt) {
-  os << translate(rt);
+  os << translate_permission(rt);
   return os;
 }
 
@@ -131,11 +131,11 @@ std::ostream& operator << (std::ostream& os, const Permission& rt) {
  * \return The string representation
  */
 std::string& operator +(std::string& s, const Permission& rt) {
-  s.append(translate(rt));
+  s.append(translate_permission(rt));
   return s;
 }
 
-const std::string translate(const Permission& rt) {
+const std::string translate_permission(const Permission& rt) {
   std::ostringstream os;
   os << "perm:" << rt.getRole() << "=" << rt.getCapability();
   return os.str();

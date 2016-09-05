@@ -6,6 +6,8 @@ cd release
 doxygen doxygen/Doxyfile
 cd ..
 
+cp -R documentation/images ./bin/api/html/
+
 echo "Done generating docs."
 
 rm -rf ../mlcplusplus-pages/developapi

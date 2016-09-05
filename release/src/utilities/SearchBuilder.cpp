@@ -18,7 +18,7 @@
  * \date 2016-06-09
  */
 
-#include <cpprest/http_client.h>
+#include <cpprest/json.h>
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
@@ -36,16 +36,16 @@ namespace utilities {
 
 // RANGE OPERATION FUNCTIONS
 std::ostream& operator << (std::ostream& os, const RangeOperation& rt) {
-  os << translate(rt);
+  os << translate_rangeoperation(rt);
   return os;
 }
 
 std::string& operator +(std::string& s, const RangeOperation& rt) {
-  s.append(translate(rt));
+  s.append(translate_rangeoperation(rt));
   return s;
 }
 
-const std::string translate(const RangeOperation& rt) {
+const std::string translate_rangeoperation(const RangeOperation& rt) {
   std::string result;
   switch(rt) {
   case RangeOperation::LE:
@@ -203,6 +203,11 @@ std::string& operator +(std::string& s, const JsonPropertyRef& rt) {
 
 void JsonPropertyRef::setProperty(const std::string& property) {
   value = property;
+}
+const std::string JsonPropertyRef::getRef() {
+  std::ostringstream oss;
+  write(oss);
+  return oss.str();
 }
 
 

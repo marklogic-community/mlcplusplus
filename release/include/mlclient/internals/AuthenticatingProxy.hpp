@@ -30,6 +30,7 @@
 #include <cstdint>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
+#include <mutex>
 
 namespace mlclient {
 
@@ -53,7 +54,7 @@ class AuthenticatingProxy {
 
 
 
-public:    
+public:
   ///
   /// Constructor
   ///
@@ -148,6 +149,8 @@ private:
 
    Credentials credentials;
    uint32_t attempts;
+
+   std::mutex restMutex;
 };
 
 } // end namespace internals

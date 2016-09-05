@@ -63,7 +63,7 @@ using namespace web::http::client;          // HTTP client features
 //using namespace concurrency::streams;       // Asynchronous streams
 using namespace mlclient;
 
-AuthenticatingProxy::AuthenticatingProxy() : attempts(0), credentials()
+AuthenticatingProxy::AuthenticatingProxy() : credentials(),attempts(0),restMutex()
 {
 }
 
@@ -71,7 +71,7 @@ void AuthenticatingProxy::copyHeaders(const web::http::http_headers& from, mlcli
   std::map<std::string,std::string> headers;
   LOG(DEBUG) << "Headers:-";
   for (auto& it : from) {
-    LOG(DEBUG) << "  Header: " << it.first << " = " << it.second;
+    LOG(DEBUG) << "  Header: " << utility::conversions::to_utf8string(it.first) << " = " << utility::conversions::to_utf8string(it.second);
     to.setHeader(utility::conversions::to_utf8string(it.first), utility::conversions::to_utf8string(it.second));
   }
 }
@@ -132,12 +132,12 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       bodyString = utility::conversions::to_string_t(body->getContent());
       mimeString = utility::conversions::to_string_t(body->getMimeType());
       // GOD AWFUL HACK
-      if ("multipart/mime" == mimeString) {
-        mimeString = "multipart/mime; boundary=BOUNDARY";
+      if (utility::conversions::to_string_t("multipart/mime") == mimeString) {
+        mimeString = utility::conversions::to_string_t("multipart/mime; boundary=BOUNDARY");
       }
       LOG(DEBUG) << "Body is not null on FIRST try";
-      LOG(DEBUG) << "  mimeString: " << mimeString;
-      LOG(DEBUG) << "  bodyString: " << bodyString;
+      LOG(DEBUG) << "  mimeString: " << utility::conversions::to_utf8string(mimeString);
+      LOG(DEBUG) << "  bodyString: " << utility::conversions::to_utf8string(bodyString);
       // TODO Any way to stream the below rather than convert in memory?
       req.set_body(bodyString,mimeString);
       //req.set_body(*(body->getStream()),utility::conversions::to_string_t(body->getMimeType()));
@@ -157,10 +157,15 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
     { // PERFORMANCE BRACE
       TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+
+      // Hold a mutex so that MarkLogic does not hit a DEADLOCK concurrent lock REST issue
+      std::unique_lock<std::mutex> lck (restMutex,std::defer_lock);
+      lck.lock();
       pplx::task<http_response> hr = raw_client.request(req);
       //LOG(DEBUG) << "Request body: " << utility::conversions::to_utf8string(req.to_string());
 
       raw_response = hr.get();
+      lck.unlock();
 
     } // PERFORMANCE BRACE
     try
@@ -273,8 +278,8 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
 
       if (nullptr != body) {
         LOG(DEBUG) << "Body is not null on retry";
-        LOG(DEBUG) << "  mimeString: " << mimeString;
-        LOG(DEBUG) << "  bodyString: " << bodyString;
+        LOG(DEBUG) << "  mimeString: " << utility::conversions::to_utf8string(mimeString);
+        LOG(DEBUG) << "  bodyString: " << utility::conversions::to_utf8string(bodyString);
         req.set_body(bodyString,mimeString);
         //req.set_body(utility::conversions::to_string_t(body->getContent()), utility::conversions::to_string_t(body->getMimeType()));
         //concurrency::streams::stdio_istream
@@ -300,10 +305,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       http_response raw_response;// = raw_client.request(req).get();
       { // PERFORMANCE BRACE
         TIMED_SCOPE(AuthenticatingProxy_doRequest, "cpprest_httpclient_request");
+        std::unique_lock<std::mutex> lck (restMutex,std::defer_lock);
+        lck.lock();
         pplx::task<http_response> hr = raw_client.request(req);
         //LOG(DEBUG) << "Retry Request body: " << utility::conversions::to_utf8string(req.to_string());
 
         raw_response = hr.get();
+        lck.unlock();
 
       } // PERFORMANCE BRACE
 

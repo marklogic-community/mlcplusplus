@@ -44,7 +44,7 @@ enum class RangeIndexType {
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeIndexType& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeIndexType& rt);
 
-MLCLIENT_API const std::string translate(const RangeIndexType& rt);
+MLCLIENT_API const std::string translate_rangeindextype(const RangeIndexType& rt);
 
 /*
 namespace RangeIndexType {
@@ -74,7 +74,7 @@ enum class AggregateBuiltIn {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const AggregateBuiltIn& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const AggregateBuiltIn& rt);
-MLCLIENT_API const std::string translate(const AggregateBuiltIn& rt);
+MLCLIENT_API const std::string translate_aggregatebuiltin(const AggregateBuiltIn& rt);
 
 // TODO string output and streaming definitions for IndexType
 
@@ -85,7 +85,7 @@ enum class FragmentScope {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const FragmentScope& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const FragmentScope& rt);
-MLCLIENT_API const std::string translate(const FragmentScope& rt);
+MLCLIENT_API const std::string translate_fragmentscope(const FragmentScope& rt);
 
 enum class FacetOption {
   // These ones do NOT require a value
@@ -100,7 +100,7 @@ enum class FacetOption {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const FacetOption& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const FacetOption& rt);
-MLCLIENT_API const std::string translate(const FacetOption& rt);
+MLCLIENT_API const std::string translate_facetoption(const FacetOption& rt);
 
 enum class RangeOption {
   // The following options have no values
@@ -116,7 +116,7 @@ enum class RangeOption {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOption& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOption& rt);
-MLCLIENT_API const std::string translate(const RangeOption& rt);
+MLCLIENT_API const std::string translate_rangeoption(const RangeOption& rt);
 
 enum class ValuesOption {
   /* These ones do NOT require a value */
@@ -136,7 +136,7 @@ enum class ValuesOption {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ValuesOption& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const ValuesOption& rt);
-MLCLIENT_API const std::string translate(const ValuesOption& rt);
+MLCLIENT_API const std::string translate_valuesoption(const ValuesOption& rt);
 
 class RangeOptions {
 public:
@@ -189,7 +189,7 @@ private:
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOptions& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOptions& rt);
-MLCLIENT_API const std::string translate(const RangeOptions& rt);
+MLCLIENT_API const std::string translate_rangeoptions(const RangeOptions& rt);
 
 
 class AggregateInfo {
@@ -217,7 +217,7 @@ private:
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const AggregateInfo& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const AggregateInfo& rt);
-MLCLIENT_API const std::string translate(const AggregateInfo& rt);
+MLCLIENT_API const std::string translate_aggregateinfo(const AggregateInfo& rt);
 
 enum class LexiconType {
   RANGE,GEO_ELEMENT,GEO_ELEMENT_PAIR,GEO_ATTRIBUTE_PAIR,GEO_JSON_PROPERTY,GEO_JSON_PROPERTY_PAIR,GEO_PATH,COLLECTION,URI
@@ -225,7 +225,7 @@ enum class LexiconType {
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const LexiconType& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const LexiconType& rt);
-MLCLIENT_API const std::string translate(const LexiconType& rt);
+MLCLIENT_API const std::string translate_lexicontype(const LexiconType& rt);
 
 class ILexiconRef {
 public:
@@ -264,7 +264,7 @@ private:
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeLexiconRef& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeLexiconRef& rt);
-MLCLIENT_API const std::string translate(const RangeLexiconRef& rt);
+MLCLIENT_API const std::string translate_rangelexiconref(const RangeLexiconRef& rt);
 
 class ValuesInfo {
 public:
@@ -296,7 +296,7 @@ private:
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ValuesInfo& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const ValuesInfo& rt);
-MLCLIENT_API const std::string translate(const ValuesInfo& rt);
+MLCLIENT_API const std::string translate_valuesinfo(const ValuesInfo& rt);
 
 
 

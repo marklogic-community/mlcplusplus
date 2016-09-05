@@ -18,31 +18,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\samples\CStruct.h">
+    <ClInclude Include="..\..\release\samples\cgetasstruct\CStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\release\samples\CStructWrapper.h">
+    <ClInclude Include="..\..\release\samples\cgetasstruct\CStructWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp">
+    <ClInclude Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
+    <ClInclude Include="..\..\release\samples\cppcommon\ConnectionFactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\release\include\mlclient\ext\pugixml\pugixml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\release\samples\cgetasstruct.c">
+    <ClCompile Include="..\..\release\samples\cppcommon\ConnectionFactory.cpp">
       <Filter>Source Files\samples</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\release\samples\ConnectionFactory.cpp">
+    <ClCompile Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.cpp">
       <Filter>Source Files\samples</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\release\samples\CStructWrapper.cpp">
+    <ClCompile Include="..\..\release\samples\cgetasstruct\cgetasstruct.c">
       <Filter>Source Files\samples</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\release\samples\ConnectionFactoryWrapper.cpp">
+    <ClCompile Include="..\..\release\samples\cgetasstruct\CStructWrapper.cpp">
       <Filter>Source Files\samples</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

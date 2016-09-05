@@ -54,7 +54,7 @@ public:
   /**
    * A virtual destructor, ripe for overloading. REQUIRED to allow subclassing
    */
-  MLCLIENT_API virtual ~IDocumentContent();
+  MLCLIENT_API virtual ~IDocumentContent() = 0;
 
   /**
    * \brief Returns the content of this IDocumentContent as an istream.
@@ -320,8 +320,8 @@ private:
  */
 class FileDocumentContent : public IDocumentContent {
 public:
-  FileDocumentContent(std::string file);
-  virtual ~FileDocumentContent();
+  MLCLIENT_API FileDocumentContent(std::string file);
+  MLCLIENT_API virtual ~FileDocumentContent();
 
   /**
    * \brief Returns the content of this IDocumentContent as an istream.

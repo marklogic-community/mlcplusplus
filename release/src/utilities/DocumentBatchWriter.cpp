@@ -41,6 +41,8 @@ public:
     ;
   }
 
+  // TODO destructor that destroys all task pointers (delete) in vector
+
   long now() {
     auto time = std::chrono::system_clock::now();
 
@@ -53,45 +55,75 @@ public:
 
   void calculateProgress() {
     long n = now();
+    LOG(DEBUG) << "calculateProgress. Now: " << n;
+    LOG(DEBUG) << "calculateProgress. start time: " << startTime;
     latest.completed = completeUris.size();
+    LOG(DEBUG) << "Completed: " << latest.completed;
     latest.percentageComplete = 100.0 * latest.completed / set.size();
     latest.total = set.size();
+    LOG(DEBUG) << "after total: " << latest.total;
     latest.duration = n - startTime;
-    latest.durationEstimateRemaining = ((latest.total - latest.completed) * latest.duration) / latest.completed;
-    latest.rate = latest.completed / (latest.duration);
+    if (0 == latest.duration) {
+      latest.duration = 1;
+    }
+    LOG(DEBUG) << "After duration: " << latest.duration;
+    latest.durationEstimateRemaining = 1;
+    if (0 != latest.completed) {
+      latest.durationEstimateRemaining = ((latest.total - latest.completed) * latest.duration) / latest.completed;
+    }
+    LOG(DEBUG) << "Before rate";
+    if (0 == latest.completed) {
+      LOG(DEBUG) << "Setting rate to 1.0";
+      latest.rate = 1.0;
+    } else {
+      LOG(DEBUG) << "Calculating rate";
+      latest.rate = ((double)latest.completed * 1000.0) / ((double)latest.duration);
+    }
+
+    LOG(DEBUG) << "After calc";
 
     // TODO make the above just for the last X seconds, and update overall separately
 
     overall = latest; // copy
+    LOG(DEBUG) << "after overall assignment";
   }
 
   void checkComplete() {
-    complete = true;
+    LOG(DEBUG) << "Start check complete";
+    bool newComplete = true;
     for (auto& iter: tasks) {
-      complete = complete && iter.second->is_done();
+      LOG(DEBUG) << "Task id: " << iter.second << " is done?: " << iter.second->is_done();
+      newComplete = newComplete && iter.second->is_done();
     }
+    complete = newComplete;
     finished = (completeUris.size() == set.size());
+    LOG(DEBUG) << "Is complete?: " << finished;
     calculateProgress();
+    LOG(DEBUG) << "End check complete";
   }
 
   void begin() {
     if (complete || !finished) {
       return; // stop starting the work twice
     }
+    complete = false;
     finished = false;
     startTime = now();
+    calculateProgress(); // initialises correct values for 'complete' in 'overall' progress struct
 
-    // TODO start parallelTasks
+    // start parallelTasks
 
     Impl& refImpl(*this);
 
-    long maxIterations = ceil(set.size() / parallelTasks);
+    long maxIterations = (long)ceil(set.size() / parallelTasks) + 1; // horrible hack for 0 being returned
+    LOG(DEBUG) << "Max iterations: " << maxIterations;
 
     LOG(DEBUG) << "Creating tasks to write " << set.size() << " Documents";
 
-    pplx::task<void>* fetchTask;
+    //pplx::task<void>* fetchTask;
     for (long i = 0;i < parallelTasks;i++) {
-      fetchTask = new pplx::task<void>([&refImpl,i,&maxIterations] () {
+      LOG(DEBUG) << "parallelTasks index: " << i;
+      pplx::task<void>* fetchTask = new pplx::task<void>([&refImpl,i,&maxIterations] () {
         long myi = i;
 
         LOG(DEBUG) << "Began document batch writer task... " << myi;
@@ -104,6 +136,7 @@ public:
             LOG(DEBUG) << "Start index is out of range: " << startIdx;
             j = maxIterations;
           } else {
+            LOG(DEBUG) << "Start index is in range: " << startIdx;
             if (endIdx >= refImpl.set.size()) {
               LOG(DEBUG) << "End index is out of range: " << endIdx;
               // must be on last part of set
@@ -122,7 +155,7 @@ public:
               LOG(DEBUG) << "Got response";
 
               // update complete
-              std::vector<std::string> myUris;
+              DocumentUriSet myUris;
               for (long idx = startIdx; idx <= endIdx;idx++) {
                 std::string uri = refImpl.set.at(idx).getUri();
                 refImpl.completeUris.push_back(uri);
@@ -168,6 +201,9 @@ public:
       LOG(DEBUG) << "adding task";
       refImpl.tasks.insert(std::pair<long,pplx::task<void>*>(i,fetchTask)); // end task initialisation
 
+      //if (0 == i) {
+      //  fetchTask->wait(); // WAIT for the first one...
+      //}
 
     } // end loop
     LOG(DEBUG) << "Tasks initialised";
@@ -246,7 +282,9 @@ void DocumentBatchWriter::stop() {
 
 void DocumentBatchWriter::wait() const {
   for (auto taskIter = mImpl->tasks.begin(); taskIter != mImpl->tasks.end();++taskIter) {
-    taskIter->second->wait();
+    if (!taskIter->second->is_done()) {
+      taskIter->second->wait();
+    }
   }
 }
 

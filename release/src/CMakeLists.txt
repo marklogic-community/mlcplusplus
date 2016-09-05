@@ -30,7 +30,7 @@ add_library (mlclient SHARED
     SearchResultSet.cpp
     ValuesResult.cpp
     ValuesResultSet.cpp
-    
+
     Permission.cpp
     Document.cpp
 
@@ -187,9 +187,9 @@ message( "-- Building SWIG CSharp bindings" )
 find_package( CSharp REQUIRED )
 include( ${CSHARP_USE_FILE} )
 
-set(SWIG_MODULE_mlclientCSharp_TARGET_NAME "csmlclient")
+set(SWIG_MODULE_mlclientCSharp_TARGET_NAME "mlclientcs")
 
-set_source_files_properties ( csmlclient.i PROPERTIES CPLUSPLUS ON )
+set_source_files_properties ( mlclient-cs.i PROPERTIES CPLUSPLUS ON )
 
   # Make sure the nested directory structure exists
   set(CSHARP_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpSources CACHE INTERNAL "")
@@ -200,36 +200,41 @@ set_source_files_properties ( csmlclient.i PROPERTIES CPLUSPLUS ON )
     # Create swig target
     set(CMAKE_SWIG_OUTDIR ${CSHARP_SOURCE_DIRECTORY})
     if ( UNIX )
-      #set(CMAKE_SWIG_FLAGS -dllimport \"csmlclient\")
+      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
     else (WIN32 )
-      #set(CMAKE_SWIG_FLAGS -dllimport \"csmlclient\")
+      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
     endif ( UNIX )
     set(CMAKE_SWIG_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR} -namespace \"mlclient\" ${CMAKE_SWIG_GLOBAL_FLAGS} ${CMAKE_SWIG_FLAGS})
     set(SWIG_MODULE_mlclientCSharp_EXTRA_DEPS ${SWIG_EXTRA_DEPS}
-      ${CMAKE_CURRENT_SOURCE_DIR}/csmlclient.i
+      ${CMAKE_CURRENT_SOURCE_DIR}/mlclient-cs.i
     ) #  ${CMAKE_CURRENT_SOURCE_DIR}/CSharpTypemapHelper.i
 
-    swig_add_module(csmlclient csharp csmlclient.i)
+    swig_add_module(mlclientcs csharp mlclient-cs.i)
 
     target_link_libraries(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} mlclient ${mlclient_LIBRARIES})
     set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
-    if ( UNIX )
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
-    else ( WIN32 )
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
-      foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
-        string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
-          PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
-          PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
-      endforeach( )
-    endif( UNIX )
+    if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dylib")
+    else (Other)
+      if ( UNIX )
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
+      else ( WIN32 )
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
+        foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
+          string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
+          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+            PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+            PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+        endforeach( )
+      endif( UNIX )
+    endif ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
 
     # The below needs to be /usr/lib, along with all depdendencies, as C# apps suck at following env variables
-    install (TARGETS csmlclient LIBRARY DESTINATION lib
+    install (TARGETS mlclientcs LIBRARY DESTINATION lib
                                 ARCHIVE DESTINATION "lib"
                                 RUNTIME DESTINATION "bin"
                                 COMPONENT library )

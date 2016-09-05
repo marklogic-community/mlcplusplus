@@ -79,7 +79,7 @@ void SearchResultSetTest::testThreePages() {
   TIMED_FUNC(testEmptySearch);
   LOG(DEBUG) << " --------------------------------------------";
   LOG(DEBUG) << " Entering SearchResultSetTest::testThreePages";
-  const IDocumentContent* finalDocContent;
+  const IDocumentContent* finalDocContent = new GenericTextDocumentContent;
   { // start destruction block
   SearchDescription* desc = new SearchDescription; // default empty search object
   GenericTextDocumentContent* tdcOptions = new GenericTextDocumentContent;

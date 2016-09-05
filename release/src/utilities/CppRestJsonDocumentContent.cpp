@@ -18,11 +18,10 @@
  * \date 2016-05-01
  */
 
-#include <cpprest/http_client.h>
 #include <cpprest/json.h>
-#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-#include "mlclient/logging.hpp"
-#include "mlclient/InvalidFormatException.hpp"
+#include <mlclient/utilities/CppRestJsonDocumentContent.hpp>
+#include <mlclient/logging.hpp>
+#include <mlclient/InvalidFormatException.hpp>
 #include <iostream>
 #include <string>
 #include <sstream>

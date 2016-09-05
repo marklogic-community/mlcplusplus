@@ -18,22 +18,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\release\samples\cgetdoc.c">
-      <Filter>Source Files\samples</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\release\samples\ConnectionFactory.cpp">
-      <Filter>Source Files\samples</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\release\samples\ConnectionFactoryWrapper.cpp">
-      <Filter>Source Files\samples</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\release\samples\cppcommon\ConnectionFactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\release\samples\ConnectionFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\release\include\mlclient\logging.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\release\samples\cppcommon\ConnectionFactory.cpp">
+      <Filter>Source Files\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\release\samples\ccommon\ConnectionFactoryWrapper.cpp">
+      <Filter>Source Files\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\release\samples\cgetdoc\cgetdoc.c">
+      <Filter>Source Files\samples</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

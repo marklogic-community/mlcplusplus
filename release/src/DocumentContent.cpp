@@ -220,7 +220,7 @@ public:
 
     mimeMap.insert(std::pair<std::string,std::string>("xml","application/xml"));
     mimeMap.insert(std::pair<std::string,std::string>("json","application/json"));
-    mimeMap.insert(std::pair<std::string,std::string>("txt","application/text"));
+    mimeMap.insert(std::pair<std::string,std::string>("txt","text/plain"));
 
     mimeMap.insert(std::pair<std::string,std::string>("jpg","image/jpeg"));
     mimeMap.insert(std::pair<std::string,std::string>("png","image/png"));

@@ -1,0 +1,32 @@
+/*!
+\page page_home_c C Documentation
+\brief The main page for C coding documentation.
+
+This is the home page for C support.
+
+\section sec_home_c_features Features
+
+TODO
+
+\section sec_home_c_install Installation
+
+TODO
+
+\section sec_home_c_quickstart Quickstart
+
+TODO
+
+\section sec_home_c_langspecific Language Specific Features
+
+This section describes language specific features. I.e. features provided for the Idioms developers of this language
+would expect.
+
+\subsection Function name patterns
+
+TODO
+
+\section sec_home_c_extending Extending
+
+TODO
+
+*/

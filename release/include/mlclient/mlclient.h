@@ -11,4 +11,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "mlclient/mlclient.hpp"
+
+#pragma once
+
+#ifndef MLCLIENT_H
+#define MLCLIENT_H
+
+#ifdef _WIN32
+
+#ifdef MLCLIENT_EXPORTS
+#define MLCLIENT_API __declspec(dllexport)
+#else
+#define MLCLIENT_API __declspec(dllimport)
+#endif
+
+#else
+
+#define MLCLIENT_API
+
+#endif
+
+#endif

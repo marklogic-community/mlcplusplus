@@ -58,14 +58,14 @@ struct basic_nullbuf : std::basic_streambuf<Ch, Traits> {
 };
 
 // convenient typedefs
-typedef basic_nullbuf<char> nullbuf;
-typedef basic_nullbuf<wchar_t> wnullbuf;
+MLCLIENT_API typedef basic_nullbuf<char> nullbuf;
+MLCLIENT_API typedef basic_nullbuf<wchar_t> wnullbuf;
 
 //MLCLIENT_API typedef std::ostream MLLOGSTREAM;
 
 // buffers and streams
 // in some .h
-extern std::ostream cnull;
+MLCLIENT_API extern std::ostream cnull;
 //extern std::wostream wcnull;
 
 #define LOG(lvl) cnull

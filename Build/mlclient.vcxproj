@@ -30,11 +30,13 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -68,7 +70,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,8 +83,9 @@
       <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <FloatingPointModel>Strict</FloatingPointModel>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -108,13 +111,16 @@
       <AdditionalIncludeDirectories>..\release\include;..\release\samples;..\release\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4503;4592;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>No</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,6 +160,8 @@
     <ClCompile Include="..\release\src\SearchResultSet.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\CppRestJsonHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\DocumentBatchHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\DocumentBatchWriter.cpp" />
     <ClCompile Include="..\release\src\utilities\DocumentHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp" />
@@ -170,14 +178,16 @@
     <ClInclude Include="..\release\include\mlclient\Connection.hpp" />
     <ClInclude Include="..\release\include\mlclient\ConnectionWrapper.h" />
     <ClInclude Include="..\release\include\mlclient\CWrapper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\Document.hpp" />
     <ClInclude Include="..\release\include\mlclient\DocumentContent.hpp" />
-    <ClInclude Include="..\release\include\mlclient\ext\easylogging++.h" />
+    <ClInclude Include="..\release\include\mlclient\DocumentSet.hpp" />
     <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugiconfig.hpp" />
     <ClInclude Include="..\release\include\mlclient\ext\pugixml\pugixml.hpp" />
     <ClInclude Include="..\release\include\mlclient\HttpHeaders.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\AuthenticatingProxy.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\AuthorizationBuilder.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\Conversions.hpp" />
+    <ClInclude Include="..\release\include\mlclient\internals\cpprestfwd.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\Credentials.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\FakeConnection.hpp" />
     <ClInclude Include="..\release\include\mlclient\internals\memory.hpp" />
@@ -187,6 +197,7 @@
     <ClInclude Include="..\release\include\mlclient\mlclient.h" />
     <ClInclude Include="..\release\include\mlclient\mlclient.hpp" />
     <ClInclude Include="..\release\include\mlclient\NoCredentialsException.hpp" />
+    <ClInclude Include="..\release\include\mlclient\Permission.hpp" />
     <ClInclude Include="..\release\include\mlclient\Response.hpp" />
     <ClInclude Include="..\release\include\mlclient\ResponseWrapper.h" />
     <ClInclude Include="..\release\include\mlclient\SearchDescription.hpp" />
@@ -194,6 +205,8 @@
     <ClInclude Include="..\release\include\mlclient\SearchResultSet.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\CppRestJsonHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchWriter.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\DocumentHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />

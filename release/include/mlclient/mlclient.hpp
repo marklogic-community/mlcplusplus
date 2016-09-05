@@ -13,8 +13,8 @@
  */
 #pragma once
 
-#ifndef MLCLIENT_H
-#define MLCLIENT_H
+#ifndef MLCLIENT_HPP
+#define MLCLIENT_HPP
 
 #include <memory>
 
@@ -51,4 +51,4 @@ namespace mlclient {
   }
 } // end namespace mlclient
 
-#endif /* defined(MLCLIENT_H) */
+#endif /* defined(MLCLIENT_HPP) */

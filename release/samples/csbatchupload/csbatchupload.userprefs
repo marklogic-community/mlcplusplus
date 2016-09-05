@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="csbatchupload/csbatchupload.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="csbatchupload/Program.cs">
+    <Files>
+      <File FileName="csbatchupload/Program.cs" Line="75" Column="59" />
+      <File FileName="../../../bin/src/CSharpSources/CollectionSet.cs" Line="81" Column="21" />
+      <File FileName="../../../bin/src/CSharpSources/DocumentSet.cs" Line="83" Column="4" />
+      <File FileName="../../../bin/src/CSharpSources/IBatchNotifiable.cs" Line="13" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.csbatchupload PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

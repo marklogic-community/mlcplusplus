@@ -23,8 +23,6 @@
 #include "mlclient/mlclient.hpp"
 #include "mlclient/SearchDescription.hpp"
 
-#include <cpprest/http_client.h> // deliberate compile time dependency
-
 #include <vector>
 #include <string>
 #include <ostream>
@@ -43,7 +41,7 @@ enum class RangeOperation : int { UNKNOWN_TYPE = 0, GE = 1, GT = 2, LT = 3, LE =
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOperation& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOperation& rt);
 
-MLCLIENT_API const std::string translate(const RangeOperation& rt);
+MLCLIENT_API const std::string translate_rangeoperation(const RangeOperation& rt);
 
 // QUERY TYPES
 
