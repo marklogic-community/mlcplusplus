@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['navigate',['navigate',['../classmlclient_1_1_i_text_document_content.html#a1ef6ac941c24a4c608dbbf95d47ffd3f',1,'mlclient::ITextDocumentContent::navigate()'],['../classmlclient_1_1_generic_text_document_content.html#ab9f0c496dc863049da1639bfc2b244a2',1,'mlclient::GenericTextDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a736a5c01ef0a0ce473042bb36df70279',1,'mlclient::utilities::CppRestJsonDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afde977f0237ff12a056af147bdd4741d',1,'mlclient::utilities::PugiXmlDocumentContent::navigate()']]]
+  ['listcollections',['listCollections',['../classmlclient_1_1_i_connection.html#a50942c2e1b4255b3aa433efb26e93b3c',1,'mlclient::IConnection::listCollections()'],['../classmlclient_1_1_connection.html#af904a48e7f2b016d4c6159fc4b1e5831',1,'mlclient::Connection::listCollections()']]],
+  ['listrootcollections',['listRootCollections',['../classmlclient_1_1_i_connection.html#abc3ea8a461292cab4eb0ec8d73e96bee',1,'mlclient::IConnection::listRootCollections()'],['../classmlclient_1_1_connection.html#a790cdfa2d5842ac076002989617f12d5',1,'mlclient::Connection::listRootCollections()']]]
 ];

@@ -136,16 +136,14 @@ MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>SearchDescrip
 <tr class="memdesc:ad653610f93e940bd441790a94996dd01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the total payload for this search, as passed to MarkLogic Server.  <a href="#ad653610f93e940bd441790a94996dd01">More...</a><br /></td></tr>
 <tr class="separator:ad653610f93e940bd441790a94996dd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">searchdescription_parameters Common REST API call parameters to override options on the fly</div></td></tr>
-<tr class="memitem:abd67bf61129c19275510f18cf02dca54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd67bf61129c19275510f18cf02dca54"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#abd67bf61129c19275510f18cf02dca54">setStart</a> (const long start)</td></tr>
-<tr class="memdesc:abd67bf61129c19275510f18cf02dca54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server. <br /></td></tr>
+<tr class="memitem:abd67bf61129c19275510f18cf02dca54"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#abd67bf61129c19275510f18cf02dca54">setStart</a> (const long start)</td></tr>
+<tr class="memdesc:abd67bf61129c19275510f18cf02dca54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server.  <a href="#abd67bf61129c19275510f18cf02dca54">More...</a><br /></td></tr>
 <tr class="separator:abd67bf61129c19275510f18cf02dca54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02593a1cf89db373a2aca1c46a0f6232"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a02593a1cf89db373a2aca1c46a0f6232">getStart</a> () const </td></tr>
 <tr class="memdesc:a02593a1cf89db373a2aca1c46a0f6232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the start (first result) index. These are 1 not 0 based in MarkLogic Server.  <a href="#a02593a1cf89db373a2aca1c46a0f6232">More...</a><br /></td></tr>
 <tr class="separator:a02593a1cf89db373a2aca1c46a0f6232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02717dbff9d85ea3be757d177e4a9122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02717dbff9d85ea3be757d177e4a9122"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a02717dbff9d85ea3be757d177e4a9122">setPageLength</a> (const long pageLength)</td></tr>
-<tr class="memdesc:a02717dbff9d85ea3be757d177e4a9122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of results to return per page. <br /></td></tr>
+<tr class="memitem:a02717dbff9d85ea3be757d177e4a9122"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a02717dbff9d85ea3be757d177e4a9122">setPageLength</a> (const long pageLength)</td></tr>
+<tr class="memdesc:a02717dbff9d85ea3be757d177e4a9122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of results to return per page.  <a href="#a02717dbff9d85ea3be757d177e4a9122">More...</a><br /></td></tr>
 <tr class="separator:a02717dbff9d85ea3be757d177e4a9122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dbac95a2fb3ae0f900e4d185c29dfbd"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html#a9dbac95a2fb3ae0f900e4d185c29dfbd">getPageLength</a> () const </td></tr>
 <tr class="memdesc:a9dbac95a2fb3ae0f900e4d185c29dfbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of results shown per page.  <a href="#a9dbac95a2fb3ae0f900e4d185c29dfbd">More...</a><br /></td></tr>
@@ -324,6 +322,30 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 
 </div>
 </div>
+<a class="anchor" id="a02717dbff9d85ea3be757d177e4a9122"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::SearchDescription::setPageLength </td>
+          <td>(</td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>pageLength</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the number of results to return per page. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pageLength</td><td>The number of results per page to return </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ad27551891b1563c932cb651c93a993bc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -368,6 +390,30 @@ MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">qtext</td><td>The plain text query </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abd67bf61129c19275510f18cf02dca54"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::SearchDescription::setStart </td>
+          <td>(</td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>start</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>The point in the result set to begin returning results from the server </td></tr>
   </table>
   </dd>
 </dl>

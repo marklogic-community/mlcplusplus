@@ -169,7 +169,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a89f26ceb86c718f7a504fbddbd5d5be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a set of documents as a single batch to MarkLogic Server.  <a href="#a89f26ceb86c718f7a504fbddbd5d5be6">More...</a><br /></td></tr>
 <tr class="separator:a89f26ceb86c718f7a504fbddbd5d5be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a182fb20168a38dc3c2ce010cd2f27d51"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a182fb20168a38dc3c2ce010cd2f27d51">saveDocument</a> (const <a class="el" href="classmlclient_1_1_document.html">Document</a> &amp;doc) override</td></tr>
-<tr class="memdesc:a182fb20168a38dc3c2ce010cd2f27d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)  <a href="#a182fb20168a38dc3c2ce010cd2f27d51">More...</a><br /></td></tr>
+<tr class="memdesc:a182fb20168a38dc3c2ce010cd2f27d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the specified document to MarkLogic Server.  <a href="#a182fb20168a38dc3c2ce010cd2f27d51">More...</a><br /></td></tr>
 <tr class="separator:a182fb20168a38dc3c2ce010cd2f27d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afad6e3a23b8685ec954f12e8b11712b2"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#afad6e3a23b8685ec954f12e8b11712b2">deleteDocument</a> (const std::string &amp;uri) override</td></tr>
 <tr class="memdesc:afad6e3a23b8685ec954f12e8b11712b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the specified document by URI.  <a href="#afad6e3a23b8685ec954f12e8b11712b2">More...</a><br /></td></tr>
@@ -190,10 +190,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3ebd6c7ffa6a25488f46bf77d24611dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a values against a REST extension that is compatible with POST /v1/search (i.e. <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a>)  <a href="#a3ebd6c7ffa6a25488f46bf77d24611dd">More...</a><br /></td></tr>
 <tr class="separator:a3ebd6c7ffa6a25488f46bf77d24611dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a790cdfa2d5842ac076002989617f12d5"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#a790cdfa2d5842ac076002989617f12d5">listRootCollections</a> () override</td></tr>
-<tr class="memdesc:a790cdfa2d5842ac076002989617f12d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character.  <a href="#a790cdfa2d5842ac076002989617f12d5">More...</a><br /></td></tr>
+<tr class="memdesc:a790cdfa2d5842ac076002989617f12d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.  <a href="#a790cdfa2d5842ac076002989617f12d5">More...</a><br /></td></tr>
 <tr class="separator:a790cdfa2d5842ac076002989617f12d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af904a48e7f2b016d4c6159fc4b1e5831"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html#af904a48e7f2b016d4c6159fc4b1e5831">listCollections</a> (const std::string &amp;parentCollection) override</td></tr>
-<tr class="memdesc:af904a48e7f2b016d4c6159fc4b1e5831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the immediate child collections of the specified parent Collections.  <a href="#af904a48e7f2b016d4c6159fc4b1e5831">More...</a><br /></td></tr>
+<tr class="memdesc:af904a48e7f2b016d4c6159fc4b1e5831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists the immediate child collections of the specified parent Collections. See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.  <a href="#af904a48e7f2b016d4c6159fc4b1e5831">More...</a><br /></td></tr>
 <tr class="separator:af904a48e7f2b016d4c6159fc4b1e5831"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmlclient_1_1_i_connection"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classmlclient_1_1_i_connection')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmlclient_1_1_i_connection.html">mlclient::IConnection</a></td></tr>
 <tr class="memitem:afaf4c99c9844c7a73feff2cde9f6bd2e inherit pub_methods_classmlclient_1_1_i_connection"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html#afaf4c99c9844c7a73feff2cde9f6bd2e">IConnection</a> ()=default</td></tr>
@@ -296,16 +296,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Configures this connection, providing connection override information - host, port, username, password and SSL usage</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">hostname</td><td>The hostname or IP address of the MarkLogic Server (or load balancer) to connect to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>A String representing the (numerical) port number of the MarkLogic Server (or load balancer) to connect to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">username</td><td>The username of the used to connect to MarkLogic Server as </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">password</td><td>The plain text password used to authenticate the user to MarkLogic server with </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">usessl</td><td>A bool representation whether to use SSL (i.e. a HTTPS url) or not </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details. </p>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a82edc93d7ca0cc723323cde23e70ac98">mlclient::IConnection</a>.</p>
 
@@ -333,7 +324,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Connects or tests the authentication in the connection. May not actually connect. </p>
-<dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Should be called prior to any use of functions. Is not called for the developer</dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details. </p>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a62b6796afd2354dcc0af0574282fd461">mlclient::IConnection</a>.</p>
 
@@ -362,19 +354,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Deletes the specified document by URI. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The document URI to delete </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#ab5fb8f4ea90f281db3a87196e2752950">mlclient::IConnection</a>.</p>
@@ -403,7 +383,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Frees up resources held by the connection, until the next call to connect. </p>
-<dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Should be called by a class' destructor</dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details. </p>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a59fc665d5052673448a689a346877b7e">mlclient::IConnection</a>.</p>
 
@@ -432,23 +413,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Performs a HTTP DELETE Request against MarkLogic Server. </p>
-<p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
-<p>Performs a HTTP DELETE REST request to an arbitrary URL on MarkLogic Server</p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pathAndQueryString</td><td>the path and query string for the entire delete request. E.g. /v1/documents?uri=/my/doc.json </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for a <a class="el" href="classmlclient_1_1_response.html">Response</a> instance. The caller is responsible for destroying the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a41b90eac128498d6739eb757cb93aeb2">mlclient::IConnection</a>.</p>
 
@@ -477,23 +443,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Performs a HTTP GET Request against MarkLogic Server. </p>
-<p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
-<p>Performs a RESTful HTTP GET request to an arbitrary URL on MarkLogic Server</p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pathAndQueryString</td><td>the path and query string for the entire get request. E.g. /v1/search?options=myoptions </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for a <a class="el" href="classmlclient_1_1_response.html">Response</a> instance. The caller is responsible for destroying the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#aff746a444f75971bef0e57a6fcb5bef5">mlclient::IConnection</a>.</p>
 
@@ -532,24 +483,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Performs a HTTP POST Request against MarkLogic Server. </p>
-<p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
-<p>Performs a RESTful HTTP POST request to an arbitrary URL on MarkLogic Server</p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pathAndQueryString</td><td>the path and query string for the entire post request. E.g. /v1/search?options=myoptions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The <a class="el" href="">DocumentContent</a> to send to MarkLogic Server </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for a <a class="el" href="classmlclient_1_1_response.html">Response</a> instance. The caller is responsible for destroying the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#aeff605e34986204afd5b2f5040c193b9">mlclient::IConnection</a>.</p>
 
@@ -588,24 +523,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Performs a HTTP PUT Request against MarkLogic Server. </p>
-<p>Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide a specific convenience method to invoke it.</p>
-<p>Performs a RESTful HTTP PUT request to an arbitrary URL on MarkLogic Server</p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pathAndQueryString</td><td>the path and query string for the entire put request. E.g. /v1/search?options=myoptions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The <a class="el" href="">DocumentContent</a> to send to MarkLogic Server </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for a <a class="el" href="classmlclient_1_1_response.html">Response</a> instance. The caller is responsible for destroying the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic web application URL. </dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a6e5b776fc496d8fb129c8e78d15da976">mlclient::IConnection</a>.</p>
 
@@ -633,8 +552,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the database name we're querying/updating. Defaults to Documents. </p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>A string representation of the database name (not internal MarkLogic database numeric ID) </dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a9d414f4ff7797d6265001faee51a5329">mlclient::IConnection</a>.</p>
 
@@ -663,20 +582,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retrieves a document from the server, at the given document URI (MarkLogic unique document ID) </p>
-<p>Performs a GET /v1/documents?uri HTTP call</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The URI of the document to fetch from MarkLogic Server </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a3e57f048d29086c67c052c2c657b2a3f">mlclient::IConnection</a>.</p>
@@ -706,21 +612,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retrieves a document from the server, at the given document URI (MarkLogic unique document ID, within the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object) </p>
-<dl class="section note"><dt>Note</dt><dd>This method differs from <a class="el" href="classmlclient_1_1_connection.html#a9456f042efcb2c121821c00a5a7408b2" title="Retrieves a document from the server, at the given document URI (MarkLogic unique document ID) ...">getDocument(const std::string&amp; uri)</a> in that it populates the document specified, rather than returning a document from the method (or within the response). This method fetches ALL of document content AND properties AND collections AND permissions</dd></dl>
-<p>Performs a GET /v1/documents?uri HTTP call, fetching all document information.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">inout_document</td><td>The document to fetch from MarkLogic Server. MUST have a URI. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a280818f153bd49f32df4dad793c97653">mlclient::IConnection</a>.</p>
@@ -750,7 +642,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populates the content of the specified document (MUST have a uri). </p>
-<p>See <a class="el" href="classmlclient_1_1_connection.html#a29c15c72e3f46cff8904656bd073b5c7" title="Retrieves a document from the server, at the given document URI (MarkLogic unique document ID...">getDocument(Document&amp;)</a> for details. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#abfe3cdb418eb5af045594633d4034e78">mlclient::IConnection</a>.</p>
 
@@ -779,7 +672,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populates the permissions of the specified document (MUST have a uri). </p>
-<p>See <a class="el" href="classmlclient_1_1_connection.html#a29c15c72e3f46cff8904656bd073b5c7" title="Retrieves a document from the server, at the given document URI (MarkLogic unique document ID...">getDocument(Document&amp;)</a> for details. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a08993a40b25df23c7ccca68fd68cd795">mlclient::IConnection</a>.</p>
 
@@ -808,7 +702,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populates the properties of the specified document (MUST have a uri). </p>
-<p>See <a class="el" href="classmlclient_1_1_connection.html#a29c15c72e3f46cff8904656bd073b5c7" title="Retrieves a document from the server, at the given document URI (MarkLogic unique document ID...">getDocument(Document&amp;)</a> for details. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a4b68b70b974d7d626b20f9e3c0842b25">mlclient::IConnection</a>.</p>
 
@@ -836,10 +731,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Lists the immediate child collections of the specified parent Collections. </p>
-<dl class="section note"><dt>Note</dt><dd>Parent collection must start with a / </dd>
-<dd>
-Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+<p>Lists the immediate child collections of the specified parent Collections. See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a50942c2e1b4255b3aa433efb26e93b3c">mlclient::IConnection</a>.</p>
 
@@ -866,8 +759,8 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </table>
 </div><div class="memdoc">
 
-<p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></dl>
+<p>Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#abc3ea8a461292cab4eb0ec8d73e96bee">mlclient::IConnection</a>.</p>
 
@@ -895,22 +788,8 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </table>
 </div><div class="memdoc">
 
-<p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
-<p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>Underlying code tested By DocumentBatchWriterTest</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a></td><td>The <a class="el" href="classmlclient_1_1_document.html">Document</a> to send to MarkLogic Server. Must have a URI and Content DocumentContent instance. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Saves the specified document to MarkLogic Server. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a62a35d805f695ac7c0ccb4bad1d03703">mlclient::IConnection</a>.</p>
@@ -950,21 +829,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </div><div class="memdoc">
 
 <p>Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID) </p>
-<p>Performs a call to PUT /v1/documents?ext in order to save a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> to MarkLogic Server</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">uri</td><td>The URI of the document to save to MarkLogic Server </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The <a class="el" href="">DocumentContent</a> to send to MarkLogic Server </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is repsonsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a34e2014c15e67a1487906ef57f31909d">mlclient::IConnection</a>.</p>
@@ -1010,17 +875,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </div><div class="memdoc">
 
 <p>Saves a set of documents as a single batch to MarkLogic Server. </p>
-<p>See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.</p>
-<dl class="section note"><dt>Note</dt><dd>Uses a single REST call and multi-part MIME support in the REST API</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">documents</td><td>The set of documents to upload </td></tr>
-    <tr><td class="paramname">startPosInclusive</td><td>The first index of the document in the set to upload </td></tr>
-    <tr><td class="paramname">endPostInclusive</td><td>The last index of the document in the set to upload </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object</dd></dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a9e2be0a1db1f52d602d0d9863567e078">mlclient::IConnection</a>.</p>
@@ -1060,13 +915,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </div><div class="memdoc">
 
 <p>Saves search options to the server. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>The name of the options on the server </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">optionsDoc</td><td>The document containing the options</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a1798c63b69694f6f45f014315033beb7">mlclient::IConnection</a>.</p>
@@ -1096,21 +945,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </div><div class="memdoc">
 
 <p>Performs a search against the MarkLogic database given the provided search query, text and options. </p>
-<p>Uses a <a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a> value object to wrap complex search parameters for MarkLogic Server.</p>
-<p>Performs a POST /v1/search HTTP POST to MarkLogic Server</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">desc</td><td>The <a class="el" href="classmlclient_1_1_search_description.html" title="A POD class representing input to the POST of /v1/search - i.e. all search configuration. ">SearchDescription</a> defining the search, options, and query string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A unique_ptr for the <a class="el" href="classmlclient_1_1_response.html">Response</a> object. The caller is responsible for deleting the pointer.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_no_credentials_exception.html" title="Indicates that you have not provided the Connection with any credentials, or the credentials are inva...">NoCredentialsException</a></td><td>The credentials for the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> were not accepted by MarkLogic Server, or permission is denied for this request.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#ad4a6a559fe192c6f4efd30b54f81fc65">mlclient::IConnection</a>.</p>
@@ -1150,17 +985,7 @@ Requires the Collection Lexicon to be enabled on the MarkLogic Database </dd></d
 </div><div class="memdoc">
 
 <p>Performs a search against a REST extension that is compatible with POST /v1/search (i.e. <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a>) </p>
-<dl class="section note"><dt>Note</dt><dd>Useful when your extension places extra criteria on the search that the REST API does not support.</dd>
-<dd>
-This could be used to effectively create 'stored procedures' that took a search to restrict the documents the work occurs over, returning a result set just like <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a> (i.e. POST /v1/search)</dd></dl>
-<p>See also <a class="el" href="classmlclient_1_1_connection.html#a3ebd6c7ffa6a25488f46bf77d24611dd">Connection::valuesExtension</a> for similar functionality for aggregate/values extensions</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">extensionName</td><td>The REST API extension name (file name without .xqy or .sjs) to invoke </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">desc</td><td>The <a class="el" href="classmlclient_1_1_search_description.html" title="A POD class representing input to the POST of /v1/search - i.e. all search configuration. ">SearchDescription</a> defining the search, options, and query string</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a317b4495984961ebed3bb905083acc5d">mlclient::IConnection</a>.</p>
@@ -1190,13 +1015,8 @@ This could be used to effectively create 'stored procedures' that took a search 
 </div><div class="memdoc">
 
 <p>Sets the name of the database to query/update. Defaults to Documents. </p>
-<dl class="section since"><dt>Since</dt><dd>8.0.0</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">The</td><td>string name (not internal MarkLogic numeric ID) of the database to query. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#ab234cd14790c42d94d53bba2d8df71ab">mlclient::IConnection</a>.</p>
 
@@ -1235,14 +1055,8 @@ This could be used to effectively create 'stored procedures' that took a search 
 </div><div class="memdoc">
 
 <p>Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the search options configuration used. </p>
-<dl class="section note"><dt>Note</dt><dd>What is returned from the call is entirely dependent upon the search options configuration used.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">valuesName</td><td>The name of the values Configuration within the search options to use </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">optionsName</td><td>The name of the installed search options to specify (no default) </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a7292786947716b79ce2721bf388c1675">mlclient::IConnection</a>.</p>
 
@@ -1293,21 +1107,7 @@ This could be used to effectively create 'stored procedures' that took a search 
 </div><div class="memdoc">
 
 <p>Performs a values against a REST extension that is compatible with POST /v1/search (i.e. <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a>) </p>
-<dl class="section note"><dt>Note</dt><dd>Useful when your extension places extra criteria on the search that the REST API does not support.</dd>
-<dd>
-This could be used to effectively create 'stored procedures' that took a search to restrict the documents the work occurs over, returning a result set just like <a class="el" href="classmlclient_1_1_connection.html#aee08dd03abf8d7bd7d34901f17696a22" title="Performs a search against the MarkLogic database given the provided search query, text and options...">Connection::search</a> (i.e. POST /v1/search)</dd></dl>
-<p>See also <a class="el" href="classmlclient_1_1_connection.html#aacc13387f10b8e34c25a22f3d4ef308d">Connection::searchExtension</a> for similar functionality for aggregate/values extensions</p>
-<dl class="section note"><dt>Note</dt><dd>Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName variable is passed to the 'values' parameter on the querystring of the request.</dd></dl>
-<p>Invokes POST /v1/values/VALUESNAME?options=OPTIONSNAME and not GET</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">extensionName</td><td>The REST API extension name (file name without .xqy or .sjs) to invoke </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">valuesName</td><td>The name of the values Configuration within the search options to use </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">optionsName</td><td>The name of the installed search options to specify (no default) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">desc</td><td>The <a class="el" href="classmlclient_1_1_search_description.html" title="A POD class representing input to the POST of /v1/search - i.e. all search configuration. ">SearchDescription</a> defining the search, options, and query string</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>See <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> for details.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_connection.html#a87683d6d193a962f0a8a811610e3fb67">mlclient::IConnection</a>.</p>

@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['todocument',['toDocument',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html#a59d2d85146edddd3eb23952c8d5cc543',1,'mlclient::utilities::CppRestJsonHelper::toDocument()'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a391f98e93779b6547f18eb51e9ce113d',1,'mlclient::utilities::PugiXmlHelper::toDocument(const pugi::xml_document &amp;dc)'],['../classmlclient_1_1utilities_1_1_pugi_xml_helper.html#aa4a16f068df0e2a70deea2a26d7f7ab0',1,'mlclient::utilities::PugiXmlHelper::toDocument(const std::string &amp;content)']]],
-  ['tohex',['toHex',['../classmlclient_1_1internals_1_1_m_l_crypto.html#a0eee8a9ec539a31e006224de232b3c6e',1,'mlclient::internals::MLCrypto']]]
+  ['rangequery',['rangeQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a07e43f979ea76d2ae57078cf0048c47d',1,'mlclient::utilities::SearchBuilder']]],
+  ['read',['read',['../classmlclient_1_1_response.html#a207a41f92e3a34e0c2b7c4f6265de606',1,'mlclient::Response']]],
+  ['reconfigurelogging',['reconfigureLogging',['../namespacemlclient.html#a88d4ac6b7910817c101534a471f02e27',1,'mlclient']]],
+  ['reconfigureloggingsettings',['reconfigureLoggingSettings',['../namespacemlclient.html#afe73e314dfbe4d339c7fd2d0ad00b285',1,'mlclient']]],
+  ['removebatchlistener',['removeBatchListener',['../classmlclient_1_1utilities_1_1_document_batch_writer.html#a4ad20ecfc0a85c51ac1f2dc42b99601c',1,'mlclient::utilities::DocumentBatchWriter']]],
+  ['response',['response',['../classmlclient_1_1internals_1_1_authorization_builder.html#a28c9c035f921bb32dedcc1f79c7c1fb2',1,'mlclient::internals::AuthorizationBuilder::response(const std::string &amp;hash1, const std::string &amp;nonce, const std::string &amp;nonceCount, const std::string &amp;clientNonce, const std::string &amp;qop, const std::string &amp;hash2)'],['../classmlclient_1_1internals_1_1_authorization_builder.html#a147eb6510846ef7685a7ec045bb8e3af',1,'mlclient::internals::AuthorizationBuilder::response(const std::string &amp;hash1, const std::string &amp;nonce, const std::string &amp;hash2)'],['../classmlclient_1_1_response.html#a6ea72bb39c0c88bb2f234926c4ba524f',1,'mlclient::Response::Response()']]]
 ];

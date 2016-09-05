@@ -13,6 +13,8 @@ var searchData=
   ['xml_5fwriter',['xml_writer',['../classpugi_1_1xml__writer.html',1,'pugi']]],
   ['xml_5fwriter_5ffile',['xml_writer_file',['../classpugi_1_1xml__writer__file.html',1,'pugi']]],
   ['xml_5fwriter_5fstream',['xml_writer_stream',['../classpugi_1_1xml__writer__stream.html',1,'pugi']]],
+  ['xmlrangequery',['xmlRangeQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a8168dc586d51332f246c23dbc4667fe5',1,'mlclient::utilities::SearchBuilder']]],
+  ['xmlvaluequery',['xmlValueQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a6fdc8189d0e473098d5eb638c56482b2',1,'mlclient::utilities::SearchBuilder']]],
   ['xpath_5fexception',['xpath_exception',['../classpugi_1_1xpath__exception.html',1,'pugi']]],
   ['xpath_5fnode',['xpath_node',['../classpugi_1_1xpath__node.html',1,'pugi']]],
   ['xpath_5fnode_5fset',['xpath_node_set',['../classpugi_1_1xpath__node__set.html',1,'pugi']]],

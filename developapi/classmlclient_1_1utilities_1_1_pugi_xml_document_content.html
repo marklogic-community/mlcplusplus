@@ -145,7 +145,7 @@ virtual MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memdesc:a6f4b7d0611b68cb03a69a407b83f1bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of characters in the content string.  <a href="#a6f4b7d0611b68cb03a69a407b83f1bd4">More...</a><br /></td></tr>
 <tr class="separator:a6f4b7d0611b68cb03a69a407b83f1bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afde977f0237ff12a056af147bdd4741d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_navigator.html">IDocumentNavigator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afde977f0237ff12a056af147bdd4741d">navigate</a> (bool firstElementAsRoot=false) const  override</td></tr>
-<tr class="memdesc:afde977f0237ff12a056af147bdd4741d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a way to navigate the document.  <a href="#afde977f0237ff12a056af147bdd4741d">More...</a><br /></td></tr>
+<tr class="memdesc:afde977f0237ff12a056af147bdd4741d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> instance, as per the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal API.  <a href="#afde977f0237ff12a056af147bdd4741d">More...</a><br /></td></tr>
 <tr class="separator:afde977f0237ff12a056af147bdd4741d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">pugixmldocumentcontent_functions These functions are new to this subclass.</div></td></tr>
 <tr class="memitem:afdf9a9358c082af9364ee1b9f920a23c"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afdf9a9358c082af9364ee1b9f920a23c">getXml</a> () const </td></tr>
@@ -331,9 +331,14 @@ static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign=
 </table>
 </div><div class="memdoc">
 
-<p>Returns a way to navigate the document. </p>
-<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2016-07-30 </dd></dl>
+<p>Returns an <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> instance, as per the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">firstElementAsRoot</td><td>Whether the root XML element is the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> node (false) or the first full XML element (true). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> instance (caller OWNS the pointer, this class does not delete it) </dd></dl>
 
 <p>Implements <a class="el" href="classmlclient_1_1_i_text_document_content.html#a1ef6ac941c24a4c608dbbf95d47ffd3f">mlclient::ITextDocumentContent</a>.</p>
 

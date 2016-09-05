@@ -114,16 +114,55 @@ Inheritance diagram for mlclient::IDocumentNavigator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab013800190a58bb7687e2d7e306e0dfd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab013800190a58bb7687e2d7e306e0dfd"></a>
-virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const std::string &amp;key) const  =0</td></tr>
+<tr class="memitem:ab013800190a58bb7687e2d7e306e0dfd"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_navigator.html#ab013800190a58bb7687e2d7e306e0dfd">at</a> (const std::string &amp;key) const  =0</td></tr>
+<tr class="memdesc:ab013800190a58bb7687e2d7e306e0dfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the named element or property underneath the document object.  <a href="#ab013800190a58bb7687e2d7e306e0dfd">More...</a><br /></td></tr>
 <tr class="separator:ab013800190a58bb7687e2d7e306e0dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Acts as a generic lightweight document interface. </p>
+<p>This is the core class in the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal API. A <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Navigator provides a consistent interface over both JSON and XML document content. This allows, for simple use cases, the developer to not know or care what the underlying content type is of their document.</p>
+<p>Using this API the developer does not need to understand or know about the underlying XML or JSON libraries being used by the C++ API. This is therefore a future proofed way of handling document content.</p>
+<p><a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal is particularly useful when you don't know or care of the document format. E.g. if dealing with internal MarkLogic document structures from the REST API (like search options), or if parsing search result sets that contain document content.</p>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-07-30 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab013800190a58bb7687e2d7e306e0dfd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a>* mlclient::IDocumentNavigator::at </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the named element or property underneath the document object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>the string key of the requested object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_node.html" title="Acts as a generic lightweight document element interface. ">IDocumentNode</a> value of the requested element or property </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html#a7d42a449a603ae38bbef5c5cc4ad66db">mlclient::utilities::PugiXmlDocumentNavigator</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_navigator.html#ab1270201ff210bc391b7091c2e39b45f">mlclient::utilities::CppRestJsonDocumentNavigator</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/mlclient/<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a></li>
 </ul>
 </div><!-- contents -->

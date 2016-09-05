@@ -2,6 +2,10 @@ var searchData=
 [
   ['canauthenticate',['canAuthenticate',['../classmlclient_1_1internals_1_1_credentials.html#a92543eaefce0baec76989762c0f59496',1,'mlclient::internals::Credentials']]],
   ['capability',['Capability',['../namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c',1,'mlclient']]],
+  ['collection',['Collection',['../namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c',1,'mlclient']]],
+  ['collectioniterator',['CollectionIterator',['../namespacemlclient.html#a89399a3138a28498a6a3fd5055e02952',1,'mlclient']]],
+  ['collectionquery',['collectionQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a0bc1cef68aa4df9a90f11c41e9326cc1',1,'mlclient::utilities::SearchBuilder']]],
+  ['collectionset',['CollectionSet',['../namespacemlclient.html#a8d44f4574f9bf24e002c154f15c54823',1,'mlclient']]],
   ['configure',['configure',['../classmlclient_1_1_i_connection.html#a82edc93d7ca0cc723323cde23e70ac98',1,'mlclient::IConnection::configure()'],['../classmlclient_1_1_connection.html#a94730373b161a41c4cafd1771fcad57f',1,'mlclient::Connection::configure()'],['../classmlclient_1_1internals_1_1_fake_connection.html#a71cacc229c9c0f7ac03804e5fb8b1669',1,'mlclient::internals::FakeConnection::configure()']]],
   ['connect',['connect',['../classmlclient_1_1_i_connection.html#a62b6796afd2354dcc0af0574282fd461',1,'mlclient::IConnection::connect()'],['../classmlclient_1_1_connection.html#a727c9d325eedebc7ccc8ed7cbefd453e',1,'mlclient::Connection::connect()'],['../classmlclient_1_1internals_1_1_fake_connection.html#a9973040a19ee0269c527814198f97307',1,'mlclient::internals::FakeConnection::connect()']]],
   ['connection',['Connection',['../classmlclient_1_1_connection.html#a0fa4c3ba43b9eb4dba17173d9864cf00',1,'mlclient::Connection']]],
@@ -19,6 +23,7 @@ var searchData=
   ['cpprestjsondocumentnode',['CppRestJsonDocumentNode',['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_node.html',1,'mlclient::utilities']]],
   ['cpprestjsonhelper',['CppRestJsonHelper',['../classmlclient_1_1utilities_1_1_cpp_rest_json_helper.html',1,'mlclient::utilities']]],
   ['cpprestjsonobjectnode',['CppRestJsonObjectNode',['../classmlclient_1_1utilities_1_1_cpp_rest_json_object_node.html',1,'mlclient::utilities']]],
+  ['createnode',['createNode',['../namespacemlclient_1_1utilities.html#a98eff32e2427ab4714ee264cd59d7507',1,'mlclient::utilities']]],
   ['credentials',['Credentials',['../classmlclient_1_1internals_1_1_credentials.html',1,'mlclient::internals']]],
   ['credentials',['Credentials',['../classmlclient_1_1internals_1_1_credentials.html#aee8918e48fe396575aad7b2d0b36afe0',1,'mlclient::internals::Credentials::Credentials()'],['../classmlclient_1_1internals_1_1_credentials.html#a414db42ca9070b44ec2853bbe03fd012',1,'mlclient::internals::Credentials::Credentials(const std::string &amp;username, const std::string &amp;password)'],['../classmlclient_1_1internals_1_1_credentials.html#af6a8629e459ffe55e4e4658f4ae363b4',1,'mlclient::internals::Credentials::Credentials(const std::string &amp;username, const std::string &amp;password, const std::string &amp;cnonce, const uint32_t &amp;nc)'],['../classmlclient_1_1internals_1_1_credentials.html#a4c6d0d8ff204c2ca111c67d7fb61ed9d',1,'mlclient::internals::Credentials::Credentials(const std::wstring &amp;username, const std::wstring &amp;password)']]],
   ['cresponse',['CResponse',['../_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd',1,'ResponseWrapper.h']]],

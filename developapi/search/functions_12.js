@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['what',['what',['../classmlclient_1_1_no_credentials_exception.html#a06124d02b6081fada864ec346e7b5abc',1,'mlclient::NoCredentialsException']]]
+  ['usernamerealmandpassword',['usernameRealmAndPassword',['../classmlclient_1_1internals_1_1_authorization_builder.html#a144328f7204dff1d33820b00e5b83e31',1,'mlclient::internals::AuthorizationBuilder']]],
+  ['userrealmpassnoncecnonce',['userRealmPassNonceCnonce',['../classmlclient_1_1internals_1_1_authorization_builder.html#a5571edb79a2d735d4ffd31c3ab676eac',1,'mlclient::internals::AuthorizationBuilder']]]
 ];

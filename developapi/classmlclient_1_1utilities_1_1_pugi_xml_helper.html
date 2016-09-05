@@ -110,8 +110,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa4a16f068df0e2a70deea2a26d7f7ab0"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#aa4a16f068df0e2a70deea2a26d7f7ab0">toDocument</a> (const std::string &amp;content)</td></tr>
 <tr class="memdesc:aa4a16f068df0e2a70deea2a26d7f7ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a std::string instance to a MarkLogic C++ API <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance.  <a href="#aa4a16f068df0e2a70deea2a26d7f7ab0">More...</a><br /></td></tr>
 <tr class="separator:aa4a16f068df0e2a70deea2a26d7f7ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c312f1c24cbfcb8535415fa7d4df7c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c312f1c24cbfcb8535415fa7d4df7c9"></a>
-static MLCLIENT_API <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>toDocument</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
+<tr class="memitem:a7c312f1c24cbfcb8535415fa7d4df7c9"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a7c312f1c24cbfcb8535415fa7d4df7c9">toDocument</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
+<tr class="memdesc:a7c312f1c24cbfcb8535415fa7d4df7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> instances from the response.  <a href="#a7c312f1c24cbfcb8535415fa7d4df7c9">More...</a><br /></td></tr>
 <tr class="separator:a7c312f1c24cbfcb8535415fa7d4df7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56f82ee758de32df0738267c88c6807d"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_helper.html#a56f82ee758de32df0738267c88c6807d">fromDocument</a> (const <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> &amp;dc)</td></tr>
 <tr class="memdesc:a56f82ee758de32df0738267c88c6807d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> instance from a <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> object.  <a href="#a56f82ee758de32df0738267c88c6807d">More...</a><br /></td></tr>
@@ -269,7 +269,53 @@ static MLCLIENT_API <a class="el" href="classmlclient_1_1_i_text_document_conten
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance wrapping the XML content, with its mime type and content set </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance wrapping the XML content, with its mime type and content set</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>If the string content does not have the application/xml mime type, or if parsing fails. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7c312f1c24cbfcb8535415fa7d4df7c9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static MLCLIENT_API <a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* mlclient::utilities::PugiXmlHelper::toDocument </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td>
+          <td class="paramname"><em>resp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates an <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> instances from the response. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resp</td><td>The MarkLogic C++ API <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> instance wrapping the XML content in the response, with its mime type and content set</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>If the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> does not have the application/xml mime type, or if parsing fails. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

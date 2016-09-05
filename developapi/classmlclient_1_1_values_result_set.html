@@ -98,6 +98,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">mlclient::ValuesResultSet Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Provides support for multiple values result lookups in a single hit.  
+ <a href="classmlclient_1_1_values_result_set.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_values_result_set_8hpp_source.html">ValuesResultSet.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -106,14 +111,15 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4c5d2323b4e92698f699fdd6053c0333"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c5d2323b4e92698f699fdd6053c0333"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResultSet</b> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
+<tr class="memitem:a4c5d2323b4e92698f699fdd6053c0333"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a4c5d2323b4e92698f699fdd6053c0333">ValuesResultSet</a> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
+<tr class="memdesc:a4c5d2323b4e92698f699fdd6053c0333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classmlclient_1_1_values_result_set.html" title="Provides support for multiple values result lookups in a single hit. ">ValuesResultSet</a> linked to the provided connection instance.  <a href="#a4c5d2323b4e92698f699fdd6053c0333">More...</a><br /></td></tr>
 <tr class="separator:a4c5d2323b4e92698f699fdd6053c0333"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa67bbf1e00680120f23a3f6a4d9630e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa67bbf1e00680120f23a3f6a4d9630e6"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResultSet</b> (const <a class="el" href="classmlclient_1_1_values_result_set.html">ValuesResultSet</a> &amp;other)=delete</td></tr>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#aa67bbf1e00680120f23a3f6a4d9630e6">ValuesResultSet</a> (const <a class="el" href="classmlclient_1_1_values_result_set.html">ValuesResultSet</a> &amp;other)=delete</td></tr>
+<tr class="memdesc:aa67bbf1e00680120f23a3f6a4d9630e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete copy constructor to prevent concurrent updates of same underlying data. <br /></td></tr>
 <tr class="separator:aa67bbf1e00680120f23a3f6a4d9630e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a82a7b36617615c0cc99651fc042742"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a82a7b36617615c0cc99651fc042742"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addLookup</b> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
+<tr class="memitem:a9a82a7b36617615c0cc99651fc042742"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a9a82a7b36617615c0cc99651fc042742">addLookup</a> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
+<tr class="memdesc:a9a82a7b36617615c0cc99651fc042742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a values lexicon lookup to this batch process.  <a href="#a9a82a7b36617615c0cc99651fc042742">More...</a><br /></td></tr>
 <tr class="separator:a9a82a7b36617615c0cc99651fc042742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5050c64adb345dd1558c3cd947ecd0e"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#ae5050c64adb345dd1558c3cd947ecd0e">getTotal</a> () const </td></tr>
 <tr class="memdesc:ae5050c64adb345dd1558c3cd947ecd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of lookups we have results for.  <a href="#ae5050c64adb345dd1558c3cd947ecd0e">More...</a><br /></td></tr>
@@ -137,7 +143,9 @@ Friends</h2></td></tr>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></td></tr>
 <tr class="separator:a372ab0b855abc7414003c62ae5e7293a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Provides support for multiple values result lookups in a single hit. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="ab3001b468d8b96bafcf67978a89faa2d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -151,7 +159,67 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesIterator</b></
 
 </div>
 </div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4c5d2323b4e92698f699fdd6053c0333"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::ValuesResultSet::ValuesResultSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *&#160;</td>
+          <td class="paramname"><em>conn</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="classmlclient_1_1_values_result_set.html" title="Provides support for multiple values result lookups in a single hit. ">ValuesResultSet</a> linked to the provided connection instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conn</td><td>The connection instance. This class does NOT delete this connection upon destruction. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9a82a7b36617615c0cc99651fc042742"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::ValuesResultSet::addLookup </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>optionsName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>valuesName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a values lexicon lookup to this batch process. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">optionsName</td><td>The search options to perform the lookup against </td></tr>
+    <tr><td class="paramname">valuesName</td><td>The values configuration named within the specified search options </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a0f9c524b8c269a460812ab82cc70638d"></a>
 <div class="memitem">
 <div class="memproto">

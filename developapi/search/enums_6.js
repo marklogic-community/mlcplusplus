@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valuesresultaggregatetype',['ValuesResultAggregateType',['../namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd',1,'mlclient']]]
+  ['transactionmode',['TransactionMode',['../namespacemlclient_1_1utilities.html#ac0b22719c717d40d4ce9ea0ffd840418',1,'mlclient::utilities']]]
 ];

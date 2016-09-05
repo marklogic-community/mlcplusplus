@@ -104,14 +104,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a70c65c18e9b2828394ccc664b37adc6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70c65c18e9b2828394ccc664b37adc6f"></a>
-virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>batchOperationComplete</b> (const std::vector&lt; std::string &gt; out_uris, bool success, std::exception *problem)=0</td></tr>
-<tr class="separator:a70c65c18e9b2828394ccc664b37adc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html#a4cdf83a6ab8d7aa23139744ec60b0a57">batchOperationComplete</a> (const <a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">DocumentUriSet</a> out_uris, bool success, std::exception *problem)=0</td></tr>
+<tr class="memdesc:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives a complete event from the <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> class.  <a href="#a4cdf83a6ab8d7aa23139744ec60b0a57">More...</a><br /></td></tr>
+<tr class="separator:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract class that supports notification when a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> (batch) action is completed. </p>
+<dl class="section note"><dt>Note</dt><dd>Can be subclassed directly in other wrappers (E.g. C#)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4cdf83a6ab8d7aa23139744ec60b0a57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual MLCLIENT_API void mlclient::utilities::IBatchNotifiable::batchOperationComplete </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">DocumentUriSet</a>&#160;</td>
+          <td class="paramname"><em>out_uris</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::exception *&#160;</td>
+          <td class="paramname"><em>problem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Receives a complete event from the <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> class. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out_uris</td><td>The set of DocumentUris that have been processed (not necessarily succeeded in uploading) </td></tr>
+    <tr><td class="paramname">success</td><td>Whether all files were uploaded </td></tr>
+    <tr><td class="paramname">problem</td><td>The exception thrown by one of the batch upload attempts, if success is false (nullptr otherwise) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/mlclient/utilities/<a class="el" href="_document_batch_writer_8hpp_source.html">DocumentBatchWriter.hpp</a></li>
 </ul>
 </div><!-- contents -->

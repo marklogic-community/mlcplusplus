@@ -113,14 +113,18 @@ Inheritance diagram for mlclient::utilities::PugiXmlDocumentNavigator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3cb94b21d23ab739196dabedec5f8496"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cb94b21d23ab739196dabedec5f8496"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PugiXmlDocumentNavigator</b> (const <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;root, bool firstElementAsRoot=false)</td></tr>
+<tr class="memitem:a3cb94b21d23ab739196dabedec5f8496"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html#a3cb94b21d23ab739196dabedec5f8496">PugiXmlDocumentNavigator</a> (const <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;root, bool firstElementAsRoot=false)</td></tr>
+<tr class="memdesc:a3cb94b21d23ab739196dabedec5f8496"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Pugi XML based <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Navigator for the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal API.  <a href="#a3cb94b21d23ab739196dabedec5f8496">More...</a><br /></td></tr>
 <tr class="separator:a3cb94b21d23ab739196dabedec5f8496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64762951adabf6613f66610bc42b5edc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64762951adabf6613f66610bc42b5edc"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>PugiXmlDocumentNavigator</b> (<a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html">PugiXmlDocumentNavigator</a> &amp;&amp;from)</td></tr>
+<tr class="memitem:a64762951adabf6613f66610bc42b5edc"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html#a64762951adabf6613f66610bc42b5edc">PugiXmlDocumentNavigator</a> (<a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html">PugiXmlDocumentNavigator</a> &amp;&amp;from)</td></tr>
+<tr class="memdesc:a64762951adabf6613f66610bc42b5edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor for moving ownership of this instance.  <a href="#a64762951adabf6613f66610bc42b5edc">More...</a><br /></td></tr>
 <tr class="separator:a64762951adabf6613f66610bc42b5edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d42a449a603ae38bbef5c5cc4ad66db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d42a449a603ae38bbef5c5cc4ad66db"></a>
-MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const std::string &amp;key) const  override</td></tr>
+<tr class="memitem:a26b36aa118f0ab31d5e0be9afdcca17d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26b36aa118f0ab31d5e0be9afdcca17d"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html#a26b36aa118f0ab31d5e0be9afdcca17d">~PugiXmlDocumentNavigator</a> ()</td></tr>
+<tr class="memdesc:a26b36aa118f0ab31d5e0be9afdcca17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pugi XML destructor. <br /></td></tr>
+<tr class="separator:a26b36aa118f0ab31d5e0be9afdcca17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d42a449a603ae38bbef5c5cc4ad66db"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html#a7d42a449a603ae38bbef5c5cc4ad66db">at</a> (const std::string &amp;key) const  override</td></tr>
+<tr class="memdesc:a7d42a449a603ae38bbef5c5cc4ad66db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="classmlclient_1_1_i_document_node.html" title="Acts as a generic lightweight document element interface. ">IDocumentNode</a> at the specified key location.  <a href="#a7d42a449a603ae38bbef5c5cc4ad66db">More...</a><br /></td></tr>
 <tr class="separator:a7d42a449a603ae38bbef5c5cc4ad66db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -128,7 +132,104 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocume
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-07-30 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a3cb94b21d23ab739196dabedec5f8496"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mlclient::utilities::PugiXmlDocumentNavigator::PugiXmlDocumentNavigator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>firstElementAsRoot</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a Pugi XML based <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Navigator for the <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> Traversal API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td>The PUGI XML document to wrap </td></tr>
+    <tr><td class="paramname">firstElementAsRoot</td><td>Whether to start with the root (document) element (false) or the first actual node element (true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a64762951adabf6613f66610bc42b5edc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::utilities::PugiXmlDocumentNavigator::PugiXmlDocumentNavigator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_navigator.html">PugiXmlDocumentNavigator</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move constructor for moving ownership of this instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>The object instance to move the ownership of resources from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7d42a449a603ae38bbef5c5cc4ad66db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a>* mlclient::utilities::PugiXmlDocumentNavigator::at </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the <a class="el" href="classmlclient_1_1_i_document_node.html" title="Acts as a generic lightweight document element interface. ">IDocumentNode</a> at the specified key location. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> for details.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The name of the node to return </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The node at that named location. nullptr if it doesn't exist </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_navigator.html#ab013800190a58bb7687e2d7e306e0dfd">mlclient::IDocumentNavigator</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/mlclient/utilities/<a class="el" href="_pugi_xml_document_content_8hpp_source.html">PugiXmlDocumentContent.hpp</a></li>
 </ul>
 </div><!-- contents -->

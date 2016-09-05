@@ -104,15 +104,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aaf3b2c47d246085a115426cb05d3ef49"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_helper.html#aaf3b2c47d246085a115426cb05d3ef49">addFilesToDocumentSet</a> (const std::string &amp;folder, const std::string &amp;baseFolder, const bool stripBase, const std::string &amp;appendBase, const std::vector&lt; std::string &gt; &amp;collections, const std::vector&lt; <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &gt; &amp;permissions, <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> *properties, <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;addTo, bool showHiddenDirs=false)</td></tr>
-<tr class="memdesc:aaf3b2c47d246085a115426cb05d3ef49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes all files in a folder and subfolders and adds them to a DocumentSet.  <a href="#aaf3b2c47d246085a115426cb05d3ef49">More...</a><br /></td></tr>
-<tr class="separator:aaf3b2c47d246085a115426cb05d3ef49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a243afd01b2530114c9807c4300c14e27"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_helper.html#a243afd01b2530114c9807c4300c14e27">addFilesToDocumentSet</a> (const std::string &amp;folder, const std::string &amp;baseFolder, const bool stripBase, const std::string &amp;appendBase, const <a class="el" href="namespacemlclient.html#a8d44f4574f9bf24e002c154f15c54823">CollectionSet</a> &amp;collections, const <a class="el" href="namespacemlclient.html#a28b8105838290b93ae00557c06f44fe1">PermissionSet</a> &amp;permissions, <a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a> *properties, <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;addTo, bool showHiddenDirs=false)</td></tr>
+<tr class="memdesc:a243afd01b2530114c9807c4300c14e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes all files in a folder and subfolders and adds them to a DocumentSet.  <a href="#a243afd01b2530114c9807c4300c14e27">More...</a><br /></td></tr>
+<tr class="separator:a243afd01b2530114c9807c4300c14e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Helper functions for common batch document operations. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aaf3b2c47d246085a115426cb05d3ef49"></a>
+<a class="anchor" id="a243afd01b2530114c9807c4300c14e27"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -146,13 +146,13 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#a8d44f4574f9bf24e002c154f15c54823">CollectionSet</a> &amp;&#160;</td>
           <td class="paramname"><em>collections</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#a28b8105838290b93ae00557c06f44fe1">PermissionSet</a> &amp;&#160;</td>
           <td class="paramname"><em>permissions</em>, </td>
         </tr>
         <tr>
@@ -187,6 +187,8 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Takes all files in a folder and subfolders and adds them to a DocumentSet. </p>
+<p>Works cross platform on Windows and Mac. Can also be used via the C# wrapper.</p>
+<p>See the cppbatchupload and csbatchupload samples for example usage.</p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 
 </div>

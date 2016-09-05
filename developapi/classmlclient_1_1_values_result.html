@@ -97,51 +97,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Contains details of the overarching /v1/values / <a class="el" href="classmlclient_1_1_connection.html#ab3a14008c2f2970c2a0031b17312a244" title="Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the se...">Connection::values</a> call results.  
+<p>Contains details of the overarching /v1/values (i.e. <a class="el" href="classmlclient_1_1_connection.html#ab3a14008c2f2970c2a0031b17312a244" title="Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the se...">Connection::values</a>) call results.  
  <a href="classmlclient_1_1_values_result.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_values_result_8hpp_source.html">ValuesResult.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef6e8dcbaa2190a0d6fe2407024259e8"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
+<tr class="memitem:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#aef6e8dcbaa2190a0d6fe2407024259e8">ValuesResult</a> (const std::string &amp;optionsName, const std::string &amp;valuesName)</td></tr>
+<tr class="memdesc:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a values result with the specified options name and values name (from submitted search options)  <a href="#aef6e8dcbaa2190a0d6fe2407024259e8">More...</a><br /></td></tr>
 <tr class="separator:aef6e8dcbaa2190a0d6fe2407024259e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7975dcf5564a2bf8ff9457b7d9cc2e39"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (<a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&amp;other)</td></tr>
+<tr class="memitem:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a7975dcf5564a2bf8ff9457b7d9cc2e39">ValuesResult</a> (<a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&amp;other)</td></tr>
+<tr class="memdesc:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <a href="#a7975dcf5564a2bf8ff9457b7d9cc2e39">More...</a><br /></td></tr>
 <tr class="separator:a7975dcf5564a2bf8ff9457b7d9cc2e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a645ce88c493462dbe6982633eb4b862c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a645ce88c493462dbe6982633eb4b862c"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>ValuesResult</b> (const <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;other)</td></tr>
+<tr class="memitem:a645ce88c493462dbe6982633eb4b862c"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a645ce88c493462dbe6982633eb4b862c">ValuesResult</a> (const <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;other)</td></tr>
+<tr class="memdesc:a645ce88c493462dbe6982633eb4b862c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a645ce88c493462dbe6982633eb4b862c">More...</a><br /></td></tr>
 <tr class="separator:a645ce88c493462dbe6982633eb4b862c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cd214c4d9a1654343cee4be56929fa4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cd214c4d9a1654343cee4be56929fa4"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addValue</b> (const <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &amp;value)</td></tr>
+<tr class="memitem:a14fd2d9d7edfc92d9996889c9f27db3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14fd2d9d7edfc92d9996889c9f27db3d"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a14fd2d9d7edfc92d9996889c9f27db3d">~ValuesResult</a> ()</td></tr>
+<tr class="memdesc:a14fd2d9d7edfc92d9996889c9f27db3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a14fd2d9d7edfc92d9996889c9f27db3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cd214c4d9a1654343cee4be56929fa4"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a7cd214c4d9a1654343cee4be56929fa4">addValue</a> (const <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &amp;value)</td></tr>
+<tr class="memdesc:a7cd214c4d9a1654343cee4be56929fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a values result value to this instance.  <a href="#a7cd214c4d9a1654343cee4be56929fa4">More...</a><br /></td></tr>
 <tr class="separator:a7cd214c4d9a1654343cee4be56929fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a627ddc17685169aee2c49c008ee8ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a627ddc17685169aee2c49c008ee8ba"></a>
-MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getValues</b> () const </td></tr>
+<tr class="memitem:a7a627ddc17685169aee2c49c008ee8ba"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a7a627ddc17685169aee2c49c008ee8ba">getValues</a> () const </td></tr>
+<tr class="memdesc:a7a627ddc17685169aee2c49c008ee8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the underlying set of Values from this instance.  <a href="#a7a627ddc17685169aee2c49c008ee8ba">More...</a><br /></td></tr>
 <tr class="separator:a7a627ddc17685169aee2c49c008ee8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a324c56b154343280190acee95a38ee28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a324c56b154343280190acee95a38ee28"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addAggregate</b> (const <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &amp;aggregate)</td></tr>
+<tr class="memitem:a324c56b154343280190acee95a38ee28"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a324c56b154343280190acee95a38ee28">addAggregate</a> (const <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &amp;aggregate)</td></tr>
 <tr class="separator:a324c56b154343280190acee95a38ee28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89a0d3756c6be500926c1a4cc96c346f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89a0d3756c6be500926c1a4cc96c346f"></a>
-MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasAggregates</b> () const </td></tr>
+<tr class="memitem:a89a0d3756c6be500926c1a4cc96c346f"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a89a0d3756c6be500926c1a4cc96c346f">hasAggregates</a> () const </td></tr>
+<tr class="memdesc:a89a0d3756c6be500926c1a4cc96c346f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether any aggregate lookups are configured.  <a href="#a89a0d3756c6be500926c1a4cc96c346f">More...</a><br /></td></tr>
 <tr class="separator:a89a0d3756c6be500926c1a4cc96c346f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a353b456a580264eebc8411eaf8a414af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a353b456a580264eebc8411eaf8a414af"></a>
-MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><b>getAggregateCount</b> () const </td></tr>
+<tr class="memitem:a353b456a580264eebc8411eaf8a414af"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a353b456a580264eebc8411eaf8a414af">getAggregateCount</a> () const </td></tr>
+<tr class="memdesc:a353b456a580264eebc8411eaf8a414af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of aggregates configured for lookup.  <a href="#a353b456a580264eebc8411eaf8a414af">More...</a><br /></td></tr>
 <tr class="separator:a353b456a580264eebc8411eaf8a414af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebf7be0a41de54e62eccf92d02259aaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebf7be0a41de54e62eccf92d02259aaa"></a>
-MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>aggregateBegin</b> () const </td></tr>
+<tr class="memitem:aebf7be0a41de54e62eccf92d02259aaa"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#aebf7be0a41de54e62eccf92d02259aaa">aggregateBegin</a> () const </td></tr>
+<tr class="memdesc:aebf7be0a41de54e62eccf92d02259aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterator over the underlying aggregate lookups.  <a href="#aebf7be0a41de54e62eccf92d02259aaa">More...</a><br /></td></tr>
 <tr class="separator:aebf7be0a41de54e62eccf92d02259aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6c50dadb3c6a104f8edf15c093c9a92"></a>
-MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>aggregateEnd</b> () const </td></tr>
+<tr class="memitem:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::vector&lt; <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#aa6c50dadb3c6a104f8edf15c093c9a92">aggregateEnd</a> () const </td></tr>
+<tr class="memdesc:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterator end marker for the underlying set of aggregate lookups.  <a href="#aa6c50dadb3c6a104f8edf15c093c9a92">More...</a><br /></td></tr>
 <tr class="separator:aa6c50dadb3c6a104f8edf15c093c9a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade2c6bd3a08e8091d43caded34ef8ae7"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setTimes</b> (const std::string &amp;valuesResolutionTime, const std::string &amp;aggregateResolutionTime, const std::string &amp;totalTime)</td></tr>
+<tr class="memitem:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#ade2c6bd3a08e8091d43caded34ef8ae7">setTimes</a> (const std::string &amp;valuesResolutionTime, const std::string &amp;aggregateResolutionTime, const std::string &amp;totalTime)</td></tr>
+<tr class="memdesc:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the total response times by the code actually performing the values lookups.  <a href="#ade2c6bd3a08e8091d43caded34ef8ae7">More...</a><br /></td></tr>
 <tr class="separator:ade2c6bd3a08e8091d43caded34ef8ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1007ef38c889d82162ba7bddeff9c131"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1007ef38c889d82162ba7bddeff9c131"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setType</b> (const mlclient::utilities::RangeIndexType &amp;type)</td></tr>
+<tr class="memitem:a1007ef38c889d82162ba7bddeff9c131"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a1007ef38c889d82162ba7bddeff9c131">setType</a> (const mlclient::utilities::RangeIndexType &amp;type)</td></tr>
+<tr class="memdesc:a1007ef38c889d82162ba7bddeff9c131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the underlying range index lexicon type (A MarkLogic XML type)  <a href="#a1007ef38c889d82162ba7bddeff9c131">More...</a><br /></td></tr>
 <tr class="separator:a1007ef38c889d82162ba7bddeff9c131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae38c4cc2e82335e4348574dfe18382dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae38c4cc2e82335e4348574dfe18382dc"></a>
-MLCLIENT_API const mlclient::utilities::RangeIndexType &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const </td></tr>
+<tr class="memitem:ae38c4cc2e82335e4348574dfe18382dc"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const mlclient::utilities::RangeIndexType &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#ae38c4cc2e82335e4348574dfe18382dc">getType</a> () const </td></tr>
+<tr class="memdesc:ae38c4cc2e82335e4348574dfe18382dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the lexicon type.  <a href="#ae38c4cc2e82335e4348574dfe18382dc">More...</a><br /></td></tr>
 <tr class="separator:ae38c4cc2e82335e4348574dfe18382dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23d353018796d87698a69f0026b50b7c"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html#a23d353018796d87698a69f0026b50b7c">getStart</a> ()</td></tr>
 <tr class="memdesc:a23d353018796d87698a69f0026b50b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sequence number of the first values result.  <a href="#a23d353018796d87698a69f0026b50b7c">More...</a><br /></td></tr>
@@ -166,11 +169,202 @@ MLCLIENT_API const mlclient::utilities::RangeIndexType &amp;&#160;</td><td class
 <tr class="separator:a56b09c4ad6eb36f446ca9eef29dbcfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains details of the overarching /v1/values / <a class="el" href="classmlclient_1_1_connection.html#ab3a14008c2f2970c2a0031b17312a244" title="Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the se...">Connection::values</a> call results. </p>
+<div class="textblock"><p>Contains details of the overarching /v1/values (i.e. <a class="el" href="classmlclient_1_1_connection.html#ab3a14008c2f2970c2a0031b17312a244" title="Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the se...">Connection::values</a>) call results. </p>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a></dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-08-12 </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aef6e8dcbaa2190a0d6fe2407024259e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::ValuesResult::ValuesResult </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>optionsName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>valuesName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a values result with the specified options name and values name (from submitted search options) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">optionsName</td><td>The string name of the options node for this values result </td></tr>
+    <tr><td class="paramname">valuesName</td><td>The string name for this particular values result </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7975dcf5564a2bf8ff9457b7d9cc2e39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::ValuesResult::ValuesResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values (i.e. Connection::values) call results. ">ValuesResult</a> object to steal the resources from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a645ce88c493462dbe6982633eb4b862c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::ValuesResult::ValuesResult </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classmlclient_1_1_values_result.html" title="Contains details of the overarching /v1/values (i.e. Connection::values) call results. ">ValuesResult</a> to copy </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a324c56b154343280190acee95a38ee28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::ValuesResult::addAggregate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a> &amp;&#160;</td>
+          <td class="paramname"><em>aggregate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Adds</td><td>an aggregate configuration to the set to lookup by this class</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The current REST API only supports submitting one aggregate request per call. This may be resolved in future versions. That change will be fully abstracted by this class' internals.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aggregate</td><td>The aggregate configuration to lookup </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7cd214c4d9a1654343cee4be56929fa4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::ValuesResult::addValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a values result value to this instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the result value to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aebf7be0a41de54e62eccf92d02259aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::vector&lt;<a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a>&gt;::const_iterator mlclient::ValuesResult::aggregateBegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an iterator over the underlying aggregate lookups. </p>
+<dl class="section return"><dt>Returns</dt><dd>The iterator over the list of aggregate lookups </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa6c50dadb3c6a104f8edf15c093c9a92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::vector&lt;<a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a>&gt;::const_iterator mlclient::ValuesResult::aggregateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an iterator end marker for the underlying set of aggregate lookups. </p>
+<dl class="section return"><dt>Returns</dt><dd>The iterator end marker </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a353b456a580264eebc8411eaf8a414af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const long mlclient::ValuesResult::getAggregateCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of aggregates configured for lookup. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of aggregate lookups configured </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a1bcf6021e6ed521888625289e4c82db9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -264,6 +458,42 @@ MLCLIENT_API const mlclient::utilities::RangeIndexType &amp;&#160;</td><td class
 
 </div>
 </div>
+<a class="anchor" id="ae38c4cc2e82335e4348574dfe18382dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const mlclient::utilities::RangeIndexType&amp; mlclient::ValuesResult::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the lexicon type. </p>
+<dl class="section return"><dt>Returns</dt><dd>The lexicon type </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7a627ddc17685169aee2c49c008ee8ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::vector&lt;<a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a>&gt; mlclient::ValuesResult::getValues </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the underlying set of Values from this instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>The result set </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a56b09c4ad6eb36f446ca9eef29dbcfc8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -298,6 +528,90 @@ MLCLIENT_API const mlclient::utilities::RangeIndexType &amp;&#160;</td><td class
 <p>Returns the values resolution time for the last values requested, if available. </p>
 <p>Defaults to zero. Uses xsd:duration string format as per the REST API</p>
 <dl class="section return"><dt>Returns</dt><dd>xsd:duration string description of the time to resolve the values </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a89a0d3756c6be500926c1a4cc96c346f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const bool mlclient::ValuesResult::hasAggregates </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether any aggregate lookups are configured. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if one or more aggregate lookups are configured </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ade2c6bd3a08e8091d43caded34ef8ae7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::ValuesResult::setTimes </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>valuesResolutionTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>aggregateResolutionTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>totalTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to set the total response times by the code actually performing the values lookups. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">valuesResolutionTime</td><td>The xs:duration string </td></tr>
+    <tr><td class="paramname">aggregateResolutionTime</td><td>The xs:duration string </td></tr>
+    <tr><td class="paramname">totalTime</td><td>The xs:duration string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1007ef38c889d82162ba7bddeff9c131"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::ValuesResult::setType </td>
+          <td>(</td>
+          <td class="paramtype">const mlclient::utilities::RangeIndexType &amp;&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the underlying range index lexicon type (A MarkLogic XML type) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The lexicon type for lookup </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

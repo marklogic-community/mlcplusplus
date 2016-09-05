@@ -104,61 +104,249 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8bf6b417569ec8f6f8a7556524278959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bf6b417569ec8f6f8a7556524278959"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
+<tr class="memitem:a8bf6b417569ec8f6f8a7556524278959"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a8bf6b417569ec8f6f8a7556524278959">DocumentBatchWriter</a> (<a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *conn)</td></tr>
+<tr class="memdesc:a8bf6b417569ec8f6f8a7556524278959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> that wraps the provided <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> instance.  <a href="#a8bf6b417569ec8f6f8a7556524278959">More...</a><br /></td></tr>
 <tr class="separator:a8bf6b417569ec8f6f8a7556524278959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434f0fe37626853a4bc79f9db805e630"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a434f0fe37626853a4bc79f9db805e630"></a>
-MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentBatchWriter</b> (const <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html">DocumentBatchWriter</a> &amp;other)=delete</td></tr>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a434f0fe37626853a4bc79f9db805e630">DocumentBatchWriter</a> (const <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html">DocumentBatchWriter</a> &amp;other)=delete</td></tr>
+<tr class="memdesc:a434f0fe37626853a4bc79f9db805e630"><td class="mdescLeft">&#160;</td><td class="mdescRight">The DELETED copy constructor. <br /></td></tr>
 <tr class="separator:a434f0fe37626853a4bc79f9db805e630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e8a774dbb3097da8087591e8614ffa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e8a774dbb3097da8087591e8614ffa1"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>assignDocuments</b> (<a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&amp;set)</td></tr>
+<tr class="memitem:a2f781b0a5f7156bfd4a0fadfd0c3c63e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f781b0a5f7156bfd4a0fadfd0c3c63e"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a2f781b0a5f7156bfd4a0fadfd0c3c63e">~DocumentBatchWriter</a> ()</td></tr>
+<tr class="memdesc:a2f781b0a5f7156bfd4a0fadfd0c3c63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor. <br /></td></tr>
+<tr class="separator:a2f781b0a5f7156bfd4a0fadfd0c3c63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8a774dbb3097da8087591e8614ffa1"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a9e8a774dbb3097da8087591e8614ffa1">assignDocuments</a> (<a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&amp;set)</td></tr>
+<tr class="memdesc:a9e8a774dbb3097da8087591e8614ffa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a set of documents ready for upload.  <a href="#a9e8a774dbb3097da8087591e8614ffa1">More...</a><br /></td></tr>
 <tr class="separator:a9e8a774dbb3097da8087591e8614ffa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0647a0d283ad02b7e6322a0f01e5007"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0647a0d283ad02b7e6322a0f01e5007"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setBatchParameters</b> (const int parallelTasks, const int batchSize, const TransactionMode &amp;mode)</td></tr>
+<tr class="memitem:ac0647a0d283ad02b7e6322a0f01e5007"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#ac0647a0d283ad02b7e6322a0f01e5007">setBatchParameters</a> (const int parallelTasks, const int batchSize, const <a class="el" href="namespacemlclient_1_1utilities.html#ac0b22719c717d40d4ce9ea0ffd840418">TransactionMode</a> &amp;mode)</td></tr>
+<tr class="memdesc:ac0647a0d283ad02b7e6322a0f01e5007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters for this batch.  <a href="#ac0647a0d283ad02b7e6322a0f01e5007">More...</a><br /></td></tr>
 <tr class="separator:ac0647a0d283ad02b7e6322a0f01e5007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cdbcb32447332960065a3989f0068ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cdbcb32447332960065a3989f0068ec"></a>
-MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><b>getParallelTasks</b> () const </td></tr>
+<tr class="memitem:a5cdbcb32447332960065a3989f0068ec"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a5cdbcb32447332960065a3989f0068ec">getParallelTasks</a> () const </td></tr>
+<tr class="memdesc:a5cdbcb32447332960065a3989f0068ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of parallel tasks being used.  <a href="#a5cdbcb32447332960065a3989f0068ec">More...</a><br /></td></tr>
 <tr class="separator:a5cdbcb32447332960065a3989f0068ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4022825ecdda4a737a144222b51bea03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4022825ecdda4a737a144222b51bea03"></a>
-MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><b>getBatchSize</b> () const </td></tr>
+<tr class="memitem:a4022825ecdda4a737a144222b51bea03"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a4022825ecdda4a737a144222b51bea03">getBatchSize</a> () const </td></tr>
+<tr class="memdesc:a4022825ecdda4a737a144222b51bea03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of documents sent per batch.  <a href="#a4022825ecdda4a737a144222b51bea03">More...</a><br /></td></tr>
 <tr class="separator:a4022825ecdda4a737a144222b51bea03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae86a4a0eb89e7ca8a759aab36e7e3a17"></a>
-MLCLIENT_API const TransactionMode&#160;</td><td class="memItemRight" valign="bottom"><b>getMode</b> () const </td></tr>
+<tr class="memitem:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const <a class="el" href="namespacemlclient_1_1utilities.html#ac0b22719c717d40d4ce9ea0ffd840418">TransactionMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#ae86a4a0eb89e7ca8a759aab36e7e3a17">getMode</a> () const </td></tr>
+<tr class="memdesc:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the transaction mode used.  <a href="#ae86a4a0eb89e7ca8a759aab36e7e3a17">More...</a><br /></td></tr>
 <tr class="separator:ae86a4a0eb89e7ca8a759aab36e7e3a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeea1bc1ca86ebeb6494821a47a82e3ab"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>addBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="memitem:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#aeea1bc1ca86ebeb6494821a47a82e3ab">addBatchListener</a> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="memdesc:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a listener for batch events.  <a href="#aeea1bc1ca86ebeb6494821a47a82e3ab">More...</a><br /></td></tr>
 <tr class="separator:aeea1bc1ca86ebeb6494821a47a82e3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ad20ecfc0a85c51ac1f2dc42b99601c"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>removeBatchListener</b> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="memitem:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a4ad20ecfc0a85c51ac1f2dc42b99601c">removeBatchListener</a> (<a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *notifiable)</td></tr>
+<tr class="memdesc:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a listener for batch events.  <a href="#a4ad20ecfc0a85c51ac1f2dc42b99601c">More...</a><br /></td></tr>
 <tr class="separator:a4ad20ecfc0a85c51ac1f2dc42b99601c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33513013acb21b4076040b7964a47460"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33513013acb21b4076040b7964a47460"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> ()</td></tr>
+<tr class="memitem:a33513013acb21b4076040b7964a47460"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a33513013acb21b4076040b7964a47460">send</a> ()</td></tr>
+<tr class="memdesc:a33513013acb21b4076040b7964a47460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins the batch operation.  <a href="#a33513013acb21b4076040b7964a47460">More...</a><br /></td></tr>
 <tr class="separator:a33513013acb21b4076040b7964a47460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f0c297771d40b04292210cfb77958d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f0c297771d40b04292210cfb77958d9"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="memitem:a2f0c297771d40b04292210cfb77958d9"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a2f0c297771d40b04292210cfb77958d9">stop</a> ()</td></tr>
+<tr class="memdesc:a2f0c297771d40b04292210cfb77958d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the batch operation.  <a href="#a2f0c297771d40b04292210cfb77958d9">More...</a><br /></td></tr>
 <tr class="separator:a2f0c297771d40b04292210cfb77958d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55c3361aee41499df23e8cb1834e14f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55c3361aee41499df23e8cb1834e14f4"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>wait</b> () const </td></tr>
+<tr class="memitem:a55c3361aee41499df23e8cb1834e14f4"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a55c3361aee41499df23e8cb1834e14f4">wait</a> () const </td></tr>
+<tr class="memdesc:a55c3361aee41499df23e8cb1834e14f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes the calling thread to wait for the completion of all batches assigned to all parallel tasks.  <a href="#a55c3361aee41499df23e8cb1834e14f4">More...</a><br /></td></tr>
 <tr class="separator:a55c3361aee41499df23e8cb1834e14f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74cf27d56d87a71845014e8d9182414c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74cf27d56d87a71845014e8d9182414c"></a>
-MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a74cf27d56d87a71845014e8d9182414c">isComplete</a> () const </td></tr>
-<tr class="memdesc:a74cf27d56d87a71845014e8d9182414c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class ran to completion? <br /></td></tr>
+<tr class="memitem:a74cf27d56d87a71845014e8d9182414c"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a74cf27d56d87a71845014e8d9182414c">isComplete</a> () const </td></tr>
+<tr class="memdesc:a74cf27d56d87a71845014e8d9182414c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class ran to completion?  <a href="#a74cf27d56d87a71845014e8d9182414c">More...</a><br /></td></tr>
 <tr class="separator:a74cf27d56d87a71845014e8d9182414c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5344e5aaa094f0bda0ac96e702d03f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe5344e5aaa094f0bda0ac96e702d03f"></a>
-MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#afe5344e5aaa094f0bda0ac96e702d03f">isCancelled</a> () const </td></tr>
-<tr class="memdesc:afe5344e5aaa094f0bda0ac96e702d03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class been cancelled? <br /></td></tr>
+<tr class="memitem:afe5344e5aaa094f0bda0ac96e702d03f"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#afe5344e5aaa094f0bda0ac96e702d03f">isCancelled</a> () const </td></tr>
+<tr class="memdesc:afe5344e5aaa094f0bda0ac96e702d03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has this class been cancelled?  <a href="#afe5344e5aaa094f0bda0ac96e702d03f">More...</a><br /></td></tr>
 <tr class="separator:afe5344e5aaa094f0bda0ac96e702d03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484a29fe03fce83380928a3e58cc800d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a484a29fe03fce83380928a3e58cc800d">isFinished</a> () const </td></tr>
 <tr class="memdesc:a484a29fe03fce83380928a3e58cc800d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are all asynchronous operations completed?  <a href="#a484a29fe03fce83380928a3e58cc800d">More...</a><br /></td></tr>
 <tr class="separator:a484a29fe03fce83380928a3e58cc800d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a165978a3d88c4147ca7ab30e25dc829a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a165978a3d88c4147ca7ab30e25dc829a"></a>
-MLCLIENT_API const <a class="el" href="structmlclient_1_1utilities_1_1_progress.html">Progress</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getProgress</b> () const </td></tr>
+<tr class="memitem:a165978a3d88c4147ca7ab30e25dc829a"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const <a class="el" href="structmlclient_1_1utilities_1_1_progress.html">Progress</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a165978a3d88c4147ca7ab30e25dc829a">getProgress</a> () const </td></tr>
+<tr class="memdesc:a165978a3d88c4147ca7ab30e25dc829a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current progress data for this class.  <a href="#a165978a3d88c4147ca7ab30e25dc829a">More...</a><br /></td></tr>
 <tr class="separator:a165978a3d88c4147ca7ab30e25dc829a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages a batched document upload/write operation. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8bf6b417569ec8f6f8a7556524278959"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API mlclient::utilities::DocumentBatchWriter::DocumentBatchWriter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a> *&#160;</td>
+          <td class="paramname"><em>conn</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> that wraps the provided <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> instance. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conn</td><td>The pointer to an <a class="el" href="classmlclient_1_1_i_connection.html" title="Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass...">IConnection</a> subclass instance. In, but not OWNS. (This class never delete's this pointer) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aeea1bc1ca86ebeb6494821a47a82e3ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::addBatchListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *&#160;</td>
+          <td class="paramname"><em>notifiable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a listener for batch events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">notifiable</td><td>the <a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html" title="An abstract class that supports notification when a Document (batch) action is completed. ">IBatchNotifiable</a> listener to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9e8a774dbb3097da8087591e8614ffa1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::assignDocuments </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assigns a set of documents ready for upload. </p>
+<dl class="section note"><dt>Note</dt><dd>These can hold <a class="el" href="classmlclient_1_1_file_document_content.html" title="Wraps a file system file ready for its upload to MarkLogic Server. ">FileDocumentContent</a> instances, and thus are only loaded during batch request creation (efficient)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.2</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">set</td><td>The DocumentSet to upload to MarkLogic </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4022825ecdda4a737a144222b51bea03"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const int mlclient::utilities::DocumentBatchWriter::getBatchSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of documents sent per batch. </p>
+<dl class="section return"><dt>Returns</dt><dd>Documents per batch </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae86a4a0eb89e7ca8a759aab36e7e3a17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const <a class="el" href="namespacemlclient_1_1utilities.html#ac0b22719c717d40d4ce9ea0ffd840418">TransactionMode</a> mlclient::utilities::DocumentBatchWriter::getMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the transaction mode used. </p>
+<dl class="section return"><dt>Returns</dt><dd>The TransactionMode in use </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5cdbcb32447332960065a3989f0068ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const int mlclient::utilities::DocumentBatchWriter::getParallelTasks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of parallel tasks being used. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of parallel tasks </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a165978a3d88c4147ca7ab30e25dc829a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const <a class="el" href="structmlclient_1_1utilities_1_1_progress.html">Progress</a> mlclient::utilities::DocumentBatchWriter::getProgress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the current progress data for this class. </p>
+<dl class="section note"><dt>Note</dt><dd>This is currently an Overall progress, not for the last X seconds.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The current <a class="el" href="structmlclient_1_1utilities_1_1_progress.html" title="The progress of the upload within DocumentBatchWriter. ">Progress</a> of the batch upload. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afe5344e5aaa094f0bda0ac96e702d03f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const bool mlclient::utilities::DocumentBatchWriter::isCancelled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Has this class been cancelled? </p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean as to whether we were cancelled (true) or not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a74cf27d56d87a71845014e8d9182414c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const bool mlclient::utilities::DocumentBatchWriter::isComplete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Has this class ran to completion? </p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean as to whether we ran to completion (true) or not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a484a29fe03fce83380928a3e58cc800d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -173,7 +361,132 @@ MLCLIENT_API const <a class="el" href="structmlclient_1_1utilities_1_1_progress.
 </div><div class="memdoc">
 
 <p>Are all asynchronous operations completed? </p>
-<dl class="section note"><dt>Note</dt><dd>This class can still be working after stop() has been called. E.g. if a batch upload request is in progress </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This class can still be working after <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html#a2f0c297771d40b04292210cfb77958d9" title="Cancels the batch operation. ">stop()</a> has been called. E.g. if a batch upload request is in progress</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean as to whether this class is now finished </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4ad20ecfc0a85c51ac1f2dc42b99601c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::removeBatchListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html">IBatchNotifiable</a> *&#160;</td>
+          <td class="paramname"><em>notifiable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a listener for batch events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">notifiable</td><td>the <a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html" title="An abstract class that supports notification when a Document (batch) action is completed. ">IBatchNotifiable</a> listener to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a33513013acb21b4076040b7964a47460"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::send </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Begins the batch operation. </p>
+<dl class="section note"><dt>Note</dt><dd>This is where the underlying tasks are created and allocated to threads </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac0647a0d283ad02b7e6322a0f01e5007"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::setBatchParameters </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>parallelTasks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>batchSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient_1_1utilities.html#ac0b22719c717d40d4ce9ea0ffd840418">TransactionMode</a> &amp;&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the parameters for this batch. </p>
+<dl class="section note"><dt>Note</dt><dd>Defaults to 5 parallel tasks, each holding 10 documents, with mode of PER_BATCH transactions.</dd>
+<dd>
+parallelTasks performs a lot of work before the (thin) call to perform a REST request. Each <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> instance only ever executes one REST request at a time - never in parallel - so be aware of that when loading content. This restriction may be removed in future versions.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>8.0.2</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parallelTasks</td><td>The number of paralleltasks to use </td></tr>
+    <tr><td class="paramname">batchSize</td><td>The number of documents to submit in each batch (also submits their metadata) </td></tr>
+    <tr><td class="paramname">mode</td><td>The batch mode to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2f0c297771d40b04292210cfb77958d9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancels the batch operation. </p>
+<dl class="section note"><dt>Note</dt><dd>Some tasks may be in flight still when this is called. They still run to completion. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a55c3361aee41499df23e8cb1834e14f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::DocumentBatchWriter::wait </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Causes the calling thread to wait for the completion of all batches assigned to all parallel tasks. </p>
+<p>Useful for simple synchronous batch updates </p>
 
 </div>
 </div>

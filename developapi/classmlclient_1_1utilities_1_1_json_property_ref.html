@@ -97,23 +97,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">mlclient::utilities::JsonPropertyRef Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A specialisation of <a class="el" href="classmlclient_1_1utilities_1_1_i_container_ref.html" title="Represents a named container in the MarkLogic structured query API. ">IContainerRef</a> to represent a JSON property container.  
+ <a href="classmlclient_1_1utilities_1_1_json_property_ref.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_search_builder_8hpp_source.html">SearchBuilder.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for mlclient::utilities::JsonPropertyRef:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classmlclient_1_1utilities_1_1_json_property_ref.png" usemap="#mlclient::utilities::JsonPropertyRef_map" alt=""/>
   <map id="mlclient::utilities::JsonPropertyRef_map" name="mlclient::utilities::JsonPropertyRef_map">
-<area href="classmlclient_1_1utilities_1_1_i_container_ref.html" alt="mlclient::utilities::IContainerRef" shape="rect" coords="0,0,199,24"/>
+<area href="classmlclient_1_1utilities_1_1_i_container_ref.html" title="Represents a named container in the MarkLogic structured query API. " alt="mlclient::utilities::IContainerRef" shape="rect" coords="0,0,199,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a39ee836ea1e1a1719ef8a306ad77d4fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39ee836ea1e1a1719ef8a306ad77d4fa"></a>
-MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><b>setProperty</b> (const std::string &amp;property)</td></tr>
+<tr class="memitem:a39ee836ea1e1a1719ef8a306ad77d4fa"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_json_property_ref.html#a39ee836ea1e1a1719ef8a306ad77d4fa">setProperty</a> (const std::string &amp;property)</td></tr>
+<tr class="memdesc:a39ee836ea1e1a1719ef8a306ad77d4fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the property this class is referring to.  <a href="#a39ee836ea1e1a1719ef8a306ad77d4fa">More...</a><br /></td></tr>
 <tr class="separator:a39ee836ea1e1a1719ef8a306ad77d4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a782178e477942ab19feb8490015fce01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a782178e477942ab19feb8490015fce01"></a>
-MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getRef</b> ()</td></tr>
+<tr class="memitem:a782178e477942ab19feb8490015fce01"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_json_property_ref.html#a782178e477942ab19feb8490015fce01">getRef</a> ()</td></tr>
+<tr class="memdesc:a782178e477942ab19feb8490015fce01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the structured query JSON string representation of this container ref instance.  <a href="#a782178e477942ab19feb8490015fce01">More...</a><br /></td></tr>
 <tr class="separator:a782178e477942ab19feb8490015fce01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -122,6 +127,52 @@ Protected Member Functions</h2></td></tr>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (std::ostream &amp;os) const  override</td></tr>
 <tr class="separator:a3064aed05b659d8139ccdb20f72bfbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A specialisation of <a class="el" href="classmlclient_1_1utilities_1_1_i_container_ref.html" title="Represents a named container in the MarkLogic structured query API. ">IContainerRef</a> to represent a JSON property container. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a782178e477942ab19feb8490015fce01"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API const std::string mlclient::utilities::JsonPropertyRef::getRef </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the structured query JSON string representation of this container ref instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>The structured query JSON string </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a39ee836ea1e1a1719ef8a306ad77d4fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::utilities::JsonPropertyRef::setProperty </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>property</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the property this class is referring to. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">property</td><td>The JSON property name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/mlclient/utilities/<a class="el" href="_search_builder_8hpp_source.html">SearchBuilder.hpp</a></li>
 </ul>

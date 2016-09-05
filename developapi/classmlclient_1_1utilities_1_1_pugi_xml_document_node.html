@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a Node within a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a>'s root web::json::value instance.  
+<p>Represents a Node within a pugi::xml::document instance.  
  <a href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pugi_xml_document_content_8hpp_source.html">PugiXmlDocumentContent.hpp</a>&gt;</code></p>
@@ -122,44 +122,44 @@ MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>PugiXmlDocume
 <tr class="memitem:a1e6ce4b5ebbe335974dd2e7dc3bd3959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e6ce4b5ebbe335974dd2e7dc3bd3959"></a>
 MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>PugiXmlDocumentNode</b> (<a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html">PugiXmlDocumentNode</a> &amp;&amp;from)</td></tr>
 <tr class="separator:a1e6ce4b5ebbe335974dd2e7dc3bd3959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae732bb747e43fce827d433da8b46d288"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae732bb747e43fce827d433da8b46d288"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isNull</b> () const  override</td></tr>
+<tr class="memitem:ae732bb747e43fce827d433da8b46d288"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#ae732bb747e43fce827d433da8b46d288">isNull</a> () const  override</td></tr>
+<tr class="memdesc:ae732bb747e43fce827d433da8b46d288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this document element have a blank value?  <a href="#ae732bb747e43fce827d433da8b46d288">More...</a><br /></td></tr>
 <tr class="separator:ae732bb747e43fce827d433da8b46d288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba6e78fd2f60fda1fe31beecfc28d12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ba6e78fd2f60fda1fe31beecfc28d12"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isBoolean</b> () const  override</td></tr>
+<tr class="memitem:a2ba6e78fd2f60fda1fe31beecfc28d12"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a2ba6e78fd2f60fda1fe31beecfc28d12">isBoolean</a> () const  override</td></tr>
+<tr class="memdesc:a2ba6e78fd2f60fda1fe31beecfc28d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is a boolean type.  <a href="#a2ba6e78fd2f60fda1fe31beecfc28d12">More...</a><br /></td></tr>
 <tr class="separator:a2ba6e78fd2f60fda1fe31beecfc28d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae61bd2dc72fa7923ac6bb0a973de49e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae61bd2dc72fa7923ac6bb0a973de49e9"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInteger</b> () const  override</td></tr>
+<tr class="memitem:ae61bd2dc72fa7923ac6bb0a973de49e9"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#ae61bd2dc72fa7923ac6bb0a973de49e9">isInteger</a> () const  override</td></tr>
+<tr class="memdesc:ae61bd2dc72fa7923ac6bb0a973de49e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is a integer type.  <a href="#ae61bd2dc72fa7923ac6bb0a973de49e9">More...</a><br /></td></tr>
 <tr class="separator:ae61bd2dc72fa7923ac6bb0a973de49e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e7c1d8b0888efe9621baa475bdff850"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e7c1d8b0888efe9621baa475bdff850"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDouble</b> () const  override</td></tr>
+<tr class="memitem:a9e7c1d8b0888efe9621baa475bdff850"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a9e7c1d8b0888efe9621baa475bdff850">isDouble</a> () const  override</td></tr>
+<tr class="memdesc:a9e7c1d8b0888efe9621baa475bdff850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is a double type.  <a href="#a9e7c1d8b0888efe9621baa475bdff850">More...</a><br /></td></tr>
 <tr class="separator:a9e7c1d8b0888efe9621baa475bdff850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60b8dca103334214a02422f79dd6d187"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60b8dca103334214a02422f79dd6d187"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isString</b> () const  override</td></tr>
+<tr class="memitem:a60b8dca103334214a02422f79dd6d187"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a60b8dca103334214a02422f79dd6d187">isString</a> () const  override</td></tr>
+<tr class="memdesc:a60b8dca103334214a02422f79dd6d187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is a string type.  <a href="#a60b8dca103334214a02422f79dd6d187">More...</a><br /></td></tr>
 <tr class="separator:a60b8dca103334214a02422f79dd6d187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fd76aaf9a716e8bb41f392b215a147b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fd76aaf9a716e8bb41f392b215a147b"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isArray</b> () const  override</td></tr>
+<tr class="memitem:a9fd76aaf9a716e8bb41f392b215a147b"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a9fd76aaf9a716e8bb41f392b215a147b">isArray</a> () const  override</td></tr>
+<tr class="memdesc:a9fd76aaf9a716e8bb41f392b215a147b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is an array type.  <a href="#a9fd76aaf9a716e8bb41f392b215a147b">More...</a><br /></td></tr>
 <tr class="separator:a9fd76aaf9a716e8bb41f392b215a147b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2de66f8c5323ed0707eef748b7dc799b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2de66f8c5323ed0707eef748b7dc799b"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>isObject</b> () const  override</td></tr>
+<tr class="memitem:a2de66f8c5323ed0707eef748b7dc799b"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a2de66f8c5323ed0707eef748b7dc799b">isObject</a> () const  override</td></tr>
+<tr class="memdesc:a2de66f8c5323ed0707eef748b7dc799b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this element or property is an object type (i.e. a JSON object or an XML element with element content)  <a href="#a2de66f8c5323ed0707eef748b7dc799b">More...</a><br /></td></tr>
 <tr class="separator:a2de66f8c5323ed0707eef748b7dc799b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2087f3fcec0420f606b6acd457508a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2087f3fcec0420f606b6acd457508a2"></a>
-MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><b>asBoolean</b> () const  override</td></tr>
+<tr class="memitem:ad2087f3fcec0420f606b6acd457508a2"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#ad2087f3fcec0420f606b6acd457508a2">asBoolean</a> () const  override</td></tr>
+<tr class="memdesc:ad2087f3fcec0420f606b6acd457508a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the boolean value of this element or property.  <a href="#ad2087f3fcec0420f606b6acd457508a2">More...</a><br /></td></tr>
 <tr class="separator:ad2087f3fcec0420f606b6acd457508a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4bac63d2486a48492c1e4114dc2e5de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4bac63d2486a48492c1e4114dc2e5de"></a>
-MLCLIENT_API int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>asInteger</b> () const  override</td></tr>
+<tr class="memitem:af4bac63d2486a48492c1e4114dc2e5de"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#af4bac63d2486a48492c1e4114dc2e5de">asInteger</a> () const  override</td></tr>
+<tr class="memdesc:af4bac63d2486a48492c1e4114dc2e5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the integer value of this element or property.  <a href="#af4bac63d2486a48492c1e4114dc2e5de">More...</a><br /></td></tr>
 <tr class="separator:af4bac63d2486a48492c1e4114dc2e5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab175f45c265bbd0959a5f9df04b620b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab175f45c265bbd0959a5f9df04b620b9"></a>
-MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><b>asDouble</b> () const  override</td></tr>
+<tr class="memitem:ab175f45c265bbd0959a5f9df04b620b9"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#ab175f45c265bbd0959a5f9df04b620b9">asDouble</a> () const  override</td></tr>
+<tr class="memdesc:ab175f45c265bbd0959a5f9df04b620b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the double value of this element or property.  <a href="#ab175f45c265bbd0959a5f9df04b620b9">More...</a><br /></td></tr>
 <tr class="separator:ab175f45c265bbd0959a5f9df04b620b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fe45f1a317a850e674977fa0886e63d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fe45f1a317a850e674977fa0886e63d"></a>
-MLCLIENT_API std::string&#160;</td><td class="memItemRight" valign="bottom"><b>asString</b> () const  override</td></tr>
+<tr class="memitem:a1fe45f1a317a850e674977fa0886e63d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a1fe45f1a317a850e674977fa0886e63d">asString</a> () const  override</td></tr>
+<tr class="memdesc:a1fe45f1a317a850e674977fa0886e63d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the string value of this element or property.  <a href="#a1fe45f1a317a850e674977fa0886e63d">More...</a><br /></td></tr>
 <tr class="separator:a1fe45f1a317a850e674977fa0886e63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19618711f795c5558718af1bb235cc6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19618711f795c5558718af1bb235cc6e"></a>
-MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>asArray</b> () const  override</td></tr>
+<tr class="memitem:a19618711f795c5558718af1bb235cc6e"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a19618711f795c5558718af1bb235cc6e">asArray</a> () const  override</td></tr>
+<tr class="memdesc:a19618711f795c5558718af1bb235cc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the array value of this element or property (i.e. the child objects)  <a href="#a19618711f795c5558718af1bb235cc6e">More...</a><br /></td></tr>
 <tr class="separator:a19618711f795c5558718af1bb235cc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a0025f8e1f3e551a0b1cedf35de4cf6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a0025f8e1f3e551a0b1cedf35de4cf6"></a>
-MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>asObject</b> () const  override</td></tr>
+<tr class="memitem:a2a0025f8e1f3e551a0b1cedf35de4cf6"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_node.html#a2a0025f8e1f3e551a0b1cedf35de4cf6">asObject</a> () const  override</td></tr>
+<tr class="memdesc:a2a0025f8e1f3e551a0b1cedf35de4cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Object value of this element or property (i.e. the child object)  <a href="#a2a0025f8e1f3e551a0b1cedf35de4cf6">More...</a><br /></td></tr>
 <tr class="separator:a2a0025f8e1f3e551a0b1cedf35de4cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a169acfc724bb54d26aaed3bf4e26a3cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a169acfc724bb54d26aaed3bf4e26a3cb"></a>
 MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const std::string &amp;key) const  override</td></tr>
@@ -169,11 +169,412 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocume
 <tr class="separator:a0d820bc008681da76cbed3195af2093e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a Node within a <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. ">CppRestJsonDocumentContent</a>'s root web::json::value instance. </p>
+<div class="textblock"><p>Represents a Node within a pugi::xml::document instance. </p>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-07-30 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a19618711f795c5558718af1bb235cc6e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a>* mlclient::utilities::PugiXmlDocumentNode::asArray </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the array value of this element or property (i.e. the child objects) </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The array value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a0078fe4cae36802eb22a13b5276a71be">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2087f3fcec0420f606b6acd457508a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::asBoolean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the boolean value of this element or property. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The boolean value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#ac96b39e5cfa63c9f3ea4e891f8a5d3e0">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab175f45c265bbd0959a5f9df04b620b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API double mlclient::utilities::PugiXmlDocumentNode::asDouble </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the double value of this element or property. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The double value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a7a4517e098de65735257aad81e54c492">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4bac63d2486a48492c1e4114dc2e5de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API int32_t mlclient::utilities::PugiXmlDocumentNode::asInteger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the integer value of this element or property. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The integer value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#acc9cee378e2d393be9c5f353b4f53b16">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a0025f8e1f3e551a0b1cedf35de4cf6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a>* mlclient::utilities::PugiXmlDocumentNode::asObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the Object value of this element or property (i.e. the child object) </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Node object value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#aa32b77e614e167c8a754b9815a3b795e">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fe45f1a317a850e674977fa0886e63d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API std::string mlclient::utilities::PugiXmlDocumentNode::asString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the string value of this element or property. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classmlclient_1_1_invalid_format_exception.html" title="Indicates an issue with parsing content. ">InvalidFormatException</a></td><td>if not of the right type</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string value </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a93e528813a3f85c9dc514ff726c2fdbb">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9fd76aaf9a716e8bb41f392b215a147b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isArray </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is an array type. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type array </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a0c0621b56e82aff8f7460db5a1cc7d61">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ba6e78fd2f60fda1fe31beecfc28d12"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isBoolean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is a boolean type. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type boolean </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a4ce9afd75b99012cbd607e64d6a38d5b">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e7c1d8b0888efe9621baa475bdff850"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isDouble </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is a double type. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type double </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a0a2fb6902e6e56de983d9685d074ebaa">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae61bd2dc72fa7923ac6bb0a973de49e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isInteger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is a integer type. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type integer </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a31c3703eb78a6eaf20099e2c07a4c41e">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae732bb747e43fce827d433da8b46d288"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isNull </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Does this document element have a blank value? </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the value is blank. E.g. {"data":""} or &lt;data&gt; </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a140110907b91bdc6f08e2e0d4b02776a">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2de66f8c5323ed0707eef748b7dc799b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is an object type (i.e. a JSON object or an XML element with element content) </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type Object </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a6ac9bf7f4d7af1b272d9c00e415672c1">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a60b8dca103334214a02422f79dd6d187"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API bool mlclient::utilities::PugiXmlDocumentNode::isString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether this element or property is a string type. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if of type string </dd></dl>
+
+<p>Implements <a class="el" href="classmlclient_1_1_i_document_node.html#a3ca7f7648ab2026ad29d50c25660c311">mlclient::IDocumentNode</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/mlclient/utilities/<a class="el" href="_pugi_xml_document_content_8hpp_source.html">PugiXmlDocumentContent.hpp</a></li>
 </ul>
 </div><!-- contents -->

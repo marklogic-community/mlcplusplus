@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['parsewwwauthenticateheader',['parseWWWAuthenticateHeader',['../classmlclient_1_1internals_1_1_credentials.html#ac22af4ce831b8495d1f23c3976b43f57',1,'mlclient::internals::Credentials']]],
-  ['postsync',['postSync',['../classmlclient_1_1internals_1_1_authenticating_proxy.html#a1bab8a4346bf2b71b2f660e4828bd711',1,'mlclient::internals::AuthenticatingProxy']]],
-  ['pugixmldocumentcontent',['PugiXmlDocumentContent',['../classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#ad641903c8f3a67621fbe363eab509010',1,'mlclient::utilities::PugiXmlDocumentContent']]],
-  ['putsync',['putSync',['../classmlclient_1_1internals_1_1_authenticating_proxy.html#a71cf2df60bc54f17ee576013c98202c4',1,'mlclient::internals::AuthenticatingProxy']]]
+  ['navigate',['navigate',['../classmlclient_1_1_i_text_document_content.html#a1ef6ac941c24a4c608dbbf95d47ffd3f',1,'mlclient::ITextDocumentContent::navigate()'],['../classmlclient_1_1_generic_text_document_content.html#ab9f0c496dc863049da1639bfc2b244a2',1,'mlclient::GenericTextDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a736a5c01ef0a0ce473042bb36df70279',1,'mlclient::utilities::CppRestJsonDocumentContent::navigate()'],['../classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afde977f0237ff12a056af147bdd4741d',1,'mlclient::utilities::PugiXmlDocumentContent::navigate()']]],
+  ['notquery',['notQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a6a936da35adb02af48a1f9ec68148855',1,'mlclient::utilities::SearchBuilder']]]
 ];
