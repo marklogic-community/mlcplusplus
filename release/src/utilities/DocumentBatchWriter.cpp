@@ -77,7 +77,7 @@ public:
       latest.rate = 1.0;
     } else {
       LOG(DEBUG) << "Calculating rate";
-      latest.rate = ((double)latest.completed) / ((double)latest.duration);
+      latest.rate = ((double)latest.completed * 1000.0) / ((double)latest.duration);
     }
 
     LOG(DEBUG) << "After calc";

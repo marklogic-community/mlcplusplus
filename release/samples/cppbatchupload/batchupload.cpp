@@ -101,6 +101,7 @@ int main(int argc, const char * argv[])
   std::cout << "Document set size: " << setSize << ", complete size: " << p.completed << std::endl;
   std::cout << "Progress: Complete: " << p.completed << ", total: " << p.total << ", pct: " << p.percentageComplete << std::endl;
   std::cout << "Progress: duration: " << p.duration << ", est remaining duration: " << p.durationEstimateRemaining << std::endl;
+  std::cout << "Progress: overall rate: " << p.rate << std::endl;
 
   std::cout << "batch upload complete" << std::endl;
   return 0;

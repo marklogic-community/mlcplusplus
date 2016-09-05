@@ -56,6 +56,8 @@ namespace utilities {
 void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const std::string& baseFolder,const bool stripBase,const std::string& appendBase,
     const std::vector<std::string>& collections,const std::vector<Permission>& permissions,IDocumentContent* properties,DocumentSet& addTo,
     const bool showHiddenDirs) {
+  LOG(DEBUG) << "addFilesToDocumentSet called with folder: " << folder << " and baseFolder: " << baseFolder;
+
 #ifndef _WIN32
   struct dirent *epdf;
   DIR *dpdf;
@@ -103,8 +105,9 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
         LOG(DEBUG) << "d_name: " << dname;
         std::string fname = std::string(folder);
         if (stripBase) {
-          fname = fname.substr(0,baseFolder.length());
+          fname = fname.substr(baseFolder.length() + 1);
         }
+        LOG(DEBUG) << "fname: " << fname << " folder: " << folder << " baseFolder: " << baseFolder;
         doc.setUri(std::string(appendBase + fname + "/" + dname)); // TODO platform independent file separator
         LOG(DEBUG) << "Found document: " << doc.getUri();
         FileDocumentContent* fdc = new FileDocumentContent(folder + "/" + dname); // TODO platform independent file separator

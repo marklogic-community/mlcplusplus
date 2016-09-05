@@ -72,6 +72,7 @@ namespace csbatchupload
 			Console.WriteLine("Progress: Complete: " + p.completed + ", total: " + p.total + ", pct: " + p.percentageComplete );
 			Console.WriteLine("Progress: duration: " + p.duration + ", est remaining duration: " 
 			                  + p.durationEstimateRemaining);
+			Console.WriteLine("Progress: Overall rate: " + p.rate);
 
 			Console.WriteLine("batch upload complete");
 
