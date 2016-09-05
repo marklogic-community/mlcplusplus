@@ -24,7 +24,7 @@
 #ifndef SRC_DOCUMENTCONTENT_HPP_
 #define SRC_DOCUMENTCONTENT_HPP_
 
-#include "mlclient/mlclient.hpp"
+#include <mlclient/mlclient.hpp>
 #include <string>
 #include <iosfwd>
 
@@ -106,6 +106,8 @@ public:
 /**
  * \brief Acts as a generic lightweight document element interface
  *
+ * This is the base class for any Document Node within the Document Traversal API.
+ *
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.2
  * \date 2016-07-30
@@ -115,19 +117,96 @@ public:
   MLCLIENT_API IDocumentNode();
   MLCLIENT_API virtual ~IDocumentNode();
 
+  /**
+   * \brief Does this document element have a blank value?
+   *
+   * \return True if the value is blank. E.g. {"data":""} or <data/>
+   */
   MLCLIENT_API virtual bool isNull() const = 0;
+  /**
+   * \brief Whether this element or property is a boolean type
+   *
+   * \return True if of type boolean
+   */
   MLCLIENT_API virtual bool isBoolean() const = 0;
+  /**
+   * \brief Whether this element or property is a integer type
+   *
+   * \return True if of type integer
+   */
   MLCLIENT_API virtual bool isInteger() const = 0;
+  /**
+   * \brief Whether this element or property is a double type
+   *
+   * \return True if of type double
+   */
   MLCLIENT_API virtual bool isDouble() const = 0;
+  /**
+   * \brief Whether this element or property is a string type
+   *
+   * \return True if of type string
+   */
   MLCLIENT_API virtual bool isString() const = 0;
+  /**
+   * \brief Whether this element or property is an array type
+   *
+   * \return True if of type array
+   */
   MLCLIENT_API virtual bool isArray() const = 0;
+  /**
+   * \brief Whether this element or property is an object type (i.e. a JSON object or an XML element with element content)
+   *
+   * \return True if of type Object
+   */
   MLCLIENT_API virtual bool isObject() const = 0;
 
+  /**
+   * \brief Returns the boolean value of this element or property
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The boolean value
+   */
   MLCLIENT_API virtual bool asBoolean() const = 0;
+  /**
+   * \brief Returns the integer value of this element or property
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The integer value
+   */
   MLCLIENT_API virtual int32_t asInteger() const = 0;
+  /**
+   * \brief Returns the double value of this element or property
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The double value
+   */
   MLCLIENT_API virtual double asDouble() const = 0;
+  /**
+   * \brief Returns the string value of this element or property
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The string value
+   */
   MLCLIENT_API virtual std::string asString() const = 0;
+  /**
+   * \brief Returns the array value of this element or property (i.e. the child objects)
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The array value
+   */
   MLCLIENT_API virtual IDocumentNode* asArray() const = 0;
+  /**
+   * \brief Returns the Object value of this element or property (i.e. the child object)
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The Node object value
+   */
   MLCLIENT_API virtual IDocumentNode* asObject() const = 0;
 
   MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
@@ -136,6 +215,17 @@ public:
 
 /**
  * \brief Acts as a generic lightweight document interface
+ *
+ * This is the core class in the Document Traversal API. A Document Navigator provides a consistent interface
+ * over both JSON and XML document content. This allows, for simple use cases, the developer to not know or
+ * care what the underlying content type is of their document.
+ *
+ * Using this API the developer does not need to understand or know about the underlying XML or JSON libraries
+ * being used by the C++ API. This is therefore a future proofed way of handling document content.
+ *
+ * Document Traversal is particularly useful when you don't know or care of the document format. E.g. if dealing
+ * with internal MarkLogic document structures from the REST API (like search options), or if parsing search
+ * result sets that contain document content.
  *
  * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.2
@@ -146,6 +236,12 @@ public:
   MLCLIENT_API IDocumentNavigator();
   MLCLIENT_API virtual ~IDocumentNavigator();
 
+  /**
+   * \brief Returns the named element or property underneath the document object
+   *
+   * \param key the string key of the requested object
+   * \return The IDocumentNode value of the requested element or property
+   */
   MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
 };
 
@@ -191,6 +287,8 @@ public:
 
   /**
    * \brief Returns a way to navigate the document
+   *
+   * See IDocumentNavigator for details
    *
    * \since 8.0.2
    * \date 2016-07-30

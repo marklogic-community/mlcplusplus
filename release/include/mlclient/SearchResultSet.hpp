@@ -8,10 +8,10 @@
 #ifndef SRC_UTILITIES_SEARCHRESULTSET_HPP_
 #define SRC_UTILITIES_SEARCHRESULTSET_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/SearchResult.hpp"
-#include "mlclient/Connection.hpp"
-#include "mlclient/SearchDescription.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/SearchResult.hpp>
+#include <mlclient/Connection.hpp>
+#include <mlclient/SearchDescription.hpp>
 
 #include <vector>
 
@@ -154,22 +154,79 @@ private:
   Impl* mImpl;
 };
 
-
+/**
+ * \brief An STL compatible Iterator implementation
+ *
+ * \warning Currently this isn't quite compatible - it returns pointers rather than references. This
+ * should be fixed in 8.0.3. In particular in your loop you need to have this as your comparison:
+ * (*iter) != (*(myresultset::end())) and for the increment operator: ++(*iter)
+ *
+ * See the SearchResultSetTest class for a sample use under release/test
+ *
+ * \since 8.0.2
+ */
 class SearchResultSetIterator {
 public:
+  /**
+   * \brief Default constructor
+   */
   MLCLIENT_API SearchResultSetIterator();
+  /**
+   * \brief Creates an iterator over the specified result set
+   *
+   * \note This class does NOT own (i.e. delete) the provided SearchResultSet instance
+   *
+   * \param set The SearchResultSet to iterator over, starting with the first result
+   */
   MLCLIENT_API SearchResultSetIterator(SearchResultSet* set);
+  /**
+   * \brief Creates an iterator over the specified result set
+   *
+   * \note This class does NOT own (i.e. delete) the provided SearchResultSet instance
+   *
+   * \param set The SearchResultSet to iterator over, starting with the pos-th result
+   */
   MLCLIENT_API SearchResultSetIterator(SearchResultSet* set,long pos);
 
+  /**
+   * \brief Returns the iterator start instance
+   * \return The iterator over this set
+   */
   MLCLIENT_API SearchResultSetIterator* begin();
+  /**
+   * \brief Returns the iterator end instance
+   * \return The end of iterator marker
+   */
   MLCLIENT_API SearchResultSetIterator* end();
 
+  /**
+   * \brief Equality operator for comparing an iterator instance to end()
+   * \param other The other iterator instance to compare this instance against
+   */
   MLCLIENT_API bool operator==(const SearchResultSetIterator& other);
+  /**
+   * \brief Inequality operator for comparing an iterator instance to end()
+   * \param other The other iterator instance to compare this instance against
+   */
   MLCLIENT_API bool operator!=(const SearchResultSetIterator& other);
+  /**
+   * \brief The iterator increment operator
+   */
   MLCLIENT_API void operator++();
+  /**
+   * \brief The dereference operator, which returns the SearchResult at the current position in the SearchResultSet
+   */
   MLCLIENT_API const SearchResult operator*();
+  /**
+   * \brief Copy assignment operator
+   * \param other The other iterator to copy state from
+   */
   MLCLIENT_API SearchResultSetIterator operator=(const SearchResultSetIterator& other);
 
+  /**
+   * \brief Returns the first result in the result set
+   * \return The first search result
+   */
   MLCLIENT_API const SearchResult& first() const;
 
 private:

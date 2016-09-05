@@ -33,19 +33,62 @@ MLCLIENT_API Capability toCapability(const std::string& capString);
 
 /**
  * \brief Represents a single MarkLogic Permission
+ *
+ * A MarkLogic Permission consists of a Role name string (NOT a user), and a capability (Read, Update, Insert, Execute)
+ *
+ * \note Supports std::move and C++11 move semantics.
+ *
+ * \since 8.0.2
+ * \date 2016-08-09
  */
 class Permission {
 public:
+  /**
+   * \brief Creates a permission with the specified role and capability
+   *
+   * \param role The MarkLogic role name (NOT numeric ID)
+   * \param capability The capability
+   */
   MLCLIENT_API Permission(const std::string& role,const Capability& capability);
+  /**
+   * \brief Move Constructor
+   */
   MLCLIENT_API Permission(Permission&& other); // move ctor
+  /**
+   * \brief Defalt copy constructor
+   */
   MLCLIENT_API Permission(const Permission& other) = default; // copy ctor
+  /**
+   * Default Destructor
+   */
   MLCLIENT_API virtual ~Permission() = default;
 
+  /**
+   * \brief Default copy assignment operator
+   */
   MLCLIENT_API Permission& operator=(const Permission& other) = default; // default copy assignment operator
 
+  /**
+   * \brief Returns the role string
+   *
+   * \return The role string (NOT the numeric role ID)
+   */
   MLCLIENT_API const std::string& getRole() const;
+  /**
+   * \brief Sets the role string
+   *
+   * \param role The role ID string (NOT the numeric ID)
+   */
   MLCLIENT_API void setRole(const std::string& role);
+  /**
+   * \brief Returns the capability
+   * \return The capability
+   */
   MLCLIENT_API const Capability& getCapability() const;
+  /**
+   * \brief Sets the capability
+   * \param capability The role capability
+   */
   MLCLIENT_API void setCapability(const Capability& capability);
 
 private:

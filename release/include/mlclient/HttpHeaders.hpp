@@ -25,6 +25,9 @@
 
 namespace mlclient {
 
+/*
+ * \brief An Internal class that you should never see nor use
+ */
 class HttpHeaders {
 public:
   HttpHeaders();

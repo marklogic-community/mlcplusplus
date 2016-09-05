@@ -23,10 +23,10 @@
 #ifndef __MLCLIENT_CONNECTION__
 #define __MLCLIENT_CONNECTION__
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/Response.hpp"
-#include "mlclient/DocumentContent.hpp"
-#include "mlclient/SearchDescription.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/Response.hpp>
+#include <mlclient/DocumentContent.hpp>
+#include <mlclient/SearchDescription.hpp>
 #include <mlclient/Document.hpp>
 #include <mlclient/DocumentSet.hpp>
 
@@ -561,11 +561,7 @@ public:
    *
    * \since 8.0.0
    *
-   * \param[in] hostname The hostname or IP address of the MarkLogic Server (or load balancer) to connect to
-   * \param[in] port A String representing the (numerical) port number of the MarkLogic Server (or load balancer) to connect to
-   * \param[in] username The username of the used to connect to MarkLogic Server as
-   * \param[in] password The plain text password used to authenticate the user to MarkLogic server with
-   * \param[in] usessl A bool representation whether to use SSL (i.e. a HTTPS url) or not
+   * See IConnection for details.
    */
   MLCLIENT_API void configure(const std::string& hostname, const std::string& port, const std::string& username, const std::string& password,
       const bool usessl = false) override;
@@ -573,30 +569,34 @@ public:
   /**
    * \brief Connects or tests the authentication in the connection. May not actually connect.
    * \note Should be called prior to any use of functions. Is not called for the developer
+   *
+   * See IConnection for details.
    */
   MLCLIENT_API bool connect() override;
 
   /**
    * \brief Frees up resources held by the connection, until the next call to connect.
    * \note Should be called by a class' destructor
+   *
+   * See IConnection for details.
    */
   MLCLIENT_API void disconnect() override;
 
   /**
    * \brief Sets the name of the database to query/update. Defaults to Documents.
    *
-   * \since 8.0.0
+   * See IConnection for details.
    *
-   * \param[in] The string name (not internal MarkLogic numeric ID) of the database to query.
+   * \since 8.0.0
    */
   MLCLIENT_API void setDatabaseName(const std::string& db) override;
 
   /**
    * \brief Returns the database name we're querying/updating. Defaults to Documents.
    *
-   * \since 8.0.0
+   * See IConnection for details.
    *
-   * \return A string representation of the database name (not internal MarkLogic database numeric ID)
+   * \since 8.0.0
    */
   MLCLIENT_API std::string getDatabaseName() override;
 
@@ -608,86 +608,37 @@ public:
   /**
    * \brief Performs a HTTP GET Request against MarkLogic Server.
    *
-   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
-   * a specific convenience method to invoke it.
-   *
-   * Performs a RESTful HTTP GET request to an arbitrary URL on MarkLogic Server
+   * See IConnection for details.
    *
    * \since 8.0.0
-   *
-   * \param[in] pathAndQueryString the path and query string for the entire get request. E.g. /v1/search?options=myoptions
-   * \return A unique_ptr for a \link Response \endlink instance. The caller is responsible for destroying the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
-   *
-   * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
-   * web application URL.
    */
   MLCLIENT_API Response* doGet(const std::string& pathAndQuerystring) override;
 
   /**
    * \brief Performs a HTTP PUT Request against MarkLogic Server.
    *
-   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
-   * a specific convenience method to invoke it.
-   *
-   * Performs a RESTful HTTP PUT request to an arbitrary URL on MarkLogic Server
+   * See IConnection for details.
    *
    * \since 8.0.0
    *
-   * \param[in] pathAndQueryString the path and query string for the entire put request. E.g. /v1/search?options=myoptions
-   * \param[in] payload The \link DocumentContent \endlink to send to MarkLogic Server
-   * \return A unique_ptr for a \link Response \endlink instance. The caller is responsible for destroying the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
-   *
-   * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
-   * web application URL.
    */
   MLCLIENT_API Response* doPut(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
   /**
    * \brief Performs a HTTP POST Request against MarkLogic Server.
    *
-   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
-   * a specific convenience method to invoke it.
-   *
-   * Performs a RESTful HTTP POST request to an arbitrary URL on MarkLogic Server
+   * See IConnection for details.
    *
    * \since 8.0.0
-   *
-   * \param[in] pathAndQueryString the path and query string for the entire post request. E.g. /v1/search?options=myoptions
-   * \param[in] payload The \link DocumentContent \endlink to send to MarkLogic Server
-   * \return A unique_ptr for a \link Response \endlink instance. The caller is responsible for destroying the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
-   *
-   * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
-   * web application URL.
    */
   MLCLIENT_API Response* doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) override;
 
   /**
    * \brief Performs a HTTP DELETE Request against MarkLogic Server.
    *
-   * Allows mlclient based applications to call any arbitrary REST endpoint on MarkLogic. Just in case we don't yet provide
-   * a specific convenience method to invoke it.
-   *
-   * Performs a HTTP DELETE REST request to an arbitrary URL on MarkLogic Server
+   * See IConnection for details.
    *
    * \since 8.0.0
-   *
-   * \param[in] pathAndQueryString the path and query string for the entire delete request. E.g. /v1/documents?uri=/my/doc.json
-   * \return A unique_ptr for a \link Response \endlink instance. The caller is responsible for destroying the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
-   *
-   * \note This function is not limited to the REST API, and can be used for the management REST API or any arbitrary MarkLogic
-   * web application URL.
    */
   MLCLIENT_API Response* doDelete(const std::string& pathAndQueryString) override;
 
@@ -699,13 +650,7 @@ public:
   /**
    * \brief Retrieves a document from the server, at the given document URI (MarkLogic unique document ID)
    *
-   * Performs a GET /v1/documents?uri HTTP call
-   *
-   * \param[in] uri The URI of the document to fetch from MarkLogic Server
-   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
+   * See IConnection for details.
    *
    * \since 8.0.0
    */
@@ -715,16 +660,7 @@ public:
    *
    * \brief Retrieves a document from the server, at the given document URI (MarkLogic unique document ID, within the Document object)
    *
-   * \note This method differs from getDocument(const std::string& uri) in that it populates the document specified, rather than returning
-   * a document from the method (or within the response). This method fetches ALL of document content AND properties AND collections AND permissions
-   *
-   * Performs a GET /v1/documents?uri HTTP call, fetching all document information.
-   *
-   * \param[inout] inout_document The document to fetch from MarkLogic Server. MUST have a URI.
-   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
+   * See IConnection for details.
    *
    * \since 8.0.2
    */
@@ -733,35 +669,34 @@ public:
   /**
    * \brief Populates the content of the specified document (MUST have a uri).
    *
-   * See getDocument(Document&) for details.
+   * See IConnection for details.
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* getDocumentContent(Document& inout_document) override;
 
   /**
    * \brief Populates the properties of the specified document (MUST have a uri).
    *
-   * See getDocument(Document&) for details.
+   * See IConnection for details.
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* getDocumentProperties(Document& inout_document) override;
 
   /**
    * \brief Populates the permissions of the specified document (MUST have a uri).
    *
-   * See getDocument(Document&) for details.
+   * See IConnection for details.
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API virtual Response* getDocumentPermissions(Document& inout_document) override;
 
   /**
    * \brief Saves a document to MarkLogic (either as new or an update), at the given document URI (MarkLogic unique document ID)
    *
-   * Performs a call to PUT /v1/documents?ext in order to save a Document to MarkLogic Server
-   *
-   * \param[in] uri The URI of the document to save to MarkLogic Server
-   * \param[in] payload The \link DocumentContent \endlink to send to MarkLogic Server
-   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
+   * See IConnection for details.
    *
    * \since 8.0.0
    */
@@ -770,30 +705,26 @@ public:
   /**
    * \brief Saves a set of documents as a single batch to MarkLogic Server
    *
-   * See DocumentSet and DocumentBatchHelper and DocumentBatchWriter for how to use this call.
-   *
-   * \note Uses a single REST call and multi-part MIME support in the REST API
-   *
-   * \param documents The set of documents to upload
-   * \param startPosInclusive The first index of the document in the set to upload
-   * \param endPostInclusive The last index of the document in the set to upload
-   * \return The Response object
+   * See IConnection for details.
    *
    * \since 8.0.2
    */
   MLCLIENT_API Response* saveDocuments(const DocumentSet& documents,const long startPosInclusive,
       const long endPosInclusive) override;
 
+  /**
+   * \brief Saves the specified document to MarkLogic Server
+   *
+   * See IConnection for details.
+   *
+   * \since 8.0.2
+   */
   MLCLIENT_API Response* saveDocument(const Document& doc) override;
 
   /**
    * \brief Deletes the specified document by URI
    *
-   * \param[in] uri The document URI to delete
-   * \return A unique_ptr for the \link Response \endlink object. The caller is repsonsible for deleting the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
+   * See IConnection for details.
    *
    * \since 8.0.0
    */
@@ -802,15 +733,7 @@ public:
   /**
    * \brief Performs a search against the MarkLogic database given the provided search query, text and options
    *
-   * Uses a \link SearchDescription \endlink value object to wrap complex search parameters for MarkLogic Server.
-   *
-   * Performs a POST /v1/search HTTP POST to MarkLogic Server
-   *
-   * \param[in] desc The SearchDescription defining the search, options, and query string
-   * \return A unique_ptr for the \link Response \endlink object. The caller is responsible for deleting the pointer.
-   *
-   * \exception NoCredentialsException The credentials for the Connection were not accepted by MarkLogic Server,
-   * or permission is denied for this request.
+   * See IConnection for details.
    *
    * \since 8.0.0
    */
@@ -819,15 +742,7 @@ public:
   /**
    * \brief Performs a search against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
    *
-   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
-   *
-   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
-   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
-   *
-   * See also \link Connection::valuesExtension \endlink for similar functionality for aggregate/values extensions
-   *
-   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
-   * \param[in] desc The SearchDescription defining the search, options, and query string
+   * See IConnection for details.
    *
    * \since 8.0.2
    */
@@ -836,8 +751,7 @@ public:
   /**
    * \brief Saves search options to the server.
    *
-   * \param[in] name The name of the options on the server
-   * \param[in] optionsDoc The document containing the options
+   * See IConnection for details.
    *
    * \since 8.0.2
    */
@@ -846,32 +760,16 @@ public:
   /**
    * \brief Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the search options configuration used.
    *
-   * \note What is returned from the call is entirely dependent upon the search options configuration used.
+   * See IConnection for details.
    *
-   * \param[in] valuesName The name of the values Configuration within the search options to use
-   * \param[in] optionsName The name of the installed search options to specify (no default)
+   * \since 8.0.2
    */
   MLCLIENT_API Response* values(const std::string& valuesName,const std::string& optionsName) override;
 
   /**
    * \brief Performs a values against a REST extension that is compatible with POST /v1/search (i.e. Connection::search)
    *
-   * \note Useful when your extension places extra criteria on the search that the REST API does not support.
-   *
-   * \note This could be used to effectively create 'stored procedures' that took a search to restrict the documents
-   * the work occurs over, returning a result set just like Connection::search (i.e. POST /v1/search)
-   *
-   * See also \link Connection::searchExtension \endlink for similar functionality for aggregate/values extensions
-   *
-   * \note Because the values endpoint takes a name in the URL and REST extensions do not support this, the valuesName
-   * variable is passed to the 'values' parameter on the querystring of the request.
-   *
-   * Invokes POST /v1/values/VALUESNAME?options=OPTIONSNAME and not GET
-   *
-   * \param[in] extensionName The REST API extension name (file name without .xqy or .sjs) to invoke
-   * \param[in] valuesName The name of the values Configuration within the search options to use
-   * \param[in] optionsName The name of the installed search options to specify (no default)
-   * \param[in] desc The SearchDescription defining the search, options, and query string
+   * See IConnection for details.
    *
    * \since 8.0.2
    */
@@ -880,14 +778,17 @@ public:
 
   /**
    * \brief Lists the top level collections. I.e. ones starting without a / or ones starting with a / but not containing a / character
-   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   * See IConnection for details.
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API Response* listRootCollections() override;
 
   /**
    * \brief Lists the immediate child collections of the specified parent Collections.
-   * \note Parent collection must start with a /
-   * \note Requires the Collection Lexicon to be enabled on the MarkLogic Database
+   * See IConnection for details.
+   *
+   * \since 8.0.2
    */
   MLCLIENT_API Response* listCollections(const std::string& parentCollection) override;
 

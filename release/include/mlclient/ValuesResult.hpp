@@ -59,14 +59,14 @@ enum class ValuesResultAggregateType {
  * \since 8.0.2
  */
 struct ValuesResultAggregate {
-  std::string name;
-  ValuesResultAggregateType type;
-  double value;
-  std::map<std::string,std::string> complexValue;
+  std::string name; //< The name of this aggregate in the search options
+  ValuesResultAggregateType type; //< The aggregate type - single double, or complex value map
+  double value; //< The simple aggregate result value, if applicable
+  std::map<std::string,std::string> complexValue; //< The complex aggregate result value, if applicable
 };
 
 /**
- * \brief Contains details of the overarching /v1/values / Connection::values call results.
+ * \brief Contains details of the overarching /v1/values (i.e. Connection::values) call results.
  *
  * \author Adam Fowler <adam.fowler@marklogic.com>
  *
@@ -75,25 +75,88 @@ struct ValuesResultAggregate {
  */
 class ValuesResult {
 public:
+  /**
+   * \brief Creates a values result with the specified options name and values name (from submitted search options)
+   *
+   * \param optionsName The string name of the options node for this values result
+   * \param valuesName The string name for this particular values result
+   */
   MLCLIENT_API ValuesResult(const std::string& optionsName,const std::string& valuesName);
+  /**
+   * \brief Move constructor
+   * \param other The ValuesResult object to steal the resources from
+   */
   MLCLIENT_API ValuesResult(ValuesResult&& other);
+  /**
+   * \brief Copy constructor
+   * \param other The ValuesResult to copy
+   */
   MLCLIENT_API ValuesResult(const ValuesResult& other);
+  /**
+   * \brief Destructor
+   */
   MLCLIENT_API ~ValuesResult();
 
+  /**
+   * \brief Adds a values result value to this instance
+   * \param value the result value to add
+   */
   MLCLIENT_API void addValue(const ValuesResultValue& value);
+  /**
+   * \brief Returns the underlying set of Values from this instance
+   * \return The result set
+   */
   MLCLIENT_API const std::vector<ValuesResultValue> getValues() const;
 
   // Is there only ever one of these??? I hope an RFE will get resolved to add more in one request!
+  /**
+   * \param Adds an aggregate configuration to the set to lookup by this class
+   *
+   * \note The current REST API only supports submitting one aggregate request per call. This may
+   * be resolved in future versions. That change will be fully abstracted by this class' internals.
+   *
+   * \param aggregate The aggregate configuration to lookup
+   */
   MLCLIENT_API void addAggregate(const ValuesResultAggregate& aggregate);
   //MLCLIENT_API const std::vector<ValuesResultAggregate> getAggregates() const;
+  /**
+   * \brief Whether any aggregate lookups are configured
+   * \return True if one or more aggregate lookups are configured
+   */
   MLCLIENT_API const bool hasAggregates() const;
+  /**
+   * \brief Returns the number of aggregates configured for lookup
+   * \return The number of aggregate lookups configured
+   */
   MLCLIENT_API const long getAggregateCount() const;
+  /**
+   * \brief Returns an iterator over the underlying aggregate lookups
+   * \return The iterator over the list of aggregate lookups
+   */
   MLCLIENT_API const std::vector<ValuesResultAggregate>::const_iterator aggregateBegin() const;
+  /**
+   * \brief Returns an iterator end marker for the underlying set of aggregate lookups
+   * \return The iterator end marker
+   */
   MLCLIENT_API const std::vector<ValuesResultAggregate>::const_iterator aggregateEnd() const;
 
+  /**
+   * \brief Used to set the total response times by the code actually performing the values lookups
+   * \param valuesResolutionTime The xs:duration string
+   * \param aggregateResolutionTime The xs:duration string
+   * \param totalTime The xs:duration string
+   */
   MLCLIENT_API void setTimes(const std::string& valuesResolutionTime,const std::string& aggregateResolutionTime,const std::string& totalTime);
 
+  /**
+   * \brief Sets the underlying range index lexicon type (A MarkLogic XML type)
+   * \param type The lexicon type for lookup
+   */
   MLCLIENT_API void setType(const mlclient::utilities::RangeIndexType& type);
+  /**
+   * \brief Returns the lexicon type
+   * \return The lexicon type
+   */
   MLCLIENT_API const mlclient::utilities::RangeIndexType& getType() const;
 
   /**

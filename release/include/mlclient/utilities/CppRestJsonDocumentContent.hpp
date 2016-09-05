@@ -22,14 +22,22 @@
 #ifndef SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 #define SRC_UTILITIES_CPPRESTJSONDOCUMENTCONTENT_HPP_
 
-#include "mlclient/mlclient.hpp"
-#include "mlclient/DocumentContent.hpp"
+#include <mlclient/mlclient.hpp>
+#include <mlclient/DocumentContent.hpp>
 #include <cpprest/json.h>
 
 namespace mlclient {
 
 namespace utilities {
 
+/**
+ * \brief Document Traversal API generic JSON wrapper for a Document
+ *
+ * See IDocumentNode for details
+ *
+ * \since 8.0.2
+ * \date 2016-07-30
+ */
 class CppRestJsonContainerNode : public IDocumentNode {
 public:
   MLCLIENT_API CppRestJsonContainerNode();
@@ -47,6 +55,14 @@ public:
   MLCLIENT_API std::string asString() const override;
 };
 
+/**
+ * \brief Document Traversal API node for a JSON Array
+ *
+ * See IDocumentNode for details
+ *
+ * \since 8.0.2
+ * \date 2016-07-30
+ */
 class CppRestJsonArrayNode : public CppRestJsonContainerNode {
 public:
   MLCLIENT_API CppRestJsonArrayNode(web::json::array& root);
@@ -65,6 +81,15 @@ private:
   Impl* mImpl;
 };
 
+
+/**
+ * \brief Document Traversal API node for a JSON Object
+ *
+ * See IDocumentNode for details
+ *
+ * \since 8.0.2
+ * \date 2016-07-30
+ */
 class CppRestJsonObjectNode : public CppRestJsonContainerNode {
 public:
   MLCLIENT_API CppRestJsonObjectNode(web::json::object& root);
@@ -90,6 +115,8 @@ private:
  * \date 2016-07-30
  *
  * \brief Represents a Node within a CppRestJsonDocumentContent's root web::json::value instance.
+ *
+ * See IDocumentNode for details
  */
 class CppRestJsonDocumentNode : public IDocumentNode {
 public:
