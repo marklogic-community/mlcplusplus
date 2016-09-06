@@ -1,0 +1,98 @@
+/**
+\page page_install Installing MLCPlusPlus
+\brief C++ Installing and building from Source Guide
+\tableofcontents
+
+\warning This is a very complex manual process. For Linux or Mac, use install-dependencies.sh instead. For Windows,
+use install-dependencies.bat instead. These files can be found in the root of the GitHub project's files.
+
+\section sec_getcasablanca Get Casablanca
+
+Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level
+as the 'casablanca' git directory.
+
+These instructions are listed here: https://github.com/Microsoft/cpprestsdk/wiki
+
+*WARNING*: If you receive an error about a 'redundant std::move' when compiling the above API, then rm -rf build.debug
+and checkout the development branch of casablanca (i.e. git checkout development within the casablanca folder). This
+is a known bug in the latest casablanca minor release.
+
+Now in the casablanca folder issue `sudo make install`
+
+Once built, continue below.
+
+\section sec_getpugixml Using PUGI XML
+
+PugiXML is a lightweight XML library. This is needed for building MLC++, but is not required for you in your
+applications if you're not using XML - there is no 'public' dependency on pugixml in the API. (i.e. no public API
+header files including pugixml).
+
+To get pugixml you can do one of:-
+
+- Mac: brew install pugixml
+- Source: http://pugixml.org - Quick start install guide: http://pugixml.org/docs/quickstart.html#install
+
+\section sec_buildit Building the MLCPlusPlus library from source
+
+Ensure first that all build scripts are executable:-
+- chmod u+x \*.sh
+
+To build the MLCPlusPlus library for your platform, execute the appropriate shell script, and use the build tool
+for your platform. E.g.:-
+
+- For cross platform (*RECOMMENDED*) Eclipse CDT, type './gen-eclipse.sh' and hit enter. Then open Eclipse and go to File, Import Existing Project, and point to the MLCPlusPlus project folder. This will discover the Eclipse project under ./bin .
+- On a Mac, type './gen-mac.sh' and hit enter. This generates an XCode project you can use to build the library
+- On Linux, type './gen-kdevelop.sh' and hit enter. This generates a KDevelop project you can use to build the library
+- On other \*nix, type './gen-unix.sh' and hit enter Then type 'make' and hit enter. Optionally run 'sudo make install'
+to install the library on your system
+- On Windows, TODO - Coming Soon for Visual Studio
+
+(Note: In future, if you want to remove all built files, execute './clean.sh' and hit enter )
+
+\section sec_install_for_dev Installing MLCPlusPlus globally in your system
+
+If you intend to use MLCPlusPlus as a library in your own development project, use Unix Makefiles via the gen-unix.sh command
+
+Once this completes successfully you will receive a message telling you to `cd bin;make` - do this now.
+
+*Note*: If you receive an error message then you likely have not installed all the above dependencies. Follow those instructions again.
+
+Now you need to install MLCPlusPlus. To do this type `sudo make install`, and enter your system admin password. All
+header files will be placed in to /usr/local/include/mlclient and the libmlclient.dylib (or .so) will be installed in
+/usr/local/lib .
+
+You are now ready to develop using MLCPlusPlus.
+
+\section sec_using Using the MLCPlusPlus library in your C++ application
+
+Start with the Connection class. This provides a connect function and callbacks for all MarkLogic REST API functions.
+
+This class also abstracts the underlying security mechanism used to authenticate to the server.
+
+Simply create a Connection class, call configure to set up the connection parameters, then call a function!
+
+The API documentation can be found here: http://adamfowleruk.github.io/mlcplusplus/api/index.html
+
+To use this class, add the following include:-
+```C++
+#include <mlclient/Connection.hpp>
+```
+
+Then declare you are using the right namespace, or create a connection instance, and use it:-
+
+```C++
+mlclient::Connection* conn = new Connection();
+conn->configure("localhost","8050","admin","admin",false);
+mlclient::Response* resp = conn->getDocument("/some/uri.json");
+std::cout << "Doc content: " << resp->getContent() << std::endl;
+```
+
+You may want to consider creating a ConnectionFactory to manage your connection. See the tests folder for an example of
+a singleton that manages a single connection instance for use between requests.
+
+\section sec_compilingtests Compiling the tests
+
+These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and
+passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to
+work on your own projects though.
+*/

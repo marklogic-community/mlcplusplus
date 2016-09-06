@@ -1,0 +1,9 @@
+
+# Universal binary only makes sense on OSX
+IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    OPTION (OSX_UNIVERSAL "Build an OSX universal binary" OFF)
+    IF (OSX_UNIVERSAL)
+        message("-- Building Mac OS X Universal Binary")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch i386 -arch x86_64")
+    ENDIF ()
+ENDIF ()

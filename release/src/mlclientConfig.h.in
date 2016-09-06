@@ -1,0 +1,4 @@
+// the configured options and settings for Tutorial
+#define mlclient_VERSION_MAJOR @MLCPlusPlus_VERSION_MAJOR@
+#define mlclient_VERSION_MINOR @MLCPlusPlus_VERSION_MINOR@
+#define mlclient_VERSION_REVISION @MLCPlusPlus_VERSION_REVISION@

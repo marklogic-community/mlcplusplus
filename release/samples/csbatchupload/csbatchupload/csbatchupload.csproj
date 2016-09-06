@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{73B5AC00-5E2A-48AB-BD31-AD68C7D79BEC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>csbatchupload</RootNamespace>
+    <AssemblyName>csbatchupload</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\bin\src</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\bin\src</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\AggregateBuiltIn.cs">
+      <Link>Dependencies\AggregateBuiltIn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\AggregateInfo.cs">
+      <Link>Dependencies\AggregateInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\BinaryEncoding.cs">
+      <Link>Dependencies\BinaryEncoding.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Capability.cs">
+      <Link>Dependencies\Capability.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CollectionSet.cs">
+      <Link>Dependencies\CollectionSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Connection.cs">
+      <Link>Dependencies\Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonArrayNode.cs">
+      <Link>Dependencies\CppRestJsonArrayNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonContainerNode.cs">
+      <Link>Dependencies\CppRestJsonContainerNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentContent.cs">
+      <Link>Dependencies\CppRestJsonDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNavigator.cs">
+      <Link>Dependencies\CppRestJsonDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNode.cs">
+      <Link>Dependencies\CppRestJsonDocumentNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonHelper.cs">
+      <Link>Dependencies\CppRestJsonHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonObjectNode.cs">
+      <Link>Dependencies\CppRestJsonObjectNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Document.cs">
+      <Link>Dependencies\Document.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentBatchHelper.cs">
+      <Link>Dependencies\DocumentBatchHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentBatchWriter.cs">
+      <Link>Dependencies\DocumentBatchWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentHelper.cs">
+      <Link>Dependencies\DocumentHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentSet.cs">
+      <Link>Dependencies\DocumentSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\DocumentUriSet.cs">
+      <Link>Dependencies\DocumentUriSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FacetOption.cs">
+      <Link>Dependencies\FacetOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FileDocumentContent.cs">
+      <Link>Dependencies\FileDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Format.cs">
+      <Link>Dependencies\Format.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FragmentScope.cs">
+      <Link>Dependencies\FragmentScope.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\GenericQuery.cs">
+      <Link>Dependencies\GenericQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\GenericTextDocumentContent.cs">
+      <Link>Dependencies\GenericTextDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\HttpHeaders.cs">
+      <Link>Dependencies\HttpHeaders.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IBatchNotifiable.cs">
+      <Link>Dependencies\IBatchNotifiable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IConnection.cs">
+      <Link>Dependencies\IConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IContainerRef.cs">
+      <Link>Dependencies\IContainerRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentContent.cs">
+      <Link>Dependencies\IDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentNavigator.cs">
+      <Link>Dependencies\IDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IDocumentNode.cs">
+      <Link>Dependencies\IDocumentNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ILexiconRef.cs">
+      <Link>Dependencies\ILexiconRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IQuery.cs">
+      <Link>Dependencies\IQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ITextDocumentContent.cs">
+      <Link>Dependencies\ITextDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ITypedValue.cs">
+      <Link>Dependencies\ITypedValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\JsonPropertyQuery.cs">
+      <Link>Dependencies\JsonPropertyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\JsonPropertyRef.cs">
+      <Link>Dependencies\JsonPropertyRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\LexiconType.cs">
+      <Link>Dependencies\LexiconType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\LoggingConfiguration.cs">
+      <Link>Dependencies\LoggingConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcs.cs">
+      <Link>Dependencies\mlclientcs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\mlclientcsPINVOKE.cs">
+      <Link>Dependencies\mlclientcsPINVOKE.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Permission.cs">
+      <Link>Dependencies\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PermissionSet.cs">
+      <Link>Dependencies\PermissionSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Progress.cs">
+      <Link>Dependencies\Progress.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlArrayNode.cs">
+      <Link>Dependencies\PugiXmlArrayNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlContainerNode.cs">
+      <Link>Dependencies\PugiXmlContainerNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentContent.cs">
+      <Link>Dependencies\PugiXmlDocumentContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNavigator.cs">
+      <Link>Dependencies\PugiXmlDocumentNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNode.cs">
+      <Link>Dependencies\PugiXmlDocumentNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlHelper.cs">
+      <Link>Dependencies\PugiXmlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlObjectNode.cs">
+      <Link>Dependencies\PugiXmlObjectNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\QueryBuilderMode.cs">
+      <Link>Dependencies\QueryBuilderMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeIndexType.cs">
+      <Link>Dependencies\RangeIndexType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeLexiconRef.cs">
+      <Link>Dependencies\RangeLexiconRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOperation.cs">
+      <Link>Dependencies\RangeOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOption.cs">
+      <Link>Dependencies\RangeOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOptions.cs">
+      <Link>Dependencies\RangeOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\Response.cs">
+      <Link>Dependencies\Response.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ResponseCode.cs">
+      <Link>Dependencies\ResponseCode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ResponseHelper.cs">
+      <Link>Dependencies\ResponseHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ResponseType.cs">
+      <Link>Dependencies\ResponseType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchBuilder.cs">
+      <Link>Dependencies\SearchBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchDescription.cs">
+      <Link>Dependencies\SearchDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchOptionsBuilder.cs">
+      <Link>Dependencies\SearchOptionsBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResult.cs">
+      <Link>Dependencies\SearchResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResultSet.cs">
+      <Link>Dependencies\SearchResultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResultSetIterator.cs">
+      <Link>Dependencies\SearchResultSetIterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_int32_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_int32_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_p_char.cs">
+      <Link>Dependencies\SWIGTYPE_p_p_char.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_document.cs">
+      <Link>Dependencies\SWIGTYPE_p_pugi__xml_document.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_node.cs">
+      <Link>Dependencies\SWIGTYPE_p_pugi__xml_node.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__exception.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__exception.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__istream.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__istream.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__string.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__string.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_std__string_t.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__vectorT_std__string_t.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_void.cs">
+      <Link>Dependencies\SWIGTYPE_p_void.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__array.cs">
+      <Link>Dependencies\SWIGTYPE_p_web__json__array.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__object.cs">
+      <Link>Dependencies\SWIGTYPE_p_web__json__object.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__value.cs">
+      <Link>Dependencies\SWIGTYPE_p_web__json__value.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\TransactionMode.cs">
+      <Link>Dependencies\TransactionMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesInfo.cs">
+      <Link>Dependencies\ValuesInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesIterator.cs">
+      <Link>Dependencies\ValuesIterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesOption.cs">
+      <Link>Dependencies\ValuesOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResult.cs">
+      <Link>Dependencies\ValuesResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregate.cs">
+      <Link>Dependencies\ValuesResultAggregate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregateType.cs">
+      <Link>Dependencies\ValuesResultAggregateType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultSet.cs">
+      <Link>Dependencies\ValuesResultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultValue.cs">
+      <Link>Dependencies\ValuesResultValue.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dependencies\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

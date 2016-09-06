@@ -1,56 +1,28 @@
-This repository contains a C++ cross platform wrapper for the MarkLogic Server REST API.
+This repository contains a cross platform suite of client API for the MarkLogic Server REST API.
 
-## Quick Start
+## Introduction
 
-You can build from source then use in your projects.
+The MLCPlusPlus project maintains the MarkLogic C++ mlclient API. This API provides a C++ native connection
+to MarkLogic Server version 6 and above.
 
-### Get Casablanca
+A C wrapper API around the core C++ API is also provided. This enables legacy C applications to be configured to
+talk to MarkLogic Server. All C++ usage is abstracted behind this wrapper API.
 
-Follow the build instructions for your platform, ensuring that the 'mlcplusplus' git directory is at the same level as the 'casablanca' git directory.
+Cross platform C# and Python wrappers are also now available! These reflect those language's own programming idioms,
+but use the core C++ API for speed of execution. This is transparent to the developer.
 
-These instructions are listed here: https://casablanca.codeplex.com/documentation
+## Latest release
 
-Once built, continue below.
+The latest release is 8.0.2 - See [The release notes](https://github.com/adamfowleruk/mlcplusplus/blob/develop/documentation/release-notes/release-notes-8.0.2.md) for details.
 
-### Building the MLCPlusPlus library from source
+Note the Major and Minor version numbers of this project track MarkLogic Server, the revision number tracks this API's changes, rather than the revision number of MarkLogic Server.
 
-Ensure first that all build scripts are executable:-
-- chmod u+x \*.sh
+## Documentation
 
-To build the MLCPlusPlus library for your platform, execute the appropriate shell script, and use the build tool
-for your platform. E.g.:-
-
-- On a Mac, type './gen-mac.sh' and hit <enter>. This generates an XCode project you can use to build the library
-- On Linux, type './gen-kdevelop.sh' and hit <enter>. This generates a KDevelop project you can use to build the library
-- On other \*nix, type './gen-unix.sh' and hit <enter> Then type 'make' and hit <enter>. Optionally run 'sudo make install' to install the library on your system
-- On Windows, TODO - Coming Soon for Visual Studio
-- For cross platform Eclipse CDT, type './gen-eclipse.sh' and hit <enter>. Then open Eclipse to build the library
-
-To remove all built files, execute './clean.sh' and hit <enter>
-
-### Using the MLCPlusPlus library in your C++ application
-
-Start with the Connection class. This provides a connect function and callbacks for all MarkLogic REST API functions.
-
-This class also abstracts the underlying security mechanism used to authenticate to the server.
-
-Simply create a Connection class, call configure to set up the connection parameters, then call a function!
-
-TODO API Documentation pending
-
-### Compiling the tests
-
-These are built by the above build process. A lot of the tests have hardcoded values like usernames, hostnames, and
-passwords that mean they can't immediately be executed on your own system. They should provide a good set of code to
-work on your own projects though.
-
-### Feature prioritisation
-
-- Basic functionality first, or strong compliance
-- MarkLogic version support - V7, V8, earlier?
-- Communication data types - XML or JSON for call configuration?
-- Depth - just wrapping REST calls? Multiple calls per endpoint? Helper utilities (caching, query/options builders)?
-
+Various documentation is available:-
+ - Client documentation home page for all languages - http://adamfowleruk.github.io/mlcplusplus/api/index.html
+ - GitHub future Release features - https://github.com/adamfowleruk/mlcplusplus/milestones
+ - GitHub Issues tracker - https://github.com/adamfowleruk/mlcplusplus/issues
 
 ## Getting involved
 

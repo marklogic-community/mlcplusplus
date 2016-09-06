@@ -1,0 +1,399 @@
+/*!
+\page page_devguide Application Developers Guide
+\brief Main C++ Developer Guide
+\tableofcontents
+
+\section sec_introduction Introduction to the C++ API
+
+The C++ API is an Apache 2.0 licensed Open Source API allowing interaction with MarkLogic Server versions 6.0 and above.
+The capabilities provided by the C++ API include:-
+
+\li Insert, update, or delete documents and their metadata - See \ref sec_documentoperations
+\li Query document and lexicon values - See \ref sec_search
+\li Configure dynamic and persistent Query options - See \ref sec_queryoptions
+\li Extend the C++ API - See \ref sec_extending
+
+The C++ API provides subinterfaces and instances of the IDocumentContent interface class in order to provide
+interaction with the content of a Document. The Document class itself uses an IDocumentContent instance, we well as
+objects representing Collections, Permissions, and Metadata.
+
+The main class to use is the Connection class which holds methods wrapping specific REST API services, and which
+provide a level of abstraction and error checking beyond simple REST HTTP calls.
+
+A low-level interface on the Connection object allows raw http calls to be used. This is useful for extensions or
+Early Access functionality that is not yet wrapped by the C++ API Connection class' methods.
+
+\subsection sec_gettingstarted Getting Started
+
+First you must install the C++ API. This currently means building it and its dependencies from source. Please see
+the \link page_Install Install page \endlink for those instructions.
+
+\subsection sec_connection Creating, working with, and releasing a Connection instance
+
+The Connection class is the way to generate a connection to MarkLogic Server and invoke its REST API operations.
+
+\note You may find it useful to use a ConnectionFactory class. This can be a single place to hold connection hostname,
+port, and security information, and allows the re-use of a single connection instance. For an example implementation,
+see the /release/test/ConnectionFactory.cpp file.
+
+Firstly, you must create and configure a Connection instance:-
+
+    Connection* conn = new Connection();
+    conn->configure("localhost","8002","admin","admin");
+
+This creates a connection to the MarkLogic Server running on localhost on port 8002 (the generic/admin REST API),
+with the username and password admin.
+
+\subsection sec_getdocumentexample Basic document retrieval example
+
+You can use a Connection instance to retrieve an arbitrary document, as follows:-
+
+    Response* resp = conn->getDocument("/some/uri.xml")
+    std::cout << "Document content: " << resp->getContent() << std::endl;
+
+Note that all Connection functions return a low-level Response object. This can be used as-is, or can be transposed
+to a more useful value object.
+
+\subsection sec_idocumentcontent Using Document and IDocumentContent objects
+
+The utility library includes the PugiXMLHelper and CppRestJsonHelper classes. These each have a toDocument method that
+converts a Response to an instance of PugiXMLDocumentContent (an instance of ITextDocumentContent and thus IDocumentContent)
+and CppRestJsonDocumentContent (an instance of both ITextDocumentContent and IDocumentContent again), respectively.
+
+These provide API-specific wrappings for the PUGI XML library's parsed XML pugi::xml_document class, and Microsoft's cpprest
+web::json::json_value types, respectively. These are utility classes that know how to traverse and manipulate XML and JSON
+documents, respectively.
+
+These classes exist in the utility library as they introduce extra dependencies to MLCPlusPlus. If you need to start
+with one of these parsed object types, or need to work at a higher level than raw XML or JSON text, then use these
+classes.
+
+There is also a GenericTextDocument class which too is an instance of ITextDocumentContent, and thus IDocumentContent.
+This simply wraps a string rather than a higher level class.
+
+All of these methods provide a thin Document wrapper that supports methods to return the content as either a string,
+or a stream, with a specified MIME type provided.
+
+ITextDocument subclass instances are also used to wrap MarkLogic Search Queries and Search Options in the
+SearchDescription class. See the search section for further details.
+
+Document class functionality will be released in version 8.0.2 in July 2016. This will wrap an IDocumentContent instance,
+as well as containers for Collections, Permissions, and Metadata.
+
+\subsection sec_threads Thread safety
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_concurrency Concurrency
+
+This functionality will be released in version 8.0.2 in July 2016
+
+
+
+\section sec_documentoperations Document Operations
+
+All document CRUD operations are supported by the ML C++ API.
+
+\subsection sec_createdocument Document Creation
+
+Documents are created by calling the Connection::saveDocument function. This takes a string MarkLogic document URI
+(ID, akin to a file path), and an IDocumentContent instance. (Which must support the getStream() function).
+
+Below is some example code that creates an XML document and JSON document respectively:-
+
+    GenericTextDocumentContent jsonStringContent;
+    jsonStringContent.setContent("{\"some\": \"json value\"}");
+    jsonStringContent.setMimeType("application/json");
+    Response* jsonStringResponse = conn->saveDocument("/some/json1.json",jsonStringContent);
+
+    CppRestJsonDocumentContent* jsonWrappedContent = CppRestJsonHelper::toDocument(web::json::value::parse("{\"some\": \"other json value\"}"));
+    Response* jsonWrappedResponse = conn->saveDocument("/some/json2.json",*jsonWrappedContent);
+
+    GenericTextDocumentContent xmlStringContent;
+    xmlStringContent.setContent("<xmldoc><some>value</some></xmldoc>");
+    xmlStringContent.setMimeType("application/xml");
+    Response* xmlStringResponse = conn->saveDocument("/some/xml1.xml",xmlStringContent);
+
+    GenericTextDocumentContent xmlWrappedContent;
+    pugi::xml_document* doc = new pugi::xml_document;
+    pugi::xml_parse_result result = doc->load_string("<xmldoc><some>other xml</some></xmldoc>");
+    std::ostringstream os;
+    os << doc;
+    xmlWrappedContent.setContent(os.str());
+    xmlWrappedContent.setMimeType("application/xml");
+    Response* xmlWrappedResponse = conn->saveDocument("some/xml2.xml",xmlWrappedContent);
+
+The above shows ways of using the utility wrapper functions. Note you can just use a GenericTextDocumentContent instance.
+
+The saveDocument(std::string uri,IDocumentContent content) function wraps http://docs.marklogic.com/REST/PUT/v1/documents directly.
+
+In the future IBinaryDocumentContent instances will also be provided. These are not currently provided in the API.
+
+\subsection sec_getdocument Document Retrieval
+
+Documents are again retrieved as low level Response objects. You can then convert these to the higher level classes that
+you need to use using helper classes.
+
+    Response* resp = conn->getDocument("/some/json1.json");
+    CppRestJsonDocumentContent* doc = CppRestJsonHelper::toDocument(CppRestJsonHelper::fromResponse(resp));
+    std::cout << "My doc: " << *doc << std::endl;
+
+See how the above first converts to a web::json::value instance, and then wraps this as a document. If you prefer
+to work with just the web::json::value, then just call fromResponse rather than this with toDocument.
+
+The PugiXmlHelper class has equivalent methods for XML. You can also use a GenericTextDocumentContent instance too,
+using its setContent method and the Response's getContent method. (along with get/set MimeType methods).
+
+The getDocument(std::string uri) function wraps the http://docs.marklogic.com/REST/GET/v1/documents call.
+
+\subsection sec_deletedocument Document Deletion
+
+Document deletion is very straight forward. If a document is deleted it will return a response with the
+ResponseCode::NoContent code. If it doesn't exist, you will receive a ResponseCode::NotFound response code.
+
+    Response* resp = conn->deleteDocument("/some/json2.json");
+    std::cout << "Deletion response: " << resp->getResponseCode() << std::endl;
+
+The deleteDocument(std::string uri) function wraps http://docs.marklogic.com/REST/DELETE/v1/documents directly.
+
+\subsection sec_createbinarydocument Writing a Binary document
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_getbinarydocument Reading a Binary document
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_documentmetadata Reading, modifying, and writing document metadata
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_documentencoding Conversion of Document Encoding
+
+The C++ API uses UTF-8 exclusively via the C++ std::string class.
+
+\subsection sec_cleaningup Cleaning up Resources
+
+The C++ API returns unmanaged pointers to resources. This means you will have to manually clean up and delete
+any connection and response objects you received from the API yourself, when you no longer need them.
+
+Below is some best practice sample code, which assumes you keep a local pointer variable for the connection:-
+
+    delete response;
+    delete conn;
+    conn = NULL; // assuming you delete this in a destructor, or similar
+
+You can also use a Connection pool or individual ConnectionFactory singleton to keep a single connection instance,
+and create a getConnection and releaseConnection static methods. For an effective implementation see
+/release/test/ConnectionFactory.cpp .
+
+
+\section sec_queryoptions Query Options
+
+Currently query options are provided by using a GenericTextDocumentContent to wrap the XML or JSON string,
+ which is then passed to a SearchDescription's setOptions function.
+
+\note Both the Options and Search IDocumentContent objects within a SearchDescription MUST be of the same type. I.e.
+they must both have a mime type of application/json or application/xml - you cannot mix and match them. This is because
+the Connection::search(SearchDescription) method wraps http://docs.marklogic.com/REST/POST/v1/search directly.
+
+A QueryOptionsBuilder class will be released in version 8.0.2 in July 2016
+
+\subsection sec_usingqueryoptions Using query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_defaultqueryoptions Default query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_createqueryoptions Creating query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_updatequeryoptions Updating query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_deletequeryoptions Deleting query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_usingqueryoptions Using query options with Search
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_createoptionsfromtext Creating query options from raw XML or JSON
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_validatequeryoptions Validating query options
+
+This functionality will be released in version 8.0.2 in July 2016
+
+
+
+
+\section sec_search Searching
+\subsection sec_searchoverview Overview of Search in the C++ API
+
+A search is described by either XML or JSON wrapped by an instance of ITextDocumentContent. This in turn is passed to
+a SearchDescription instance using the setQuery(ITextDocumentContent) method.
+
+\note Both the Options and Search IDocumentContent objects within a SearchDescription MUST be of the same type. I.e.
+they must both have a mime type of application/json or application/xml - you cannot mix and match them. This is because
+the Connection::search(SearchDescription) method wraps http://docs.marklogic.com/REST/POST/v1/search directly.
+
+Once you have a SearchDescription object, you can perform a search. The response contains a JSON response detailing
+the search response object, as per the options specified (or default options, if not specified).
+
+    SearchDescription desc; // default empty search object
+    GenericTextDocumentContent queryDoc;
+    queryDoc.setContent("{\"query\": {\"word-query\":\"wibble\"}}");
+    desc.setQuery(queryDoc);
+    const Response* response = conn->search(desc);
+    std::cout << "Search response JSON: " << response->getContent() << std::endl;
+
+\subsection sec_resultsiterator Using the Search Results Iterator
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_textquery Using simple text query search
+
+The REST API also supports a free text search grammar. Think of this like a Google-esque search text bar. The grammar
+can be overridden using query options.
+
+The equivalent search of the above word-query for 'wibble' is shown below as a text query:-
+
+    SearchDescription desc;
+    desc.setQueryText("wibble");
+    const Response* response = conn->search(desc);
+    std::cout << "Search response JSON: " << response->getContent() << std::endl;
+
+\subsection sec_structuredquery Using structured search and the Search Builder
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_querybyexample Prototype a query using Query By Example
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_combinedquery Using Combined Queries
+
+The Search REST API supports submitting query options, complex query, and query text all together in one call.
+This wraps http://docs.marklogic.com/REST/POST/v1/search directly via the Connection::search method.
+
+TODO combined query example from tests of 8.0.2.
+
+\subsection sec_valuestuples Searching Values and Tuples
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_searchtransforms Transforming Search results
+
+This functionality will be released in version 8.0.4 in January 2017
+
+\subsection sec_searchsuggest Generating Search Suggestions
+
+This functionality will be released in version 8.0.4 in January 2017
+
+\subsection sec_searchextract Extracting a portion of matching documents
+
+This functionality will be released in version 8.0.4 in January 2017
+
+
+
+
+
+
+\section sec_multipledocuments Reading and Writing Multiple Documents
+\subsection sec_writemultiple Write multiple documents
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_writemultiplefiles Writing multiple documents from files
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_readmultipleuri Read multiple documents by URI
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_readmultiplequery Read multiple documents matching a query
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_readtransform Apply a read transformation
+
+This functionality will be released in version 8.0.2 in July 2016
+
+\subsection sec_multiplebatchsize Setting batch size
+
+This functionality will be released in version 8.0.2 in July 2016
+
+
+
+
+
+\section sec_transactions Transactions and Optimistic Locking
+
+This functionality will be released in version 8.0.4 in January 2017
+
+
+\section sec_logging Logging
+
+Logging within the C++ API is provided by using the easylogging++.h file. This is a header only logger implementation.
+In DEBUG build mode, up to the DEBUG level is supported. In RELEASE build mode, the WARNING level is supported.
+
+This logging logs all performance metrics to one file and the console, and all LOG(level) messages to a separate
+log file, and the console.
+
+\subsection sec_startlogging Starting logging and setting the log level
+\subsection sec_suspendlogging Suspending logging
+\subsection sec_stoplogging Stopping logging
+\subsection sec_logformat Log entry format
+\subsection sec_performancelogging Performance logging
+
+Many things are routinely logged for performance in the C++ API:-
+- Public API object Constructors and Destructors - Connection, Response, SearchDescription, GenericTextDocumentContent.
+- All Connection methods that invoke a REST endpoint
+- All underlying methods of the private API's AuthenticatingProxy class - getSync, postSync, putSync, deleteSync, etc.
+- All unit test functions
+
+\note Developers should never rely on anything in the private API. It could change at any time without warning. The
+public API is designed such that all applications build on the C++ API do not have compile time bindings in the private API.
+
+\section sec_extending Extending the C++ API
+\subsection sec_adhocendpoint Performing an ad-hoc query to any REST endpoint
+
+\section sec_trouble Troubleshooting
+
+The best place to start is to build MLCPlusPlus in DEBUG mode, re-run the application, and check the output provided
+by DEBUG level logging in the AuthenticatingProxy class. This will show request and response details sent to, and
+received from, the MarkLogic Server cluster.
+
+\subsection sec_errors Error detection
+
+The Response object will have (as of the 8.0.2 release) a bool inError function. This function tells the developer
+whether a logical error has occurred in the call. This does not necessarily mean a server error.
+
+For example, a deleteDocument call on a non existent document returns a HTTP NotFound (404) error. Whilst not an
+error as such, the C++ API will return this as an error, and so Response::inError will return true.
+
+All connection errors, or invalid request format errors, will result in Response::inError returning true too.
+
+In this circumstance, check the output of Response::getContent to determine the exact error occurred.
+
+In 8.0.4 a toRestError function will be provided to automatically handle internal REST API response formats and
+present a standard error object to client developers. When this is present, no knowledge of the REST API response
+formats will be necessary from a C++ developer.
+
+\subsection sec_troubletechs General Troubleshooting Techniques
+
+If in doubt, review all the test cases relevant to your function call. Ensure you are providing the required configuration
+in the same manner as the test is. This provides you with a solid working example of every function call.
+
+Please do log an issue on the projects GitHub page, even if you think it may be your code. You can log issues with a
+Question label rather than bug to indicate you need assistance. You can do this here: https://github.com/adamfowleruk/mlcplusplus/issues
+
+*/

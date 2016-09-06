@@ -1,0 +1,22 @@
+#!/bin/sh
+
+mkdir -p ./bin/api
+cd release
+
+doxygen doxygen/Doxyfile
+cd ..
+
+cp -R documentation/images ./bin/api/html/
+
+echo "Done generating docs."
+
+rm -rf ../mlcplusplus-pages/developapi
+cp -R ./bin/api/html ../mlcplusplus-pages/developapi
+cd ../mlcplusplus-pages
+git add .
+git commit -a -m "Regenerated API docs"
+cd ../mlcplusplus
+
+echo "Done committing API docs"
+
+exit 0

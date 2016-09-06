@@ -1,10 +1,12 @@
 #!/bin/sh
 
-. settings.sh
+. ./settings.sh
+. ./bin/build-deps-settings.sh
+
 cd $BINDIR
 
-cmake -G "Unix Makefiles" $SRCDIR
+cmake $CMAKE_OPTIONS -G "Unix Makefiles" $SRCDIR
 
 
-echo "Completed build file generation for Unix Makefiles. Now type 'cd bin; make' and hit <enter>."
+echo "Completed build file generation for Unix Makefiles. Now type './build.sh' and hit <enter>."
 exit 0

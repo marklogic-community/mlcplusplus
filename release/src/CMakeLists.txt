@@ -1,186 +1,371 @@
-# 2.8.2 and above can handle openssl letter versions (E.g. 1.0.1h), which is required to get fixed version of openssl
-cmake_minimum_required (VERSION 2.8.2)
-project (MLCPlusPlus)
 
-# See http://www.cmake.org/cmake/help/cmake_tutorial.html for extra help on this file
-
-# EDITABLE SETTINGS BEGIN
-
-set (MLCPlusPlus_VERSION_MAJOR 0)
-set (MLCPlusPlus_VERSION_MINOR 1)
-
-# EDITABLE SETTINGS END
-
-
-
-
-# SYSTEM DETECTION
-
-# Platform (not compiler) specific settings
-if(IOS)
-
-  # The cxx_flags must be set here, because the ios-cmake toolchain file unfortunately sets "-headerpad_max_install_names" which is not a valid clang flag.
-  set(CMAKE_CXX_FLAGS "-fvisibility=hidden -fvisibility-inlines-hidden")
-
-  set(BUILD_SHARED_LIBS OFF)
-elseif(UNIX) # This includes OSX
-  find_package(Boost COMPONENTS system thread locale regex filesystem REQUIRED)
-  find_package(Threads REQUIRED)
-  find_package(OpenSSL REQUIRED)
-
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
-elseif(WIN32)
-  option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
-
-  add_definitions(-DUNICODE)
-
-  if(NOT BUILD_SHARED_LIBS)
-    # This causes cmake to not link the test libraries separately, but instead hold onto their object files.
-    set(TEST_LIBRARY_TARGET_TYPE OBJECT)
-  endif()
-
-  set(LIB lib)
-else()
-  message("-- Unsupported Build Platform.")
-endif()
-
-# Compiler (not platform) specific settings
-if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") OR IOS)
-  message("-- Setting clang options")
-
-  set(WARNINGS "-Wall -Wextra -Wcast-qual -Wconversion -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-format-attribute -Wmissing-include-dirs -Wpacked -Wredundant-decls")
-  set(OSX_SUPPRESSIONS "-Wno-overloaded-virtual -Wno-sign-conversion -Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-char-subscripts -Wno-switch -Wno-unused-parameter -Wno-unused-variable -Wno-deprecated -Wno-unused-value -Wno-unknown-warning-option -Wno-return-type-c-linkage -Wno-unused-function -Wno-sign-compare -Wno-shorten-64-to-32 -Wno-reorder")
-  set(WARNINGS "${WARNINGS} ${OSX_SUPPRESSIONS}")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-  set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
-  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
-elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
-  message("-- Setting gcc options")
-
-  set(WARNINGS "-Wall -Wextra -Wunused-parameter -Wcast-align -Wcast-qual -Wconversion -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-format-attribute -Wmissing-include-dirs -Wpacked -Wredundant-decls -Wunreachable-code")
-  set(LINUX_SUPPRESSIONS "-Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-unused-function -Wno-char-subscripts -Wno-switch -Wno-unused-but-set-parameter -Wno-deprecated -Wno-unused-value -Wno-unused-local-typedefs")
-
-  set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
-  set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
-  set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
-else()
-  message("-- Unknown compiler, success is doubtful.")
-endif()
 
 
 
 # Have CMake do a search and replace on the version numbers in our config.h file
 configure_file (
-  "${PROJECT_SOURCE_DIR}/MLCPlusPlusConfig.h.in"
-  "${PROJECT_BINARY_DIR}/MLCPlusPlusConfig.h"
+  "${PROJECT_SOURCE_DIR}/mlclientConfig.h.in"
+  "${PROJECT_BINARY_DIR}/mlclientConfig.h"
   )
 
 # add the binary tree to the search path for include files
-# so that we will find MLCPlusPlusConfig.h
+# so that we will find mlclientConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile @ONLY)
-add_custom_target(doc
-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../doc
-    COMMENT "Generating API documentation with Doxygen" VERBATIM
-)
-endif(DOXYGEN_FOUND)
 
 
 # ML C++ own libraries
-add_library (MLCPlusPlus SHARED
-    MLCPlusPlus.cpp
-    Credentials.cpp
-    Request.cpp
+add_library (mlclient SHARED
+    Connection.cpp
+    mlclient.cpp
+    logging.cpp
+    NoCredentialsException.cpp
+    HttpHeaders.cpp
     Response.cpp
-    AuthenticatingProxy.cpp
-    AuthorizationBuilder.cpp
-    MLCrypto.cpp
-    ResponseCodes.cpp
+
+    DocumentContent.cpp
+    InvalidFormatException.cpp
+    SearchDescription.cpp
+    SearchResult.cpp
+    SearchResultSet.cpp
+    ValuesResult.cpp
+    ValuesResultSet.cpp
+
+    Permission.cpp
+    Document.cpp
+
+    internals/AuthenticatingProxy.cpp
+    internals/AuthorizationBuilder.cpp
+    internals/Credentials.cpp
+    internals/FakeConnection.cpp
+    internals/MLCrypto.cpp
+
+    ConnectionWrapper.cpp
+    ResponseWrapper.cpp
+
+    utilities/CppRestJsonHelper.cpp
+    utilities/CppRestJsonDocumentContent.cpp
+    utilities/PugiXmlHelper.cpp
+    utilities/PugiXmlDocumentContent.cpp
+    utilities/DocumentHelper.cpp
+    utilities/DocumentBatchHelper.cpp
+    utilities/DocumentBatchWriter.cpp
+    utilities/ResponseHelper.cpp
+    utilities/SearchBuilder.cpp
+    utilities/SearchOptionsBuilder.cpp
+
+    ext/pugixml/pugixml.cpp
 )
 
 
 
 # ML C++ dependencies
 
-include_directories (BEFORE ../include /usr/include/libxml2)
+include_directories (BEFORE ../include )
 
 # Casablanca
-# Assume source in same directory as MLCPlusPlus
-include_directories (AFTER
-  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
-  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
-  )
+# Assume source in same directory as mlclient
+#include_directories (AFTER
+#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
+#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
+#  )
 
-# Open SSL
-set (OpenSSL_DIR "/usr/local/opt/openssl")
+# Open SSL - to find the cmake commands - TODO do we need this anymore?
+set (OPENSSL_DIR "/usr/local/opt/openssl")
+
+# Search OpenSSL
+#find_package(PkgConfig REQUIRED)
+#pkg_search_module(OPENSSL REQUIRED openssl)
+
+#if( OPENSSL_FOUND )
+#    include_directories(${OPENSSL_INCLUDE_DIRS})
+#    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+#else()
+    # Error; with REQUIRED, pkg_search_module() will throw an error by it's own
+#endif()
+
 # TODO Use 1.0.1h explicitly to prevent MITM and other zero day attacks
-find_package (OpenSSL REQUIRED
+#find_package (OpenSSL REQUIRED
+# Following line seems REQUIRED on Mac OS X
 #  PATHS /usr/local/opt/openssl
-  )
+#  )
 # NB That OpenSSL on the mac is very very old. Here is the 1.0.1h openssl info:-
 #     LDFLAGS:  -L/usr/local/opt/openssl/lib
 #     CPPFLAGS: -I/usr/local/opt/openssl/include
 
-# Boost (Includes system, thread, locale, regex and filesystem components by default)
-find_package (Boost REQUIRED )
+set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
+#set (OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib/libssl.dylib")
 
-include_directories (AFTER
-  ${OPENSSL_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
-  )
 
 # Now link our library to its dependencies
-#target_link_libraries (MLCPlusPlus
+#target_link_libraries (mlclient
 #  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
 #  ${OPENSSL_LIBRARIES}
 #  ${Boost_LIBRARIES}
 #  )
 
-target_link_libraries (MLCPlusPlus
-    libcasablanca.dylib
-    libcpprest.dylib
-    libcommon_utilities.dylib
-    libboost_regex.dylib
-    libssl.dylib
-    libcrypto.dylib
+target_link_libraries (mlclient
+#    libcommon_utilities.dylib
+#    libpugixml.a
+    ${GLOG_LIB}
+    ${OPENSSL_LIBRARIES}
+    ${LIBSSL_LIB}
+    ${LIBCRYPTO_LIB}
+    ${CPPREST_LIB}
+    ${Casablanca_LIBRARIES}
 )
 
 
-# API documentation
-# add a target to generate API documentation with Doxygen, and have it always run
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-  add_custom_target(doc ALL
-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMENT "Generating API documentation with Doxygen" VERBATIM
-  )
-endif(DOXYGEN_FOUND)
+
+
+# Now build SWIG bindings
+
+IF (WITH_SWIG)
+
+FIND_PACKAGE( SWIG )
+
+IF( SWIG_FOUND )
+
+INCLUDE(${SWIG_USE_FILE})
+
+#INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+SET(CMAKE_SWIG_FLAGS "")
+
+
+
+
+# SWIG Python
+
+IF (WITH_PYTHON)
+message( "-- Building SWIG Python bindings" )
+
+FIND_PACKAGE(PythonLibs)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH} ${mlclient_INCLUDE_DIR} )
+
+SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES SWIG_FLAGS "-includeall")
+SWIG_ADD_MODULE(mlclientpython python mlclient-python.i
+    Connection.cpp
+    mlclient.cpp
+    NoCredentialsException.cpp
+    HttpHeaders.cpp
+    Response.cpp
+
+    DocumentContent.cpp
+    InvalidFormatException.cpp
+    SearchDescription.cpp
+)
+SWIG_LINK_LIBRARIES(mlclientpython
+    libcpprest.dylib
+    libssl.dylib
+    libcrypto.dylib
+#    libpugixml.a
+    mlclient
+    ${Casablanca_LIBRARIES}
+    ${PYTHON_LIBRARIES}
+)
+SET(CMAKE_SWIG_FLAGS "")
+
+else()
+  message("-- NOT building SWIG Python wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_PYTHON=1 to enable)")
+endif()
+# endif for python with check
+
+
+
+
+
+
+# SWIG C#.NET
+
+IF (WITH_CSHARP)
+message( "-- Building SWIG CSharp bindings" )
+
+# Find C#
+
+find_package( CSharp REQUIRED )
+include( ${CSHARP_USE_FILE} )
+
+set(SWIG_MODULE_mlclientCSharp_TARGET_NAME "mlclientcs")
+
+set_source_files_properties ( mlclient-cs.i PROPERTIES CPLUSPLUS ON )
+
+  # Make sure the nested directory structure exists
+  set(CSHARP_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpSources CACHE INTERNAL "")
+  set(CSHARP_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpBinaries CACHE INTERNAL "")
+  file(MAKE_DIRECTORY ${CSHARP_SOURCE_DIRECTORY})
+  file(MAKE_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+
+    # Create swig target
+    set(CMAKE_SWIG_OUTDIR ${CSHARP_SOURCE_DIRECTORY})
+    if ( UNIX )
+      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
+    else (WIN32 )
+      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
+    endif ( UNIX )
+    set(CMAKE_SWIG_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR} -namespace \"mlclient\" ${CMAKE_SWIG_GLOBAL_FLAGS} ${CMAKE_SWIG_FLAGS})
+    set(SWIG_MODULE_mlclientCSharp_EXTRA_DEPS ${SWIG_EXTRA_DEPS}
+      ${CMAKE_CURRENT_SOURCE_DIR}/mlclient-cs.i
+    ) #  ${CMAKE_CURRENT_SOURCE_DIR}/CSharpTypemapHelper.i
+
+    swig_add_module(mlclientcs csharp mlclient-cs.i)
+
+    target_link_libraries(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} mlclient ${mlclient_LIBRARIES})
+    set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+    if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dylib")
+    else (Other)
+      if ( UNIX )
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
+      else ( WIN32 )
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
+        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
+        foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
+          string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
+          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+            PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+            PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+        endforeach( )
+      endif( UNIX )
+    endif ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
+
+    # The below needs to be /usr/lib, along with all depdendencies, as C# apps suck at following env variables
+    install (TARGETS mlclientcs LIBRARY DESTINATION lib
+                                ARCHIVE DESTINATION "lib"
+                                RUNTIME DESTINATION "bin"
+                                COMPONENT library )
+
+
+SET(CMAKE_SWIG_FLAGS "")
+
+else()
+  message("-- NOT building SWIG C# wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_CSHARP=1 to enable)")
+
+endif()
+# end if c# swig with found
+
+
+
+
+
+# SWIG -Go
+
+#SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES SWIG_FLAGS "-includeall -cgo -intgosize 64")
+#SWIG_ADD_MODULE(mlclient-go go mlclient-go.i
+#    Connection.cpp
+#    mlclient.cpp
+#    NoCredentialsException.cpp
+#    Response.cpp
+
+#    DocumentContent.cpp
+#    InvalidFormatException.cpp
+#    SearchDescription.cpp
+#)
+#SWIG_LINK_LIBRARIES(mlclient-go
+#    libcpprest.dylib
+#    libcommon_utilities.dylib
+#    libssl.dylib
+#    libcrypto.dylib
+#    libpugixml.a
+#    ${Casablanca_LIBRARIES}
+#)
+
+
+
+
+# SWIG -Ruby
+
+#SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES CPLUSPLUS ON)
+#SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES SWIG_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
+#SWIG_ADD_MODULE(mlclient-ruby ruby mlclient-ruby.i
+#    Connection.cpp
+#    mlclient.cpp
+#    NoCredentialsException.cpp
+#    Response.cpp
+#
+#    DocumentContent.cpp
+#    InvalidFormatException.cpp
+#    SearchDescription.cpp
+#)
+#set_source_files_properties( ${swig_generated_file_fullname}
+#                             PROPERTIES COMPILE_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
+#SWIG_LINK_LIBRARIES(mlclient-ruby mlclient)
+
+
+
+#SET( LIBMLCLIENT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+#SET( RUBY_EXECUTABLE "ruby" )
+#SET( RUBY_INCLUDE_PATH "/usr/local/include/ruby-2.2.0/ruby.h" )
+
+
+#EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['vendorarchdir']" OUTPUT_VARIABLE RUBY_VENDOR_ARCH_DIR)
+
+#MESSAGE(STATUS "Ruby executable: ${RUBY_EXECUTABLE}")
+#MESSAGE(STATUS "Ruby vendor arch dir: ${RUBY_VENDOR_ARCH_DIR}")
+#MESSAGE(STATUS "Ruby include path: ${RUBY_INCLUDE_PATH}")
+
+#SET( SWIG_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/mlclient_ruby.cxx" )
+
+#ADD_CUSTOM_COMMAND (
+#   OUTPUT  ${SWIG_OUTPUT}
+#   COMMAND ${CMAKE_COMMAND} -E echo_append "Creating wrapper code for ruby..."
+#   COMMAND ${SWIG_EXECUTABLE} -c++ -ruby -autorename -o ${SWIG_OUTPUT} -I${LIBMLCLIENT_INCLUDE_DIR} ${SWIG_INPUT}
+#   COMMAND ${CMAKE_COMMAND} -E echo "Done."
+#   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+#   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.i
+#)
+
+#ADD_LIBRARY( mlclient-ruby SHARED ${SWIG_OUTPUT} )
+#INCLUDE_DIRECTORIES( ${RUBY_INCLUDE_PATH} ${LIBMLCLIENT_INCLUDE_DIR} )
+
+#SET_TARGET_PROPERTIES( mlclient-ruby PROPERTIES PREFIX "" OUTPUT_NAME "mlclient-ruby")
+
+#TARGET_LINK_LIBRARIES( mlclient-ruby mlclient )
+#TARGET_LINK_LIBRARIES( mlclient-ruby ${RUBY_LIBRARY} )
+
+#INSTALL(TARGETS mlclient-ruby LIBRARY DESTINATION ${RUBY_VENDOR_ARCH_DIR})
+
+
+
+
+endif()
+# end if swig found
+else()
+  message("-- NOT building SWIG modules (edit ./bin/build-deps-settings.sh|bat with WITH_SWIG=1 to enable)")
+endif()
+# end if with_swig set (off by default)
+
 
 
 
 # INSTALLATION
-install (TARGETS MLCPlusPlus DESTINATION lib)
-install (FILES MLCPlusPlus.h DESTINATION include)
+install (TARGETS mlclient LIBRARY DESTINATION lib
+                          ARCHIVE DESTINATION "lib"
+                          RUNTIME DESTINATION "bin"
+                          COMPONENT library )
+#install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
+#install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
+#install (FILES ${mlclient_INCLUDE_DIR} DESTINATION include)
 
+file(GLOB MLCPP_HEADERS_MLCLIENT include/mlclient/*.hpp include/mlclient/*.h )
+install(FILES ${MLCPP_HEADERS_MLCLIENT} DESTINATION include/mlclient )
+file(GLOB MLCPP_HEADERS_UTILITIES include/mlclient/utilities/*.hpp include/mlclient/utilities/*.h )
+install(FILES ${MLCPP_HEADERS_UTILITIES} DESTINATION include/mlclient/utilities )
 
 
 # CPack installer
 
 # build a CPack driven installer package
 include (InstallRequiredSystemLibraries)
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MarkLogic C++ Client Library")
+SET(CPACK_PACKAGE_VENDOR "MarkLogic Inc.")
+#SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ReadMe.txt")
 set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
-set (CPACK_PACKAGE_VERSION_MAJOR "${MLCPlusPlus_VERSION_MAJOR}")
-set (CPACK_PACKAGE_VERSION_MINOR "${MLCPlusPlus_VERSION_MINOR}")
+set (CPACK_PACKAGE_VERSION_MAJOR "${mlclient_VERSION_MAJOR}")
+set (CPACK_PACKAGE_VERSION_MINOR "${mlclient_VERSION_MINOR}")
 include (CPack)

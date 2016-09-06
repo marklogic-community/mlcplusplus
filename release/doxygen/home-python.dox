@@ -1,0 +1,74 @@
+/*!
+\page page_home_python Python Documentation
+\brief The main page for Python coding documentation.
+\tableofcontents
+
+This is the home page for Python support.
+
+\warning Python support was added purely because it was easy to add. No real development or testing effort is being
+expended on Python. Please see the [MarkLogic Python Driver Project](https://github.com/marklogic/python_api)
+for a supported Python driver.
+
+\section sec_home_python_features Features
+
+The Python API supports the same features as the C++ API.
+
+\section sec_home_python_install Installation
+
+- Grab the Binaries for your platform
+ - Easy way
+  - Mac: Use the [Install Package](@ref page_mac_install_pkg)
+ - Not so easy way
+  - Mac: Use the [Mac raw compiled libraries](@ref page_mac_install_raw)
+  - Windows: Use the [Windows raw compiled libraries](@ref page_win_install_raw)
+  - Linux Ubuntu: Use the [Ubuntu x86_64 raw compiled libraries](@ref page_ubuntu_install_raw)
+ - Hard way
+  - All Platforms: Build from source. Read the [Source Install Guide](@ref page_install) for full instructions. Not for the faint hearted
+- Create a simple Python script using the required import
+
+\section sec_home_python_quickstart Quickstart
+
+Here is some sample code. The full detail can be found
+[in the Python basic sample](https://github.com/adamfowleruk/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py).
+
+    #!/usr/bin/python
+
+    import mlclientpython
+
+    connection = mlclientpython.Connection();
+    connection.configure("192.168.123.4","8122","admin","admin",False);
+
+    response = connection.getDocument("/some/doc.json")
+
+    print "Document content: ", response.getContent()
+
+As you can see, the above sample simply connects to a MarkLogic REST API HTTP endpoint and fetches the raw text
+content of the JSON document with the specified document ID (URI).
+
+\section sec_home_python_langspecific Language Specific Features
+
+This section describes language specific features. I.e. features provided for the Idioms developers of this language
+would expect.
+
+Unfortunately some C++ methods from the core API are
+overloaded with different call parameters. This is not currently supported by the SWIG Python generator. This
+will be resolved in a future version, as other languages have the same restriction.
+
+Python Classes are generated on a 1:1 basis with C++ classes. SWIG Python does support the STL iterator and collection
+mechanisms, mapping them on to Python idioms. There are known non-STL compliance issues with the current iterators,
+and so you may experience some issues using iterators (E.g. via SearchResultSet or DocumentSet). Please
+[log an issue on GitHub](https://github.com/adamfowleruk/mlcplusplus/issues) if you have any problems.
+
+C++ operators such as >> and << and +, =, ++, --, are not mapped to Python idioms currently. == is mapped to eq() and
+!= is mapped to ne().
+
+
+\subsection sec_home_python_functions Function name patterns
+
+TODO
+
+\section sec_home_python_extending Extending
+
+TODO
+
+*/

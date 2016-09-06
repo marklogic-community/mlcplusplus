@@ -1,0 +1,49 @@
+/*!
+\page page_mac_install_pkg Mac Installation from the Package installer
+\brief How to install on a Mac using the provided pkg file.
+
+The installation is very easy. Grab the pkg file from:-
+https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/osx
+
+This is called mlclient.pkg
+
+Double click the pkg file, and when asked click on 'open file'.
+
+Run through the installer steps.
+
+The following files are installed:-
+
+- in to /usr/local/lib
+ - libmlclient.dylib - The core C++ API
+ - libmlclientcs.dylib - The CSharp C++ bridge code (compiled C++)
+ - libcpprest.2.8.dylib - The Microsoft CPP REST API (used for HTTP communication)
+- in to /usr/local/include
+ - mlclient/* - All public API (not internal API) header files
+- in to /usr/local/bin
+ - cgetasstruct - C-language get doc as struct example
+ - cgetdoc - C-language get doc example
+ - cppbatchupload
+ - cppproducer
+ - cppsearch
+ - getdoc (A C++ sample)
+
+\section sec_mac_install_pkg_deps Install dependencies
+
+You will need to ensure the following system wide dependencies are installed.
+
+- Open SSL at least version 1.0.2 or above
+- Boost libraries - really boost, boost-system, boost-chrono, boost-thread, boost-atomic
+- Google Glog - logging libraries, only installable from source
+
+You can run install-dependencies.sh to grab all these from source, or:
+
+The easiest way on mac to do this is to install Brew, and then run (as a normal user):-
+
+brew install openssl --universal
+brew install boost --universal
+brew install libiconv --universal
+brew install gflags
+
+Note Brew does not yet install Google Logging.
+
+*/
