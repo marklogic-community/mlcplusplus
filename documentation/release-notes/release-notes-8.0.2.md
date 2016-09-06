@@ -23,6 +23,11 @@ Major features in this release:-
  - C# Language wrapper supports all new functionality
  - Python Language wrapper supports all new functionality
 - Performance testing and tuning
+- Platforms - built and samples tested on
+ - Ubuntu 16.04.1 64 bit (as 64 bit build)
+ - Mac OS X Yosemite 64 bit (As 32 bit and 64 bit universal builds)
+ - CentOS 7 64 bit (as 64 bit build)
+ - Windows 10 with Visual Studio 2015 64 bit (as 32 bit Debug and Release builds)
 
 Bug fixes:-
  - 193 Digest Auth not working - https://github.com/adamfowleruk/mlcplusplus/issues/193
