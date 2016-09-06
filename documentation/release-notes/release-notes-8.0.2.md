@@ -26,7 +26,6 @@ Major features in this release:-
 - Platforms - built and samples tested on
  - Ubuntu 16.04.1 64 bit (as 64 bit build)
  - Mac OS X Yosemite 64 bit (As 32 bit and 64 bit universal builds)
- - CentOS 7 64 bit (as 64 bit build)
  - Windows 10 with Visual Studio 2015 64 bit (as 32 bit Debug and Release builds)
 
 Bug fixes:-
@@ -42,6 +41,7 @@ Known issues:-
  - 217 Logging does not work the same cross platform - https://github.com/adamfowleruk/mlcplusplus/issues/217
  - 235 Tests don't build on Windows - https://github.com/adamfowleruk/mlcplusplus/issues/235
  - SWIG generation bug for C# - csharp/std_vector.i has a but in it. You may see a (uint) conversion error. Use the provided CS and built libraries to work around this until a SWIG fix can be created by their team.
+ - 238 Can't compile on CentOS 7 - https://github.com/adamfowleruk/mlcplusplus/issues/238
 
 ## Known incompatibilities with previous versions
 
