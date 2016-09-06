@@ -37,7 +37,7 @@ void Document::setUri(const std::string& uri) {
   this->uri = uri;
 }
 const bool Document::hasUri() const {
-  return 0 != strcmp("",uri.c_str());
+  return "" != uri;
 }
 
 

@@ -18,11 +18,11 @@
  * \date 2016-06-09
  */
 
-#include "mlclient/utilities/SearchOptionsBuilder.hpp"
-#include "mlclient/utilities/SearchBuilder.hpp"
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
-#include "mlclient/InvalidFormatException.hpp"
-#include "mlclient/logging.hpp"
+#include <mlclient/utilities/SearchOptionsBuilder.hpp>
+#include <mlclient/utilities/SearchBuilder.hpp>
+#include <mlclient/utilities/CppRestJsonHelper.hpp>
+#include <mlclient/InvalidFormatException.hpp>
+#include <mlclient/logging.hpp>
 #include <cpprest/json.h>
 #include <iostream>
 #include <string>
@@ -471,7 +471,7 @@ const std::string translate_rangeoptions(const RangeOptions& rt) {
         os << ",";
       }
       os << "\"" << iter->first;
-      if (0 != strcmp("true",iter->second.c_str())) {
+      if ("true" != iter->second) {
         os << iter->second; // some non boolean value (all boolean values MUST be true, if used)
       }
       os << "\"";
@@ -492,7 +492,7 @@ const std::string translate_rangeoptions(const RangeOptions& rt) {
         os << ",";
       }
       os << "\"" << iter->first;
-      if (0 != strcmp("true",iter->second.c_str())) {
+      if ("true" != iter->second) {
         os << iter->second; // some non boolean value (all boolean values MUST be true, if used)
       }
       os << "\"";
@@ -736,7 +736,7 @@ const std::string translate_valuesinfo(const ValuesInfo& rt) {
         os << ",";
       }
       os << "\"" << iter->first;
-      if (0 != strcmp("true",iter->second.c_str())) {
+      if ("true" != iter->second) {
         os << iter->second; // some non boolean value (all boolean values MUST be true, if used)
       }
       os << "\"";

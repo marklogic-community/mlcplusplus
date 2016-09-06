@@ -5,12 +5,13 @@
  *      Author: adamfowler
  */
 
-#include "mlclient/utilities/PugiXmlDocumentContent.hpp"
-#include "mlclient/logging.hpp"
-#include "mlclient/InvalidFormatException.hpp"
-#include "mlclient/ext/pugixml/pugixml.hpp"
+#include <mlclient/utilities/PugiXmlDocumentContent.hpp>
+#include <mlclient/logging.hpp>
+#include <mlclient/InvalidFormatException.hpp>
+#include <mlclient/ext/pugixml/pugixml.hpp>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <regex>
 

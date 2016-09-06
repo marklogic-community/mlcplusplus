@@ -12,9 +12,7 @@ MLCPlusPlus.kdevelop
 MLCPlusPlus.kdevelop.filelist
 MLCPlusPlus.kdevses
 *.a
-*.so
 MLCPlusPlus.build
-libMLCPlusPlus.dylib
 .DS_Store
 .cproject
 .project
@@ -52,6 +50,8 @@ release/samples/**/**/obj
 release/samples/**/**/Dependencies
 release/samples/**/**/Source Files
 release/samples/**/**/*.dll
+release/samples/**/**/*.so
+release/samples/**/**/*.dylib
 logs
 performance.log
 release/**/*.o

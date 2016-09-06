@@ -1,0 +1,39 @@
+/*!
+\page page_ubuntu_install_raw Ubuntu Installation from the raw so library files
+\brief How to install on Ubuntu using the provided so library files
+
+Pull down the libraries from here: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/ubuntu-raw
+
+\section sec_ubuntu_install_raw_include Install include files
+
+First grab the [*nix header files for mlclient](https://github.com/adamfowleruk/mlcplusplus/blob/develop/dist/osx-raw/mlclient-include.tar.gz?raw=true)
+
+Unzip the include files archive, and copy the 'mlclient' folder in to /usr/local/include (i.e. a folder called
+mlclient should be found inside the 'include' folder).
+
+\section sec_ubuntu_install_raw_libs Install compiled libraries
+
+Unzip the library archive and place all files in to /usr/local/lib
+
+This installs the Microsoft CPPREST library and mlclient.
+
+\section sec_ubuntu_install_raw_deps Install dependencies
+
+You will need to ensure the following system wide dependencies are installed.
+
+- Open SSL at least version 1.0.2 or above
+- Boost libraries - really boost, boost-system, boost-chrono, boost-thread, boost-atomic
+- Google Glog - logging libraries, only installable from source
+
+You can run install-dependencies.sh to grab all these from source, or:
+
+The easiest way on ubuntu to do this is to:-
+
+    sudo add-apt-repository -y ppa:boost-latest/ppa
+    sudo apt-get -y update
+    sudo apt-get -y install g++ git make gflags libboost-all-dev libssl-dev cmake libboost-chrono-dev libboost-random-dev autoconf libcppunit-dev
+
+Note apt-get does not yet install Google Logging.
+
+
+*/

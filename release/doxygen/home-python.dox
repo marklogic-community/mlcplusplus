@@ -21,6 +21,7 @@ The Python API supports the same features as the C++ API.
  - Not so easy way
   - Mac: Use the [Mac raw compiled libraries](@ref page_mac_install_raw)
   - Windows: Use the [Windows raw compiled libraries](@ref page_win_install_raw)
+  - Linux Ubuntu: Use the [Ubuntu x86_64 raw compiled libraries](@ref page_ubuntu_install_raw)
  - Hard way
   - All Platforms: Build from source. Read the [Source Install Guide](@ref page_install) for full instructions. Not for the faint hearted
 - Create a simple Python script using the required import
