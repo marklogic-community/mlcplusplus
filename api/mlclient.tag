@@ -4845,6 +4845,14 @@
     <docanchor file="page_mac_install_raw" title="Install dependencies">sec_mac_install_raw_deps</docanchor>
   </compound>
   <compound kind="page">
+    <name>page_ubuntu_install_raw</name>
+    <title>Ubuntu Installation from the raw so library files</title>
+    <filename>page_ubuntu_install_raw</filename>
+    <docanchor file="page_ubuntu_install_raw" title="Install include files">sec_ubuntu_install_raw_include</docanchor>
+    <docanchor file="page_ubuntu_install_raw" title="Install compiled libraries">sec_ubuntu_install_raw_libs</docanchor>
+    <docanchor file="page_ubuntu_install_raw" title="Install dependencies">sec_ubuntu_install_raw_deps</docanchor>
+  </compound>
+  <compound kind="page">
     <name>page_win_install_raw</name>
     <title>Mac Installation from the raw dylib library files</title>
     <filename>page_win_install_raw</filename>
