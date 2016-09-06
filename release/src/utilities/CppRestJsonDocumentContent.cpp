@@ -187,7 +187,7 @@ bool CppRestJsonDocumentNode::isBoolean() const {
     return false;
   }
   std::string val(asString());
-  return mImpl->root.is_string() && (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
+  return mImpl->root.is_string() && (("true" == val) || ("TRUE" == val) || ("True" == val));
 }
 bool CppRestJsonDocumentNode::isInteger() const {
   return mImpl->root.is_integer();
@@ -200,7 +200,7 @@ bool CppRestJsonDocumentNode::isString() const {
     return false;
   }
   std::string val(utility::conversions::to_utf8string(mImpl->root.as_string()));
-  if ((0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()))) {
+  if ((("true" == val) || ("TRUE" == val) || ("True" == val))) {
     // boolean string
     return false;
   }
@@ -216,7 +216,7 @@ bool CppRestJsonDocumentNode::isObject() const {
 bool CppRestJsonDocumentNode::asBoolean() const {
   //return mImpl->root.as_bool();
   std::string val(asString());
-  return (0 == std::strcmp("true",val.c_str()) || 0 == std::strcmp("TRUE",val.c_str()) || 0 == std::strcmp("True",val.c_str()));
+  return ((("true" == val) || ("TRUE" == val) || ("True" == val)));
 }
 int32_t CppRestJsonDocumentNode::asInteger() const {
   return mImpl->root.as_integer();

@@ -81,7 +81,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   IDocumentNode* el1 = root->at("el1");
   LOG(DEBUG) << "Checking el1";
   LOG(DEBUG) << "  value: " << el1->asString();
-  CPPUNIT_ASSERT_MESSAGE("el1 is invalid",strcmp(el1->asString().c_str(),"val1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("el1 is invalid",("val1" == el1->asString()));
 
   CPPUNIT_ASSERT_MESSAGE("el1 is not a string (should be string)",el1->isString());
   CPPUNIT_ASSERT_MESSAGE("el1 is an array (should be string)",!el1->isArray());
@@ -93,7 +93,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
 
   IDocumentNode* el2 = root->at("el2");
   LOG(DEBUG) << "Checking el2";
-  CPPUNIT_ASSERT_MESSAGE("el2 is invalid",strcmp(el2->asString().c_str(),"val2") == 0);
+  CPPUNIT_ASSERT_MESSAGE("el2 is invalid",("val2" == el2->asString()));
 
   CPPUNIT_ASSERT_MESSAGE("el2 is not a string (should be string)",el2->isString());
   CPPUNIT_ASSERT_MESSAGE("el2 is an array (should be string)",!el2->isArray());
@@ -147,7 +147,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   IDocumentNode* arr1el0 = arr1->at(0);
   LOG(DEBUG) << "Checking arr1el0";
   LOG(DEBUG) << "Checking arr1el0: text: " << arr1el0->asString();
-  CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",strcmp(arr1el0->asString().c_str(),"av1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",("av1" == arr1el0->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is not a string (should be string)",arr1el0->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an array (should be string)",!arr1el0->isArray());
@@ -159,7 +159,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
 
   IDocumentNode* arr1el1 = arr1->at(1);
   LOG(DEBUG) << "Checking arr1el1: text: " << arr1el1->asString();
-  CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",strcmp(arr1el1->asString().c_str(),"av2") == 0);
+  CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",("av2" == arr1el1->asString()));
 
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is not a string (should be string)",arr1el1->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an array (should be string)",!arr1el1->isArray());
@@ -180,7 +180,7 @@ void DocumentTraversalTest::testResult(IDocumentNode* root) {
   CPPUNIT_ASSERT_MESSAGE("obj1 is an array (should be object)",!obj1->isArray());
   IDocumentNode* obj1subel1 = obj1->at("subel1");
   LOG(DEBUG) << "Checking obj1subel1";
-  CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",strcmp(obj1subel1->asString().c_str(),"subval1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",("subval1" == obj1subel1->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is not a string (should be string)",obj1subel1->isString());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an array (should be string)",!obj1subel1->isArray());
@@ -202,7 +202,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   try {
   IDocumentNode* el1 = root->at("el1");
   LOG(DEBUG) << "Checking el1";
-  CPPUNIT_ASSERT_MESSAGE("el1 is invalid",strcmp(el1->asString().c_str(),"val1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("el1 is invalid",("val1" == el1->asString()));
 
   CPPUNIT_ASSERT_MESSAGE("el1 is not a string (should be string)",el1->isString());
   CPPUNIT_ASSERT_MESSAGE("el1 is an array (should be string)",!el1->isArray());
@@ -214,7 +214,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
 
   IDocumentNode* el2 = root->at("el2");
   LOG(DEBUG) << "Checking el2";
-  CPPUNIT_ASSERT_MESSAGE("el2 is invalid",strcmp(el2->asString().c_str(),"val2") == 0);
+  CPPUNIT_ASSERT_MESSAGE("el2 is invalid",("val2" == el2->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("el2 is not a string (should be string)",el2->isString());
   CPPUNIT_ASSERT_MESSAGE("el2 is an array (should be string)",!el2->isArray());
@@ -269,7 +269,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("arr1 is an object (should be array)",!arr1->isObject());
   IDocumentNode* arr1el0 = arr1->at(0);
   LOG(DEBUG) << "Checking arr1el0";
-  CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",strcmp(arr1el0->asString().c_str(),"av1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("arr1el0 is invalid",("av1" == arr1el0->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is not a string (should be string)",arr1el0->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el0 is an array (should be string)",!arr1el0->isArray());
@@ -281,7 +281,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
 
   IDocumentNode* arr1el1 = arr1->at(1);
   LOG(DEBUG) << "Checking arr1el1";
-  CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",strcmp(arr1el1->asString().c_str(),"av2") == 0);
+  CPPUNIT_ASSERT_MESSAGE("arr1el1 is invalid",("av2" == arr1el1->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is not a string (should be string)",arr1el1->isString());
   CPPUNIT_ASSERT_MESSAGE("arr1el1 is an array (should be string)",!arr1el1->isArray());
@@ -302,7 +302,7 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   CPPUNIT_ASSERT_MESSAGE("obj1 is an array (should be object)",!obj1->isArray());
   IDocumentNode* obj1subel1 = obj1->at("subel1");
   LOG(DEBUG) << "Checking obj1subel1";
-  CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",strcmp(obj1subel1->asString().c_str(),"subval1") == 0);
+  CPPUNIT_ASSERT_MESSAGE("obj1subel1 is invalid",("subval1" == obj1subel1->asString()) );
 
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is not a string (should be string)",obj1subel1->isString());
   CPPUNIT_ASSERT_MESSAGE("obj1subel1 is an array (should be string)",!obj1subel1->isArray());

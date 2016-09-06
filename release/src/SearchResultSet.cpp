@@ -254,20 +254,20 @@ public:
     //ct = rss.str();
     // TODO XML, text, binary content support too
     ITextDocumentContent* ct;
-    if (0 == strcmp("xml",format.c_str())) {
+    if ("xml" == format) {
       // XML
       ct = mlclient::utilities::PugiXmlHelper::toDocument(utility::conversions::to_utf8string(ctVal.as_string()));
 
-    } else if (0 == strcmp("json",format.c_str())) {
+    } else if ("json" == format) {
       // JSON
       ct = new mlclient::utilities::CppRestJsonDocumentContent();
       ((mlclient::utilities::CppRestJsonDocumentContent*)ct)->setContent(ctVal); // passes reference to function in cpprestjsondocumentcontent
 
-    } else if (0 == strcmp("text",format.c_str())) {
+    } else if ("text" == format) {
       // TEXT
       ct = new GenericTextDocumentContent;
       ((GenericTextDocumentContent*)ct)->setContent(utility::conversions::to_utf8string(ctVal.as_string()));
-    } else if (0 == strcmp("binary",format.c_str())) {
+    } else if ("binary" == format) {
       // BINARY
       LOG(DEBUG) << "WARNING: Binary document content not yet supported!!!";
       ct = new GenericTextDocumentContent;

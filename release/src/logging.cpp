@@ -12,6 +12,7 @@
 #endif
 
 #include <ostream>
+#include <cstring>
 
  // For sharing easyloggingpp configuration
  /*

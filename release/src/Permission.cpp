@@ -62,14 +62,14 @@ const std::string translate_capability(const Capability& rt) {
 }
 
 Capability toCapability(const std::string& capString) {
-  const char* cs = capString.c_str();
-  if (0 == strcmp(cs,"read")) {
+  //const char* cs = capString.c_str();
+  if ("read" == capString) {
     return Capability::READ;
-  } else if (0 == strcmp(cs,"update")) {
+  } else if ("update" == capString) {
     return Capability::UPDATE;
-  } else if (0 == strcmp(cs,"insert")) {
+  } else if ("insert" == capString) {
     return Capability::INSERT;
-  } else if (0 == strcmp(cs,"execute")) {
+  } else if ("execute" == capString) {
     return Capability::EXECUTE;
   } else {
     throw new InvalidFormatException("Capability type unknown: " + capString);
