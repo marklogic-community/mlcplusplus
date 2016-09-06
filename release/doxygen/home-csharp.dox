@@ -1,35 +1,80 @@
 /*!
 \page page_home_csharp C# Documentation
 \brief The main page for C+# coding documentation.
+\tableofcontents
 
 This is the home page for C# support.
 
 \section sec_home_csharp_features Features
 
-TODO
+The C# API has all the same features as the C++ API, but maps all functionality and classes on to their C# equivalent.
+The C# API should look and feel exactly like any other native C# API.
+
+Be aware that the C# API will need the C++ API (libmlclient.dylib/so or mlclient.dll) to be installed in the
+library search path your your environment. I.e. in /usr/local/lib or similar in Mac and Linux, and in the same folder
+as your EXE file in Windows.
 
 \section sec_home_csharp_install Installation
 
-TODO
+First install the C++ compiled libraries
+
+There are several ways to install the C++ library
+
+- Easy way
+ - Mac: Use the [Install Package](@ref page_mac_install_pkg)
+- Not so easy way
+ - Mac: Use the [Mac raw compiled libraries](@ref page_mac_install_raw)
+ - Windows: Use the [Windows raw compiled libraries](@ref page_win_install_raw)
+- Hard way
+ - All Platforms: Build from source. Read the [Source Install Guide](@ref page_install) for full instructions. Not for the faint hearted
+
+Now installed the C# source packages and samples
+
+These can be found at: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/all-raw
+
+On windows, the easiest thing to do is copy all these EXE files and DLL libraries to the same folder. Then
+simply open a command prompt, cd to the folder they are in, and run one of the sample apps.
+
+On mac, you will need to ensure the dylib files are in /usr/local/lib or a similar global path. The exe samples can
+then be run like this in a terminal window:-
+
+    sudo mono csgetdoc.exe
+
+For some reason root access is currently required for mono to run and find the libraries. This may be a permissions
+issue with mono on my machine, but it's worth knowing about.
+
+Linux is the same as mac, but you will be using .so files instead of .dylib files, but the install location is the same.
 
 \section sec_home_csharp_quickstart Quickstart
 
-TODO
+All the samples have been pre-built for you in Windows! Feel free to just download and run them from the command
+prompt.
+
+You can read their source code, or even grab the Visual Studio solution files, from the samples folders starting
+with 'cs' in their name: https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples
 
 \section sec_home_csharp_langspecific Language Specific Features
 
 This section describes language specific features. I.e. features provided for the Idioms developers of this language
 would expect.
 
-\subsection Function name patterns
+\subsection sec_home_csharp_functions Function name patterns
 
-TODO
+Collections in C++ are mapped on to their C# equivalent. std::vector becomes a List, Iterators become IEnumerable
+instances, and std::maps become Dictionary instances.
+
+Similarly, function names now have capital initial letters in C# instead of lowercase letters in C++. The same
+is true of getters and setters, which can be accessed in C# via the properties paradigm.
+
+This all means the C# API should feel very familiar to a C# developer.
 
 \section sec_home_csharp_extending Extending
 
-TODO
+All abstract classes in the C++ API are marked as being extendible in C# itself. You should be able to create, for
+example, your own subclasses of IDocumentContent, IBatchNotifiable, and so on as you see fit. They should work
+transparently with the C# and C++ APIs.
 
-\section sec_home_csharp_troubleshooting
+\section sec_home_csharp_troubleshooting Troubleshooting
 
 The most common issue is the libraries not being found. If you run this command:-
 
@@ -37,28 +82,28 @@ The most common issue is the libraries not being found. If you run this command:
 
 Then you will see a whole bunch of output. Crucially, you will see a set of lines like these:-
 
-    stat64("libcsmlclient\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
-    stat64("/Users/adamfowler/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
-    stat64("/usr/local/lib/libcsmlclient\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
-    stat64("/usr/lib/libcsmlclient\0", 0x7FFF597ED708, 0x1B6)		 = -1 Err#2
-    open_nocancel("libcsmlclient.la\0", 0x0, 0x1B6)		 = -1 Err#2
-    stat64("libcsmlclient.dylib\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
-    stat64("/Users/adamfowler/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
-    stat64("/usr/local/lib/libcsmlclient.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = 0 0
-    open("/usr/local/lib/libcsmlclient.dylib\0", 0x0, 0x0)		 = 4 0
+    stat64("libmlclientcs\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
+    stat64("/Users/adamfowler/lib/libmlclientcs\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/local/lib/libmlclientcs\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/lib/libmlclientcs\0", 0x7FFF597ED708, 0x1B6)		 = -1 Err#2
+    open_nocancel("libmlclientcs.la\0", 0x0, 0x1B6)		 = -1 Err#2
+    stat64("libmlclientcs.dylib\0", 0x7FFF597ECF18, 0x1B6)		 = -1 Err#2
+    stat64("/Users/adamfowler/lib/libmlclientcs.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = -1 Err#2
+    stat64("/usr/local/lib/libmlclientcs.dylib\0", 0x7FFF597ED6F8, 0x1B6)		 = 0 0
+    open("/usr/local/lib/libmlclientcs.dylib\0", 0x0, 0x0)		 = 4 0
     pread(0x4, "\312\376\272\276\0", 0x1000, 0x0)		 = 4096 0
 
-If instead of the above successful finding of libcsmlclient.dylib you see only library names that do not exist,
+If instead of the above successful finding of libmlclientcs.dylib you see only library names that do not exist,
 then you have a mismatched library issue.
 
-Easiest way to solve this is to take csmlclient.so (the output of SWIG C# generation), and do this:-
+Easiest way to solve this is to take libmlclientcs.dylib (the output of SWIG C# generation), and do this:-
 
-    sudo cp ./bin/src/csmlclient.so /usr/local/lib/libcsmlclient.dylib
+    sudo cp ./bin/src/libmlclientcs.dylib /usr/local/lib/libcsmlclient.dylib
 
 Then execute the mono command again.
 
 If you still have issues then you may have a permissions problem. Try:-
 
-    sudo mono csgetdoc.exe 
+    sudo mono csgetdoc.exe
 
 */

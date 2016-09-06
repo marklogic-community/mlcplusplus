@@ -1,6 +1,10 @@
 /**
 \page page_install Installing MLCPlusPlus
 \brief C++ Installing and building from Source Guide
+\tableofcontents
+
+\warning This is a very complex manual process. For Linux or Mac, use install-dependencies.sh instead. For Windows,
+use install-dependencies.bat instead. These files can be found in the root of the GitHub project's files.
 
 \section sec_getcasablanca Get Casablanca
 

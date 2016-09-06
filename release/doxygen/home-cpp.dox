@@ -1,6 +1,7 @@
 /*!
 \page page_home_cpp C++ Documentation
 \brief The main page for C++ coding documentation.
+\tableofcontents
 
 This is the home page for C++ support.
 
@@ -31,27 +32,168 @@ C++ support includes ALL features, as it is the base API. These features are:-
  - SearchResultSet - batches and fetches each page of results, with its own iterator implementation so the network requests are transparent to the caller
  - ValuesResultSet - perform multiple values lookups in a single call
  - SearchBuilder - Abstracts structured query format away from your code
- - SearchOptionsBuilder - ABstracts search options format away from your code
+ - SearchOptionsBuilder - Abstracts search options format away from your code
 
 \section sec_home_cpp_install Installation
 
-TODO
+There are several ways to install the C++ library
+
+- Easy way
+ - Mac: Use the [Install Package](@ref page_mac_install_pkg)
+- Not so easy way
+ - Mac: Use the [Mac raw compiled libraries](@ref page_mac_install_raw)
+ - Windows: Use the [Windows raw compiled libraries](@ref page_win_install_raw)
+- Hard way
+ - All Platforms: Build from source. Read the [Source Install Guide](@ref page_install) for full instructions. Not for the faint hearted
 
 \section sec_home_cpp_quickstart Quickstart
 
-TODO
+Once you've installed the C++ API libraries and header files, you're ready to write some code!
+
+Create a cpp source file. I'll assume you call it getdoc.cpp. This'll be a main file, so will look like the below:-
+
+    int main(int argc, const char * argv[])
+    {
+      \\ TODO do something
+
+      return 0;
+    }
+
+Now you need to shell this out to create a connection, and document the steps for fetching a document.
+
+
+    #include <mlclient/Connection.hpp>
+    #include <mlclient/Response.hpp>
+    #include <mlclient/logging.hpp>
+
+    #include <iostream>
+
+    int main(int argc, const char * argv[])
+    {
+      using namespace mlclient;
+      using namespace mlclient::utilities;
+
+      mlclient::reconfigureLogging(argc,argv); // configures logging from the command prompt, if required
+
+      \\ start the app
+
+      \\ create a connection
+      IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);
+
+      \\ get document URI
+
+      \\ Fetch document
+
+      \\ Output info about the response and document
+
+      \\ End the app
+
+      return 0;
+    }
+
+Naturally change the connection settings for your MarkLogic system and it's REST API endpoint configured for your
+target content database.
+
+Now we can shell it out further, taking input from the command line, and simply spitting out the whole document to
+standard out (the command shell):-
+
+
+    #include <mlclient/Connection.hpp>
+    #include <mlclient/Response.hpp>
+    #include <mlclient/logging.hpp>
+
+    #include <iostream>
+
+    int main(int argc, const char * argv[])
+    {
+      using namespace mlclient;
+      using namespace mlclient::utilities;
+
+      mlclient::reconfigureLogging(argc,argv); // configures logging from the command prompt, if required
+
+      std::cout << "Running getdoc..." << std::endl;
+
+      IConnection* ml = new Connection("192.168.123.4","8122","admin","admin", false);
+
+      std::string uri = "/some/doc.json";
+      if (argc > 1) {
+        uri = std::string(argv[1]);
+      }
+
+      const Response* rp = ml->getDocument(uri);
+
+      ResponseType rt = rp->getResponseType();
+      std::cout << "Response type: " << rt << std::endl;
+      std::cout << "Content: " << rp->getContent();
+
+      std::cout << "getdoc complete" << std::endl;
+      return 0;
+    }
+
+Now compile this app using your platform's compiler, open a command prompt, and run the programme. You should see
+something like this:-
+
+
+
+You can use this pattern for most apps. See the release/samples/cpp<something> folders for examples.
+
+Congrats! You've just written your first working C++ application!!!
 
 \section sec_home_cpp_langspecific Language Specific Features
 
 This section describes language specific features. I.e. features provided for the Idioms developers of this language
 would expect.
 
-\subsection Support for C++ STL Iterators and Collections
+\subsection sec_home_cpp_langspecific_stl Support for C++ STL Iterators and Collections
 
-TODO
+The Core API provides a set of classes to iterator over search results and values (lexicon lookup) results. These
+are STL iterator compatible.
+
+\warning There is an outstanding issue where the Iterators are not quite STL compatible. View their API documentation
+for specific and up to date information.
+
+Most collections used in the API are std::vector based. Several type's defined are actually specialisations of
+std::vector, std::map, or std::string. This makes the API somewhat future proof in case of internal API changes, so
+only a recompile will be required. (They also really help me write wrappers for other languages, like C#!).
+
+\subsection sec_home_cpp_langspecific_pointers Pointers and move semantics
+
+At the moment anything created by the Core API and designed to be managed by your application tends to return a pointer
+type. E.g. creation of a connection, or returning of a Response from MarkLogic.
+
+In future this may well change to use C++11 move semantics entirely. Move semantics are already being used in newer
+parts of the API. This fact is documented in the core documentation introduction for those particular classes.
+
+Move semantics prevents widespread copying, and removes the hanging pointer issue. Furthermore, std::unique_ptr
+instances are increasingly being used within the core API itself, to further remove the chance of hanging pointers.
+
+If you are not familiar with move semantics in C++11 I suggest you read up on it now. 8.0.3 or 8.0.4 of this API
+may well move entirely to move semantics.
+
+\section sec_home_cpp_devguide Developer's guide
+
+Be sure to read the full, in-depth, [C++ Developer's Guide](@ref page_devguide). This covers most programming
+tasks you are likely to need.
 
 \section sec_home_cpp_extending Extending
 
-TODO
+Additional 'value add' functionality is easy to add to the C++ API. This is pretty much the pattern taken by
+the classes in the mlclient::utilities namespace. None of these classes are core, but all build on the core API
+to perform valuable functions.
+
+Have a look at the Helper classes in particular to find common bits of code that you may well need. Especially useful
+is the batch document upload helper function in DocumentBatchHelper.
+
+For an example on how to wrap your application's API to create an IDocumentContent subclass using your own
+JSON, XML, or other Document API, look at the PugiXmlDocumentContent and CppRestJsonDocumentContent classes.
+
+If you need to support a REST API endpoint the core API does not yet support, then be sure to read the API
+documentation for IConnection::doGet IConnection::doPost IConnection::doPut and IConnection::doDelete as these allow
+you to easily pass information to any MarkLogic REST API endpoint, including REST extensions. This saves you having to
+write your own REST handling code for extensions, and re-uses all the security, session, and HTTP connection handling
+code yourself.
+
+For any extensions you cannot write without source code changes, please file an issue at
+https://github.com/adamfowleruk/mlcplusplus/issues
 
 */

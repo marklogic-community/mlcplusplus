@@ -30,4 +30,11 @@ All code is Copyright MarkLogic Corporation, All Rights Reserved. It is publishe
 
 See the [License README](https://github.com/adamfowleruk/mlcplusplus/blob/develop/LICENSE.txt) for full details.
 
+\section sec_devguidelink Developer's guide
+
+For project maintainers/developers and contributors only, be sure to read:-
+
+- [Design Guide](@ref page_design)
+- [Contributing README](https://github.com/adamfowleruk/mlcplusplus/blob/develop/CONTRIBUTING.md)
+
 */
