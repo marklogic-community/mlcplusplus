@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/SearchDescription.hpp Source File</title>
+<title>MarkLogic Connect: include/mlclient/SearchDescription.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -107,50 +107,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef SRC_SEARCHDESCRIPTION_HPP_</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define SRC_SEARCHDESCRIPTION_HPP_</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_document_content_8hpp.html">DocumentContent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_description.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_description.html">SearchDescription</a> {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="classmlclient_1_1_search_description.html#a6253c1b631946b551413f101777177fe">SearchDescription</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_search_description.html#a3c508b1f24a5d35e2c91dd9086d9f5a5">~SearchDescription</a>(); <span class="comment">// allows subclassing</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#a90a96320f526f5010697d8daf88df2df">setOptions</a>(<a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; options);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; <a class="code" href="classmlclient_1_1_search_description.html#a4f7800af7906e1fdd0f56c89b89fbd1f">getOptions</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#ada430d382bcf1ee4d090c832375185cf">setQuery</a>(<a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; query);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; <a class="code" href="classmlclient_1_1_search_description.html#a1bf0e745f41880624e31b7966b8d9c31">getQuery</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#a9c95c65185f1ba08fa4181eebcc9758c">setQueryText</a>(std::string qtext);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_description.html#afb81430fb17d3e0844d68b52d285ce68">getQueryText</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1_search_description.html#a55f519e073c45d2138c3d26d692528f4">getPayload</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keyword">class </span>Impl;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  Impl* mImpl;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_SEARCHDESCRIPTION_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a90a96320f526f5010697d8daf88df2df"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a90a96320f526f5010697d8daf88df2df">mlclient::SearchDescription::setOptions</a></div><div class="ttdeci">void setOptions(ITextDocumentContent &amp;options)</div><div class="ttdoc">Set the search options content. </div></div>
-<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">Pure virtual destructor. REQUIRED to allow subclassing. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:163</div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a6253c1b631946b551413f101777177fe"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a6253c1b631946b551413f101777177fe">mlclient::SearchDescription::SearchDescription</a></div><div class="ttdeci">SearchDescription()</div><div class="ttdoc">Default Constructor. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a4f7800af7906e1fdd0f56c89b89fbd1f"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a4f7800af7906e1fdd0f56c89b89fbd1f">mlclient::SearchDescription::getOptions</a></div><div class="ttdeci">const ITextDocumentContent &amp; getOptions() const </div><div class="ttdoc">Returns the options as a document. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_afb81430fb17d3e0844d68b52d285ce68"><div class="ttname"><a href="classmlclient_1_1_search_description.html#afb81430fb17d3e0844d68b52d285ce68">mlclient::SearchDescription::getQueryText</a></div><div class="ttdeci">const std::string &amp; getQueryText() const </div><div class="ttdoc">Returns the plain text query. </div></div>
-<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:33</div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a9c95c65185f1ba08fa4181eebcc9758c"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a9c95c65185f1ba08fa4181eebcc9758c">mlclient::SearchDescription::setQueryText</a></div><div class="ttdeci">void setQueryText(std::string qtext)</div><div class="ttdoc">Sets the plain text query text. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a55f519e073c45d2138c3d26d692528f4"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a55f519e073c45d2138c3d26d692528f4">mlclient::SearchDescription::getPayload</a></div><div class="ttdeci">ITextDocumentContent * getPayload() const </div><div class="ttdoc">Returns a string representation of the total payload for this search, as passed to MarkLogic Server...</div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a3c508b1f24a5d35e2c91dd9086d9f5a5"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a3c508b1f24a5d35e2c91dd9086d9f5a5">mlclient::SearchDescription::~SearchDescription</a></div><div class="ttdeci">virtual ~SearchDescription()</div><div class="ttdoc">Default destructor. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_ada430d382bcf1ee4d090c832375185cf"><div class="ttname"><a href="classmlclient_1_1_search_description.html#ada430d382bcf1ee4d090c832375185cf">mlclient::SearchDescription::setQuery</a></div><div class="ttdeci">void setQuery(ITextDocumentContent &amp;query)</div><div class="ttdoc">Sets the complex query using an XML or JSON IDocumentContent instance. </div></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;mlclient/mlclient.hpp&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_document_content_8hpp.html">mlclient/DocumentContent.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemlclient.html">mlclient</a> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classmlclient_1_1_search_description.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmlclient_1_1_search_description.html">SearchDescription</a> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_description.html#a55ec5723fa00676b91d698f736e0cb45">SearchDescription</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">/*</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">   * \brief Deep copy constructor</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">   * \param desc The description to deep copy from</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_search_description.html#a55ec5723fa00676b91d698f736e0cb45">SearchDescription</a>(<span class="keyword">const</span> SearchDescription&amp; desc);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  MLCLIENT_API <span class="keyword">virtual</span> <a class="code" href="classmlclient_1_1_search_description.html#a3a43087c5effa2f91fba5e797a85a7da">~SearchDescription</a>(); <span class="comment">// allows subclassing</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#acca4ea00d660acddde2707291e1dbcb2">setOptions</a>(<a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; options);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; <a class="code" href="classmlclient_1_1_search_description.html#acff2412c7a92378a861385cf434bffd2">getOptions</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#ad27551891b1563c932cb651c93a993bc">setQuery</a>(<a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; query);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>&amp; <a class="code" href="classmlclient_1_1_search_description.html#a8cc43578e5dc06a83c6e224d02bb7a73">getQuery</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#a0c54a0531ec194759e9ce23f80208044">setQueryText</a>(std::string qtext);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  MLCLIENT_API <span class="keyword">const</span> std::string&amp; <a class="code" href="classmlclient_1_1_search_description.html#af06b69660d11acf49af090bd9c04024f">getQueryText</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  MLCLIENT_API <a class="code" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a>* <a class="code" href="classmlclient_1_1_search_description.html#ad653610f93e940bd441790a94996dd01">getPayload</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="comment">// @{</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"></span>  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#abd67bf61129c19275510f18cf02dca54">setStart</a>(<span class="keyword">const</span> <span class="keywordtype">long</span> start);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_description.html#a02593a1cf89db373a2aca1c46a0f6232">getStart</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="classmlclient_1_1_search_description.html#a02717dbff9d85ea3be757d177e4a9122">setPageLength</a>(<span class="keyword">const</span> <span class="keywordtype">long</span> pageLength);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">long</span> <a class="code" href="classmlclient_1_1_search_description.html#a9dbac95a2fb3ae0f900e4d185c29dfbd">getPageLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <span class="comment">// @}</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keyword">class </span>Impl;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  Impl* mImpl;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;};</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;} <span class="comment">// end mlclient namespace</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SRC_SEARCHDESCRIPTION_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_ad27551891b1563c932cb651c93a993bc"><div class="ttname"><a href="classmlclient_1_1_search_description.html#ad27551891b1563c932cb651c93a993bc">mlclient::SearchDescription::setQuery</a></div><div class="ttdeci">MLCLIENT_API void setQuery(ITextDocumentContent &amp;query)</div><div class="ttdoc">Sets the complex query using an XML or JSON IDocumentContent instance. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a55ec5723fa00676b91d698f736e0cb45"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a55ec5723fa00676b91d698f736e0cb45">mlclient::SearchDescription::SearchDescription</a></div><div class="ttdeci">MLCLIENT_API SearchDescription()</div><div class="ttdoc">Default Constructor. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_acff2412c7a92378a861385cf434bffd2"><div class="ttname"><a href="classmlclient_1_1_search_description.html#acff2412c7a92378a861385cf434bffd2">mlclient::SearchDescription::getOptions</a></div><div class="ttdeci">MLCLIENT_API const ITextDocumentContent &amp; getOptions() const </div><div class="ttdoc">Returns the options as a document. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_abd67bf61129c19275510f18cf02dca54"><div class="ttname"><a href="classmlclient_1_1_search_description.html#abd67bf61129c19275510f18cf02dca54">mlclient::SearchDescription::setStart</a></div><div class="ttdeci">MLCLIENT_API void setStart(const long start)</div><div class="ttdoc">Sets the start (first result) index. These are 1 not 0 based in MarkLogic Server. ...</div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a02593a1cf89db373a2aca1c46a0f6232"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a02593a1cf89db373a2aca1c46a0f6232">mlclient::SearchDescription::getStart</a></div><div class="ttdeci">MLCLIENT_API const long getStart() const </div><div class="ttdoc">Retrieves the start (first result) index. These are 1 not 0 based in MarkLogic Server. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_af06b69660d11acf49af090bd9c04024f"><div class="ttname"><a href="classmlclient_1_1_search_description.html#af06b69660d11acf49af090bd9c04024f">mlclient::SearchDescription::getQueryText</a></div><div class="ttdeci">MLCLIENT_API const std::string &amp; getQueryText() const </div><div class="ttdoc">Returns the plain text query. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_acca4ea00d660acddde2707291e1dbcb2"><div class="ttname"><a href="classmlclient_1_1_search_description.html#acca4ea00d660acddde2707291e1dbcb2">mlclient::SearchDescription::setOptions</a></div><div class="ttdeci">MLCLIENT_API void setOptions(ITextDocumentContent &amp;options)</div><div class="ttdoc">Set the search options content. </div></div>
+<div class="ttc" id="classmlclient_1_1_i_text_document_content_html"><div class="ttname"><a href="classmlclient_1_1_i_text_document_content.html">mlclient::ITextDocumentContent</a></div><div class="ttdoc">An overarching interface for a Text Document. </div><div class="ttdef"><b>Definition:</b> DocumentContent.hpp:265</div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a8cc43578e5dc06a83c6e224d02bb7a73"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a8cc43578e5dc06a83c6e224d02bb7a73">mlclient::SearchDescription::getQuery</a></div><div class="ttdeci">MLCLIENT_API const ITextDocumentContent &amp; getQuery() const </div><div class="ttdoc">Returns the complex query as a document. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a3a43087c5effa2f91fba5e797a85a7da"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a3a43087c5effa2f91fba5e797a85a7da">mlclient::SearchDescription::~SearchDescription</a></div><div class="ttdeci">virtual MLCLIENT_API ~SearchDescription()</div><div class="ttdoc">Default destructor. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a02717dbff9d85ea3be757d177e4a9122"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a02717dbff9d85ea3be757d177e4a9122">mlclient::SearchDescription::setPageLength</a></div><div class="ttdeci">MLCLIENT_API void setPageLength(const long pageLength)</div><div class="ttdoc">Sets the number of results to return per page. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_ad653610f93e940bd441790a94996dd01"><div class="ttname"><a href="classmlclient_1_1_search_description.html#ad653610f93e940bd441790a94996dd01">mlclient::SearchDescription::getPayload</a></div><div class="ttdeci">MLCLIENT_API ITextDocumentContent * getPayload() const </div><div class="ttdoc">Returns a string representation of the total payload for this search, as passed to MarkLogic Server...</div></div>
+<div class="ttc" id="namespacemlclient_html"><div class="ttname"><a href="namespacemlclient.html">mlclient</a></div><div class="ttdoc">the namespace which wraps all Core Public C++ API classes. </div><div class="ttdef"><b>Definition:</b> Connection.hpp:36</div></div>
 <div class="ttc" id="_document_content_8hpp_html"><div class="ttname"><a href="_document_content_8hpp.html">DocumentContent.hpp</a></div><div class="ttdoc">Contains classes and enums to handle document content (not properties, permissions, uri etc.) for basic content types (text,binary,json,xml) being used with MarkLogic Server. </div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html"><div class="ttname"><a href="classmlclient_1_1_search_description.html">mlclient::SearchDescription</a></div><div class="ttdoc">A POD class representing input to the POST of /v1/search - i.e. all search configuration. </div><div class="ttdef"><b>Definition:</b> SearchDescription.hpp:43</div></div>
-<div class="ttc" id="classmlclient_1_1_search_description_html_a1bf0e745f41880624e31b7966b8d9c31"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a1bf0e745f41880624e31b7966b8d9c31">mlclient::SearchDescription::getQuery</a></div><div class="ttdeci">const ITextDocumentContent &amp; getQuery() const </div><div class="ttdoc">Returns the complex query as a document. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a9dbac95a2fb3ae0f900e4d185c29dfbd"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a9dbac95a2fb3ae0f900e4d185c29dfbd">mlclient::SearchDescription::getPageLength</a></div><div class="ttdeci">MLCLIENT_API const long getPageLength() const </div><div class="ttdoc">Returns the number of results shown per page. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html_a0c54a0531ec194759e9ce23f80208044"><div class="ttname"><a href="classmlclient_1_1_search_description.html#a0c54a0531ec194759e9ce23f80208044">mlclient::SearchDescription::setQueryText</a></div><div class="ttdeci">MLCLIENT_API void setQueryText(std::string qtext)</div><div class="ttdoc">Sets the plain text query text. </div></div>
+<div class="ttc" id="classmlclient_1_1_search_description_html"><div class="ttname"><a href="classmlclient_1_1_search_description.html">mlclient::SearchDescription</a></div><div class="ttdoc">A POD class representing input to the POST of /v1/search - i.e. all search configuration. </div><div class="ttdef"><b>Definition:</b> SearchDescription.hpp:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

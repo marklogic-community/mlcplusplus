@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: mlclient::ITextDocumentContent Class Reference</title>
+<title>MarkLogic Connect: mlclient::ITextDocumentContent Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Pure virtual destructor. REQUIRED to allow subclassing.  
+<p>An overarching interface for a Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>.  
  <a href="classmlclient_1_1_i_text_document_content.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a>&gt;</code></p>
@@ -107,66 +107,59 @@ Inheritance diagram for mlclient::ITextDocumentContent:</div>
  <div class="center">
   <img src="classmlclient_1_1_i_text_document_content.png" usemap="#mlclient::ITextDocumentContent_map" alt=""/>
   <map id="mlclient::ITextDocumentContent_map" name="mlclient::ITextDocumentContent_map">
-<area href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a..." alt="mlclient::IDocumentContent" shape="rect" coords="143,0,420,24"/>
+<area href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a..." alt="mlclient::IDocumentContent" shape="rect" coords="287,0,564,24"/>
 <area href="classmlclient_1_1_generic_text_document_content.html" title="This class is a specialisation of ITextDocumentContent (and thus IDocumentContent) that holds all dat..." alt="mlclient::GenericTextDocumentContent" shape="rect" coords="0,112,277,136"/>
 <area href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html" title="An ITextDocumentContent instance that wraps a Microsoft cpprest JSON value object. " alt="mlclient::utilities::CppRestJsonDocumentContent" shape="rect" coords="287,112,564,136"/>
+<area href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html" title="An ITextDocumentContent instance that wraps a pugixml xml_parse object. (Derived from pugi::xml_docum..." alt="mlclient::utilities::PugiXmlDocumentContent" shape="rect" coords="574,112,851,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6eaf74649ada2436bc5f25c2635a9543"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html#a6eaf74649ada2436bc5f25c2635a9543">setContent</a> (std::string content)=0</td></tr>
-<tr class="memdesc:a6eaf74649ada2436bc5f25c2635a9543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the textual content for this document.  <a href="#a6eaf74649ada2436bc5f25c2635a9543">More...</a><br /></td></tr>
-<tr class="separator:a6eaf74649ada2436bc5f25c2635a9543"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81c0edab2ac29ece7a86b91fa6ca0c48"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html#a81c0edab2ac29ece7a86b91fa6ca0c48">getLength</a> () const  =0</td></tr>
-<tr class="memdesc:a81c0edab2ac29ece7a86b91fa6ca0c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of characters in the content string.  <a href="#a81c0edab2ac29ece7a86b91fa6ca0c48">More...</a><br /></td></tr>
-<tr class="separator:a81c0edab2ac29ece7a86b91fa6ca0c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ef056274a3976bcf415f46a8d5d7a3"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html#a57ef056274a3976bcf415f46a8d5d7a3">setContent</a> (std::string content)=0</td></tr>
+<tr class="memdesc:a57ef056274a3976bcf415f46a8d5d7a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the textual content for this document.  <a href="#a57ef056274a3976bcf415f46a8d5d7a3">More...</a><br /></td></tr>
+<tr class="separator:a57ef056274a3976bcf415f46a8d5d7a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace9cde97ae7c89b837fd243097494799"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html#ace9cde97ae7c89b837fd243097494799">getLength</a> () const  =0</td></tr>
+<tr class="memdesc:ace9cde97ae7c89b837fd243097494799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of characters in the content string.  <a href="#ace9cde97ae7c89b837fd243097494799">More...</a><br /></td></tr>
+<tr class="separator:ace9cde97ae7c89b837fd243097494799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ef6ac941c24a4c608dbbf95d47ffd3f"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_navigator.html">IDocumentNavigator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html#a1ef6ac941c24a4c608dbbf95d47ffd3f">navigate</a> (bool firstElementAsRoot=false) const  =0</td></tr>
+<tr class="memdesc:a1ef6ac941c24a4c608dbbf95d47ffd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a way to navigate the document.  <a href="#a1ef6ac941c24a4c608dbbf95d47ffd3f">More...</a><br /></td></tr>
+<tr class="separator:a1ef6ac941c24a4c608dbbf95d47ffd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmlclient_1_1_i_document_content"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classmlclient_1_1_i_document_content')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td></tr>
-<tr class="memitem:ab22722f1867bce185bba426e5f8afba2 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2">IDocumentContent</a> ()</td></tr>
-<tr class="separator:ab22722f1867bce185bba426e5f8afba2 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc1b9115e2a4d051fb263e74e06c21a inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#afdc1b9115e2a4d051fb263e74e06c21a">~IDocumentContent</a> ()</td></tr>
-<tr class="separator:afdc1b9115e2a4d051fb263e74e06c21a inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc5817a03238a61c176f7c5c3607d509 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual std::ostream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#abc5817a03238a61c176f7c5c3607d509">getStream</a> () const  =0</td></tr>
-<tr class="memdesc:abc5817a03238a61c176f7c5c3607d509 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as an ostream.  <a href="#abc5817a03238a61c176f7c5c3607d509">More...</a><br /></td></tr>
-<tr class="separator:abc5817a03238a61c176f7c5c3607d509 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">getContent</a> () const  =0</td></tr>
-<tr class="memdesc:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as a std::string.  <a href="#ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b">More...</a><br /></td></tr>
-<tr class="separator:ab1a7515e7f7d2f3d8ac4b8bd20ec9f8b inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20e1cc7e2a9958596ac52b6a39605119 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a20e1cc7e2a9958596ac52b6a39605119">getMimeType</a> () const  =0</td></tr>
-<tr class="memdesc:a20e1cc7e2a9958596ac52b6a39605119 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the MIME type of this content.  <a href="#a20e1cc7e2a9958596ac52b6a39605119">More...</a><br /></td></tr>
-<tr class="separator:a20e1cc7e2a9958596ac52b6a39605119 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf7ba80db8786497f8e3bf794b4775c7 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#acf7ba80db8786497f8e3bf794b4775c7">setMimeType</a> (const std::string &amp;mt)=0</td></tr>
-<tr class="memdesc:acf7ba80db8786497f8e3bf794b4775c7 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the MIME type of this content.  <a href="#acf7ba80db8786497f8e3bf794b4775c7">More...</a><br /></td></tr>
-<tr class="separator:acf7ba80db8786497f8e3bf794b4775c7 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086d89454998056b283bcad56e780025 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a086d89454998056b283bcad56e780025">IDocumentContent</a> ()</td></tr>
+<tr class="separator:a086d89454998056b283bcad56e780025 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a540378b9f20716c53cbef978b01b0d39 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a540378b9f20716c53cbef978b01b0d39">~IDocumentContent</a> ()=0</td></tr>
+<tr class="separator:a540378b9f20716c53cbef978b01b0d39 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87dbdd7e43ac68860874435fdc88922e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API std::istream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a87dbdd7e43ac68860874435fdc88922e">getStream</a> () const  =0</td></tr>
+<tr class="memdesc:a87dbdd7e43ac68860874435fdc88922e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as an istream.  <a href="#a87dbdd7e43ac68860874435fdc88922e">More...</a><br /></td></tr>
+<tr class="separator:a87dbdd7e43ac68860874435fdc88922e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e840e72ae60363cd6b44f0554241592 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#a0e840e72ae60363cd6b44f0554241592">getContent</a> () const  =0</td></tr>
+<tr class="memdesc:a0e840e72ae60363cd6b44f0554241592 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the content of this <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> as a std::string.  <a href="#a0e840e72ae60363cd6b44f0554241592">More...</a><br /></td></tr>
+<tr class="separator:a0e840e72ae60363cd6b44f0554241592 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af492b5a5f9e021f7b19e0da1801a3a5e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#af492b5a5f9e021f7b19e0da1801a3a5e">getMimeType</a> () const  =0</td></tr>
+<tr class="memdesc:af492b5a5f9e021f7b19e0da1801a3a5e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the MIME type of this content.  <a href="#af492b5a5f9e021f7b19e0da1801a3a5e">More...</a><br /></td></tr>
+<tr class="separator:af492b5a5f9e021f7b19e0da1801a3a5e inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68d2a0cec49bb4c5b590f1c1b97cbc0 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html#ad68d2a0cec49bb4c5b590f1c1b97cbc0">setMimeType</a> (const std::string &amp;mt)=0</td></tr>
+<tr class="memdesc:ad68d2a0cec49bb4c5b590f1c1b97cbc0 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the MIME type of this content.  <a href="#ad68d2a0cec49bb4c5b590f1c1b97cbc0">More...</a><br /></td></tr>
+<tr class="separator:ad68d2a0cec49bb4c5b590f1c1b97cbc0 inherit pub_methods_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_attribs_classmlclient_1_1_i_document_content"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classmlclient_1_1_i_document_content')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classmlclient_1_1_i_document_content.html">mlclient::IDocumentContent</a></td></tr>
-<tr class="memitem:a461395497626ae111d0c24b983dac077 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a461395497626ae111d0c24b983dac077"></a>
-static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_JSON</b></td></tr>
-<tr class="separator:a461395497626ae111d0c24b983dac077 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ea89e3d97e41b93d7999c5e9af73d19 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ea89e3d97e41b93d7999c5e9af73d19"></a>
-static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_XML</b></td></tr>
-<tr class="separator:a4ea89e3d97e41b93d7999c5e9af73d19 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48f3e082c82ac496c2a90e49c637ae41 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48f3e082c82ac496c2a90e49c637ae41"></a>
+static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_JSON</b></td></tr>
+<tr class="separator:a48f3e082c82ac496c2a90e49c637ae41 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91731e3a2a550129cafa23f505a597a6 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91731e3a2a550129cafa23f505a597a6"></a>
+static MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>MIME_XML</b></td></tr>
+<tr class="separator:a91731e3a2a550129cafa23f505a597a6 inherit pub_static_attribs_classmlclient_1_1_i_document_content"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Pure virtual destructor. REQUIRED to allow subclassing. </p>
-<p>Pure virtual constructor Sets the textual content for this document</p>
-<p>Assumes content string is non null</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">The</td><td>string content to copy in to this object. Returns the content as a string</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The string representation of the content. Returns the number of characters in the content string.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>This number does not include C null characters - just std::string length</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of characters in the string. Does not include C null character. An overarching interface for a Text Document </dd></dl>
+<div class="textblock"><p>An overarching interface for a Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>. </p>
 <dl class="section since"><dt>Since</dt><dd>8.0.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-05-12</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a81c0edab2ac29ece7a86b91fa6ca0c48"></a>
+<a class="anchor" id="ace9cde97ae7c89b837fd243097494799"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -174,7 +167,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int mlclient::ITextDocumentContent::getLength </td>
+          <td class="memname">virtual MLCLIENT_API int mlclient::ITextDocumentContent::getLength </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -191,11 +184,11 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
 <dl class="section note"><dt>Note</dt><dd>This number does not include C null characters - just std::string length</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of characters in the string. Does not include C null character. </dd></dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a507199891ebb1dfaa994f287a33eaf22">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a595f0785725d2aaca64740bff492e222">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#afe0a92e6b4cd39d1791666484f9cb89f">mlclient::GenericTextDocumentContent</a>, <a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a6f4b7d0611b68cb03a69a407b83f1bd4">mlclient::utilities::PugiXmlDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#af66993623cd3862a76779ef7a6cc0986">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6eaf74649ada2436bc5f25c2635a9543"></a>
+<a class="anchor" id="a1ef6ac941c24a4c608dbbf95d47ffd3f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -203,7 +196,38 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void mlclient::ITextDocumentContent::setContent </td>
+          <td class="memname">virtual MLCLIENT_API <a class="el" href="classmlclient_1_1_i_document_navigator.html">IDocumentNavigator</a>* mlclient::ITextDocumentContent::navigate </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>firstElementAsRoot</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a way to navigate the document. </p>
+<p>See <a class="el" href="classmlclient_1_1_i_document_navigator.html" title="Acts as a generic lightweight document interface. ">IDocumentNavigator</a> for details</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016-07-30 </dd></dl>
+
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#ab9f0c496dc863049da1639bfc2b244a2">mlclient::GenericTextDocumentContent</a>, <a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#afde977f0237ff12a056af147bdd4741d">mlclient::utilities::PugiXmlDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a736a5c01ef0a0ce473042bb36df70279">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a57ef056274a3976bcf415f46a8d5d7a3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual MLCLIENT_API void mlclient::ITextDocumentContent::setContent </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>content</em></td><td>)</td>
@@ -226,12 +250,12 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>M
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#ad051f989ef07b8d24b2454864c831b9c">mlclient::GenericTextDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a1424d0bac3e03350bf943a0043944584">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
+<p>Implemented in <a class="el" href="classmlclient_1_1_generic_text_document_content.html#a93333fc4d98ef30727217e80bd2a622a">mlclient::GenericTextDocumentContent</a>, <a class="el" href="classmlclient_1_1utilities_1_1_pugi_xml_document_content.html#a99031702fb28c9f2b6b6b843919fc91b">mlclient::utilities::PugiXmlDocumentContent</a>, and <a class="el" href="classmlclient_1_1utilities_1_1_cpp_rest_json_document_content.html#a52594a811341eb11ca1f8541074e88c3">mlclient::utilities::CppRestJsonDocumentContent</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a></li>
+<li>include/mlclient/<a class="el" href="_document_content_8hpp_source.html">DocumentContent.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

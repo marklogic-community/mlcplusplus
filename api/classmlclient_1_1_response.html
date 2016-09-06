@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: mlclient::Response Class Reference</title>
+<title>MarkLogic Connect: mlclient::Response Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -91,7 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classmlclient_1_1_response-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">mlclient::Response Class Reference</div>  </div>
@@ -105,47 +104,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6fe9f3d9b1e2b056ca9c994135252974"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a6fe9f3d9b1e2b056ca9c994135252974">Response</a> ()</td></tr>
-<tr class="separator:a6fe9f3d9b1e2b056ca9c994135252974"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8df32c7a735c11fe23eb216a0ff7d7d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a8df32c7a735c11fe23eb216a0ff7d7d7">setResponseCode</a> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;code)</td></tr>
-<tr class="memdesc:a8df32c7a735c11fe23eb216a0ff7d7d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the HTTP response code for the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a8df32c7a735c11fe23eb216a0ff7d7d7">More...</a><br /></td></tr>
-<tr class="separator:a8df32c7a735c11fe23eb216a0ff7d7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2dd5829c9f12d1cca84c12502369f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a4d2dd5829c9f12d1cca84c12502369f5">getResponseType</a> (void) const </td></tr>
-<tr class="memdesc:a4d2dd5829c9f12d1cca84c12502369f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown.  <a href="#a4d2dd5829c9f12d1cca84c12502369f5">More...</a><br /></td></tr>
-<tr class="separator:a4d2dd5829c9f12d1cca84c12502369f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a19e062190a54b18dea43008dd15c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a2a19e062190a54b18dea43008dd15c7b">setResponseType</a> (const enum <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;type)</td></tr>
-<tr class="memdesc:a2a19e062190a54b18dea43008dd15c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally.  <a href="#a2a19e062190a54b18dea43008dd15c7b">More...</a><br /></td></tr>
-<tr class="separator:a2a19e062190a54b18dea43008dd15c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f7eef7761531135409092e88b2c7258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a0f7eef7761531135409092e88b2c7258">setResponseHeaders</a> (const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;headers)</td></tr>
-<tr class="memdesc:a0f7eef7761531135409092e88b2c7258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a0f7eef7761531135409092e88b2c7258">More...</a><br /></td></tr>
-<tr class="separator:a0f7eef7761531135409092e88b2c7258"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65a5133e83bca31c37bd443da37451eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a65a5133e83bca31c37bd443da37451eb">getResponseCode</a> (void) const </td></tr>
-<tr class="memdesc:a65a5133e83bca31c37bd443da37451eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a65a5133e83bca31c37bd443da37451eb">More...</a><br /></td></tr>
-<tr class="separator:a65a5133e83bca31c37bd443da37451eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21f8301c312194b48864633dcec68246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a21f8301c312194b48864633dcec68246">getResponseHeaders</a> (void) const </td></tr>
-<tr class="memdesc:a21f8301c312194b48864633dcec68246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the headers that were returned with the response.  <a href="#a21f8301c312194b48864633dcec68246">More...</a><br /></td></tr>
-<tr class="separator:a21f8301c312194b48864633dcec68246"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a628325fb5e48c06f69fb4ead94fbb367"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a628325fb5e48c06f69fb4ead94fbb367">read</a> (void *buffer, const size_t &amp;max_size, const size_t off=0)</td></tr>
-<tr class="memdesc:a628325fb5e48c06f69fb4ead94fbb367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw response in to a buffer. Used for Binary responses.  <a href="#a628325fb5e48c06f69fb4ead94fbb367">More...</a><br /></td></tr>
-<tr class="separator:a628325fb5e48c06f69fb4ead94fbb367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a0487a31c6d74e7a1d5dc4ba1f9b263e2">getContent</a> () const </td></tr>
-<tr class="memdesc:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">For text responses (including JSON and XML), returns the response content as a string.  <a href="#a0487a31c6d74e7a1d5dc4ba1f9b263e2">More...</a><br /></td></tr>
-<tr class="separator:a0487a31c6d74e7a1d5dc4ba1f9b263e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d868056fd29885b44317be4ecda999"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a92d868056fd29885b44317be4ecda999">setContent</a> (std::string *content)</td></tr>
-<tr class="memdesc:a92d868056fd29885b44317be4ecda999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a92d868056fd29885b44317be4ecda999">More...</a><br /></td></tr>
-<tr class="separator:a92d868056fd29885b44317be4ecda999"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade5538c95aa2c5578e383ad4f55244cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade5538c95aa2c5578e383ad4f55244cc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Response</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
-<tr class="separator:ade5538c95aa2c5578e383ad4f55244cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac10ae07a4c7e6c15b47d2474ae0619be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac10ae07a4c7e6c15b47d2474ae0619be"></a>
-<a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
-<tr class="separator:ac10ae07a4c7e6c15b47d2474ae0619be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:aff698956edca6310a1b6f8f1b3ae65ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff698956edca6310a1b6f8f1b3ae65ce"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td></tr>
-<tr class="separator:aff698956edca6310a1b6f8f1b3ae65ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea72bb39c0c88bb2f234926c4ba524f"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a6ea72bb39c0c88bb2f234926c4ba524f">Response</a> ()</td></tr>
+<tr class="separator:a6ea72bb39c0c88bb2f234926c4ba524f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81bc2f4f369eebf8ea60cdde461e4f6e"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a81bc2f4f369eebf8ea60cdde461e4f6e">setResponseCode</a> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;code)</td></tr>
+<tr class="memdesc:a81bc2f4f369eebf8ea60cdde461e4f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the HTTP response code for the <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a81bc2f4f369eebf8ea60cdde461e4f6e">More...</a><br /></td></tr>
+<tr class="separator:a81bc2f4f369eebf8ea60cdde461e4f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c769c6dbdb18cfa6f163d734adb8b8"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#ad6c769c6dbdb18cfa6f163d734adb8b8">getResponseType</a> (void) const </td></tr>
+<tr class="memdesc:ad6c769c6dbdb18cfa6f163d734adb8b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ResponseType const for the response. This is XML, JSON, Binary, Text, or Unknown.  <a href="#ad6c769c6dbdb18cfa6f163d734adb8b8">More...</a><br /></td></tr>
+<tr class="separator:ad6c769c6dbdb18cfa6f163d734adb8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8024beb81d778ea94c46ebf9630a0cf4"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a8024beb81d778ea94c46ebf9630a0cf4">setResponseType</a> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;type)</td></tr>
+<tr class="memdesc:a8024beb81d778ea94c46ebf9630a0cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of response received (XML, JSON, Binary, etc.), set my this API internally.  <a href="#a8024beb81d778ea94c46ebf9630a0cf4">More...</a><br /></td></tr>
+<tr class="separator:a8024beb81d778ea94c46ebf9630a0cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9145483612c3ac5493fbbaa93b29f634"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a9145483612c3ac5493fbbaa93b29f634">setResponseHeaders</a> (const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;headers)</td></tr>
+<tr class="memdesc:a9145483612c3ac5493fbbaa93b29f634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the headers received as part of the response.  <a href="#a9145483612c3ac5493fbbaa93b29f634">More...</a><br /></td></tr>
+<tr class="separator:a9145483612c3ac5493fbbaa93b29f634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a264b7f6e797621db31d60fcbbc831936"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a264b7f6e797621db31d60fcbbc831936">getResponseCode</a> (void) const </td></tr>
+<tr class="memdesc:a264b7f6e797621db31d60fcbbc831936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the HTTP response code for the response.  <a href="#a264b7f6e797621db31d60fcbbc831936">More...</a><br /></td></tr>
+<tr class="separator:a264b7f6e797621db31d60fcbbc831936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e02f69c6c6f4f83b093335d3275f895"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a3e02f69c6c6f4f83b093335d3275f895">getResponseHeaders</a> (void) const </td></tr>
+<tr class="memdesc:a3e02f69c6c6f4f83b093335d3275f895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the headers that were returned with the response.  <a href="#a3e02f69c6c6f4f83b093335d3275f895">More...</a><br /></td></tr>
+<tr class="separator:a3e02f69c6c6f4f83b093335d3275f895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207a41f92e3a34e0c2b7c4f6265de606"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a207a41f92e3a34e0c2b7c4f6265de606">read</a> (void *buffer, const size_t &amp;max_size, const size_t off=0)</td></tr>
+<tr class="memdesc:a207a41f92e3a34e0c2b7c4f6265de606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw response in to a buffer. Used for Binary responses.  <a href="#a207a41f92e3a34e0c2b7c4f6265de606">More...</a><br /></td></tr>
+<tr class="separator:a207a41f92e3a34e0c2b7c4f6265de606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91c2ff92401a46f128652df91db2db00"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a91c2ff92401a46f128652df91db2db00">getContent</a> () const </td></tr>
+<tr class="memdesc:a91c2ff92401a46f128652df91db2db00"><td class="mdescLeft">&#160;</td><td class="mdescRight">For text responses (including JSON and XML), returns the response content as a string.  <a href="#a91c2ff92401a46f128652df91db2db00">More...</a><br /></td></tr>
+<tr class="separator:a91c2ff92401a46f128652df91db2db00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a4b835b37ecf8b5334fd35074da6a6d0a">setContent</a> (std::string *content)</td></tr>
+<tr class="memdesc:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a4b835b37ecf8b5334fd35074da6a6d0a">More...</a><br /></td></tr>
+<tr class="separator:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bf68a96b168e0c43b39b643a870f1b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bf68a96b168e0c43b39b643a870f1b8"></a>
+MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>Response</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
+<tr class="separator:a1bf68a96b168e0c43b39b643a870f1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff483fa9a7197ba858716074b7da2a81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff483fa9a7197ba858716074b7da2a81"></a>
+MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
+<tr class="separator:aff483fa9a7197ba858716074b7da2a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encapsulates a response from a MarkLogic server REST API. </p>
@@ -156,12 +149,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This class is deliberately low level. See the CppRestJsonHelper and PugiXmlHelper classes for how to extract a DocumentContent object from a <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a> object. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a6fe9f3d9b1e2b056ca9c994135252974"></a>
+<a class="anchor" id="a6ea72bb39c0c88bb2f234926c4ba524f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">mlclient::Response::Response </td>
+          <td class="memname">MLCLIENT_API mlclient::Response::Response </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -173,12 +166,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0487a31c6d74e7a1d5dc4ba1f9b263e2"></a>
+<a class="anchor" id="a91c2ff92401a46f128652df91db2db00"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string&amp; mlclient::Response::getContent </td>
+          <td class="memname">MLCLIENT_API const std::string&amp; mlclient::Response::getContent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -191,12 +184,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a65a5133e83bca31c37bd443da37451eb"></a>
+<a class="anchor" id="a264b7f6e797621db31d60fcbbc831936"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> mlclient::Response::getResponseCode </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> mlclient::Response::getResponseCode </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -205,24 +198,17 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
       </table>
 </div><div class="memdoc">
 
-<p>Sets the headers received as part of the response. </p>
-<p>This is set when the response is received but should not be set otherwise.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>The HTTP response headers Returns the HTTP response code for the response.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Returns the HTTP response code for the response. </p>
 <dl class="section return"><dt>Returns</dt><dd>The HTTP response code </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a21f8301c312194b48864633dcec68246"></a>
+<a class="anchor" id="a3e02f69c6c6f4f83b093335d3275f895"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> mlclient::Response::getResponseHeaders </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> mlclient::Response::getResponseHeaders </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -233,16 +219,15 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 <p>Returns the headers that were returned with the response. </p>
 <dl class="section return"><dt>Returns</dt><dd>The HTTP response headers </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Remove the dependency on the cpprest API </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a4d2dd5829c9f12d1cca84c12502369f5"></a>
+<a class="anchor" id="ad6c769c6dbdb18cfa6f163d734adb8b8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> mlclient::Response::getResponseType </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> mlclient::Response::getResponseType </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -256,12 +241,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a628325fb5e48c06f69fb4ead94fbb367"></a>
+<a class="anchor" id="a207a41f92e3a34e0c2b7c4f6265de606"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t mlclient::Response::read </td>
+          <td class="memname">MLCLIENT_API size_t mlclient::Response::read </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
@@ -300,12 +285,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a92d868056fd29885b44317be4ecda999"></a>
+<a class="anchor" id="a4b835b37ecf8b5334fd35074da6a6d0a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mlclient::Response::setContent </td>
+          <td class="memname">MLCLIENT_API void mlclient::Response::setContent </td>
           <td>(</td>
           <td class="paramtype">std::string *&#160;</td>
           <td class="paramname"><em>content</em></td><td>)</td>
@@ -326,12 +311,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a8df32c7a735c11fe23eb216a0ff7d7d7"></a>
+<a class="anchor" id="a81bc2f4f369eebf8ea60cdde461e4f6e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mlclient::Response::setResponseCode </td>
+          <td class="memname">MLCLIENT_API void mlclient::Response::setResponseCode </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;&#160;</td>
           <td class="paramname"><em>code</em></td><td>)</td>
@@ -351,12 +336,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a0f7eef7761531135409092e88b2c7258"></a>
+<a class="anchor" id="a9145483612c3ac5493fbbaa93b29f634"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mlclient::Response::setResponseHeaders </td>
+          <td class="memname">MLCLIENT_API void mlclient::Response::setResponseHeaders </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a> &amp;&#160;</td>
           <td class="paramname"><em>headers</em></td><td>)</td>
@@ -376,14 +361,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 
 </div>
 </div>
-<a class="anchor" id="a2a19e062190a54b18dea43008dd15c7b"></a>
+<a class="anchor" id="a8024beb81d778ea94c46ebf9630a0cf4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mlclient::Response::setResponseType </td>
+          <td class="memname">MLCLIENT_API void mlclient::Response::setResponseType </td>
           <td>(</td>
-          <td class="paramtype">const enum <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;&#160;</td>
           <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
@@ -402,7 +387,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ResponseTest</b></td
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_response_8hpp_source.html">Response.hpp</a></li>
+<li>include/mlclient/<a class="el" href="_response_8hpp_source.html">Response.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

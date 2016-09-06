@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['ibinarydocumentcontent',['IBinaryDocumentContent',['../classmlclient_1_1_i_binary_document_content.html',1,'mlclient']]],
-  ['iconnection',['IConnection',['../classmlclient_1_1_i_connection.html',1,'mlclient']]],
-  ['idocumentcontent',['IDocumentContent',['../classmlclient_1_1_i_document_content.html',1,'mlclient']]],
-  ['invalidformatexception',['InvalidFormatException',['../classmlclient_1_1_invalid_format_exception.html',1,'mlclient']]],
-  ['itextdocumentcontent',['ITextDocumentContent',['../classmlclient_1_1_i_text_document_content.html',1,'mlclient']]]
+  ['fakeconnection',['FakeConnection',['../classmlclient_1_1internals_1_1_fake_connection.html',1,'mlclient::internals']]],
+  ['filedocumentcontent',['FileDocumentContent',['../classmlclient_1_1_file_document_content.html',1,'mlclient']]]
 ];

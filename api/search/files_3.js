@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['responsewrapper_2eh',['ResponseWrapper.h',['../_response_wrapper_8h.html',1,'']]]
+  ['pugixmlhelper_2ehpp',['PugiXmlHelper.hpp',['../_pugi_xml_helper_8hpp.html',1,'']]]
 ];

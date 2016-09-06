@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['what',['what',['../classmlclient_1_1_invalid_format_exception.html#ad18b7a305e6768f07b8683c0e168c304',1,'mlclient::InvalidFormatException::what()'],['../classmlclient_1_1_no_credentials_exception.html#ae9df0a71170f161b0857f9ef7b8b6351',1,'mlclient::NoCredentialsException::what()']]]
+  ['jsonpropertyquery',['JsonPropertyQuery',['../classmlclient_1_1utilities_1_1_json_property_query.html#a3cf7b898ac971ef0b1c09b638a2fbad2',1,'mlclient::utilities::JsonPropertyQuery']]],
+  ['jsonrangequery',['jsonRangeQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#af2c084321916768b99ca2fe6d1d6da6d',1,'mlclient::utilities::SearchBuilder']]],
+  ['jsonvaluequery',['jsonValueQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a8065a70250cc5b3be9222a9b3dc05d22',1,'mlclient::utilities::SearchBuilder']]]
 ];

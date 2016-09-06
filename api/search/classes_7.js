@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['searchdescription',['SearchDescription',['../classmlclient_1_1_search_description.html',1,'mlclient']]]
+  ['jsonpropertyquery',['JsonPropertyQuery',['../classmlclient_1_1utilities_1_1_json_property_query.html',1,'mlclient::utilities']]],
+  ['jsonpropertyref',['JsonPropertyRef',['../classmlclient_1_1utilities_1_1_json_property_ref.html',1,'mlclient::utilities']]]
 ];

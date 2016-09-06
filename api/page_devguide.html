@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: Application Developers Guide</title>
+<title>MarkLogic Connect: Application Developers Guide</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -146,7 +146,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 </ul>
 </div>
-<div class="textblock"><h1><a class="anchor" id="sec_introduction"></a>
+<div class="textblock"><p>Main C++ Developer Guide</p>
+<h1><a class="anchor" id="sec_introduction"></a>
 Introduction to the C++ API</h1>
 <p>The C++ API is an Apache 2.0 licensed Open Source API allowing interaction with MarkLogic Server versions 6.0 and above. The capabilities provided by the C++ API include:-</p>
 <ul>
@@ -160,7 +161,7 @@ Introduction to the C++ API</h1>
 <p>A low-level interface on the Connection object allows raw http calls to be used. This is useful for extensions or Early Access functionality that is not yet wrapped by the C++ API Connection class' methods.</p>
 <h2><a class="anchor" id="sec_gettingstarted"></a>
 Getting Started</h2>
-<p>First you must install the C++ API. This currently means building it and its dependencies from source. Please see the <a class="el" href="page__install.html">Install page </a> for those instructions.</p>
+<p>First you must install the C++ API. This currently means building it and its dependencies from source. Please see the <a class="el" href="">Install page </a> for those instructions.</p>
 <h2><a class="anchor" id="sec_connection"></a>
 Creating, working with, and releasing a Connection instance</h2>
 <p>The Connection class is the way to generate a connection to MarkLogic Server and invoke its REST API operations.</p>
@@ -176,7 +177,7 @@ std::cout &lt;&lt; "Document content: " &lt;&lt; resp-&gt;getContent() &lt;&lt; 
 <h2><a class="anchor" id="sec_idocumentcontent"></a>
 Using Document and IDocumentContent objects</h2>
 <p>The utility library includes the PugiXMLHelper and CppRestJsonHelper classes. These each have a toDocument method that converts a Response to an instance of PugiXMLDocumentContent (an instance of ITextDocumentContent and thus IDocumentContent) and CppRestJsonDocumentContent (an instance of both ITextDocumentContent and IDocumentContent again), respectively.</p>
-<p>These provide API-specific wrappings for the PUGI XML library's parsed XML pugi::xml_document class, and Microsoft's cpprest web::json::json_value types, respectively. These are utility classes that know how to traverse and manipulate XML and JSON documents, respectively.</p>
+<p>These provide API-specific wrappings for the PUGI XML library's parsed XML <a class="el" href="classpugi_1_1xml__document.html">pugi::xml_document</a> class, and Microsoft's cpprest web::json::json_value types, respectively. These are utility classes that know how to traverse and manipulate XML and JSON documents, respectively.</p>
 <p>These classes exist in the utility library as they introduce extra dependencies to MLCPlusPlus. If you need to start with one of these parsed object types, or need to work at a higher level than raw XML or JSON text, then use these classes.</p>
 <p>There is also a GenericTextDocument class which too is an instance of ITextDocumentContent, and thus IDocumentContent. This simply wraps a string rather than a higher level class.</p>
 <p>All of these methods provide a thin Document wrapper that supports methods to return the content as either a string, or a stream, with a specified MIME type provided.</p>

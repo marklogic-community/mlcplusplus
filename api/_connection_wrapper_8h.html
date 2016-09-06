@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/ConnectionWrapper.h File Reference</title>
+<title>MarkLogic Connect: include/mlclient/ConnectionWrapper.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -97,7 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>A header file to provide a C wrapping of the Connection C++ class.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="_response_wrapper_8h_source.html">ResponseWrapper.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;mlclient/mlclient.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="_response_wrapper_8h_source.html">mlclient/ResponseWrapper.h</a>&gt;</code><br />
 </div>
 <p><a href="_connection_wrapper_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -109,36 +110,39 @@ typedef void&#160;</td><td class="memItemRight" valign="bottom"><b>CConnection</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0f9f96ce7400bf0f66d951c499f039ce"><td class="memItemLeft" align="right" valign="top">CConnection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a0f9f96ce7400bf0f66d951c499f039ce">ml_connection_new</a> ()</td></tr>
-<tr class="memdesc:a0f9f96ce7400bf0f66d951c499f039ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new blank CConnection instance.  <a href="#a0f9f96ce7400bf0f66d951c499f039ce">More...</a><br /></td></tr>
-<tr class="separator:a0f9f96ce7400bf0f66d951c499f039ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a613b334d14483b593a62a82dd357d093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a613b334d14483b593a62a82dd357d093">ml_connection_delete</a> (CConnection *t)</td></tr>
-<tr class="memdesc:a613b334d14483b593a62a82dd357d093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely deletes a CConnection instance.  <a href="#a613b334d14483b593a62a82dd357d093">More...</a><br /></td></tr>
-<tr class="separator:a613b334d14483b593a62a82dd357d093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f47ecbe026017cb9964e238481fd5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a39f47ecbe026017cb9964e238481fd5b">ml_connection_configure</a> (const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</td></tr>
-<tr class="memdesc:a39f47ecbe026017cb9964e238481fd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configured the CConnection given the specified properties.  <a href="#a39f47ecbe026017cb9964e238481fd5b">More...</a><br /></td></tr>
-<tr class="separator:a39f47ecbe026017cb9964e238481fd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bbf29f4338b15cb35bfae191b192f24"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a6bbf29f4338b15cb35bfae191b192f24">ml_connection_doGet</a> (const CConnection *conn, const char *pathAndQuerystring)</td></tr>
-<tr class="memdesc:a6bbf29f4338b15cb35bfae191b192f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic GET request to a MarkLogic REST API (or extension) endpoint.  <a href="#a6bbf29f4338b15cb35bfae191b192f24">More...</a><br /></td></tr>
-<tr class="separator:a6bbf29f4338b15cb35bfae191b192f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae660f9102176c5099c8ff98d786e4ba9"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#ae660f9102176c5099c8ff98d786e4ba9">ml_connection_doPut</a> (const CConnection *conn, const char *pathAndQuerystring, const char *payload)</td></tr>
-<tr class="memdesc:ae660f9102176c5099c8ff98d786e4ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic PUT request to a MarkLogic REST API (or extension) endpoint.  <a href="#ae660f9102176c5099c8ff98d786e4ba9">More...</a><br /></td></tr>
-<tr class="separator:ae660f9102176c5099c8ff98d786e4ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affdd087058b68446b0ce50f0bbdacad3"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#affdd087058b68446b0ce50f0bbdacad3">ml_connection_doPost</a> (const CConnection *conn, const char *pathAndQuerystring, const char *payload)</td></tr>
-<tr class="memdesc:affdd087058b68446b0ce50f0bbdacad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic POST request to a MarkLogic REST API (or extension) endpoint.  <a href="#affdd087058b68446b0ce50f0bbdacad3">More...</a><br /></td></tr>
-<tr class="separator:affdd087058b68446b0ce50f0bbdacad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd4486855d9fce5a784eecb44388f446"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#abd4486855d9fce5a784eecb44388f446">ml_connection_doDelete</a> (const CConnection *conn, const char *path)</td></tr>
-<tr class="memdesc:abd4486855d9fce5a784eecb44388f446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic DELETE request to a MarkLogic REST API (or extension) endpoint.  <a href="#abd4486855d9fce5a784eecb44388f446">More...</a><br /></td></tr>
-<tr class="separator:abd4486855d9fce5a784eecb44388f446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adef37c84afd3c6aa67f0d00ab8cbf28b"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#adef37c84afd3c6aa67f0d00ab8cbf28b">ml_connection_getDocument</a> (const CConnection *conn, const char *uri)</td></tr>
-<tr class="memdesc:adef37c84afd3c6aa67f0d00ab8cbf28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches a document by URI from MarkLogic server, on the specified connection instance.  <a href="#adef37c84afd3c6aa67f0d00ab8cbf28b">More...</a><br /></td></tr>
-<tr class="separator:adef37c84afd3c6aa67f0d00ab8cbf28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2980636057bdddf93031b906335be937"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a2980636057bdddf93031b906335be937">ml_connection_saveDocument</a> (const CConnection *conn, const char *uri, const char *payload)</td></tr>
-<tr class="memdesc:a2980636057bdddf93031b906335be937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document by URI from MarkLogic server, on the specified connection instance.  <a href="#a2980636057bdddf93031b906335be937">More...</a><br /></td></tr>
-<tr class="separator:a2980636057bdddf93031b906335be937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72f44f2378058efa160a27dd356bc75c"><td class="memItemLeft" align="right" valign="top">CResponse *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a72f44f2378058efa160a27dd356bc75c">ml_connection_search</a> (const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</td></tr>
-<tr class="memdesc:a72f44f2378058efa160a27dd356bc75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search on MarkLogic server, using the specified connection instance.  <a href="#a72f44f2378058efa160a27dd356bc75c">More...</a><br /></td></tr>
-<tr class="separator:a72f44f2378058efa160a27dd356bc75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51d0c89f69858afc306e0db9dc40bf8"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API CConnection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#ae51d0c89f69858afc306e0db9dc40bf8">ml_connection_new</a> ()</td></tr>
+<tr class="memdesc:ae51d0c89f69858afc306e0db9dc40bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new blank CConnection instance.  <a href="#ae51d0c89f69858afc306e0db9dc40bf8">More...</a><br /></td></tr>
+<tr class="separator:ae51d0c89f69858afc306e0db9dc40bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a4c39d112c4914b5986edb882b529cd"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a9a4c39d112c4914b5986edb882b529cd">ml_connection_delete</a> (CConnection *t)</td></tr>
+<tr class="memdesc:a9a4c39d112c4914b5986edb882b529cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely deletes a CConnection instance.  <a href="#a9a4c39d112c4914b5986edb882b529cd">More...</a><br /></td></tr>
+<tr class="separator:a9a4c39d112c4914b5986edb882b529cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b61af5db0a2e53bacbb157b61db733"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a45b61af5db0a2e53bacbb157b61db733">ml_connection_configure</a> (const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</td></tr>
+<tr class="memdesc:a45b61af5db0a2e53bacbb157b61db733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configured the CConnection given the specified properties.  <a href="#a45b61af5db0a2e53bacbb157b61db733">More...</a><br /></td></tr>
+<tr class="separator:a45b61af5db0a2e53bacbb157b61db733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a022e306b067719c6e082ea31435281dc"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a022e306b067719c6e082ea31435281dc">ml_connection_doGet</a> (const CConnection *conn, const char *pathAndQuerystring)</td></tr>
+<tr class="memdesc:a022e306b067719c6e082ea31435281dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic GET request to a MarkLogic REST API (or extension) endpoint.  <a href="#a022e306b067719c6e082ea31435281dc">More...</a><br /></td></tr>
+<tr class="separator:a022e306b067719c6e082ea31435281dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0856b09ce1d065d015c8b9f5d934684d"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a0856b09ce1d065d015c8b9f5d934684d">ml_connection_doPut</a> (const CConnection *conn, const char *pathAndQuerystring, const char *payload)</td></tr>
+<tr class="memdesc:a0856b09ce1d065d015c8b9f5d934684d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic PUT request to a MarkLogic REST API (or extension) endpoint.  <a href="#a0856b09ce1d065d015c8b9f5d934684d">More...</a><br /></td></tr>
+<tr class="separator:a0856b09ce1d065d015c8b9f5d934684d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4842aa4c201590f1bab895e68cb66be"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#ac4842aa4c201590f1bab895e68cb66be">ml_connection_doPost</a> (const CConnection *conn, const char *pathAndQuerystring, const char *payload)</td></tr>
+<tr class="memdesc:ac4842aa4c201590f1bab895e68cb66be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic POST request to a MarkLogic REST API (or extension) endpoint.  <a href="#ac4842aa4c201590f1bab895e68cb66be">More...</a><br /></td></tr>
+<tr class="separator:ac4842aa4c201590f1bab895e68cb66be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c0fae28024c6ee3d72dfd856205da7"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#af2c0fae28024c6ee3d72dfd856205da7">ml_connection_doDelete</a> (const CConnection *conn, const char *path)</td></tr>
+<tr class="memdesc:af2c0fae28024c6ee3d72dfd856205da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a generic DELETE request to a MarkLogic REST API (or extension) endpoint.  <a href="#af2c0fae28024c6ee3d72dfd856205da7">More...</a><br /></td></tr>
+<tr class="separator:af2c0fae28024c6ee3d72dfd856205da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ee2cb689da7b31499bc600b50935b8"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a20ee2cb689da7b31499bc600b50935b8">ml_connection_getDocument</a> (const CConnection *conn, const char *uri)</td></tr>
+<tr class="memdesc:a20ee2cb689da7b31499bc600b50935b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetches a document by URI from MarkLogic server, on the specified connection instance.  <a href="#a20ee2cb689da7b31499bc600b50935b8">More...</a><br /></td></tr>
+<tr class="separator:a20ee2cb689da7b31499bc600b50935b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2693382bd036a27e68b9af519e90d5e"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#ac2693382bd036a27e68b9af519e90d5e">ml_connection_saveDocument</a> (const CConnection *conn, const char *uri, const char *payload)</td></tr>
+<tr class="memdesc:ac2693382bd036a27e68b9af519e90d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a document by URI from MarkLogic server, on the specified connection instance.  <a href="#ac2693382bd036a27e68b9af519e90d5e">More...</a><br /></td></tr>
+<tr class="separator:ac2693382bd036a27e68b9af519e90d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26f1c488eba5e8eb92410b7980a905f"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#af26f1c488eba5e8eb92410b7980a905f">ml_connection_deleteDocument</a> (const CConnection *conn, const char *uri)</td></tr>
+<tr class="memdesc:af26f1c488eba5e8eb92410b7980a905f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a document by URI from MarkLogic server, on the specified connection instance.  <a href="#af26f1c488eba5e8eb92410b7980a905f">More...</a><br /></td></tr>
+<tr class="separator:af26f1c488eba5e8eb92410b7980a905f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fa6cc9bccdeb608458ff920c063a06"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_connection_wrapper_8h.html#a66fa6cc9bccdeb608458ff920c063a06">ml_connection_search</a> (const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</td></tr>
+<tr class="memdesc:a66fa6cc9bccdeb608458ff920c063a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a search on MarkLogic server, using the specified connection instance.  <a href="#a66fa6cc9bccdeb608458ff920c063a06">More...</a><br /></td></tr>
+<tr class="separator:a66fa6cc9bccdeb608458ff920c063a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A header file to provide a C wrapping of the Connection C++ class. </p>
@@ -146,12 +150,12 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Adam Fowler <a href="#" onclick="location.href='mai'+'lto:'+'ada'+'m.'+'fow'+'le'+'r@m'+'ar'+'klo'+'gi'+'c.c'+'om'; return false;">adam.<span style="display: none;">.nosp@m.</span>fowl<span style="display: none;">.nosp@m.</span>er@ma<span style="display: none;">.nosp@m.</span>rklo<span style="display: none;">.nosp@m.</span>gic.c<span style="display: none;">.nosp@m.</span>om</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2016-04-18 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a39f47ecbe026017cb9964e238481fd5b"></a>
+<a class="anchor" id="a45b61af5db0a2e53bacbb157b61db733"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ml_connection_configure </td>
+          <td class="memname">MLCLIENT_API void ml_connection_configure </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -211,12 +215,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a613b334d14483b593a62a82dd357d093"></a>
+<a class="anchor" id="a9a4c39d112c4914b5986edb882b529cd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ml_connection_delete </td>
+          <td class="memname">MLCLIENT_API void ml_connection_delete </td>
           <td>(</td>
           <td class="paramtype">CConnection *&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -235,12 +239,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abd4486855d9fce5a784eecb44388f446"></a>
+<a class="anchor" id="af26f1c488eba5e8eb92410b7980a905f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_doDelete </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_deleteDocument </td>
+          <td>(</td>
+          <td class="paramtype">const CConnection *&#160;</td>
+          <td class="paramname"><em>conn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>uri</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes a document by URI from MarkLogic server, on the specified connection instance. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2016-05-23 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af2c0fae28024c6ee3d72dfd856205da7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_doDelete </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -265,12 +299,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6bbf29f4338b15cb35bfae191b192f24"></a>
+<a class="anchor" id="a022e306b067719c6e082ea31435281dc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_doGet </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_doGet </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -295,12 +329,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="affdd087058b68446b0ce50f0bbdacad3"></a>
+<a class="anchor" id="ac4842aa4c201590f1bab895e68cb66be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_doPost </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_doPost </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -331,12 +365,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae660f9102176c5099c8ff98d786e4ba9"></a>
+<a class="anchor" id="a0856b09ce1d065d015c8b9f5d934684d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_doPut </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_doPut </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -367,12 +401,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adef37c84afd3c6aa67f0d00ab8cbf28b"></a>
+<a class="anchor" id="a20ee2cb689da7b31499bc600b50935b8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_getDocument </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_getDocument </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -397,12 +431,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0f9f96ce7400bf0f66d951c499f039ce"></a>
+<a class="anchor" id="ae51d0c89f69858afc306e0db9dc40bf8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CConnection* ml_connection_new </td>
+          <td class="memname">MLCLIENT_API CConnection* ml_connection_new </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -416,12 +450,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2980636057bdddf93031b906335be937"></a>
+<a class="anchor" id="ac2693382bd036a27e68b9af519e90d5e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_saveDocument </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_saveDocument </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -452,12 +486,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a72f44f2378058efa160a27dd356bc75c"></a>
+<a class="anchor" id="a66fa6cc9bccdeb608458ff920c063a06"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CResponse* ml_connection_search </td>
+          <td class="memname">MLCLIENT_API <a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>* ml_connection_search </td>
           <td>(</td>
           <td class="paramtype">const CConnection *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>

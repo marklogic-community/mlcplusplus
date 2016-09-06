@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/ResponseWrapper.h Source File</title>
+<title>MarkLogic Connect: include/mlclient/ResponseWrapper.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -108,49 +108,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef RESPONSEWRAPPER_H</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define RESPONSEWRAPPER_H</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> CResponse;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;mlclient/mlclient.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">   28</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// constants</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// from ResponseCodes.h</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="_response_wrapper_8h.html#a496b3797502f343da29787df9d985738">   37</a></span>&#160;<span class="comment"></span><span class="preprocessor">#define RESPONSETYPE_UNKNOWN  0</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define RESPONSETYPE_XML    1</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define RESPONSETYPE_JSON   2</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define RESPONSETYPE_TEXT   3</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define RESPONSETYPE_BINARY   4</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// destructor (constructed via CConnection)</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="_response_wrapper_8h.html#a578dea9925aa14f3355f616a8987e485">ml_response_delete</a>(CResponse *t);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// member functions</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9">ml_response_length</a>(CResponse *t);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e">ml_response_String</a>(CResponse *t);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a271df6f53d508c26f9e9029491e82b52">ml_response_GetResponseType</a>(CResponse *t);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a9971b2bb07a09aded1639586af7487ae">ml_response_GetResponseCode</a>(CResponse *t);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5">ml_responsecodes_translate</a>(<span class="keywordtype">int</span> code);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// constants</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// from ResponseCodes.h</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="_response_wrapper_8h.html#a496b3797502f343da29787df9d985738">   39</a></span>&#160;<span class="comment"></span><span class="preprocessor">#define RESPONSETYPE_UNKNOWN  0</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define RESPONSETYPE_XML    1</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define RESPONSETYPE_JSON   2</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define RESPONSETYPE_TEXT   3</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define RESPONSETYPE_BINARY   4</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// destructor (constructed via CConnection)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span>MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="_response_wrapper_8h.html#a6d10ca625ff125a3449ad605ca74af99">ml_response_delete</a>(<a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">// member functions</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"></span>MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a8a115c63d5bc023dff43031e46dadf7f">ml_response_length</a>(<a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="_response_wrapper_8h.html#a06b4c25815ae6793fe1166d81e5a4d1f">ml_response_String</a>(<a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a275c7c1c833b6fea89852de7d29bd55e">ml_response_GetResponseType</a>(<a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="_response_wrapper_8h.html#a6ab1ef7e6b3bbd69b1920a214ddeb689">ml_response_GetResponseCode</a>(<a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;MLCLIENT_API <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> <a class="code" href="_response_wrapper_8h.html#a9b55cc6cdcaa9e670e154d1052863fba">ml_responsecodes_translate</a>(<span class="keywordtype">int</span> code);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// end extern C</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="_response_wrapper_8h_html_a9971b2bb07a09aded1639586af7487ae"><div class="ttname"><a href="_response_wrapper_8h.html#a9971b2bb07a09aded1639586af7487ae">ml_response_GetResponseCode</a></div><div class="ttdeci">const int ml_response_GetResponseCode(CResponse *t)</div><div class="ttdoc">Returns the HTTP response code for this response. </div></div>
-<div class="ttc" id="_response_wrapper_8h_html_a7faed8268459bce88a0481b4a9dad94e"><div class="ttname"><a href="_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e">ml_response_String</a></div><div class="ttdeci">const char *const ml_response_String(CResponse *t)</div><div class="ttdoc">Returns the response as a string. Equivalent to Response::getString. </div></div>
-<div class="ttc" id="_response_wrapper_8h_html_a578dea9925aa14f3355f616a8987e485"><div class="ttname"><a href="_response_wrapper_8h.html#a578dea9925aa14f3355f616a8987e485">ml_response_delete</a></div><div class="ttdeci">void ml_response_delete(CResponse *t)</div><div class="ttdoc">Safely deletes a CResponse pointer (Response C++ instance) </div></div>
-<div class="ttc" id="_response_wrapper_8h_html_a271df6f53d508c26f9e9029491e82b52"><div class="ttname"><a href="_response_wrapper_8h.html#a271df6f53d508c26f9e9029491e82b52">ml_response_GetResponseType</a></div><div class="ttdeci">const int ml_response_GetResponseType(CResponse *t)</div><div class="ttdoc">Returns the Response Type enum value for this response. </div></div>
-<div class="ttc" id="_response_wrapper_8h_html_a2879bf705ca85736d538e3398bf73bc9"><div class="ttname"><a href="_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9">ml_response_length</a></div><div class="ttdeci">const int ml_response_length(CResponse *t)</div><div class="ttdoc">Returns the response length (string length) of the response object in character count. Equivalent to Response::getLength. </div></div>
-<div class="ttc" id="_response_wrapper_8h_html_a63a21f0f72515ddd2b258a43ef34a7e5"><div class="ttname"><a href="_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5">ml_responsecodes_translate</a></div><div class="ttdeci">const char *const ml_responsecodes_translate(int code)</div><div class="ttdoc">Returns the textual description for the specified response HTTP code. </div></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="_response_wrapper_8h_html_a9b55cc6cdcaa9e670e154d1052863fba"><div class="ttname"><a href="_response_wrapper_8h.html#a9b55cc6cdcaa9e670e154d1052863fba">ml_responsecodes_translate</a></div><div class="ttdeci">MLCLIENT_API const char *const ml_responsecodes_translate(int code)</div><div class="ttdoc">Returns the textual description for the specified response HTTP code. </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a275c7c1c833b6fea89852de7d29bd55e"><div class="ttname"><a href="_response_wrapper_8h.html#a275c7c1c833b6fea89852de7d29bd55e">ml_response_GetResponseType</a></div><div class="ttdeci">MLCLIENT_API const int ml_response_GetResponseType(CResponse *t)</div><div class="ttdoc">Returns the Response Type enum value for this response. </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a06b4c25815ae6793fe1166d81e5a4d1f"><div class="ttname"><a href="_response_wrapper_8h.html#a06b4c25815ae6793fe1166d81e5a4d1f">ml_response_String</a></div><div class="ttdeci">MLCLIENT_API const char *const ml_response_String(CResponse *t)</div><div class="ttdoc">Returns the response as a string. Equivalent to Response::getString. </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a54619e103c7689cd29a0910288372ecd"><div class="ttname"><a href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a></div><div class="ttdeci">void CResponse</div><div class="ttdoc">Holding typedef to wrap a CWrapper<Response>* pointer as a C variable. </div><div class="ttdef"><b>Definition:</b> ResponseWrapper.h:28</div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a6d10ca625ff125a3449ad605ca74af99"><div class="ttname"><a href="_response_wrapper_8h.html#a6d10ca625ff125a3449ad605ca74af99">ml_response_delete</a></div><div class="ttdeci">MLCLIENT_API void ml_response_delete(CResponse *t)</div><div class="ttdoc">Safely deletes a CResponse pointer (Response C++ instance) </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a8a115c63d5bc023dff43031e46dadf7f"><div class="ttname"><a href="_response_wrapper_8h.html#a8a115c63d5bc023dff43031e46dadf7f">ml_response_length</a></div><div class="ttdeci">MLCLIENT_API const int ml_response_length(CResponse *t)</div><div class="ttdoc">Returns the response length (string length) of the response object in character count. Equivalent to Response::getLength. </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a6ab1ef7e6b3bbd69b1920a214ddeb689"><div class="ttname"><a href="_response_wrapper_8h.html#a6ab1ef7e6b3bbd69b1920a214ddeb689">ml_response_GetResponseCode</a></div><div class="ttdeci">MLCLIENT_API const int ml_response_GetResponseCode(CResponse *t)</div><div class="ttdoc">Returns the HTTP response code for this response. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

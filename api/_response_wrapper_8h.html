@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/ResponseWrapper.h File Reference</title>
+<title>MarkLogic Connect: include/mlclient/ResponseWrapper.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,7 +98,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>A header file to provide a C wrapping of the Response C++ class.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;mlclient/mlclient.h&gt;</code><br />
+</div>
 <p><a href="_response_wrapper_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -127,35 +128,36 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a54619e103c7689cd29a0910288372ecd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54619e103c7689cd29a0910288372ecd"></a>
-typedef void&#160;</td><td class="memItemRight" valign="bottom"><b>CResponse</b></td></tr>
+typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a></td></tr>
+<tr class="memdesc:a54619e103c7689cd29a0910288372ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holding typedef to wrap a CWrapper&lt;Response&gt;* pointer as a C variable. <br /></td></tr>
 <tr class="separator:a54619e103c7689cd29a0910288372ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a578dea9925aa14f3355f616a8987e485"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a578dea9925aa14f3355f616a8987e485"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a578dea9925aa14f3355f616a8987e485">ml_response_delete</a> (CResponse *t)</td></tr>
-<tr class="memdesc:a578dea9925aa14f3355f616a8987e485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely deletes a CResponse pointer (Response C++ instance) <br /></td></tr>
-<tr class="separator:a578dea9925aa14f3355f616a8987e485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2879bf705ca85736d538e3398bf73bc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2879bf705ca85736d538e3398bf73bc9"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a2879bf705ca85736d538e3398bf73bc9">ml_response_length</a> (CResponse *t)</td></tr>
-<tr class="memdesc:a2879bf705ca85736d538e3398bf73bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the response length (string length) of the response object in character count. Equivalent to Response::getLength. <br /></td></tr>
-<tr class="separator:a2879bf705ca85736d538e3398bf73bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7faed8268459bce88a0481b4a9dad94e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7faed8268459bce88a0481b4a9dad94e"></a>
-const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a7faed8268459bce88a0481b4a9dad94e">ml_response_String</a> (CResponse *t)</td></tr>
-<tr class="memdesc:a7faed8268459bce88a0481b4a9dad94e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the response as a string. Equivalent to Response::getString. <br /></td></tr>
-<tr class="separator:a7faed8268459bce88a0481b4a9dad94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271df6f53d508c26f9e9029491e82b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a271df6f53d508c26f9e9029491e82b52"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a271df6f53d508c26f9e9029491e82b52">ml_response_GetResponseType</a> (CResponse *t)</td></tr>
-<tr class="memdesc:a271df6f53d508c26f9e9029491e82b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Response Type enum value for this response. <br /></td></tr>
-<tr class="separator:a271df6f53d508c26f9e9029491e82b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9971b2bb07a09aded1639586af7487ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9971b2bb07a09aded1639586af7487ae"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a9971b2bb07a09aded1639586af7487ae">ml_response_GetResponseCode</a> (CResponse *t)</td></tr>
-<tr class="memdesc:a9971b2bb07a09aded1639586af7487ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the HTTP response code for this response. <br /></td></tr>
-<tr class="separator:a9971b2bb07a09aded1639586af7487ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63a21f0f72515ddd2b258a43ef34a7e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63a21f0f72515ddd2b258a43ef34a7e5"></a>
-const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a63a21f0f72515ddd2b258a43ef34a7e5">ml_responsecodes_translate</a> (int code)</td></tr>
-<tr class="memdesc:a63a21f0f72515ddd2b258a43ef34a7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the textual description for the specified response HTTP code. <br /></td></tr>
-<tr class="separator:a63a21f0f72515ddd2b258a43ef34a7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d10ca625ff125a3449ad605ca74af99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d10ca625ff125a3449ad605ca74af99"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a6d10ca625ff125a3449ad605ca74af99">ml_response_delete</a> (<a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t)</td></tr>
+<tr class="memdesc:a6d10ca625ff125a3449ad605ca74af99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely deletes a CResponse pointer (Response C++ instance) <br /></td></tr>
+<tr class="separator:a6d10ca625ff125a3449ad605ca74af99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a115c63d5bc023dff43031e46dadf7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a115c63d5bc023dff43031e46dadf7f"></a>
+MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a8a115c63d5bc023dff43031e46dadf7f">ml_response_length</a> (<a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t)</td></tr>
+<tr class="memdesc:a8a115c63d5bc023dff43031e46dadf7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the response length (string length) of the response object in character count. Equivalent to Response::getLength. <br /></td></tr>
+<tr class="separator:a8a115c63d5bc023dff43031e46dadf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b4c25815ae6793fe1166d81e5a4d1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06b4c25815ae6793fe1166d81e5a4d1f"></a>
+MLCLIENT_API const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a06b4c25815ae6793fe1166d81e5a4d1f">ml_response_String</a> (<a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t)</td></tr>
+<tr class="memdesc:a06b4c25815ae6793fe1166d81e5a4d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the response as a string. Equivalent to Response::getString. <br /></td></tr>
+<tr class="separator:a06b4c25815ae6793fe1166d81e5a4d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275c7c1c833b6fea89852de7d29bd55e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a275c7c1c833b6fea89852de7d29bd55e"></a>
+MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a275c7c1c833b6fea89852de7d29bd55e">ml_response_GetResponseType</a> (<a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t)</td></tr>
+<tr class="memdesc:a275c7c1c833b6fea89852de7d29bd55e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Response Type enum value for this response. <br /></td></tr>
+<tr class="separator:a275c7c1c833b6fea89852de7d29bd55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab1ef7e6b3bbd69b1920a214ddeb689"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ab1ef7e6b3bbd69b1920a214ddeb689"></a>
+MLCLIENT_API const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a6ab1ef7e6b3bbd69b1920a214ddeb689">ml_response_GetResponseCode</a> (<a class="el" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> *t)</td></tr>
+<tr class="memdesc:a6ab1ef7e6b3bbd69b1920a214ddeb689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the HTTP response code for this response. <br /></td></tr>
+<tr class="separator:a6ab1ef7e6b3bbd69b1920a214ddeb689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b55cc6cdcaa9e670e154d1052863fba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b55cc6cdcaa9e670e154d1052863fba"></a>
+MLCLIENT_API const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_response_wrapper_8h.html#a9b55cc6cdcaa9e670e154d1052863fba">ml_responsecodes_translate</a> (int code)</td></tr>
+<tr class="memdesc:a9b55cc6cdcaa9e670e154d1052863fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the textual description for the specified response HTTP code. <br /></td></tr>
+<tr class="separator:a9b55cc6cdcaa9e670e154d1052863fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A header file to provide a C wrapping of the Response C++ class. </p>

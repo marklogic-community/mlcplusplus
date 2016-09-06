@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['ibinarydocumentcontent',['IBinaryDocumentContent',['../classmlclient_1_1_i_binary_document_content.html',1,'mlclient']]],
-  ['ibinarydocumentcontent',['IBinaryDocumentContent',['../classmlclient_1_1_i_binary_document_content.html#a0422bc609995315371f01f2e5ba86510',1,'mlclient::IBinaryDocumentContent']]],
-  ['iconnection',['IConnection',['../classmlclient_1_1_i_connection.html',1,'mlclient']]],
-  ['idocumentcontent',['IDocumentContent',['../classmlclient_1_1_i_document_content.html#ab22722f1867bce185bba426e5f8afba2',1,'mlclient::IDocumentContent']]],
-  ['idocumentcontent',['IDocumentContent',['../classmlclient_1_1_i_document_content.html',1,'mlclient']]],
-  ['invalidformatexception',['InvalidFormatException',['../classmlclient_1_1_invalid_format_exception.html',1,'mlclient']]],
-  ['itextdocumentcontent',['ITextDocumentContent',['../classmlclient_1_1_i_text_document_content.html',1,'mlclient']]],
-  ['installing_20mlcplusplus',['Installing MLCPlusPlus',['../page__install.html',1,'']]]
+  ['hasaggregates',['hasAggregates',['../classmlclient_1_1_values_result.html#a89a0d3756c6be500926c1a4cc96c346f',1,'mlclient::ValuesResult']]],
+  ['hascollections',['hasCollections',['../classmlclient_1_1_document.html#a58471c8a789aa7646ff9a7ee7f74ee7b',1,'mlclient::Document']]],
+  ['hascontent',['hasContent',['../classmlclient_1_1_document.html#a8dc6ed31ec726da89dad45d42140f5e4',1,'mlclient::Document']]],
+  ['haspermissions',['hasPermissions',['../classmlclient_1_1_document.html#aa54412b88438b9f397d128377b0e2add',1,'mlclient::Document']]],
+  ['hasproperties',['hasProperties',['../classmlclient_1_1_document.html#acc5329570c631f4400a27ab9f75127b6',1,'mlclient::Document']]],
+  ['hasuri',['hasUri',['../classmlclient_1_1_document.html#a20fdfbe76bf5fa64304453f05d8ed04a',1,'mlclient::Document']]],
+  ['httpheaders',['HttpHeaders',['../classmlclient_1_1_http_headers.html',1,'mlclient']]]
 ];

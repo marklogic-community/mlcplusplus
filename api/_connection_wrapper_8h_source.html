@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: src/ConnectionWrapper.h Source File</title>
+<title>MarkLogic Connect: include/mlclient/ConnectionWrapper.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_f962966440d8012f31083c1b7ba9629b.html">include</a></li><li class="navelem"><a class="el" href="dir_9572b7132ea6ef0e2507a1f4274bc823.html">mlclient</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -108,57 +108,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef CONNECTIONWRAPPER_H</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define CONNECTIONWRAPPER_H</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_response_wrapper_8h.html">ResponseWrapper.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;mlclient/mlclient.h&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> CConnection;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// constructor</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span>CConnection * <a class="code" href="_connection_wrapper_8h.html#a0f9f96ce7400bf0f66d951c499f039ce">ml_connection_new</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// destructor</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="_connection_wrapper_8h.html#a613b334d14483b593a62a82dd357d093">ml_connection_delete</a>(CConnection *t);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// member functions</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_response_wrapper_8h.html">mlclient/ResponseWrapper.h</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> CConnection;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// constructor</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span>MLCLIENT_API CConnection * <a class="code" href="_connection_wrapper_8h.html#ae51d0c89f69858afc306e0db9dc40bf8">ml_connection_new</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// destructor</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="_connection_wrapper_8h.html#a9a4c39d112c4914b5986edb882b529cd">ml_connection_delete</a>(CConnection *t);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_connection_wrapper_8h.html#a39f47ecbe026017cb9964e238481fd5b">ml_connection_configure</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *hostname, <span class="keyword">const</span> <span class="keywordtype">char</span> *port, <span class="keyword">const</span> <span class="keywordtype">char</span> *username, <span class="keyword">const</span> <span class="keywordtype">char</span> *password, <span class="keyword">const</span> <span class="keywordtype">int</span> usessl);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// BASIC commands allowing re-use of this connection, perhaps for URLs we don&#39;t yet wrap</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span>CResponse * <a class="code" href="_connection_wrapper_8h.html#a6bbf29f4338b15cb35bfae191b192f24">ml_connection_doGet</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;CResponse * <a class="code" href="_connection_wrapper_8h.html#ae660f9102176c5099c8ff98d786e4ba9">ml_connection_doPut</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;CResponse * <a class="code" href="_connection_wrapper_8h.html#affdd087058b68446b0ce50f0bbdacad3">ml_connection_doPost</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;CResponse * <a class="code" href="_connection_wrapper_8h.html#abd4486855d9fce5a784eecb44388f446">ml_connection_doDelete</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// Wrapped and supported functions</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span>CResponse * <a class="code" href="_connection_wrapper_8h.html#adef37c84afd3c6aa67f0d00ab8cbf28b">ml_connection_getDocument</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *uri);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;CResponse * <a class="code" href="_connection_wrapper_8h.html#a2980636057bdddf93031b906335be937">ml_connection_saveDocument</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *uri,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;CResponse * <a class="code" href="_connection_wrapper_8h.html#a72f44f2378058efa160a27dd356bc75c">ml_connection_search</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *searchQuery,<span class="keyword">const</span> <span class="keywordtype">char</span> *qtext,<span class="keyword">const</span> <span class="keywordtype">char</span> *options);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// member functions</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;MLCLIENT_API <span class="keywordtype">void</span> <a class="code" href="_connection_wrapper_8h.html#a45b61af5db0a2e53bacbb157b61db733">ml_connection_configure</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *hostname, <span class="keyword">const</span> <span class="keywordtype">char</span> *port, <span class="keyword">const</span> <span class="keywordtype">char</span> *username, <span class="keyword">const</span> <span class="keywordtype">char</span> *password, <span class="keyword">const</span> <span class="keywordtype">int</span> usessl);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// BASIC commands allowing re-use of this connection, perhaps for URLs we don&#39;t yet wrap</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#a022e306b067719c6e082ea31435281dc">ml_connection_doGet</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#a0856b09ce1d065d015c8b9f5d934684d">ml_connection_doPut</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#ac4842aa4c201590f1bab895e68cb66be">ml_connection_doPost</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *pathAndQuerystring,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#af2c0fae28024c6ee3d72dfd856205da7">ml_connection_doDelete</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// Wrapped and supported functions</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span>MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#a20ee2cb689da7b31499bc600b50935b8">ml_connection_getDocument</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *uri);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#ac2693382bd036a27e68b9af519e90d5e">ml_connection_saveDocument</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *uri,<span class="keyword">const</span> <span class="keywordtype">char</span> *payload);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#af26f1c488eba5e8eb92410b7980a905f">ml_connection_deleteDocument</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *uri);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;MLCLIENT_API <a class="code" href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a> * <a class="code" href="_connection_wrapper_8h.html#a66fa6cc9bccdeb608458ff920c063a06">ml_connection_search</a>(<span class="keyword">const</span> CConnection *conn,<span class="keyword">const</span> <span class="keywordtype">char</span> *searchQuery,<span class="keyword">const</span> <span class="keywordtype">char</span> *qtext,<span class="keyword">const</span> <span class="keywordtype">char</span> *options);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a2980636057bdddf93031b906335be937"><div class="ttname"><a href="_connection_wrapper_8h.html#a2980636057bdddf93031b906335be937">ml_connection_saveDocument</a></div><div class="ttdeci">CResponse * ml_connection_saveDocument(const CConnection *conn, const char *uri, const char *payload)</div><div class="ttdoc">Saves a document by URI from MarkLogic server, on the specified connection instance. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a613b334d14483b593a62a82dd357d093"><div class="ttname"><a href="_connection_wrapper_8h.html#a613b334d14483b593a62a82dd357d093">ml_connection_delete</a></div><div class="ttdeci">void ml_connection_delete(CConnection *t)</div><div class="ttdoc">Safely deletes a CConnection instance. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a39f47ecbe026017cb9964e238481fd5b"><div class="ttname"><a href="_connection_wrapper_8h.html#a39f47ecbe026017cb9964e238481fd5b">ml_connection_configure</a></div><div class="ttdeci">void ml_connection_configure(const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</div><div class="ttdoc">Configured the CConnection given the specified properties. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_abd4486855d9fce5a784eecb44388f446"><div class="ttname"><a href="_connection_wrapper_8h.html#abd4486855d9fce5a784eecb44388f446">ml_connection_doDelete</a></div><div class="ttdeci">CResponse * ml_connection_doDelete(const CConnection *conn, const char *path)</div><div class="ttdoc">Performs a generic DELETE request to a MarkLogic REST API (or extension) endpoint. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a6bbf29f4338b15cb35bfae191b192f24"><div class="ttname"><a href="_connection_wrapper_8h.html#a6bbf29f4338b15cb35bfae191b192f24">ml_connection_doGet</a></div><div class="ttdeci">CResponse * ml_connection_doGet(const CConnection *conn, const char *pathAndQuerystring)</div><div class="ttdoc">Performs a generic GET request to a MarkLogic REST API (or extension) endpoint. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_affdd087058b68446b0ce50f0bbdacad3"><div class="ttname"><a href="_connection_wrapper_8h.html#affdd087058b68446b0ce50f0bbdacad3">ml_connection_doPost</a></div><div class="ttdeci">CResponse * ml_connection_doPost(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</div><div class="ttdoc">Performs a generic POST request to a MarkLogic REST API (or extension) endpoint. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a0f9f96ce7400bf0f66d951c499f039ce"><div class="ttname"><a href="_connection_wrapper_8h.html#a0f9f96ce7400bf0f66d951c499f039ce">ml_connection_new</a></div><div class="ttdeci">CConnection * ml_connection_new()</div><div class="ttdoc">Creates a new blank CConnection instance. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_a72f44f2378058efa160a27dd356bc75c"><div class="ttname"><a href="_connection_wrapper_8h.html#a72f44f2378058efa160a27dd356bc75c">ml_connection_search</a></div><div class="ttdeci">CResponse * ml_connection_search(const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</div><div class="ttdoc">Performs a search on MarkLogic server, using the specified connection instance. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_adef37c84afd3c6aa67f0d00ab8cbf28b"><div class="ttname"><a href="_connection_wrapper_8h.html#adef37c84afd3c6aa67f0d00ab8cbf28b">ml_connection_getDocument</a></div><div class="ttdeci">CResponse * ml_connection_getDocument(const CConnection *conn, const char *uri)</div><div class="ttdoc">Fetches a document by URI from MarkLogic server, on the specified connection instance. </div></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="_connection_wrapper_8h_html_ac4842aa4c201590f1bab895e68cb66be"><div class="ttname"><a href="_connection_wrapper_8h.html#ac4842aa4c201590f1bab895e68cb66be">ml_connection_doPost</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_doPost(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</div><div class="ttdoc">Performs a generic POST request to a MarkLogic REST API (or extension) endpoint. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a9a4c39d112c4914b5986edb882b529cd"><div class="ttname"><a href="_connection_wrapper_8h.html#a9a4c39d112c4914b5986edb882b529cd">ml_connection_delete</a></div><div class="ttdeci">MLCLIENT_API void ml_connection_delete(CConnection *t)</div><div class="ttdoc">Safely deletes a CConnection instance. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a66fa6cc9bccdeb608458ff920c063a06"><div class="ttname"><a href="_connection_wrapper_8h.html#a66fa6cc9bccdeb608458ff920c063a06">ml_connection_search</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_search(const CConnection *conn, const char *searchQuery, const char *qtext, const char *options)</div><div class="ttdoc">Performs a search on MarkLogic server, using the specified connection instance. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a20ee2cb689da7b31499bc600b50935b8"><div class="ttname"><a href="_connection_wrapper_8h.html#a20ee2cb689da7b31499bc600b50935b8">ml_connection_getDocument</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_getDocument(const CConnection *conn, const char *uri)</div><div class="ttdoc">Fetches a document by URI from MarkLogic server, on the specified connection instance. </div></div>
+<div class="ttc" id="_response_wrapper_8h_html_a54619e103c7689cd29a0910288372ecd"><div class="ttname"><a href="_response_wrapper_8h.html#a54619e103c7689cd29a0910288372ecd">CResponse</a></div><div class="ttdeci">void CResponse</div><div class="ttdoc">Holding typedef to wrap a CWrapper<Response>* pointer as a C variable. </div><div class="ttdef"><b>Definition:</b> ResponseWrapper.h:28</div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_af26f1c488eba5e8eb92410b7980a905f"><div class="ttname"><a href="_connection_wrapper_8h.html#af26f1c488eba5e8eb92410b7980a905f">ml_connection_deleteDocument</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_deleteDocument(const CConnection *conn, const char *uri)</div><div class="ttdoc">Deletes a document by URI from MarkLogic server, on the specified connection instance. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_ac2693382bd036a27e68b9af519e90d5e"><div class="ttname"><a href="_connection_wrapper_8h.html#ac2693382bd036a27e68b9af519e90d5e">ml_connection_saveDocument</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_saveDocument(const CConnection *conn, const char *uri, const char *payload)</div><div class="ttdoc">Saves a document by URI from MarkLogic server, on the specified connection instance. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a022e306b067719c6e082ea31435281dc"><div class="ttname"><a href="_connection_wrapper_8h.html#a022e306b067719c6e082ea31435281dc">ml_connection_doGet</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_doGet(const CConnection *conn, const char *pathAndQuerystring)</div><div class="ttdoc">Performs a generic GET request to a MarkLogic REST API (or extension) endpoint. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a0856b09ce1d065d015c8b9f5d934684d"><div class="ttname"><a href="_connection_wrapper_8h.html#a0856b09ce1d065d015c8b9f5d934684d">ml_connection_doPut</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_doPut(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</div><div class="ttdoc">Performs a generic PUT request to a MarkLogic REST API (or extension) endpoint. </div></div>
 <div class="ttc" id="_response_wrapper_8h_html"><div class="ttname"><a href="_response_wrapper_8h.html">ResponseWrapper.h</a></div><div class="ttdoc">A header file to provide a C wrapping of the Response C++ class. </div></div>
-<div class="ttc" id="_connection_wrapper_8h_html_ae660f9102176c5099c8ff98d786e4ba9"><div class="ttname"><a href="_connection_wrapper_8h.html#ae660f9102176c5099c8ff98d786e4ba9">ml_connection_doPut</a></div><div class="ttdeci">CResponse * ml_connection_doPut(const CConnection *conn, const char *pathAndQuerystring, const char *payload)</div><div class="ttdoc">Performs a generic PUT request to a MarkLogic REST API (or extension) endpoint. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_ae51d0c89f69858afc306e0db9dc40bf8"><div class="ttname"><a href="_connection_wrapper_8h.html#ae51d0c89f69858afc306e0db9dc40bf8">ml_connection_new</a></div><div class="ttdeci">MLCLIENT_API CConnection * ml_connection_new()</div><div class="ttdoc">Creates a new blank CConnection instance. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_af2c0fae28024c6ee3d72dfd856205da7"><div class="ttname"><a href="_connection_wrapper_8h.html#af2c0fae28024c6ee3d72dfd856205da7">ml_connection_doDelete</a></div><div class="ttdeci">MLCLIENT_API CResponse * ml_connection_doDelete(const CConnection *conn, const char *path)</div><div class="ttdoc">Performs a generic DELETE request to a MarkLogic REST API (or extension) endpoint. </div></div>
+<div class="ttc" id="_connection_wrapper_8h_html_a45b61af5db0a2e53bacbb157b61db733"><div class="ttname"><a href="_connection_wrapper_8h.html#a45b61af5db0a2e53bacbb157b61db733">ml_connection_configure</a></div><div class="ttdeci">MLCLIENT_API void ml_connection_configure(const CConnection *conn, const char *hostname, const char *port, const char *username, const char *password, const int usessl)</div><div class="ttdoc">Configured the CConnection given the specified properties. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

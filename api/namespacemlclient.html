@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>MLCPlusPlus: mlclient Namespace Reference</title>
+<title>MarkLogic Connect: mlclient Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MLCPlusPlus
+   <div id="projectname">MarkLogic Connect
    </div>
-   <div id="projectbrief">MarkLogic C/C++ Client API</div>
+   <div id="projectbrief">MarkLogic Connect Client API Collection</div>
   </td>
  </tr>
  </tbody>
@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -107,28 +108,43 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_connection.html">Connection</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a high level logical object representing all access to a single MarkLogic database.  <a href="classmlclient_1_1_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_document.html">Document</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a representation of a MarkLogic <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>.  <a href="classmlclient_1_1_document.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_file_document_content.html">FileDocumentContent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a file system file ready for its upload to MarkLogic Server.  <a href="classmlclient_1_1_file_document_content.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_generic_text_document_content.html">GenericTextDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="Pure virtual destructor. REQUIRED to allow subclassing. ">ITextDocumentContent</a> (and thus <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a>) that holds all data in a string.  <a href="classmlclient_1_1_generic_text_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="classmlclient_1_1_i_text_document_content.html" title="An overarching interface for a Text Document. ">ITextDocumentContent</a> (and thus <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a>) that holds all data in a string.  <a href="classmlclient_1_1_generic_text_document_content.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_http_headers.html">HttpHeaders</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_binary_document_content.html">IBinaryDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a specialisation of <a class="el" href="classmlclient_1_1_i_document_content.html" title="This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a...">IDocumentContent</a> that holds binary data.  <a href="classmlclient_1_1_i_binary_document_content.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_connection.html">IConnection</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a virtual only interface for a connection. Allows the creation of a FakeConnection subclass, or a real <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> subclass.  <a href="classmlclient_1_1_i_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_content.html">IDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the internal content of a Document. It can be XML, JSON, String or Binary (or a sub type thereof).  <a href="classmlclient_1_1_i_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the internal content of a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>. It can be XML, JSON, String or Binary (or a sub type thereof).  <a href="classmlclient_1_1_i_document_content.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_navigator.html">IDocumentNavigator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a generic lightweight document interface.  <a href="classmlclient_1_1_i_document_navigator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_document_node.html">IDocumentNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acts as a generic lightweight document element interface.  <a href="classmlclient_1_1_i_document_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_invalid_format_exception.html">InvalidFormatException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates an issue with parsing content.  <a href="classmlclient_1_1_invalid_format_exception.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_i_text_document_content.html">ITextDocumentContent</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual destructor. REQUIRED to allow subclassing.  <a href="classmlclient_1_1_i_text_document_content.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An overarching interface for a Text <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a>.  <a href="classmlclient_1_1_i_text_document_content.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmlclient_1_1_logging_configuration.html">LoggingConfiguration</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> to use.  <a href="structmlclient_1_1_logging_configuration.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_no_credentials_exception.html">NoCredentialsException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that you have not provided the <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> with any credentials, or the credentials are invalid.  <a href="classmlclient_1_1_no_credentials_exception.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_permission.html">Permission</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single MarkLogic <a class="el" href="classmlclient_1_1_permission.html" title="Represents a single MarkLogic Permission. ">Permission</a>.  <a href="classmlclient_1_1_permission.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html">Response</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a response from a MarkLogic server REST API.  <a href="classmlclient_1_1_response.html#details">More...</a><br /></td></tr>
@@ -136,6 +152,63 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_description.html">SearchDescription</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A POD class representing input to the POST of /v1/search - i.e. all search configuration.  <a href="classmlclient_1_1_search_description.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result.html">SearchResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single search result. Wraps all REST API search result metadata and content.  <a href="classmlclient_1_1_search_result.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result_set.html">SearchResultSet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A self-advancing result set class.  <a href="classmlclient_1_1_search_result_set.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_search_result_set_iterator.html">SearchResultSetIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An STL compatible Iterator implementation.  <a href="classmlclient_1_1_search_result_set_iterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_iterator.html">ValuesIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an STL compliant iterator implementation over a <a class="el" href="classmlclient_1_1_values_result_set.html" title="Provides support for multiple values result lookups in a single hit. ">ValuesResultSet</a>.  <a href="classmlclient_1_1_values_iterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result.html">ValuesResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains details of the overarching /v1/values (i.e. <a class="el" href="classmlclient_1_1_connection.html#ab3a14008c2f2970c2a0031b17312a244" title="Performs a values lookup in MarkLogic Server, returning the top values from the lexicon as per the se...">Connection::values</a>) call results.  <a href="classmlclient_1_1_values_result.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmlclient_1_1_values_result_aggregate.html">ValuesResultAggregate</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single aggregate result from a values lookup.  <a href="structmlclient_1_1_values_result_aggregate.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html">ValuesResultSet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides support for multiple values result lookups in a single hit.  <a href="classmlclient_1_1_values_result_set.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmlclient_1_1_values_result_value.html">ValuesResultValue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single values lexicon result from a values lookup.  <a href="structmlclient_1_1_values_result_value.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ac2ae986929fdfa3b03a266f2c3ddc05c"><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">Collection</a></td></tr>
+<tr class="memdesc:ac2ae986929fdfa3b03a266f2c3ddc05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for a Collection as a string.  <a href="#ac2ae986929fdfa3b03a266f2c3ddc05c">More...</a><br /></td></tr>
+<tr class="separator:ac2ae986929fdfa3b03a266f2c3ddc05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d44f4574f9bf24e002c154f15c54823"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">Collection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a8d44f4574f9bf24e002c154f15c54823">CollectionSet</a></td></tr>
+<tr class="memdesc:a8d44f4574f9bf24e002c154f15c54823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a set of Collection object instances.  <a href="#a8d44f4574f9bf24e002c154f15c54823">More...</a><br /></td></tr>
+<tr class="separator:a8d44f4574f9bf24e002c154f15c54823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89399a3138a28498a6a3fd5055e02952"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">Collection</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a89399a3138a28498a6a3fd5055e02952">CollectionIterator</a></td></tr>
+<tr class="memdesc:a89399a3138a28498a6a3fd5055e02952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an Iterator over a set of Collection instances.  <a href="#a89399a3138a28498a6a3fd5055e02952">More...</a><br /></td></tr>
+<tr class="separator:a89399a3138a28498a6a3fd5055e02952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b55d6a2233d1274c1bc9905de10405"><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">DocumentUri</a></td></tr>
+<tr class="memdesc:a37b55d6a2233d1274c1bc9905de10405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> URI as a string.  <a href="#a37b55d6a2233d1274c1bc9905de10405">More...</a><br /></td></tr>
+<tr class="separator:a37b55d6a2233d1274c1bc9905de10405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9f3b438c3c8122814026276fd65ba8"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">DocumentUri</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">DocumentUriSet</a></td></tr>
+<tr class="memdesc:adf9f3b438c3c8122814026276fd65ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a set of DocumentUri object instances.  <a href="#adf9f3b438c3c8122814026276fd65ba8">More...</a><br /></td></tr>
+<tr class="separator:adf9f3b438c3c8122814026276fd65ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acab87e5d51d7bb0f4ea78e7a85f22535"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">DocumentUri</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#acab87e5d51d7bb0f4ea78e7a85f22535">DocumentUriIterator</a></td></tr>
+<tr class="memdesc:acab87e5d51d7bb0f4ea78e7a85f22535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an Iterator over a set of DocumentUri instances.  <a href="#acab87e5d51d7bb0f4ea78e7a85f22535">More...</a><br /></td></tr>
+<tr class="separator:acab87e5d51d7bb0f4ea78e7a85f22535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61bc9af3d081c084f28073c63fdbda1"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classmlclient_1_1_document.html">Document</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">DocumentSet</a></td></tr>
+<tr class="memdesc:ab61bc9af3d081c084f28073c63fdbda1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a set of <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object instances.  <a href="#ab61bc9af3d081c084f28073c63fdbda1">More...</a><br /></td></tr>
+<tr class="separator:ab61bc9af3d081c084f28073c63fdbda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4bcdd3248b070cb3faca6f86186ec1d"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classmlclient_1_1_document.html">Document</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#af4bcdd3248b070cb3faca6f86186ec1d">DocumentIterator</a></td></tr>
+<tr class="memdesc:af4bcdd3248b070cb3faca6f86186ec1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an Iterator over a set of document instances.  <a href="#af4bcdd3248b070cb3faca6f86186ec1d">More...</a><br /></td></tr>
+<tr class="separator:af4bcdd3248b070cb3faca6f86186ec1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b8105838290b93ae00557c06f44fe1"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a28b8105838290b93ae00557c06f44fe1">PermissionSet</a></td></tr>
+<tr class="memdesc:a28b8105838290b93ae00557c06f44fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a set of <a class="el" href="classmlclient_1_1_permission.html" title="Represents a single MarkLogic Permission. ">Permission</a> object instances.  <a href="#a28b8105838290b93ae00557c06f44fe1">More...</a><br /></td></tr>
+<tr class="separator:a28b8105838290b93ae00557c06f44fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad92744b2c9466b61fca54f060b5cd655"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ad92744b2c9466b61fca54f060b5cd655">PermissionIterator</a></td></tr>
+<tr class="memdesc:ad92744b2c9466b61fca54f060b5cd655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an Iterator over a set of <a class="el" href="classmlclient_1_1_permission.html" title="Represents a single MarkLogic Permission. ">Permission</a> instances.  <a href="#ad92744b2c9466b61fca54f060b5cd655">More...</a><br /></td></tr>
+<tr class="separator:ad92744b2c9466b61fca54f060b5cd655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -144,7 +217,14 @@ Enumerations</h2></td></tr>
  }<tr class="memdesc:ad47ff6baab050e78452eb2167a2a3b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enumeration for use with the BinaryDocumentContent class.  <a href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">More...</a><br /></td></tr>
 <tr class="separator:ad47ff6baab050e78452eb2167a2a3b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
-<tr class="memitem:aff058411252d0c404caf56d2d0b65090"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> : int { <br />
+<tr class="memitem:a18194d1f28de36ba0ea9ead9063efa7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18194d1f28de36ba0ea9ead9063efa7c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> { <b>EXECUTE</b>, 
+<b>INSERT</b>, 
+<b>READ</b>, 
+<b>UPDATE</b>
+ }<tr class="memdesc:a18194d1f28de36ba0ea9ead9063efa7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A capability associated with a (Document) permission in MarkLogic Server. <br /></td></tr>
+<tr class="separator:a18194d1f28de36ba0ea9ead9063efa7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+<tr class="memitem:aff058411252d0c404caf56d2d0b65090"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff058411252d0c404caf56d2d0b65090"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> : int { <br />
 &#160;&#160;<b>UNKNOWN_TYPE</b> = 0, 
 <b>XML</b> = 1, 
 <b>JSON</b> = 2, 
@@ -152,9 +232,10 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<b>BINARY</b> = 4
 <br />
- }<tr class="separator:aff058411252d0c404caf56d2d0b65090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ }<tr class="memdesc:aff058411252d0c404caf56d2d0b65090"><td class="mdescLeft">&#160;</td><td class="mdescRight">The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY. <br /></td></tr>
+<tr class="separator:aff058411252d0c404caf56d2d0b65090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
-<tr class="memitem:ac8a0790b90fd9b1df837c9476659fb23"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> : int { <br />
+<tr class="memitem:ac8a0790b90fd9b1df837c9476659fb23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8a0790b90fd9b1df837c9476659fb23"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> : int { <br />
 &#160;&#160;<b>UNKNOWN_CODE</b> = 0, 
 <b>CONTINUE</b> = 100, 
 <b>OK</b> = 200, 
@@ -204,41 +285,254 @@ Enumerations</h2></td></tr>
 <b>GATEWAY_TIMEOUT</b> = 504, 
 <b>HTTP_VERSION_NOT_SUPPORTED</b> = 505
 <br />
- }<tr class="separator:ac8a0790b90fd9b1df837c9476659fb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ }<tr class="memdesc:ac8a0790b90fd9b1df837c9476659fb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">The various HTTP response codes. Defaults to UNKNOWN to prevent API failures. <br /></td></tr>
+<tr class="separator:ac8a0790b90fd9b1df837c9476659fb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+<tr class="memitem:ab1cd81178c7ab61a41b52c2d93e7d5e4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#ab1cd81178c7ab61a41b52c2d93e7d5e4">Format</a> { <br />
+&#160;&#160;<b>JSON</b>, 
+<b>XML</b>, 
+<b>BINARY</b>, 
+<b>NONE</b>, 
+<br />
+&#160;&#160;<b>TEXT</b>
+<br />
+ }<tr class="separator:ab1cd81178c7ab61a41b52c2d93e7d5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+<tr class="memitem:a779f5c828b0a87bbb4b9fee51c6eb3cd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd">ValuesResultAggregateType</a> { <b>SIMPLE_DOUBLE</b>, 
+<b>COMPLEX_MAP_ARRAY</b>
+ }<tr class="memdesc:a779f5c828b0a87bbb4b9fee51c6eb3cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the type of response received from the aggregate.  <a href="namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd">More...</a><br /></td></tr>
+<tr class="separator:a779f5c828b0a87bbb4b9fee51c6eb3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a73b0f3bd368664c0e17b1c1c1b35d832"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73b0f3bd368664c0e17b1c1c1b35d832"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:a73b0f3bd368664c0e17b1c1c1b35d832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d0cb9825a6d38e9d4e91d6104ff3ab6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d0cb9825a6d38e9d4e91d6104ff3ab6"></a>
-std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:a8d0cb9825a6d38e9d4e91d6104ff3ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e38f2d1ec1383c9105a87c535af1e68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e38f2d1ec1383c9105a87c535af1e68"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
-<tr class="separator:a5e38f2d1ec1383c9105a87c535af1e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86cf3969f5ec24d0fb59349de683858"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86cf3969f5ec24d0fb59349de683858"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
-<tr class="separator:aa86cf3969f5ec24d0fb59349de683858"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87fb95523acbadf164f20b738278cd70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87fb95523acbadf164f20b738278cd70"></a>
-std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
-<tr class="separator:a87fb95523acbadf164f20b738278cd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a635bf69cbc7b28df57b865954ba9d8cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a635bf69cbc7b28df57b865954ba9d8cf"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
-<tr class="separator:a635bf69cbc7b28df57b865954ba9d8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d925e998cc7f4b0e649806eea815648"><td class="memTemplParams" colspan="2"><a class="anchor" id="a8d925e998cc7f4b0e649806eea815648"></a>
+template&lt;class T , class... Types&gt; </td></tr>
+<tr class="memitem:a8d925e998cc7f4b0e649806eea815648"><td class="memTemplItemLeft" align="right" valign="top">std::unique_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_unique</b> (Types &amp;&amp;...Args)</td></tr>
+<tr class="separator:a8d925e998cc7f4b0e649806eea815648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd07345cf632596eb1bf16c11722c586"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd07345cf632596eb1bf16c11722c586"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>libraryLoggingInit</b> ()</td></tr>
+<tr class="separator:afd07345cf632596eb1bf16c11722c586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88d4ac6b7910817c101534a471f02e27"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#a88d4ac6b7910817c101534a471f02e27">reconfigureLogging</a> (int argc, const char *argv[])</td></tr>
+<tr class="memdesc:a88d4ac6b7910817c101534a471f02e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigure logging from command line args.  <a href="#a88d4ac6b7910817c101534a471f02e27">More...</a><br /></td></tr>
+<tr class="separator:a88d4ac6b7910817c101534a471f02e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe73e314dfbe4d339c7fd2d0ad00b285"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemlclient.html#afe73e314dfbe4d339c7fd2d0ad00b285">reconfigureLoggingSettings</a> (const <a class="el" href="structmlclient_1_1_logging_configuration.html">LoggingConfiguration</a> &amp;config)</td></tr>
+<tr class="memdesc:afe73e314dfbe4d339c7fd2d0ad00b285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures logging from a <a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> struct.  <a href="#afe73e314dfbe4d339c7fd2d0ad00b285">More...</a><br /></td></tr>
+<tr class="separator:afe73e314dfbe4d339c7fd2d0ad00b285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af70cfb8210aab82bc99bd0568cd527bb"><td class="memTemplParams" colspan="2"><a class="anchor" id="af70cfb8210aab82bc99bd0568cd527bb"></a>
+template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:af70cfb8210aab82bc99bd0568cd527bb"><td class="memTemplItemLeft" align="right" valign="top">std::unique_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_unique</b> (Args &amp;&amp;...args)</td></tr>
+<tr class="separator:af70cfb8210aab82bc99bd0568cd527bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea6dcdde681c4e566c2e28532afbf72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adea6dcdde681c4e566c2e28532afbf72"></a>
+MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
+<tr class="separator:adea6dcdde681c4e566c2e28532afbf72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a04e6a2528724eacdbb2c4c60f883b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a04e6a2528724eacdbb2c4c60f883b3"></a>
+MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
+<tr class="separator:a6a04e6a2528724eacdbb2c4c60f883b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eacedc7dd25dd58c8b3d0c81a0f8479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eacedc7dd25dd58c8b3d0c81a0f8479"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_capability</b> (const <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a> &amp;rt)</td></tr>
+<tr class="separator:a9eacedc7dd25dd58c8b3d0c81a0f8479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2f87da3163aae2c67beb93dd6ddc3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc2f87da3163aae2c67beb93dd6ddc3e"></a>
+MLCLIENT_API <a class="el" href="namespacemlclient.html#a18194d1f28de36ba0ea9ead9063efa7c">Capability</a>&#160;</td><td class="memItemRight" valign="bottom"><b>toCapability</b> (const std::string &amp;capString)</td></tr>
+<tr class="separator:abc2f87da3163aae2c67beb93dd6ddc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a050b9e1e1135411a7eae2fa59227f2d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a050b9e1e1135411a7eae2fa59227f2d0"></a>
+MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
+<tr class="separator:a050b9e1e1135411a7eae2fa59227f2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b6b81f67c1ef071a0d245b3ea19de9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78b6b81f67c1ef071a0d245b3ea19de9"></a>
+MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
+<tr class="separator:a78b6b81f67c1ef071a0d245b3ea19de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9094de7141a21dcc90f56c5748cb8eb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9094de7141a21dcc90f56c5748cb8eb7"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_permission</b> (const <a class="el" href="classmlclient_1_1_permission.html">Permission</a> &amp;rt)</td></tr>
+<tr class="separator:a9094de7141a21dcc90f56c5748cb8eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa32fbc042e37a796736e4424f881721"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa32fbc042e37a796736e4424f881721"></a>
+MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:aaa32fbc042e37a796736e4424f881721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02e25ff023841d85a1a3aa675e7802be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02e25ff023841d85a1a3aa675e7802be"></a>
+MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:a02e25ff023841d85a1a3aa675e7802be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f609d416d7555149bc93d1ade7538ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f609d416d7555149bc93d1ade7538ec"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_responsetype</b> (const <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">ResponseType</a> &amp;rt)</td></tr>
+<tr class="separator:a5f609d416d7555149bc93d1ade7538ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82d3442e0de30ec73f0f986f667edbe3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82d3442e0de30ec73f0f986f667edbe3"></a>
+MLCLIENT_API std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
+<tr class="separator:a82d3442e0de30ec73f0f986f667edbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9670a4e4e5d2e2285e2d2022c1a8117"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9670a4e4e5d2e2285e2d2022c1a8117"></a>
+MLCLIENT_API std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (std::string &amp;s, const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rc)</td></tr>
+<tr class="separator:ad9670a4e4e5d2e2285e2d2022c1a8117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1edf78e97a903b6a711532781b30b188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1edf78e97a903b6a711532781b30b188"></a>
+MLCLIENT_API const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translate_responsecode</b> (const <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">ResponseCode</a> &amp;rt)</td></tr>
+<tr class="separator:a1edf78e97a903b6a711532781b30b188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>the namespace which wraps all Core Public C++ API classes. </p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="ac2ae986929fdfa3b03a266f2c3ddc05c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::string <a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">mlclient::Collection</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typedef for a Collection as a string. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a89399a3138a28498a6a3fd5055e02952"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">Collection</a>&gt;::const_iterator <a class="el" href="namespacemlclient.html#a89399a3138a28498a6a3fd5055e02952">mlclient::CollectionIterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provides an Iterator over a set of Collection instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d44f4574f9bf24e002c154f15c54823"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="namespacemlclient.html#ac2ae986929fdfa3b03a266f2c3ddc05c">Collection</a>&gt; <a class="el" href="namespacemlclient.html#a8d44f4574f9bf24e002c154f15c54823">mlclient::CollectionSet</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a set of Collection object instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af4bcdd3248b070cb3faca6f86186ec1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classmlclient_1_1_document.html">Document</a>&gt;::const_iterator <a class="el" href="namespacemlclient.html#af4bcdd3248b070cb3faca6f86186ec1d">mlclient::DocumentIterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provides an Iterator over a set of document instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab61bc9af3d081c084f28073c63fdbda1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classmlclient_1_1_document.html">Document</a>&gt; <a class="el" href="namespacemlclient.html#ab61bc9af3d081c084f28073c63fdbda1">mlclient::DocumentSet</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a set of <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> object instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a37b55d6a2233d1274c1bc9905de10405"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::string <a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">mlclient::DocumentUri</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typedef for a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> URI as a string. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acab87e5d51d7bb0f4ea78e7a85f22535"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">DocumentUri</a>&gt;::const_iterator <a class="el" href="namespacemlclient.html#acab87e5d51d7bb0f4ea78e7a85f22535">mlclient::DocumentUriIterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provides an Iterator over a set of DocumentUri instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adf9f3b438c3c8122814026276fd65ba8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="namespacemlclient.html#a37b55d6a2233d1274c1bc9905de10405">DocumentUri</a>&gt; <a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">mlclient::DocumentUriSet</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a set of DocumentUri object instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad92744b2c9466b61fca54f060b5cd655"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classmlclient_1_1_permission.html">Permission</a>&gt;::const_iterator <a class="el" href="namespacemlclient.html#ad92744b2c9466b61fca54f060b5cd655">mlclient::PermissionIterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provides an Iterator over a set of <a class="el" href="classmlclient_1_1_permission.html" title="Represents a single MarkLogic Permission. ">Permission</a> instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a28b8105838290b93ae00557c06f44fe1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classmlclient_1_1_permission.html">Permission</a>&gt; <a class="el" href="namespacemlclient.html#a28b8105838290b93ae00557c06f44fe1">mlclient::PermissionSet</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents a set of <a class="el" href="classmlclient_1_1_permission.html" title="Represents a single MarkLogic Permission. ">Permission</a> object instances. </p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="ad47ff6baab050e78452eb2167a2a3b54"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">enum <a class="el" href="namespacemlclient.html#ad47ff6baab050e78452eb2167a2a3b54">mlclient::BinaryEncoding</a> : int</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>An enumeration for use with the BinaryDocumentContent class. </p>
@@ -246,29 +540,106 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>translat
 
 </div>
 </div>
-<a class="anchor" id="ac8a0790b90fd9b1df837c9476659fb23"></a>
+<a class="anchor" id="ab1cd81178c7ab61a41b52c2d93e7d5e4"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="namespacemlclient.html#ac8a0790b90fd9b1df837c9476659fb23">mlclient::ResponseCode</a> : int</td>
+          <td class="memname">enum <a class="el" href="namespacemlclient.html#ab1cd81178c7ab61a41b52c2d93e7d5e4">mlclient::Format</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>The various HTTP response codes. Defaults to UNKNOWN to prevent API failures. </p>
+<p>Represents the format of the results </p>
 
 </div>
 </div>
-<a class="anchor" id="aff058411252d0c404caf56d2d0b65090"></a>
+<a class="anchor" id="a779f5c828b0a87bbb4b9fee51c6eb3cd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacemlclient.html#a779f5c828b0a87bbb4b9fee51c6eb3cd">mlclient::ValuesResultAggregateType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents the type of response received from the aggregate. </p>
+<p>There are multiple formats returned from the MarkLogic REST API's aggregate calls. The OOTB aggregates return a simple vlaue element, which is a double encoded as a string. The REST API can also return full map:map() results from UDFs that use this capability. This is either a single map of string keys to typed values, or an array of maps.</p>
+<dl class="section note"><dt>Note</dt><dd>Currently there is a bug in the REST API that causes it only to return the first numeric value from the first element in the map array. This also has side effects for very large numbers. <a href="https://bugtrack.marklogic.com/41650">https://bugtrack.marklogic.com/41650</a></dd></dl>
+<p>This implementation is therefore necessarily flexible at the cost of programmatic precision and ease.</p>
+<p>The SIMPLE_DOUBLE response will be used for all OOTB aggregates from MarkLogic, and any UDF aggregate that returns a single double value. COMPLEX_MAP_ARRAY will be used where a single map instance is returned, or an array is returned. This is because this tier cannot detect from the response whether the UDF only returns one map by design, or just happened to return a single map instance on this one occasion.</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a88d4ac6b7910817c101534a471f02e27"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="namespacemlclient.html#aff058411252d0c404caf56d2d0b65090">mlclient::ResponseType</a> : int</td>
+          <td class="memname">MLCLIENT_API void mlclient::reconfigureLogging </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The type of response The MarkLogic response type - Unknown (means the API hasn't been told by your own function calls!), XML, JSON, plain TEXT or BINARY. </p>
+
+<p>Reconfigure logging from command line args. </p>
+<p>&ndash;log-folder "/some/folder/location" Specifies the folder within which logging is done (and enables file logging), disabled by default &ndash;log-level INFO|DEBUG Specify either INFO or DEBUG log level. Defaults to INFO in Release builds, or DEBUG in Debug builds. &ndash;log-stdout true Specify log messages should also be copied to stdout (the terminal, typically). Defaults to false</p>
+<dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afe73e314dfbe4d339c7fd2d0ad00b285"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MLCLIENT_API void mlclient::reconfigureLoggingSettings </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmlclient_1_1_logging_configuration.html">LoggingConfiguration</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconfigures logging from a <a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>The <a class="el" href="structmlclient_1_1_logging_configuration.html" title="LoggingConfiguration to use. ">LoggingConfiguration</a> to use </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['deletedocument',['deleteDocument',['../classmlclient_1_1_i_connection.html#a54fddb7c48924d45904dd2fc686b5839',1,'mlclient::IConnection::deleteDocument()'],['../classmlclient_1_1_connection.html#a7cb0f7bc4146e00665f8d94989ad9369',1,'mlclient::Connection::deleteDocument()']]],
-  ['dodelete',['doDelete',['../classmlclient_1_1_i_connection.html#a622f4ec1aa07e8c0828af5cc1d411b05',1,'mlclient::IConnection::doDelete()'],['../classmlclient_1_1_connection.html#a905da280d5afd2e3b8cb74b171f7fe90',1,'mlclient::Connection::doDelete()']]],
-  ['doget',['doGet',['../classmlclient_1_1_i_connection.html#a060653d258207f6406da38c8878c33f5',1,'mlclient::IConnection::doGet()'],['../classmlclient_1_1_connection.html#a8111a379cb5e7e06abc637fff8d02e29',1,'mlclient::Connection::doGet()']]],
-  ['dopost',['doPost',['../classmlclient_1_1_i_connection.html#a57c2bff6813ceb21bafe287b9e8e5317',1,'mlclient::IConnection::doPost()'],['../classmlclient_1_1_connection.html#a23f96ff9230fbfe921dfeb394524b741',1,'mlclient::Connection::doPost()']]],
-  ['doput',['doPut',['../classmlclient_1_1_i_connection.html#a868294d70b7a707955f79a2286bc528b',1,'mlclient::IConnection::doPut()'],['../classmlclient_1_1_connection.html#ae9837d1c47ee36657dcc5e4b8b9a2ce7',1,'mlclient::Connection::doPut()']]]
+  ['batchoperationcomplete',['batchOperationComplete',['../classmlclient_1_1utilities_1_1_i_batch_notifiable.html#a4cdf83a6ab8d7aa23139744ec60b0a57',1,'mlclient::utilities::IBatchNotifiable']]],
+  ['begin',['begin',['../classmlclient_1_1_search_result_set.html#a77c6a328b91846c6a2d7a81ee16f52a6',1,'mlclient::SearchResultSet::begin()'],['../classmlclient_1_1_search_result_set_iterator.html#ac4c46b2bb3eb9a6075bd9946edc787e2',1,'mlclient::SearchResultSetIterator::begin()'],['../classmlclient_1_1_values_result_set.html#a0f9c524b8c269a460812ab82cc70638d',1,'mlclient::ValuesResultSet::begin()'],['../classmlclient_1_1_values_iterator.html#a6286a0665aa9e122bafd5aae81f94517',1,'mlclient::ValuesIterator::begin()']]]
 ];
