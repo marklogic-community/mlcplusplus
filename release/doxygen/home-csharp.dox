@@ -47,7 +47,7 @@ Linux is the same as mac, but you will be using .so files instead of .dylib file
 
 \section sec_home_csharp_quickstart Quickstart
 
-All the samples have been pre-built for you in Windows! Feel free to just download and run them from the command
+All the samples have been pre-built for you in Windows! Feel free to just download (as above) and run them from the command
 prompt.
 
 You can read their source code, or even grab the Visual Studio solution files, from the samples folders starting
