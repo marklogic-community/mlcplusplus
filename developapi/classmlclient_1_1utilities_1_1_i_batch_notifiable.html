@@ -104,16 +104,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html#a4cdf83a6ab8d7aa23139744ec60b0a57">batchOperationComplete</a> (const <a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">DocumentUriSet</a> out_uris, bool success, std::exception *problem)=0</td></tr>
-<tr class="memdesc:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives a complete event from the <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> class.  <a href="#a4cdf83a6ab8d7aa23139744ec60b0a57">More...</a><br /></td></tr>
-<tr class="separator:a4cdf83a6ab8d7aa23139744ec60b0a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43efc34a0c9116bc58658f6bb09316fc"><td class="memItemLeft" align="right" valign="top">virtual MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_i_batch_notifiable.html#a43efc34a0c9116bc58658f6bb09316fc">batchOperationComplete</a> (const <a class="el" href="namespacemlclient.html#adf9f3b438c3c8122814026276fd65ba8">DocumentUriSet</a> out_uris, bool success, std::exception problem)=0</td></tr>
+<tr class="memdesc:a43efc34a0c9116bc58658f6bb09316fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives a complete event from the <a class="el" href="classmlclient_1_1utilities_1_1_document_batch_writer.html" title="Manages a batched document upload/write operation. ">DocumentBatchWriter</a> class.  <a href="#a43efc34a0c9116bc58658f6bb09316fc">More...</a><br /></td></tr>
+<tr class="separator:a43efc34a0c9116bc58658f6bb09316fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract class that supports notification when a <a class="el" href="classmlclient_1_1_document.html" title="Provides a representation of a MarkLogic Document. ">Document</a> (batch) action is completed. </p>
 <dl class="section note"><dt>Note</dt><dd>Can be subclassed directly in other wrappers (E.g. C#)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>8.0.2 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4cdf83a6ab8d7aa23139744ec60b0a57"></a>
+<a class="anchor" id="a43efc34a0c9116bc58658f6bb09316fc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -135,7 +135,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::exception *&#160;</td>
+          <td class="paramtype">std::exception&#160;</td>
           <td class="paramname"><em>problem</em>&#160;</td>
         </tr>
         <tr>
@@ -157,7 +157,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">out_uris</td><td>The set of DocumentUris that have been processed (not necessarily succeeded in uploading) </td></tr>
     <tr><td class="paramname">success</td><td>Whether all files were uploaded </td></tr>
-    <tr><td class="paramname">problem</td><td>The exception thrown by one of the batch upload attempts, if success is false (nullptr otherwise) </td></tr>
+    <tr><td class="paramname">problem</td><td>The exception thrown by one of the batch upload attempts, if success is false </td></tr>
   </table>
   </dd>
 </dl>

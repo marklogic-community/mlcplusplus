@@ -133,9 +133,9 @@ MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a100125a6be4cf105b5675cc7189a5539"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539">fetch</a> ()</td></tr>
 <tr class="memdesc:a100125a6be4cf105b5675cc7189a5539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses the provided <a class="el" href="classmlclient_1_1_connection.html" title="Provides a high level logical object representing all access to a single MarkLogic database...">Connection</a> to perform a request, and initialise this object and the list of values results.  <a href="#a100125a6be4cf105b5675cc7189a5539">More...</a><br /></td></tr>
 <tr class="separator:a100125a6be4cf105b5675cc7189a5539"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35d67074d03c5f963d99f5ca23b83a4"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::exception *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#ae35d67074d03c5f963d99f5ca23b83a4">getFetchException</a> ()</td></tr>
-<tr class="memdesc:ae35d67074d03c5f963d99f5ca23b83a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the exception, if any, encountered by <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a>. nullptr is returned if no exception raised.  <a href="#ae35d67074d03c5f963d99f5ca23b83a4">More...</a><br /></td></tr>
-<tr class="separator:ae35d67074d03c5f963d99f5ca23b83a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cd4315deffcd385bb37e20f39705ef"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API std::exception&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_values_result_set.html#a30cd4315deffcd385bb37e20f39705ef">getFetchException</a> ()</td></tr>
+<tr class="memdesc:a30cd4315deffcd385bb37e20f39705ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the exception, if any, encountered by <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a>. nullptr is returned if no exception raised.  <a href="#a30cd4315deffcd385bb37e20f39705ef">More...</a><br /></td></tr>
+<tr class="separator:a30cd4315deffcd385bb37e20f39705ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -277,12 +277,12 @@ This function actually sends one request out per aggregate or lexicon lookup req
 
 </div>
 </div>
-<a class="anchor" id="ae35d67074d03c5f963d99f5ca23b83a4"></a>
+<a class="anchor" id="a30cd4315deffcd385bb37e20f39705ef"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MLCLIENT_API std::exception* mlclient::ValuesResultSet::getFetchException </td>
+          <td class="memname">MLCLIENT_API std::exception mlclient::ValuesResultSet::getFetchException </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -291,7 +291,7 @@ This function actually sends one request out per aggregate or lexicon lookup req
 </div><div class="memdoc">
 
 <p>Returns the exception, if any, encountered by <a class="el" href="classmlclient_1_1_values_result_set.html#a100125a6be4cf105b5675cc7189a5539" title="Uses the provided Connection to perform a request, and initialise this object and the list of values ...">fetch()</a>. nullptr is returned if no exception raised. </p>
-<dl class="section return"><dt>Returns</dt><dd>The exception instance pointer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The exception instance copy </dd></dl>
 
 </div>
 </div>

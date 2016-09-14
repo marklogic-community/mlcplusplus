@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['rangequery',['rangeQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#a07e43f979ea76d2ae57078cf0048c47d',1,'mlclient::utilities::SearchBuilder']]],
-  ['read',['read',['../classmlclient_1_1_response.html#a207a41f92e3a34e0c2b7c4f6265de606',1,'mlclient::Response']]],
+  ['rangequery',['rangeQuery',['../classmlclient_1_1utilities_1_1_search_builder.html#aabc0789bfbdb98c00105019f766b9369',1,'mlclient::utilities::SearchBuilder']]],
   ['reconfigurelogging',['reconfigureLogging',['../namespacemlclient.html#a88d4ac6b7910817c101534a471f02e27',1,'mlclient']]],
   ['reconfigureloggingsettings',['reconfigureLoggingSettings',['../namespacemlclient.html#afe73e314dfbe4d339c7fd2d0ad00b285',1,'mlclient']]],
   ['removebatchlistener',['removeBatchListener',['../classmlclient_1_1utilities_1_1_document_batch_writer.html#a4ad20ecfc0a85c51ac1f2dc42b99601c',1,'mlclient::utilities::DocumentBatchWriter']]],

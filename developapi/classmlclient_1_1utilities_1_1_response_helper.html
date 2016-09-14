@@ -113,9 +113,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a678dfb388ac3a5ce1bdb2166f7c5f361"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a678dfb388ac3a5ce1bdb2166f7c5f361">getErrorDetailAsString</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
 <tr class="memdesc:a678dfb388ac3a5ce1bdb2166f7c5f361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full error trace information as a string Throws an exception if the response is not in error.  <a href="#a678dfb388ac3a5ce1bdb2166f7c5f361">More...</a><br /></td></tr>
 <tr class="separator:a678dfb388ac3a5ce1bdb2166f7c5f361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a43f85b5d3e899fe271f7b33947fad8"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a3a43f85b5d3e899fe271f7b33947fad8">getSuggestions</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
-<tr class="memdesc:a3a43f85b5d3e899fe271f7b33947fad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string list of suggestion values. Used with the response from POST /v1/suggest.  <a href="#a3a43f85b5d3e899fe271f7b33947fad8">More...</a><br /></td></tr>
-<tr class="separator:a3a43f85b5d3e899fe271f7b33947fad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe82bd08edc517ffea455fcb0e267da"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API SearchSuggestionSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a3fe82bd08edc517ffea455fcb0e267da">getSuggestions</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp)</td></tr>
+<tr class="memdesc:a3fe82bd08edc517ffea455fcb0e267da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string list of suggestion values. Used with the response from POST /v1/suggest.  <a href="#a3fe82bd08edc517ffea455fcb0e267da">More...</a><br /></td></tr>
+<tr class="separator:a3fe82bd08edc517ffea455fcb0e267da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="memItemLeft" align="right" valign="top">static MLCLIENT_API double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1utilities_1_1_response_helper.html#a0e7bf585d6ed891e5ee6a03f28f6f555">getAggregateResult</a> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;resp, const std::string &amp;aggName)</td></tr>
 <tr class="memdesc:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a double result from the specified aggregate in the result set.  <a href="#a0e7bf585d6ed891e5ee6a03f28f6f555">More...</a><br /></td></tr>
 <tr class="separator:a0e7bf585d6ed891e5ee6a03f28f6f555"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -330,7 +330,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3a43f85b5d3e899fe271f7b33947fad8"></a>
+<a class="anchor" id="a3fe82bd08edc517ffea455fcb0e267da"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -338,7 +338,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static MLCLIENT_API std::vector&lt;std::string&gt; mlclient::utilities::ResponseHelper::getSuggestions </td>
+          <td class="memname">static MLCLIENT_API SearchSuggestionSet mlclient::utilities::ResponseHelper::getSuggestions </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;&#160;</td>
           <td class="paramname"><em>resp</em></td><td>)</td>

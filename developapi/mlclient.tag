@@ -1980,8 +1980,8 @@
       <type>virtual MLCLIENT_API void</type>
       <name>batchOperationComplete</name>
       <anchorfile>classmlclient_1_1utilities_1_1_i_batch_notifiable.html</anchorfile>
-      <anchor>a4cdf83a6ab8d7aa23139744ec60b0a57</anchor>
-      <arglist>(const DocumentUriSet out_uris, bool success, std::exception *problem)=0</arglist>
+      <anchor>a43efc34a0c9116bc58658f6bb09316fc</anchor>
+      <arglist>(const DocumentUriSet out_uris, bool success, std::exception problem)=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3257,13 +3257,6 @@
       <arglist>(void) const </arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API size_t</type>
-      <name>read</name>
-      <anchorfile>classmlclient_1_1_response.html</anchorfile>
-      <anchor>a207a41f92e3a34e0c2b7c4f6265de606</anchor>
-      <arglist>(void *buffer, const size_t &amp;max_size, const size_t off=0)</arglist>
-    </member>
-    <member kind="function">
       <type>MLCLIENT_API const std::string &amp;</type>
       <name>getContent</name>
       <anchorfile>classmlclient_1_1_response.html</anchorfile>
@@ -3274,8 +3267,15 @@
       <type>MLCLIENT_API void</type>
       <name>setContent</name>
       <anchorfile>classmlclient_1_1_response.html</anchorfile>
-      <anchor>a4b835b37ecf8b5334fd35074da6a6d0a</anchor>
-      <arglist>(std::string *content)</arglist>
+      <anchor>a087d077b5c413182a1768bb1a58a1cd7</anchor>
+      <arglist>(const std::string &amp;content)</arglist>
+    </member>
+    <member kind="function">
+      <type>MLCLIENT_API void</type>
+      <name>setContent</name>
+      <anchorfile>classmlclient_1_1_response.html</anchorfile>
+      <anchor>a0dde0d6eb9dcac728fea1009573d3859</anchor>
+      <arglist>(std::string &amp;&amp;content)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3303,10 +3303,10 @@
       <arglist>(const Response &amp;resp)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static MLCLIENT_API std::vector&lt; std::string &gt;</type>
+      <type>static MLCLIENT_API SearchSuggestionSet</type>
       <name>getSuggestions</name>
       <anchorfile>classmlclient_1_1utilities_1_1_response_helper.html</anchorfile>
-      <anchor>a3a43f85b5d3e899fe271f7b33947fad8</anchor>
+      <anchor>a3fe82bd08edc517ffea455fcb0e267da</anchor>
       <arglist>(const Response &amp;resp)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -3338,43 +3338,43 @@
       <type>MLCLIENT_API IQuery *</type>
       <name>valueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a7ec359a8547ef19b6e8027c7225ba0b3</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>ad00ed91ab92de465d5f37eb89dfd1aa0</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>jsonValueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a8065a70250cc5b3be9222a9b3dc05d22</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>a7753f5b19f4f757b2bf5e983d5a324cf</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>xmlValueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a6fdc8189d0e473098d5eb638c56482b2</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>a98c1a3f74fc209435f6215763a3470e3</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>rangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a07e43f979ea76d2ae57078cf0048c47d</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>aabc0789bfbdb98c00105019f766b9369</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>jsonRangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>af2c084321916768b99ca2fe6d1d6da6d</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>ac6663062363195986c4129edc0e54ed2</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>xmlRangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a8168dc586d51332f246c23dbc4667fe5</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>a50ea35a1206ddd65518fade8b0df5751</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API SearchBuilder *</type>
@@ -3436,15 +3436,15 @@
       <type>static MLCLIENT_API IQuery *</type>
       <name>andQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>aa594cddcc23dfe0c6b5953ba62a55349</anchor>
-      <arglist>(const std::vector&lt; IQuery * &gt; &amp;queries)</arglist>
+      <anchor>a4b16baf94399ea8d9e36345514b0a74d</anchor>
+      <arglist>(const IQuerySet &amp;queries)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MLCLIENT_API IQuery *</type>
       <name>orQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a05acd8b22c3f586e8e0323bb751b4322</anchor>
-      <arglist>(const std::vector&lt; IQuery * &gt; &amp;queries)</arglist>
+      <anchor>a8a78f244eb9ad84761af6492af1c66e6</anchor>
+      <arglist>(const IQuerySet &amp;queries)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MLCLIENT_API IQuery *</type>
@@ -3457,15 +3457,15 @@
       <type>static MLCLIENT_API IQuery *</type>
       <name>andQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>aa594cddcc23dfe0c6b5953ba62a55349</anchor>
-      <arglist>(const std::vector&lt; IQuery * &gt; &amp;queries)</arglist>
+      <anchor>a4b16baf94399ea8d9e36345514b0a74d</anchor>
+      <arglist>(const IQuerySet &amp;queries)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MLCLIENT_API IQuery *</type>
       <name>orQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a05acd8b22c3f586e8e0323bb751b4322</anchor>
-      <arglist>(const std::vector&lt; IQuery * &gt; &amp;queries)</arglist>
+      <anchor>a8a78f244eb9ad84761af6492af1c66e6</anchor>
+      <arglist>(const IQuerySet &amp;queries)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MLCLIENT_API IQuery *</type>
@@ -3478,43 +3478,43 @@
       <type>MLCLIENT_API IQuery *</type>
       <name>valueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a7ec359a8547ef19b6e8027c7225ba0b3</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>ad00ed91ab92de465d5f37eb89dfd1aa0</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>jsonValueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a8065a70250cc5b3be9222a9b3dc05d22</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>a7753f5b19f4f757b2bf5e983d5a324cf</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>xmlValueQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a6fdc8189d0e473098d5eb638c56482b2</anchor>
-      <arglist>(const std::string ref, const std::string value)</arglist>
+      <anchor>a98c1a3f74fc209435f6215763a3470e3</anchor>
+      <arglist>(const std::string queryref, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>rangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a07e43f979ea76d2ae57078cf0048c47d</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>aabc0789bfbdb98c00105019f766b9369</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>jsonRangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>af2c084321916768b99ca2fe6d1d6da6d</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>ac6663062363195986c4129edc0e54ed2</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API IQuery *</type>
       <name>xmlRangeQuery</name>
       <anchorfile>classmlclient_1_1utilities_1_1_search_builder.html</anchorfile>
-      <anchor>a8168dc586d51332f246c23dbc4667fe5</anchor>
-      <arglist>(const std::string ref, const RangeOperation op, const std::string value)</arglist>
+      <anchor>a50ea35a1206ddd65518fade8b0df5751</anchor>
+      <arglist>(const std::string queryref, const RangeOperation op, const std::string value)</arglist>
     </member>
     <member kind="function">
       <type>MLCLIENT_API SearchBuilder *</type>
@@ -3866,10 +3866,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::exception *</type>
+      <type>MLCLIENT_API std::exception</type>
       <name>getFetchException</name>
       <anchorfile>classmlclient_1_1_search_result_set.html</anchorfile>
-      <anchor>a4be482fcac51b47580039e299a11cdc0</anchor>
+      <anchor>a5e8da42a4936b946644a2274e20126b0</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -4141,10 +4141,10 @@
       <arglist>(const ValuesResultValue &amp;value)</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API const std::vector&lt; ValuesResultValue &gt;</type>
+      <type>MLCLIENT_API const ValuesResultValueSet</type>
       <name>getValues</name>
       <anchorfile>classmlclient_1_1_values_result.html</anchorfile>
-      <anchor>a7a627ddc17685169aee2c49c008ee8ba</anchor>
+      <anchor>a1d1ffe5c4d924e027ec4664b87907fba</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -4169,17 +4169,17 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API const std::vector&lt; ValuesResultAggregate &gt;::const_iterator</type>
+      <type>MLCLIENT_API const ValuesResultAggregateSet::const_iterator</type>
       <name>aggregateBegin</name>
       <anchorfile>classmlclient_1_1_values_result.html</anchorfile>
-      <anchor>aebf7be0a41de54e62eccf92d02259aaa</anchor>
+      <anchor>ab009c471b2760fb8579189c3541fcac2</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API const std::vector&lt; ValuesResultAggregate &gt;::const_iterator</type>
+      <type>MLCLIENT_API const ValuesResultAggregateSet::const_iterator</type>
       <name>aggregateEnd</name>
       <anchorfile>classmlclient_1_1_values_result.html</anchorfile>
-      <anchor>aa6c50dadb3c6a104f8edf15c093c9a92</anchor>
+      <anchor>aa4cf20d2323a149d2680d55c9307154c</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -4317,10 +4317,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>MLCLIENT_API std::exception *</type>
+      <type>MLCLIENT_API std::exception</type>
       <name>getFetchException</name>
       <anchorfile>classmlclient_1_1_values_result_set.html</anchorfile>
-      <anchor>ae35d67074d03c5f963d99f5ca23b83a4</anchor>
+      <anchor>a30cd4315deffcd385bb37e20f39705ef</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -4759,6 +4759,8 @@
     <docanchor file="page_devguide" title="Read multiple documents matching a query">sec_readmultiplequery</docanchor>
     <docanchor file="page_devguide" title="Apply a read transformation">sec_readtransform</docanchor>
     <docanchor file="page_devguide" title="Setting batch size">sec_multiplebatchsize</docanchor>
+    <docanchor file="page_devguide" title="Using REST extensions or an unsupported endpoint">sec_cppdev_extensions</docanchor>
+    <docanchor file="page_devguide" title="SPARQL update example">sec_cppdev_sparqlupdate</docanchor>
     <docanchor file="page_devguide" title="Transactions and Optimistic Locking">sec_transactions</docanchor>
     <docanchor file="page_devguide" title="Logging">sec_logging</docanchor>
     <docanchor file="page_devguide" title="Starting logging and setting the log level">sec_startlogging</docanchor>

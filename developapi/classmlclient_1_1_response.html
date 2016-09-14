@@ -124,15 +124,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e02f69c6c6f4f83b093335d3275f895"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API <a class="el" href="classmlclient_1_1_http_headers.html">mlclient::HttpHeaders</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a3e02f69c6c6f4f83b093335d3275f895">getResponseHeaders</a> (void) const </td></tr>
 <tr class="memdesc:a3e02f69c6c6f4f83b093335d3275f895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the headers that were returned with the response.  <a href="#a3e02f69c6c6f4f83b093335d3275f895">More...</a><br /></td></tr>
 <tr class="separator:a3e02f69c6c6f4f83b093335d3275f895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a207a41f92e3a34e0c2b7c4f6265de606"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a207a41f92e3a34e0c2b7c4f6265de606">read</a> (void *buffer, const size_t &amp;max_size, const size_t off=0)</td></tr>
-<tr class="memdesc:a207a41f92e3a34e0c2b7c4f6265de606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw response in to a buffer. Used for Binary responses.  <a href="#a207a41f92e3a34e0c2b7c4f6265de606">More...</a><br /></td></tr>
-<tr class="separator:a207a41f92e3a34e0c2b7c4f6265de606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91c2ff92401a46f128652df91db2db00"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a91c2ff92401a46f128652df91db2db00">getContent</a> () const </td></tr>
-<tr class="memdesc:a91c2ff92401a46f128652df91db2db00"><td class="mdescLeft">&#160;</td><td class="mdescRight">For text responses (including JSON and XML), returns the response content as a string.  <a href="#a91c2ff92401a46f128652df91db2db00">More...</a><br /></td></tr>
+<tr class="memdesc:a91c2ff92401a46f128652df91db2db00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw response in to a buffer. Used for Binary responses.  <a href="#a91c2ff92401a46f128652df91db2db00">More...</a><br /></td></tr>
 <tr class="separator:a91c2ff92401a46f128652df91db2db00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a4b835b37ecf8b5334fd35074da6a6d0a">setContent</a> (std::string *content)</td></tr>
-<tr class="memdesc:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a4b835b37ecf8b5334fd35074da6a6d0a">More...</a><br /></td></tr>
-<tr class="separator:a4b835b37ecf8b5334fd35074da6a6d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a087d077b5c413182a1768bb1a58a1cd7"><td class="memItemLeft" align="right" valign="top">MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a087d077b5c413182a1768bb1a58a1cd7">setContent</a> (const std::string &amp;content)</td></tr>
+<tr class="memdesc:a087d077b5c413182a1768bb1a58a1cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the string content for this <a class="el" href="classmlclient_1_1_response.html" title="Encapsulates a response from a MarkLogic server REST API. ">Response</a>.  <a href="#a087d077b5c413182a1768bb1a58a1cd7">More...</a><br /></td></tr>
+<tr class="separator:a087d077b5c413182a1768bb1a58a1cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dde0d6eb9dcac728fea1009573d3859"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dde0d6eb9dcac728fea1009573d3859"></a>
+MLCLIENT_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmlclient_1_1_response.html#a0dde0d6eb9dcac728fea1009573d3859">setContent</a> (std::string &amp;&amp;content)</td></tr>
+<tr class="memdesc:a0dde0d6eb9dcac728fea1009573d3859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move semantics aware setContent for temporary variables (the vast majority of use cases) <br /></td></tr>
+<tr class="separator:a0dde0d6eb9dcac728fea1009573d3859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf68a96b168e0c43b39b643a870f1b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bf68a96b168e0c43b39b643a870f1b8"></a>
 MLCLIENT_API&#160;</td><td class="memItemRight" valign="bottom"><b>Response</b> (const <a class="el" href="classmlclient_1_1_response.html">Response</a> &amp;)=delete</td></tr>
 <tr class="separator:a1bf68a96b168e0c43b39b643a870f1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,8 +180,19 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
       </table>
 </div><div class="memdoc">
 
-<p>For text responses (including JSON and XML), returns the response content as a string. </p>
-<dl class="section return"><dt>Returns</dt><dd>The UTF-8 string </dd></dl>
+<p>Reads the raw response in to a buffer. Used for Binary responses. </p>
+<p>For binary responses, reads up to max_size bytes into buffer, starting at a given offset. For example, if an image is returned, it can be saved to a file, reading 4 k chunks. The actual number of bytes read is returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">buffer</td><td>The untyped buffer to copy data in to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">max_size</td><td>The maximum amount of data in bytes to read in to the buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">off</td><td>The offset in the buffer after which this function starts writing data to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes read For text responses (including JSON and XML), returns the response content as a string.</dd>
+<dd>
+The UTF-8 string </dd></dl>
 
 </div>
 </div>
@@ -241,58 +253,14 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
 
 </div>
 </div>
-<a class="anchor" id="a207a41f92e3a34e0c2b7c4f6265de606"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MLCLIENT_API size_t mlclient::Response::read </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const size_t &amp;&#160;</td>
-          <td class="paramname"><em>max_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>off</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the raw response in to a buffer. Used for Binary responses. </p>
-<p>For binary responses, reads up to max_size bytes into buffer, starting at a given offset. For example, if an image is returned, it can be saved to a file, reading 4 k chunks. The actual number of bytes read is returned.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">buffer</td><td>The untyped buffer to copy data in to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">max_size</td><td>The maximum amount of data in bytes to read in to the buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">off</td><td>The offset in the buffer after which this function starts writing data to </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes read </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4b835b37ecf8b5334fd35074da6a6d0a"></a>
+<a class="anchor" id="a087d077b5c413182a1768bb1a58a1cd7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">MLCLIENT_API void mlclient::Response::setContent </td>
           <td>(</td>
-          <td class="paramtype">std::string *&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>content</em></td><td>)</td>
           <td></td>
         </tr>
@@ -304,7 +272,7 @@ MLCLIENT_API <a class="el" href="classmlclient_1_1_response.html">Response</a> &
 <dl class="section note"><dt>Note</dt><dd>This function takes ownership of the content pointer using std::move</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">content</td><td>A std::unique_ptr to take ownership of the std::string content of the response. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">content</td><td>A std::string content of the response. Owned via move semantics by this class after this call. </td></tr>
   </table>
   </dd>
 </dl>
