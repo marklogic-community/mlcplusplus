@@ -4723,7 +4723,7 @@
   </compound>
   <compound kind="page">
     <name>page_devguide</name>
-    <title>Application Developers Guide</title>
+    <title>Application Developers Guide for C++</title>
     <filename>page_devguide</filename>
     <docanchor file="page_devguide" title="Introduction to the C++ API">sec_introduction</docanchor>
     <docanchor file="page_devguide" title="Getting Started">sec_gettingstarted</docanchor>
