@@ -360,8 +360,13 @@ Using REST extensions or an unsupported endpoint</h1>
 <h2><a class="anchor" id="sec_cppdev_sparqlupdate"></a>
 SPARQL update example</h2>
 <p>At the time of writing there was not a convenience method wrapping the SPARQL Update endpoint (POST /v1/graphs/sparql). In order to support this, use code like the following:- </p><pre class="fragment">Connection conn;
-</pre><p> TODO connection set up here - hostname, port, user, pass, authentication mechanism GenericTextDocumentContent tdc; std::string sparql("DELETE WHERE { ?s ?p ?o. }"); // WARNING: This will delete everything, but you can adjust this for your needs. tdc.setMimeType("application/sparql-update"); tdc.setContent(sparql); Response* resp = conn.doPost("/v1/graphs/sparql",tdc);</p>
-<p>You then process the Response instance as you would for any other Connection function call.</p>
+TODO connection set up here - hostname, port, user, pass, authentication mechanism
+GenericTextDocumentContent tdc;
+std::string sparql("DELETE WHERE { ?s ?p ?o. }"); // WARNING: This will delete everything, but you can adjust this for your needs.
+tdc.setMimeType("application/sparql-update");
+tdc.setContent(sparql);
+Response* resp = conn.doPost("/v1/graphs/sparql",tdc);
+</pre><p>You then process the Response instance as you would for any other Connection function call.</p>
 <p>Documentation here:- REST API: <a href="http://docs.marklogic.com/REST/POST/v1/graphs/sparql">http://docs.marklogic.com/REST/POST/v1/graphs/sparql</a> C++ API: <a href="http://adamfowleruk.github.io/mlcplusplus/api/classmlclient_1_1_i_connection.html#aeff605e34986204afd5b2f5040c193b9">http://adamfowleruk.github.io/mlcplusplus/api/classmlclient_1_1_i_connection.html#aeff605e34986204afd5b2f5040c193b9</a></p>
 <h1><a class="anchor" id="sec_transactions"></a>
 Transactions and Optimistic Locking</h1>
