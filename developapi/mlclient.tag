@@ -4815,6 +4815,7 @@
     <docanchor file="page_home_csharp" title="Quickstart">sec_home_csharp_quickstart</docanchor>
     <docanchor file="page_home_csharp" title="Language Specific Features">sec_home_csharp_langspecific</docanchor>
     <docanchor file="page_home_csharp" title="Function name patterns">sec_home_csharp_functions</docanchor>
+    <docanchor file="page_home_csharp" title="Developer&apos;s guide">sec_home_csharp_devguide</docanchor>
     <docanchor file="page_home_csharp" title="Extending">sec_home_csharp_extending</docanchor>
     <docanchor file="page_home_csharp" title="Troubleshooting">sec_home_csharp_troubleshooting</docanchor>
   </compound>
