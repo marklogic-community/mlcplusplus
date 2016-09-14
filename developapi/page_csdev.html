@@ -106,7 +106,7 @@ Using REST extensions or an unsupported endpoint</h1>
 SPARQL update example</h2>
 <p>At the time of writing there was not a convenience method wrapping the SPARQL Update endpoint (POST /v1/graphs/sparql). In order to support this, use code like the following:-</p>
 <pre class="fragment">Connection conn = new Connection();
-\// TODO connection set up
+TODO connection set up
 GenericTextDocumentContent tdc = new GenericTextDocumentContent();
 tdc.setMimeType("application/sparql-update");
 tdc.setContent("DELETE WHERE { ?s ?p ?o. }”);
