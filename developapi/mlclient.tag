@@ -4717,7 +4717,7 @@
     <name>page_csdev</name>
     <title>Application Developers Guide for C#</title>
     <filename>page_csdev</filename>
-    <docanchor file="page_csdev" title="Introduction to the C++ API">sec_csdev_introduction</docanchor>
+    <docanchor file="page_csdev" title="Introduction to the C# API">sec_csdev_introduction</docanchor>
     <docanchor file="page_csdev" title="Using REST extensions or an unsupported endpoint">sec_csdev_extensions</docanchor>
     <docanchor file="page_csdev" title="SPARQL update example">sec_csdev_sparqlupdate</docanchor>
   </compound>
