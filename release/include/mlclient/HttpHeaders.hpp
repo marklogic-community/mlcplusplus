@@ -20,10 +20,13 @@
 #ifndef SRC_INTERNALS_HTTPHEADERS_HPP_
 #define SRC_INTERNALS_HTTPHEADERS_HPP_
 
+#include <mlclient/mlclient.hpp>
 #include <string>
 #include <map>
 
 namespace mlclient {
+
+
 
 /*
  * \brief An Internal class that you should never see nor use
@@ -32,10 +35,10 @@ class HttpHeaders {
 public:
   HttpHeaders();
   ~HttpHeaders() = default;
-  void setHeaders(const std::map<std::string,std::string>& headers);
+  void setHeaders(const StringMap& headers);
   void setHeader(const std::string& header,const std::string& value);
   const std::string& getHeader(const std::string& header) const;
-  const std::map<std::string,std::string>& getHeaders() const;
+  const StringMap& getHeaders() const;
   void clear();
 
 private:

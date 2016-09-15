@@ -22,6 +22,10 @@ namespace mlclient {
  * \since 8.0.2
  */
 struct ValuesResultValue {
+  MLCLIENT_API bool operator==(const ValuesResultValue& other) {
+    return value == other.value;
+  };
+
   long frequency;
   std::string value;
 };
@@ -59,11 +63,18 @@ enum class ValuesResultAggregateType {
  * \since 8.0.2
  */
 struct ValuesResultAggregate {
+  MLCLIENT_API bool operator==(const ValuesResultAggregate& other) {
+    return name == other.name;
+  };
+
   std::string name; //< The name of this aggregate in the search options
   ValuesResultAggregateType type; //< The aggregate type - single double, or complex value map
   double value; //< The simple aggregate result value, if applicable
-  std::map<std::string,std::string> complexValue; //< The complex aggregate result value, if applicable
+  StringMap complexValue; //< The complex aggregate result value, if applicable
 };
+
+typedef std::vector<ValuesResultValue> ValuesResultValueSet;
+typedef std::vector<ValuesResultAggregate> ValuesResultAggregateSet;
 
 /**
  * \brief Contains details of the overarching /v1/values (i.e. Connection::values) call results.
@@ -106,7 +117,7 @@ public:
    * \brief Returns the underlying set of Values from this instance
    * \return The result set
    */
-  MLCLIENT_API const std::vector<ValuesResultValue> getValues() const;
+  MLCLIENT_API const ValuesResultValueSet getValues() const;
 
   // Is there only ever one of these??? I hope an RFE will get resolved to add more in one request!
   /**
@@ -133,12 +144,12 @@ public:
    * \brief Returns an iterator over the underlying aggregate lookups
    * \return The iterator over the list of aggregate lookups
    */
-  MLCLIENT_API const std::vector<ValuesResultAggregate>::const_iterator aggregateBegin() const;
+  MLCLIENT_API const ValuesResultAggregateSet::const_iterator aggregateBegin() const;
   /**
    * \brief Returns an iterator end marker for the underlying set of aggregate lookups
    * \return The iterator end marker
    */
-  MLCLIENT_API const std::vector<ValuesResultAggregate>::const_iterator aggregateEnd() const;
+  MLCLIENT_API const ValuesResultAggregateSet::const_iterator aggregateEnd() const;
 
   /**
    * \brief Used to set the total response times by the code actually performing the values lookups

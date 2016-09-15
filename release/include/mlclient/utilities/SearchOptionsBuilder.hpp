@@ -138,6 +138,9 @@ MLCLIENT_API std::ostream& operator << (std::ostream& os, const ValuesOption& rt
 MLCLIENT_API std::string& operator +(std::string& s, const ValuesOption& rt);
 MLCLIENT_API const std::string translate_valuesoption(const ValuesOption& rt);
 
+typedef std::map<FacetOption,std::string> FacetOptionMap;
+typedef std::map<RangeOption,std::string> RangeOptionMap;
+
 class RangeOptions {
 public:
   MLCLIENT_API RangeOptions();
@@ -164,14 +167,14 @@ public:
   // TODO sensible sanity checking for contradictory option values (checked, unchecked, etc.)
   MLCLIENT_API void addFacetOption(const FacetOption& option);
   MLCLIENT_API const bool hasFacetOptions() const;
-  MLCLIENT_API const std::map<FacetOption,std::string> getFacetOptions() const;
+  MLCLIENT_API const FacetOptionMap getFacetOptions() const;
 
   MLCLIENT_API void clearRangeOptions();
   MLCLIENT_API void addRangeOptionWithValue(const RangeOption& option,const std::string& value);
   // TODO sensible sanity checking for contradictory option values (different score functions, etc.)
   MLCLIENT_API void addRangeOption(const RangeOption& option);
   MLCLIENT_API const bool hasRangeOptions() const;
-  MLCLIENT_API const std::map<RangeOption,std::string> getRangeOptions() const;
+  MLCLIENT_API const RangeOptionMap getRangeOptions() const;
 
   // TODO buckets and computed bucket configuration
 
@@ -182,8 +185,8 @@ private:
   IContainerRef* container;
 
   FragmentScope fragmentScope;
-  std::map<FacetOption,std::string> facetOptions;
-  std::map<RangeOption,std::string> rangeOptions;
+  FacetOptionMap facetOptions;
+  RangeOptionMap rangeOptions;
 };
 
 
@@ -266,6 +269,8 @@ MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeLexiconRef&
 MLCLIENT_API std::string& operator +(std::string& s, const RangeLexiconRef& rt);
 MLCLIENT_API const std::string translate_rangelexiconref(const RangeLexiconRef& rt);
 
+typedef std::map<ValuesOption,std::string> ValuesOptionMap;
+
 class ValuesInfo {
 public:
   MLCLIENT_API ValuesInfo();
@@ -284,14 +289,14 @@ public:
 
   MLCLIENT_API const bool hasValuesOptions() const;
   MLCLIENT_API void setValuesOptions(std::map<ValuesOption,std::string> options);
-  MLCLIENT_API const std::map<ValuesOption,std::string> getValuesOptions() const;
+  MLCLIENT_API const ValuesOptionMap getValuesOptions() const;
 
 private:
   std::string name;
   ILexiconRef* lexicon;
   bool bAggregate;
   AggregateInfo aggregate;
-  std::map<ValuesOption,std::string> valuesOptions;
+  ValuesOptionMap valuesOptions;
 };
 
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const ValuesInfo& rt);
@@ -348,10 +353,10 @@ public:
 
   // Values and Tuples configurations
   MLCLIENT_API SearchOptionsBuilder* valuesRangeAggregate(const std::string& name,const RangeOptions& range,
-      const AggregateInfo& aggregate,const std::map<ValuesOption,std::string>& valuesOption);
+      const AggregateInfo& aggregate,const ValuesOptionMap& valuesOption);
   // also support non aggregate, values listing, configuration
   MLCLIENT_API SearchOptionsBuilder* valuesRange(const std::string& name,const RangeOptions& range,
-      const std::map<ValuesOption,std::string>& valuesOption);
+      const ValuesOptionMap& valuesOption);
 
   MLCLIENT_API void fromDocument(const ITextDocumentContent& doc);
   MLCLIENT_API ITextDocumentContent* toDocument(bool asObject = false);

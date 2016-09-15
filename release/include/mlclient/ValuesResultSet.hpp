@@ -78,9 +78,9 @@ public:
 
   /**
    * \brief Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised.
-   * \return The exception instance pointer
+   * \return The exception instance copy
    */
-  MLCLIENT_API std::exception* getFetchException();
+  MLCLIENT_API std::exception getFetchException();
 
   friend class ValuesIterator;
 

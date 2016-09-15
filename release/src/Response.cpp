@@ -203,10 +203,9 @@ const std::regex content_type_re("([a-zA-Z\\.]+)/([a-zA-Z\\.]+)");
 
 class Response::Impl {
 public:
-  Impl() : responseCode(ResponseCode::UNKNOWN_CODE), responseType(ResponseType::UNKNOWN_TYPE)  {
+  Impl() : responseCode(ResponseCode::UNKNOWN_CODE), responseType(ResponseType::UNKNOWN_TYPE),content("")  {
     TIMED_FUNC(Response_Impl_defaultConstructor);
     LOG(DEBUG) << "    Response::Impl::defaultConstructor @" << &*this;
-    content = std::unique_ptr<std::string>(new std::string("")); // MUST BE INITIALISED
   };
   ~Impl() {
     TIMED_FUNC(Response_Impl_destructor);
@@ -216,7 +215,7 @@ public:
   ResponseCode responseCode; /*!< The response code 200/400/404, etc */
   ResponseType  responseType; /*!< The response type text,xml,binary, etc. */
   mlclient::HttpHeaders      headers;       /*!< The response headers */
-  std::unique_ptr<std::string> content;
+  std::string content;
 
 
   ResponseType parseContentTypeHeader(const std::string& content) {
@@ -296,21 +295,27 @@ ResponseType Response::getResponseType(void) const {
 HttpHeaders Response::getResponseHeaders(void) const {
   return mImpl->headers;
 }
-
+/*
 size_t Response::read(void* buffer, const size_t& max_size, const size_t off) {
   // TODO should this do something???
   return 0;
 }
-
+*/
 const std::string& Response::getContent() const {
   TIMED_FUNC(Response_getContent);
-  return *(mImpl->content); // TODO check this - force copy cstor - WHY!?! const return type
+  return mImpl->content; // TODO check this - force copy cstor - WHY!?! const return type
 }
 
-void Response::setContent(std::string* content) {
+void Response::setContent(const std::string& content) {
   TIMED_FUNC(Response_setContent);
-  LOG(DEBUG) << "Setting response body @" << &*this << " to: " << *content;
-  mImpl->content = std::move(std::unique_ptr<std::string>(new std::string(*content)));
+  LOG(DEBUG) << "Setting response body @" << &*this << " to: " << content;
+  mImpl->content = content;
+}
+
+void Response::setContent(std::string&& content) {
+  TIMED_FUNC(Response_setContent);
+  LOG(DEBUG) << "Setting response body @" << &*this << " to: " << content;
+  mImpl->content = std::move(content);
 }
 
 

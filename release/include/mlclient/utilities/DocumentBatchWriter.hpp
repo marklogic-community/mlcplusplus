@@ -69,9 +69,9 @@ public:
    *
    * \param out_uris The set of DocumentUris that have been processed (not necessarily succeeded in uploading)
    * \param success Whether all files were uploaded
-   * \param problem The exception thrown by one of the batch upload attempts, if success is false (nullptr otherwise)
+   * \param problem The exception thrown by one of the batch upload attempts, if success is false
    */
-  MLCLIENT_API virtual void batchOperationComplete(const DocumentUriSet out_uris,bool success,std::exception* problem) = 0;
+  MLCLIENT_API virtual void batchOperationComplete(const DocumentUriSet out_uris,bool success,std::exception problem) = 0;
 };
 
 /**

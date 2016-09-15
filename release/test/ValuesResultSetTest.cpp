@@ -53,8 +53,8 @@ void ValuesResultSetTest::testTwoAggregates() {
     }
   }
 
-  LOG(DEBUG) << " Exception: " << (nullptr == vrs.getFetchException() ? "No exception" : vrs.getFetchException()->what());
-  CPPUNIT_ASSERT_MESSAGE("Exception has occurred",nullptr == vrs.getFetchException());
+  LOG(DEBUG) << " Exception: " << "Exception?: " << vrs.getFetchException().what();
+  CPPUNIT_ASSERT_MESSAGE("Exception has occurred",0 == (strcmp("std::exception", vrs.getFetchException().what())));
 
 
 }

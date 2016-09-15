@@ -1,0 +1,45 @@
+/*!
+\page page_csdev Application Developers Guide for C#
+\brief Main C# Developer Guide
+\tableofcontents
+
+\section sec_csdev_introduction Introduction to the C# API
+
+
+TODO this is a new guide that will be completed as part of 8.0.3.
+
+
+
+
+
+
+
+\section sec_csdev_extensions Using REST extensions or an unsupported endpoint
+
+With the best of intentions it is impossible for us to cover every REST endpoint and REST extension.
+We have provided an extension mechanism through these calls:-
+
+- IConnection::doGet - Supports any REST GET
+- IConnection::doPost - Post of data
+- IConnection::doDelete - Delete
+- ICOnnection::doPut - Put
+
+These methods are available on all Connection class instances to execute against any REST endpoint on the
+server and port connected to by your Connection class instance.
+
+\subsection sec_csdev_sparqlupdate SPARQL update example
+
+At the time of writing there was not a convenience method wrapping the SPARQL Update endpoint (POST /v1/graphs/sparql).
+In order to support this, use code like the following:-
+
+
+    Connection conn = new Connection();
+    TODO connection set up
+    GenericTextDocumentContent tdc = new GenericTextDocumentContent();
+    tdc.setMimeType("application/sparql-update");
+    tdc.setContent("DELETE WHERE { ?s ?p ?o. }”);
+    Response resp = conn.doPost("/v1/graphs/sparql",tdc);
+
+You then process the Response instance as you would for any other Connection function's result.
+
+*/

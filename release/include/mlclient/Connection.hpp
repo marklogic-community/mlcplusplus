@@ -35,7 +35,7 @@
  */
 namespace mlclient {
 /**
- * \author Adam Fowler <adam.fower@marklogic.com>
+ * \author Adam Fowler <adam.fowler@marklogic.com>
  * \since 8.0.0
  * \date 2016-05-15
  *

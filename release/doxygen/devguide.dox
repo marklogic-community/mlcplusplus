@@ -1,5 +1,5 @@
 /*!
-\page page_devguide Application Developers Guide
+\page page_devguide Application Developers Guide for C++
 \brief Main C++ Developer Guide
 \tableofcontents
 
@@ -330,6 +330,41 @@ This functionality will be released in version 8.0.2 in July 2016
 \subsection sec_multiplebatchsize Setting batch size
 
 This functionality will be released in version 8.0.2 in July 2016
+
+
+
+
+\section sec_cppdev_extensions Using REST extensions or an unsupported endpoint
+
+With the best of intentions it is impossible for us to cover every REST endpoint and REST extension.
+We have provided an extension mechanism through these calls:-
+
+- IConnection::doGet - Supports any REST GET
+- IConnection::doPost - Post of data
+- IConnection::doDelete - Delete
+- ICOnnection::doPut - Put
+
+These methods are available on all Connection class instances to execute against any REST endpoint on the
+server and port connected to by your Connection class instance.
+
+\subsection sec_cppdev_sparqlupdate SPARQL update example
+
+At the time of writing there was not a convenience method wrapping the SPARQL Update endpoint (POST /v1/graphs/sparql).
+In order to support this, use code like the following:-
+
+    Connection conn;
+    TODO connection set up here - hostname, port, user, pass, authentication mechanism
+    GenericTextDocumentContent tdc;
+    std::string sparql("DELETE WHERE { ?s ?p ?o. }"); // WARNING: This will delete everything, but you can adjust this for your needs.
+    tdc.setMimeType("application/sparql-update");
+    tdc.setContent(sparql);
+    Response* resp = conn.doPost("/v1/graphs/sparql",tdc);
+
+You then process the Response instance as you would for any other Connection function call.
+
+Documentation here:-
+REST API: http://docs.marklogic.com/REST/POST/v1/graphs/sparql
+C++ API: http://adamfowleruk.github.io/mlcplusplus/api/classmlclient_1_1_i_connection.html#aeff605e34986204afd5b2f5040c193b9
 
 
 

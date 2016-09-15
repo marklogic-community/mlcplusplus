@@ -175,18 +175,38 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       HttpHeaders h;
       AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
       response->setResponseHeaders(h); // also sets response type via Content-type header
+
+      std::vector<unsigned char> vec = raw_response.extract_vector().get();
+      std::string str;
+      str.reserve(vec.size());
+      str.assign(vec.begin(),vec.end());
+      response->setContent(str);
+      /*
       if (response->getResponseType() == ResponseType::BINARY) {
         LOG(DEBUG) << "AuthenticatingProxy - Got binary response";
         std::vector<unsigned char> vec = raw_response.extract_vector().get();
         // convert to binary content, or store for now...
+
         std::string* str = new std::string;
         str->reserve(vec.size());
         str->assign(vec.begin(),vec.end());
         response->setContent(str);
+
+
+        std::string str;
+        str.reserve(vec.size());
+        str.assign(vec.begin(),vec.end());
+        response->setContent(str);
       } else {
         LOG(DEBUG) << "AuthenticatingProxy - Got text response";
-        response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
+        std::vector<unsigned char> vec = raw_response.extract_vector().get();
+        std::string str;
+        str.reserve(vec.size());
+        str.assign(vec.begin(),vec.end());
+        response->setContent(str);
+        //response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
       }
+      */
       responseAuthHeaderValue = utility::conversions::to_utf8string(raw_response.headers()[WWW_AUTHENTICATE_HEADER]);
 
       /*
@@ -324,6 +344,13 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
         HttpHeaders h;
         AuthenticatingProxy::copyHeaders(raw_response.headers(),h);
         response->setResponseHeaders(h); // also sets response type via Content-type header
+
+        std::vector<unsigned char> vec = raw_response.extract_vector().get();
+        std::string str;
+        str.reserve(vec.size());
+        str.assign(vec.begin(),vec.end());
+        response->setContent(str);
+        /*
         if (response->getResponseType() == ResponseType::BINARY) {
           LOG(DEBUG) << "AuthenticatingProxy - Got binary response";
           std::vector<unsigned char> vec = raw_response.extract_vector().get();
@@ -336,6 +363,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
           LOG(DEBUG) << "AuthenticatingProxy - Got text response";
           response->setContent(new std::string(utility::conversions::to_utf8string(raw_response.extract_string().get())));
         }
+        */
 
         LOG(DEBUG) << response->getContent();
 

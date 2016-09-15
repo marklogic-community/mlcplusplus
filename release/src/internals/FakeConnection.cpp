@@ -143,10 +143,11 @@ Response* FakeConnection::getDocument(const std::string& uri) {
   LOG(DEBUG) << "  Setting response code";
 
 
+  bool isBlank = 0 == ct.compare("");
   LOG(DEBUG) << "  Setting response content ptr";
-  response->setContent(new std::string(ct));
+  response->setContent(std::move(ct));
   LOG(DEBUG) << "  Setting response headers";
-  if (0 == ct.compare("")) {
+  if (isBlank) {
     // not found
     response->setResponseCode(ResponseCode::NOT_FOUND);
     response->setResponseType(ResponseType::UNKNOWN_TYPE);
@@ -228,7 +229,7 @@ Response* FakeConnection::search(const SearchDescription& desc) {
   }
 
   cos << "] } }";
-  response->setContent(new std::string(cos.str()));
+  response->setContent(std::move(cos.str()));
   response->setResponseType(ResponseType::JSON);
 
   return response;
