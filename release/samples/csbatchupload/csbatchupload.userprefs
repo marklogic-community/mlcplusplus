@@ -1,5 +1,13 @@
 ﻿<Properties StartupConfiguration="{73B5AC00-5E2A-48AB-BD31-AD68C7D79BEC}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../bin/src/CSharpSources/FacetOptionMap.cs">
+    <Files>
+      <File FileName="../../../bin/src/CSharpSources/RangeOption.cs" Line="1" Column="1" />
+      <File FileName="../../../bin/src/CSharpSources/RangeOptions.cs" Line="120" Column="24" />
+      <File FileName="../../../bin/src/CSharpSources/FacetOption.cs" Line="1" Column="1" />
+      <File FileName="../../../bin/src/CSharpSources/RangeOptionMap.cs" Line="1" Column="1" />
+      <File FileName="../../../bin/src/CSharpSources/FacetOptionMap.cs" Line="13" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

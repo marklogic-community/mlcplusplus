@@ -103,6 +103,12 @@ IDocumentNode* CppRestJsonArrayNode::at(const int32_t idx) const {
   return new CppRestJsonDocumentNode(mImpl->array.at(idx));
 }
 
+StringList CppRestJsonArrayNode::keys() const {
+  throw mlclient::InvalidFormatException("JSON Container Array does not support string key subscripts");
+}
+int32_t CppRestJsonArrayNode::size() const {
+  return mImpl->array.size();
+}
 
 
 class CppRestJsonObjectNode::Impl {
@@ -139,6 +145,24 @@ IDocumentNode* CppRestJsonObjectNode::at(const std::string& key) const {
   return new CppRestJsonDocumentNode(mImpl->obj.at(utility::conversions::to_string_t(key)));
 }
 IDocumentNode* CppRestJsonObjectNode::at(const int32_t idx) const {
+  throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
+}
+
+StringList CppRestJsonObjectNode::keys() const {
+  StringList keys;
+  for(auto iter = mImpl->obj.cbegin(); iter != mImpl->obj.cend(); ++iter) {
+        // Make sure to get the value as const reference otherwise you will end up copying
+        // the whole JSON value recursively which can be expensive if it is a nested object.
+        //const json::value &str = iter->first;
+        keys.push_back(iter->first); // we do want a copy of the key, so this is fine
+        //const json::value &v = iter->second;
+
+        // Perform actions here to process each string and value in the JSON object...
+        //std::wcout << L"String: " << str.as_string() << L", Value: " << v.to_string() << endl;
+  }
+  return keys;
+}
+int32_t CppRestJsonObjectNode::size() const {
   throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
 }
 
@@ -239,6 +263,25 @@ IDocumentNode* CppRestJsonDocumentNode::at(const std::string& key) const {
 }
 IDocumentNode* CppRestJsonDocumentNode::at(const int32_t idx) const {
   return new CppRestJsonDocumentNode(mImpl->root.at(idx));
+}
+
+StringList CppRestJsonDocumentNode::keys() const {
+  web::json::object& obj = mImpl->root.as_object();
+    StringList keys;
+    for(auto iter = obj.cbegin(); iter != obj.cend(); ++iter) {
+          // Make sure to get the value as const reference otherwise you will end up copying
+          // the whole JSON value recursively which can be expensive if it is a nested object.
+          //const json::value &str = iter->first;
+          keys.push_back(iter->first); // we do want a copy of the key, so this is fine
+          //const json::value &v = iter->second;
+
+          // Perform actions here to process each string and value in the JSON object...
+          //std::wcout << L"String: " << str.as_string() << L", Value: " << v.to_string() << endl;
+    }
+    return keys;
+}
+int32_t CppRestJsonDocumentNode::size() const {
+  throw mlclient::InvalidFormatException("JSON Document Object does not support integer subscripts");
 }
 
 

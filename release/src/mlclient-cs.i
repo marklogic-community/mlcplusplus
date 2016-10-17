@@ -43,6 +43,11 @@
 %feature("director") IDocumentContent;
 
 %ignore mlclient::reconfigureLogging(int argc,const char *argv[]);
+//%rename(FacetOptionMap) SWIGTYPE_p_FacetOptionMap;
+//%rename(FacetOptionMap) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t;
+//%rename(FacetOption) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type;
+//%rename(string) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type;
+
 
 %{
 /* Includes the header in the wrapper code */
@@ -130,9 +135,11 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 //%apply size_t { std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>::size_type };
 //%apply size_t { std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>::size_type };
 
-//%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
-//%template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
-//%template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
+//%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string>;
+
+%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
+%template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
+%template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
 
 %{
 // #include "mlclient/utilities/CppRestJsonHelper.hpp"

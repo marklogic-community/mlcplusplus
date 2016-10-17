@@ -49,6 +49,7 @@ namespace mlclient {
 
 typedef std::map<std::string,std::string> StringMap;
 typedef std::vector<std::string> SearchSuggestionSet;
+typedef std::vector<std::string> StringList;
 
   // note: this implementation does not disable this overload for array types
   template<typename T, typename... Args>
