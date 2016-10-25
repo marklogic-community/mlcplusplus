@@ -90,7 +90,7 @@ void SearchBuilderTest::testAll() {
   bool res = results->fetch();
   if (!res) {
     LOG(DEBUG) << "Exception report from fetch() attempt:-";
-    LOG(DEBUG) << results->getFetchException()->what();
+    LOG(DEBUG) << results->getFetchException().what();
   }
   std::string blankString("");
   CPPUNIT_ASSERT_MESSAGE("Fetch operation did not succeed", res);

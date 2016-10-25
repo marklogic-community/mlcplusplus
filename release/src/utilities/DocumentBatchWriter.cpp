@@ -165,14 +165,14 @@ public:
 
               // check ok and notify
               if (ResponseHelper::isInError(*resp)) {
-                std::exception* exc = new InvalidFormatException(ResponseHelper::getErrorDetailAsString(*resp)); // TODO better exception wrapper
+                InvalidFormatException exc(ResponseHelper::getErrorDetailAsString(*resp)); // TODO better exception wrapper
                 for (auto& tell: refImpl.toNotify) {
                   tell->batchOperationComplete(myUris,false,exc);
                 }
-                delete(exc);
               } else {
                 for (auto& tell: refImpl.toNotify) {
-                  tell->batchOperationComplete(myUris,true,nullptr);
+                  std::exception blank;
+                  tell->batchOperationComplete(myUris,true,blank);
                 }
               }
 
@@ -188,7 +188,7 @@ public:
                 myUris.push_back(uri);
               }
               for (auto& tell: refImpl.toNotify) {
-                tell->batchOperationComplete(myUris,false,&ref);
+                tell->batchOperationComplete(myUris,false,ref);
               }
             }
 

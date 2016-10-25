@@ -52,27 +52,6 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\Connection.cs">
       <Link>Dependencies\Connection.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonArrayNode.cs">
-      <Link>Dependencies\CppRestJsonArrayNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonContainerNode.cs">
-      <Link>Dependencies\CppRestJsonContainerNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentContent.cs">
-      <Link>Dependencies\CppRestJsonDocumentContent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNavigator.cs">
-      <Link>Dependencies\CppRestJsonDocumentNavigator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonDocumentNode.cs">
-      <Link>Dependencies\CppRestJsonDocumentNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonHelper.cs">
-      <Link>Dependencies\CppRestJsonHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\CppRestJsonObjectNode.cs">
-      <Link>Dependencies\CppRestJsonObjectNode.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\Document.cs">
       <Link>Dependencies\Document.cs</Link>
     </Compile>
@@ -93,6 +72,9 @@
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\FacetOption.cs">
       <Link>Dependencies\FacetOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\FacetOptionMap.cs">
+      <Link>Dependencies\FacetOptionMap.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\FileDocumentContent.cs">
       <Link>Dependencies\FileDocumentContent.cs</Link>
@@ -136,6 +118,9 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\IQuery.cs">
       <Link>Dependencies\IQuery.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\IQuerySet.cs">
+      <Link>Dependencies\IQuerySet.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ITextDocumentContent.cs">
       <Link>Dependencies\ITextDocumentContent.cs</Link>
     </Compile>
@@ -169,27 +154,6 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\Progress.cs">
       <Link>Dependencies\Progress.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlArrayNode.cs">
-      <Link>Dependencies\PugiXmlArrayNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlContainerNode.cs">
-      <Link>Dependencies\PugiXmlContainerNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentContent.cs">
-      <Link>Dependencies\PugiXmlDocumentContent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNavigator.cs">
-      <Link>Dependencies\PugiXmlDocumentNavigator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlDocumentNode.cs">
-      <Link>Dependencies\PugiXmlDocumentNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlHelper.cs">
-      <Link>Dependencies\PugiXmlHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\PugiXmlObjectNode.cs">
-      <Link>Dependencies\PugiXmlObjectNode.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\QueryBuilderMode.cs">
       <Link>Dependencies\QueryBuilderMode.cs</Link>
     </Compile>
@@ -204,6 +168,9 @@
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOption.cs">
       <Link>Dependencies\RangeOption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOptionMap.cs">
+      <Link>Dependencies\RangeOptionMap.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\RangeOptions.cs">
       <Link>Dependencies\RangeOptions.cs</Link>
@@ -238,17 +205,11 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchResultSetIterator.cs">
       <Link>Dependencies\SearchResultSetIterator.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_int32_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_int32_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SearchSuggestionSet.cs">
+      <Link>Dependencies\SearchSuggestionSet.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_p_char.cs">
-      <Link>Dependencies\SWIGTYPE_p_p_char.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_document.cs">
-      <Link>Dependencies\SWIGTYPE_p_pugi__xml_document.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_pugi__xml_node.cs">
-      <Link>Dependencies\SWIGTYPE_p_pugi__xml_node.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\StringMap.cs">
+      <Link>Dependencies\StringMap.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__exception.cs">
       <Link>Dependencies\SWIGTYPE_p_std__exception.cs</Link>
@@ -256,44 +217,35 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__istream.cs">
       <Link>Dependencies\SWIGTYPE_p_std__istream.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__size_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__size_type.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__key_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__key_type.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__string.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__string.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__mapped_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__mapped_type.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__utilities__IQuery_p_t.cs</Link>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__size_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__size_type.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__key_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__key_type.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__mapped_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__mapped_type.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__size_type.cs">
+      <Link>Dependencies\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__size_type.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs">
       <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultValue_t.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_std__string_t.cs">
-      <Link>Dependencies\SWIGTYPE_p_std__vectorT_std__string_t.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_void.cs">
-      <Link>Dependencies\SWIGTYPE_p_void.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__array.cs">
-      <Link>Dependencies\SWIGTYPE_p_web__json__array.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__object.cs">
-      <Link>Dependencies\SWIGTYPE_p_web__json__object.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\bin\src\CSharpSources\SWIGTYPE_p_web__json__value.cs">
-      <Link>Dependencies\SWIGTYPE_p_web__json__value.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\TransactionMode.cs">
       <Link>Dependencies\TransactionMode.cs</Link>
@@ -307,11 +259,17 @@
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesOption.cs">
       <Link>Dependencies\ValuesOption.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesOptionMap.cs">
+      <Link>Dependencies\ValuesOptionMap.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResult.cs">
       <Link>Dependencies\ValuesResult.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregate.cs">
       <Link>Dependencies\ValuesResultAggregate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregateSet.cs">
+      <Link>Dependencies\ValuesResultAggregateSet.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultAggregateType.cs">
       <Link>Dependencies\ValuesResultAggregateType.cs</Link>
@@ -321,6 +279,9 @@
     </Compile>
     <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultValue.cs">
       <Link>Dependencies\ValuesResultValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\bin\src\CSharpSources\ValuesResultValueSet.cs">
+      <Link>Dependencies\ValuesResultValueSet.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

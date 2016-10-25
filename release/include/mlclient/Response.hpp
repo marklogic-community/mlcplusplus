@@ -197,7 +197,7 @@ public:
   /// \param[in] off The offset in the buffer after which this function starts writing data to
   /// \return The number of bytes read
   ///
-  MLCLIENT_API size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
+  //MLCLIENT_API size_t read(void* buffer, const size_t& max_size, const size_t off = 0);
 
   ///
   /// \brief For text responses (including JSON and XML), returns the response content as a string.
@@ -213,9 +213,14 @@ public:
    *
    * \note This function takes ownership of the content pointer using std::move
    *
-   * \param[in] content A std::unique_ptr to take ownership of the std::string content of the response.
+   * \param[in] content A std::string content of the response. Owned via move semantics by this class after this call.
    */
-  MLCLIENT_API void setContent(std::string* content);
+  MLCLIENT_API void setContent(const std::string& content);
+
+  /**
+   * \brief Move semantics aware setContent for temporary variables (the vast majority of use cases)
+   */
+  MLCLIENT_API void setContent(std::string&& content);
 
   // prevent compiler automatically defining the copy constructor and assignment operator:-
   MLCLIENT_API Response(const Response&) = delete;

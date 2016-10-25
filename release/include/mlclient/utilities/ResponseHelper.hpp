@@ -80,7 +80,7 @@ public:
    * \param Response The response to introspect
    * \return A list of suggestion values
    */
-  MLCLIENT_API static std::vector<std::string> getSuggestions(const Response& resp);
+  MLCLIENT_API static SearchSuggestionSet getSuggestions(const Response& resp);
 
   /**
    * \brief Returns a double result from the specified aggregate in the result set

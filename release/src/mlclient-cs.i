@@ -1,28 +1,26 @@
 %module(directors="1")  mlclientcs
 
 %include <exception.i>
-
 %include <typemaps.i>
 
 %include std_except.i
-%include std_string.i
-%include std_vector.i
-%include std_map.i
-%include std_pair.i
+%include stl.i
 
 %exceptionclass InvalidFormatException;
 %exceptionclass NoCredentialsException;
 
-
+%apply int { uint };
+%apply int { int32_t };
 
 /*
-TODO add STL support
-TODO figure out how to support DocumentSet given it's a typedef of std::vector, not a real C++ class in our library!
+%exception {
+  try {
+    $action
+  } catch (const std::exception& e) {
+    SWIG_exception(SWIG_RuntimeError, e.what());
+  }
+}
 */
-
-
-%apply int { size_t };
-%apply int { uint };
 
 /*
 %exception {
@@ -44,36 +42,56 @@ TODO figure out how to support DocumentSet given it's a typedef of std::vector, 
 
 %feature("director") IDocumentContent;
 
+%ignore mlclient::reconfigureLogging(int argc,const char *argv[]);
+//%rename(FacetOptionMap) SWIGTYPE_p_FacetOptionMap;
+//%rename(FacetOptionMap) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t;
+//%rename(FacetOption) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type;
+//%rename(string) SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type;
+
+
 %{
 /* Includes the header in the wrapper code */
 #include "mlclient/mlclient.hpp"
+%}
+
+%template(StringMap) std::map<std::string,std::string>;
+%template(SearchSuggestionSet) std::vector<std::string>;
+
+
+%{
 #include "mlclient/Connection.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/Document.hpp"
 #include "mlclient/Permission.hpp"
 %}
 
+
 SWIG_STD_VECTOR_ENHANCED(mlclient::Document)
 SWIG_STD_VECTOR_ENHANCED(mlclient::Collection)
 SWIG_STD_VECTOR_ENHANCED(mlclient::DocumentUri)
 
-%apply int { std::vector<mlclient::Collection>::size_type };
-%apply int { std::vector<mlclient::DocumentUri>::size_type };
-%apply int { std::vector<mlclient::Document>::size_type };
-%apply int { std::vector<mlclient::Permission>::size_type };
+%apply size_t { std::vector<mlclient::Collection>::size_type };
+%apply size_t { std::vector<mlclient::DocumentUri>::size_type };
+%apply size_t { std::vector<mlclient::Document>::size_type };
+%apply size_t { std::vector<mlclient::Permission>::size_type };
 
-using namespace std;
-namespace std {
-  %template(DocumentSet) std::vector<mlclient::Document>;
-  %template(PermissionSet) std::vector<mlclient::Permission>;
-  %template(CollectionSet) std::vector<mlclient::Collection>;
-  %template(DocumentUriSet) std::vector<mlclient::DocumentUri>;
-}
+%template(DocumentSet) std::vector<mlclient::Document>;
+%template(PermissionSet) std::vector<mlclient::Permission>;
+%template(CollectionSet) std::vector<mlclient::Collection>;
+%template(DocumentUriSet) std::vector<mlclient::DocumentUri>;
 
 
 %{
 #include "mlclient/DocumentSet.hpp"
 #include "mlclient/HttpHeaders.hpp"
+%}
+
+%apply std::string *INPUT { std::string *content };
+%apply std::string &&INPUT { std::string&& content };
+
+%ignore mlclient::Response::setContent(std::string &&);
+
+%{
 #include "mlclient/Response.hpp"
 #include "mlclient/SearchDescription.hpp"
 #include "mlclient/logging.hpp"
@@ -82,64 +100,55 @@ namespace std {
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/SearchResultSet.hpp"
 #include "mlclient/ValuesResult.hpp"
+%}
+
+SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultAggregate)
+%apply size_t { std::vector<mlclient::ValuesResultAggregate>::size_type };
+%template(ValuesResultAggregateSet) std::vector<mlclient::ValuesResultAggregate>;
+
+SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultValue)
+%apply size_t { std::vector<mlclient::ValuesResultValue>::size_type };
+%template(ValuesResultValueSet) std::vector<mlclient::ValuesResultValue>;
+
+%{
 #include "mlclient/ValuesResultSet.hpp"
 %}
 
-%feature("director") IBatchNotifiable;
 
-/*
-%nspace mlclient::utilities::CppRestJsonDocumentContent;
-%nspace mlclient::utilities::CppRestJsonHelper;
-%nspace mlclient::utilities::DocumentBatchHelper;
-%nspace mlclient::utilities::DocumentHelper;
-%nspace mlclient::utilities::ResponseHelper;
-%nspace mlclient::utilities::DocumentBatchWriter;
-%nspace mlclient::utilities::PugiXmlDocumentContent;
-%nspace mlclient::utilities::PugiXmlHelper;
-%nspace mlclient::utilities::SearchBuilder;
-%nspace mlclient::utilities::AggregateInfo;
-%nspace mlclient::utilities::CppRestJsonArrayNode;
-%nspace mlclient::utilities::CppRestJsonContainerNode;
-%nspace mlclient::utilities::CppRestJsonDocumentNavigator;
-%nspace mlclient::utilities::CppRestJsonDocumentNode;
-%nspace mlclient::utilities::CppRestJsonObjectNode;
-%nspace mlclient::utilities::FacetOption;
-%nspace mlclient::utilities::FragmentScope;
-%nspace mlclient::utilities::GenericQuery;
-%nspace mlclient::utilities::IBatchNotifiable;
-%nspace mlclient::utilities::IContainerRef;
-%nspace mlclient::utilities::ILexiconRef;
-%nspace mlclient::utilities::IQuery;
-%nspace mlclient::utilities::ITypedValue;
-%nspace mlclient::utilities::JsonPropertyQuery;
-%nspace mlclient::utilities::JsonPropertyRef;
-%nspace mlclient::utilities::LexiconType;
-%nspace mlclient::utilities::ITypedValue;
-%nspace mlclient::utilities::PugiXmlArrayNode;
-%nspace mlclient::utilities::PugiXmlContainerNode;
-%nspace mlclient::utilities::PugiXmlDocumentNavigator;
-%nspace mlclient::utilities::PugiXmlDocumentNode;
-%nspace mlclient::utilities::PugiXmlObjectNode;
-%nspace mlclient::utilities::QueryBuilderMode;
-%nspace mlclient::utilities::RangeIndexType;
-%nspace mlclient::utilities::RangeLexiconRef;
-%nspace mlclient::utilities::RangeOperation;
-%nspace mlclient::utilities::RangeOption;
-%nspace mlclient::utilities::RangeOptions;
-%nspace mlclient::utilities::TransactionMode;
-%nspace mlclient::utilities::ValuesInfo;
-%nspace mlclient::utilities::ValuesOption;
-*/
+%feature("director") IBatchNotifiable;
+//%feature("director") ILexiconRef; // throws ostream private constructor error
+//%feature("director") IQuery; // throws ostream private constructor error
+
 
 %{
-#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-#include "mlclient/utilities/CppRestJsonHelper.hpp"
+// #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+%}
+
+SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
+%apply size_t { std::vector<mlclient::utilities::IQuery*>::size_type };
+%template(IQuerySet) std::vector<mlclient::utilities::IQuery*>;
+
+//%apply size_t { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::size_type };
+//%apply mlclient::utilities::FacetOption { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::key_type };
+//%apply std::string { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::mapped_type };
+
+//%apply size_t { std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>::size_type };
+//%apply size_t { std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>::size_type };
+
+//%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string>;
+
+%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
+%template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
+%template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
+
+%{
+// #include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include "mlclient/utilities/DocumentBatchHelper.hpp"
 #include "mlclient/utilities/DocumentHelper.hpp"
 #include "mlclient/utilities/ResponseHelper.hpp"
 #include "mlclient/utilities/DocumentBatchWriter.hpp"
-#include "mlclient/utilities/PugiXmlDocumentContent.hpp"
-#include "mlclient/utilities/PugiXmlHelper.hpp"
+// #include "mlclient/utilities/PugiXmlDocumentContent.hpp"
+// #include "mlclient/utilities/PugiXmlHelper.hpp"
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/utilities/SearchOptionsBuilder.hpp"
 %}
@@ -160,10 +169,10 @@ namespace std {
 %include "mlclient/Connection.hpp"
 %include "mlclient/SearchResultSet.hpp"
 %include "mlclient/ValuesResultSet.hpp"
-%include "mlclient/utilities/PugiXmlDocumentContent.hpp"
-%include "mlclient/utilities/PugiXmlHelper.hpp"
-%include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
-%include "mlclient/utilities/CppRestJsonHelper.hpp"
+// %include "mlclient/utilities/PugiXmlDocumentContent.hpp"
+// %include "mlclient/utilities/PugiXmlHelper.hpp"
+// %include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
+// %include "mlclient/utilities/CppRestJsonHelper.hpp"
 %include "mlclient/utilities/ResponseHelper.hpp"
 %include "mlclient/utilities/DocumentHelper.hpp"
 %include "mlclient/utilities/DocumentBatchWriter.hpp"

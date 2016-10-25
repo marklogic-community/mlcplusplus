@@ -211,6 +211,24 @@ public:
 
   MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
   MLCLIENT_API virtual IDocumentNode* at(const int32_t idx) const = 0;
+
+  /**
+   * \brief Returns the list of keys, if this node is an Object node.
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return A list of keys (a std::vector<std::string>)
+   */
+  MLCLIENT_API virtual StringList keys() const = 0;
+
+  /**
+   * \brief Returns the number of elements, if this node is an Array node.
+   *
+   * \throws InvalidFormatException if not of the right type
+   *
+   * \return The size of the array
+   */
+  MLCLIENT_API virtual int32_t size() const = 0;
 };
 
 /**

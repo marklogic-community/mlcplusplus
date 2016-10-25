@@ -19,15 +19,13 @@ namespace mlclient {
 
 class ValuesResultSet::Impl {
 public:
-  Impl(IConnection* conn) : mConn(conn), exception(nullptr), values(), mIter(nullptr), mCachedEnd(nullptr), tasks() {
+  Impl(IConnection* conn) : mConn(conn), exception(), values(), mIter(nullptr), mCachedEnd(nullptr), tasks() {
     LOG(DEBUG) << "ValuesResultSet::Impl ctor @" << &*this;
   }
   Impl(const Impl& other) = delete;
   Impl(Impl&& other) = delete;
   ~Impl() {
     mConn = NULL;
-    delete(exception);
-    exception = NULL;
     delete(mIter);
     mIter = NULL;
     delete(mCachedEnd);
@@ -35,7 +33,7 @@ public:
   }
 
   IConnection* mConn;
-  std::exception* exception;
+  std::exception exception;
   std::vector<ValuesResult> values;
 
   ValuesIterator* mIter;
@@ -123,7 +121,7 @@ bool ValuesResultSet::fetch() {
         LOG(DEBUG) << "Response deleted";
       } catch (std::exception& ref) {
         LOG(DEBUG) << "Exception in initial fetch task: " << ref.what();
-        refImpl.exception = &ref;
+        refImpl.exception = ref;
       }
       LOG(DEBUG) << "End values fetch task";
 
@@ -137,7 +135,7 @@ bool ValuesResultSet::fetch() {
   return true;
 }
 
-std::exception* ValuesResultSet::getFetchException() {
+std::exception ValuesResultSet::getFetchException() {
   // any exceptions are retuned here.
   return mImpl->exception;
 }

@@ -1,6 +1,6 @@
 /*!
 \page page_home_csharp C# Documentation
-\brief The main page for C+# coding documentation.
+\brief The main page for C# coding documentation.
 \tableofcontents
 
 This is the home page for C# support.
@@ -68,6 +68,11 @@ Similarly, function names now have capital initial letters in C# instead of lowe
 is true of getters and setters, which can be accessed in C# via the properties paradigm.
 
 This all means the C# API should feel very familiar to a C# developer.
+
+\section sec_home_csharp_devguide Developer's guide
+
+Be sure to read the full, in-depth, [C# Developer's Guide](@ref page_csdev). This covers most programming
+tasks you are likely to need.
 
 \section sec_home_csharp_extending Extending
 

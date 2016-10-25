@@ -29,7 +29,7 @@ namespace mlclient {
 class SearchResultSet::Impl {
 public:
   Impl(SearchResultSet* set,IConnection* conn,SearchDescription* desc) : mConn(conn), mInitialDescription(desc),
-    mResults(), mFetchException(nullptr), mIter(new SearchResultSetIterator(set)), mCachedEnd(nullptr), start(0),
+    mResults(), mFetchException(), mIter(new SearchResultSetIterator(set)), mCachedEnd(nullptr), start(0),
     pageLength(0), total(0),totalTime(""), queryResolutionTime(""),snippetResolutionTime(""),m_maxResults(0), lastFetched(-1),
     fetchTask(nullptr) /*, fetchMtx(), resultsMtx()*/ {
 
@@ -304,7 +304,7 @@ public:
 
       //return success;
     } catch (std::exception& ref) {
-      mImpl.mFetchException = &ref;
+      mImpl.mFetchException = ref;
       LOG(DEBUG) << "Exception in initial fetch task";
       //return false;
     }
@@ -422,7 +422,7 @@ public:
   IConnection* mConn;
   SearchDescription* mInitialDescription;
   std::vector<SearchResult*> mResults;
-  std::exception* mFetchException;
+  std::exception mFetchException;
 
   SearchResultSetIterator* mIter;
   SearchResultSetIterator* mCachedEnd;
@@ -463,7 +463,7 @@ bool SearchResultSet::fetch() {
   return mImpl->fetchInitial();
 }
 
-std::exception* SearchResultSet::getFetchException() {
+std::exception SearchResultSet::getFetchException() {
   //TIMED_FUNC(SearchResultSet_getFetchException);
   return mImpl->mFetchException;
 }

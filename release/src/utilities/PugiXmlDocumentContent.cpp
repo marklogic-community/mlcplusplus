@@ -59,6 +59,12 @@ std::string PugiXmlContainerNode::asString() const {
   throw new mlclient::InvalidFormatException("XML Container is not a string");
 }
 
+
+
+
+
+
+
 class PugiXmlArrayNode::Impl {
 public:
   Impl(const pugi::xml_node& parent,const std::string& key) : parent(parent), key(key) {
@@ -68,6 +74,9 @@ public:
   pugi::xml_node parent;
   std::string key;
 };
+
+
+
 
 PugiXmlArrayNode::PugiXmlArrayNode(const pugi::xml_node& parent,const std::string& key) : mImpl(new Impl(parent,key)) {
   ;
@@ -87,11 +96,11 @@ IDocumentNode* PugiXmlArrayNode::asArray() const {
   return (IDocumentNode*)const_cast<PugiXmlArrayNode*>(this);
 }
 IDocumentNode* PugiXmlArrayNode::asObject() const {
-  throw mlclient::InvalidFormatException("JSON Container is not an object");
+  throw mlclient::InvalidFormatException("XML Array is not an object");
 }
 
 IDocumentNode* PugiXmlArrayNode::at(const std::string& key) const {
-  throw mlclient::InvalidFormatException("JSON Container Array does not support string key subscripts");
+  throw mlclient::InvalidFormatException("XML Array does not support string key subscripts");
 }
 IDocumentNode* PugiXmlArrayNode::at(const int32_t idx) const {
   const auto& children = mImpl->parent.children(mImpl->key.c_str());
@@ -105,6 +114,21 @@ IDocumentNode* PugiXmlArrayNode::at(const int32_t idx) const {
     i++;
   }
   return nullptr;
+}
+
+StringList PugiXmlArrayNode::keys() const {
+  throw mlclient::InvalidFormatException("XML Array does not support string key subscripts");
+}
+
+int32_t PugiXmlArrayNode::size() const {
+  const auto& children = mImpl->parent.children(mImpl->key.c_str());
+  pugi::xml_named_node_iterator iter = children.begin();
+  const auto& end = children.end();
+  int32_t i = 0;
+  for (;iter != end;++iter) {
+    i++;
+  }
+  return i;
 }
 
 
@@ -133,7 +157,7 @@ bool PugiXmlObjectNode::isObject() const {
 }
 
 IDocumentNode* PugiXmlObjectNode::asArray() const {
-  throw mlclient::InvalidFormatException("JSON Container is not an array");
+  throw mlclient::InvalidFormatException("XML Container is not an array");
 }
 IDocumentNode* PugiXmlObjectNode::asObject() const {
   return (IDocumentNode*)const_cast<PugiXmlObjectNode*>(this);
@@ -141,10 +165,31 @@ IDocumentNode* PugiXmlObjectNode::asObject() const {
 
 IDocumentNode* PugiXmlObjectNode::at(const std::string& key) const {
   LOG(DEBUG) << "at(" << key << ") called on '" << mImpl->obj.name() << "' of type: " << mImpl->obj.type();
-  return mlclient::utilities::createNode(mImpl->obj,key);
+  return mlclient::utilities::createNode(mImpl->obj,key); // TODO ensure this returns attributes and not just elements
 }
 IDocumentNode* PugiXmlObjectNode::at(const int32_t idx) const {
-  throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
+  throw mlclient::InvalidFormatException("XML Container Object does not support integer subscripts");
+}
+
+StringList PugiXmlObjectNode::keys() const {
+  StringList names;
+  const auto& children = mImpl->obj.children();
+  pugi::xml_node_iterator iter = children.begin();
+  const auto& end = children.end();
+  for (;iter != end;++iter) {
+    names.push_back(iter->name());
+  }
+  const auto& attrs = mImpl->obj.attributes();
+  pugi::xml_attribute_iterator atIter = attrs.begin();
+  const auto& atEnd = attrs.end();
+  for (;atIter != atEnd;++atIter) {
+    names.push_back(atIter->name());
+  }
+  return names;
+}
+
+int32_t PugiXmlObjectNode::size() const {
+  throw mlclient::InvalidFormatException("XML Container Object does not support integer subscripts");
 }
 
 
@@ -248,6 +293,27 @@ IDocumentNode* PugiXmlDocumentNode::at(const int32_t idx) const {
     }
   }
   return nullptr;
+}
+
+StringList PugiXmlDocumentNode::keys() const {
+  // return XML element names and attribute names in a vector (StringList)
+    StringList names;
+    const auto& children = mImpl->root.children();
+    pugi::xml_node_iterator iter = children.begin();
+    const auto& end = children.end();
+    for (;iter != end;++iter) {
+      names.push_back(iter->name());
+    }
+    const auto& attrs = mImpl->root.attributes();
+    pugi::xml_attribute_iterator atIter = attrs.begin();
+    const auto& atEnd = attrs.end();
+    for (;atIter != atEnd;++atIter) {
+      names.push_back(atIter->name());
+    }
+    return names;
+}
+int32_t PugiXmlDocumentNode::size() const {
+  throw mlclient::InvalidFormatException("XML Document Object does not support integer subscripts");
 }
 
 

@@ -33,25 +33,23 @@ CPPUNIT_TEST_SUITE_REGISTRATION(DocumentBatchWriterTest);
 
 class UploadObserver : public mlclient::utilities::IBatchNotifiable {
 public:
-  UploadObserver() : ex(nullptr) {
+  UploadObserver() : ex() {
     ;
   }
   ~UploadObserver() {
     ;
   }
 
-  void batchOperationComplete(const DocumentUriSet uris,bool success,std::exception* exc) override {
+  void batchOperationComplete(const DocumentUriSet uris,bool success,std::exception exc) override {
     LOG(DEBUG) << "Written files in a batch (OK?: " << success << ") :-";
     for (auto& it : uris) {
       LOG(DEBUG) << "  " << it;
     }
-    if (exc) {
       ex = exc;
-      LOG(DEBUG) << "  Exception: " << exc->what();
-    }
+      LOG(DEBUG) << "  Exception: " << exc.what();
   }
 
-  std::exception* ex;
+  std::exception ex;
 };
 
 
@@ -99,8 +97,8 @@ void DocumentBatchWriterTest::testFolder(void) {
 
   writer.wait();
 
-  LOG(DEBUG) << "Exception is nullptr?: " << (nullptr == obs.ex);
-  CPPUNIT_ASSERT_MESSAGE("Exception returned during batch write",(nullptr == obs.ex));
+  LOG(DEBUG) << "Exception is blank?: " << (0 == strcmp("std::exception",obs.ex.what()));
+  CPPUNIT_ASSERT_MESSAGE("Exception returned during batch write",(0 == strcmp("std::exception",obs.ex.what())));
 
   Progress p = writer.getProgress();
   LOG(DEBUG) << "Document set size: " << setSize << ", complete size: " << p.completed;

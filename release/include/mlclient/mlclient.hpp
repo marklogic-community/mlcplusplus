@@ -18,6 +18,9 @@
 
 #include <memory>
 
+#include <vector>
+#include <map>
+
 //#include "mlclient/ext/easylogging++.h"
 
 #ifdef _WIN32
@@ -43,6 +46,11 @@ namespace mlclient {
 #endif
 
 namespace mlclient {
+
+typedef std::map<std::string,std::string> StringMap;
+typedef std::vector<std::string> SearchSuggestionSet;
+typedef std::vector<std::string> StringList;
+
   // note: this implementation does not disable this overload for array types
   template<typename T, typename... Args>
   std::unique_ptr<T> make_unique(Args&&... args)

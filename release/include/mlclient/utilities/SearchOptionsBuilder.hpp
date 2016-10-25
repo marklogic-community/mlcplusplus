@@ -138,6 +138,11 @@ MLCLIENT_API std::ostream& operator << (std::ostream& os, const ValuesOption& rt
 MLCLIENT_API std::string& operator +(std::string& s, const ValuesOption& rt);
 MLCLIENT_API const std::string translate_valuesoption(const ValuesOption& rt);
 
+//typedef std::map<FacetOption,std::string> FacetOptionMap;
+//typedef std::map<RangeOption,std::string> RangeOptionMap;
+//using FacetOptionMap = std::map<FacetOption,std::string>;
+//using RangeOptionMap = std::map<RangeOption,std::string>;
+
 class RangeOptions {
 public:
   MLCLIENT_API RangeOptions();
@@ -265,6 +270,8 @@ private:
 MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeLexiconRef& rt);
 MLCLIENT_API std::string& operator +(std::string& s, const RangeLexiconRef& rt);
 MLCLIENT_API const std::string translate_rangelexiconref(const RangeLexiconRef& rt);
+
+//typedef std::map<ValuesOption,std::string> ValuesOptionMap;
 
 class ValuesInfo {
 public:

@@ -28,25 +28,25 @@
 
 class UploadObserver : public mlclient::utilities::IBatchNotifiable {
 public:
-  UploadObserver() : ex(nullptr) {
+  UploadObserver() : ex() {
     ;
   }
   ~UploadObserver() {
     ;
   }
 
-  void batchOperationComplete(const std::vector<std::string> uris,bool success,std::exception* exc) override {
+  void batchOperationComplete(const std::vector<std::string> uris,bool success,std::exception exc) override {
     std::cout << "Written files in a batch (OK?: " << success << ") :-" << std::endl;
     for (auto& it : uris) {
       std::cout << "  " << it << std::endl;
     }
-    if (exc) {
+    //if (exc) {
       ex = exc;
-      std::cout << "  Exception: " << exc->what() << std::endl;
-    }
+      std::cout << "  Exception: " << exc.what() << std::endl;
+    //}
   }
 
-  std::exception* ex;
+  std::exception ex;
 };
 
 int main(int argc, const char * argv[])
@@ -95,7 +95,7 @@ int main(int argc, const char * argv[])
 
   writer.wait();
 
-  std::cout << "Exception is nullptr?: " << (nullptr == obs.ex) << std::endl;
+  //std::cout << "Exception is nullptr?: " << (nullptr == obs.ex) << std::endl;
 
   Progress p = writer.getProgress();
   std::cout << "Document set size: " << setSize << ", complete size: " << p.completed << std::endl;

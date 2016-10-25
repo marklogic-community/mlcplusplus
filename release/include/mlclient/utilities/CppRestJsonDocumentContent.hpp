@@ -76,6 +76,9 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+
+  MLCLIENT_API StringList keys() const override;
+  MLCLIENT_API int32_t size() const override;
 private:
   class Impl; // forward declaration
   Impl* mImpl;
@@ -103,6 +106,9 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+
+  MLCLIENT_API StringList keys() const override;
+  MLCLIENT_API int32_t size() const override;
 private:
   class Impl; // forward declaration
   Impl* mImpl;
@@ -141,6 +147,9 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+
+  MLCLIENT_API StringList keys() const override;
+  MLCLIENT_API int32_t size() const override;
 
 private:
   class Impl; // forward declaration

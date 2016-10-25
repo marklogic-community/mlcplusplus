@@ -31,7 +31,7 @@ HttpHeaders::HttpHeaders() : mHeaders() {
   //TIMED_FUNC(HttpHeaders_defaultConstructor); // DO NOT LOG AS THIS CLASS IS STATICALLY INITIALISED!!! CAUSES SEG FAULT!!!
 }
 
-void HttpHeaders::setHeaders(const std::map<std::string,std::string>& headers) {
+void HttpHeaders::setHeaders(const StringMap& headers) {
   TIMED_FUNC(HttpHeaders_setHeaders);
   mHeaders = headers;
 }
@@ -51,7 +51,7 @@ const std::string& HttpHeaders::getHeader(const std::string& header) const {
   return iter->second;
 }
 
-const std::map<std::string,std::string>& HttpHeaders::getHeaders() const {
+const StringMap& HttpHeaders::getHeaders() const {
   TIMED_FUNC(HttpHeaders_getHeaders);
   return mHeaders;
 }

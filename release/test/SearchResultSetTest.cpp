@@ -56,7 +56,7 @@ void SearchResultSetTest::testEmptySearch() {
   bool res = results->fetch();
   if (!res) {
     LOG(DEBUG) << "Exception report from fetch() attempt:-";
-    LOG(DEBUG) << results->getFetchException()->what();
+    LOG(DEBUG) << results->getFetchException().what();
   }
   std::string blankString("");
   CPPUNIT_ASSERT_MESSAGE("Fetch operation did not succeed", res);
@@ -99,7 +99,7 @@ void SearchResultSetTest::testThreePages() {
   bool res = results->fetch(); // BLOCKS
   if (!res) {
     LOG(DEBUG) << "Exception report from fetch() attempt:-";
-    LOG(DEBUG) << results->getFetchException()->what();
+    LOG(DEBUG) << results->getFetchException().what();
     throw results->getFetchException();
   }
   std::string blankString("");

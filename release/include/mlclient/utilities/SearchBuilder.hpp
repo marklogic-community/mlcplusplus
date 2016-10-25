@@ -221,6 +221,7 @@ public:
  */
 enum class QueryBuilderMode {ALL,XML,JSON};
 
+typedef std::vector<IQuery*> IQuerySet;
 
 /**
  * \class SearchBuilder
@@ -271,14 +272,14 @@ public:
    * \param queries A set of IQuery instances to and-together
    * \return An IQuery pointer instance representing this structured query. Caller OWNS the pointer (this class does not delete it).
    */
-  MLCLIENT_API static IQuery* andQuery(const std::vector<IQuery*>& queries);
+  MLCLIENT_API static IQuery* andQuery(const IQuerySet& queries);
   /**
    * \brief Factory method. Creates an or-query instance
    *
    * \param queries A set of IQuery instances to or-together
    * \return An IQuery pointer instance representing this structured query. Caller OWNS the pointer (this class does not delete it).
    */
-  MLCLIENT_API static IQuery* orQuery(const std::vector<IQuery*>& queries);
+  MLCLIENT_API static IQuery* orQuery(const IQuerySet& queries);
   /**
    * \brief Factory method. Creates a not-query.
    *
@@ -295,64 +296,64 @@ public:
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* valueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* valueQuery(const std::string queryref,const std::string value);
   /**
    * \brief Creates a JSON property value query given the named reference
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* jsonValueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* jsonValueQuery(const std::string queryref,const std::string value);
   /**
    * \brief Creates an xml element value query given the named reference
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* xmlValueQuery(const std::string ref,const std::string value);
+  MLCLIENT_API IQuery* xmlValueQuery(const std::string queryref,const std::string value);
   /**
    * \brief Creates a range query given the named reference, and range operation
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param op The RangeOperation to perform
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* rangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* rangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
   /**
    * \brief Creates a JSON property range query given the named reference, and range operation
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param op The RangeOperation to perform
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* jsonRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* jsonRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
   /**
    * \brief Creates an XML element range query given the named reference, and range operation
    *
    * \note This method checks a list of named references, and thus is an instance method.
    *
-   * \param ref The reference to check
+   * \param queryref The reference to check
    * \param op The RangeOperation to perform
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* xmlRangeQuery(const std::string ref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* xmlRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
   /// @}
 
   /// \name searchbuilder_instance Instance methods that control the base search definition
