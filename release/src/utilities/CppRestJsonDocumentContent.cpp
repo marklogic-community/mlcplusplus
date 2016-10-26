@@ -154,7 +154,7 @@ StringList CppRestJsonObjectNode::keys() const {
         // Make sure to get the value as const reference otherwise you will end up copying
         // the whole JSON value recursively which can be expensive if it is a nested object.
         //const json::value &str = iter->first;
-        keys.push_back(iter->first); // we do want a copy of the key, so this is fine
+        keys.push_back(utility::conversions::to_utf8string(iter->first)); // we do want a copy of the key, so this is fine
         //const json::value &v = iter->second;
 
         // Perform actions here to process each string and value in the JSON object...
@@ -272,7 +272,7 @@ StringList CppRestJsonDocumentNode::keys() const {
           // Make sure to get the value as const reference otherwise you will end up copying
           // the whole JSON value recursively which can be expensive if it is a nested object.
           //const json::value &str = iter->first;
-          keys.push_back(iter->first); // we do want a copy of the key, so this is fine
+          keys.push_back(utility::conversions::to_utf8string(iter->first)); // we do want a copy of the key, so this is fine
           //const json::value &v = iter->second;
 
           // Perform actions here to process each string and value in the JSON object...

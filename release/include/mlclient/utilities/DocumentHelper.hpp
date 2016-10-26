@@ -50,7 +50,7 @@ public:
    * \param resp The MarkLogic C++ API Response object instance.
    * \return An IDocumentContent* instance created from the Response.
    */
-  static Document* fromResponse(const Response& resp);
+  MLCLIENT_API static Document* fromResponse(const Response& resp);
 
   /**
    * \brief A very, very simple function to take the content from a response and wrap in a Document object
@@ -63,7 +63,7 @@ public:
    * \param resp The MarkLogic C++ API Response object instance.
    * \param doc An IDocumentContent instance to populate from the Response.
    */
-  static void fromResponse(const Response& resp,Document& doc);
+  MLCLIENT_API static void fromResponse(const Response& resp,Document& doc);
 
   /**
    * \brief Returns an IDocumentContent* instance from a response. Retrieves content only, and only for a single document.
@@ -73,7 +73,7 @@ public:
    * \param resp The MarkLogic C++ API Response object instance.
    * \return An IDocumentContent* instance created from the Response.
    */
-  static IDocumentContent* contentFromResponse(const Response& resp);
+  MLCLIENT_API static IDocumentContent* contentFromResponse(const Response& resp);
 };
 
 } // end namespace utilities
