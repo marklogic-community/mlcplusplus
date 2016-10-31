@@ -20,6 +20,7 @@ mkdir -p dist/all-raw/cssource
 mkdir -p dist/all-raw/cssamples
 cd release/include
 tar czf ../../dist/osx-raw/mlclient-include.tar.gz mlclient
+rm ../../dist/windows-raw/mlclient-include.zip
 zip -q -r ../../dist/windows-raw/mlclient-include.zip mlclient -x .DS_Store
 cd ../..
 
@@ -46,6 +47,8 @@ cp Build/Release/mlclient.exp dist/windows-raw/Release-x86/
 cp Build/Release/*.exe dist/windows-raw/Release-x86/
 
 cd dist/windows-raw
+rm mlclient-Debug-x86.zip
+rm mlclient-Release-x86.zip
 zip -q -r mlclient-Debug-x86.zip Debug-x86 -x .DS_Store
 zip -q -r mlclient-Release-x86.zip Release-x86 -x .DS_Store
 rm -rf Debug-x86 Release-x86
@@ -53,6 +56,8 @@ cd ../osx-raw
 tar czf mlclient-Debug-Universal.tar.gz Debug-Universal
 rm -rf Debug-Universal
 cd ../all-raw
+rm mlclient-cssource.zip
+rm mlclient-cssamples.zip
 zip -q -r mlclient-cssource.zip cssource -x .DS_Store
 zip -q -r mlclient-cssamples.zip cssamples -x .DS_Store
 rm -rf cssource cssamples

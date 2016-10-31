@@ -128,19 +128,6 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 %apply size_t { std::vector<mlclient::utilities::IQuery*>::size_type };
 %template(IQuerySet) std::vector<mlclient::utilities::IQuery*>;
 
-//%apply size_t { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::size_type };
-//%apply mlclient::utilities::FacetOption { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::key_type };
-//%apply std::string { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::mapped_type };
-
-//%apply size_t { std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>::size_type };
-//%apply size_t { std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>::size_type };
-
-//%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string>;
-
-%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
-%template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
-%template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
-
 %{
 // #include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include "mlclient/utilities/DocumentBatchHelper.hpp"
@@ -152,6 +139,28 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/utilities/SearchOptionsBuilder.hpp"
 %}
+
+%apply size_t { mlclient::utilities::FacetOption }
+
+%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
+
+
+%apply size_t { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::size_type };
+%apply mlclient::utilities::FacetOption { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::key_type };
+%apply std::string { std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>::mapped_type };
+
+
+//%apply size_t { std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>::size_type };
+//%apply size_t { std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>::size_type };
+
+//%template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string>;
+
+%template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
+%template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
+
+
+
+
 
 /* Parse the header file to generate wrappers */
 /* WARNING - THESE MUST BE IN DEPENDENCY ORDER!!! ORDER IS VERY VERY IMPORTANT!!! */

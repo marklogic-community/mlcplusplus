@@ -28,6 +28,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppproducer", "cppproducer\cppproducer.vcxproj", "{B69BC9A4-EA91-4DBA-9D0D-465E371D97BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csgetdoc", "..\release\samples\csgetdoc\csgetdoc\csgetdoc.csproj", "{170EEF7B-0823-4B47-9823-4F295D3842C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A17952A-1EB4-4D09-85ED-F2AFCA773E61} = {5A17952A-1EB4-4D09-85ED-F2AFCA773E61}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csmlclient", "csmlclient\csmlclient.csproj", "{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}"
 EndProject
