@@ -6,8 +6,8 @@
  * For more information see g3log/LICENSE or refer refer to http://unlicense.org
  * ============================================================================*/
 
-#include "g3log/logcapture.hpp"
-#include "g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/logcapture.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
 
 // For Windows we need force a thread_local install per thread of three
 // signals that must have a signal handler instealled per thread-basis
@@ -82,5 +82,3 @@ void LogCapture::capturef(const char *printf_like_message, ...) {
       stream() << finished_message;
    }
 }
-
-

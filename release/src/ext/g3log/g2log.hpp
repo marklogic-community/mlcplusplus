@@ -2,7 +2,7 @@
 * 2015 by KjellKod.cc. This is PUBLIC DOMAIN to use at your own risk and comes
 * with no warranties. This code is yours to share, use and modify with no
 * strings attached and no restrictions or obligations.
-* 
+*
 * For more information see g3log/LICENSE or refer refer to http://unlicense.org
 * ============================================================================*/
 
@@ -16,8 +16,7 @@
 // Btw: replacing g2log for g3log include is easy on Linux
 //  find . -name "*.cpp*" -print | xargs sed -i -e 's/\g2log\.hpp/\g3log\/g3log\.hpp/g'
 
-#include <g3log/g3log.hpp>
-#include <g3log/logworker.hpp>
-#include <g3log/loglevels.hpp>
-#include <g3log/filesink.hpp>
-
+#include <mlclient/ext/g3log/g3log.hpp>
+#include <mlclient/ext/g3log/logworker.hpp>
+#include <mlclient/ext/g3log/loglevels.hpp>
+#include <mlclient/ext/g3log/filesink.hpp>

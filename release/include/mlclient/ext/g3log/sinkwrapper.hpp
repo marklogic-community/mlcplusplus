@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "g3log/logmessage.hpp"
+#include "mlclient/ext/g3log/logmessage.hpp"
 
 namespace g3 {
    namespace internal {
@@ -19,4 +19,3 @@ namespace g3 {
       };
    }
 }
-

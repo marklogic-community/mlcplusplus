@@ -6,10 +6,10 @@
  * For more information see g3log/LICENSE or refer refer to http://unlicense.org
  * ============================================================================*/
 
-#include "g3log/crashhandler.hpp"
-#include "g3log/logmessage.hpp"
-#include "g3log/logcapture.hpp"
-#include "g3log/loglevels.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/logmessage.hpp"
+#include "mlclient/ext/g3log/logcapture.hpp"
+#include "mlclient/ext/g3log/loglevels.hpp"
 
 #if (defined(WIN32) || defined(_WIN32) || defined(__WIN32__) && !defined(__GNUC__))
 #error "crashhandler_unix.cpp used but it's a windows system"
@@ -271,4 +271,3 @@ namespace g3 {
       installSignalHandler();
    }
 } // end namespace g3
-

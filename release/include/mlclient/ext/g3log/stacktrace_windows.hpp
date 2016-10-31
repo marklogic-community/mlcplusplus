@@ -17,7 +17,7 @@
 #error "stacktrace_win.cpp used but not on a windows system"
 #endif
 
-#include "g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
 
 #include <string>
 #include <windows.h>

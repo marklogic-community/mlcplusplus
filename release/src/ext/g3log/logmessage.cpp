@@ -6,9 +6,9 @@
 * For more information see g3log/LICENSE or refer refer to http://unlicense.org
 * ============================================================================*/
 
-#include "g3log/logmessage.hpp"
-#include "g3log/crashhandler.hpp"
-#include "g3log/time.hpp"
+#include "mlclient/ext/g3log/logmessage.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/time.hpp"
 #include <mutex>
 
 namespace {
@@ -132,8 +132,8 @@ namespace g3 {
       , _level(level)
    {
       g3::timespec_get(&_timestamp/*, TIME_UTC*/);
-      // Another possibility could be to Falling back to clock_gettime as TIME_UTC 
-      // is not recognized by travis CI. 
+      // Another possibility could be to Falling back to clock_gettime as TIME_UTC
+      // is not recognized by travis CI.
       // i.e. clock_gettime(CLOCK_REALTIME, &_timestamp);
    }
 

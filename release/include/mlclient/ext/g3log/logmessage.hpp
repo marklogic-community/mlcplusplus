@@ -10,10 +10,10 @@
 
 
 
-#include "g3log/loglevels.hpp"
-#include "g3log/time.hpp"
-#include "g3log/moveoncopy.hpp"
-#include "g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/loglevels.hpp"
+#include "mlclient/ext/g3log/time.hpp"
+#include "mlclient/ext/g3log/moveoncopy.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
 
 #include <string>
 #include <sstream>

@@ -9,7 +9,7 @@ project (mlclient)
 
 set (mlclient_VERSION_MAJOR 8)
 set (mlclient_VERSION_MINOR 0)
-set (mlclient_VERSION_REVISION 2)
+set (mlclient_VERSION_REVISION 3)
 
 # EDITABLE SETTINGS END
 
@@ -89,7 +89,7 @@ if(( ${CMAKE_CXX_COMPILER_ID} MATCHES "Clang") OR IOS)
   set(OSX_SUPPRESSIONS "-Wno-overloaded-virtual -Wno-sign-conversion -Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-char-subscripts -Wno-switch -Wno-unused-parameter -Wno-unused-variable -Wno-deprecated -Wno-unused-value -Wno-unknown-warning-option -Wno-return-type-c-linkage -Wno-unused-function -Wno-sign-compare -Wno-shorten-64-to-32 -Wno-reorder")
   set(WARNINGS "${WARNINGS} ${OSX_SUPPRESSIONS}")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration -D_GLIBCXX_USE_NANOSLEEP")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
 
@@ -104,7 +104,7 @@ elseif( ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
   set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
   set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing -D_GLIBCXX_USE_NANOSLEEP")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
   message("-- Setting msvc options")

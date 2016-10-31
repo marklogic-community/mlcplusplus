@@ -22,7 +22,7 @@
 #include <thread>
 #include <functional>
 #include <memory>
-#include "g3log/shared_queue.hpp"
+#include "mlclient/ext/g3log/shared_queue.hpp"
 
 namespace kjellkod {
    typedef std::function<void() > Callback;

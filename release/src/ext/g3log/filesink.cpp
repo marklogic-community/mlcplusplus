@@ -6,8 +6,8 @@
  * For more information see g3log/LICENSE or refer refer to http://unlicense.org
  * ============================================================================*/
 
-#include "g3log/filesink.hpp"
-#include "filesinkhelper.ipp"
+#include "mlclient/ext/g3log/filesink.hpp"
+#include "mlclient/ext/g3log/filesinkhelper.hpp"
 #include <cassert>
 
 namespace g3 {

@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "g3log/loglevels.hpp"
-#include "g3log/g3log.hpp"
-#include "g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/loglevels.hpp"
+#include "mlclient/ext/g3log/g3log.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
 
 #include <string>
 #include <sstream>
@@ -52,8 +52,8 @@ struct LogCapture {
    //      Ref:  http://www.unixwiz.net/techtips/gnu-c-attributes.html
 #ifndef __GNUC__
 #define  __attribute__(x) // Disable 'attributes' if compiler does not support 'em
-#endif 
-#ifdef _MSC_VER 
+#endif
+#ifdef _MSC_VER
 #	if _MSC_VER >= 1400
 #		define G3LOG_FORMAT_STRING _Printf_format_string_
 #	else

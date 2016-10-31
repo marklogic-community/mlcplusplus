@@ -12,7 +12,7 @@
  * For more information see g3log/LICENSE or refer refer to http://unlicense.org
  * ============================================================================*/
 
-#include "g3log/stacktrace_windows.hpp"
+#include "mlclient/ext/g3log/stacktrace_windows.hpp"
 
 #include <windows.h>
 #include <dbghelp.h>
@@ -21,7 +21,7 @@
 #include <cassert>
 #include <vector>
 #include <mutex>
-#include <g3log/g3log.hpp>
+#include <mlclient/ext/g3log/g3log.hpp>
 
 #pragma comment(lib, "dbghelp.lib")
 
@@ -217,6 +217,3 @@ namespace stacktrace {
    }
 
 } // stacktrace
-
-
-

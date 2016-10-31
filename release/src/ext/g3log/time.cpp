@@ -6,7 +6,7 @@
 * For more information see g3log/LICENSE or refer refer to http://unlicense.org
 * ============================================================================*/
 
-#include "g3log/time.hpp"
+#include "mlclient/ext/g3log/time.hpp"
 
 #include <sstream>
 #include <string>
@@ -172,7 +172,7 @@ namespace g3 {
          // replacing "%f[3|6|9]" with sec fractional part value
          format_buffer.replace(pos, g3::internal::kFractionalIdentier.size() + padding, value);
       }
-      std::tm t = localtime(time_snapshot.tv_sec);   
+      std::tm t = localtime(time_snapshot.tv_sec);
       return g3::put_time(&t, format_buffer.c_str()); // format example: //"%Y/%m/%d %H:%M:%S");
    }
 } // g3

@@ -18,12 +18,12 @@
  * 5. Various Q&A at StackOverflow
  * ********************************************* */
 
-#include "g3log/g3log.hpp"
-#include "g3log/std2_make_unique.hpp"
-#include "g3log/logworker.hpp"
-#include "g3log/crashhandler.hpp"
-#include "g3log/logmessage.hpp"
-#include "g3log/loglevels.hpp"
+#include "mlclient/ext/g3log/g3log.hpp"
+#include "mlclient/ext/g3log/std2_make_unique.hpp"
+#include "mlclient/ext/g3log/logworker.hpp"
+#include "mlclient/ext/g3log/crashhandler.hpp"
+#include "mlclient/ext/g3log/logmessage.hpp"
+#include "mlclient/ext/g3log/loglevels.hpp"
 
 
 #include <mutex>
@@ -253,6 +253,3 @@ namespace g3 {
 
    } // internal
 } // g3
-
-
-

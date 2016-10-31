@@ -11,12 +11,12 @@
  *
  * PUBLIC DOMAIN and Not copywrited. First published at KjellKod.cc
  * ********************************************* */
-#include "g3log/g3log.hpp"
-#include "g3log/sinkwrapper.hpp"
-#include "g3log/sinkhandle.hpp"
-#include "g3log/filesink.hpp"
-#include "g3log/logmessage.hpp"
-#include "g3log/std2_make_unique.hpp"
+#include "mlclient/ext/g3log/g3log.hpp"
+#include "mlclient/ext/g3log/sinkwrapper.hpp"
+#include "mlclient/ext/g3log/sinkhandle.hpp"
+#include "mlclient/ext/g3log/filesink.hpp"
+#include "mlclient/ext/g3log/logmessage.hpp"
+#include "mlclient/ext/g3log/std2_make_unique.hpp"
 
 #include <memory>
 #include <string>
@@ -66,7 +66,7 @@ namespace g3 {
       /// if you want to use the default file logger then see below for @ref addDefaultLogger
       static std::unique_ptr<LogWorker> createLogWorker();
 
-      
+
       /**
       A convenience function to add the default g3::FileSink to the log worker
        @param log_prefix that you want

@@ -10,8 +10,8 @@
 #include <cstdio>
 #include <string>
 #include <map>
-#include "g3log/loglevels.hpp"
-#include "g3log/generated_definitions.hpp"
+#include "mlclient/ext/g3log/loglevels.hpp"
+#include "mlclient/ext/g3log/generated_definitions.hpp"
 
 // kjell. Separera på crashhandler.hpp och crashhanlder_internal.hpp
 // implementationsfilen kan vara den samma
@@ -48,7 +48,7 @@ namespace g3 {
    /// For example: usage of zcmq relies on its own signal handler for SIGTERM
    ///     so users of g3log with zcmq should then use the @ref overrideSetupSignals
    ///     , likely with the original set of signals but with SIGTERM removed
-   /// 
+   ///
    /// call example:
    ///  g3::overrideSetupSignals({ {SIGABRT, "SIGABRT"}, {SIGFPE, "SIGFPE"},{SIGILL, "SIGILL"},
    //                          {SIGSEGV, "SIGSEGV"},});

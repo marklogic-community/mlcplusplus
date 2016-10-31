@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "g3log/sink.hpp"
+#include "mlclient/ext/g3log/sink.hpp"
 
 #include <memory>
 #include <type_traits>
@@ -50,5 +50,3 @@ namespace g3 {
       }
    };
 }
-
-
