@@ -55,6 +55,18 @@ add_library (mlclient SHARED
     utilities/SearchOptionsBuilder.cpp
 
     ext/pugixml/pugixml.cpp
+
+    ext/g3log/crashhandler_unix.cpp
+    ext/g3log/crashhandler_windows.cpp
+    ext/g3log/filesink.cpp
+    ext/g3log/filesinkhelper.ipp
+    ext/g3log/g3log.cpp
+    ext/g3log/logcapture.cpp
+    ext/g3log/loglevels.cpp
+    ext/g3log/logmessage.cpp
+    ext/g3log/logworker.cpp
+    ext/g3log/stacktrace_windows.cpp
+    ext/g3log/time.cpp
 )
 
 
