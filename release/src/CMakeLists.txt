@@ -55,16 +55,6 @@ add_library (mlclient SHARED
     utilities/SearchOptionsBuilder.cpp
 
     ext/pugixml/pugixml.cpp
-
-    ext/g3log/crashhandler_unix.cpp
-
-    ext/g3log/filesink.cpp
-    ext/g3log/g3log.cpp
-    ext/g3log/logcapture.cpp
-    ext/g3log/loglevels.cpp
-    ext/g3log/logmessage.cpp
-    ext/g3log/logworker.cpp
-    ext/g3log/time.cpp
 )
 
 
@@ -117,12 +107,13 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 target_link_libraries (mlclient
 #    libcommon_utilities.dylib
 #    libpugixml.a
-    ${GLOG_LIB}
+#    ${GLOG_LIB}
     ${OPENSSL_LIBRARIES}
     ${LIBSSL_LIB}
     ${LIBCRYPTO_LIB}
     ${CPPREST_LIB}
     ${Casablanca_LIBRARIES}
+#    c++abi
 )
 
 

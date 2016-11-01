@@ -15,9 +15,13 @@
 #include <sstream>
 #include <string>
 
-#ifndef _WIN32
+//#ifndef _WIN32
 
-#include <glog/logging.h>
+//#include <mlclient/ext/g3log/g3log.hpp>
+//#include <mlclient/ext/g3log/logworker.hpp>
+//#include <mlclient/internals/G3OutSink.hpp>
+
+#include <boost/log/trivial.hpp>
 
 // BEGIN LOGGING IMPL
 // THIS SECTION DEFINES THE ACTUAL LOGGING IMPLEMENTATION AND SETTINGS
@@ -33,44 +37,44 @@
 // BEGIN LOGGING MACROS
 // THE ACTUAL HIGH LEVEL LOGGING FUNCTIONALITY
 // TODO enact Debug verbose levels too and link to google vlog(0) to vlog(3)
-#undef LOG
-#undef LOG_DEBUG
-#undef LOG_INFO
-#undef LOG_ERROR
-#undef LOG_WARN
-#define LOG_DEBUG COMPACT_GOOGLE_LOG_ ## INFO.stream()
-#define LOG_INFO COMPACT_GOOGLE_LOG_ ## INFO.stream()
-#define LOG_ERROR COMPACT_GOOGLE_LOG_ ## ERROR.stream()
-#define LOG_WARN COMPACT_GOOGLE_LOG_ ## WARN.stream()
-#define LOG(lvl) COMPACT_GOOGLE_LOG_ ## INFO.stream()
+//#undef LOG
+//#undef LOG_DEBUG
+//#undef LOG_INFO
+//#undef LOG_ERROR
+//#undef LOG_WARN
+//#define LOG_DEBUG COMPACT_GOOGLE_LOG_ ## INFO.stream()
+//#define LOG_INFO COMPACT_GOOGLE_LOG_ ## INFO.stream()
+//#define LOG_ERROR COMPACT_GOOGLE_LOG_ ## ERROR.stream()
+//#define LOG_WARN COMPACT_GOOGLE_LOG_ ## WARN.stream()
+//#define LOG(lvl) COMPACT_GOOGLE_LOG_ ## INFO.stream()
 
-#else
+//#else
 // Windows sucks at supporting Google Log
-template<typename Ch, typename Traits = std::char_traits<Ch> >
-struct basic_nullbuf : std::basic_streambuf<Ch, Traits> {
-  typedef std::basic_streambuf<Ch, Traits> base_type;
-  typedef typename base_type::int_type int_type;
-  typedef typename base_type::traits_type traits_type;
+//template<typename Ch, typename Traits = std::char_traits<Ch> >
+//struct basic_nullbuf : std::basic_streambuf<Ch, Traits> {
+  //typedef std::basic_streambuf<Ch, Traits> base_type;
+  //typedef typename base_type::int_type int_type;
+  //typedef typename base_type::traits_type traits_type;
 
-  virtual int_type overflow(int_type c) {
-    return traits_type::not_eof(c);
-  }
-};
+  //virtual int_type overflow(int_type c) {
+  //  return traits_type::not_eof(c);
+  //}
+//};
 
 // convenient typedefs
-MLCLIENT_API typedef basic_nullbuf<char> nullbuf;
-MLCLIENT_API typedef basic_nullbuf<wchar_t> wnullbuf;
+//MLCLIENT_API typedef basic_nullbuf<char> nullbuf;
+//MLCLIENT_API typedef basic_nullbuf<wchar_t> wnullbuf;
 
 //MLCLIENT_API typedef std::ostream MLLOGSTREAM;
 
 // buffers and streams
 // in some .h
-MLCLIENT_API extern std::ostream cnull;
+//MLCLIENT_API extern std::ostream cnull;
 //extern std::wostream wcnull;
 
-#define LOG(lvl) cnull
+//#define LOG(lvl) cnull
 
-#endif
+//#endif
 
 
 // The following redefined a low-level non formatted log function, as per easylogging++.h
@@ -80,6 +84,9 @@ MLCLIENT_API extern std::ostream cnull;
 #define TIMED_SCOPE(id,scopename) //
 #define ENTRANCE_LOG(a,b,c,d) //
 #define DEBUG_ENTRANCE_LOG(a,b,c,d) //
+
+#define LOG(DEBUG) BOOST_LOG_TRIVIAL(debug)
+//#define LOG(INFO) BOOST_LOG_TRIVIAL(info)
 
 // END LOGGING MACROS
 

@@ -8,11 +8,25 @@
 #include <mlclient/logging.hpp>
 
 #ifndef _WIN32
-#include <glog/logging.h>
+//#include <glog/logging.h>
 #endif
 
 #include <ostream>
 #include <cstring>
+
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/attributes/named_scope.hpp>
+#include <boost/log/attributes/current_process_name.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
+
+//#include <mlclient/internals/G3OutSink.hpp>
+//#include <mlclient/ext/g3log/filesink.hpp>
 
  // For sharing easyloggingpp configuration
  /*
@@ -87,9 +101,9 @@
 
  // in a concrete .cpp
 #ifdef _WIN32
-nullbuf null_obj;
+//nullbuf null_obj;
 //wnullbuf wnull_obj;
-std::ostream cnull(&null_obj);
+//std::ostream cnull(&null_obj);
 //std::wostream wcnull(&wnull_obj);
 #endif
 
@@ -181,23 +195,85 @@ void reconfigureLogging(int argc,const char * argv[]) {
 void reconfigureLoggingSettings(const LoggingConfiguration& config) {
   static bool configured = false;
   // The following is a hack as google logging hates Win32 currently
-#ifndef _WIN32
+//#ifndef _WIN32
   //if (true == config.toerr) {
   //  FLAGS_logtostderr = 1;
   //} else {
-    FLAGS_logtostderr = 0;
+  //  FLAGS_logtostderr = 0;
   //}
   // reconfigure logger with the new settings
-  FLAGS_log_dir = config.folder;
+  //FLAGS_log_dir = config.folder;
 
   // TODO handle log level
 
   if (!configured) {
-    google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
-    google::InstallFailureSignalHandler();
+    //google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
+    //google::InstallFailureSignalHandler();
+
+/*
+    //using namespace g3;
+    std::cout << "Configuring logging" << std::endl;
+
+
+    std::unique_ptr<g3::LogWorker> worker{ g3::LogWorker::createLogWorker() };
+    std::cout << "Got worker" << std::endl;
+    //auto defaultHandler = worker->addDefaultLogger("mlclient", config.folder); // <-- sits there forever
+    std::cout << "added default logger" << std::endl;
+
+    // logger is initialized
+    g3::initializeLogging(worker.get());
+    std::cout << "initialized logging" << std::endl;
+
+    //auto defHandle = worker->addSink(std2::make_unique<g3::FileSink>("mlclient", config.folder, "g3log"), &g3::FileSink::fileWrite);
+    //std::cout << "Added file sink" << std::endl;
+    auto sinkHandle = worker->addSink(std2::make_unique<G3OutSink>(), &G3OutSink::ReceiveLogMessage);
+    std::cout << "Added cout sink" << std::endl;
+
+    g3::only_change_at_initialization::setLogLevel(DEBUG, true);
+    std::cout << "Set Debug" << std::endl;
+    */
+
+
+    
+    boost::log::add_common_attributes();
+    /*
+        boost::shared_ptr< logging::core > core = boost::log::core::get();
+        core->add_global_attribute("LineID", attrs::counter< unsigned int >(1));
+        core->add_global_attribute("TimeStamp", attrs::local_clock());
+        core->add_global_attribute("Scope", attrs::named_scope());
+        */
+        //boost::log::core::get()->add_global_attribute("Scope", boost::log::attributes::named_scope()); // Causes segfault
+        boost::log::core::get()->add_global_attribute("Process",boost::log::attributes::current_process_name());
+
+      boost::log::add_file_log(
+        boost::log::keywords::target = config.folder,
+        boost::log::keywords::file_name = "mlclient_%N.log",                     /*< file name pattern >*/
+        boost::log::keywords::rotation_size = 10 * 1024 * 1024,                                   /*< rotate files every 10 MiB... >*/
+        boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0), /*< ...or at midnight >*/
+        boost::log::keywords::format = "[%TimeStamp%] %Process% %ProcessID% %ThreadID% %Message%"                                 /*< log record format >*/
+      );
+
+      // Use this to also log to console: boost::log::add_console_log(std::cout);
+
+      /*if (config.level == "INFO") {
+        boost::log::core::get()->set_filter
+        (
+            boost::log::trivial::severity >= boost::log::trivial::info
+        );
+      } else {*/
+      // TODO fix the detection of _DEBUG as its currently ignored
+        boost::log::core::get()->set_filter
+        (
+            boost::log::trivial::severity >= boost::log::trivial::debug
+        );
+      //}
+
+
+
+
     configured = true;
   }
-#endif
+//#endif
 }
 
 } // end namespace mlclient
