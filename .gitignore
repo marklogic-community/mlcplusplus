@@ -59,3 +59,6 @@ release/samples/**/*.zip
 release/samples/**/*.xml
 build-dist/osx/mlclient/pkgbuild
 deps
+
+*.VC.db
+*.VC.VC.opendb

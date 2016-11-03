@@ -21,7 +21,22 @@
 //#include <mlclient/ext/g3log/logworker.hpp>
 //#include <mlclient/internals/G3OutSink.hpp>
 
+#include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/attributes/mutable_constant.hpp>
+#include <boost/log/attributes/named_scope.hpp>
+#include <boost/log/attributes/current_process_name.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
+#include <boost/log/support/exception.hpp> // enables exception handling
+#include <boost/log/support/std_regex.hpp> // C++11 regex support
+
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+
 
 // BEGIN LOGGING IMPL
 // THIS SECTION DEFINES THE ACTUAL LOGGING IMPLEMENTATION AND SETTINGS
@@ -76,16 +91,110 @@
 
 //#endif
 
+namespace mlclient {
+  /*
+MLCLIENT_API class LogHolder {
+public:
+  LogHolder();
+
+  boost::log::sources::severity_logger<boost::log::trivial::severity_level>& getInstance();
+  static LogHolder* get();
+
+  static void reset();
+
+protected:
+  boost::log::sources::severity_logger<boost::log::trivial::severity_level> lg;
+  static LogHolder* inst;
+};
+
+
+  boost::log::sources::severity_logger<boost::log::trivial::severity_level>& getLogger();
+
+  */
+}
+
+/*
+boost::log::sources::severity_logger<boost::log::trivial::severity_level> lg;
+
+// New macro that includes severity, filename and line number
+#define CUSTOM_LOG \
+   BOOST_LOG_STREAM_WITH_PARAMS( \
+      (lg), \
+         (set_get_attrib("File", path_to_filename(__FILE__))) \
+         (set_get_attrib("Line", __LINE__)) \
+         (set_get_attrib("Function", __func__)) \
+         (::boost::log::keywords::severity = (boost::log::trivial::debug)) \
+   )
+
+// Set attribute and return the new value
+template<typename ValueType>
+ValueType set_get_attrib(const char* name, ValueType value) {
+   auto attr = boost::log::attribute_cast<boost::log::attributes::mutable_constant<ValueType>>(boost::log::core::get()->get_thread_attributes()[name]);
+   attr.set(value);
+   return attr.get();
+}
+*/
+// Convert file path to only the filename
+
+std::string path_to_filename(std::string path);
+
+
+
+
+  typedef boost::posix_time::ptime time_type;
+  //! Current time source
+#if defined(BOOST_DATE_TIME_HAS_HIGH_PRECISION_CLOCK)
+  typedef boost::posix_time::microsec_clock clock_source;
+#else
+  typedef boost::posix_time::second_clock clock_source;
+#endif // defined(BOOST_DATE_TIME_HAS_HIGH_PRECISION_CLOCK)
+
+class ScopeLogger {
+public:
+  ScopeLogger(std::string name,boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger);
+  ~ScopeLogger();
+protected:
+  clock_source clock;
+  time_type started;
+  boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger;
+  std::string name;
+
+
+};
+
+
+#define DEBUG debug
+#define INFO info
+
+#define LOG_LOCATION                            \
+  boost::log::attribute_cast<boost::log::attributes::mutable_constant<int>>(boost::log::core::get()->get_global_attributes()["Line"]).set(__LINE__); \
+  boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["File"]).set(path_to_filename(__FILE__)); \
+  boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["Function"]).set(__func__);
+
+
+//#define LOG(DEBUG) BOOST_LOG_TRIVIAL(debug)
+#define LOG(lvl) LOG_LOCATION; BOOST_LOG_SEV(boost::log::trivial::logger::get(), boost::log::trivial::severity_level::lvl)
+
 
 // The following redefined a low-level non formatted log function, as per easylogging++.h
 #define CLOG(lvl) LOG(lvl)
 
-#define TIMED_FUNC(id) //
-#define TIMED_SCOPE(id,scopename) //
-#define ENTRANCE_LOG(a,b,c,d) //
-#define DEBUG_ENTRANCE_LOG(a,b,c,d) //
+#define TIMED_FUNC(id) BOOST_LOG_NAMED_SCOPE(#id)
+#define TIMED_SCOPE(id,scopename) BOOST_LOG_NAMED_SCOPE(scopename)
+//#define ENTRANCE_LOG(a,b,c,d) LOG(info) << "Entered " + a + b + c + d;
+//#define DEBUG_ENTRANCE_LOG(a,b,c,d) LOG(debug) << "Debug Entered" + a + b + c + d;
 
-#define LOG(DEBUG) BOOST_LOG_TRIVIAL(debug)
+
+/*
+#define LOG(DEBUG) LOG_LOCATION;                                               \
+  BOOST_LOG_SEV(_log, boost::log::trivial::severity_level::debug)
+
+#define LOG_LOCATION                            \
+    boost::log::attribute_cast<boost::log::attributes::mutable_constant<int>>(boost::log::core::get()->get_global_attributes()["Line"]).set(__LINE__); \
+    boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["File"]).set(__FILE__); \
+    boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["Function"]).set(__func__);
+*/
+
 //#define LOG(INFO) BOOST_LOG_TRIVIAL(info)
 
 // END LOGGING MACROS

@@ -26,7 +26,11 @@ namespace mlclient {
 
 
 int runOnce() {
+
+  //mlclient::LogHolder::reset();
+
   libraryLoggingInit();
+
   return 0;
 }
 
