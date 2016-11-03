@@ -107,12 +107,13 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 target_link_libraries (mlclient
 #    libcommon_utilities.dylib
 #    libpugixml.a
-    ${GLOG_LIB}
+#    ${GLOG_LIB}
     ${OPENSSL_LIBRARIES}
     ${LIBSSL_LIB}
     ${LIBCRYPTO_LIB}
     ${CPPREST_LIB}
     ${Casablanca_LIBRARIES}
+#    c++abi
 )
 
 

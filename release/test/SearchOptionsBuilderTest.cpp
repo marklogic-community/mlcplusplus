@@ -95,7 +95,7 @@ void SearchOptionsBuilderTest::testAll() {
   try {
     web::json::value val = web::json::value::parse(utility::conversions::to_string_t(json->getContent()));
     LOG(DEBUG) << "Parsed JSON output: ";
-    val.serialize(LOG(DEBUG));
+    //val.serialize(LOG(DEBUG));
     success = true;
   } catch (std::exception & ex) {
     LOG(DEBUG) << "CAUGHT EXCEPTION: " << ex.what();
@@ -137,5 +137,3 @@ void SearchOptionsBuilderTest::testSave() {
 
   CPPUNIT_ASSERT_MESSAGE("Saving of search options JSON was not successful",success);
 }
-
-

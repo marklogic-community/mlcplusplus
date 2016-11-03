@@ -9,7 +9,7 @@ project (mlclient)
 
 set (mlclient_VERSION_MAJOR 8)
 set (mlclient_VERSION_MINOR 0)
-set (mlclient_VERSION_REVISION 2)
+set (mlclient_VERSION_REVISION 3)
 
 # EDITABLE SETTINGS END
 
@@ -40,7 +40,7 @@ elseif(UNIX) # This includes OSX
   #find_package(OpenSSL REQUIRED)
 
   option(BUILD_SHARED_LIBS "Build shared Libraries." ON)
-  SET(GLOG_LIB libglog.so)
+  #SET(GLOG_LIB libglog.so)
   SET(CPPREST_LIB libcpprest.so)
   SET(LIBSSL_LIB /usr/lib/x86_64-linux-gnu/libssl.so)
   SET(LIBCRYPTO_LIB /usr/lib/x86_64-linux-gnu/libcrypto.so)
@@ -67,7 +67,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -arch i386 -arch x86_64")
         SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -arch i386 -arch x86_64")
     ENDIF ()
-    SET(GLOG_LIB "libglog.dylib")
+    #SET(GLOG_LIB "libglog.dylib")
     SET(CPPREST_LIB libcpprest.dylib)
     SET(LIBSSL_LIB libssl.dylib)
     SET(LIBCRYPTO_LIB libcrypto.dylib)
@@ -89,7 +89,7 @@ if(( ${CMAKE_CXX_COMPILER_ID} MATCHES "Clang") OR IOS)
   set(OSX_SUPPRESSIONS "-Wno-overloaded-virtual -Wno-sign-conversion -Wno-deprecated -Wno-unknown-pragmas -Wno-reorder -Wno-char-subscripts -Wno-switch -Wno-unused-parameter -Wno-unused-variable -Wno-deprecated -Wno-unused-value -Wno-unknown-warning-option -Wno-return-type-c-linkage -Wno-unused-function -Wno-sign-compare -Wno-shorten-64-to-32 -Wno-reorder")
   set(WARNINGS "${WARNINGS} ${OSX_SUPPRESSIONS}")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wno-return-type-c-linkage -Wno-unneeded-internal-declaration -D_GLIBCXX_USE_NANOSLEEP")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
   set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11")
 
@@ -104,7 +104,7 @@ elseif( ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
   set(WARNINGS "${WARNINGS} ${LINUX_SUPPRESSIONS}")
   set(LD_FLAGS "${LD_FLAGS} -Wl,-z,defs")
 
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-strict-aliasing -D_GLIBCXX_USE_NANOSLEEP")
   set(STRICT_CXX_FLAGS ${WARNINGS} "-Werror -pedantic")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
   message("-- Setting msvc options")
@@ -129,7 +129,8 @@ set(mlclient_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # DEPENDENCY DETECTION
 
 # Boost (Includes system, thread, locale, regex and filesystem components by default - we need thread only)
-find_package (Boost REQUIRED COMPONENTS thread)
+set(Boost_USE_STATIC_LIBS   ON)
+find_package (Boost REQUIRED COMPONENTS thread log-mt log_setup-mt filesystem )
 
 
 if(APPLE AND NOT OPENSSL_ROOT_DIR)
@@ -159,8 +160,10 @@ set(Casablanca_LIBRARIES ${Casablanca_LIBRARY}
   ${Boost_CHRONO_LIBRARY}
   ${Boost_RANDOM_LIBRARY}
   ${Boost_REGEX_LIBRARY}
+  ${Boost_LOG-MT_LIBRARY}
+  ${Boost_LOG_SETUP-MT_LIBRARY}
   ${Boost_UNIT_TEST_FRAMEWORK}
-  ${GLOG_LIB}
+  #${GLOG_LIB}
   ${LIBSSL_LIB}
   ${LIBCRYPTO_LIB}
   ${CPPREST_LIB}

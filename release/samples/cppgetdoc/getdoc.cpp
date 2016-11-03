@@ -53,13 +53,13 @@ int main(int argc, const char * argv[])
     CppRestJsonHelper::fromResponse(*rp).serialize(std::cout);
     std::cout << std::endl;
     LOG(DEBUG) << "This is JSON doc " << uri << ": ";
-    CppRestJsonHelper::fromResponse(*rp).serialize(LOG(DEBUG));
+    //CppRestJsonHelper::fromResponse(*rp).serialize(LOG(DEBUG));
   }
   if (ResponseType::XML == rt) {
     std::cout << "This is XML doc " << uri << ": " << std::endl;
     PugiXmlHelper::fromResponse(*rp)->save(std::cout); std::cout << std::endl;
     LOG(DEBUG) << "This is XML doc " << uri << ": ";
-    PugiXmlHelper::fromResponse(*rp)->save(LOG(DEBUG)); // TODO check this works as expected
+    //PugiXmlHelper::fromResponse(*rp)->save(LOG(DEBUG)); // TODO check this works as expected
   }
 
   std::cout << "getdoc complete" << std::endl;
