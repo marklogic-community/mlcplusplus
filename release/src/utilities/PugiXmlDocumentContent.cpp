@@ -225,6 +225,7 @@ PugiXmlDocumentNode::PugiXmlDocumentNode(const pugi::xml_node& root,const std::s
 
 
 PugiXmlDocumentNode::PugiXmlDocumentNode(PugiXmlDocumentNode&& from) : mImpl(from.mImpl) {
+  LOG(DEBUG) << "PugiXmlDocumentNode::copy ctor";
   from.mImpl = NULL;
 }
 

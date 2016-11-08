@@ -297,7 +297,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       LOG(DEBUG) << "End of request headers";
 
       if (nullptr != body) {
-        LOG(DEBUG) << "Body is not null on retry";
+        LOG(DEBUG) << "Request body is not null on retry";
         LOG(DEBUG) << "  mimeString: " << utility::conversions::to_utf8string(mimeString);
         LOG(DEBUG) << "  bodyString: " << utility::conversions::to_utf8string(bodyString);
         req.set_body(bodyString,mimeString);
@@ -312,7 +312,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
         //req.headers().add(U("Content-type"),utility::conversions::to_string_t(body->getMimeType()));
         //req.set_body(data);
       } else {
-        LOG(DEBUG) << "Body IS null on retry";
+        LOG(DEBUG) << "Request body IS null on retry";
       }
       /*
       LOG(DEBUG) << "Listing request headers post auth calculation:-";
