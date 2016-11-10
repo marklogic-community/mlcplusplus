@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MarkLogic.MLConnect.Cpp</id>
+    <version>8.0.3-alpha4</version>
+    <title>MarkLogic C++ Client API</title>
+    <authors>adamfowleruk</authors>
+    <owners>adamfowleruk</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/adamfowleruk/mlcplusplus</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/adamfowleruk/mlcplusplus/develop/documentation/images/cpp.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C++ wrapper for the MarkLogic Server REST API, and utility classes. This is the mlclient / MLConnect C++ API.</description>
+    <releaseNotes>See http://github.com/adamfowleruk/mlcplusplus/issues for known issues.</releaseNotes>
+    <copyright>Copyright 2016 MarkLogic Corporation. All Rights Reserved.</copyright>
+    <tags>marklogic client native dyn v140 rest mlclient mlconnect cpp C++</tags>
+    <dependencies>
+      <group targetFramework="native0.0">
+        <dependency id="boost" version="1.61.0" />
+        <dependency id="boost_system-vc140" version="1.61.0" />
+        <dependency id="cpprestsdk" version="2.8.0" />
+        <dependency id="openssl.v140.windesktop.msvcstl.static.rt-dyn" version="1.0.2.1" />
+        <dependency id="openssl.v140.windesktop.msvcstl.static.rt-dyn.x64" version="1.0.2.1" />
+        <dependency id="openssl.v140.windesktop.msvcstl.static.rt-dyn.x86" version="1.0.2.1" />
+        <dependency id="zlib.v140.windesktop.msvcstl.static.rt-dyn" version="1.2.8.8" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\README.md" target="" />
+    <file src="build\**" target="build" />
+    <file src="..\release\include\**" target="lib\native\include" />
+    <file src="Debug\mlclient.dll" target="lib\native\dyn\x86\Debug" />
+    <file src="Debug\mlclient.lib" target="lib\native\dyn\x86\Debug" />
+    <file src="Debug\mlclient.pdb" target="lib\native\dyn\x86\Debug" />
+    <file src="Release\mlclient.dll" target="lib\native\dyn\x86\Release" />
+    <file src="Release\mlclient.lib" target="lib\native\dyn\x86\Release" />
+    <file src="Release\mlclient.pdb" target="lib\native\dyn\x86\Release" />
+  </files>
+</package>

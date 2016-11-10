@@ -59,3 +59,10 @@ release/samples/**/*.zip
 release/samples/**/*.xml
 build-dist/osx/mlclient/pkgbuild
 deps
+nugettest/packages
+*.VC.db
+nugettest/nugettest/Debug
+bugettest/nugettest/Release
+*.nupkg
+nugettest/ipch
+

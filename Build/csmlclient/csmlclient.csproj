@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;error</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -301,6 +301,14 @@
     <None Include="Dependencies\mlclient.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\bin\src\CSharpSources\mlclient-csCSHARP_wrap.cxx">
+      <Link>Source Files\mlclient-csCSHARP_wrap.cxx</Link>
+    </Content>
+    <Content Include="..\..\bin\src\CSharpSources\mlclient-csCSHARP_wrap.h">
+      <Link>Source Files\mlclient-csCSHARP_wrap.h</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
