@@ -35,6 +35,7 @@ namespace utilities {
 
 // DocumentContent conversion
 ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
+  LOG(DEBUG) << "CppRestJsonHelper::toDocument(web::json::value&)";
   TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
   tdc->setContent(json); // move constructor used
@@ -43,6 +44,7 @@ ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
 }
 
 ITextDocumentContent* CppRestJsonHelper::toDocument(const Response& resp) {
+  LOG(DEBUG) << "CppRestJsonHelper::toDocument(Response&)";
   web::json::value val = CppRestJsonHelper::fromResponse(resp);
   return CppRestJsonHelper::toDocument(val);
 }
@@ -61,10 +63,12 @@ const web::json::value CppRestJsonHelper::fromDocument(const IDocumentContent& d
 
 // Response conversion
 web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
+  LOG(DEBUG) << "CppRestJsonHelper::fromResponse(Response&)";
   TIMED_FUNC(CppRestJsonHelper_fromResponse);
   if (resp.getResponseType() == ResponseType::JSON) {
     return web::json::value::parse(utility::conversions::to_string_t(resp.getContent()));
   } else {
+    LOG(DEBUG) << "CppRestJsonHelper::fromResponse(Response&): Invalid format, throwing exception";
     throw InvalidFormatException();
   }
 }

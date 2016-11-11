@@ -182,6 +182,7 @@ public:
 
 
 CppRestJsonDocumentNode::CppRestJsonDocumentNode(web::json::value& root) : mImpl(new Impl(root)) {
+  LOG(DEBUG) << "CppRestJsonDocumentNode::ctor";
   std::ostringstream os;
   root.serialize(os);
   LOG(DEBUG) << "CppRestJsonDocumentNode:ctor node value: " << os.str();
@@ -295,12 +296,15 @@ public:
 };
 
 CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(web::json::value& root,bool firstElementAsRoot) : mImpl(new Impl(root)) {
+  LOG(DEBUG) << "CppRestJsonDocumentNavigator::ctor";
   ;
 }
 
 CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from) : mImpl(from.mImpl) {
+  LOG(DEBUG) << "CppRestJsonDocumentNavigator::copy ctor";
   from.mImpl = NULL;
 }
+
 CppRestJsonDocumentNavigator::~CppRestJsonDocumentNavigator() {
   if (NULL != mImpl) {
     delete mImpl;
@@ -309,13 +313,14 @@ CppRestJsonDocumentNavigator::~CppRestJsonDocumentNavigator() {
 }
 
 IDocumentNode* CppRestJsonDocumentNavigator::at(const std::string& key) const {
+  LOG(DEBUG) << "CppRestJsonDocumentNavigator::at key: " << key;
   return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(key))); // uses move constructor
 }
 
 
 class CppRestJsonDocumentContent::Impl {
 public:
-  Impl() : value(web::json::value()) {
+  Impl() : value(web::json::value()), mimeType("") {
     TIMED_FUNC(CppRestJsonDocumentContent_Impl_defaultConstructor);
   };
   ~Impl() {
@@ -326,6 +331,7 @@ public:
 };
 
 CppRestJsonDocumentContent::CppRestJsonDocumentContent() : mImpl(new Impl) {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::ctor";
   TIMED_FUNC(CppRestJsonDocumentContent_constructor);
 }
 
@@ -350,6 +356,7 @@ const web::json::value& CppRestJsonDocumentContent::getJson() const {
 }
 
 void CppRestJsonDocumentContent::setContent(web::json::value& json) {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::setContent(web::json::value&)";
   TIMED_FUNC(CppRestJsonDocumentContent_setContent);
   mImpl->value = std::move(json); // move constructor
 }
@@ -359,6 +366,7 @@ std::string CppRestJsonDocumentContent::getMimeType() const {
 }
 
 void CppRestJsonDocumentContent::setMimeType(const std::string& mt) {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::setMimeType: " << mt;
   mImpl->mimeType = std::string(mt); // invokes copy constructor
 }
 
@@ -367,6 +375,7 @@ int CppRestJsonDocumentContent::getLength() const {
 }
 
 void CppRestJsonDocumentContent::setContent(std::string content) {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::setContent(std::string&)";
   TIMED_FUNC(CppRestJsonDocumentContent_setContent);
   std::ostringstream os;
   os << content;
@@ -374,6 +383,7 @@ void CppRestJsonDocumentContent::setContent(std::string content) {
 }
 
 std::string CppRestJsonDocumentContent::getContent() const {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::getContent";
   TIMED_FUNC(CppRestJsonDocumentContent_getContent);
   std::ostringstream os;
   //os << mImpl->value;
@@ -382,6 +392,11 @@ std::string CppRestJsonDocumentContent::getContent() const {
 }
 
 IDocumentNavigator* CppRestJsonDocumentContent::navigate(bool firstElementAsRoot) const {
+  LOG(DEBUG) << "CppRestJsonDocumentContent::navigate";
+  LOG(DEBUG) << "CppRestJsonDocumentContent::navigate : mImpl is null?: " << (nullptr == mImpl);
+  std::ostringstream os;
+  mImpl->value.serialize(os);
+  LOG(DEBUG) << "CppRestJsonDocumentContent::navigate : value: " << os.str();
   return new CppRestJsonDocumentNavigator(mImpl->value,firstElementAsRoot);
 }
 
