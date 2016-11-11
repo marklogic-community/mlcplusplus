@@ -12,12 +12,28 @@ namespace nugetcsharptest
         static void Main(string[] args)
         {
             mlclient.Connection conn = new mlclient.Connection();
-            conn.configure("192.168.123.4", "8122", "admin", "admin");
+            Console.Out.WriteLine("Please enter your MarkLogic Server Hostname or IP Address, and hit enter.");
+            string hostname = Console.In.ReadLine();
+            Console.Out.WriteLine("Please enter your MarkLogic Server REST API Port Number, and hit enter.");
+            string port = Console.In.ReadLine();
+            Console.Out.WriteLine("Please enter your MarkLogic Server Username, and hit enter.");
+            string user = Console.In.ReadLine();
+            Console.Out.WriteLine("Please enter your MarkLogic Server Password, and hit enter.");
+            string pass = Console.In.ReadLine();
+            Console.Out.WriteLine("Please enter the URI of the document you wish to view, and hit enter.");
+            string uri = Console.In.ReadLine();
+
+            conn.configure(hostname,port,user,pass);
             Document doc = new Document();
-            doc.setUri("/some/doc.json");
+            doc.setUri(uri);
             Response resp = conn.getDocumentContent(doc);
+            // TODO handle errors
+            Console.Out.WriteLine("The content of your document is as follows:-");
             Console.Out.WriteLine(resp.getContent());
-            Console.Out.WriteLine("Done!");
+
+            Console.Out.WriteLine("Done! Hit any key to exit.");
+            char[] buffer = new char ['c'];
+            int outcome = Console.In.ReadBlock(buffer,0,1);
         }
     }
 }
