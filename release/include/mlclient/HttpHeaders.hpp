@@ -33,13 +33,13 @@ namespace mlclient {
  */
 class HttpHeaders {
 public:
-  HttpHeaders();
-  ~HttpHeaders() = default;
-  void setHeaders(const StringMap& headers);
-  void setHeader(const std::string& header,const std::string& value);
-  const std::string& getHeader(const std::string& header) const;
-  const StringMap& getHeaders() const;
-  void clear();
+  MLCLIENT_API HttpHeaders();
+  MLCLIENT_API ~HttpHeaders() = default;
+  MLCLIENT_API void setHeaders(const StringMap& headers);
+  MLCLIENT_API void setHeader(const std::string& header,const std::string& value);
+  MLCLIENT_API const std::string& getHeader(const std::string& header) const;
+  MLCLIENT_API const StringMap& getHeaders() const;
+  MLCLIENT_API void clear();
 
 private:
   std::map<std::string,std::string> mHeaders; // no point hiding via PIMPL idiom - we have a compile time dependency on std::map from setHeaders()

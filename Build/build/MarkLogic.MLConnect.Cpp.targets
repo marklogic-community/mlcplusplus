@@ -1,0 +1,21 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\lib\native\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.pdb" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.pdb" />
+  </ItemGroup>
+</Project>
