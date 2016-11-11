@@ -1,0 +1,16 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.pdb" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.pdb" />
+  </ItemGroup>
+</Project>

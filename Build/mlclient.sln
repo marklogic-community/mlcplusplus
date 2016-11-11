@@ -33,6 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csgetdoc", "..\release\samp
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csmlclient", "csmlclient\csmlclient.csproj", "{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5FA41715-2404-4958-A2A7-0D206AF21F47} = {5FA41715-2404-4958-A2A7-0D206AF21F47}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "csmlclientcpp", "csmlclientcpp\csmlclientcpp.vcxproj", "{5FA41715-2404-4958-A2A7-0D206AF21F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +129,16 @@ Global
 		{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}.Release|x64.Build.0 = Release|Any CPU
 		{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}.Release|x86.ActiveCfg = Release|Any CPU
 		{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}.Release|x86.Build.0 = Release|Any CPU
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Debug|x64.ActiveCfg = Debug|x64
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Debug|x64.Build.0 = Debug|x64
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Debug|x86.ActiveCfg = Debug|Win32
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Debug|x86.Build.0 = Debug|Win32
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Release|Any CPU.ActiveCfg = Release|Win32
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Release|x64.ActiveCfg = Release|x64
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Release|x64.Build.0 = Release|x64
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Release|x86.ActiveCfg = Release|Win32
+		{5FA41715-2404-4958-A2A7-0D206AF21F47}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

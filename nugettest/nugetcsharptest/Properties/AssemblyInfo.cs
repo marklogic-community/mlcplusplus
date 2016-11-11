@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MarkLogic C# Client API")]
-[assembly: AssemblyDescription("The MLConnect MarkLogic C# Client API")]
+[assembly: AssemblyTitle("nugetcsharptest")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MarkLogic Corporation")]
-[assembly: AssemblyProduct("MarkLogic.MLConnect.CSharp")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("nugetcsharptest")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5a17952a-1eb4-4d09-85ed-f2afca773e61")]
+[assembly: Guid("f6d4dd1a-03c1-469e-a802-a8a6afcb74f8")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("8.0.1.0")]
-[assembly: AssemblyFileVersion("8.0.1.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

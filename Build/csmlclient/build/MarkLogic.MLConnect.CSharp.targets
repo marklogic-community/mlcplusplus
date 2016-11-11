@@ -1,0 +1,48 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\csmlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\csmlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Debug\csmlclient.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Debug\csmlclient.pdb" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Release\csmlclient.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Release\csmlclient.pdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvailableItemName Include="NativeBinary" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
+    <NativeBinary Include="$(MSBuildThisFileDirectory)..\..\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.*\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x86\Release\*">
+    </NativeBinary>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+    <NativeBinary Include="$(MSBuildThisFileDirectory)..\..\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.*\lib\native\v140\windesktop\msvcstl\dyn\rt-dyn\x86\Debug\*">
+    </NativeBinary>
+  </ItemGroup>
+  <PropertyGroup>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      CopyNativeBinaries
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+  <Target Name="CopyNativeBinaries">
+    <Copy SourceFiles="@(NativeBinary)"
+          DestinationFiles="@(NativeBinary->'$(OutDir)\%(Filename).dll')"
+          Condition="'%(Extension)'=='.dl_'">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
+    </Copy>
+    <Copy SourceFiles="@(NativeBinary)"
+          DestinationFiles="@(NativeBinary->'$(OutDir)\%(Filename)%(Extension)')"
+          Condition="'%(Extension)'!='.dl_'">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
+    </Copy>
+  </Target>
+
+
+</Project>
