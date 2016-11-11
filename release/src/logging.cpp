@@ -8,11 +8,33 @@
 #include <mlclient/logging.hpp>
 
 #ifndef _WIN32
-#include <glog/logging.h>
+//#include <glog/logging.h>
 #endif
 
 #include <ostream>
 #include <cstring>
+
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/attributes/mutable_constant.hpp>
+#include <boost/log/attributes/named_scope.hpp>
+#include <boost/log/attributes/current_process_name.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
+#include <boost/log/support/exception.hpp> // enables exception handling
+#include <boost/log/support/std_regex.hpp> // C++11 regex support
+
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/posix_time/time_formatters_limited.hpp>
+
+
+
+//#include <mlclient/internals/G3OutSink.hpp>
+//#include <mlclient/ext/g3log/filesink.hpp>
 
  // For sharing easyloggingpp configuration
  /*
@@ -87,14 +109,40 @@
 
  // in a concrete .cpp
 #ifdef _WIN32
-nullbuf null_obj;
+//nullbuf null_obj;
 //wnullbuf wnull_obj;
-std::ostream cnull(&null_obj);
+//std::ostream cnull(&null_obj);
 //std::wostream wcnull(&wnull_obj);
 #endif
 
 
+std::string path_to_filename(std::string path) {
+   return path.substr(path.find_last_of("/\\")+1);
+}
+
+
+ScopeLogger::ScopeLogger(std::string name,boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger)
+  : clock(), started(boost::posix_time::second_clock::local_time()),logger(logger),name(name) {
+  ;
+};
+
+ScopeLogger::~ScopeLogger() {
+  time_type now = boost::posix_time::second_clock::local_time();
+  boost::posix_time::time_duration duration = now - started;
+  boost::log::record rec = logger.open_record();
+  if (rec)
+  {
+    boost::log::record_ostream strm(rec);
+    strm << "PERFORMANCE " << name << " took " << boost::posix_time::to_simple_string(duration) << "ms";
+    strm.flush();
+    logger.push_record(boost::move(rec));
+  }
+};
+
+
 namespace mlclient {
+
+
 
 
 void libraryLoggingInit() {
@@ -178,26 +226,127 @@ void reconfigureLogging(int argc,const char * argv[]) {
   reconfigureLoggingSettings(config);
 }
 
+/*
+LogHolder::LogHolder() : lg() {
+    if (nullptr == inst) {
+      LogHolder::inst = this;
+    }
+  };
+
+  boost::log::sources::severity_logger<boost::log::trivial::severity_level>& LogHolder::getInstance() {
+    return lg;
+  };
+
+  LogHolder* LogHolder::get() {
+    return LogHolder::inst;
+  };
+
+  void LogHolder::reset() {
+    LogHolder::inst = nullptr;
+  };
+
+LogHolder* LogHolder::inst = nullptr;
+
+boost::log::sources::severity_logger<boost::log::trivial::severity_level>& getLogger() {
+  return mlclient::LogHolder::get()->getInstance();
+}
+
+*/
+
 void reconfigureLoggingSettings(const LoggingConfiguration& config) {
   static bool configured = false;
   // The following is a hack as google logging hates Win32 currently
-#ifndef _WIN32
+//#ifndef _WIN32
   //if (true == config.toerr) {
   //  FLAGS_logtostderr = 1;
   //} else {
-    FLAGS_logtostderr = 0;
+  //  FLAGS_logtostderr = 0;
   //}
   // reconfigure logger with the new settings
-  FLAGS_log_dir = config.folder;
+  //FLAGS_log_dir = config.folder;
 
   // TODO handle log level
 
   if (!configured) {
-    google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
-    google::InstallFailureSignalHandler();
+    //google::InitGoogleLogging("mlclient"); // BUG CANNOT CALL THIS MORE THAN ONCE! - no need, just redefine globals
+    //google::InstallFailureSignalHandler();
+
+/*
+    //using namespace g3;
+    std::cout << "Configuring logging" << std::endl;
+
+
+    std::unique_ptr<g3::LogWorker> worker{ g3::LogWorker::createLogWorker() };
+    std::cout << "Got worker" << std::endl;
+    //auto defaultHandler = worker->addDefaultLogger("mlclient", config.folder); // <-- sits there forever
+    std::cout << "added default logger" << std::endl;
+
+    // logger is initialized
+    g3::initializeLogging(worker.get());
+    std::cout << "initialized logging" << std::endl;
+
+    //auto defHandle = worker->addSink(std2::make_unique<g3::FileSink>("mlclient", config.folder, "g3log"), &g3::FileSink::fileWrite);
+    //std::cout << "Added file sink" << std::endl;
+    auto sinkHandle = worker->addSink(std2::make_unique<G3OutSink>(), &G3OutSink::ReceiveLogMessage);
+    std::cout << "Added cout sink" << std::endl;
+
+    g3::only_change_at_initialization::setLogLevel(DEBUG, true);
+    std::cout << "Set Debug" << std::endl;
+    */
+
+
+
+    boost::log::add_common_attributes();
+    /*
+    boost::shared_ptr< logging::core > core = boost::log::core::get();
+    core->add_global_attribute("LineID", attrs::counter< unsigned int >(1));
+    core->add_global_attribute("TimeStamp", attrs::local_clock());
+    core->add_global_attribute("Scope", attrs::named_scope());
+    */
+    //boost::log::core::get()->add_global_attribute("Scope", boost::log::attributes::named_scope()); // Causes segfault
+    boost::log::core::get()->add_global_attribute("Process",boost::log::attributes::current_process_name());
+    boost::log::core::get()->add_global_attribute("Line", boost::log::attributes::mutable_constant<int>(5));
+    boost::log::core::get()->add_global_attribute("File", boost::log::attributes::mutable_constant<std::string>(""));
+    boost::log::core::get()->add_global_attribute("Function", boost::log::attributes::mutable_constant<std::string>(""));
+    //boost::log::core::get()->add_global_attribute("Scope", boost::log::attributes::named_scope());
+
+    boost::log::add_file_log(
+      /*boost::log::keywords::target = config.folder, */ // doesn't work
+      boost::log::keywords::file_name = config.folder + "/mlclient_%N.log",                     /*< file name pattern >*/
+      boost::log::keywords::rotation_size = 10 * 1024 * 1024,                                   /*< rotate files every 10 MiB... >*/
+      boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0), /*< ...or at midnight >*/
+      boost::log::keywords::format = "[%TimeStamp%] %Process% %ProcessID% %ThreadID% %File%:%Line% %Function% %Message%"                                 /*< log record format >*/
+    );
+
+    // Use this to also log to console: boost::log::add_console_log(std::cout);
+
+    /*if (config.level == "INFO") {
+      boost::log::core::get()->set_filter
+      (
+        boost::log::trivial::severity >= boost::log::trivial::info
+      );
+    } else {*/
+    // TODO fix the detection of _DEBUG as its currently ignored
+    boost::log::core::get()->set_filter
+    (
+      boost::log::trivial::severity >= boost::log::trivial::debug
+    );
+    //}
+
+    // custom performance log file logger too
+
+    boost::log::add_file_log(
+      boost::log::keywords::file_name = config.folder + "/performance.log",
+      boost::log::keywords::format = "[%TimeStamp%] %Process% %ProcessID% %ThreadID% %File%:%Line% %Function% %Message%"
+    );
+
+
+    //LogHolder* lg = new LogHolder(); // TODO figure out destruction
+
     configured = true;
+
   }
-#endif
+//#endif
 }
 
 } // end namespace mlclient
