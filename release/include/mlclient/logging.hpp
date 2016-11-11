@@ -113,7 +113,7 @@ struct LoggingConfiguration {
  *
  * \since 8.0.2
  */
-void libraryLoggingInit();
+MLCLIENT_API void libraryLoggingInit();
 
 /**
  * \brief Reconfigure logging from command line args

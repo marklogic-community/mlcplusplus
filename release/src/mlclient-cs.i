@@ -99,9 +99,9 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::DocumentUri)
 #include "mlclient/NoCredentialsException.hpp"
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/SearchResultSet.hpp"
-#include "mlclient/ValuesResult.hpp"
+//#include "mlclient/ValuesResult.hpp"
 %}
-
+/*
 SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultAggregate)
 %apply size_t { std::vector<mlclient::ValuesResultAggregate>::size_type };
 %template(ValuesResultAggregateSet) std::vector<mlclient::ValuesResultAggregate>;
@@ -109,9 +109,9 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultAggregate)
 SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultValue)
 %apply size_t { std::vector<mlclient::ValuesResultValue>::size_type };
 %template(ValuesResultValueSet) std::vector<mlclient::ValuesResultValue>;
-
+*/
 %{
-#include "mlclient/ValuesResultSet.hpp"
+//#include "mlclient/ValuesResultSet.hpp"
 %}
 
 
@@ -123,25 +123,25 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::ValuesResultValue)
 %{
 // #include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 %}
-
+/*
 SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 %apply size_t { std::vector<mlclient::utilities::IQuery*>::size_type };
 %template(IQuerySet) std::vector<mlclient::utilities::IQuery*>;
-
+*/
 %{
 // #include "mlclient/utilities/CppRestJsonHelper.hpp"
 #include "mlclient/utilities/DocumentBatchHelper.hpp"
 #include "mlclient/utilities/DocumentHelper.hpp"
-#include "mlclient/utilities/ResponseHelper.hpp"
+//#include "mlclient/utilities/ResponseHelper.hpp"
 #include "mlclient/utilities/DocumentBatchWriter.hpp"
 // #include "mlclient/utilities/PugiXmlDocumentContent.hpp"
 // #include "mlclient/utilities/PugiXmlHelper.hpp"
-#include "mlclient/utilities/SearchBuilder.hpp"
-#include "mlclient/utilities/SearchOptionsBuilder.hpp"
+//#include "mlclient/utilities/SearchBuilder.hpp"
+//#include "mlclient/utilities/SearchOptionsBuilder.hpp"
 %}
 
 %apply size_t { mlclient::utilities::FacetOption }
-
+/*
 %template(FacetOptionMap) std::map<mlclient::utilities::FacetOption,std::string,std::less<mlclient::utilities::FacetOption>>;
 
 
@@ -158,7 +158,7 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 %template(RangeOptionMap) std::map<mlclient::utilities::RangeOption,std::string,std::less<mlclient::utilities::RangeOption>>;
 %template(ValuesOptionMap) std::map<mlclient::utilities::ValuesOption,std::string,std::less<mlclient::utilities::ValuesOption>>;
 
-
+*/
 
 
 
@@ -174,17 +174,17 @@ SWIG_STD_VECTOR_ENHANCED(mlclient::utilities::IQuery*)
 %include "mlclient/Response.hpp"
 %include "mlclient/SearchDescription.hpp"
 %include "mlclient/SearchResult.hpp"
-%include "mlclient/ValuesResult.hpp"
+//%include "mlclient/ValuesResult.hpp"
 %include "mlclient/Connection.hpp"
 %include "mlclient/SearchResultSet.hpp"
-%include "mlclient/ValuesResultSet.hpp"
+//%include "mlclient/ValuesResultSet.hpp"
 // %include "mlclient/utilities/PugiXmlDocumentContent.hpp"
 // %include "mlclient/utilities/PugiXmlHelper.hpp"
 // %include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 // %include "mlclient/utilities/CppRestJsonHelper.hpp"
-%include "mlclient/utilities/ResponseHelper.hpp"
+//%include "mlclient/utilities/ResponseHelper.hpp"
 %include "mlclient/utilities/DocumentHelper.hpp"
 %include "mlclient/utilities/DocumentBatchWriter.hpp"
 %include "mlclient/utilities/DocumentBatchHelper.hpp"
-%include "mlclient/utilities/SearchBuilder.hpp"
-%include "mlclient/utilities/SearchOptionsBuilder.hpp"
+//%include "mlclient/utilities/SearchBuilder.hpp"
+//%include "mlclient/utilities/SearchOptionsBuilder.hpp"

@@ -6,15 +6,15 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'Win32' Or '$(Platform)' == 'x86')">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'Win32' Or '$(Platform)' == 'x86')">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'Win32' Or '$(Platform)' == 'x86')">
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.dll" />
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclient.pdb" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'Win32' Or '$(Platform)' == 'x86')">
+  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.dll" />
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclient.pdb" />
   </ItemGroup>

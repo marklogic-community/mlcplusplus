@@ -2,36 +2,34 @@
 <package >
   <metadata>
     <id>MarkLogic.MLConnect.CSharp</id>
-    <version>8.0.3-alpha1</version>
+    <version>8.0.3-alpha7</version>
     <title>MarkLogic C# Client API</title>
     <authors>adamfowleruk</authors>
     <owners>adamfowleruk</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/adamfowleruk/mlcplusplus</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/adamfowleruk/mlcplusplus/develop/documentation/images/cpp.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/adamfowleruk/mlcplusplus/develop/documentation/images/csharp.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A C# wrapper for the MarkLogic Server REST API, and utility classes. This is the mlclient / MLConnect C# API. This uses the MLConnect C++ API under the hood.</description>
     <releaseNotes>See https://github.com/adamfowleruk/mlcplusplus/issues?q=is%3Aopen+is%3Aissue+label%3A%22language+C%23+.Net%22 for known issues.</releaseNotes>
     <copyright>Copyright 2016 MarkLogic Corporation. All Rights Reserved.</copyright>
     <tags>marklogic client rest mlclient mlconnect C# CSharp</tags>
     <dependencies>
-      <group targetFramework="native0.0">
-        <dependency id="MarkLogic.MLConnect.Cpp" version="8.0.3-alpha1" />
-      </group>
+        <dependency id="MarkLogic.MLConnect.CSharp.Swig" version="8.0.3-alpha6" />
     </dependencies>
-  </metadata>   
+  </metadata>
+
   <files>
     <file src="..\README.md" target="" />
-    <file src="build\**" target="build" />
+    <file src="csmlclient\build\**" target="build" />
 
-    <file src="..\..\bin\src\CSharpSources\*.cs" target="build\cs" />
+    <file src="csmlclient\bin\Release\csmlclient.dll" target="lib\net45\Release\csmlclient.dll" />
+    <file src="csmlclient\bin\Release\csmlclient.xml" target="lib\net45\Release\csmlclient.xml" />
+    <file src="csmlclient\bin\Release\csmlclient.pdb" target="lib\net45\Release\csmlclient.pdb" />
 
-    <file src="bin\Debug\csmlclient.dll" target="lib\native\dyn\x86\Debug" />
-    <file src="bin\Debug\csmlclient.lib" target="lib\native\dyn\x86\Debug" />
-    <file src="bin\Debug\csmlclient.pdb" target="lib\native\dyn\x86\Debug" />
-    <file src="bin\Release\csmlclient.dll" target="lib\native\dyn\x86\Release" />
-    <file src="bin\Release\csmlclient.lib" target="lib\native\dyn\x86\Release" />
-    <file src="bin\Release\csmlclient.pdb" target="lib\native\dyn\x86\Release" />
+    <file src="csmlclient\bin\Debug\csmlclient.dll" target="lib\net45\Debug\csmlclient.dll" />
+    <file src="csmlclient\bin\Debug\csmlclient.xml" target="lib\net45\Debug\csmlclient.xml" />
+    <file src="csmlclient\bin\Debug\csmlclient.pdb" target="lib\net45\Debug\csmlclient.pdb" />
 
   </files>
 </package>

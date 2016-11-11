@@ -7,7 +7,7 @@
     <ProjectGuid>{5A17952A-1EB4-4D09-85ED-F2AFCA773E61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>csmlclient</RootNamespace>
+    <RootNamespace>mlclient</RootNamespace>
     <AssemblyName>csmlclient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -21,14 +21,16 @@
     <DefineConstants>TRACE;DEBUG;error</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\csmlclient.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\csmlclient.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,12 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\bin\src\CSharpSources\AggregateBuiltIn.cs">
-      <Link>Source Files\AggregateBuiltIn.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\AggregateInfo.cs">
-      <Link>Source Files\AggregateInfo.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\BinaryEncoding.cs">
       <Link>Source Files\BinaryEncoding.cs</Link>
     </Compile>
@@ -77,23 +73,11 @@
     <Compile Include="..\..\bin\src\CSharpSources\DocumentUriSet.cs">
       <Link>Source Files\DocumentUriSet.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\FacetOption.cs">
-      <Link>Source Files\FacetOption.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\FacetOptionMap.cs">
-      <Link>Source Files\FacetOptionMap.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\FileDocumentContent.cs">
       <Link>Source Files\FileDocumentContent.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\Format.cs">
       <Link>Source Files\Format.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\FragmentScope.cs">
-      <Link>Source Files\FragmentScope.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\GenericQuery.cs">
-      <Link>Source Files\GenericQuery.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\GenericTextDocumentContent.cs">
       <Link>Source Files\GenericTextDocumentContent.cs</Link>
@@ -107,9 +91,6 @@
     <Compile Include="..\..\bin\src\CSharpSources\IConnection.cs">
       <Link>Source Files\IConnection.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\IContainerRef.cs">
-      <Link>Source Files\IContainerRef.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\IDocumentContent.cs">
       <Link>Source Files\IDocumentContent.cs</Link>
     </Compile>
@@ -119,29 +100,8 @@
     <Compile Include="..\..\bin\src\CSharpSources\IDocumentNode.cs">
       <Link>Source Files\IDocumentNode.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ILexiconRef.cs">
-      <Link>Source Files\ILexiconRef.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\IQuery.cs">
-      <Link>Source Files\IQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\IQuerySet.cs">
-      <Link>Source Files\IQuerySet.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\ITextDocumentContent.cs">
       <Link>Source Files\ITextDocumentContent.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ITypedValue.cs">
-      <Link>Source Files\ITypedValue.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\JsonPropertyQuery.cs">
-      <Link>Source Files\JsonPropertyQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\JsonPropertyRef.cs">
-      <Link>Source Files\JsonPropertyRef.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\LexiconType.cs">
-      <Link>Source Files\LexiconType.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\LoggingConfiguration.cs">
       <Link>Source Files\LoggingConfiguration.cs</Link>
@@ -161,47 +121,17 @@
     <Compile Include="..\..\bin\src\CSharpSources\Progress.cs">
       <Link>Source Files\Progress.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\QueryBuilderMode.cs">
-      <Link>Source Files\QueryBuilderMode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeIndexType.cs">
-      <Link>Source Files\RangeIndexType.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeLexiconRef.cs">
-      <Link>Source Files\RangeLexiconRef.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeOperation.cs">
-      <Link>Source Files\RangeOperation.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeOption.cs">
-      <Link>Source Files\RangeOption.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeOptionMap.cs">
-      <Link>Source Files\RangeOptionMap.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\RangeOptions.cs">
-      <Link>Source Files\RangeOptions.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\Response.cs">
       <Link>Source Files\Response.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\ResponseCode.cs">
       <Link>Source Files\ResponseCode.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ResponseHelper.cs">
-      <Link>Source Files\ResponseHelper.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\ResponseType.cs">
       <Link>Source Files\ResponseType.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SearchBuilder.cs">
-      <Link>Source Files\SearchBuilder.cs</Link>
-    </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\SearchDescription.cs">
       <Link>Source Files\SearchDescription.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SearchOptionsBuilder.cs">
-      <Link>Source Files\SearchOptionsBuilder.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\SearchResult.cs">
       <Link>Source Files\SearchResult.cs</Link>
@@ -224,92 +154,15 @@
     <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__istream.cs">
       <Link>Source Files\SWIGTYPE_p_std__istream.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__key_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__mapped_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__size_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__FacetOption_std__string_std__lessT_mlclient__utilities__FacetOption_t_t__size_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__key_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__key_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__mapped_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__mapped_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__size_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__RangeOption_std__string_std__lessT_mlclient__utilities__RangeOption_t_t__size_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__key_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__key_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__mapped_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__mapped_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__size_type.cs">
-      <Link>Source Files\SWIGTYPE_p_std__mapT_mlclient__utilities__ValuesOption_std__string_std__lessT_mlclient__utilities__ValuesOption_t_t__size_type.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs">
-      <Link>Source Files\SWIGTYPE_p_std__vectorT_mlclient__ValuesResultAggregate_t__const_iterator.cs</Link>
+    <Compile Include="..\..\bin\src\CSharpSources\SWIGTYPE_p_ValuesResult.cs">
+      <Link>Source Files\SWIGTYPE_p_ValuesResult.cs</Link>
     </Compile>
     <Compile Include="..\..\bin\src\CSharpSources\TransactionMode.cs">
       <Link>Source Files\TransactionMode.cs</Link>
     </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesInfo.cs">
-      <Link>Source Files\ValuesInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesIterator.cs">
-      <Link>Source Files\ValuesIterator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesOption.cs">
-      <Link>Source Files\ValuesOption.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesOptionMap.cs">
-      <Link>Source Files\ValuesOptionMap.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResult.cs">
-      <Link>Source Files\ValuesResult.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultAggregate.cs">
-      <Link>Source Files\ValuesResultAggregate.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultAggregateSet.cs">
-      <Link>Source Files\ValuesResultAggregateSet.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultAggregateType.cs">
-      <Link>Source Files\ValuesResultAggregateType.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultSet.cs">
-      <Link>Source Files\ValuesResultSet.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultValue.cs">
-      <Link>Source Files\ValuesResultValue.cs</Link>
-    </Compile>
-    <Compile Include="..\..\bin\src\CSharpSources\ValuesResultValueSet.cs">
-      <Link>Source Files\ValuesResultValueSet.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Dependencies\cpprest140d_2_8.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Dependencies\mlclient.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\..\bin\src\CSharpSources\mlclient-csCSHARP_wrap.cxx">
-      <Link>Source Files\mlclient-csCSHARP_wrap.cxx</Link>
-    </Content>
-    <Content Include="..\..\bin\src\CSharpSources\mlclient-csCSHARP_wrap.h">
-      <Link>Source Files\mlclient-csCSHARP_wrap.h</Link>
-    </Content>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

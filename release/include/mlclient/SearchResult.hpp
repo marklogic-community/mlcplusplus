@@ -71,7 +71,7 @@ public:
    *
    * \note If this is not defined, it is implicitly deleted by the compiler
    */
-  SearchResult& operator= (const SearchResult&& other);
+  MLCLIENT_API SearchResult& operator= (const SearchResult&& other);
 
   /**
    * \brief Destructor
