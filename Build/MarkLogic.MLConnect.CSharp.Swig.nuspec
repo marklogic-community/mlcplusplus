@@ -3,7 +3,7 @@
   <metadata>
     <id>MarkLogic.MLConnect.CSharp.Swig</id>
 
-    <version>8.0.3-alpha6</version>
+    <version>8.0.3-beta01</version>
 
     <title>MarkLogic C++ / C# Client API SWIG based bridge library</title>
 
@@ -19,8 +19,7 @@
     <copyright>Copyright 2016 MarkLogic Corporation. All Rights Reserved.</copyright>
     <tags>native dyn v140</tags>
     <dependencies>
-        <dependency id="MarkLogic.MLConnect.Cpp" version="8.0.3-alpha8" />
-        <dependency id="cpprestsdk" version="2.8.0" /> <!-- not statically linked, unlike other mlclient dependencies -->
+        <dependency id="MarkLogic.MLConnect.Cpp" version="8.0.3-beta01" />
     </dependencies>
   </metadata>
   <files>
@@ -28,16 +27,18 @@
     <file src="csmlclientcpp\build\**" target="build" />
 
     <file src="bin\Win32\Debug\mlclientcs.dll" target="lib\native\dyn\x86\Debug" />
-
     <file src="bin\Win32\Debug\mlclientcs.lib" target="lib\native\dyn\x86\Debug" />
-
     <file src="bin\Win32\Debug\mlclientcs.pdb" target="lib\native\dyn\x86\Debug" />
-
     <file src="bin\Win32\Release\mlclientcs.dll" target="lib\native\dyn\x86\Release" />
-
     <file src="bin\Win32\Release\mlclientcs.lib" target="lib\native\dyn\x86\Release" />
-
     <file src="bin\Win32\Release\mlclientcs.pdb" target="lib\native\dyn\x86\Release" />
+
+    <file src="bin\x64\Debug\mlclientcs.dll" target="lib\native\dyn\x64\Debug" />
+    <file src="bin\x64\Debug\mlclientcs.lib" target="lib\native\dyn\x64\Debug" />
+    <file src="bin\x64\Debug\mlclientcs.pdb" target="lib\native\dyn\x64\Debug" />
+    <file src="bin\x64\Release\mlclientcs.dll" target="lib\native\dyn\x64\Release" />
+    <file src="bin\x64\Release\mlclientcs.lib" target="lib\native\dyn\x64\Release" />
+    <file src="bin\x64\Release\mlclientcs.pdb" target="lib\native\dyn\x64\Release" />
 
   </files>
 </package>

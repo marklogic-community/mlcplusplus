@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using mlclient;
 
-namespace nugetcsharptest
+namespace csharptest
 {
     class Program
     {
@@ -23,7 +23,7 @@ namespace nugetcsharptest
             Console.Out.WriteLine("Please enter the URI of the document you wish to view, and hit enter.");
             string uri = Console.In.ReadLine();
 
-            conn.configure(hostname,port,user,pass);
+            conn.configure(hostname, port, user, pass);
             Document doc = new Document();
             doc.setUri(uri);
             Response resp = conn.getDocumentContent(doc);
@@ -32,8 +32,8 @@ namespace nugetcsharptest
             Console.Out.WriteLine(resp.getContent());
 
             Console.Out.WriteLine("Done! Hit any key to exit.");
-            char[] buffer = new char ['c'];
-            int outcome = Console.In.ReadBlock(buffer,0,1);
+            char[] buffer = new char['c'];
+            int outcome = Console.In.ReadBlock(buffer, 0, 1);
         }
     }
 }

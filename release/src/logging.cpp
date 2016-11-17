@@ -31,7 +31,7 @@
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/time_formatters_limited.hpp>
 
-
+#include <boost/filesystem.hpp>
 
 //#include <mlclient/internals/G3OutSink.hpp>
 //#include <mlclient/ext/g3log/filesink.hpp>
@@ -149,11 +149,23 @@ void libraryLoggingInit() {
   LoggingConfiguration config;
   config.level = "INFO";
   config.toerr = false;
+  
+  boost::filesystem::path temp = boost::filesystem::temp_directory_path();
+  const std::wstring tempstr = temp.native();
+  config.folder = std::string(tempstr.begin(), tempstr.end());
+  //config.folder = tempstr;
 
 #ifdef _WIN32
-  config.folder = "z:\\Documents\\marklogic\\git\\mlodbc\\logs\\";
+  /*
+  std::wstring TempPath;
+  wchar_t wcharPath[512];
+  if (GetTempPathW(512, wcharPath)) {
+    config.folder = wcharPath;
+  }
+  */
+  //config.folder = "z:\\Documents\\marklogic\\git\\mlodbc\\logs\\";
 #else
-  config.folder = "/Users/adamfowler/Documents/marklogic/git/mlcplusplus/logs";
+  //config.folder = "/Users/adamfowler/Documents/marklogic/git/mlcplusplus/logs";
 #endif
   reconfigureLoggingSettings(config);
 

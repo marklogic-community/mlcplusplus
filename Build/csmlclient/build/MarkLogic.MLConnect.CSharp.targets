@@ -5,15 +5,11 @@
       <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\csmlclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
-    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Debug\csmlclient.dll" />
-    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Debug\csmlclient.pdb" />
+  <ItemGroup >
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\csmlclient.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\csmlclient.pdb" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
-    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Release\csmlclient.dll" />
-    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\net45\Release\csmlclient.pdb" />
-  </ItemGroup>
-
+<!--
   <ItemGroup>
     <AvailableItemName Include="NativeBinary" />
   </ItemGroup>
@@ -43,6 +39,6 @@
       <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
     </Copy>
   </Target>
-
+-->
 
 </Project>

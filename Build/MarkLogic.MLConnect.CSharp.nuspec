@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MarkLogic.MLConnect.CSharp</id>
-    <version>8.0.3-alpha7</version>
+    <version>8.0.3-beta01</version>
     <title>MarkLogic C# Client API</title>
     <authors>adamfowleruk</authors>
     <owners>adamfowleruk</owners>
@@ -15,7 +15,7 @@
     <copyright>Copyright 2016 MarkLogic Corporation. All Rights Reserved.</copyright>
     <tags>marklogic client rest mlclient mlconnect C# CSharp</tags>
     <dependencies>
-        <dependency id="MarkLogic.MLConnect.CSharp.Swig" version="8.0.3-alpha6" />
+        <dependency id="MarkLogic.MLConnect.CSharp.Swig" version="8.0.3-beta01" />
     </dependencies>
   </metadata>
 
@@ -23,13 +23,9 @@
     <file src="..\README.md" target="" />
     <file src="csmlclient\build\**" target="build" />
 
-    <file src="csmlclient\bin\Release\csmlclient.dll" target="lib\net45\Release\csmlclient.dll" />
-    <file src="csmlclient\bin\Release\csmlclient.xml" target="lib\net45\Release\csmlclient.xml" />
-    <file src="csmlclient\bin\Release\csmlclient.pdb" target="lib\net45\Release\csmlclient.pdb" />
-
-    <file src="csmlclient\bin\Debug\csmlclient.dll" target="lib\net45\Debug\csmlclient.dll" />
-    <file src="csmlclient\bin\Debug\csmlclient.xml" target="lib\net45\Debug\csmlclient.xml" />
-    <file src="csmlclient\bin\Debug\csmlclient.pdb" target="lib\net45\Debug\csmlclient.pdb" />
+    <file src="csmlclient\bin\Debug\csmlclient.dll" target="lib\csmlclient.dll" />
+    <file src="csmlclient\bin\Debug\csmlclient.xml" target="lib\csmlclient.xml" />
+    <file src="csmlclient\bin\Debug\csmlclient.pdb" target="lib\csmlclient.pdb" />
 
   </files>
 </package>

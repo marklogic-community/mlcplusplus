@@ -1,16 +1,26 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'x86' Or '$(Platform)' == 'Win32') ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'x86' Or '$(Platform)' == 'Win32') ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'Any CPU'  )  ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Debug\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'Any CPU'  )  ">$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Release\mlclientcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Debug' ">
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'x86' Or '$(Platform)' == 'Win32') ">
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.dll" />
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Debug\mlclientcs.pdb" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release' ">
+  <ItemGroup Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'x86' Or '$(Platform)' == 'Win32') ">
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.dll" />
     <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x86\Release\mlclientcs.pdb" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug' And ('$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'Any CPU' )  ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Debug\mlclientcs.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Debug\mlclientcs.pdb" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release' And ('$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'Any CPU'  )  ">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Release\mlclientcs.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\lib\native\dyn\x64\Release\mlclientcs.pdb" />
   </ItemGroup>
 </Project>
