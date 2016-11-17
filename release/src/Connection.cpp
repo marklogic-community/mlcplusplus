@@ -101,7 +101,7 @@ Response* Connection::doPut(const std::string& pathAndQuerystring,const IDocumen
 Response* Connection::doPost(const std::string& pathAndQuerystring,const IDocumentContent& payload) {
   TIMED_FUNC(Connection_doPost);
   return mImpl->proxy.postSync(mImpl->serverUrl,
-      "/v1/search",
+      pathAndQuerystring,
       payload);
 }
 Response* Connection::doDelete(const std::string& path) {

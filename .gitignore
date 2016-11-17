@@ -35,6 +35,8 @@ Build/csmlclient/Dependencies
 Build/csmlclient/obj
 Build/csmlclient/Source Files
 Build/cgetasstruct/Debug
+Build/cgetasstruct/x64
+Build/cgetasstruct/x86
 Build/cgetdoc/Debug
 Build/cppproducer/Debug
 Build/tests/Debug
@@ -42,6 +44,8 @@ Build/cgetasstruct/Release
 Build/cgetdoc/Release
 Build/cppproducer/Release
 Build/tests/Release
+Build/tests/x64
+Build/tests/x86
 Build/packages/*
 Build/mlclient.VC.VC.opendb
 .gitignore.swp
@@ -82,3 +86,6 @@ Build/*/bin
 nugettest/*/bin
 nugettest/*/objects
 nugettest/*/obj
+csharptest/csharptest/bin
+csharptest/csharptest/obj
+csharptest/packages/*

@@ -407,6 +407,7 @@ Response* AuthenticatingProxy::postSync(const std::string& host,
   LOG(DEBUG) << "    Entering postSync";
   LOG(DEBUG) << "    Post content: " << body.getContent();
   Response* response = doRequest(utility::conversions::to_utf8string(http::methods::POST),host,path,headers,&body);
+  LOG(DEBUG) << "    Response content: " << response->getContent();
   LOG(DEBUG) << "    Leaving postSync";
 
   return response;

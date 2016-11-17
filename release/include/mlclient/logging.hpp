@@ -136,7 +136,7 @@ ValueType set_get_attrib(const char* name, ValueType value) {
 */
 // Convert file path to only the filename
 
-std::string path_to_filename(std::string path);
+MLCLIENT_API std::string path_to_filename(std::string path);
 
 
 
@@ -151,8 +151,8 @@ std::string path_to_filename(std::string path);
 
 class ScopeLogger {
 public:
-  ScopeLogger(std::string name,boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger);
-  ~ScopeLogger();
+  MLCLIENT_API ScopeLogger(std::string name,boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger);
+  MLCLIENT_API ~ScopeLogger();
 protected:
   clock_source clock;
   time_type started;

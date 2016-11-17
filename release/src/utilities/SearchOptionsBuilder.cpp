@@ -303,127 +303,149 @@ const std::string translate_valuesoption(const ValuesOption& rt) {
   }
 }
 
-RangeOptions::RangeOptions() : type(RangeIndexType::STRING), collation("http://marklogic.com/collation/codepoint"),
-    facet(false), container(nullptr), fragmentScope(FragmentScope::CONTENT),
-    facetOptions(), rangeOptions() {
+
+
+class RangeOptions::Impl {
+public:
+  Impl() : type(RangeIndexType::STRING), collation("http://marklogic.com/collation/codepoint"),
+      facet(false), container(nullptr), fragmentScope(FragmentScope::CONTENT),
+      facetOptions(), rangeOptions() {
+    ;
+  };
+
+
+  RangeIndexType type;
+  std::string collation;
+  bool facet;
+  IContainerRef* container;
+
+  FragmentScope fragmentScope;
+  std::map<FacetOption,std::string> facetOptions;
+  std::map<RangeOption,std::string> rangeOptions;
+};
+
+
+
+
+RangeOptions::RangeOptions() : mImpl() {
   ;
 }
 RangeOptions::~RangeOptions() {
-  container = NULL; // Do not delete - may be used elsewhere
+  mImpl->container = NULL; // Do not delete - may be used elsewhere
 }
 
 void RangeOptions::setType(const RangeIndexType type) {
-  this->type = type;
+  mImpl->type = type;
 }
 const RangeIndexType RangeOptions::getType() const {
-  return type;
+  return mImpl->type;
 }
 
 void RangeOptions::setCollation(const std::string& collation) {
-  this->collation = collation;
+  mImpl->collation = collation;
 }
 const std::string RangeOptions::getCollation() const {
-  return collation;
+  return mImpl->collation;
 }
 
 void RangeOptions::setFacet(const bool facet) {
-  this->facet = facet;
+  mImpl->facet = facet;
 }
 const bool RangeOptions::getFacet() const {
-  return facet;
+  return mImpl->facet;
 }
 
 void RangeOptions::setContainer(IContainerRef* container) {
-  this->container = container;
+  mImpl->container = container;
 }
 const bool RangeOptions::hasContainer() const {
-  return nullptr != container;
+  return nullptr != mImpl->container;
 }
 const IContainerRef* RangeOptions::getContainer() const {
-  return container;
+  return mImpl->container;
 }
 
 void RangeOptions::setFragmentScope(const FragmentScope& scope) {
-  fragmentScope = scope;
+  mImpl->fragmentScope = scope;
 }
 const FragmentScope RangeOptions::getFragmentScope() const {
-  return fragmentScope;
+  return mImpl->fragmentScope;
 }
 
 void RangeOptions::clearFacetOptions() {
-  facetOptions.clear();
+  mImpl->facetOptions.clear();
 }
 void RangeOptions::addFacetOptionWithValue(const FacetOption& option,const std::string& value) {
   // TODO add sanity checks here too, and catch any invalid values trying to slip in
-  facetOptions.insert(std::pair<FacetOption,std::string>(option,value));
+  mImpl->facetOptions.insert(std::pair<FacetOption,std::string>(option,value));
 }
 void RangeOptions::addFacetOption(const FacetOption& option) {
   if (FacetOption::CHECKED == option) {
-    facetOptions.erase(FacetOption::UNCHECKED);
+    mImpl->facetOptions.erase(FacetOption::UNCHECKED);
   }
   if (FacetOption::UNCHECKED == option) {
-    facetOptions.erase(FacetOption::CHECKED);
+    mImpl->facetOptions.erase(FacetOption::CHECKED);
   }
   if (FacetOption::ASCENDING == option) {
-    facetOptions.erase(FacetOption::DESCENDING);
+    mImpl->facetOptions.erase(FacetOption::DESCENDING);
   }
   if (FacetOption::DESCENDING == option) {
-    facetOptions.erase(FacetOption::ASCENDING);
+    mImpl->facetOptions.erase(FacetOption::ASCENDING);
   }
   if (FacetOption::DOCUMENT == option) {
-    facetOptions.erase(FacetOption::PROPERTIES);
+    mImpl->facetOptions.erase(FacetOption::PROPERTIES);
   }
   if (FacetOption::PROPERTIES == option) {
-    facetOptions.erase(FacetOption::DOCUMENT);
+    mImpl->facetOptions.erase(FacetOption::DOCUMENT);
   }
   if (FacetOption::FREQUENCY_ORDER == option) {
-    facetOptions.erase(FacetOption::ITEM_ORDER);
+    mImpl->facetOptions.erase(FacetOption::ITEM_ORDER);
   }
   if (FacetOption::ITEM_ORDER == option) {
-    facetOptions.erase(FacetOption::FREQUENCY_ORDER);
+    mImpl->facetOptions.erase(FacetOption::FREQUENCY_ORDER);
   }
-  facetOptions.insert(std::pair<FacetOption,std::string>(option,"true"));
+  mImpl->facetOptions.insert(std::pair<FacetOption,std::string>(option,"true"));
 }
 const bool RangeOptions::hasFacetOptions() const {
-  return 0 != facetOptions.size();
+  return 0 != mImpl->facetOptions.size();
 }
 const std::map<FacetOption,std::string> RangeOptions::getFacetOptions() const {
-  return facetOptions;
+  return mImpl->facetOptions;
 }
 
 void RangeOptions::clearRangeOptions() {
-  rangeOptions.clear();
+  mImpl->rangeOptions.clear();
 }
 void RangeOptions::addRangeOptionWithValue(const RangeOption& option,const std::string& value) {
   // TODO add checks here, including checks for invalid values
-  rangeOptions.insert(std::pair<RangeOption,std::string>(option,value));
+  mImpl->rangeOptions.insert(std::pair<RangeOption,std::string>(option,value));
 }
 void RangeOptions::addRangeOption(const RangeOption& option) {
   if (RangeOption::CACHED == option) {
-    rangeOptions.erase(RangeOption::UNCACHED);
+    mImpl->rangeOptions.erase(RangeOption::UNCACHED);
   }
   if (RangeOption::UNCACHED == option) {
-    rangeOptions.erase(RangeOption::CACHED);
+    mImpl->rangeOptions.erase(RangeOption::CACHED);
   }
   if (RangeOption::SCORE_FUNCTION_LINEAR == option) {
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_ZERO);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_ZERO);
   }
   if (RangeOption::SCORE_FUNCTION_RECIPROCAL == option) {
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_ZERO);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_ZERO);
   }
   if (RangeOption::SCORE_FUNCTION_ZERO == option) {
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
-    rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
+    mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
   }
-  rangeOptions.insert(std::pair<RangeOption,std::string>(option,"true"));
+  mImpl->rangeOptions.insert(std::pair<RangeOption,std::string>(option,"true"));
 }
 const bool RangeOptions::hasRangeOptions() const {
-  return 0 != rangeOptions.size();
+  return 0 != mImpl->rangeOptions.size();
 }
 const std::map<RangeOption,std::string> RangeOptions::getRangeOptions() const {
-  return rangeOptions;
+  return mImpl->rangeOptions;
 }
 
 

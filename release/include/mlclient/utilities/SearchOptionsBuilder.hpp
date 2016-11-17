@@ -28,7 +28,6 @@
 
 #include <list>
 #include <string>
-#include <map>
 
 namespace mlclient {
 
@@ -181,14 +180,8 @@ public:
   // TODO buckets and computed bucket configuration
 
 private:
-  RangeIndexType type;
-  std::string collation;
-  bool facet;
-  IContainerRef* container;
-
-  FragmentScope fragmentScope;
-  std::map<FacetOption,std::string> facetOptions;
-  std::map<RangeOption,std::string> rangeOptions;
+  class Impl;
+  Impl* mImpl; // pimpl idiom to hide std::map from SWIG
 };
 
 
@@ -374,4 +367,3 @@ private:
 } // end namespace mlclient
 
 #endif
-

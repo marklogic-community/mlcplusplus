@@ -66,7 +66,7 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
   LPWIN32_FIND_DATAW epdf;
   HANDLE dpdf;
   LPCWSTR fws = (s2ws(folder).c_str());
-  dpdf = FindFirstFile(fws, epdf);
+  dpdf = FindFirstFileW(fws, epdf);
 #endif
   LOG(DEBUG) << "Reading: " << folder;
   if (dpdf != NULL) {
@@ -127,7 +127,7 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
 #ifdef _WIN32
       FindClose(dpdf);
 
-      FindNextFile(dpdf, epdf);
+      FindNextFileW(dpdf, epdf);
 #endif
     }
 #ifndef _WIN32

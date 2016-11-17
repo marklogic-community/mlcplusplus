@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,7 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="csmlclient, Version=8.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha6\lib\net45\Release\csmlclient.dll</HintPath>
+      <HintPath>..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha7\lib\net45\Release\csmlclient.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -84,17 +85,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha6\build\MarkLogic.MLConnect.Cpp.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha6\build\MarkLogic.MLConnect.Cpp.targets')" />
+  <Import Project="..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha8\build\MarkLogic.MLConnect.Cpp.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha8\build\MarkLogic.MLConnect.Cpp.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha6\build\MarkLogic.MLConnect.Cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha6\build\MarkLogic.MLConnect.Cpp.targets'))" />
-    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha4\build\MarkLogic.MLConnect.CSharp.Swig.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha4\build\MarkLogic.MLConnect.CSharp.Swig.targets'))" />
-    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.targets'))" />
+    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha8\build\MarkLogic.MLConnect.Cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.Cpp.8.0.3-alpha8\build\MarkLogic.MLConnect.Cpp.targets'))" />
+    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.Swig.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.Swig.targets'))" />
+    <Error Condition="!Exists('..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha7\build\MarkLogic.MLConnect.CSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha7\build\MarkLogic.MLConnect.CSharp.targets'))" />
   </Target>
-  <Import Project="..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha4\build\MarkLogic.MLConnect.CSharp.Swig.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha4\build\MarkLogic.MLConnect.CSharp.Swig.targets')" />
-  <Import Project="..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.targets')" />
+  <Import Project="..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.Swig.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.CSharp.Swig.8.0.3-alpha6\build\MarkLogic.MLConnect.CSharp.Swig.targets')" />
+  <Import Project="..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha7\build\MarkLogic.MLConnect.CSharp.targets" Condition="Exists('..\packages\MarkLogic.MLConnect.CSharp.8.0.3-alpha7\build\MarkLogic.MLConnect.CSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
