@@ -34,8 +34,8 @@ public:
     fetchTask(nullptr) /*, fetchMtx(), resultsMtx()*/ {
 
     //TIMED_FUNC(SearchResultSet_Impl_constructor);
-    LOG(DEBUG) << "In SearchResultSet::Impl ctor";
-    LOG(DEBUG) << "mInitialDescription: " << mInitialDescription->getPayload()->getContent();
+    //LOG(DEBUG) << "In SearchResultSet::Impl ctor";
+    //LOG(DEBUG) << "mInitialDescription: " << mInitialDescription->getPayload()->getContent();
   }
 
   void incrementIter(web::json::array::const_iterator iter) {
@@ -91,7 +91,7 @@ public:
       // no metrics element - possible due to search options
       // silently fail - not a huge issue
       // TODO flag this to support hasMetrics()
-      LOG(DEBUG) << "SearchResultSet::handleFetchResults   COULD NOT PARSE RESPONSE METRICS!!!" << me.what();
+      //LOG(DEBUG) << "SearchResultSet::handleFetchResults   COULD NOT PARSE RESPONSE METRICS!!!" << me.what();
     }
 
     } // end timed scope for metrics
@@ -175,7 +175,7 @@ public:
         ct = divineDocumentContent(formatStr,mimeType,ctVal);
 
       } catch (std::exception& e) {
-        LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
+        //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
         //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContentEXCEPTION()");
         // element doesn't exist - no result content, or has a snippet
       } // end content catch
@@ -214,7 +214,7 @@ public:
         } catch (std::exception& ex) {
           // no snippet element, must be some sort of content...
           detail = SearchResult::Detail::CONTENT;
-          LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less" << ex.what();
+          //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Result is content less" << ex.what();
           //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatchesEXCEPTION()");
         }
       }
@@ -246,13 +246,6 @@ public:
   };
 
   ITextDocumentContent* divineDocumentContent(const std::string& format,const std::string& mimeType,web::json::value& ctVal) {
-    //ct = ctVal.as_string(); // not a string!!! It's a JSON object if the response and document are both JSON
-    // assume just JSON for now to get it working TODO don't assume this in future!!!
-    //std::ostringstream rss;
-    //rss << ctVal;
-    //ctVal.serialize(rss);
-    //ct = rss.str();
-    // TODO XML, text, binary content support too
     ITextDocumentContent* ct;
     if ("xml" == format) {
       // XML
@@ -269,7 +262,7 @@ public:
       ((GenericTextDocumentContent*)ct)->setContent(utility::conversions::to_utf8string(ctVal.as_string()));
     } else if ("binary" == format) {
       // BINARY
-      LOG(DEBUG) << "WARNING: Binary document content not yet supported!!!";
+      //LOG(DEBUG) << "WARNING: Binary document content not yet supported!!!";
       ct = new GenericTextDocumentContent;
       ((GenericTextDocumentContent*)ct)->setContent("Binary support has not yet been added to SearchResultSet.cpp");
     }
@@ -279,8 +272,8 @@ public:
   }
 
   bool fetchInitial() {
-    LOG(DEBUG) << "In fetchInitial";
-    LOG(DEBUG) << "mInitialDescription: " << mInitialDescription->getPayload()->getContent();
+    //LOG(DEBUG) << "In fetchInitial";
+    //LOG(DEBUG) << "mInitialDescription: " << mInitialDescription->getPayload()->getContent();
     // make this async
     Impl& mImpl = (*this);
 
@@ -288,7 +281,7 @@ public:
     //lck.lock();
 
     fetchTask = new pplx::task<void>([&mImpl] () {
-      LOG(DEBUG) << "Began initial fetch task...";
+      //LOG(DEBUG) << "Began initial fetch task...";
 
 
     try {
@@ -298,17 +291,17 @@ public:
       }
       Response* resp = mImpl.mConn->search(*mImpl.mInitialDescription);
       bool success = mImpl.handleFetchResults(resp);
-      LOG(DEBUG) << "Initial fetch task a success? : " << success;
+      //LOG(DEBUG) << "Initial fetch task a success? : " << success;
 
       delete(resp); // TODO ensure this does not invalidate any of our variables in search result set or searchresult instances
 
       //return success;
     } catch (std::exception& ref) {
       mImpl.mFetchException = ref;
-      LOG(DEBUG) << "Exception in initial fetch task";
+      //LOG(DEBUG) << "Exception in initial fetch task";
       //return false;
     }
-    LOG(DEBUG) << "End initial fetch task";
+    //LOG(DEBUG) << "End initial fetch task";
 
     });
     // BLOCK for first result set to ensure all variables for the result set (E.g. total) are set up before next function calls
@@ -323,28 +316,28 @@ public:
   // Returning false means no fetchTask is running or created, return true means we can safely call wait()
   bool fetchNext() {
     //TIMED_FUNC(SearchResultSet_Impl_fetchNext);
-    LOG(DEBUG) << "In fetchNext";
+    //LOG(DEBUG) << "In fetchNext";
 
     // TODO check if we need to wait for the last thread
     if (nullptr == fetchTask) {
-      LOG(DEBUG) << "  Returning: fetchTask is null";
+      //LOG(DEBUG) << "  Returning: fetchTask is null";
       return false;
     }
     if (!fetchTask->is_done()) {
-      LOG(DEBUG) << "  Returning: fetchTask is still in progress";
+      //LOG(DEBUG) << "  Returning: fetchTask is still in progress";
       return true; // rely on caller in iterator checking and calling wait() on mImpl;
     }
-    LOG(DEBUG) << "Previous fetch complete";
+    //LOG(DEBUG) << "Previous fetch complete";
 
     // lastfetched is 0 based - E.g. 0-499
-    // m_maxResults is 1 based - E.g. 1-500
-    if (lastFetched >= m_maxResults - 1) {
+    // m_maxResults is 1 based - E.g. 1-500 - COULD BE 0 IF NOT SET!
+    if ((0 != m_maxResults && lastFetched >= m_maxResults - 1) || (lastFetched >= total - 1)) {
       // No need to fetch any more
-      LOG(DEBUG) << "lastFetched has reached maxResults - not fetching";
+      //LOG(DEBUG) << "lastFetched has reached maxResults - not fetching";
       return false;
     }
 
-    LOG(DEBUG) << "Creating new fetch task...";
+    //LOG(DEBUG) << "Creating new fetch task...";
 
     //std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
     //lck.lock();
@@ -353,27 +346,27 @@ public:
     Impl& mImpl(*this);
 
     fetchTask = new pplx::task<void>([&mImpl] () {
-      LOG(DEBUG) << "Started another fetchTask";
+      //LOG(DEBUG) << "Started another fetchTask";
 
     // private method - called internally only
     // use start and pageLength to determine next start value
     // if total <= start + pageLenth - 1, then we are already at the end! So don't fetch.
     //LOG(DEBUG) << "In fetchNext()";
     if (mImpl.total > mImpl.start + mImpl.pageLength - 1) {
-      LOG(DEBUG) << "Fetching next page...";
+      //LOG(DEBUG) << "Fetching next page...";
       // fetch more results
       // TODO support point in time query, so totals are always consistent
       SearchDescription newDescription = *(mImpl.mInitialDescription); // force copy
-      LOG(DEBUG) << "  Got new description";
+      //LOG(DEBUG) << "  Got new description";
       // override settings in search options for start value
       newDescription.setStart(mImpl.start + mImpl.pageLength);
       if (0 != mImpl.m_maxResults && mImpl.m_maxResults < mImpl.start + mImpl.pageLength - 1) { // E.g. Page 2, 11 results => 11 < 11 + 10 - 1 => 11 < 20 (i.e. max result requires limiting this page's length)
         newDescription.setPageLength(mImpl.m_maxResults - mImpl.start + 1); // E.g. Page 2, 11 results => 11 - 11 + 1 = 1 results max on page 2
       }
-      LOG(DEBUG) << "  set start on new description";
+      //LOG(DEBUG) << "  set start on new description";
       //LOG(DEBUG) << "Validating search payload: " << newDescription.getPayload()->getContent();
-      LOG(DEBUG) << " mConn is nullptr?: " << (nullptr == mImpl.mConn);
-      LOG(DEBUG) << " mConn address: " << mImpl.mConn;
+      //LOG(DEBUG) << " mConn is nullptr?: " << (nullptr == mImpl.mConn);
+      //LOG(DEBUG) << " mConn address: " << mImpl.mConn;
 
       Response* resp = mImpl.mConn->search(newDescription);
       //LOG(DEBUG) << "  Completed search... calling handleFetchResults()";
@@ -381,11 +374,11 @@ public:
 
       // TODO delete resp???
     } else {
-      LOG(DEBUG) << "No more pages to fetch";
+      //LOG(DEBUG) << "No more pages to fetch";
       ;
     }
     //return true;
-    LOG(DEBUG) << "Ended another fetchTask";
+    //LOG(DEBUG) << "Ended another fetchTask";
 
 
     }); // end task block
@@ -407,14 +400,14 @@ public:
   };
 
   void wait() {
-    LOG(DEBUG) << "In wait()";
+    //LOG(DEBUG) << "In wait()";
     //std::unique_lock<std::mutex> lck (fetchMtx,std::defer_lock);
     //lck.lock();
     if (fetchTask->is_done()) {
-      LOG(DEBUG) << "  Returning: Task is complete";
+      //LOG(DEBUG) << "  Returning: Task is complete";
       return;
     }
-    LOG(DEBUG) << "  Waiting for completion";
+    //LOG(DEBUG) << "  Waiting for completion";
     fetchTask->wait();
     //lck.unlock();
   };
@@ -452,14 +445,14 @@ public:
 
 SearchResultSet::SearchResultSet(IConnection* conn,SearchDescription* desc) : mImpl(new Impl(this,conn,desc)) {
   //TIMED_FUNC(SearchResultSet_SearchResultSet);
-  LOG(DEBUG) << "SearchResultSet ctor";
-  LOG(DEBUG) << "mInitialDescription: " << desc->getPayload()->getContent();
+  //LOG(DEBUG) << "SearchResultSet ctor";
+  //LOG(DEBUG) << "mInitialDescription: " << desc->getPayload()->getContent();
   //mImpl = new SearchResultSet::Impl(this,conn,desc);
 }
 
 bool SearchResultSet::fetch() {
   //TIMED_FUNC(SearchResultSet_fetch);
-  LOG(DEBUG) << "SearchResultSet::fetch";
+  //LOG(DEBUG) << "SearchResultSet::fetch";
   return mImpl->fetchInitial();
 }
 
@@ -471,7 +464,7 @@ std::exception SearchResultSet::getFetchException() {
 void SearchResultSet::setMaxResults(long maxResults) {
   //TIMED_FUNC(SearchResultSet_setMaxResults);
   mImpl->m_maxResults = maxResults;
-  // TODO preallocate this size in mImpl->mResults vector
+  // preallocate this size in mImpl->mResults vector (done in initial fetch function, NOT here)
 }
 
 SearchResultSetIterator* SearchResultSet::begin() const {
@@ -569,13 +562,13 @@ SearchResultSetIterator* SearchResultSetIterator::end() {
 
 bool SearchResultSetIterator::operator==(const SearchResultSetIterator& other) {
   //TIMED_FUNC(SearchResultSetIterator_operatorEquals);
-  LOG(DEBUG) << "operator== position: " << position << ", other.position: " << other.position;
+  //LOG(DEBUG) << "operator== position: " << position << ", other.position: " << other.position;
   return position == other.position;
 }
 
 bool SearchResultSetIterator::operator!=(const SearchResultSetIterator& other) {
   //TIMED_FUNC(SearchResultSetIterator_operatorInequals);
-  LOG(DEBUG) << "operator!= position: " << position << ", other.position: " << other.position;
+  //LOG(DEBUG) << "operator!= position: " << position << ", other.position: " << other.position;
   return position != other.position;
 }
 
@@ -584,31 +577,31 @@ void SearchResultSetIterator::operator++() {
   // see if we're at the very end. If so, do nothing
   // check to see if we're at the end of the current result set, and need to fetch more
   // otherwise, just increment position
-  LOG(DEBUG) << " incrementing, currently: " << position;
+  //LOG(DEBUG) << " incrementing, currently: " << position;
 
   long lastFetched = mResultSet->mImpl->getLastFetched();
   if (-1 == lastFetched) {
     // wait for initial fetch
-    LOG(DEBUG) << "No initial fetch happened (IMPOSSIBLE), waiting...";
+    //LOG(DEBUG) << "No initial fetch happened (IMPOSSIBLE), waiting...";
     mResultSet->mImpl->wait();
-    LOG(DEBUG) << "Awake!";
+    //LOG(DEBUG) << "Awake!";
   }
 
   if (position >= mResultSet->getTotal()) {
     // at end. No nothing
-    LOG(DEBUG) << "in final position of result set (total)";
+    //LOG(DEBUG) << "in final position of result set (total)";
   } else {
     // check if we've just started the next result set
     if (position > lastFetched) { // this is not lastFetched + 1 as we haven't incremented position yet!!! That gets done at the END of the function
       // need next result set NOW
-      LOG(DEBUG) << "At end of result set - calling fetchNext...";
+      //LOG(DEBUG) << "At end of result set - calling fetchNext...";
       if (mResultSet->mImpl->fetchNext()) {
         mResultSet->mImpl->wait();
       }
     }
     if (position > lastFetched + 1 - mResultSet->mImpl->pageLength) {
       // within 1 page of the end - go fetch more results
-      LOG(DEBUG) << "On last page of result set - calling fetchNext (lastFetched currently: " << lastFetched << ", position currently: " << position << ", maxResults currently: " << mResultSet->mImpl->m_maxResults << ")...";
+      //LOG(DEBUG) << "On last page of result set - calling fetchNext (lastFetched currently: " << lastFetched << ", position currently: " << position << ", maxResults currently: " << mResultSet->mImpl->m_maxResults << ")...";
       mResultSet->mImpl->fetchNext();
     }
 
@@ -628,7 +621,7 @@ void SearchResultSetIterator::operator++() {
   if (position > mResultSet->mImpl->total + 1) {
     position = mResultSet->mImpl->total + 1;
   }
-  LOG(DEBUG) << " position now: " << position;
+  //LOG(DEBUG) << " position now: " << position;
 }
 
 const SearchResult SearchResultSetIterator::operator*() {

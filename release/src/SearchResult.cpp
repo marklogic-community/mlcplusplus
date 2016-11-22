@@ -20,12 +20,12 @@ public:
 
 SearchResult::SearchResult() : mImpl(new Impl), index(0),uri(""),path(""),score(0),confidence(0.0),fitness(0.0),detail(Detail::NONE),detailContent(nullptr), format(Format::JSON) {
   //TIMED_FUNC(SearchResult_defaultConstructor);
-  LOG(DEBUG) << "    SearchResult::defaultConstructor @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::defaultConstructor @" << &*this;
 }
 
 SearchResult::~SearchResult() {
   //TIMED_FUNC(SearchResult_destructor);
-  LOG(DEBUG) << "    SearchResult::destructor @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::destructor @" << &*this;
   //delete this->detailContent;
   //detailContent = NULL;
 }
@@ -34,7 +34,7 @@ SearchResult::SearchResult(const long index, const std::string& uri, const std::
     const double confidence,const double fitness,const Detail& detail,IDocumentContent* own_detailContent,
     const std::string& mimeType,const Format& format) : mImpl(new Impl) {
   //TIMED_FUNC(SearchResult_detailConstructor);
-  LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
   this->index = index;
   this->uri = uri;
   this->path = path;
@@ -49,7 +49,7 @@ SearchResult::SearchResult(const long index, const std::string& uri, const std::
 
 SearchResult::SearchResult(SearchResult&& other) {
   //TIMED_FUNC(SearchResult_moveConstructor);
-  LOG(DEBUG) << "    SearchResult::moveConstructor @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::moveConstructor @" << &*this;
   mImpl = other.mImpl;
   other.mImpl = nullptr;
   this->index = std::move(other.index);
@@ -66,7 +66,7 @@ SearchResult::SearchResult(SearchResult&& other) {
 }
 
 SearchResult& SearchResult::operator= (const SearchResult&& other) {
-  LOG(DEBUG) << "    SearchResult::copy assignment operator @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::copy assignment operator @" << &*this;
 
   this->index = other.index;
   this->uri = other.uri;
@@ -82,7 +82,7 @@ SearchResult& SearchResult::operator= (const SearchResult&& other) {
 }
 
 SearchResult& SearchResult::operator= (SearchResult&& other) {
-  LOG(DEBUG) << "    SearchResult::move assignment operator @" << &*this;
+  //LOG(DEBUG) << "    SearchResult::move assignment operator @" << &*this;
   mImpl = other.mImpl;
   other.mImpl = nullptr;
   this->index = std::move(other.index);
