@@ -53,7 +53,7 @@ public:
    * \param dc The pugi::xml_document instance to convert
    * \return The IDocumentContent instance wrapping the XML content, with its mime type and content set
    */
-  MLCLIENT_API static ITextDocumentContent* toDocument(const pugi::xml_document& dc);
+  MLCLIENT_API static ITextDocumentContent* toDocument(std::unique_ptr<pugi::xml_document> dc);
 
   /**
    * \brief Converts a std::string instance to a MarkLogic C++ API IDocumentContent instance.
@@ -86,7 +86,7 @@ public:
    * \param dc The IDocumentContent instance to extract the XML content from.
    * \return A pugi::xml_document instance (parsed XML) created from the IDocumentContent object provided.
    */
-  MLCLIENT_API static pugi::xml_document* fromDocument(const IDocumentContent& dc);
+  MLCLIENT_API static std::unique_ptr<pugi::xml_document> fromDocument(const IDocumentContent& dc);
 
   // Response conversion
   /**
@@ -97,7 +97,7 @@ public:
    * \param resp The MarkLogic C++ API Response object instance.
    * \return A pugi::xml_document instance (parsed XML tree) created from the Response.
    */
-  MLCLIENT_API static pugi::xml_document* fromResponse(const Response& resp);
+  MLCLIENT_API static std::unique_ptr<pugi::xml_document> fromResponse(const Response& resp);
 
 };
 

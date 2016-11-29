@@ -51,6 +51,7 @@ public:
   MLCLIENT_API int32_t asInteger() const override;
   MLCLIENT_API double asDouble() const override;
   MLCLIENT_API std::string asString() const override;
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 };
 
 /**
@@ -62,7 +63,7 @@ public:
  */
 class PugiXmlArrayNode : public PugiXmlContainerNode {
 public:
-  MLCLIENT_API PugiXmlArrayNode(const pugi::xml_node& parent,const std::string& key);
+  MLCLIENT_API PugiXmlArrayNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& parent,const std::string& key);
   MLCLIENT_API virtual ~PugiXmlArrayNode();
 
   MLCLIENT_API bool isArray() const override;
@@ -90,7 +91,7 @@ private:
  */
 class PugiXmlObjectNode : public PugiXmlContainerNode {
 public:
-  MLCLIENT_API PugiXmlObjectNode(const pugi::xml_node& root);
+  MLCLIENT_API PugiXmlObjectNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& root);
   MLCLIENT_API virtual ~PugiXmlObjectNode();
 
   MLCLIENT_API bool isArray() const override;
@@ -104,9 +105,44 @@ public:
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
+
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 private:
   class Impl; // forward declaration
   Impl* mImpl;
+};
+
+class PugiXmlAttributeNode : public PugiXmlContainerNode {
+  public:
+  MLCLIENT_API PugiXmlAttributeNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_attribute& attr);
+  MLCLIENT_API virtual ~PugiXmlAttributeNode();
+
+  MLCLIENT_API bool isNull() const override;
+  MLCLIENT_API bool isBoolean() const override;
+  MLCLIENT_API bool isInteger() const override;
+  MLCLIENT_API bool isDouble() const override;
+  MLCLIENT_API bool isString() const override;
+  MLCLIENT_API bool isArray() const override;
+  MLCLIENT_API bool isObject() const override;
+
+  MLCLIENT_API bool asBoolean() const override;
+  MLCLIENT_API int32_t asInteger() const override;
+  MLCLIENT_API double asDouble() const override;
+  MLCLIENT_API std::string asString() const override;
+  MLCLIENT_API IDocumentNode* asArray() const override;
+  MLCLIENT_API IDocumentNode* asObject() const override;
+
+  MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+
+  MLCLIENT_API StringList keys() const override;
+  MLCLIENT_API int32_t size() const override;
+
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
+
+  private:
+    class Impl;
+    Impl* mImpl;
 };
 
 /**
@@ -119,8 +155,8 @@ private:
  */
 class PugiXmlDocumentNode : public IDocumentNode {
 public:
-  MLCLIENT_API PugiXmlDocumentNode(const pugi::xml_node& result);
-  MLCLIENT_API PugiXmlDocumentNode(const pugi::xml_node& root,const std::string& key);
+  MLCLIENT_API PugiXmlDocumentNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& result);
+  MLCLIENT_API PugiXmlDocumentNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& root,const std::string& key);
   MLCLIENT_API PugiXmlDocumentNode(PugiXmlDocumentNode&& from);
   MLCLIENT_API virtual ~PugiXmlDocumentNode();
 
@@ -145,6 +181,7 @@ public:
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
 
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 private:
   class Impl; // forward declaration
   Impl* mImpl;
@@ -157,7 +194,7 @@ private:
  * \param key The name of the child key underneath the node provided
  * \return The IDocumentNode pointer instance (caller OWNS and must delete this instance)
  */
-IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key);
+IDocumentNode* createNode(std::shared_ptr<pugi::xml_document> doc,pugi::xml_node& parent,const std::string& key);
 
 
 /**
@@ -176,7 +213,7 @@ public:
    * \param root The PUGI XML document to wrap
    * \param firstElementAsRoot Whether to start with the root (document) element (false) or the first actual node element (true)
    */
-  PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot = false);
+  PugiXmlDocumentNavigator(std::shared_ptr<pugi::xml_document> doc,bool firstElementAsRoot = false);
   /**
    * \brief Move constructor for moving ownership of this instance.
    *
@@ -187,6 +224,15 @@ public:
    * \brief Pugi XML destructor
    */
   virtual ~PugiXmlDocumentNavigator();
+
+  /**
+   * \brief Returns the first child node of this node
+   * 
+   * Useful to fetch the immediate child, no matter its name
+   *
+   * \return The first child node below the root node. nullptr if it doesn't exist
+   */
+  MLCLIENT_API IDocumentNode* firstChild() const override;
 
   /**
    * \brief Returns the IDocumentNode at the specified key location
@@ -234,7 +280,7 @@ public:
    *
    * \param json The pugixml xml_document instance to copy
    */
-  MLCLIENT_API void setContent(const pugi::xml_document& xml);
+  MLCLIENT_API void setContent(std::shared_ptr<pugi::xml_document> xml);
 
   /**
    * \brief Returns the content of this ITextDocumentContent as an istream.

@@ -150,6 +150,10 @@ public:
    * \return The number of results per page
    */
   MLCLIENT_API const long getPageLength() const;
+
+
+  MLCLIENT_API void setResponseMimeType(std::string mime);
+  MLCLIENT_API const std::string getResponseMimeType() const;
   // @}
 
 private:

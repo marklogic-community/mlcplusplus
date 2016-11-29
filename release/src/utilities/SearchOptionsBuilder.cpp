@@ -682,7 +682,7 @@ const std::string translate_rangelexiconref(const RangeLexiconRef& rt) {
 
 
 
-ValuesInfo::ValuesInfo() : name(""), lexicon(nullptr), bAggregate(false), aggregate(), valuesOptions() {
+ValuesInfo::ValuesInfo() : name(""), lexicon(nullptr), bAggregate(false), aggregates(), valuesOptions() {
   ;
 }
 ValuesInfo::~ValuesInfo() {
@@ -709,15 +709,30 @@ const bool ValuesInfo::hasLexicon() const {
 const bool ValuesInfo::hasAggregate() const {
   return bAggregate;
 }
-void ValuesInfo::setAggregate(const AggregateInfo& agg) {
-  aggregate = agg;
+void ValuesInfo::addAggregate(const AggregateInfo& agg) {
+  aggregates.push_back(agg);
   bAggregate = true;
 }
-const AggregateInfo ValuesInfo::getAggregate() const {
+const std::vector<AggregateInfo>& ValuesInfo::getAggregates() const {
+  return aggregates;
+}
+const AggregateInfo& ValuesInfo::getAggregate(const std::string& aggName) const {
   if (!bAggregate) {
-    throw new InvalidFormatException("ValuesInfo instance does not have an aggregate set");
+    throw new InvalidFormatException("ValuesInfo instance does not have any aggregates configured");
   }
-  return aggregate;
+  // search by name
+  auto iter = aggregates.begin();
+  auto end = aggregates.end();
+  for (;iter != end;++iter) {
+    if (iter->isAggregateBuiltin() && translate_aggregatebuiltin(iter->getAggregate()) == aggName) {
+      return *iter;
+    } else {
+      if (iter->isCustomAggregate() && iter->getUdfName() == aggName) {
+        return *iter;
+      }
+    }
+  }
+  throw new InvalidFormatException("ValuesInfo instance does not have an aggregate with the name " + aggName);
 }
 
 const bool ValuesInfo::hasValuesOptions() const {
@@ -746,7 +761,19 @@ const std::string translate_valuesinfo(const ValuesInfo& rt) {
     os << "," << *(rt.getLexicon()); // NEED TO IMPLEMENT WRITE VIRTUAL PURE FUNCTION AND FRIEND IT
   }
   if (rt.hasAggregate()) {
-    os << "," << rt.getAggregate();
+    os << ",\"aggregate\":[";
+    auto iter = rt.getAggregates().begin();
+    auto end = rt.getAggregates().end();
+    bool first = true;
+    for (;iter != end;++iter) {
+      if (first) {
+        first = false;
+      } else {
+        os << ",";
+      }
+      os << (*iter);
+    }
+    os << "]";
   }
   if (rt.hasValuesOptions()) {
     os << ",\"values-option\":[";
@@ -778,15 +805,21 @@ const std::string translate_valuesinfo(const ValuesInfo& rt) {
 
 class SearchOptionsBuilder::Impl {
 public:
-  Impl() : additionalQuery(),constraints(),transform("raw") {
+  Impl() : additionalQuery(),constraints(),transform("raw"),customTransform(nullptr),values(),returnResults(true),returnAggregates(false),
+  returnValues(false) {
     ;
   };
 
   std::string additionalQuery;
   std::vector<std::string> constraints;
   std::string transform;
+  ITextDocumentContent* customTransform;
 
   std::vector<ValuesInfo> values;
+
+  bool returnResults;
+  bool returnAggregates;
+  bool returnValues;
 };
 
 
@@ -824,10 +857,40 @@ SearchOptionsBuilder* SearchOptionsBuilder::rawSnippet() {
 }
 
 
+SearchOptionsBuilder* SearchOptionsBuilder::customSnippet(std::string apply,std::string ns,std::string at,ITextDocumentContent* configuration) {
+  mImpl->transform = "custom";
+  mImpl->customTransform = new GenericTextDocumentContent;
+
+  std::ostringstream oss;
+  oss << "\"transform-results\":{\"apply\":\"" << apply << "\",\"ns\":\"" << ns << "\",\"at\":\"" << at << "\"";
+  if (nullptr != configuration) {
+    oss << ",";
+    oss << configuration->getContent();
+  }
+  oss << "}";
+  mImpl->customTransform->setContent(oss.str());
+  mImpl->customTransform->setMimeType(IDocumentContent::MIME_JSON);
+
+  return this;
+}
+
+void SearchOptionsBuilder::returnResults(bool included) {
+  mImpl->returnResults = included;
+}
+
+void SearchOptionsBuilder::returnAggregates(bool included) {
+  mImpl->returnAggregates = included;
+}
+
+void SearchOptionsBuilder::returnValues(bool included) {
+  mImpl->returnValues = included;
+}
+
+
 SearchOptionsBuilder* SearchOptionsBuilder::valuesRangeAggregate(const std::string& name,const RangeOptions& range,
     const AggregateInfo& aggregate,const std::map<ValuesOption,std::string>& valuesOptions) {
   ValuesInfo vi;
-  vi.setAggregate(aggregate);
+  vi.addAggregate(aggregate);
   RangeLexiconRef* rr = new RangeLexiconRef;
   rr->setLexiconType(LexiconType::RANGE);
   rr->setRange(range);
@@ -835,6 +898,9 @@ SearchOptionsBuilder* SearchOptionsBuilder::valuesRangeAggregate(const std::stri
   vi.setName(name);
   vi.setValuesOptions(valuesOptions);
   mImpl->values.push_back(std::move(vi));
+
+  mImpl->returnAggregates = true;
+
   return this;
 }
 // also support non aggregate, values listing, configuration
@@ -848,6 +914,9 @@ SearchOptionsBuilder* SearchOptionsBuilder::valuesRange(const std::string& name,
   vi.setName(name);
   vi.setValuesOptions(valuesOptions);
   mImpl->values.push_back(std::move(vi));
+
+  mImpl->returnValues = true;
+
   return this;
 }
 
@@ -859,9 +928,14 @@ ITextDocumentContent* SearchOptionsBuilder::toDocument(bool asObject) {
   TIMED_FUNC(SearchOptionsBuilder_toDocument);
   std::ostringstream oss;
   if (asObject) {
-    oss << "{\"options\":{";
+    oss << "{\"options\":";
   }
-  oss << "\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
+  oss << "{";
+  if ("custom" == mImpl->transform) {
+    oss << mImpl->customTransform->getContent();
+  } else {
+    oss << "\"transform-results\": {\"apply\": \"" << mImpl->transform << "\"}";
+  }
   // values options, if present
   if (0 != mImpl->values.size()) {
     oss << ",\"values\":[";

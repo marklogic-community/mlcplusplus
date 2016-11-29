@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MarkLogic.MLConnect.Cpp</id>
-    <version>8.0.3-beta01</version>
+    <version>8.0.3-beta14</version>
     <title>MarkLogic C++ Client API</title>
     <authors>adamfowleruk</authors>
     <owners>adamfowleruk</owners>

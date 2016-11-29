@@ -31,7 +31,7 @@ namespace mlclient {
 
 class SearchDescription::Impl {
 public:
-  Impl() : start(1), pageLength(10) {
+  Impl() : start(1), pageLength(10),responseMime(IDocumentContent::MIME_JSON) {
     TIMED_FUNC(SearchDescription_Impl_defaultConstructor);
     LOG(DEBUG) << "    SearchDescription::Impl::defaultConstructor @" << &*this;
     GenericTextDocumentContent* qtdc = new GenericTextDocumentContent();
@@ -56,6 +56,7 @@ public:
   std::unique_ptr<std::string> queryText;
   long start;
   long pageLength;
+  std::string responseMime;
 }; // end SearchDescription::Impl class
 
 
@@ -92,6 +93,7 @@ SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new 
   mImpl->options = std::unique_ptr<ITextDocumentContent>(od);
   //LOG(DEBUG) << 4;
   mImpl->pageLength = desc.mImpl->pageLength;
+  mImpl->responseMime = desc.mImpl->responseMime;
   //LOG(DEBUG) << 5;
   ITextDocumentContent* qd = new GenericTextDocumentContent();
   //LOG(DEBUG) << 6;
@@ -233,6 +235,14 @@ void SearchDescription::setPageLength(const long pageLength) {
 
 const long SearchDescription::getPageLength() const {
   return mImpl->pageLength;
+}
+
+void SearchDescription::setResponseMimeType(const std::string mime) {
+  mImpl->responseMime = mime;
+}
+
+const std::string SearchDescription::getResponseMimeType() const {
+  return mImpl->responseMime;
 }
 
 } // end namespace mlclient

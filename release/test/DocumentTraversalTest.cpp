@@ -63,10 +63,10 @@ void DocumentTraversalTest::testXmlTraversal() {
 
   std::string raw = "<root><el1>val1</el1><el2>val2</el2><el3>1234</el3><el4>true</el4><el5>123.456</el5><arr1>av1</arr1><arr1>av2</arr1><obj1><subel1>subval1</subel1></obj1></root>";
 
-  pugi::xml_document* val = new pugi::xml_document;
+  std::unique_ptr<pugi::xml_document> val = mlclient::make_unique<pugi::xml_document>();
   pugi::xml_parse_result result = val->load_string(raw.c_str());
 
-  ITextDocumentContent* doc = mlclient::utilities::PugiXmlHelper::toDocument(*val);
+  ITextDocumentContent* doc = mlclient::utilities::PugiXmlHelper::toDocument(std::move(val));
   //this->testResult(doc);
   IDocumentNode* root = doc->navigate()->at("root");
   this->testResult(root);
@@ -318,4 +318,45 @@ void DocumentTraversalTest::testResultN(IDocumentNavigator* root) {
   }
 }
 
+
+void DocumentTraversalTest::testSubDocumentExtraction() {
+  // create document from string
+  std::ostringstream oss;
+  oss << "<docnode><parent><child><elem><subelem>somevalue</subelem></elem></child></parent></docnode>";
+  IDocumentNavigator* newNav;
+  { // START ISOLATION BLOCK
+  /*
+    mlclient::utilities::PugiXmlDocumentContent xml;
+    pugi::xml_document doc;
+    doc.load_string(oss.str().c_str());
+    xml.setContent(doc);
+
+    IDocumentNavigator* firstNav = xml.navigate(true);
+    CPPUNIT_ASSERT_MESSAGE("firstNav is not null",nullptr != firstNav);
+/*
+    // get sub sub element
+    // Create new document and copy over node
+    IDocumentNode* parent = firstNav->at("parent");
+    CPPUNIT_ASSERT_MESSAGE("parent is not null",nullptr != parent);
+    IDocumentNode* child = parent->at("child");
+    CPPUNIT_ASSERT_MESSAGE("child is not null",nullptr != child);
+    ITextDocumentContent* newDoc = ((ITextDocumentContent*)child->getChildContent());
+    CPPUNIT_ASSERT_MESSAGE("newDoc is not null",nullptr != newDoc);
+    newNav = newDoc->navigate(true);
+
+    delete firstNav; // to be sure of deletion
+    */
+  } // END ISOLATION BLOCK
+
+  // evaluate new document sub content
+  /*
+  CPPUNIT_ASSERT_MESSAGE("navigator is not null",nullptr != newNav);
+  IDocumentNode* valNode = newNav->at("subelem");
+  CPPUNIT_ASSERT_MESSAGE("value node is not null",nullptr != valNode);
+  CPPUNIT_ASSERT_MESSAGE("value node is string",valNode->isString());
+  std::string value = valNode->asString();
+  */
+
+  //delete newNav;
+}
 

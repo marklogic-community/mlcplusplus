@@ -31,7 +31,7 @@ SearchResult::~SearchResult() {
 }
 
 SearchResult::SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-    const double confidence,const double fitness,const Detail& detail,IDocumentContent* own_detailContent,
+    const double confidence,const double fitness,const Detail& detail,std::shared_ptr<IDocumentNode>& own_detailContent,
     const std::string& mimeType,const Format& format) : mImpl(new Impl) {
   //TIMED_FUNC(SearchResult_detailConstructor);
   //LOG(DEBUG) << "    SearchResult::detailedConstructor @" << &*this;
@@ -59,7 +59,7 @@ SearchResult::SearchResult(SearchResult&& other) {
   this->fitness = std::move(other.fitness);
   this->detail = std::move(other.detail);
   this->detailContent = other.detailContent;
-  other.detailContent = NULL;
+  //other.detailContent = NULL;
   this->mimeType = std::move(other.mimeType);
   this->format = std::move(other.format);
   this->confidence = std::move(other.confidence);
@@ -120,7 +120,7 @@ double SearchResult::getFitness() {
 const SearchResult::Detail& SearchResult::getDetail() const {
   return detail;
 }
-const IDocumentContent* SearchResult::getDetailContent() const {
+std::shared_ptr<IDocumentNode> SearchResult::getDetailContent() const {
   //TIMED_FUNC(SearchResult_getDetailContent);
   return detailContent;
 }

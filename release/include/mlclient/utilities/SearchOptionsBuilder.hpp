@@ -279,8 +279,9 @@ public:
   MLCLIENT_API const bool hasLexicon() const;
 
   MLCLIENT_API const bool hasAggregate() const;
-  MLCLIENT_API void setAggregate(const AggregateInfo& agg);
-  MLCLIENT_API const AggregateInfo getAggregate() const;
+  MLCLIENT_API void addAggregate(const AggregateInfo& agg);
+  MLCLIENT_API const std::vector<AggregateInfo>& getAggregates() const;
+  MLCLIENT_API const AggregateInfo& getAggregate(const std::string& aggName) const;
 
   MLCLIENT_API const bool hasValuesOptions() const;
   MLCLIENT_API void setValuesOptions(std::map<ValuesOption,std::string> options);
@@ -290,7 +291,7 @@ private:
   std::string name;
   ILexiconRef* lexicon;
   bool bAggregate;
-  AggregateInfo aggregate;
+  std::vector<AggregateInfo> aggregates;
   std::map<ValuesOption,std::string> valuesOptions;
 };
 
@@ -335,6 +336,11 @@ public:
 
   MLCLIENT_API SearchOptionsBuilder* emptySnippet();
   MLCLIENT_API SearchOptionsBuilder* rawSnippet();
+  MLCLIENT_API SearchOptionsBuilder* customSnippet(std::string apply,std::string ns,std::string at,ITextDocumentContent* configuration = nullptr);
+
+  MLCLIENT_API void returnAggregates(const bool included = true);
+  MLCLIENT_API void returnValues(const bool included = true);
+  MLCLIENT_API void returnResults(const bool included = true);
 
   //SearchOptionsBuilder* extractAttributeMetadata();
   //SearchOptionsBuilder* extractElementMetadata();

@@ -33,8 +33,8 @@ Document::Document(const std::string& uri,IDocumentContent* own_content,IDocumen
 const std::string& Document::getUri() const {
   return uri;
 }
-void Document::setUri(const std::string& uri) {
-  this->uri = uri;
+void Document::setUri(const std::string& in_uri) {
+  this->uri = in_uri;
 }
 const bool Document::hasUri() const {
   return "" != uri;
@@ -44,8 +44,8 @@ const bool Document::hasUri() const {
 const std::vector<std::string> Document::getCollections() const {
   return collections;
 }
-void Document::setCollections(const std::vector<std::string>& collections) {
-  this->collections = collections;
+void Document::setCollections(const std::vector<std::string>& in_collections) {
+  this->collections = in_collections;
 }
 const bool Document::hasCollections() const {
   return 0 != collections.size();

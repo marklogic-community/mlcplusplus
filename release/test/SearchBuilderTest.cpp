@@ -100,7 +100,7 @@ void SearchBuilderTest::testAll() {
   for (SearchResultSetIterator* iter = results->begin();*iter != *(results->end());++(*iter)) {
     LOG(DEBUG) << " Result " << count << ":-";
     LOG(DEBUG) << "  URI: " << iter->first().getUri();
-    LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getContent();
+    LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getChildContent()->getContent();
     CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter->first().getUri()));
     CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != iter->first().getDetailContent());
     ++count;

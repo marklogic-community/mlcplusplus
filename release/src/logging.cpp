@@ -149,9 +149,9 @@ void libraryLoggingInit() {
   LoggingConfiguration config;
   config.level = "INFO";
   config.toerr = false;
-  
+
   boost::filesystem::path temp = boost::filesystem::temp_directory_path();
-  const std::wstring tempstr = temp.native();
+  auto& tempstr = temp.native();
   config.folder = std::string(tempstr.begin(), tempstr.end());
   //config.folder = tempstr;
 
@@ -329,6 +329,10 @@ void reconfigureLoggingSettings(const LoggingConfiguration& config) {
       boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0), /*< ...or at midnight >*/
       boost::log::keywords::format = "[%TimeStamp%] %Process% %ProcessID% %ThreadID% %File%:%Line% %Function% %Message%"                                 /*< log record format >*/
     );
+    
+#ifdef _DEBUG
+    //boost::log::core::get()->auto_flush(true);
+#endif
 
     // Use this to also log to console: boost::log::add_console_log(std::cout);
 

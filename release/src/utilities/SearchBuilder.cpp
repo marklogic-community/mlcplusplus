@@ -329,9 +329,9 @@ IQuery* SearchBuilder::orQuery(const std::vector<IQuery*>& queries) {
 IQuery* SearchBuilder::notQuery(const IQuery* query) {
   TIMED_FUNC(SearchBuilder_notQuery);
   std::ostringstream oss;
-  oss << "{\"not-query\": {";
+  oss << "{\"not-query\": ";
   oss << *query;
-  oss << "}}";
+  oss << "}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());
   return qry;
@@ -402,6 +402,29 @@ IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation
   oss << "\"type\": \"xs:integer\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
   oss << ",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+
+IQuery* SearchBuilder::elementQuery(const std::string name,const std::string ns,const IQuery* query) {
+  TIMED_FUNC(SearchBuilder_elementQuery);
+  std::ostringstream oss;
+  oss << "{\"container-query\":{\"element\": {\"name\":\"" << name <<"\", \"ns\":\"" << ns << "\"},";
+  oss << (*query);
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::propertyQuery(const std::string name,const IQuery* query) {
+  TIMED_FUNC(SearchBuilder_propertyQuery);
+  std::ostringstream oss;
+  oss << "{\"container-query\":{\"json-property\": \"" << name <<"\",";
+  oss << (*query);
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());

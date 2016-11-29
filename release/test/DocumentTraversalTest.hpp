@@ -25,6 +25,7 @@ class DocumentTraversalTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(DocumentTraversalTest);
   CPPUNIT_TEST(testJsonTraversal);
   CPPUNIT_TEST(testXmlTraversal);
+  CPPUNIT_TEST(testSubDocumentExtraction);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
@@ -32,9 +33,11 @@ public:
 
   void testJsonTraversal(void);
   void testXmlTraversal(void);
+  void testSubDocumentExtraction(void);
 
   void testResult(IDocumentNode* root);
   void testResultN(IDocumentNavigator* root);
+
 private:
   IConnection* ml;
 };

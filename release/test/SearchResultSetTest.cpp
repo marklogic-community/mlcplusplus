@@ -8,6 +8,8 @@
 #include "SearchResultSetTest.hpp"
 #include "mlclient/SearchResult.hpp"
 #include "mlclient/SearchResultSet.hpp"
+#include "mlclient/utilities/SearchBuilder.hpp"
+#include "mlclient/utilities/SearchOptionsBuilder.hpp"
 
 #include "mlclient/logging.hpp"
 
@@ -115,13 +117,15 @@ void SearchResultSetTest::testThreePages() {
   SearchResultSetIterator* end = results->end();
   for (;(*iter) != (*end);++(*iter)) {
     LOG(DEBUG) << " Result " << count << " (0 based):-";
-    LOG(DEBUG) << "  URI: " << iter->first().getUri();
-    LOG(DEBUG) << "  Content: " << iter->first().getDetailContent()->getContent();
+    const SearchResult& first(iter->first());
+    LOG(DEBUG) << "  URI: " << first.getUri();
+    IDocumentContent* childContent = first.getDetailContent()->getChildContent();
+    LOG(DEBUG) << "  Content: " << childContent->getContent();
     if (0 == count) {
-      finalDocContent = iter->first().getDetailContent();
+      finalDocContent = childContent;
     }
-    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(iter->first().getUri()));
-    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != iter->first().getDetailContent());
+    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(first.getUri()));
+    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != childContent);
     ++count;
     //if (count > 30) break;
   }
@@ -138,3 +142,105 @@ void SearchResultSetTest::testThreePages() {
 
   // NB Response deleted by SearchResultSet fetch() method
 }
+
+void SearchResultSetTest::testCustomSnippetXml() {
+  TIMED_FUNC(testCustomSnippetXml);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering SearchResultSetTest::testCustomSnippetXml";
+
+  const IDocumentContent* finalDocContent = new GenericTextDocumentContent;
+
+  GenericTextDocumentContent* conf = new GenericTextDocumentContent;
+  conf->setMimeType(IDocumentContent::MIME_JSON);
+  std::ostringstream oss;
+  oss << "\"extract\":{";
+  oss << "\"element\":[";
+  oss << "{\"name\":\"type\"}"; 
+  oss << "]";
+  /*
+  oss << ",\"path\":[";
+  oss << "{\"xpath\":\"" << path << "\"}";
+  oss << "]";
+  */
+  oss << "}";
+  conf->setContent(oss.str());
+
+  mlclient::utilities::SearchOptionsBuilder* sob = new mlclient::utilities::SearchOptionsBuilder;
+  sob->customSnippet("snippet","http://marklogic.com/datascience/snippeting/extract-flatten","/datascience/snippeting/extract-flatten.xqy",
+    conf
+  );
+
+  mlclient::utilities::SearchBuilder sb;
+  //CollectionSet cs;
+  //cs.push_back("claims");
+  sb.setQuery(
+    mlclient::utilities::SearchBuilder::collectionQuery(std::vector<std::string>{"claims"})
+  );
+
+  SearchDescription* desc = new SearchDescription;
+  desc->setOptions(*sob->toDocument());
+  ITextDocumentContent& searchDoc = *sb.toDocument();
+  LOG(DEBUG) << "got search doc from builder";
+  LOG(DEBUG) << "SearchResultBuilderTest search content: " << searchDoc.getContent();
+  desc->setQuery(searchDoc);
+  desc->setResponseMimeType(IDocumentContent::MIME_XML);
+
+  SearchResultSet* results = new SearchResultSet(ml,desc);
+  results->setMaxResults(10);
+
+  bool res = results->fetch(); // BLOCKS
+  if (!res) {
+    LOG(DEBUG) << "Exception report from fetch() attempt:-";
+    LOG(DEBUG) << results->getFetchException().what();
+    throw results->getFetchException();
+  }
+  std::string blankString("");
+  CPPUNIT_ASSERT_MESSAGE("Fetch operation did not succeed", res);
+
+  // TODO validate that total result count is greater than 20 (and thus falls across 3 pages) - should be 23
+
+  // get results iterator
+  int count = 0;
+  //for (auto& iter : *results) {
+  LOG(DEBUG) << "CSX result set total: " << results->getTotal();
+  SearchResultSetIterator* iter = results->begin();
+  SearchResultSetIterator* end = results->end();
+  for (;(*iter) != (*end);++(*iter)) {
+    LOG(DEBUG) << " Result " << count << " (0 based):-";
+    const SearchResult& first(iter->first());
+    LOG(DEBUG) << "  URI: " << first.getUri();
+    CPPUNIT_ASSERT_MESSAGE("Result does not have a URI",0!=blankString.compare(first.getUri()));
+
+
+    std::shared_ptr<IDocumentNode> detailContent = first.getDetailContent();
+    LOG(DEBUG) << "  Detail content: " << detailContent;
+    IDocumentContent* childContent = detailContent->getChildContent();
+    LOG(DEBUG) << "  Content: " << childContent->getContent();
+    if (0 == count) {
+      finalDocContent = childContent;
+    }
+    CPPUNIT_ASSERT_MESSAGE("Result does not have content",nullptr != childContent);
+    IDocumentNavigator* childNav = ((ITextDocumentContent*)childContent)->navigate(true);
+    CPPUNIT_ASSERT_MESSAGE("Result navigator is null",nullptr != childNav);
+    LOG(DEBUG) << "Got result navigator";
+    IDocumentNode* claimNode = childNav->firstChild();
+    CPPUNIT_ASSERT_MESSAGE("Result claim is null",nullptr != claimNode);
+    LOG(DEBUG) << "Got result claim node";
+    IDocumentNode* typeNode = claimNode->at("type");
+    CPPUNIT_ASSERT_MESSAGE("Result snippet child node is null",nullptr != typeNode);
+    LOG(DEBUG) << "Got result type node";
+    std::string typeVal = typeNode->asString();
+    LOG(DEBUG) << "Type value: " << typeVal;
+    CPPUNIT_ASSERT_MESSAGE("Result snippet child node value is invalid",""!=typeVal);
+    LOG(DEBUG) << "Got result type value";
+
+    ++count;
+    //if (count > 30) break;
+  }
+  LOG(DEBUG) << "Completed iterator loop. Deleting results.";
+
+  delete results;
+  // NB Response deleted by SearchResultSet fetch() method
+
+
+};

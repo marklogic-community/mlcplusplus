@@ -229,6 +229,13 @@ public:
    * \return The size of the array
    */
   MLCLIENT_API virtual int32_t size() const = 0;
+
+  /**
+   * \brief Returns the content of this element (not the element itself) as an IDocumentContent object
+   *
+   * \return The IDocumentContent* wrapper of the child content
+   */
+  MLCLIENT_API virtual IDocumentContent* getChildContent() const = 0;
 };
 
 /**
@@ -253,6 +260,15 @@ class IDocumentNavigator {
 public:
   MLCLIENT_API IDocumentNavigator();
   MLCLIENT_API virtual ~IDocumentNavigator();
+
+  /**
+   * \brief Returns the first child node of this node
+   * 
+   * Useful to fetch the immediate child, no matter its name
+   *
+   * \return The first child node below the root node. nullptr if it doesn't exist
+   */
+  MLCLIENT_API virtual IDocumentNode* firstChild() const = 0;
 
   /**
    * \brief Returns the named element or property underneath the document object
@@ -312,6 +328,7 @@ public:
    * \date 2016-07-30
    */
   MLCLIENT_API virtual IDocumentNavigator* navigate(bool firstElementAsRoot = false) const = 0;
+
 };
 
 
@@ -423,6 +440,7 @@ public:
    * \return The IDocumentNavigator instance to navigate this document with.
    */
   MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
+
 
 private:
   class Impl;

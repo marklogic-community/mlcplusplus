@@ -354,6 +354,29 @@ public:
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
   MLCLIENT_API IQuery* xmlRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
+
+  /**
+   * \brief An XML Element query, specifying the parent of an element
+   *
+   * \note Contained query matches at any point below this element, not just directly below this element (not just child)
+   *
+   * \param name The name of the element
+   * \param ns The namespace of the element
+   * \param query The query to match within this element
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* elementQuery(const std::string name,const std::string ns,const IQuery* query);
+
+  /**
+   * \brief An JSON property query, specifying the parent of a property
+   *
+   * \note Contained query matches at any point below this property, not just directly below this property (not just child)
+   *
+   * \param name The name of the property
+   * \param query The query to match within this property
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* propertyQuery(const std::string name,const IQuery* query);
   /// @}
 
   /// \name searchbuilder_instance Instance methods that control the base search definition

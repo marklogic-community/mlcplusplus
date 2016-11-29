@@ -59,6 +59,9 @@ std::string PugiXmlContainerNode::asString() const {
   throw new mlclient::InvalidFormatException("XML Container is not a string");
 }
 
+IDocumentContent* PugiXmlContainerNode::getChildContent() const {
+  throw new mlclient::InvalidFormatException("XML Container is not a string");
+}
 
 
 
@@ -67,10 +70,10 @@ std::string PugiXmlContainerNode::asString() const {
 
 class PugiXmlArrayNode::Impl {
 public:
-  Impl(const pugi::xml_node& parent,const std::string& key) : parent(parent), key(key) {
+  Impl(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& parent,const std::string& key) : doc(doc),parent(parent), key(key) {
     ;
   };
-
+  std::shared_ptr<pugi::xml_document> doc;
   pugi::xml_node parent;
   std::string key;
 };
@@ -78,7 +81,7 @@ public:
 
 
 
-PugiXmlArrayNode::PugiXmlArrayNode(const pugi::xml_node& parent,const std::string& key) : mImpl(new Impl(parent,key)) {
+PugiXmlArrayNode::PugiXmlArrayNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& parent,const std::string& key) : mImpl(new Impl(doc,parent,key)) {
   ;
 }
 PugiXmlArrayNode::~PugiXmlArrayNode() {
@@ -109,7 +112,7 @@ IDocumentNode* PugiXmlArrayNode::at(const int32_t idx) const {
   int32_t i = 0;
   for (;i <= idx && iter != end;++iter) {
     if (i == idx) {
-      return new PugiXmlDocumentNode(*iter);
+      return new PugiXmlDocumentNode(mImpl->doc,*iter);
     }
     i++;
   }
@@ -135,14 +138,15 @@ int32_t PugiXmlArrayNode::size() const {
 
 class PugiXmlObjectNode::Impl {
 public:
-  Impl(const pugi::xml_node& obj) : obj(obj) {
+  Impl(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& obj) : doc(doc),obj(obj) {
     ;
   };
 
+  std::shared_ptr<pugi::xml_document> doc;
   pugi::xml_node obj;
 };
 
-PugiXmlObjectNode::PugiXmlObjectNode(const pugi::xml_node& obj) : mImpl(new Impl(obj)) {
+PugiXmlObjectNode::PugiXmlObjectNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_node& obj) : mImpl(new Impl(doc,obj)) {
   ;
 }
 PugiXmlObjectNode::~PugiXmlObjectNode() {
@@ -165,7 +169,7 @@ IDocumentNode* PugiXmlObjectNode::asObject() const {
 
 IDocumentNode* PugiXmlObjectNode::at(const std::string& key) const {
   LOG(DEBUG) << "at(" << key << ") called on '" << mImpl->obj.name() << "' of type: " << mImpl->obj.type();
-  return mlclient::utilities::createNode(mImpl->obj,key); // TODO ensure this returns attributes and not just elements
+  return mlclient::utilities::createNode(mImpl->doc,mImpl->obj,key); // TODO ensure this returns attributes and not just elements
 }
 IDocumentNode* PugiXmlObjectNode::at(const int32_t idx) const {
   throw mlclient::InvalidFormatException("XML Container Object does not support integer subscripts");
@@ -192,6 +196,110 @@ int32_t PugiXmlObjectNode::size() const {
   throw mlclient::InvalidFormatException("XML Container Object does not support integer subscripts");
 }
 
+IDocumentContent* PugiXmlObjectNode::getChildContent() const {
+  PugiXmlDocumentContent* ct = new PugiXmlDocumentContent;
+  
+  std::ostringstream oss;
+  mImpl->obj.print(oss);
+  std::shared_ptr<pugi::xml_document> newDoc = std::make_shared<pugi::xml_document>();
+  newDoc->load_string(oss.str().c_str());
+  
+  ct->setContent(newDoc);
+
+  return ct;
+}
+
+
+
+
+
+
+class PugiXmlAttributeNode::Impl {
+  public:
+  Impl(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_attribute& attr) : doc(doc),attr(attr) {
+    ;
+  };
+
+  std::shared_ptr<pugi::xml_document> doc;
+  pugi::xml_attribute attr;
+};
+
+
+PugiXmlAttributeNode::PugiXmlAttributeNode(std::shared_ptr<pugi::xml_document> doc,const pugi::xml_attribute& attr) : mImpl(new Impl(doc,attr)) {
+  ;
+}
+
+PugiXmlAttributeNode::~PugiXmlAttributeNode() {
+  delete mImpl;
+  mImpl = NULL;
+}
+bool PugiXmlAttributeNode::isNull() const {
+  return strcmp(mImpl->attr.as_string(),"")==0;
+}
+bool PugiXmlAttributeNode::isBoolean() const {
+  return strcmp(mImpl->attr.as_string(),"true")==0 || strcmp(mImpl->attr.as_string(),"True")==0 || strcmp(mImpl->attr.as_string() , "TRUE") == 0;
+}
+bool PugiXmlAttributeNode::isInteger() const {
+  std::smatch matches;
+  std::string str(mImpl->attr.as_string());
+  return std::regex_search(str,matches, RE_INTEGER);
+}
+bool PugiXmlAttributeNode::isDouble() const {
+  std::smatch matches;
+  std::string str(mImpl->attr.as_string());
+  return std::regex_search(str,matches, RE_DOUBLE);
+}
+bool PugiXmlAttributeNode::isString() const {
+  return !isInteger() && !isDouble() && !isBoolean() && strcmp(mImpl->attr.as_string(),"") != 0; // nasty hack
+}
+bool PugiXmlAttributeNode::isArray() const {
+  return false;
+}
+bool PugiXmlAttributeNode::isObject() const {
+  //bool isObj = !isInteger() && !isDouble() && !isBoolean() && (mImpl->root.type() == pugi::xml_node_type::node_element || mImpl->root.type() == pugi::xml_node_type::node_document);
+  //LOG(DEBUG) << "isObject() result for '" << mImpl->root.name() << "'?: " << isObj;
+  //return isObj;
+  return false;
+}
+
+bool PugiXmlAttributeNode::asBoolean() const {
+  return mImpl->attr.as_bool();
+}
+int32_t PugiXmlAttributeNode::asInteger() const {
+  return mImpl->attr.as_int();
+}
+double PugiXmlAttributeNode::asDouble() const {
+  return mImpl->attr.as_double();
+}
+std::string PugiXmlAttributeNode::asString() const {
+  return mImpl->attr.as_string();
+}
+IDocumentNode* PugiXmlAttributeNode::asArray() const {
+  return nullptr;
+}
+IDocumentNode* PugiXmlAttributeNode::asObject() const {
+  return nullptr;
+}
+
+IDocumentNode* PugiXmlAttributeNode::at(const std::string& key) const {
+  throw mlclient::InvalidFormatException("XML attribute Object does not support string subscripts");
+}
+IDocumentNode* PugiXmlAttributeNode::at(const int32_t idx) const {
+  throw mlclient::InvalidFormatException("XML attribute Object does not support integer subscripts");
+}
+
+StringList PugiXmlAttributeNode::keys() const {
+  StringList names;
+  return names;
+}
+
+int32_t PugiXmlAttributeNode::size() const {
+  throw mlclient::InvalidFormatException("XML attribute Object does not support integer subscripts");
+}
+
+IDocumentContent* PugiXmlAttributeNode::getChildContent() const {
+  throw mlclient::InvalidFormatException("XML attribute Object does not support child content");
+}
 
 
 
@@ -200,24 +308,25 @@ int32_t PugiXmlObjectNode::size() const {
 
 class PugiXmlDocumentNode::Impl {
 public:
-  Impl(const pugi::xml_node& root) : root(root) {
+  Impl(std::shared_ptr<pugi::xml_document> own_doc,const pugi::xml_node& root) : doc(own_doc),root(root) {
     ;
   };
-  Impl(const pugi::xml_node& parent,const std::string& key) : root(parent.child(key.c_str())) {
+  Impl(std::shared_ptr<pugi::xml_document> own_doc,const pugi::xml_node& parent,const std::string& key) : doc(own_doc),root(parent.child(key.c_str())) {
     ;
   };
 
   pugi::xml_node root;
+  std::shared_ptr<pugi::xml_document> doc;
 };
 
 
-PugiXmlDocumentNode::PugiXmlDocumentNode(const pugi::xml_node& root) : mImpl(new Impl(std::move(root))) {
+PugiXmlDocumentNode::PugiXmlDocumentNode(std::shared_ptr<pugi::xml_document> own_doc,const pugi::xml_node& root) : mImpl(new Impl(own_doc,root)) {
   LOG(DEBUG) << "PugiXmlDocumentNode::ctor for node named '" << root.name() << "'";
   LOG(DEBUG) << "  node text: " << root.text().get();
   LOG(DEBUG) << "  node impl text: " << mImpl->root.text().get();
   ;
 }
-PugiXmlDocumentNode::PugiXmlDocumentNode(const pugi::xml_node& root,const std::string& key) : mImpl(new Impl(root,key)) {
+PugiXmlDocumentNode::PugiXmlDocumentNode(std::shared_ptr<pugi::xml_document> own_doc,const pugi::xml_node& root,const std::string& key) : mImpl(new Impl(own_doc,root,key)) {
   LOG(DEBUG) << "PugiXmlDocumentNode::ctor(node,key) for node named '" << root.name() << "'";
   LOG(DEBUG) << "  node text: " << root.text().get();
   ;
@@ -230,7 +339,9 @@ PugiXmlDocumentNode::PugiXmlDocumentNode(PugiXmlDocumentNode&& from) : mImpl(fro
 }
 
 PugiXmlDocumentNode::~PugiXmlDocumentNode() {
-  delete mImpl;
+  if (NULL != mImpl) {
+    delete mImpl;
+  }
   mImpl = NULL;
 }
 
@@ -283,14 +394,14 @@ IDocumentNode* PugiXmlDocumentNode::asObject() const {
 }
 
 IDocumentNode* PugiXmlDocumentNode::at(const std::string& key) const {
-  return mlclient::utilities::createNode(mImpl->root,key);
+  return mlclient::utilities::createNode(mImpl->doc,mImpl->root,key);
 }
 IDocumentNode* PugiXmlDocumentNode::at(const int32_t idx) const {
   const auto& iter = mImpl->root.children().begin();
   const auto& end = mImpl->root.children().end();
   for (int32_t i = 0;i <= idx && iter != end;i++) {
     if (i == idx) {
-      return new PugiXmlDocumentNode(*iter);
+      return new PugiXmlDocumentNode(mImpl->doc,*iter);
     }
   }
   return nullptr;
@@ -317,31 +428,57 @@ int32_t PugiXmlDocumentNode::size() const {
   throw mlclient::InvalidFormatException("XML Document Object does not support integer subscripts");
 }
 
+IDocumentContent* PugiXmlDocumentNode::getChildContent() const {
+  PugiXmlDocumentContent* ct = new PugiXmlDocumentContent;
+  
+  std::ostringstream oss;
+  mImpl->root.print(oss);
+  std::shared_ptr<pugi::xml_document> newDoc = std::make_shared<pugi::xml_document>();
+  newDoc->load_string(oss.str().c_str());
+  ct->setContent(newDoc);
+  
+  //ct->setContent(mImpl->root.root());
 
-IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key) {
+  return ct;
+}
+
+
+
+IDocumentNode* createNode(std::shared_ptr<pugi::xml_document> doc,pugi::xml_node& parent,const std::string& key) {
+  LOG(DEBUG) << "Trying to find child node or element named: " << key;
   const auto& range = parent.children(key.c_str());
   if (range.begin() == range.end() || (++(range.begin())) == range.end()) {
     // Could be an Object or a String
     bool isObject = false;
     pugi::xml_node child = parent.child(key.c_str());
-    const auto& childRange = child.children();
-    for (pugi::xml_node_iterator iter = childRange.begin();iter != childRange.end();++iter) {
-      isObject = isObject || iter->type() == pugi::xml_node_type::node_element;
+    if (NULL != child) {
+      const auto& childRange = child.children();
+      for (pugi::xml_node_iterator iter = childRange.begin();iter != childRange.end();++iter) {
+        isObject = isObject || iter->type() == pugi::xml_node_type::node_element;
+      }
+      if (isObject) {
+        LOG(DEBUG) << " This node is a Pugi XML object node (has one or more element children)";
+        return new PugiXmlObjectNode(doc,child);
+      }
+      LOG(DEBUG) << "Found an element with a single child of '" << key << "', creating PugiXmlDocumentNode...";
+      return new PugiXmlDocumentNode(doc,child);
+    } else {
+      LOG(DEBUG) << "No child with name '" << key << "'";
     }
-    if (isObject) {
-      LOG(DEBUG) << " This node is a Pugi XML object node (has one or more element children)";
-      return new PugiXmlObjectNode(child);
-    }
-    LOG(DEBUG) << "Found an element with a single child of '" << key << "', creating PugiXmlDocumentNode...";
-    return new PugiXmlDocumentNode(child);
+  }
+  // May not have been found - check attributes
+  const auto& attr = parent.attribute(key.c_str());
+  if (NULL != attr) {
+    LOG(DEBUG) << "Found an XML attribute";
+    return new PugiXmlAttributeNode(doc,attr);
   }
   // is an object if one or more children are themselves nodes
   LOG(DEBUG) << "Found an element with multiple children of '" << key << "', creating PugiXmlArrayNode...";
-  for (pugi::xml_named_node_iterator iter = range.begin();iter != range.end();++iter) {
-    LOG(DEBUG) << "  Child type: " << iter->type() << " name: " << iter->name();
-  }
+  //for (pugi::xml_named_node_iterator iter = range.begin();iter != range.end();++iter) {
+  //  LOG(DEBUG) << "  Child type: " << iter->type() << " name: " << iter->name();
+  //}
   // is array
-  return new PugiXmlArrayNode(parent,key);
+  return new PugiXmlArrayNode(doc,parent,key);
 }
 
 
@@ -350,15 +487,15 @@ IDocumentNode* createNode(pugi::xml_node& parent,const std::string& key) {
 
 class PugiXmlDocumentNavigator::Impl {
 public:
-  Impl(const pugi::xml_document& root,bool firstElementAsRoot) : root(root), firstElementAsRoot(firstElementAsRoot) {
+  Impl(std::shared_ptr<pugi::xml_document> root,bool firstElementAsRoot) : root(root), firstElementAsRoot(firstElementAsRoot) {
     ;
   };
 
-  const pugi::xml_document& root;
+  std::shared_ptr<pugi::xml_document> root;
   bool firstElementAsRoot;
 };
 
-PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(const pugi::xml_document& root,bool firstElementAsRoot) : mImpl(new Impl(root,firstElementAsRoot)) {
+PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(std::shared_ptr<pugi::xml_document> root,bool firstElementAsRoot) : mImpl(new Impl(root,firstElementAsRoot)) {
   ;
 }
 
@@ -372,16 +509,41 @@ PugiXmlDocumentNavigator::~PugiXmlDocumentNavigator() {
   }
 }
 
+IDocumentNode* PugiXmlDocumentNavigator::firstChild() const {
+  if (!mImpl->firstElementAsRoot) {
+    return new PugiXmlDocumentNode(mImpl->root,mImpl->root->root().first_child());
+  }
+  return new PugiXmlDocumentNode(mImpl->root,mImpl->root->root().first_child().first_child());
+}
+
 IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {
   if (!mImpl->firstElementAsRoot) {
-    return new PugiXmlDocumentNode(mImpl->root.root().child(key.c_str()));
+    return new PugiXmlDocumentNode(mImpl->root,mImpl->root->root().child(key.c_str()));
   }
   // else call child on the top level element
-  const auto& range = mImpl->root.root().children();
+  const auto& range = mImpl->root->children();
+  int childCount = 0;
   for (pugi::xml_node_iterator iter = range.begin();iter != range.end();++(iter)) {
     if (pugi::xml_node_type::node_element == iter->type()) {
-      return new PugiXmlDocumentNode(iter->child(key.c_str()));
+      const pugi::xml_node& chNode = iter->child(key.c_str());
+      if (NULL != chNode) {
+        childCount++;
+        while (NULL != (const_cast<pugi::xml_node&>(chNode) = chNode.next_sibling(key.c_str()))) {
+          childCount++;
+        }
+      }
     }
+  }
+  LOG(DEBUG) << "Child element count for " << key << " is " << childCount;
+  if (1 == childCount) {
+    return new PugiXmlDocumentNode(mImpl->root,range.begin()->child(key.c_str()));
+  } else if (childCount > 1) {
+    return new PugiXmlArrayNode(mImpl->root,mImpl->root->first_child(),key);
+  }
+  const pugi::xml_attribute& attr = mImpl->root->first_child().attribute(key.c_str());
+  if (NULL != attr) {
+    LOG(DEBUG) << "Found attribute under root document element";
+    return new PugiXmlAttributeNode(mImpl->root,attr);
   }
   return nullptr; // empty XML document
 
@@ -397,13 +559,13 @@ IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {
 
 class PugiXmlDocumentContent::Impl {
 public:
-  Impl() : value(new pugi::xml_document) {
+  Impl() : value(std::make_shared<pugi::xml_document>()), mimeType(IDocumentContent::MIME_XML) {
     TIMED_FUNC(PugiXmlDocumentContent_Impl_defaultConstructor);
   };
   ~Impl() {
     TIMED_FUNC(PugiXmlDocumentContent_Impl_destructor);
   };
-  const pugi::xml_document* value;
+  std::shared_ptr<pugi::xml_document> value;
   std::string mimeType;
 };
 
@@ -431,9 +593,9 @@ const pugi::xml_document& PugiXmlDocumentContent::getXml() const {
   return *(mImpl->value);
 }
 
-void PugiXmlDocumentContent::setContent(const pugi::xml_document& xml) {
+void PugiXmlDocumentContent::setContent(std::shared_ptr<pugi::xml_document> xml) {
   TIMED_FUNC(PugiXmlDocumentContent_setContent);
-  mImpl->value = &xml; // move constructor
+  mImpl->value = xml; // move constructor
 }
 
 std::string PugiXmlDocumentContent::getMimeType() const {
@@ -452,21 +614,31 @@ void PugiXmlDocumentContent::setContent(std::string content) {
   TIMED_FUNC(PugiXmlDocumentContent_setContent);
   std::ostringstream os;
   os << content;
-  pugi::xml_document* doc = new pugi::xml_document;
+  std::shared_ptr<pugi::xml_document> doc = std::make_shared<pugi::xml_document>();
   doc->load_string(os.str().c_str());
-  mImpl->value = doc;
+  mImpl->value = std::move(doc);
 }
 
 std::string PugiXmlDocumentContent::getContent() const {
   TIMED_FUNC(PugiXmlDocumentContent_getContent);
   std::ostringstream os;
   //os << mImpl->value;
-  os << mImpl->value;
+  os << *(mImpl->value);
   return os.str();
 }
 
 IDocumentNavigator* PugiXmlDocumentContent::navigate(bool firstElementAsRoot) const {
-  return new PugiXmlDocumentNavigator(*(mImpl->value),firstElementAsRoot);
+  std::shared_ptr<pugi::xml_document> doc = std::make_shared<pugi::xml_document>();
+  //doc.append_copy(mImpl->value);
+  /*
+  for (pugi::xml_node child = mImpl->value.first_child(); child; child = child.next_sibling()) {
+    doc.append_copy(child);
+  }
+  */
+  std::ostringstream oss;
+  mImpl->value->print(oss);
+  doc->load_string(oss.str().c_str());
+  return new PugiXmlDocumentNavigator(doc,firstElementAsRoot);
 }
 
 
