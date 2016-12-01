@@ -121,6 +121,13 @@ public:
   MLCLIENT_API static web::json::value fromResponse(const Response& resp);
 
   /**
+   * \brief Creates a web::json::value from a string object
+   * \param jsonString The json String instance to create a web::json::value from.
+   * \return A Microsoft cpprest API web::json::value instance created from the Response.
+   */
+  MLCLIENT_API static web::json::value fromString(const std::string& jsonString);
+
+  /**
    * \brief Extracts a PermissionSet from a document metadata fetch response
    * \throw An InvalidFormatException if the document does not have the mime type of application/json, or if there is a parse error.
    * \param resp The Response instance to create a web::json::value from.

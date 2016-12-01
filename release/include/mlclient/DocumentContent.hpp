@@ -213,6 +213,14 @@ public:
   MLCLIENT_API virtual IDocumentNode* at(const int32_t idx) const = 0;
 
   /**
+   * \brief Returns whether the object at the root of the navigator's tree has a particular named sub element/property
+   *
+   * \param key the string key of the requested object
+   * \return True if the key exists at the top level of the navigated document object
+   */
+  MLCLIENT_API virtual bool has(const std::string& key) const = 0;
+
+  /**
    * \brief Returns the list of keys, if this node is an Object node.
    *
    * \throws InvalidFormatException if not of the right type
@@ -277,6 +285,14 @@ public:
    * \return The IDocumentNode value of the requested element or property
    */
   MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
+
+  /**
+   * \brief Returns whether the object at the root of the navigator's tree has a particular named sub element/property
+   *
+   * \param key the string key of the requested object
+   * \return True if the key exists at the top level of the navigated document object
+   */
+  MLCLIENT_API virtual bool has(const std::string& key) const = 0;
 };
 
 

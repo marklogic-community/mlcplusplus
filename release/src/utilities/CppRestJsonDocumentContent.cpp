@@ -70,6 +70,9 @@ IDocumentContent* CppRestJsonContainerNode::getChildContent() const {
   throw new mlclient::InvalidFormatException("JSON Container is not a string");
 }
 
+
+
+
 class CppRestJsonArrayNode::Impl {
 public:
   Impl(web::json::array& arr) : array(arr) {
@@ -106,6 +109,9 @@ IDocumentNode* CppRestJsonArrayNode::at(const std::string& key) const {
 IDocumentNode* CppRestJsonArrayNode::at(const int32_t idx) const {
   return new CppRestJsonDocumentNode(mImpl->array.at(idx));
 }
+bool CppRestJsonArrayNode::has(const std::string& key) const {
+  throw mlclient::InvalidFormatException("JSON Container Array does not support string key subscripts");
+}
 
 StringList CppRestJsonArrayNode::keys() const {
   throw mlclient::InvalidFormatException("JSON Container Array does not support string key subscripts");
@@ -113,6 +119,19 @@ StringList CppRestJsonArrayNode::keys() const {
 int32_t CppRestJsonArrayNode::size() const {
   return mImpl->array.size();
 }
+
+std::string trimKey(std::string key) {
+  std::string::size_type pos = key.find(':');
+  if (std::string::npos == pos) {
+    // normal key
+    return key;
+  } else {
+    // XML key
+    return key.substr(pos + 1);
+  }
+}
+
+
 
 
 class CppRestJsonObjectNode::Impl {
@@ -146,10 +165,24 @@ IDocumentNode* CppRestJsonObjectNode::asObject() const {
 }
 
 IDocumentNode* CppRestJsonObjectNode::at(const std::string& key) const {
-  return new CppRestJsonDocumentNode(mImpl->obj.at(utility::conversions::to_string_t(key)));
+  return new CppRestJsonDocumentNode(mImpl->obj.at(utility::conversions::to_string_t(trimKey(key))));
 }
 IDocumentNode* CppRestJsonObjectNode::at(const int32_t idx) const {
   throw mlclient::InvalidFormatException("JSON Container Object does not support integer subscripts");
+}
+
+bool CppRestJsonObjectNode::has(const std::string& key) const {
+  std::string actualKey = trimKey(key);
+  auto foundIter = mImpl->obj.find(utility::conversions::to_string_t(actualKey));
+  return (mImpl->obj.end() != foundIter);
+  /*
+  for (auto iter = mImpl->obj.begin();iter != mImpl->obj.end();++iter) {
+    if (*iter == actualKey) {
+      return true;
+    }
+  }
+  return false;
+  */
 }
 
 StringList CppRestJsonObjectNode::keys() const {
@@ -171,12 +204,16 @@ int32_t CppRestJsonObjectNode::size() const {
 }
 
 IDocumentContent* CppRestJsonObjectNode::getChildContent() const {
+  //throw mlclient::InvalidFormatException("JSON Container Object does not support child content");
+
   CppRestJsonDocumentContent* ct = new CppRestJsonDocumentContent;
-  //std::ostringstream oss;
+  std::ostringstream oss;
   //oss << mImpl->obj;
-//  mImpl->obj.serialize(oss);
-//  ct->setContent(oss.str());
-  ct->setContent(""); // TODO URGENT do not hard code this in reality
+  //mImpl->obj.serialize(oss);
+  web::json::value& val = mImpl->obj.at(utility::conversions::to_string_t(keys()[0])); // object node has exactly 1 key, always, in our usage
+  val.serialize(oss);
+  ct->setContent(oss.str());
+  //ct->setContent(""); // TODO URGENT do not hard code this in reality
   /*
   std::ostringstream oss;
   mImpl->obj.print(oss);
@@ -184,6 +221,7 @@ IDocumentContent* CppRestJsonObjectNode::getChildContent() const {
   doc.load_string(oss.str().c_str());
   ct->setContent(std::move(doc));
 */
+  //ct->setContent(oss.str());
   return ct;
 }
 
@@ -281,10 +319,15 @@ IDocumentNode* CppRestJsonDocumentNode::asObject() const {
 }
 
 IDocumentNode* CppRestJsonDocumentNode::at(const std::string& key) const {
-  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(key)));
+  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(trimKey(key))));
 }
 IDocumentNode* CppRestJsonDocumentNode::at(const int32_t idx) const {
   return new CppRestJsonDocumentNode(mImpl->root.at(idx));
+}
+
+bool CppRestJsonDocumentNode::has(const std::string& key) const {
+  std::string actualKey = trimKey(key);
+  return mImpl->root.has_field(utility::conversions::to_string_t(actualKey));
 }
 
 StringList CppRestJsonDocumentNode::keys() const {
@@ -354,15 +397,25 @@ CppRestJsonDocumentNavigator::~CppRestJsonDocumentNavigator() {
 
 IDocumentNode* CppRestJsonDocumentNavigator::firstChild() const {
   //LOG(DEBUG) << "CppRestJsonDocumentNavigator::at key: " << key;
+  /*
   web::json::object& obj(mImpl->root.as_object());
   auto childIter = obj.begin();
   web::json::value& child(childIter->second);
   return new CppRestJsonDocumentNode(child); // uses move constructor
+  // This produces just the first element within the claim
+  */
+  return new CppRestJsonObjectNode(mImpl->root.as_object());
+  //return new CppRestJsonDocumentNode(mImpl->root); // this produces a document node above the claim (not the claim itself)
 }
 
 IDocumentNode* CppRestJsonDocumentNavigator::at(const std::string& key) const {
   //LOG(DEBUG) << "CppRestJsonDocumentNavigator::at key: " << key;
-  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(key))); // uses move constructor
+  return new CppRestJsonDocumentNode(mImpl->root.at(utility::conversions::to_string_t(trimKey(key)))); // uses move constructor
+}
+
+bool CppRestJsonDocumentNavigator::has(const std::string& key) const {
+  std::string actualKey = trimKey(key);
+  return mImpl->root.has_field(utility::conversions::to_string_t(actualKey));
 }
 
 

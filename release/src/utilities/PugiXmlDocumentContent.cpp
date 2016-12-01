@@ -119,6 +119,10 @@ IDocumentNode* PugiXmlArrayNode::at(const int32_t idx) const {
   return nullptr;
 }
 
+bool PugiXmlArrayNode::has(const std::string& key) const {
+  throw mlclient::InvalidFormatException("XML Array does not support string key subscripts");
+}
+
 StringList PugiXmlArrayNode::keys() const {
   throw mlclient::InvalidFormatException("XML Array does not support string key subscripts");
 }
@@ -173,6 +177,15 @@ IDocumentNode* PugiXmlObjectNode::at(const std::string& key) const {
 }
 IDocumentNode* PugiXmlObjectNode::at(const int32_t idx) const {
   throw mlclient::InvalidFormatException("XML Container Object does not support integer subscripts");
+}
+
+bool PugiXmlObjectNode::has(const std::string& key) const {
+  for (pugi::xml_node child: mImpl->obj.children()) {
+    if (child.name() == key) {
+      return true;
+    }
+  }
+  return false;
 }
 
 StringList PugiXmlObjectNode::keys() const {
@@ -284,6 +297,11 @@ IDocumentNode* PugiXmlAttributeNode::asObject() const {
 IDocumentNode* PugiXmlAttributeNode::at(const std::string& key) const {
   throw mlclient::InvalidFormatException("XML attribute Object does not support string subscripts");
 }
+
+bool PugiXmlAttributeNode::has(const std::string& key) const {
+  throw mlclient::InvalidFormatException("XML attribute Object does not support string subscripts");
+}
+
 IDocumentNode* PugiXmlAttributeNode::at(const int32_t idx) const {
   throw mlclient::InvalidFormatException("XML attribute Object does not support integer subscripts");
 }
@@ -396,6 +414,16 @@ IDocumentNode* PugiXmlDocumentNode::asObject() const {
 IDocumentNode* PugiXmlDocumentNode::at(const std::string& key) const {
   return mlclient::utilities::createNode(mImpl->doc,mImpl->root,key);
 }
+
+bool PugiXmlDocumentNode::has(const std::string& key) const {
+  for (pugi::xml_node child: mImpl->root.children()) {
+    if (child.name() == key) {
+      return true;
+    }
+  }
+  return false;
+}
+
 IDocumentNode* PugiXmlDocumentNode::at(const int32_t idx) const {
   const auto& iter = mImpl->root.children().begin();
   const auto& end = mImpl->root.children().end();
@@ -514,6 +542,23 @@ IDocumentNode* PugiXmlDocumentNavigator::firstChild() const {
     return new PugiXmlDocumentNode(mImpl->root,mImpl->root->root().first_child());
   }
   return new PugiXmlDocumentNode(mImpl->root,mImpl->root->root().first_child().first_child());
+}
+
+bool PugiXmlDocumentNavigator::has(const std::string& key) const {
+  if (mImpl->firstElementAsRoot) {
+    for (pugi::xml_node child: mImpl->root->first_child().children()) {
+      if (child.name() == key) {
+        return true;
+      }
+    }
+  } else {
+    for (pugi::xml_node child: mImpl->root->children()) {
+      if (child.name() == key) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {

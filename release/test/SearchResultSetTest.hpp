@@ -26,6 +26,7 @@ class SearchResultSetTest : public CppUnit::TestCase {
     CPPUNIT_TEST(testEmptySearch);
     CPPUNIT_TEST(testThreePages);
     CPPUNIT_TEST(testCustomSnippetXml);
+    CPPUNIT_TEST(testCustomSnippetJson);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
@@ -34,6 +35,7 @@ public:
   void testEmptySearch(void);
   void testThreePages(void);
   void testCustomSnippetXml(void);
+  void testCustomSnippetJson(void);
 private:
   IConnection* ml;
 };

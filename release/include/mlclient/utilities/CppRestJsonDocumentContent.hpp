@@ -78,6 +78,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -108,6 +109,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -151,6 +153,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -178,6 +181,7 @@ public:
 
   MLCLIENT_API IDocumentNode* firstChild() const override;
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
 private:
   class Impl; // forward declaration

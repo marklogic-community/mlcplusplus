@@ -74,6 +74,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -102,6 +103,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -134,6 +136,7 @@ class PugiXmlAttributeNode : public PugiXmlContainerNode {
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -177,6 +180,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -243,6 +247,7 @@ public:
    * \return The node at that named location. nullptr if it doesn't exist
    */
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
 private:
   class Impl; // forward declaration

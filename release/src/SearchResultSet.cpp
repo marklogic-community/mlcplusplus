@@ -119,32 +119,50 @@ public:
       //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processResultSet()");
 
 
+    bool isRaw = (raw == snippetFormat);
+    bool isCustom = (custom == snippetFormat);
+    
     // take the response, and parse it
     // NOT NEEDED const web::json::value& resv = value.at(U("results"));
     //const web::json::array res(value.at(U("results")).as_array());
-    IDocumentNode* res = nav->at("search:result");
+    bool hasResults = nav->has("search:result");
+    IDocumentNode* res = nullptr;
+    if (hasResults) {
+      res = nav->at("search:result"); // this fails if it doesn't exist
     
-    if (nullptr == res) {
-      res = nav->at("search:results");
-      if (nullptr != res) {
-        //res = res->asArray();
-      }
     } else {
       //res = res->asArray();
-    }
+      if (!hasResults || nullptr == res) {
+        hasResults = nav->has("search:results");
+        if (hasResults) {
+          res = nav->at("search:results");
+        } else {
+          if (!hasResults || nullptr != res) {
+            //res = res->asArray();
+            
+            
+            // TODO safely fail - no search results in search response (may have values, etc. instead)
+            LOG(DEBUG) << "WARNING: No search:result or search:results element in result JSON from REST API";
+
+
+          }
+        } // end second has results
+      }
+    } // end if has results
     //{
     //  TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::asArray()");
 
     //  const web::json::array resCount = value.at(U("results")).as_array(); // TODO remove once counted in PERF logger
     //}
     //LOG(DEBUG) << "SearchResultSet::handleFetchResults We have a results JSON array";
-    bool isRaw = (raw == snippetFormat);
-    bool isCustom = (custom == snippetFormat);
 
     //web::json::array::const_iterator iter(res.begin());
     //const web::json::array::const_iterator jsonArrayIterEnd(res.end()); // see if a single call saves us time... nope
 
     // TODO check if res is nullptr (i.e. return-results is false in search options)
+    LOG(DEBUG) << "Is result set empty?: " << (nullptr == res);
+
+    if (nullptr != res) {
  
     int arrayLength = res->size();
     LOG(DEBUG) << "Search result array length: " << arrayLength;
@@ -201,7 +219,20 @@ public:
         LOG(DEBUG) << "Custom snippet format result";
         // Assume the custom snippet information is within the <snippet> element in the search response
         try {
-          ctValPtr.reset(row->at("search:snippet")->asObject());
+          IDocumentNode* snippet = row->at("search:snippet");
+          // If search result format type is XML, but content is JSON, convert the search snippet to the right doc type
+          std::string docFormat = row->at("format")->asString();
+          if ("json" == docFormat) {
+            // get content of snippet as string 
+            std::string json = snippet->asString();
+            // parse as JSON document, and set pointer accordingly
+
+            web::json::value val = mlclient::utilities::CppRestJsonHelper::fromString(json);
+            IDocumentContent* jsonDoc = mlclient::utilities::CppRestJsonHelper::toDocument(val);
+            ctValPtr.reset(((ITextDocumentContent*)jsonDoc)->navigate(false)->firstChild()); // TODO verify this is correct
+          } else {
+            ctValPtr.reset(snippet->asObject());
+          }
           detail = SearchResult::Detail::SNIPPETS;
         } catch (std::exception& ex) {
           // no snippet element, must be some sort of content...
@@ -249,6 +280,7 @@ public:
           //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processMatchesEXCEPTION()");
         }
       }
+
 
               mimeType = row->at("mimetype")->asString();
               //LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got mimetype";
@@ -299,6 +331,10 @@ public:
     } // end loop
 
     } // end timed scope loop only
+
+    } else { 
+      LOG(DEBUG) << "Results from REST API does not contain a search:result element or results property";
+    } // end res is null guard if 
 
     } // end process result set scope
 
