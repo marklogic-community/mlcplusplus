@@ -225,7 +225,7 @@ public:
     TIMED_FUNC(SearchBuilder_Impl_multiQuery);
     GenericQuery* query = new GenericQuery;
     std::ostringstream oss;
-    oss << "{\"" << queryType << "-query\": [";
+    oss << "{\"" << queryType << "-query\": {\"queries\":[";
     bool first = true;
     for (auto& iter: queries) {
       if (first) {
@@ -236,7 +236,7 @@ public:
 
       oss << (*iter);
     }
-    oss << "]}";
+    oss << "]}}";
     query->setQuery(oss.str());
     return query;
   };
@@ -408,6 +408,19 @@ IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation
   return qry;
 }
 
+IQuery* SearchBuilder::containerQuery(const std::string name,const IQuery* query) {
+  if (QueryBuilderMode::ALL == mImpl->mode) {
+    // TODO WARNING This function in ALL mode will not work due to bug: https://bugtrack.marklogic.com/41350
+    return SearchBuilder::orQuery(std::vector<IQuery*>{
+      SearchBuilder::elementQuery(name,mImpl->defaultXmlNamespace,query),
+      SearchBuilder::propertyQuery(name,query)
+      });
+  } else if (QueryBuilderMode::XML == mImpl->mode) {
+    return SearchBuilder::elementQuery(name,mImpl->defaultXmlNamespace,query);
+  } else {
+    return SearchBuilder::propertyQuery(name,query);
+  }
+}
 
 IQuery* SearchBuilder::elementQuery(const std::string name,const std::string ns,const IQuery* query) {
   TIMED_FUNC(SearchBuilder_elementQuery);

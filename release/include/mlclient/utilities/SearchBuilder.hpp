@@ -356,6 +356,19 @@ public:
   MLCLIENT_API IQuery* xmlRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
 
   /**
+   * \brief A container query, specifying the parent of an element or property
+   *
+   * \note Contained query matches at any point below this element or property, not just directly below this element/property (not just child)
+   *
+   * \note If the Search Builder is in 'all' mode, then this function generates an or query of an elementQuery and a propertyQuery.
+   * 
+   * \param name The name of the element or property
+   * \param query The query to match within this element or property
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* containerQuery(const std::string name,const IQuery* query);
+
+  /**
    * \brief An XML Element query, specifying the parent of an element
    *
    * \note Contained query matches at any point below this element, not just directly below this element (not just child)
