@@ -453,7 +453,8 @@ StringList PugiXmlDocumentNode::keys() const {
     return names;
 }
 int32_t PugiXmlDocumentNode::size() const {
-  throw mlclient::InvalidFormatException("XML Document Object does not support integer subscripts");
+  return 1; // Must return 1 as we always have a single child node. If we're the root of a document, size() may be called
+  //throw mlclient::InvalidFormatException("XML Document Object does not support integer subscripts");
 }
 
 IDocumentContent* PugiXmlDocumentNode::getChildContent() const {

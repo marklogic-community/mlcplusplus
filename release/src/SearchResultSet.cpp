@@ -186,7 +186,11 @@ public:
       //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processRow()");
       //auto& rowdata = *iter;
       //row = iter->as_object();
-      row = res->at(i);
+      if (res->isArray()) {
+        row = res->at(i);
+      } else {
+        row = res; // single result in response!
+      }
 
       {
         //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processRowObject()");
@@ -204,16 +208,22 @@ public:
 
       // if snippet-format = raw
       if (isRaw) {
-        try {
           //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContent()");
-          ctValPtr.reset(row->at("search:content")->asObject()); // at is rvalue, moved to lvalue by json's move contructor
-          LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got content";
+        if (row->has("search:content")) {
+          try {
+            ctValPtr.reset(row->at("search:content")->asObject()); // at is rvalue, moved to lvalue by json's move contructor
+            LOG(DEBUG) << "SearchResultSet::handleFetchResults   Got content";
 
-        } catch (std::exception& e) {
-          LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
-          //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContentEXCEPTION()");
-          // element doesn't exist - no result content, or has a snippet
-        } // end content catch
+          } catch (std::exception& e) {
+            LOG(DEBUG) << "SearchResultSet::handleFetchResults   Row does not have content... trying snippet..." << e.what();
+            //TIMED_SCOPE(SearchResultSet_Impl_handleFetchResult, "mlclient::SearchResultSet::Impl::handleFetchResult::processContentEXCEPTION()");
+            // element doesn't exist - no result content, or has a snippet
+          } // end content catch
+        } else {
+          // no content element, just use entire element
+          LOG(DEBUG) << "SearchResultSet::handleFetchResults   No content node but raw, so entire content is the document";
+          ctValPtr.reset(row);
+        }
 
       } else if (isCustom) {
         LOG(DEBUG) << "Custom snippet format result";
