@@ -329,7 +329,19 @@ IQuery* SearchBuilder::jsonRangeQuery(const std::string ref, const RangeOperatio
   TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
-  oss << "\"type\": \"" << type << "\",\"json-property\": \"" << ref << "\",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
+  oss << "\"type\": \"" << type << "\",\"json-property\": \"" << ref << "\",\"value\": ";
+  bool isNumeric = (type == RangeIndexType::INT) || (type == RangeIndexType::UNSIGNED_INT) || 
+    (type == RangeIndexType::LONG) || (type == RangeIndexType::UNSIGNED_LONG) || 
+    (type == RangeIndexType::FLOAT) || (type == RangeIndexType::DOUBLE) || (type == RangeIndexType::DECIMAL) ||
+    (type == RangeIndexType::BOOLEAN);
+  if (!isNumeric) {
+    oss << "\"";
+  }
+  oss << value;
+  if (!isNumeric) {
+    oss << "\"";
+  }
+  oss << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
@@ -343,7 +355,19 @@ IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation
   std::ostringstream oss;
   oss << "{\"range-query\":{";
   oss << "\"type\": \"" << type << "\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
-  oss << ",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
+  oss << ",\"value\": ";
+  bool isNumeric = (type == RangeIndexType::INT) || (type == RangeIndexType::UNSIGNED_INT) || 
+    (type == RangeIndexType::LONG) || (type == RangeIndexType::UNSIGNED_LONG) || 
+    (type == RangeIndexType::FLOAT) || (type == RangeIndexType::DOUBLE) || (type == RangeIndexType::DECIMAL) ||
+    (type == RangeIndexType::BOOLEAN);
+  if (!isNumeric) {
+    oss << "\"";
+  }
+  oss << value;
+  if (!isNumeric) {
+    oss << "\"";
+  }
+  oss << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
