@@ -9,6 +9,7 @@
 #define INCLUDE_MLCLIENT_VALUESRESULT_HPP_
 
 #include <mlclient/mlclient.hpp>
+#include <mlclient/MarkLogicTypes.hpp>
 #include <mlclient/utilities/SearchOptionsBuilder.hpp>
 
 namespace mlclient {
@@ -163,12 +164,12 @@ public:
    * \brief Sets the underlying range index lexicon type (A MarkLogic XML type)
    * \param type The lexicon type for lookup
    */
-  MLCLIENT_API void setType(const mlclient::utilities::RangeIndexType& type);
+  MLCLIENT_API void setType(const mlclient::RangeIndexType& type);
   /**
    * \brief Returns the lexicon type
    * \return The lexicon type
    */
-  MLCLIENT_API const mlclient::utilities::RangeIndexType& getType() const;
+  MLCLIENT_API const mlclient::RangeIndexType& getType() const;
 
   /**
    * \brief Returns the sequence number of the first values result

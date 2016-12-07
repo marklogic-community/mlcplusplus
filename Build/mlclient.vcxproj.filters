@@ -133,6 +133,12 @@
     <ClCompile Include="..\release\src\utilities\DocumentBatchWriter.cpp">
       <Filter>Source Files\src\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\release\src\MarkLogicTypes.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\release\src\utilities\PathNavigator.cpp">
+      <Filter>Source Files\src\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -256,6 +262,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\release\include\mlclient\internals\cpprestfwd.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\MarkLogicTypes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\release\include\mlclient\utilities\PathNavigator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

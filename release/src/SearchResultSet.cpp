@@ -241,6 +241,8 @@ public:
             IDocumentContent* jsonDoc = mlclient::utilities::CppRestJsonHelper::toDocument(val);
             ctValPtr.reset(((ITextDocumentContent*)jsonDoc)->navigate(false)->firstChild()); // TODO verify this is correct
           } else {
+            //IDocumentNode* snippetObject = snippet->asObject();
+            //ctValPtr.reset(snippetObject->at(snippetObject->keys()[0]));
             ctValPtr.reset(snippet->asObject());
           }
           detail = SearchResult::Detail::SNIPPETS;

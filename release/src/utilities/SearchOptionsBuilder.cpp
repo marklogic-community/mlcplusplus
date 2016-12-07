@@ -18,8 +18,8 @@
  * \date 2016-06-09
  */
 
+#include <mlclient/MarkLogicTypes.hpp>
 #include <mlclient/utilities/SearchOptionsBuilder.hpp>
-#include <mlclient/utilities/SearchBuilder.hpp>
 #include <mlclient/utilities/CppRestJsonHelper.hpp>
 #include <mlclient/InvalidFormatException.hpp>
 #include <mlclient/logging.hpp>
@@ -33,55 +33,6 @@ namespace mlclient {
 
 namespace utilities {
 
-
-std::ostream& operator << (std::ostream& os, const RangeIndexType& rt) {
-  os << translate_rangeindextype(rt);
-  return os;
-}
-std::string& operator +(std::string& s, const RangeIndexType& rt) {
-  s.append(translate_rangeindextype(rt));
-  return s;
-}
-const std::string translate_rangeindextype(const RangeIndexType& rt) {
-  switch (rt) {
-  case RangeIndexType::ANY_URI:
-    return "xs:anyURI";
-  case RangeIndexType::DATE:
-    return "xs:date";
-  case RangeIndexType::DATE_TIME:
-    return "xs:dateTime";
-  case RangeIndexType::DAY_TIME_DURATION:
-    return "xs:dayTimeDuration";
-  case RangeIndexType::DECIMAL:
-    return "xs:decimal";
-  case RangeIndexType::DOUBLE:
-    return "xs:double";
-  case RangeIndexType::FLOAT:
-    return "xs:float";
-  case RangeIndexType::G_DAY:
-    return "xs:gDay";
-  case RangeIndexType::G_MONTH:
-    return "xs:gMonth";
-  case RangeIndexType::G_YEAR:
-    return "xs:gYear";
-  case RangeIndexType::G_YEAR_MONTH:
-    return "xs:gYearMonth";
-  case RangeIndexType::INT:
-    return "xs:int";
-  case RangeIndexType::LONG:
-    return "xs:long";
-  case RangeIndexType::STRING:
-    return "xs:string";
-  case RangeIndexType::TIME:
-    return "xs:time";
-  case RangeIndexType::UNSIGNED_INT:
-    return "xs:unsignedInt";
-  case RangeIndexType::UNSIGNED_LONG:
-    return "xs:unsignedLong";
-  case RangeIndexType::YEAR_MONTH_DURATION:
-    return "xs:yearMonthDuration";
-  }
-}
 
 
 

@@ -94,7 +94,7 @@ void SearchResultSetTest::testSingleResult() {
   //CollectionSet cs;
   //cs.push_back("claims");
   sb.setQuery(
-    mlclient::utilities::SearchBuilder::andQuery(std::vector<mlclient::utilities::IQuery*>{
+    mlclient::utilities::SearchBuilder::andQuery(std::vector<mlclient::IQuery*>{
       mlclient::utilities::SearchBuilder::collectionQuery(std::vector<std::string>{"claims"}),
       sb.valueQuery("patient-ssn","406-36-4065")
     })

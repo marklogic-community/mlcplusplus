@@ -9,6 +9,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include <iostream>
 #include <string>
+#include <mlclient/utilities/SearchBuilder.hpp> /* Only used for a sb.collectionQuery in one place */
 #include "ConnectionFactory.hpp"
 #include "mlclient/Connection.hpp"
 #include "mlclient/Response.hpp"

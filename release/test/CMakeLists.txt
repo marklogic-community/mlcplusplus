@@ -18,6 +18,7 @@ add_executable(mlcpptest
     SearchResultSetTest.cpp
     ValuesResultSetTest.cpp
     DocumentBatchWriterTest.cpp
+    PathNavigatorTest.cpp
 )
 target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES} ${GLOG_LIB})
 

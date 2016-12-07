@@ -182,6 +182,7 @@
     <ClCompile Include="..\release\src\internals\MLCrypto.cpp" />
     <ClCompile Include="..\release\src\InvalidFormatException.cpp" />
     <ClCompile Include="..\release\src\logging.cpp" />
+    <ClCompile Include="..\release\src\MarkLogicTypes.cpp" />
     <ClCompile Include="..\release\src\mlclient.cpp" />
     <ClCompile Include="..\release\src\NoCredentialsException.cpp" />
     <ClCompile Include="..\release\src\Permission.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="..\release\src\utilities\DocumentBatchHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\DocumentBatchWriter.cpp" />
     <ClCompile Include="..\release\src\utilities\DocumentHelper.cpp" />
+    <ClCompile Include="..\release\src\utilities\PathNavigator.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlDocumentContent.cpp" />
     <ClCompile Include="..\release\src\utilities\PugiXmlHelper.cpp" />
     <ClCompile Include="..\release\src\utilities\ResponseHelper.cpp" />
@@ -226,6 +228,7 @@
     <ClInclude Include="..\release\include\mlclient\internals\MLCrypto.hpp" />
     <ClInclude Include="..\release\include\mlclient\InvalidFormatException.hpp" />
     <ClInclude Include="..\release\include\mlclient\logging.hpp" />
+    <ClInclude Include="..\release\include\mlclient\MarkLogicTypes.hpp" />
     <ClInclude Include="..\release\include\mlclient\mlclient.h" />
     <ClInclude Include="..\release\include\mlclient\mlclient.hpp" />
     <ClInclude Include="..\release\include\mlclient\NoCredentialsException.hpp" />
@@ -240,6 +243,7 @@
     <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\DocumentBatchWriter.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\DocumentHelper.hpp" />
+    <ClInclude Include="..\release\include\mlclient\utilities\PathNavigator.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlDocumentContent.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\PugiXmlHelper.hpp" />
     <ClInclude Include="..\release\include\mlclient\utilities\ResponseHelper.hpp" />

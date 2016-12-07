@@ -22,6 +22,7 @@ add_library (mlclient SHARED
     NoCredentialsException.cpp
     HttpHeaders.cpp
     Response.cpp
+    MarkLogicTypes.cpp
 
     DocumentContent.cpp
     InvalidFormatException.cpp
@@ -53,6 +54,7 @@ add_library (mlclient SHARED
     utilities/ResponseHelper.cpp
     utilities/SearchBuilder.cpp
     utilities/SearchOptionsBuilder.cpp
+    utilities/PathNavigator.cpp
 
     ext/pugixml/pugixml.cpp
 )
