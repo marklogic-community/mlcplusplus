@@ -21,6 +21,7 @@
 #define SRC_UTILITIES_SEARCHBUILDER_HPP_
 
 #include <mlclient/mlclient.hpp>
+#include <mlclient/MarkLogicTypes.hpp>
 #include <mlclient/SearchDescription.hpp>
 #include <mlclient/Document.hpp>
 
@@ -43,35 +44,6 @@ MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeOperation& 
 MLCLIENT_API std::string& operator +(std::string& s, const RangeOperation& rt);
 
 MLCLIENT_API const std::string translate_rangeoperation(const RangeOperation& rt);
-
-// QUERY TYPES
-
-/**
- * \brief A high level abstract class representing a MarkLogic Structured Query
- * \since 8.0.2
- * \date 2016-06-08
- */
-class IQuery {
-public:
-  /**
-   * \brief Default Constructor
-   */
-  MLCLIENT_API IQuery() = default;
-
-  /**
-   * \brief Default Destructor
-   */
-  MLCLIENT_API virtual ~IQuery() = default;
-
-  MLCLIENT_API friend std::ostream& operator<<(std::ostream& os, const IQuery& query);
-
-protected:
-  MLCLIENT_API virtual std::ostream& write(std::ostream& os) const = 0;
-};
-
-
-MLCLIENT_API std::ostream& operator << (std::ostream& os, const IQuery& rt);
-MLCLIENT_API std::string& operator +(std::string& s, const IQuery& rt);
 
 
 /**
@@ -146,57 +118,6 @@ private:
   std::string m_value;
 };
 
-// CONTAINER REFERENCES
-
-/**
- * \brief Represents a named container in the MarkLogic structured query API
- *
- * A container could be a JSON property or XML element. These containers are used at the top level of
- * many structure query object configuration.
- *
- * This class is an abstract class, designed to be subclassed, not used directly
- */
-class IContainerRef {
-public:
-  MLCLIENT_API IContainerRef() = default;
-  MLCLIENT_API virtual ~IContainerRef() = default;
-
-  friend std::ostream& operator<<(std::ostream& os, const IContainerRef& ref);
-
-protected:
-  virtual std::ostream& write(std::ostream& os) const = 0;
-};
-std::ostream& operator << (std::ostream& os, const IContainerRef& rt);
-std::string& operator +(std::string& s, const IContainerRef& rt);
-
-/**
- * \brief A specialisation of IContainerRef to represent a JSON property container
- *
- * \since 8.0.2
- */
-class JsonPropertyRef : public IContainerRef {
-public:
-  MLCLIENT_API JsonPropertyRef();
-  MLCLIENT_API ~JsonPropertyRef() = default;
-
-  /**
-   * \brief Sets the property this class is referring to
-   * \param property The JSON property name
-   */
-  MLCLIENT_API void setProperty(const std::string& property);
-  /**
-   * \brief Returns the structured query JSON string representation of this container ref instance
-   *
-   * \return The structured query JSON string
-   */
-  MLCLIENT_API const std::string getRef();
-
-protected:
-  std::ostream& write(std::ostream& os) const override;
-
-private:
-  std::string value;
-};
 
 
 // MARKLOGIC SUPPORTED TYPES
@@ -331,7 +252,8 @@ public:
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* rangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* rangeQuery(const std::string queryref,const RangeOperation op,const std::string value,
+    const RangeIndexType& type = RangeIndexType::INT);
   /**
    * \brief Creates a JSON property range query given the named reference, and range operation
    *
@@ -342,7 +264,8 @@ public:
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* jsonRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* jsonRangeQuery(const std::string queryref,const RangeOperation op,const std::string value,
+    const RangeIndexType& type = RangeIndexType::INT);
   /**
    * \brief Creates an XML element range query given the named reference, and range operation
    *
@@ -353,7 +276,44 @@ public:
    * \param value The string value to match
    * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
    */
-  MLCLIENT_API IQuery* xmlRangeQuery(const std::string queryref,const RangeOperation op,const std::string value);
+  MLCLIENT_API IQuery* xmlRangeQuery(const std::string queryref,const RangeOperation op,const std::string value,
+    const RangeIndexType& type = RangeIndexType::INT);
+
+  /**
+   * \brief A container query, specifying the parent of an element or property
+   *
+   * \note Contained query matches at any point below this element or property, not just directly below this element/property (not just child)
+   *
+   * \note If the Search Builder is in 'all' mode, then this function generates an or query of an elementQuery and a propertyQuery.
+   * 
+   * \param name The name of the element or property
+   * \param query The query to match within this element or property
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* containerQuery(const std::string name,const IQuery* query);
+
+  /**
+   * \brief An XML Element query, specifying the parent of an element
+   *
+   * \note Contained query matches at any point below this element, not just directly below this element (not just child)
+   *
+   * \param name The name of the element
+   * \param ns The namespace of the element
+   * \param query The query to match within this element
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* elementQuery(const std::string name,const std::string ns,const IQuery* query);
+
+  /**
+   * \brief An JSON property query, specifying the parent of a property
+   *
+   * \note Contained query matches at any point below this property, not just directly below this property (not just child)
+   *
+   * \param name The name of the property
+   * \param query The query to match within this property
+   * \return The IQuery instance created. The caller OWNS this pointer. (This class does not delete the pointer.)
+   */
+  MLCLIENT_API IQuery* propertyQuery(const std::string name,const IQuery* query);
   /// @}
 
   /// \name searchbuilder_instance Instance methods that control the base search definition

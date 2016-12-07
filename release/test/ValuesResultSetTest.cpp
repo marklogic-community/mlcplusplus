@@ -36,8 +36,8 @@ void ValuesResultSetTest::testTwoAggregates() {
   LOG(DEBUG) << " Entering ValuesResultSetTest::testTwoAggregates";
 
   ValuesResultSet vrs(ml);
-  vrs.addLookup("mlcplusplustest01","ageavg");
-  vrs.addLookup("mlcplusplustest01","agesum");
+  vrs.addLookup("mlcplusplustest01","aggr_ageavg");
+  vrs.addLookup("mlcplusplustest01","aggr_agesum");
 
   vrs.fetch();
 
@@ -58,5 +58,3 @@ void ValuesResultSetTest::testTwoAggregates() {
 
 
 }
-
-

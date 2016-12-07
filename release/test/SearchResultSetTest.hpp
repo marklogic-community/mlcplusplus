@@ -24,14 +24,20 @@ using namespace mlclient;
 class SearchResultSetTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(SearchResultSetTest);
     CPPUNIT_TEST(testEmptySearch);
+    CPPUNIT_TEST(testSingleResult);
     CPPUNIT_TEST(testThreePages);
+    CPPUNIT_TEST(testCustomSnippetXml);
+    CPPUNIT_TEST(testCustomSnippetJson);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testEmptySearch(void);
+  void testSingleResult(void);
   void testThreePages(void);
+  void testCustomSnippetXml(void);
+  void testCustomSnippetJson(void);
 private:
   IConnection* ml;
 };

@@ -88,12 +88,13 @@ public:
    * \param confidence The search confidence calculated for this result
    * \param fitness The search fitness calculated for this result
    * \param detail The level of snippet detail returned from the result
-   * \param detailContent The raw text content of the search result
+   * \param detailContent The raw text content, wrapped as an IDocumentNode, of the search result
    * \param mimeType The MIME type of the result content
    * \param format The REST API format of the result (can be "json" or "xml" or "binary" or "text" or "none")
    */
   MLCLIENT_API SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
-      const double confidence,const double fitness,const Detail& detail,IDocumentContent* detailContent = nullptr,
+      const double confidence,const double fitness,const Detail& detail,
+      std::shared_ptr<IDocumentNode>& detailContent,
       const std::string& mimeType = "",const Format& format = Format::JSON);
 
   /**
@@ -135,7 +136,7 @@ public:
    * \brief Returns the raw text content of this result
    * \return The raw text content of this result
    */
-  MLCLIENT_API const IDocumentContent* getDetailContent() const;
+  MLCLIENT_API std::shared_ptr<IDocumentNode> getDetailContent() const;
   /**
    * \brief Returns the MIME type of the result
    * \return The MIME type. Could be application/json, application/xml, or any other stored MIME type
@@ -158,7 +159,7 @@ private:
   double confidence;
   double fitness;
   Detail detail;
-  IDocumentContent* detailContent;
+  std::shared_ptr<IDocumentNode> detailContent;
   std::string mimeType;
   Format format;
 

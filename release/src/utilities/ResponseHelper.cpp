@@ -130,8 +130,8 @@ void ResponseHelper::getComplexAggregateResults(const Response& resp,ValuesResul
       if (mapVal.is_array()) {
         // multiple
         web::json::array mapArray = mapVal.as_array();
-        for (auto& mapIter: mapArray) {
-          const web::json::object mapObj = iter.as_object();
+        for (auto& mapArrayIter: mapArray) {
+          const web::json::object mapObj = mapArrayIter.as_object();
           /*
           const auto& entryIter = mapObj.find(U("entry"));
           for (;entryIter != mapObj.end();++(entryIter)) {

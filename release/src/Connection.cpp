@@ -187,7 +187,13 @@ Response* Connection::search(const SearchDescription& desc) {
   TIMED_FUNC(Connection_search);
   LOG(DEBUG) << "In Connection::search";
   std::ostringstream urlss;
-  urlss << "/v1/search?format=json";
+  urlss << "/v1/search?format=";
+  const std::string type = desc.getResponseMimeType();
+  if (IDocumentContent::MIME_JSON == type) {
+    urlss << "json";
+  } else {
+    urlss << "xml";
+  }
   urlss << "&start=" << desc.getStart();
   urlss << "&pageLength=" <<  desc.getPageLength();
   LOG(DEBUG) << "  Got page length";

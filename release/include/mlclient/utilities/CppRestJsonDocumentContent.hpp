@@ -53,6 +53,8 @@ public:
   MLCLIENT_API int32_t asInteger() const override;
   MLCLIENT_API double asDouble() const override;
   MLCLIENT_API std::string asString() const override;
+
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 };
 
 /**
@@ -76,6 +78,7 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
@@ -106,9 +109,12 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
+
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 private:
   class Impl; // forward declaration
   Impl* mImpl;
@@ -147,9 +153,12 @@ public:
 
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
   MLCLIENT_API IDocumentNode* at(const int32_t idx) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
   MLCLIENT_API StringList keys() const override;
   MLCLIENT_API int32_t size() const override;
+
+  MLCLIENT_API IDocumentContent* getChildContent() const override;
 
 private:
   class Impl; // forward declaration
@@ -170,7 +179,9 @@ public:
   MLCLIENT_API CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from);
   virtual ~CppRestJsonDocumentNavigator();
 
+  MLCLIENT_API IDocumentNode* firstChild() const override;
   MLCLIENT_API IDocumentNode* at(const std::string& key) const override;
+  MLCLIENT_API bool has(const std::string& key) const override;
 
 private:
   class Impl; // forward declaration

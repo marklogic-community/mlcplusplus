@@ -73,6 +73,12 @@ web::json::value CppRestJsonHelper::fromResponse(const Response& resp) {
   }
 }
 
+web::json::value CppRestJsonHelper::fromString(const std::string& jsonString) {
+  LOG(DEBUG) << "CppRestJsonHelper::fromString(std::string&)";
+  TIMED_FUNC(CppRestJsonHelper_fromString);
+  return web::json::value::parse(utility::conversions::to_string_t(jsonString));
+}
+
 std::vector<Permission> CppRestJsonHelper::permissionsFromResponse(const Response& resp) {
   web::json::value root = fromResponse(resp);
   web::json::value perms = root.at(utility::conversions::to_string_t("permissions"));

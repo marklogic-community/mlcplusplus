@@ -14,14 +14,14 @@ namespace mlclient {
 class ValuesResult::Impl {
 public:
   Impl(const std::string& optionsName,const std::string& valuesName)
-    : optionsName(optionsName), valuesName(valuesName) , type(mlclient::utilities::RangeIndexType::STRING), valuesResults(),
+    : optionsName(optionsName), valuesName(valuesName) , type(mlclient::RangeIndexType::STRING), valuesResults(),
       aggregateResults(), start(1), total(0), valuesResolutionTime(), aggregateResolutionTime(), totalTime() {
     ;
   }
 
   std::string optionsName;
   std::string valuesName;
-  mlclient::utilities::RangeIndexType type;
+  mlclient::RangeIndexType type;
 
   std::vector<ValuesResultValue> valuesResults;
   std::vector<ValuesResultAggregate> aggregateResults;
@@ -97,10 +97,10 @@ void ValuesResult::setTimes(const std::string& valuesResolutionTime,const std::s
   mImpl->totalTime = totalTime;
 }
 
-void ValuesResult::setType(const mlclient::utilities::RangeIndexType& type) {
+void ValuesResult::setType(const mlclient::RangeIndexType& type) {
   mImpl->type = type;
 }
-const mlclient::utilities::RangeIndexType& ValuesResult::getType() const {
+const mlclient::RangeIndexType& ValuesResult::getType() const {
   return mImpl->type;
 }
 

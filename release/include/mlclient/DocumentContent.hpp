@@ -213,6 +213,14 @@ public:
   MLCLIENT_API virtual IDocumentNode* at(const int32_t idx) const = 0;
 
   /**
+   * \brief Returns whether the object at the root of the navigator's tree has a particular named sub element/property
+   *
+   * \param key the string key of the requested object
+   * \return True if the key exists at the top level of the navigated document object
+   */
+  MLCLIENT_API virtual bool has(const std::string& key) const = 0;
+
+  /**
    * \brief Returns the list of keys, if this node is an Object node.
    *
    * \throws InvalidFormatException if not of the right type
@@ -229,6 +237,13 @@ public:
    * \return The size of the array
    */
   MLCLIENT_API virtual int32_t size() const = 0;
+
+  /**
+   * \brief Returns the content of this element (not the element itself) as an IDocumentContent object
+   *
+   * \return The IDocumentContent* wrapper of the child content
+   */
+  MLCLIENT_API virtual IDocumentContent* getChildContent() const = 0;
 };
 
 /**
@@ -255,12 +270,29 @@ public:
   MLCLIENT_API virtual ~IDocumentNavigator();
 
   /**
+   * \brief Returns the first child node of this node
+   * 
+   * Useful to fetch the immediate child, no matter its name
+   *
+   * \return The first child node below the root node. nullptr if it doesn't exist
+   */
+  MLCLIENT_API virtual IDocumentNode* firstChild() const = 0;
+
+  /**
    * \brief Returns the named element or property underneath the document object
    *
    * \param key the string key of the requested object
    * \return The IDocumentNode value of the requested element or property
    */
   MLCLIENT_API virtual IDocumentNode* at(const std::string& key) const = 0;
+
+  /**
+   * \brief Returns whether the object at the root of the navigator's tree has a particular named sub element/property
+   *
+   * \param key the string key of the requested object
+   * \return True if the key exists at the top level of the navigated document object
+   */
+  MLCLIENT_API virtual bool has(const std::string& key) const = 0;
 };
 
 
@@ -312,6 +344,7 @@ public:
    * \date 2016-07-30
    */
   MLCLIENT_API virtual IDocumentNavigator* navigate(bool firstElementAsRoot = false) const = 0;
+
 };
 
 
@@ -423,6 +456,7 @@ public:
    * \return The IDocumentNavigator instance to navigate this document with.
    */
   MLCLIENT_API IDocumentNavigator* navigate(bool firstElementAsRoot = false) const override;
+
 
 private:
   class Impl;

@@ -19,6 +19,7 @@
  */
 
 #include <cpprest/json.h>
+#include "mlclient/MarkLogicTypes.hpp"
 #include "mlclient/utilities/SearchBuilder.hpp"
 #include "mlclient/DocumentContent.hpp"
 #include "mlclient/utilities/CppRestJsonHelper.hpp"
@@ -71,19 +72,6 @@ const std::string translate_rangeoperation(const RangeOperation& rt) {
     break;
   }
   return result;
-}
-
-// IQuery global operators
-
-std::ostream& operator<<(std::ostream& os,const IQuery& query) {
-  return query.write(os);
-}
-
-std::string& operator +(std::string& s, const IQuery& query) {
-  std::ostringstream oss;
-  oss << query;
-  s.append(oss.str());
-  return s;
 }
 
 
@@ -163,54 +151,6 @@ const std::string& JsonPropertyQuery::getQuery() const {
 
 
 
-// Container references
-
-
-std::ostream& operator<<(std::ostream& os,const IContainerRef& ref) {
-  return ref.write(os);
-}
-
-std::string& operator +(std::string& s, const IContainerRef& ref) {
-  std::ostringstream oss;
-  oss << ref;
-  s.append(oss.str());
-  return s;
-}
-
-
-
-
-JsonPropertyRef::JsonPropertyRef() : value() {
-  TIMED_FUNC(JsonPropertyRef_defaultConstructor);
-}
-
-std::ostream& JsonPropertyRef::write(std::ostream& os) const {
-  os << "\"json-property\":\"" << value << "\"";
-  return os;
-}
-/*
-std::ostream& operator<<(std::ostream& str,JsonPropertyRef& ref) {
-  str << ref.getRef();
-  return str;
-}
-
-std::string& operator +(std::string& s, const JsonPropertyRef& rt) {
-  std::ostringstream oss;
-  oss << rt;
-  s.append(oss.str());
-  return s;
-}*/
-
-void JsonPropertyRef::setProperty(const std::string& property) {
-  value = property;
-}
-const std::string JsonPropertyRef::getRef() {
-  std::ostringstream oss;
-  write(oss);
-  return oss.str();
-}
-
-
 
 
 
@@ -225,7 +165,7 @@ public:
     TIMED_FUNC(SearchBuilder_Impl_multiQuery);
     GenericQuery* query = new GenericQuery;
     std::ostringstream oss;
-    oss << "{\"" << queryType << "-query\": [";
+    oss << "{\"" << queryType << "-query\": {\"queries\":[";
     bool first = true;
     for (auto& iter: queries) {
       if (first) {
@@ -236,7 +176,7 @@ public:
 
       oss << (*iter);
     }
-    oss << "]}";
+    oss << "]}}";
     query->setQuery(oss.str());
     return query;
   };
@@ -329,9 +269,9 @@ IQuery* SearchBuilder::orQuery(const std::vector<IQuery*>& queries) {
 IQuery* SearchBuilder::notQuery(const IQuery* query) {
   TIMED_FUNC(SearchBuilder_notQuery);
   std::ostringstream oss;
-  oss << "{\"not-query\": {";
+  oss << "{\"not-query\": ";
   oss << *query;
-  oss << "}}";
+  oss << "}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());
   return qry;
@@ -372,22 +312,24 @@ IQuery* SearchBuilder::xmlValueQuery(const std::string ref, const std::string va
   return qry;
 }
 
-IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+IQuery* SearchBuilder::rangeQuery(const std::string ref, const RangeOperation op, const std::string value,
+  const RangeIndexType& type) {
   if (QueryBuilderMode::ALL == mImpl->mode) {
     // TODO WARNING This function in ALL mode will not work due to bug: https://bugtrack.marklogic.com/41350
-    return SearchBuilder::orQuery(std::vector<IQuery*>{SearchBuilder::jsonRangeQuery(ref,op,value),SearchBuilder::xmlRangeQuery(ref,op,value)});
+    return SearchBuilder::orQuery(std::vector<IQuery*>{SearchBuilder::jsonRangeQuery(ref,op,value,type),SearchBuilder::xmlRangeQuery(ref,op,value,type)});
   } else if (QueryBuilderMode::XML == mImpl->mode) {
-    return SearchBuilder::xmlRangeQuery(ref,op,value);
+    return SearchBuilder::xmlRangeQuery(ref,op,value,type);
   } else {
-    return SearchBuilder::jsonRangeQuery(ref,op,value);
+    return SearchBuilder::jsonRangeQuery(ref,op,value,type);
   }
 }
 
-IQuery* SearchBuilder::jsonRangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+IQuery* SearchBuilder::jsonRangeQuery(const std::string ref, const RangeOperation op, const std::string value,
+  const RangeIndexType& type) {
   TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
-  oss << "\"type\": \"xs:integer\",\"json-property\": \"" << ref << "\",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
+  oss << "\"type\": \"" << type << "\",\"json-property\": \"" << ref << "\",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
@@ -395,13 +337,56 @@ IQuery* SearchBuilder::jsonRangeQuery(const std::string ref, const RangeOperatio
   return qry;
 }
 
-IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation op, const std::string value) {
+IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation op, const std::string value,
+  const RangeIndexType& type) {
   TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
-  oss << "\"type\": \"xs:integer\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
+  oss << "\"type\": \"" << type << "\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
   oss << ",\"value\": " << value << ",\"range-operator\":\"" << op << "\"";
   // TODO support other types here too, multiple values, with options, and so on
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::containerQuery(const std::string name,const IQuery* query) {
+  if (QueryBuilderMode::ALL == mImpl->mode) {
+    // TODO WARNING This function in ALL mode will not work due to bug: https://bugtrack.marklogic.com/41350
+    return SearchBuilder::orQuery(std::vector<IQuery*>{
+      SearchBuilder::elementQuery(name,mImpl->defaultXmlNamespace,query),
+      SearchBuilder::propertyQuery(name,query)
+      });
+  } else if (QueryBuilderMode::XML == mImpl->mode) {
+    return SearchBuilder::elementQuery(name,mImpl->defaultXmlNamespace,query);
+  } else {
+    return SearchBuilder::propertyQuery(name,query);
+  }
+}
+
+IQuery* SearchBuilder::elementQuery(const std::string name,const std::string ns,const IQuery* query) {
+  TIMED_FUNC(SearchBuilder_elementQuery);
+  std::ostringstream oss;
+  oss << "{\"container-query\":{\"element\": {\"name\":\"" << name <<"\", \"ns\":\"" << ns << "\"},";
+  std::ostringstream qsoss;
+  qsoss << (*query);
+  std::string qs = qsoss.str();
+  oss << qs.substr(1,qs.size() - 2);
+  oss << "}}";
+  GenericQuery* qry = new GenericQuery;
+  qry->setQuery(oss.str());
+  return qry;
+}
+
+IQuery* SearchBuilder::propertyQuery(const std::string name,const IQuery* query) {
+  TIMED_FUNC(SearchBuilder_propertyQuery);
+  std::ostringstream oss;
+  oss << "{\"container-query\":{\"json-property\": \"" << name <<"\",";
+  std::ostringstream qsoss;
+  qsoss << (*query);
+  std::string qs = qsoss.str();
+  oss << qs.substr(1,qs.size() - 2);
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());

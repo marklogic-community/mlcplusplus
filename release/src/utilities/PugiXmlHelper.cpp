@@ -34,38 +34,39 @@ namespace mlclient {
 namespace utilities {
 
 // DocumentContent conversion
-ITextDocumentContent* PugiXmlHelper::toDocument(const pugi::xml_document& dc) {
+ITextDocumentContent* PugiXmlHelper::toDocument(std::unique_ptr<pugi::xml_document> dc) {
   TIMED_FUNC(PugiXmlHelper_toDocument_xmldocument);
   //GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
   PugiXmlDocumentContent* tdc = new PugiXmlDocumentContent;
-  tdc->setContent(dc);
+  tdc->setContent(std::move(dc));
   tdc->setMimeType("application/xml");
   return tdc;
 }
 
 ITextDocumentContent* PugiXmlHelper::toDocument(const std::string& content) {
   TIMED_FUNC(PugiXmlHelper_toDocument_string);
-  pugi::xml_document* doc = new pugi::xml_document;
+  std::unique_ptr<pugi::xml_document> doc = mlclient::make_unique<pugi::xml_document>();
   pugi::xml_parse_result result = doc->load_string(content.c_str());
-  return toDocument(*doc);
+  return toDocument(std::move(doc));
 }
 
 ITextDocumentContent* PugiXmlHelper::toDocument(const Response& resp) {
-  return toDocument(*fromResponse(resp));
+  return toDocument(std::move(fromResponse(resp)));
 }
 
-pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
+std::unique_ptr<pugi::xml_document> PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
   TIMED_FUNC(PugiXmlHelper_fromDocument);
   // TODO handle invalid cast exception
 
   std::ostringstream os;
   os << dc.getStream()->get();
 
-  pugi::xml_document* doc = new pugi::xml_document;
+  //pugi::xml_document* doc = new pugi::xml_document;
+  std::unique_ptr<pugi::xml_document> doc = mlclient::make_unique<pugi::xml_document>();
   pugi::xml_parse_result result = doc->load_string(os.str().c_str());
 
   if (result) {
-    return doc;
+    return std::move(doc);
   } else {
     std::cout << "XML [" << os.str() << "] parsed with errors]\n";
     std::cout << "Error description: " << result.description() << "\n";
@@ -75,10 +76,11 @@ pugi::xml_document* PugiXmlHelper::fromDocument(const IDocumentContent& dc) {
 }
 
 // Response conversion
-pugi::xml_document* PugiXmlHelper::fromResponse(const Response& resp) {
+std::unique_ptr<pugi::xml_document> PugiXmlHelper::fromResponse(const Response& resp) {
   TIMED_FUNC(PugiXmlHelper_fromResponse);
   if (resp.getResponseType() == ResponseType::XML) {
-    pugi::xml_document* doc = new pugi::xml_document;
+    //pugi::xml_document* doc = new pugi::xml_document;
+    std::unique_ptr<pugi::xml_document> doc = mlclient::make_unique<pugi::xml_document>();
     pugi::xml_parse_result result = doc->load_string(resp.getContent().c_str());
 
     if (result) {

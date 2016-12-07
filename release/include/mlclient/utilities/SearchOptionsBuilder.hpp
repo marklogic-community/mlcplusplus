@@ -21,7 +21,7 @@
 #define SRC_UTILITIES_SEARCHOPTIONSBUILDER_HPP_
 
 #include <mlclient/mlclient.hpp>
-#include <mlclient/utilities/SearchBuilder.hpp>
+#include <mlclient/MarkLogicTypes.hpp>
 
 #include <mlclient/SearchDescription.hpp>
 #include <mlclient/DocumentContent.hpp>
@@ -32,40 +32,6 @@
 namespace mlclient {
 
 namespace utilities {
-
-enum class RangeIndexType {
-  INT, UNSIGNED_INT,LONG,UNSIGNED_LONG,FLOAT,DOUBLE,
-  DECIMAL,DATE_TIME,TIME,DATE,G_YEAR_MONTH,G_YEAR,
-  G_MONTH,G_DAY,YEAR_MONTH_DURATION,
-  DAY_TIME_DURATION,STRING,ANY_URI
-};
-
-MLCLIENT_API std::ostream& operator << (std::ostream& os, const RangeIndexType& rt);
-MLCLIENT_API std::string& operator +(std::string& s, const RangeIndexType& rt);
-
-MLCLIENT_API const std::string translate_rangeindextype(const RangeIndexType& rt);
-
-/*
-namespace RangeIndexType {
-  static const std::string INT = "xs:int";
-  static const std::string UNSIGNED_INT = "xs:unsignedInt";
-  static const std::string LONG = "xs:long";
-  static const std::string UNSIGNED_LONG = "xs:unsignedLong";
-  static const std::string FLOAT = "xs:float";
-  static const std::string DOUBLE = "xs:double";
-  static const std::string DECIMAL = "xs:decimal";
-  static const std::string DATE_TIME = "xs:dateTime";
-  static const std::string TIME = "xs:time";
-  static const std::string DATE = "xs:date";
-  static const std::string G_YEAR_MONTH = "xs:gYearMonth";
-  static const std::string G_YEAR = "xs:gYear";
-  static const std::string G_MONTH = "xs:gMonth";
-  static const std::string G_DAY = "xs:gDay";
-  static const std::string YEAR_MONTH_DURATION = "xs:yearMonthDuration";
-  static const std::string DAY_TIME_DURATION = "xs:dayTimeDuration";
-  static const std::string STRING = "xs:string";
-  static const std::string ANY_URI = "xs:anyURI";
-}*/
 
 enum class AggregateBuiltIn {
   SUM,AVG,MAX,MIN,COUNT,STDDEV,STDDEV_POPULATION,VARIANCE,VARIANCE_POPULATION
@@ -279,8 +245,9 @@ public:
   MLCLIENT_API const bool hasLexicon() const;
 
   MLCLIENT_API const bool hasAggregate() const;
-  MLCLIENT_API void setAggregate(const AggregateInfo& agg);
-  MLCLIENT_API const AggregateInfo getAggregate() const;
+  MLCLIENT_API void addAggregate(const AggregateInfo& agg);
+  MLCLIENT_API const std::vector<AggregateInfo>& getAggregates() const;
+  MLCLIENT_API const AggregateInfo& getAggregate(const std::string& aggName) const;
 
   MLCLIENT_API const bool hasValuesOptions() const;
   MLCLIENT_API void setValuesOptions(std::map<ValuesOption,std::string> options);
@@ -290,7 +257,7 @@ private:
   std::string name;
   ILexiconRef* lexicon;
   bool bAggregate;
-  AggregateInfo aggregate;
+  std::vector<AggregateInfo> aggregates;
   std::map<ValuesOption,std::string> valuesOptions;
 };
 
@@ -335,6 +302,11 @@ public:
 
   MLCLIENT_API SearchOptionsBuilder* emptySnippet();
   MLCLIENT_API SearchOptionsBuilder* rawSnippet();
+  MLCLIENT_API SearchOptionsBuilder* customSnippet(std::string apply,std::string ns,std::string at,ITextDocumentContent* configuration = nullptr);
+
+  MLCLIENT_API void returnAggregates(const bool included = true);
+  MLCLIENT_API void returnValues(const bool included = true);
+  MLCLIENT_API void returnResults(const bool included = true);
 
   //SearchOptionsBuilder* extractAttributeMetadata();
   //SearchOptionsBuilder* extractElementMetadata();

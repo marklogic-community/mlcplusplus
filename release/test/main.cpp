@@ -70,12 +70,19 @@ int main(int argc, const char * argv[])
   //controller.addListener(&progress);
 
   try {
+    CppUnit::TestResult controller;
+
+    CppUnit::TestResultCollector result;
+    controller.addListener( &result );
+
+    CppUnit::BriefTestProgressListener progressListener;
+    controller.addListener( &progressListener );
+
     CppUnit::TextUi::TestRunner runner;
     runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
-    wasSuccessful = runner.run( "", false,true,true );
+    runner.run( controller );
   } catch (std::exception& e) {
     LOG(DEBUG) << "EXCEPTION RUNNING TESTS: " << e.what();
   }
-  return wasSuccessful;
+  return true;
 }
-

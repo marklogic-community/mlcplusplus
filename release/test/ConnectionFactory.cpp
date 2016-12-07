@@ -34,7 +34,7 @@ IConnection* ConnectionFactory::getConnection() {
 #endif
   static bool configured = false;
   if (!configured) {
-    conn->configure("192.168.123.4","8122","admin","admin",false);
+    conn->configure("192.168.123.4","7094","admin","admin",false);
     configured = true;
   }
   return conn;

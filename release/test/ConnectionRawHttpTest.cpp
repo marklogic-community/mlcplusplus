@@ -64,6 +64,6 @@ void ConnectionRawHttpTest::testDoPost(void) {
   LOG(DEBUG) << "  Response Code: " << response->getResponseCode();
   LOG(DEBUG) << "  Response Content: " << response->getContent();
 
-  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 201 Created",ResponseCode::CREATED == response->getResponseCode());
+  CPPUNIT_ASSERT_MESSAGE("REST API did not return HTTP 200 OK",ResponseCode::OK == response->getResponseCode());
   delete response;
 }
