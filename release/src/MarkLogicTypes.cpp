@@ -71,6 +71,8 @@ const std::string translate_rangeindextype(const RangeIndexType& rt) {
     return "xs:unsignedLong";
   case RangeIndexType::YEAR_MONTH_DURATION:
     return "xs:yearMonthDuration";
+  case RangeIndexType::BOOLEAN:
+    return "xs:boolean";
   }
 }
 

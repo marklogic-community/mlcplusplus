@@ -21,12 +21,16 @@ using namespace mlclient;
 class PathNavigatorTest : public CppUnit::TestCase {
   CPPUNIT_TEST_SUITE(PathNavigatorTest);
     CPPUNIT_TEST(testXmlPath);
+    CPPUNIT_TEST(testJsonPath);
+    CPPUNIT_TEST(testJsonPathExtended);
   CPPUNIT_TEST_SUITE_END();
 public:
   void setUp();
   void tearDown();
 
   void testXmlPath(void);
+  void testJsonPath(void);
+  void testJsonPathExtended(void);
 private:
   IConnection* ml;
 };

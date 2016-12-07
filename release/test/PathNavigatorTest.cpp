@@ -14,6 +14,8 @@
 #include "mlclient/utilities/PathNavigator.hpp"
 #include "mlclient/utilities/PugiXmlHelper.hpp"
 #include "mlclient/utilities/PugiXmlDocumentContent.hpp"
+#include "mlclient/utilities/CppRestJsonHelper.hpp"
+#include "mlclient/utilities/CppRestJsonDocumentContent.hpp"
 #include "mlclient/ext/pugixml/pugixml.hpp"
 
 
@@ -64,6 +66,71 @@ void PathNavigatorTest::testXmlPath() {
   IDocumentNode* child = nav->at("obj1");
   CPPUNIT_ASSERT_MESSAGE("first child is null",nullptr != child);
   IDocumentNode* subelAgain = mlclient::utilities::PathNavigator::at(child,"subel1");
+  CPPUNIT_ASSERT_MESSAGE("PathNavigator::at->subel1 is null",nullptr != subelAgain);
+  std::string val2 = subelAgain->asString();
+  CPPUNIT_ASSERT_MESSAGE("subel1 string from at is null","" !=val2);
+
+
+};
+
+void PathNavigatorTest::testJsonPath() {
+  TIMED_FUNC(testJsonPath);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering PathNavigatorTest::testJsonPath";
+
+  // create XML Document
+
+  std::string raw = "{\"el1\":\"val1\",\"el2\":\"val2\",\"el3\":1234,\"el4\":\"true\",\"el5\":123.456,\"arr1\": [\"av1\",\"av2\"],\"obj1\":{\"subel1\":\"subval1\"}}";
+
+  web::json::value val = web::json::value::parse(utility::conversions::to_string_t(raw));
+
+  ITextDocumentContent* doc = mlclient::utilities::CppRestJsonHelper::toDocument(val);
+  CPPUNIT_ASSERT_MESSAGE("XML document is null",nullptr != doc);
+
+  // 1. Test path with child to true
+  // Evaluate navigator path at top level
+  IDocumentNavigator* nav = doc->navigate(true);
+  CPPUNIT_ASSERT_MESSAGE("Navigator is null",nullptr != nav);
+  IDocumentNode* subel1 = mlclient::utilities::PathNavigator::navigate(nav,"obj1/subel1");
+  CPPUNIT_ASSERT_MESSAGE("PathNavigator::navigate->obj1/subel1 is null",nullptr != subel1);
+  std::string val1 = subel1->asString();
+  CPPUNIT_ASSERT_MESSAGE("subel1 string from nav is null", ""!=val1);
+  // Evaluate immediate child, using at
+  IDocumentNode* child = nav->at("obj1");
+  CPPUNIT_ASSERT_MESSAGE("first child is null",nullptr != child);
+  IDocumentNode* subelAgain = mlclient::utilities::PathNavigator::at(child,"subel1");
+  CPPUNIT_ASSERT_MESSAGE("PathNavigator::at->subel1 is null",nullptr != subelAgain);
+  std::string val2 = subelAgain->asString();
+  CPPUNIT_ASSERT_MESSAGE("subel1 string from at is null","" !=val2);
+
+
+};
+
+void PathNavigatorTest::testJsonPathExtended() {
+  TIMED_FUNC(testJsonPathExtended);
+  LOG(DEBUG) << " --------------------------------------------";
+  LOG(DEBUG) << " Entering PathNavigatorTest::testJsonPathExtended";
+
+  // create XML Document
+
+  std::string raw = "{\"claim\":{\"diagnoses\":{\"diagnosis\":[{\"code\":\"value\"},{\"code\":\"otherval\"}]}}}";
+  web::json::value val = web::json::value::parse(utility::conversions::to_string_t(raw));
+
+  ITextDocumentContent* doc = mlclient::utilities::CppRestJsonHelper::toDocument(val);
+  CPPUNIT_ASSERT_MESSAGE("XML document is null",nullptr != doc);
+
+  // 1. Test path with child to true
+  // Evaluate navigator path at top level
+  IDocumentNavigator* nav = doc->navigate(true);
+  CPPUNIT_ASSERT_MESSAGE("Navigator is null",nullptr != nav);
+  IDocumentNode* subel1 = mlclient::utilities::PathNavigator::navigate(nav,"diagnoses/diagnosis/code");
+  CPPUNIT_ASSERT_MESSAGE("PathNavigator::navigate->diagnoses/diagnosis/code is null",nullptr != subel1);
+  std::string val1 = subel1->asString();
+  CPPUNIT_ASSERT_MESSAGE("subel1 string from nav is null", ""!=val1);
+  // Evaluate immediate child, using at
+  IDocumentNode* child = nav->at("obj1");
+  CPPUNIT_ASSERT_MESSAGE("first child is null",nullptr != child);
+  IDocumentNode* subelAgain = mlclient::utilities::PathNavigator::at(child,"diagnosis/code");
   CPPUNIT_ASSERT_MESSAGE("PathNavigator::at->subel1 is null",nullptr != subelAgain);
   std::string val2 = subelAgain->asString();
   CPPUNIT_ASSERT_MESSAGE("subel1 string from at is null","" !=val2);
