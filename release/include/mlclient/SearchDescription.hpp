@@ -68,6 +68,8 @@ public:
    *
    * See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.
    *
+   * \test Tested by SearchResultSetTest::testCustomSnippetJson
+   *
    * \param[inout] options The search options as an XML or JSON IDocumentContent instance
    */
   MLCLIENT_API void setOptions(ITextDocumentContent& options);
@@ -82,6 +84,8 @@ public:
    * \brief Sets the complex query using an XML or JSON IDocumentContent instance
    *
    * See CppRestJsonHelper or PugiXmlHelper to create a TextDocumentContent that wraps raw JSON or XML strings.
+   *
+   * \test Tested by SearchResultSetTest::testCustomSnippetJson
    *
    * \param[inout] query The TextDocumentContent instance wrapping the XML or JSON query.
    */
@@ -151,8 +155,23 @@ public:
    */
   MLCLIENT_API const long getPageLength() const;
 
-
+  /**
+   * \brief Sets the desired search results response type from MarkLogic Server (XML or JSON)
+   * \since 8.0.3
+   * \date 2016-12-01
+   * 
+   * \test Tested by SearchResultSetTest::testCustomSnippetJson
+   * \param mime The MIME type string desired. See DocumentContent::MIME_JSON and DocumentContent::MIME_XML
+   */
   MLCLIENT_API void setResponseMimeType(std::string mime);
+
+  /**
+   * \brief Returns the response type configured for this search operation
+   * \since 8.0.3
+   * \date 2016-12-01
+   * 
+   * \return The MIME type string. See DocumentContent::MIME_JSON and DocumentContent::MIME_XML
+   */
   MLCLIENT_API const std::string getResponseMimeType() const;
   // @}
 

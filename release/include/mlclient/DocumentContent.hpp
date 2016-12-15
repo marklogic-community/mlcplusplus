@@ -362,6 +362,8 @@ public:
  *
  * \author Adam Fowler <adam.fowler@marklogic.com>
  *
+ * \test SearchResultSetTest::testCustomSnippetJson
+ *
  * This class is used as the data holding class for all JSON and XML documents.
  * There are no JSON or XML specialisations (Use the JSON and XML helper classes in the \link utilities \endlink namespace
  * instead to create, modify, or introspect the JSON/XML.)
@@ -394,6 +396,8 @@ public:
    * \brief Sets the textual content for this document
    *
    * Assumes content string is non null
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    *
    * \param[in] The string content to copy in to this object.
    */
@@ -432,6 +436,8 @@ public:
    * \brief Sets the MIME type of this content.
    *
    * E.g. application/json or application/xml
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    *
    * \param[in] mt The mimetype string, not including encoding, for this Document Content. Assume always UTF-8 for MarkLogic Server)
    */

@@ -36,6 +36,9 @@ public:
 
   /**
    * \brief Creates a self-advancing result set given the specified search description
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   * 
    * \param conn The Connection instance pointer
    * \param desc The Search Description to use for requests - will be owned by this class
    */
@@ -43,17 +46,25 @@ public:
 
   /**
    * \brief Destroys a SearchResultSet and all of its owned resources
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    */
   MLCLIENT_API virtual ~SearchResultSet() = default;
 
   // iterator methods around each search result
   /**
    * \brief Returns the iterator for this result set
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return The iterator for this result set
    */
   MLCLIENT_API SearchResultSetIterator* begin() const;
   /**
    * \brief Returns a reference to the end of the iterator for this result set
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return A reference to the end of the iterator for this result set
    */
   MLCLIENT_API SearchResultSetIterator* end() const;
@@ -66,12 +77,18 @@ public:
    * \brief Uses the provided Connection and SearchDescription to perform a request, and initial this object and the list of results.
    *
    * \note You can call the functions begin() and end() immediately after fetch() returns (fetch() uses synchronous request functions in Connection)
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return true if no errors were raised, false otherwise
    */
   MLCLIENT_API bool fetch();
 
   /**
    * \brief Returns the exception, if any, encountered by fetch(). nullptr is returned if no exception raised.
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return The exception instance copy
    */
   MLCLIENT_API std::exception getFetchException();
@@ -89,6 +106,9 @@ public:
    * \note MarkLogic Server uses xdmp:estimate to calculate this. Thus for an accurate number your
    * filtered xdmp estimate should be the same as your unfiltered xdmp estimate. I.e. should be completely
    * calculable from indexes. Otherwise, this total could be higher than the actual number of results (after filtering).
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return The total number of search results returned.
    */
   MLCLIENT_API const long getTotal();
@@ -144,6 +164,8 @@ public:
   /**
    * \brief Sets the maximum number of results to return. Useful if the maximum is larger than the page size.
    * \note Limits the iterator return to max results
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    */
   MLCLIENT_API void setMaxResults(long maxResults);
 
@@ -169,6 +191,8 @@ class SearchResultSetIterator {
 public:
   /**
    * \brief Default constructor
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    */
   MLCLIENT_API SearchResultSetIterator();
   /**
@@ -190,11 +214,17 @@ public:
 
   /**
    * \brief Returns the iterator start instance
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return The iterator over this set
    */
   MLCLIENT_API SearchResultSetIterator* begin();
   /**
    * \brief Returns the iterator end instance
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \return The end of iterator marker
    */
   MLCLIENT_API SearchResultSetIterator* end();
@@ -206,26 +236,39 @@ public:
   MLCLIENT_API bool operator==(const SearchResultSetIterator& other);
   /**
    * \brief Inequality operator for comparing an iterator instance to end()
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \param other The other iterator instance to compare this instance against
    */
   MLCLIENT_API bool operator!=(const SearchResultSetIterator& other);
   /**
    * \brief The iterator increment operator
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    */
   MLCLIENT_API void operator++();
   /**
    * \brief The dereference operator, which returns the SearchResult at the current position in the SearchResultSet
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
    */
   MLCLIENT_API const SearchResult operator*();
   /**
    * \brief Copy assignment operator
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
    * \param other The other iterator to copy state from
    */
   MLCLIENT_API SearchResultSetIterator operator=(const SearchResultSetIterator& other);
 
   /**
-   * \brief Returns the first result in the result set
-   * \return The first search result
+   * \brief Returns the result at the current iterator position
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
+   * \return The result at the current iterator position
    */
   MLCLIENT_API const SearchResult& first() const;
 

@@ -29,13 +29,47 @@ namespace mlclient {
 
 namespace utilities {
 
+/**
+ * \brief Utility static class to help with advanced document traversal functions which are independent of IDocumentNode
+ * and IDocumentNavigator implementations. 
+ * \since 8.0.3
+ * \date 2016-12-05
+ *
+ * \test Tested by PathNavigatorTest
+ */
 class PathNavigator {
 public:
     PathNavigator() = delete;
     ~PathNavigator() = delete;
-
+    
+    /**
+     * \brief Utility static class to help with advanced document traversal functions which are independent of IDocumentNode
+     * and IDocumentNavigator implementations. 
+     * \since 8.0.3
+     * \date 2016-12-05
+     *
+     * \test Tested by PathNavigatorTest
+     *
+     * \param node The top level IDocumentNavigator within which to apply the path
+     * \param path The path to apply to the IDocumentNavigator
+     * \return The IDocumentNode at the end of the path. 
+     * \throws InvalidFormatException if the node does not exist
+     */
     MLCLIENT_API static IDocumentNode* navigate(const IDocumentNavigator* nav,const std::string& path);
-
+    
+    /**
+     * \brief Utility static class to help with advanced document traversal functions which are independent of IDocumentNode
+     * and IDocumentNavigator implementations. 
+     * \since 8.0.3
+     * \date 2016-12-05
+     *
+     * \test Tested by PathNavigatorTest::testJsonPathExtended and PathNavigatorTest::testJsonPath and PathNavigatorTest::testXmlPath 
+     *
+     * \param node The current level node within which to apply the subpath
+     * \param subpath The subpath to apply to the IDocumentNode
+     * \return The IDocumentNode at the end of the subpath. 
+     * \throws InvalidFormatException if the node does not exist
+     */
     MLCLIENT_API static IDocumentNode* at(const IDocumentNode* node,const std::string& subpath);
 };
 

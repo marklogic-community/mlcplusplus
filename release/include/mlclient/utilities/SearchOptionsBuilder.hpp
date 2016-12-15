@@ -300,8 +300,40 @@ public:
   //SearchOptionsBuilder* geoElementPairConstraint(const IContainerRef& container);
   //SearchOptionsBuilder* geoPathConstraint(const IContainerRef& container);
 
+  /**
+   * \brief Configures options to return an empty document snippet from the search results
+   * 
+   * \since 8.0.3
+   * \date 2016-12-01
+   *
+   * \return Returns a pointer to this SearchOptionsBuilder, useful for chaining
+   */
   MLCLIENT_API SearchOptionsBuilder* emptySnippet();
+  
+  /**
+   * \brief Configures options to return a raw (full document) snippet from the search results
+   * 
+   * \since 8.0.3
+   * \date 2016-12-01
+   *
+   * \return Returns a pointer to this SearchOptionsBuilder, useful for chaining
+   */
   MLCLIENT_API SearchOptionsBuilder* rawSnippet();
+
+  /**
+   * \brief Configures search options to include a custom snippet.
+   * 
+   * \since 8.0.3
+   * \date 2016-12-01
+   *
+   * \test SearchResultSetTest::testCustomSnippetJson
+   *
+   * \param apply The name of the snippet function to apply (no namespace)
+   * \param ns The namespace of the modules the function exists within
+   * \param at The module's path in the modules database
+   * \param configuration Any additional custom configuration JSON content (defaults to nullptr)
+   * \return Returns a pointer to this SearchOptionsBuilder, useful for chaining
+   */
   MLCLIENT_API SearchOptionsBuilder* customSnippet(std::string apply,std::string ns,std::string at,ITextDocumentContent* configuration = nullptr);
 
   MLCLIENT_API void returnAggregates(const bool included = true);
