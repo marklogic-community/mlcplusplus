@@ -305,7 +305,7 @@ IQuery* SearchBuilder::xmlValueQuery(const std::string ref, const std::string va
   std::ostringstream oss;
   oss << "{\"value-query\":{";
   // TODO WARNING BUG FOR JSON FIELDS: https://bugtrack.marklogic.com/41348 USE RANGE QUERIES INSTEAD (which sucks)
-  oss << "\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"},\"text\": [\"" << value << "\"]";
+  oss << "\"element\": {\"name\":\"" << ref << "\",\"ns\":\"" << mImpl->defaultXmlNamespace << "\"},\"text\": [\"" << value << "\"]";
   oss << "}}";
   GenericQuery* qry = new GenericQuery;
   qry->setQuery(oss.str());
@@ -354,7 +354,7 @@ IQuery* SearchBuilder::xmlRangeQuery(const std::string ref, const RangeOperation
   TIMED_FUNC(SearchBuilder_rangeQuery);
   std::ostringstream oss;
   oss << "{\"range-query\":{";
-  oss << "\"type\": \"" << type << "\",\"element\": {\"name\":\"" << ref << "\",\"namespace\":\"" << mImpl->defaultXmlNamespace << "\"}";
+  oss << "\"type\": \"" << type << "\",\"element\": {\"name\":\"" << ref << "\",\"ns\":\"" << mImpl->defaultXmlNamespace << "\"}";
   oss << ",\"value\": ";
   bool isNumeric = (type == RangeIndexType::INT) || (type == RangeIndexType::UNSIGNED_INT) || 
     (type == RangeIndexType::LONG) || (type == RangeIndexType::UNSIGNED_LONG) || 
