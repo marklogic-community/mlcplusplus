@@ -105,7 +105,11 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
         LOG(DEBUG) << "d_name: " << dname;
         std::string fname = std::string(folder);
         if (stripBase) {
-          fname = fname.substr(baseFolder.length() + 1);
+          if (fname == baseFolder) {
+            fname = "";
+          } else { // This if prevents the next line erroring with too long index if folder and fname match exactly
+            fname = fname.substr(baseFolder.length() + 1);
+          }
         }
         LOG(DEBUG) << "fname: " << fname << " folder: " << folder << " baseFolder: " << baseFolder;
         doc.setUri(std::string(appendBase + fname + "/" + dname)); // TODO platform independent file separator

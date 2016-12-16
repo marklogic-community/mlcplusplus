@@ -21,12 +21,44 @@
 
 
 #include <iostream>
+#include "ConnectionFactory.hpp"
+#include "mlclient/Document.hpp"
+#include "mlclient/DocumentSet.hpp"
+#include "mlclient/Permission.hpp"
+#include "mlclient/utilities/DocumentBatchWriter.hpp"
+#include "mlclient/utilities/DocumentBatchHelper.hpp"
 #include <cppunit/TestResult.h>
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/ui/text/TextTestRunner.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/BriefTestProgressListener.h>
+
+
+
+using namespace mlclient;
+using namespace mlclient::utilities;
+
+class UploadObserver : public mlclient::utilities::IBatchNotifiable {
+public:
+  UploadObserver() : ex() {
+    ;
+  }
+  ~UploadObserver() {
+    ;
+  }
+
+  void batchOperationComplete(const DocumentUriSet uris,bool success,std::exception exc) override {
+    LOG(DEBUG) << "Written files in a batch (OK?: " << success << ") :-";
+    for (auto& it : uris) {
+      LOG(DEBUG) << "  " << it;
+    }
+      ex = exc;
+      LOG(DEBUG) << "  Exception: " << exc.what();
+  }
+
+  std::exception ex;
+};
 
 
 
@@ -68,6 +100,52 @@ int main(int argc, const char * argv[])
 
   //CppUnit::BriefTestProgressListener progress;
   //controller.addListener(&progress);
+
+  LOG(INFO) << "Performing out of cppunit test content set up";
+
+
+  IConnection* ml = ConnectionFactory::getConnection();
+
+  // load test content from folders
+
+  UploadObserver obs;
+
+  DocumentBatchWriter writer(ml);
+  writer.addBatchListener(&obs);
+  CollectionSet collections;
+  collections.emplace_back("zoo");
+  collections.emplace_back("mlcpptest");
+  PermissionSet perms;
+  //perms.emplace_back("admin",Capability::READ); // good test as this isn't normally default assigned
+
+  DocumentSet set;
+
+  DocumentBatchHelper::addFilesToDocumentSet(
+    "data/zoojson","data/zoojson",true,"/zoo/",
+      collections,perms,nullptr,set);
+
+  LOG(DEBUG) << "Load zoo: set size: " << set.size();
+
+  long setSize = set.size(); // set is reassigned by the next line, move!
+
+  writer.assignDocuments(std::move(set));
+
+  writer.send();
+
+  // now just wait for it to finish...
+
+  writer.wait();
+
+  LOG(DEBUG) << "Exception is blank?: " << (0 == strcmp("std::exception",obs.ex.what()));
+  Progress p = writer.getProgress();
+  LOG(DEBUG) << "Document set size: " << setSize << ", complete size: " << p.completed;
+  LOG(DEBUG) << "Progress: Complete: " << p.completed << ", total: " << p.total << ", pct: " << p.percentageComplete;
+  LOG(DEBUG) << "Progress: duration: " << p.duration << ", est remaining duration: " << p.durationEstimateRemaining;
+
+
+
+
+  LOG(INFO) << "Performing tests";
 
   try {
     CppUnit::TestResult controller;

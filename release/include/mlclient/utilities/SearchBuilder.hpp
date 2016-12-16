@@ -323,6 +323,8 @@ public:
    *
    * Use and-query and or-query to join multiple queries together, then pass the result to this function.
    *
+   * \test Tested by SearchResultSetTest::testCustomSnippetJson
+   *
    * \param query The root query for this structured query
    * \return A chainable reference to this class instance, allowing for multiple calls and easy function calling.
    */
@@ -356,6 +358,8 @@ public:
 
   /**
    * \brief Generates an ITextDocumentContent instance representing the serialisation of this structured query.
+   *
+   * \test Tested by SearchResultSetTest::testCustomSnippetJson
    *
    * \return The ITextDocumentContent instance. Caller OWNS this pointer. (This class never deletes it)
    */
