@@ -181,8 +181,7 @@ ITextDocumentContent* SearchDescription::getPayload() const {
        !(0==IDocumentContent::MIME_XML.compare(mImpl->query.get()->getMimeType()) && 0==IDocumentContent::MIME_XML.compare(mImpl->options.get()->getMimeType()))
      ) {
 
-    LOG(DEBUG) << "    MIME TYPES DO NOT MATCH - THROWING EXCEPTION: Query mime: " << mImpl->query.get()->getMimeType()
-              << ", options MIME: " << mImpl->options.get()->getMimeType();
+    LOG(DEBUG) << "    MIME TYPES DO NOT MATCH - THROWING EXCEPTION: Query mime: " << mImpl->query.get()->getMimeType()  << ", options MIME: " << mImpl->options.get()->getMimeType();
     throw new InvalidFormatException;
   }
   std::string elements[12] = {

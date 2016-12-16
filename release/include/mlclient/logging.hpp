@@ -171,10 +171,15 @@ protected:
   boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["File"]).set(path_to_filename(__FILE__)); \
   boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["Function"]).set(__func__);
 
+#define COMMENT SLASH(/)
+#define SLASH(s) /##s
 
 //#define LOG(DEBUG) BOOST_LOG_TRIVIAL(debug)
+#ifdef _DEBUG
 #define LOG(lvl) LOG_LOCATION; BOOST_LOG_SEV(boost::log::trivial::logger::get(), boost::log::trivial::severity_level::lvl)
-
+#else
+#define LOG(lvl) COMMENT 
+#endif
 
 // The following redefined a low-level non formatted log function, as per easylogging++.h
 #define CLOG(lvl) LOG(lvl)
