@@ -124,6 +124,9 @@ std::shared_ptr<IDocumentNode> SearchResult::getDetailContent() const {
   //TIMED_FUNC(SearchResult_getDetailContent);
   return detailContent;
 }
+void SearchResult::releaseContent() {
+  detailContent.reset();
+}
 const std::string& SearchResult::getMimeType() const {
   return mimeType;
 }

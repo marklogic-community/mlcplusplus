@@ -138,6 +138,14 @@ public:
    */
   MLCLIENT_API std::shared_ptr<IDocumentNode> getDetailContent() const;
   /**
+   * \brief Releases the pointer on the underlying content document
+   * 
+   * The held content document is generally a very large in memory object. 
+   * Calling this method allows you to keep the SearchResult in a container (preserving size and order of a collection)
+   * whilst removing the bulk of the underlying used memory. 
+   */
+  MLCLIENT_API void releaseContent(); 
+  /**
    * \brief Returns the MIME type of the result
    * \return The MIME type. Could be application/json, application/xml, or any other stored MIME type
    */
