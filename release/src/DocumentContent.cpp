@@ -51,19 +51,19 @@ const std::string IDocumentContent::MIME_PPT("application/vnd.ms-powerpoint");
 const std::string IDocumentContent::MIME_PPTX("application/vnd.openxmlformats-officedocument.presentationml.presentation");
 
 IDocumentNode::IDocumentNode() {
-  ;
+  return;
 }
 
 IDocumentNode::~IDocumentNode() {
-  ;
+  return;
 }
 
 IDocumentNavigator::IDocumentNavigator() {
-  ;
+  return;
 }
 
 IDocumentNavigator::~IDocumentNavigator() {
-  ;
+  return;
 }
 
 
@@ -76,6 +76,7 @@ IDocumentContent::~IDocumentContent() {
   //TIMED_FUNC(IDocumentContent_destructor);
   LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this;
   LOG(DEBUG) << "    IDocumentContent::destructor @" << &*this << " complete.";
+  return;
 }
 
 
@@ -84,12 +85,14 @@ IDocumentContent::~IDocumentContent() {
 ITextDocumentContent::ITextDocumentContent() {
   //TIMED_FUNC(ITextDocumentContent_defaultConstructor);
   LOG(DEBUG) << "    ITextDocumentContent::defaultConstructor @" << &*this;
+  return;
 }
 
 ITextDocumentContent::~ITextDocumentContent() {
   //TIMED_FUNC(ITextDocumentContent_destructor);
   LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this;
   LOG(DEBUG) << "    ITextDocumentContent::destructor @" << &*this << " complete.";
+  return;
 }
 
 
@@ -148,8 +151,9 @@ public:
   Impl() {
     TIMED_FUNC(GenericTextDocumentContent_Impl_defaultConstructor);
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
-    content = std::unique_ptr<std::string>(new std::string("{}")); // MUST BE INITIALISED
-    mimeType = IDocumentContent::MIME_JSON;
+    this->content = std::unique_ptr<std::string>(new std::string("{}")); // MUST BE INITIALISED
+    this->mimeType = IDocumentContent::MIME_JSON;
+    return;
   }
   ~Impl() {
     ;
@@ -162,57 +166,62 @@ public:
 GenericTextDocumentContent::GenericTextDocumentContent() : ITextDocumentContent::ITextDocumentContent(), mImpl(new Impl) {
   TIMED_FUNC(GenericTextDocumentContent_defaultConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::defaultConstructor @" << &*this;
-  ;
+  return;
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const GenericTextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   TIMED_FUNC(GenericTextDocumentContent_copyGenericConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
   std::ostringstream oss;
-  oss << *(doc.mImpl->content);
-  mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
-  mImpl->mimeType = doc.getMimeType();
+  oss << *(doc.this->mImpl->content);
+  this->mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
+  this->mImpl->mimeType = doc.getMimeType();
+  return;
 }
 GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentContent& doc) : ITextDocumentContent::ITextDocumentContent(doc), mImpl(new Impl) {
   TIMED_FUNC(GenericTextDocumentContent_copyITextConstructor);
   LOG(DEBUG) << "    GenericTextDocumentContent::copyConstructor @ " << &*this;
   std::ostringstream oss;
   oss << doc.getContent();
-  mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
-  mImpl->mimeType = doc.getMimeType();
+  this->mImpl->content = std::unique_ptr<std::string>(new std::string(oss.str())); // copy constructor
+  this->mImpl->mimeType = doc.getMimeType();
+  return;
 }
 GenericTextDocumentContent::~GenericTextDocumentContent() {
-  LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(mImpl->content.get());
+  LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(this->mImpl->content.get());
   delete mImpl;
   mImpl = NULL;
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " complete.";
+  return;
 }
 void GenericTextDocumentContent::setContent(std::string content) {
   TIMED_FUNC(GenericTextDocumentContent_setContent);
   LOG(DEBUG) << "GenericTextDocumentContent::setContent: " << content;
-  mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
+  this->mImpl->content = std::unique_ptr<std::string>(new std::string(content)); // Force copy constructor
+  return;
 }
 std::string GenericTextDocumentContent::getContent() const {
   TIMED_FUNC(GenericTextDocumentContent_getContent);
-  return *(mImpl->content); // Forces copy constructor
+  return *(this->mImpl->content); // Forces copy constructor
 }
 int GenericTextDocumentContent::getLength() const {
-  return mImpl->content->size();
+  return this->mImpl->content->size();
 }
 
 std::istream* GenericTextDocumentContent::getStream() const {
   TIMED_FUNC(GenericTextDocumentContent_getStream);
-  std::istringstream* os = new std::istringstream(*(mImpl->content));
+  std::istringstream* os = new std::istringstream(*(this->mImpl->content));
   //std::ostringstream* os = new std::ostringstream;
-  //(*os) << mImpl->content.get();
+  //(*os) << this->mImpl->content.get();
   return os;
 }
 
 std::string GenericTextDocumentContent::getMimeType() const {
-  return std::string(mImpl->mimeType); // forces copy constructor
+  return std::string(this->mImpl->mimeType); // forces copy constructor
 }
 
 void GenericTextDocumentContent::setMimeType(const std::string& mt) {
-  mImpl->mimeType = std::string(mt); // invokes copy constructor
+  this->mImpl->mimeType = std::string(mt); // invokes copy constructor
+  return;
 }
 
 IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot) const {
@@ -223,7 +232,7 @@ IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot
 
 class FileDocumentContent::Impl {
 public:
-  Impl(std::string f) : file(f), mime(IDocumentContent::MIME_JSON), fs(), mimeMap() {
+  Impl(const std::string & filename) : filename(filename), mime(IDocumentContent::MIME_JSON), fs(), mimeMap() {
 
 	// Filename extension (XML).
     static const std::string XML("xml");
@@ -247,49 +256,49 @@ public:
     static const std::string PPTX("pptx");
 
     // Store the mappings between extensions and mime types.
-    mimeMap.insert(std::make_pair(XML, IDocumentContent::MIME_XML));
-    mimeMap.insert(std::make_pair(JSON, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(TXT, IDocumentContent::MIME_TXT));
-    mimeMap.insert(std::make_pair(JPG, IDocumentContent::MIME_JPG));
-    mimeMap.insert(std::make_pair(PNG, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(GIF, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(DOC, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(DOCX, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(PPT, IDocumentContent::MIME_JSON));
-    mimeMap.insert(std::make_pair(PPTX, IDocumentContent::MIME_JSON));
+    this->mimeMap.emplace(XML, IDocumentContent::MIME_XML);
+    this->mimeMap.emplace(JSON, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(TXT, IDocumentContent::MIME_TXT);
+    this->mimeMap.emplace(JPG, IDocumentContent::MIME_JPG);
+    this->mimeMap.emplace(PNG, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(GIF, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(DOC, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(DOCX, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(PPT, IDocumentContent::MIME_JSON);
+    this->mimeMap.emplace(PPTX, IDocumentContent::MIME_JSON);
 
     // get file extension
-    std::string ext = file.substr(file.find_last_of(".") + 1);
     // TODO to lower case this extension
     // derive mime type
-    auto loc = mimeMap.find(ext);
-    if (mimeMap.end() != loc) {
-      mime = loc->second;
+    auto loc = this->mimeMap.find(this->filename.substr(this->filename.find_last_of(".") + 1));
+    if (this->mimeMap.end() != loc) {
+    	this->mime = loc->second;
     }
+    return;
   }
   ~Impl() {
-    ; // fstream automatically destroyed
+    return; // fstream automatically destroyed
   }
 
-  std::string file;
-  std::string mime;
+  std::string const filename;
+  std::string mime; // TODO This really should be const.
   std::ifstream fs;
 
 private:
-  std::map<std::string,std::string> mimeMap; // TODO handle this statically
+  std::map<std::string,std::string> mimeMap; // TODO Handle this statically, and it should be const.
 };
 
 
 FileDocumentContent::FileDocumentContent(std::string file) : mImpl(mlclient::make_unique<Impl>(file)) {
-  ;
+	  return;
 }
 
 FileDocumentContent::~FileDocumentContent() {
-  ;
+	  return;
 }
 
 std::istream* FileDocumentContent::getStream() const {
-  std::ifstream* is = new std::ifstream(mImpl->file, std::ifstream::in);
+  std::ifstream* is = new std::ifstream(this->mImpl->filename, std::ifstream::in);
   //std::string str(getContent());
   //std::ostringstream* os = new std::ostringstream;
   //(*os) << str;
@@ -298,17 +307,17 @@ std::istream* FileDocumentContent::getStream() const {
 
 std::string FileDocumentContent::getContent() const {
   LOG(DEBUG) << "FileDocumentContent::getContent() entered";
-  mImpl->fs.open(mImpl->file,std::fstream::in);
+  this->mImpl->fs.open(this->mImpl->filename, std::fstream::in);
   std::string str;
 
-  mImpl->fs.seekg(0, std::ios::end);
-  str.reserve(mImpl->fs.tellg());
-  mImpl->fs.seekg(0, std::ios::beg);
+  this->mImpl->fs.seekg(0, std::ios::end);
+  str.reserve(this->mImpl->fs.tellg());
+  this->mImpl->fs.seekg(0, std::ios::beg);
 
-  str.assign((std::istreambuf_iterator<char>(mImpl->fs)),
+  str.assign((std::istreambuf_iterator<char>(this->mImpl->fs)),
              (std::istreambuf_iterator<char>()));
 
-  mImpl->fs.close();
+  this->mImpl->fs.close();
 
   LOG(DEBUG) << "FileDocumentContent::getContent() returning: " << str;
 
@@ -316,11 +325,12 @@ std::string FileDocumentContent::getContent() const {
 }
 
 std::string FileDocumentContent::getMimeType() const {
-  return mImpl->mime;
+  return this->mImpl->mime;
 }
 
 void FileDocumentContent::setMimeType(const std::string& mt) {
-  mImpl->mime = mt; // TODO enforce to lower case on this input
+  this->mImpl->mime = mt; // TODO enforce to lower case on this input
+  return;
 }
 
 
