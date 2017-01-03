@@ -69,14 +69,14 @@ void DocumentBatchHelper::addFilesToDocumentSet(const std::string& folder,const 
   dpdf = FindFirstFileW(fws, epdf);
 #endif
   LOG(DEBUG) << "Reading: " << folder;
-  if (dpdf != NULL) {
+  if (dpdf != nullptr) {
 
 #ifndef _WIN32
 
-    while ((epdf = readdir(dpdf)) != NULL) {
+    while ((epdf = readdir(dpdf)) != nullptr) {
       if(showHiddenDirs
           ? (epdf->d_type==DT_DIR && std::string(epdf->d_name) != ".." && std::string(epdf->d_name) != "." )
-          : (epdf->d_type==DT_DIR && strstr(epdf->d_name,"..") == NULL && strstr(epdf->d_name,".") == NULL ) ) {
+          : (epdf->d_type==DT_DIR && strstr(epdf->d_name,"..") == nullptr && strstr(epdf->d_name,".") == nullptr ) ) {
         addFilesToDocumentSet(std::string(folder + "/" + epdf->d_name),baseFolder,stripBase, // TODO platform independent file separator
             appendBase,collections,permissions,properties, addTo, showHiddenDirs);
       }

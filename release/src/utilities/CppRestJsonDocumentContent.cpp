@@ -87,7 +87,7 @@ CppRestJsonArrayNode::CppRestJsonArrayNode(web::json::array& arr) : mImpl(new Im
 }
 CppRestJsonArrayNode::~CppRestJsonArrayNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 bool CppRestJsonArrayNode::isArray() const {
   return true;
@@ -148,7 +148,7 @@ CppRestJsonObjectNode::CppRestJsonObjectNode(web::json::object& obj) : mImpl(new
 }
 CppRestJsonObjectNode::~CppRestJsonObjectNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 bool CppRestJsonObjectNode::isArray() const {
   return false;
@@ -249,12 +249,12 @@ CppRestJsonDocumentNode::CppRestJsonDocumentNode(web::json::value& root) : mImpl
 }
 
 CppRestJsonDocumentNode::CppRestJsonDocumentNode(CppRestJsonDocumentNode&& from) : mImpl(from.mImpl) {
-  from.mImpl = NULL;
+  from.mImpl = nullptr;
 }
 
 CppRestJsonDocumentNode::~CppRestJsonDocumentNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 
 bool CppRestJsonDocumentNode::isNull() const {
@@ -385,13 +385,13 @@ CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(web::json::value& roo
 
 CppRestJsonDocumentNavigator::CppRestJsonDocumentNavigator(CppRestJsonDocumentNavigator&& from) : mImpl(from.mImpl) {
   //LOG(DEBUG) << "CppRestJsonDocumentNavigator::copy ctor";
-  from.mImpl = NULL;
+  from.mImpl = nullptr;
 }
 
 CppRestJsonDocumentNavigator::~CppRestJsonDocumentNavigator() {
-  if (NULL != mImpl) {
+  if (nullptr != mImpl) {
     delete mImpl;
-    mImpl = NULL;
+    mImpl = nullptr;
   }
 }
 

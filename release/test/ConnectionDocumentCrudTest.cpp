@@ -53,7 +53,7 @@ void ConnectionDocumentCrudTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionDocumentCrudTest::tearDown";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ConnectionDocumentCrudTest::testSaveJson(void) {

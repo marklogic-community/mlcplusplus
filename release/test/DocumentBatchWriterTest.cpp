@@ -63,7 +63,7 @@ void DocumentBatchWriterTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE DocumentBatchWriterTest::tearDown";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void DocumentBatchWriterTest::testFolder(void) {

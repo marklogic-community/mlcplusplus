@@ -38,7 +38,7 @@ void SearchOptionsBuilderTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE SearchOptionsBuilderTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 IDocumentContent* genOptions() {

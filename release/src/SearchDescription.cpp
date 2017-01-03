@@ -70,7 +70,7 @@ SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new 
   //LOG(DEBUG) << "0";
   ITextDocumentContent* od = new GenericTextDocumentContent();
   LOG(DEBUG) << 1;
-  if (NULL == desc.mImpl->options) {
+  if (nullptr == desc.mImpl->options) {
     //LOG(DEBUG) << "1.5";
     od->setContent("{}");
     //LOG(DEBUG) << "1.6";
@@ -97,7 +97,7 @@ SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new 
   //LOG(DEBUG) << 5;
   ITextDocumentContent* qd = new GenericTextDocumentContent();
   //LOG(DEBUG) << 6;
-  if (NULL == desc.mImpl->query) {
+  if (nullptr == desc.mImpl->query) {
     //LOG(DEBUG) << "6.5";
     qd->setContent("{}");
     //LOG(DEBUG) << "6.6";
@@ -111,7 +111,7 @@ SearchDescription::SearchDescription(const SearchDescription& desc) : mImpl(new 
   //LOG(DEBUG) << 8;
   mImpl->query = std::unique_ptr<ITextDocumentContent>(qd);
   //LOG(DEBUG) << 9;
-  if (NULL == desc.mImpl->queryText) {
+  if (nullptr == desc.mImpl->queryText) {
     //LOG(DEBUG) << "9.1";
     mImpl->queryText = std::unique_ptr<std::string>(new std::string(""));
   } else {
@@ -127,7 +127,7 @@ SearchDescription::~SearchDescription() {
   TIMED_FUNC(SearchDescription_destructor);
   LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this;
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
   LOG(DEBUG) << "    SearchDescription::destructor @ " << &*this << " complete.";
 }
 

@@ -25,11 +25,11 @@ public:
   Impl(const Impl& other) = delete;
   Impl(Impl&& other) = delete;
   ~Impl() {
-    mConn = NULL;
+    mConn = nullptr;
     delete(mIter);
-    mIter = NULL;
+    mIter = nullptr;
     delete(mCachedEnd);
-    mCachedEnd = NULL;
+    mCachedEnd = nullptr;
   }
 
   IConnection* mConn;

@@ -86,7 +86,7 @@ PugiXmlArrayNode::PugiXmlArrayNode(std::shared_ptr<pugi::xml_document> doc,const
 }
 PugiXmlArrayNode::~PugiXmlArrayNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 bool PugiXmlArrayNode::isArray() const {
   return true;
@@ -155,7 +155,7 @@ PugiXmlObjectNode::PugiXmlObjectNode(std::shared_ptr<pugi::xml_document> doc,con
 }
 PugiXmlObjectNode::~PugiXmlObjectNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 bool PugiXmlObjectNode::isArray() const {
   return false;
@@ -244,7 +244,7 @@ PugiXmlAttributeNode::PugiXmlAttributeNode(std::shared_ptr<pugi::xml_document> d
 
 PugiXmlAttributeNode::~PugiXmlAttributeNode() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 bool PugiXmlAttributeNode::isNull() const {
   return strcmp(mImpl->attr.as_string(),"")==0;
@@ -353,14 +353,14 @@ PugiXmlDocumentNode::PugiXmlDocumentNode(std::shared_ptr<pugi::xml_document> own
 
 PugiXmlDocumentNode::PugiXmlDocumentNode(PugiXmlDocumentNode&& from) : mImpl(from.mImpl) {
   LOG(DEBUG) << "PugiXmlDocumentNode::copy ctor";
-  from.mImpl = NULL;
+  from.mImpl = nullptr;
 }
 
 PugiXmlDocumentNode::~PugiXmlDocumentNode() {
-  if (NULL != mImpl) {
+  if (nullptr != mImpl) {
     delete mImpl;
   }
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 
 bool PugiXmlDocumentNode::isNull() const {
@@ -480,7 +480,7 @@ IDocumentNode* createNode(std::shared_ptr<pugi::xml_document> doc,pugi::xml_node
     // Could be an Object or a String
     bool isObject = false;
     pugi::xml_node child = parent.child(key.c_str());
-    if (NULL != child) {
+    if (nullptr != child) {
       const auto& childRange = child.children();
       for (pugi::xml_node_iterator iter = childRange.begin();iter != childRange.end();++iter) {
         isObject = isObject || iter->type() == pugi::xml_node_type::node_element;
@@ -497,7 +497,7 @@ IDocumentNode* createNode(std::shared_ptr<pugi::xml_document> doc,pugi::xml_node
   }
   // May not have been found - check attributes
   const auto& attr = parent.attribute(key.c_str());
-  if (NULL != attr) {
+  if (nullptr != attr) {
     LOG(DEBUG) << "Found an XML attribute";
     return new PugiXmlAttributeNode(doc,attr);
   }
@@ -529,12 +529,12 @@ PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(std::shared_ptr<pugi::xml_doc
 }
 
 PugiXmlDocumentNavigator::PugiXmlDocumentNavigator(PugiXmlDocumentNavigator&& from) : mImpl(from.mImpl) {
-  from.mImpl = NULL;
+  from.mImpl = nullptr;
 }
 PugiXmlDocumentNavigator::~PugiXmlDocumentNavigator() {
-  if (NULL != mImpl) {
+  if (nullptr != mImpl) {
     delete mImpl;
-    mImpl = NULL;
+    mImpl = nullptr;
   }
 }
 
@@ -572,9 +572,9 @@ IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {
   for (pugi::xml_node_iterator iter = range.begin();iter != range.end();++(iter)) {
     if (pugi::xml_node_type::node_element == iter->type()) {
       const pugi::xml_node& chNode = iter->child(key.c_str());
-      if (NULL != chNode) {
+      if (nullptr != chNode) {
         childCount++;
-        while (NULL != (const_cast<pugi::xml_node&>(chNode) = chNode.next_sibling(key.c_str()))) {
+        while (nullptr != (const_cast<pugi::xml_node&>(chNode) = chNode.next_sibling(key.c_str()))) {
           childCount++;
         }
       }
@@ -587,7 +587,7 @@ IDocumentNode* PugiXmlDocumentNavigator::at(const std::string& key) const {
     return new PugiXmlArrayNode(mImpl->root,mImpl->root->first_child(),key);
   }
   const pugi::xml_attribute& attr = mImpl->root->first_child().attribute(key.c_str());
-  if (NULL != attr) {
+  if (nullptr != attr) {
     LOG(DEBUG) << "Found attribute under root document element";
     return new PugiXmlAttributeNode(mImpl->root,attr);
   }

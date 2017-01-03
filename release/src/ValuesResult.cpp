@@ -61,7 +61,7 @@ ValuesResult::ValuesResult(const ValuesResult& other) : mImpl(mlclient::make_uni
 ValuesResult::~ValuesResult() {
   LOG(DEBUG) << "ValuesResult::~ValuesResult dtor @" << &*this;
   //delete(mImpl);
-  //mImpl = NULL;
+  //mImpl = nullptr;
 }
 
 void ValuesResult::addValue(const ValuesResultValue& value) {

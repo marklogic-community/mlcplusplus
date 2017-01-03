@@ -27,7 +27,7 @@ void ValuesResultSetTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ValuesResultSetTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ValuesResultSetTest::testTwoAggregates() {

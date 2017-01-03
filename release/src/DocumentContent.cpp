@@ -117,7 +117,7 @@ BinaryDocumentContent::BinaryDocumentContent() : mImpl(new Impl) {
 }
 BinaryDocumentContent::~BinaryDocumentContent() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 void BinaryDocumentContent::setContent(std::string content) {
   // TODO BinaryDocumentContent::setContent
@@ -189,7 +189,7 @@ GenericTextDocumentContent::GenericTextDocumentContent(const ITextDocumentConten
 GenericTextDocumentContent::~GenericTextDocumentContent() {
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " : " << *(this->mImpl->content.get());
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
   LOG(DEBUG) << "    GenericTextDocumentContent::destructor @ " << &*this << " complete.";
   return;
 }

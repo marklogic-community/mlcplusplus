@@ -36,7 +36,7 @@ void PathNavigatorTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE PathNavigatorTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void PathNavigatorTest::testXmlPath() {
