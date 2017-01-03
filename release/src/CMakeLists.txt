@@ -141,13 +141,13 @@ set(external_src_filepaths
 )
 
 # Create the library target (and associate it with all of the source code.
-add_library (mlclient SHARED
+add_library(mlclient SHARED
 	${config_filepath}
 	${exportable_hdr_filepaths}
 	${utilities_hdr_filepaths}
 	${internals_hdr_filepaths}
 	${external_hdr_filepaths}
-	${exportable_src_filepaths}
+	${exported_src_filepaths}
 	${utilities_src_filepaths}
 	${internals_src_filepaths}
 	${external_src_filepaths}
