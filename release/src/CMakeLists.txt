@@ -1,78 +1,179 @@
+# Set the list of features needed by this project.
+# cxx_auto_type																		 Automatic type deduction, as defined in N1984.
+# cxx_extern_templates								Extern templates, as defined in N1987.
+# cxx_lambdas: 										Lambda functions, as defined in N2927.
+# cxx_nullptr: 										Null pointer, as defined in N2431.
+# cxx_override:										Override control override keyword, as defined in N2928, N3206 and N3272.
+# cxx_rvalue_references: 							R-value references, as defined in N2118.
+# cxx_template_template_parameters: 				Template template parameters, as defined in ISO/IEC 14882:1998.
+# cxx_deleted_functions								Deleted functions, as defined in N2346.
+# cxx_static_assert									Static assert, as defined in N1720.
+#set(mandatory_features cxx_extern_templates cxx_rvalue_references cxx_template_template_parameters cxx_auto_type)
+#set(all_features ${mandatory_features} cxx_nullptr cxx_override cxx_lambdas cxx_deleted_functions cxx_static_assert)
+# Create the compatibility filepath.
+#set(compatibility_filepath "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Compatibility.hpp")
+# Write the compatibility header.
+#write_compiler_detection_header(
+#	FILE ${compatibility_filepath}
+#	PREFIX ${PROJECT_NAME}
+#	COMPILERS MSVC GNU Clang AppleClang
+#	FEATURES ${all_features})
 
-
-
-
+# Create the configuration filepath.
+set(config_filepath "${PROJECT_BINARY_DIR}/mlclientConfig.h")
 # Have CMake do a search and replace on the version numbers in our config.h file
 configure_file (
-  "${PROJECT_SOURCE_DIR}/mlclientConfig.h.in"
-  "${PROJECT_BINARY_DIR}/mlclientConfig.h"
-  )
+	"${PROJECT_SOURCE_DIR}/mlclientConfig.h.in"
+	${config_filepath}
+)
 
-# add the binary tree to the search path for include files
-# so that we will find mlclientConfig.h
-include_directories("${PROJECT_BINARY_DIR}")
+# Create an installation for the header files.
+#install(FILES ${compatibility_filepath} DESTINATION ${INSTALL_INCLUDE_DIR} COMPONENT headers)
+#install(FILES ${config_filepath} DESTINATION ${INSTALL_INCLUDE_DIR} COMPONENT headers)
 
+# Store the header directory (so that I don't have to type it over and over again).
+set(hdr_dir ${PROJECT_SOURCE_DIR}/include/mlclient)
 
+# Select all of the exportable header files.
+set(exportable_hdr_filepaths
+	${hdr_dir}/CWrapper.hpp
+	${hdr_dir}/Connection.hpp
+	${hdr_dir}/Document.hpp
+	${hdr_dir}/DocumentContent.hpp
+	${hdr_dir}/DocumentSet.hpp
+	${hdr_dir}/HttpHeaders.hpp
+	${hdr_dir}/InvalidFormatException.hpp
+	${hdr_dir}/MarkLogicTypes.hpp
+	${hdr_dir}/NoCredentialsException.hpp
+	${hdr_dir}/Permission.hpp
+	${hdr_dir}/Response.hpp
+	${hdr_dir}/SearchDescription.hpp
+	${hdr_dir}/SearchResult.hpp
+	${hdr_dir}/SearchResultSet.hpp
+	${hdr_dir}/ValuesResult.hpp
+	${hdr_dir}/ValuesResultSet.hpp
+	${hdr_dir}/logging.hpp
+	${hdr_dir}/mlclient.hpp
+)
 
-# ML C++ own libraries
+# Select all of the utilities header files.
+set(utilities_hdr_filepaths
+	${hdr_dir}/utilities/CppRestJsonDocumentContent.hpp
+	${hdr_dir}/utilities/CppRestJsonHelper.hpp
+	${hdr_dir}/utilities/DocumentBatchHelper.hpp
+	${hdr_dir}/utilities/DocumentBatchWriter.hpp
+	${hdr_dir}/utilities/DocumentHelper.hpp
+	${hdr_dir}/utilities/PathNavigator.hpp
+	${hdr_dir}/utilities/PugiXmlDocumentContent.hpp
+	${hdr_dir}/utilities/PugiXmlHelper.hpp
+	${hdr_dir}/utilities/ResponseHelper.hpp
+	${hdr_dir}/utilities/SearchBuilder.hpp
+	${hdr_dir}/utilities/SearchOptionsBuilder.hpp
+)
+
+# Select all of the internal header files.
+set(internals_hdr_filepaths
+	${hdr_dir}/internals/AuthenticatingProxy.hpp
+	${hdr_dir}/internals/AuthorizationBuilder.hpp
+	${hdr_dir}/internals/Conversions.hpp
+	${hdr_dir}/internals/Credentials.hpp
+	${hdr_dir}/internals/FakeConnection.hpp
+	${hdr_dir}/internals/MLCrypto.hpp
+	${hdr_dir}/internals/memory.hpp
+)
+
+# Select all of the external header files.
+set(external_hdr_filepaths
+	${hdr_dir}/ext/pugixml/pugiconfig.hpp
+	${hdr_dir}/ext/pugixml/pugixml.hpp
+)
+
+# Select all of the exportable source files.
+set(exported_src_filepaths 
+	Connection.cpp
+	ConnectionWrapper.cpp
+	Document.cpp
+	DocumentContent.cpp
+	HttpHeaders.cpp
+	InvalidFormatException.cpp
+	MarkLogicTypes.cpp
+	NoCredentialsException.cpp
+	Permission.cpp
+	Response.cpp
+	ResponseWrapper.cpp
+	SearchDescription.cpp
+	SearchResult.cpp
+	SearchResultSet.cpp
+	ValuesResult.cpp
+	ValuesResultSet.cpp
+	logging.cpp
+	mlclient.cpp
+)
+
+# Select all of the internals source files.
+set(internals_src_filepaths
+	internals/AuthenticatingProxy.cpp
+	internals/AuthorizationBuilder.cpp
+	internals/Conversions.cpp
+	internals/Credentials.cpp
+	internals/FakeConnection.cpp
+	internals/MLCrypto.cpp
+)
+
+# Select all of the utilities source files.
+set(utilities_src_filepaths
+	utilities/CppRestJsonDocumentContent.cpp
+	utilities/CppRestJsonHelper.cpp
+	utilities/DocumentBatchHelper.cpp
+	utilities/DocumentBatchWriter.cpp
+	utilities/DocumentHelper.cpp
+	utilities/PathNavigator.cpp
+	utilities/PugiXmlDocumentContent.cpp
+	utilities/PugiXmlHelper.cpp
+	utilities/ResponseHelper.cpp
+	utilities/SearchBuilder.cpp
+	utilities/SearchOptionsBuilder.cpp
+)
+
+# Select all of the external source files.
+set(external_src_filepaths 
+	ext/pugixml/pugixml.cpp
+)
+
+# Create the library target (and associate it with all of the source code.
 add_library (mlclient SHARED
-    Connection.cpp
-    mlclient.cpp
-    logging.cpp
-    NoCredentialsException.cpp
-    HttpHeaders.cpp
-    Response.cpp
-    MarkLogicTypes.cpp
-
-    DocumentContent.cpp
-    InvalidFormatException.cpp
-    SearchDescription.cpp
-    SearchResult.cpp
-    SearchResultSet.cpp
-    ValuesResult.cpp
-    ValuesResultSet.cpp
-
-    Permission.cpp
-    Document.cpp
-
-    internals/AuthenticatingProxy.cpp
-    internals/AuthorizationBuilder.cpp
-    internals/Credentials.cpp
-    internals/FakeConnection.cpp
-    internals/MLCrypto.cpp
-
-    ConnectionWrapper.cpp
-    ResponseWrapper.cpp
-
-    utilities/CppRestJsonHelper.cpp
-    utilities/CppRestJsonDocumentContent.cpp
-    utilities/PugiXmlHelper.cpp
-    utilities/PugiXmlDocumentContent.cpp
-    utilities/DocumentHelper.cpp
-    utilities/DocumentBatchHelper.cpp
-    utilities/DocumentBatchWriter.cpp
-    utilities/ResponseHelper.cpp
-    utilities/SearchBuilder.cpp
-    utilities/SearchOptionsBuilder.cpp
-    utilities/PathNavigator.cpp
-
-    ext/pugixml/pugixml.cpp
+	${config_filepath}
+	${exportable_hdr_filepaths}
+	${utilities_hdr_filepaths}
+	${internals_hdr_filepaths}
+	${external_hdr_filepaths}
+	${exportable_src_filepaths}
+	${utilities_src_filepaths}
+	${internals_src_filepaths}
+	${external_src_filepaths}
 )
 
 # Compile under C++11
 set_property(TARGET mlclient PROPERTY CXX_STANDARD 11)
+# Tie in the include directories.
+target_include_directories(mlclient 
+		PUBLIC ${PROJECT_SOURCE_DIR}/include
+		PUBLIC ${PROJECT_BINARY_DIR}
+		PUBLIC ${OPENSSL_INCLUDE_DIR}
+		PUBLIC ${Boost_INCLUDE_DIRS}
+)
+# Need to indicate project requires features...
+#target_compile_features(mlclient PUBLIC ${mandatory_features})
 
-
-# ML C++ dependencies
-
-include_directories (BEFORE ../include )
-
-# Casablanca
-# Assume source in same directory as mlclient
-#include_directories (AFTER
-#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/include
-#  ${PROJECT_BINARY_DIR}/../../casablanca/Release/src/pch
-#  )
+# Group the source files for clarity in the MS Visual Studio solution.
+source_group("include\\\\mlclient" FILES ${exportable_hdr_filepaths})
+source_group("include\\\\mlclient\\\\utilities" FILES ${utilities_hdr_filepaths})
+source_group("include\\\\mlclient\\\\internals" FILES ${internals_hdr_filepaths})
+source_group("include\\\\mlclient\\\\ext\\\\pugixml" FILES ${exportable_hdr_filepaths})
+source_group("src" FILES ${exported_src_filepaths})
+source_group("src\\\\utilities" FILES ${utilities_src_filepaths})
+source_group("src\\\\internals" FILES ${internals_src_filepaths})
+source_group("src\\\\ext\\\\pugixml" FILES ${external_src_filepaths})
 
 # Open SSL - to find the cmake commands - TODO do we need this anymore?
 set (OPENSSL_DIR "/usr/local/opt/openssl")
@@ -82,20 +183,20 @@ set (OPENSSL_DIR "/usr/local/opt/openssl")
 #pkg_search_module(OPENSSL REQUIRED openssl)
 
 #if( OPENSSL_FOUND )
-#    include_directories(${OPENSSL_INCLUDE_DIRS})
-#    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+#		include_directories(${OPENSSL_INCLUDE_DIRS})
+#		message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
 #else()
-    # Error; with REQUIRED, pkg_search_module() will throw an error by it's own
+		# Error; with REQUIRED, pkg_search_module() will throw an error by it's own
 #endif()
 
 # TODO Use 1.0.1h explicitly to prevent MITM and other zero day attacks
 #find_package (OpenSSL REQUIRED
 # Following line seems REQUIRED on Mac OS X
-#  PATHS /usr/local/opt/openssl
-#  )
+#	PATHS /usr/local/opt/openssl
+#	)
 # NB That OpenSSL on the mac is very very old. Here is the 1.0.1h openssl info:-
-#     LDFLAGS:  -L/usr/local/opt/openssl/lib
-#     CPPFLAGS: -I/usr/local/opt/openssl/include
+#		 LDFLAGS:	-L/usr/local/opt/openssl/lib
+#		 CPPFLAGS: -I/usr/local/opt/openssl/include
 
 set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 #set (OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib/libssl.dylib")
@@ -103,21 +204,27 @@ set (OPENSSL_INCLUDE_DIR "/usr/local/opt/openssl/include")
 
 # Now link our library to its dependencies
 #target_link_libraries (mlclient
-#  ${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
-#  ${OPENSSL_LIBRARIES}
-#  ${Boost_LIBRARIES}
-#  )
+#	${PROJECT_BINARY_DIR}/../../casablanca/build.release/Binaries/libcasablanca.dylib
+#	${OPENSSL_LIBRARIES}
+#	${Boost_LIBRARIES}
+#	)
 
 target_link_libraries (mlclient
-#    libcommon_utilities.dylib
-#    libpugixml.a
-#    ${GLOG_LIB}
-    ${OPENSSL_LIBRARIES}
-    ${LIBSSL_LIB}
-    ${LIBCRYPTO_LIB}
-    ${CPPREST_LIB}
-    ${Casablanca_LIBRARIES}
-#    c++abi
+	${LIB}cpprest
+	${OPENSSL_LIBRARIES}
+	${LIBSSL_LIB}
+	${LIBCRYPTO_LIB}
+	${CPPREST_LIB}
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_THREAD_LIBRARY}
+	${Boost_ATOMIC_LIBRARY}
+	${Boost_CHRONO_LIBRARY}
+	${Boost_RANDOM_LIBRARY}
+	${Boost_REGEX_LIBRARY}
+	${Boost_LOG_LIBRARY}
+	${Boost_LOG_SETUP_LIBRARY}
+	${Boost_UNIT_TEST_FRAMEWORK}
 )
 
 
@@ -151,29 +258,29 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${PYTHON_INCLUDE_PATH} ${mlclien
 SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES CPLUSPLUS ON)
 #SET_SOURCE_FILES_PROPERTIES(mlclient-python.i PROPERTIES SWIG_FLAGS "-includeall")
 SWIG_ADD_MODULE(mlclientpython python mlclient-python.i
-    Connection.cpp
-    mlclient.cpp
-    NoCredentialsException.cpp
-    HttpHeaders.cpp
-    Response.cpp
+	Connection.cpp
+	mlclient.cpp
+	NoCredentialsException.cpp
+	HttpHeaders.cpp
+	Response.cpp
 
-    DocumentContent.cpp
-    InvalidFormatException.cpp
-    SearchDescription.cpp
+	DocumentContent.cpp
+	InvalidFormatException.cpp
+	SearchDescription.cpp
 )
 SWIG_LINK_LIBRARIES(mlclientpython
-    libcpprest.dylib
-    libssl.dylib
-    libcrypto.dylib
-#    libpugixml.a
-    mlclient
-    ${Casablanca_LIBRARIES}
-    ${PYTHON_LIBRARIES}
+	libcpprest.dylib
+	libssl.dylib
+	libcrypto.dylib
+#	libpugixml.a
+	mlclient
+	${Casablanca_LIBRARIES}
+	${PYTHON_LIBRARIES}
 )
 SET(CMAKE_SWIG_FLAGS "")
 
 else()
-  message("-- NOT building SWIG Python wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_PYTHON=1 to enable)")
+	message("-- NOT building SWIG Python wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_PYTHON=1 to enable)")
 endif()
 # endif for python with check
 
@@ -196,59 +303,59 @@ set(SWIG_MODULE_mlclientCSharp_TARGET_NAME "mlclientcs")
 
 set_source_files_properties ( mlclient-cs.i PROPERTIES CPLUSPLUS ON )
 
-  # Make sure the nested directory structure exists
-  set(CSHARP_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpSources CACHE INTERNAL "")
-  set(CSHARP_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpBinaries CACHE INTERNAL "")
-  file(MAKE_DIRECTORY ${CSHARP_SOURCE_DIRECTORY})
-  file(MAKE_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+	# Make sure the nested directory structure exists
+	set(CSHARP_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpSources CACHE INTERNAL "")
+	set(CSHARP_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/CSharpBinaries CACHE INTERNAL "")
+	file(MAKE_DIRECTORY ${CSHARP_SOURCE_DIRECTORY})
+	file(MAKE_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
 
-    # Create swig target
-    set(CMAKE_SWIG_OUTDIR ${CSHARP_SOURCE_DIRECTORY})
-    if ( UNIX )
-      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
-    else (WIN32 )
-      #set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
-    endif ( UNIX )
-    set(CMAKE_SWIG_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR} -namespace \"mlclient\" ${CMAKE_SWIG_GLOBAL_FLAGS} ${CMAKE_SWIG_FLAGS})
-    set(SWIG_MODULE_mlclientCSharp_EXTRA_DEPS ${SWIG_EXTRA_DEPS}
-      ${CMAKE_CURRENT_SOURCE_DIR}/mlclient-cs.i
-    ) #  ${CMAKE_CURRENT_SOURCE_DIR}/CSharpTypemapHelper.i
+		# Create swig target
+		set(CMAKE_SWIG_OUTDIR ${CSHARP_SOURCE_DIRECTORY})
+		if ( UNIX )
+			#set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
+		else (WIN32 )
+			#set(CMAKE_SWIG_FLAGS -dllimport \"mlclientcs\")
+		endif ( UNIX )
+		set(CMAKE_SWIG_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR} -namespace \"mlclient\" ${CMAKE_SWIG_GLOBAL_FLAGS} ${CMAKE_SWIG_FLAGS})
+		set(SWIG_MODULE_mlclientCSharp_EXTRA_DEPS ${SWIG_EXTRA_DEPS}
+			${CMAKE_CURRENT_SOURCE_DIR}/mlclient-cs.i
+		) #	${CMAKE_CURRENT_SOURCE_DIR}/CSharpTypemapHelper.i
 
-    swig_add_module(mlclientcs csharp mlclient-cs.i)
+		swig_add_module(mlclientcs csharp mlclient-cs.i)
 
-    target_link_libraries(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} mlclient ${mlclient_LIBRARIES})
-    set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
-    if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
-      set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dylib")
-    else (Other)
-      if ( UNIX )
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
-      else ( WIN32 )
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
-        set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
-        foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
-          string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
-          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
-            PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
-          set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
-            PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
-        endforeach( )
-      endif( UNIX )
-    endif ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
+		target_link_libraries(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} mlclient ${mlclient_LIBRARIES})
+		set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CSHARP_BINARY_DIRECTORY})
+		if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
+			set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+			set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dylib")
+		else (Other)
+			if ( UNIX )
+				set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "lib")
+				set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".so")
+			else ( WIN32 )
+				set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES PREFIX "")
+				set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME} PROPERTIES SUFFIX ".dll")
+				foreach ( CMAKE_CONFIGURATION_TYPE ${CMAKE_CONFIGURATION_TYPES} )
+					string(TOUPPER ${CMAKE_CONFIGURATION_TYPE} CMAKE_CONFIGURATION_TYPE)
+					set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+						PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+					set_target_properties(${SWIG_MODULE_mlclientCSharp_TARGET_NAME}
+						PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPE} "${CSHARP_BINARY_DIRECTORY}")
+				endforeach( )
+			endif( UNIX )
+		endif ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin" )
 
-    # The below needs to be /usr/lib, along with all depdendencies, as C# apps suck at following env variables
-    install (TARGETS mlclientcs LIBRARY DESTINATION lib
-                                ARCHIVE DESTINATION "lib"
-                                RUNTIME DESTINATION "bin"
-                                COMPONENT library )
+		# The below needs to be /usr/lib, along with all depdendencies, as C# apps suck at following env variables
+		install (TARGETS mlclientcs LIBRARY DESTINATION lib
+																ARCHIVE DESTINATION "lib"
+																RUNTIME DESTINATION "bin"
+																COMPONENT library )
 
 
 SET(CMAKE_SWIG_FLAGS "")
 
 else()
-  message("-- NOT building SWIG C# wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_CSHARP=1 to enable)")
+	message("-- NOT building SWIG C# wrapper (edit ./bin/build-deps-settings.sh|bat with WITH_CSHARP=1 to enable)")
 
 endif()
 # end if c# swig with found
@@ -262,22 +369,22 @@ endif()
 #SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES CPLUSPLUS ON)
 #SET_SOURCE_FILES_PROPERTIES(mlclient-go.i PROPERTIES SWIG_FLAGS "-includeall -cgo -intgosize 64")
 #SWIG_ADD_MODULE(mlclient-go go mlclient-go.i
-#    Connection.cpp
-#    mlclient.cpp
-#    NoCredentialsException.cpp
-#    Response.cpp
+#		Connection.cpp
+#		mlclient.cpp
+#		NoCredentialsException.cpp
+#		Response.cpp
 
-#    DocumentContent.cpp
-#    InvalidFormatException.cpp
-#    SearchDescription.cpp
+#		DocumentContent.cpp
+#		InvalidFormatException.cpp
+#		SearchDescription.cpp
 #)
 #SWIG_LINK_LIBRARIES(mlclient-go
-#    libcpprest.dylib
-#    libcommon_utilities.dylib
-#    libssl.dylib
-#    libcrypto.dylib
-#    libpugixml.a
-#    ${Casablanca_LIBRARIES}
+#		libcpprest.dylib
+#		libcommon_utilities.dylib
+#		libssl.dylib
+#		libcrypto.dylib
+#		libpugixml.a
+#		${Casablanca_LIBRARIES}
 #)
 
 
@@ -288,17 +395,17 @@ endif()
 #SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES CPLUSPLUS ON)
 #SET_SOURCE_FILES_PROPERTIES(mlclient-ruby.i PROPERTIES SWIG_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
 #SWIG_ADD_MODULE(mlclient-ruby ruby mlclient-ruby.i
-#    Connection.cpp
-#    mlclient.cpp
-#    NoCredentialsException.cpp
-#    Response.cpp
+#		Connection.cpp
+#		mlclient.cpp
+#		NoCredentialsException.cpp
+#		Response.cpp
 #
-#    DocumentContent.cpp
-#    InvalidFormatException.cpp
-#    SearchDescription.cpp
+#		DocumentContent.cpp
+#		InvalidFormatException.cpp
+#		SearchDescription.cpp
 #)
 #set_source_files_properties( ${swig_generated_file_fullname}
-#                             PROPERTIES COMPILE_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
+#														 PROPERTIES COMPILE_FLAGS "-I/usr/local/include/ruby-2.2.0/ruby.h")
 #SWIG_LINK_LIBRARIES(mlclient-ruby mlclient)
 
 
@@ -317,12 +424,12 @@ endif()
 #SET( SWIG_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/mlclient_ruby.cxx" )
 
 #ADD_CUSTOM_COMMAND (
-#   OUTPUT  ${SWIG_OUTPUT}
-#   COMMAND ${CMAKE_COMMAND} -E echo_append "Creating wrapper code for ruby..."
-#   COMMAND ${SWIG_EXECUTABLE} -c++ -ruby -autorename -o ${SWIG_OUTPUT} -I${LIBMLCLIENT_INCLUDE_DIR} ${SWIG_INPUT}
-#   COMMAND ${CMAKE_COMMAND} -E echo "Done."
-#   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-#   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.i
+#	 OUTPUT	${SWIG_OUTPUT}
+#	 COMMAND ${CMAKE_COMMAND} -E echo_append "Creating wrapper code for ruby..."
+#	 COMMAND ${SWIG_EXECUTABLE} -c++ -ruby -autorename -o ${SWIG_OUTPUT} -I${LIBMLCLIENT_INCLUDE_DIR} ${SWIG_INPUT}
+#	 COMMAND ${CMAKE_COMMAND} -E echo "Done."
+#	 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+#	 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.i
 #)
 
 #ADD_LIBRARY( mlclient-ruby SHARED ${SWIG_OUTPUT} )
@@ -341,7 +448,7 @@ endif()
 endif()
 # end if swig found
 else()
-  message("-- NOT building SWIG modules (edit ./bin/build-deps-settings.sh|bat with WITH_SWIG=1 to enable)")
+	message("-- NOT building SWIG modules (edit ./bin/build-deps-settings.sh|bat with WITH_SWIG=1 to enable)")
 endif()
 # end if with_swig set (off by default)
 
@@ -350,9 +457,9 @@ endif()
 
 # INSTALLATION
 install (TARGETS mlclient LIBRARY DESTINATION lib
-                          ARCHIVE DESTINATION "lib"
-                          RUNTIME DESTINATION "bin"
-                          COMPONENT library )
+	ARCHIVE DESTINATION "lib"
+	RUNTIME DESTINATION "bin"
+	COMPONENT library)
 #install (FILES mlclient.h mlclient.hpp Response.hpp ResponseWrapper.h NoCredentialsException.hpp InvalidFormatException.hpp ConnectionWrapper.h Connection.hpp CWrapper.hpp SearchDescription.hpp DocumentContent.hpp HttpHeaders.hpp SearchResult.hpp SearchResultSet.hpp DESTINATION include/mlclient)
 #install (FILES utilities/CppRestJsonDocumentContent.hpp utilities/SearchBuilder.hpp utilities/SearchOptionsBuilder.hpp utilities/ResponseHelper.hpp utilities/CppRestJsonHelper.hpp utilities/PugiXmlHelper.hpp DESTINATION include/mlclient/utilities)
 #install (FILES ${mlclient_INCLUDE_DIR} DESTINATION include)

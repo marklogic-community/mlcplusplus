@@ -22,6 +22,9 @@ add_executable(mlcpptest
 )
 target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES} ${GLOG_LIB})
 
+# Compile under C++11
+set_property(TARGET mlcpptest PROPERTY CXX_STANDARD 11)
+
 
 else()
   message("-- NOT building Tests (edit ./bin/build-deps-settings.sh|bat with WITH_TESTS=1 to enable)")
