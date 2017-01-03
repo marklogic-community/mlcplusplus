@@ -66,7 +66,7 @@ std::unique_ptr<pugi::xml_document> PugiXmlHelper::fromDocument(const IDocumentC
   pugi::xml_parse_result result = doc->load_string(os.str().c_str());
 
   if (result) {
-    return std::move(doc);
+    return doc;
   } else {
     std::cout << "XML [" << os.str() << "] parsed with errors]\n";
     std::cout << "Error description: " << result.description() << "\n";
