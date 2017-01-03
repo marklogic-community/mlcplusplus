@@ -157,9 +157,9 @@ Response* FakeConnection::getDocument(const std::string& uri) {
     headers.setHeader("Content-type",mime);
     response->setResponseHeaders(headers);
     response->setResponseCode(ResponseCode::OK);
-    if (0 == mime.compare("application/json")) {
+    if (0 == mime.compare(IDocumentContent::MIME_JSON)) {
       response->setResponseType(ResponseType::JSON);
-    } else if (0 == mime.compare("application/xml") ) {
+    } else if (0 == mime.compare(IDocumentContent::MIME_XML) ) {
       response->setResponseType(ResponseType::XML);
     } else if (0 == mime.compare("text/plain")) {
       response->setResponseType(ResponseType::TEXT);
@@ -201,7 +201,7 @@ Response* FakeConnection::search(const SearchDescription& desc) {
 
   response->setResponseCode(ResponseCode::OK);
   HttpHeaders headers;
-  headers.setHeader("Content-type","application/json");
+  headers.setHeader("Content-type",IDocumentContent::MIME_JSON);
   response->setResponseHeaders(headers);
   std::ostringstream cos;
   cos <<

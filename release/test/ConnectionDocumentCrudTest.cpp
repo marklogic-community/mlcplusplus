@@ -63,7 +63,7 @@ void ConnectionDocumentCrudTest::testSaveJson(void) {
 
   // Note not using the Json or Xml helpers as we're not testing them here
   GenericTextDocumentContent tdc;
-  tdc.setMimeType("application/json");
+  tdc.setMimeType(IDocumentContent::MIME_JSON);
   tdc.setContent(json);
   const Response* response = ml->saveDocumentContent(jsonUri,tdc);
 

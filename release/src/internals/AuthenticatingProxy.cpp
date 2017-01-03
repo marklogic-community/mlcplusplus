@@ -117,7 +117,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
     }
     // TODO common string constants to pre-created variables
     if (!restHeaders.has(U("Accept"))) {
-      restHeaders.add(U("Accept"),U("application/json")); // default to JSON response type for MarkLogic
+      restHeaders.add(U("Accept"),U(IDocumentContent::MIME_JSON)); // default to JSON response type for MarkLogic
     }
     req.set_request_uri(web::uri(utility::conversions::to_string_t(path)));
 
@@ -279,7 +279,7 @@ Response* AuthenticatingProxy::doRequest(const std::string& method,const std::st
       }
       // TODO common string constants to pre-created variables
       if (!restHeaders.has(U("Accept"))) {
-        restHeaders.add(U("Accept"),U("application/json")); // default to JSON response type for MarkLogic
+        restHeaders.add(U("Accept"),U(IDocumentContent::MIME_JSON)); // default to JSON response type for MarkLogic
       }
       LOG(DEBUG) << "Generating auth header";
       LOG(DEBUG) << "Original auth response was: " << responseAuthHeaderValue;
@@ -495,7 +495,7 @@ Response* AuthenticatingProxy::multiPostSync(const std::string& host,const std::
 
   HttpHeaders headers = commonHeaders; // copy assignment operator
   headers.setHeader("Content-type","multipart/mixed; boundary=BOUNDARY");
-  headers.setHeader("Accept","application/json");
+  headers.setHeader("Accept",IDocumentContent::MIME_JSON);
   std::ostringstream os;
   os << ct.length();
   headers.setHeader("Content-Length",os.str());

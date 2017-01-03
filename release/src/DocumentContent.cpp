@@ -142,7 +142,7 @@ public:
     TIMED_FUNC(GenericTextDocumentContent_Impl_defaultConstructor);
     LOG(DEBUG) << "    GenericTextDocumentContent::Impl::defaultConstructor @" << &*this;
     content = std::unique_ptr<std::string>(new std::string("{}")); // MUST BE INITIALISED
-    mimeType = "application/json";
+    mimeType = IDocumentContent::MIME_JSON;
   }
   ~Impl() {
     ;
@@ -216,7 +216,7 @@ IDocumentNavigator* GenericTextDocumentContent::navigate(bool firstElementAsRoot
 
 class FileDocumentContent::Impl {
 public:
-  Impl(std::string f) : file(f), mime("application/json"), fs(), mimeMap() {
+  Impl(std::string f) : file(f), mime(IDocumentContent::MIME_JSON), fs(), mimeMap() {
 
 	// Extension/mime-type mapping (XML).
     static const std::string XML("xml");
@@ -224,7 +224,7 @@ public:
 
     // Extension/mime-type mapping (JSON).
     static const std::string JSON("json");
-    static const std::string JSON_MIME("application/json");
+    static const std::string JSON_MIME(IDocumentContent::MIME_JSON);
 
     // Extension/mime-type mapping (TXT).
     static const std::string TXT("txt");

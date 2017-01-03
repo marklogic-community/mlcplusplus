@@ -39,7 +39,7 @@ ITextDocumentContent* CppRestJsonHelper::toDocument(web::json::value& json) {
   TIMED_FUNC(CppRestJsonHelper_toDocument);
   CppRestJsonDocumentContent* tdc = new CppRestJsonDocumentContent;
   tdc->setContent(json); // move constructor used
-  tdc->setMimeType("application/json");
+  tdc->setMimeType(IDocumentContent::MIME_JSON);
   return tdc; // TODO ensure this doesn't get nixed
 }
 
