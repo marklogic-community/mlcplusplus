@@ -5,6 +5,7 @@ cmake_minimum_required (VERSION 3.5.0)
 # Bring in some additional CMake modules.
 include(WriteCompilerDetectionHeader)
 include(CMakeDependentOption)
+include(FeatureSummary)
 
 # POLICY SETTING OVERRIDES
 set(CMAKE_MACOSX_RPATH 1)
@@ -20,14 +21,41 @@ set(mlclient_VERSION_REVISION 3)
 set(mlclient_VERSION "${mlclient_VERSION_MAJOR}.${mlclient_VERSION_MINOR}.${mlclient_VERSION_REVISION}")
 
 # Create a series of configuration options to tune portion of project that is in use.
+
+# Create the logging option.
 option(WITH_LOGGING "Enable logging." OFF)
+# Set the feature information.
+add_feature_info(Logging WITH_LOGGING "MarkLogic C++ REST API logging feature.")
+
+# Create the tests option.
 option(WITH_TESTS "Enable tests." OFF)
+# Set the feature information.
+add_feature_info(Tests WITH_TESTS "MarkLogic C++ REST API tests feature.")
+
+# Create the samples option.
 option(WITH_SAMPLES "Enable samples." OFF)
+# Set the feature information.
+add_feature_info(Samples WITH_SAMPLES "MarkLogic C++ REST API samples feature.")
+
+# Create the documentation option.
 option(WITH_DOCS "Enable documentation." OFF)
+# Set the feature information.
+add_feature_info(Docs WITH_DOCS "MarkLogic C++ REST API documentation feature.")
+
+# Create the SWIG option.
 option(WITH_SWIG "Enable SWIG." OFF)
-# SWIG bindings require SWIG.
+# Set the feature information.
+add_feature_info(Swig WITH_SWIG "MarkLogic C++ REST API SWIG feature.")
+
+# Create the Python SWIG bindings option (SWIG bindings require SWIG).
 cmake_dependent_option(WITH_PYTHON "Use Python (with SWIG)" OFF "WITH_SWIG" OFF)
+# Set the feature information.
+add_feature_info(SwigPython WITH_PYTHON "MarkLogic C++ REST API SWIG Python bindings feature.")
+
+# Create the C# SWIG bindings option (SWIG bindings require SWIG).
 cmake_dependent_option(WITH_CSHARP "Use C# (with SWIG)" OFF "WITH_SWIG" OFF)
+# Set the feature information.
+add_feature_info(SwigCSharp WITH_CSHARP "MarkLogic C++ REST API SWIG C# bindings feature.")
 
 # Provide some command-line feedback.
 IF (WITH_LOGGING)
@@ -124,3 +152,11 @@ add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(samples)
 add_subdirectory(doxygen)
+
+# Grab the enabled features.
+feature_summary(WHAT ENABLED_FEATURES
+	INCLUDE_QUIET_PACKAGES
+	DESCRIPTION "Enabled Features:"
+	VAR enabledFeaturesText)
+# Print them out.
+message("${enabledFeaturesText}")
