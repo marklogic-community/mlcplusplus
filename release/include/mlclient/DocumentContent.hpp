@@ -96,6 +96,14 @@ public:
 
   MLCLIENT_API static const std::string MIME_JSON; //< The value application/json
   MLCLIENT_API static const std::string MIME_XML; //< The value application/xml
+  MLCLIENT_API static const std::string MIME_TXT; //< The value text/plain
+  MLCLIENT_API static const std::string MIME_JPG; //< The value image/jpeg
+  MLCLIENT_API static const std::string MIME_PNG; //< The value image/png
+  MLCLIENT_API static const std::string MIME_GIF; //< The value image/gif
+  MLCLIENT_API static const std::string MIME_DOC; //< The value application/msword
+  MLCLIENT_API static const std::string MIME_DOCX; //< The value application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  MLCLIENT_API static const std::string MIME_PPT; //< The value application/vnd.ms-powerpoint
+  MLCLIENT_API static const std::string MIME_PPTX; //< The value application/vnd.openxmlformats-officedocument.presentationml.presentation
 
 };
 

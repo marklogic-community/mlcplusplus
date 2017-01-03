@@ -39,9 +39,16 @@ namespace mlclient {
  *
  * \note You can provide any string for mimeType - you are NOT limited to these enum values.
  */
-const std::string IDocumentContent::MIME_JSON = "application/json";    /// Standard MarkLogic JSON mime type. Used for all configuration API calls
-const std::string IDocumentContent::MIME_XML = "application/xml";       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
-
+const std::string IDocumentContent::MIME_JSON("application/json");    /// Standard MarkLogic JSON mime type. Used for all configuration API calls
+const std::string IDocumentContent::MIME_XML("application/xml");       /// Standard MarkLogic XML mime type. Used for non-JSON configuration API calls, search options, etc.
+const std::string IDocumentContent::MIME_TXT("text/plain");
+const std::string IDocumentContent::MIME_JPG("image/jpeg");
+const std::string IDocumentContent::MIME_PNG("image/png");
+const std::string IDocumentContent::MIME_GIF("image/gif");
+const std::string IDocumentContent::MIME_DOC("application/msword");
+const std::string IDocumentContent::MIME_DOCX("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+const std::string IDocumentContent::MIME_PPT("application/vnd.ms-powerpoint");
+const std::string IDocumentContent::MIME_PPTX("application/vnd.openxmlformats-officedocument.presentationml.presentation");
 
 IDocumentNode::IDocumentNode() {
   ;
@@ -218,57 +225,38 @@ class FileDocumentContent::Impl {
 public:
   Impl(std::string f) : file(f), mime(IDocumentContent::MIME_JSON), fs(), mimeMap() {
 
-	// Extension/mime-type mapping (XML).
+	// Filename extension (XML).
     static const std::string XML("xml");
-    static const std::string XML_MIME("application/xml");
-
-    // Extension/mime-type mapping (JSON).
+    // Filename extension (JSON).
     static const std::string JSON("json");
-    static const std::string JSON_MIME(IDocumentContent::MIME_JSON);
-
-    // Extension/mime-type mapping (TXT).
+     // Filename extension (TXT).
     static const std::string TXT("txt");
-    static const std::string TXT_MIME("text/plain");
-
-	// Extension/mime-type mapping (JPG).
+	// Filename extension (JPG).
     static const std::string JPG("jpg");
-    static const std::string JPG_MIME("image/jpeg");
-
-	// Extension/mime-type mapping (PNG).
+ 	// Filename extension (PNG).
     static const std::string PNG("png");
-    static const std::string PNG_MIME("image/png");
-
-	// Extension/mime-type mapping (GIF).
+	// Filename extension (GIF).
     static const std::string GIF("gif");
-    static const std::string GIF_MIME("image/gif");
-
-	// Extension/mime-type mapping (DOC).
+	// Filename extension (DOC).
     static const std::string DOC("doc");
-    static const std::string DOC_MIME("application/msword");
-
-	// Extension/mime-type mapping (DOCX).
+	// Filename extension (DOCX).
     static const std::string DOCX("docx");
-    static const std::string DOCX_MIME("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-
-	// Extension/mime-type mapping (PPT).
+	// Filename extension (PPT).
     static const std::string PPT("ppt");
-    static const std::string PPT_MIME("application/vnd.ms-powerpoint");
-
-	// Extension/mime-type mapping (PPTX).
+	// Filename extension (PPTX).
     static const std::string PPTX("pptx");
-    static const std::string PPTX_MIME("application/vnd.openxmlformats-officedocument.presentationml.presentation");
 
     // Store the mappings between extensions and mime types.
-    mimeMap.insert(std::make_pair(XML, XML_MIME));
-    mimeMap.insert(std::make_pair(JSON,JSON_MIME));
-    mimeMap.insert(std::make_pair(TXT, TXT_MIME));
-    mimeMap.insert(std::make_pair(JPG, JPG_MIME));
-    mimeMap.insert(std::make_pair(PNG, PNG_MIME));
-    mimeMap.insert(std::make_pair(GIF, GIF_MIME));
-    mimeMap.insert(std::make_pair(DOC, DOC_MIME));
-    mimeMap.insert(std::make_pair(DOCX, DOCX_MIME));
-    mimeMap.insert(std::make_pair(PPT, PPT_MIME));
-    mimeMap.insert(std::make_pair(PPTX, PPTX_MIME));
+    mimeMap.insert(std::make_pair(XML, IDocumentContent::MIME_XML));
+    mimeMap.insert(std::make_pair(JSON, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(TXT, IDocumentContent::MIME_TXT));
+    mimeMap.insert(std::make_pair(JPG, IDocumentContent::MIME_JPG));
+    mimeMap.insert(std::make_pair(PNG, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(GIF, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(DOC, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(DOCX, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(PPT, IDocumentContent::MIME_JSON));
+    mimeMap.insert(std::make_pair(PPTX, IDocumentContent::MIME_JSON));
 
     // get file extension
     std::string ext = file.substr(file.find_last_of(".") + 1);
