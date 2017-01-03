@@ -29,6 +29,13 @@ option(WITH_SWIG "Enable SWIG." OFF)
 cmake_dependent_option(WITH_PYTHON "Use Python (with SWIG)" OFF "WITH_SWIG" OFF)
 cmake_dependent_option(WITH_CSHARP "Use C# (with SWIG)" OFF "WITH_SWIG" OFF)
 
+# Provide some command-line feedback.
+IF (WITH_LOGGING)
+	message("-- Enabling logging")
+else()
+	message("-- NOT enabling logging")
+endif()
+
 # Declare the project (and tag it with a version).
 project(mlclient VERSION ${mlclient_VERSION})
 
@@ -85,13 +92,13 @@ endif()
 
 message("-- Build Type: " ${CMAKE_BUILD_TYPE})
 
-# DEPENDENCY DETECTION
+# We want to link with the static libraries, since MLCPPREST likes its own Boost.Log.
+set(Boost_USE_STATIC_LIBS ON)
+# Grab the Boost components needed.
+# TODO Add a minimum Boost version.
+find_package (Boost REQUIRED COMPONENTS thread log log_setup filesystem)
 
-# Boost (Includes system, thread, locale, regex and filesystem components by default - we need thread only)
-set(Boost_USE_STATIC_LIBS	 ON)
-find_package (Boost REQUIRED COMPONENTS thread log log_setup filesystem )
-
-
+# Deal with multiple verions of OpenSSL. There has to be a less ugly way.
 if(APPLE AND NOT OPENSSL_ROOT_DIR)
 	# Prefer a homebrew version of OpenSSL over the one in /usr/lib
 	file(GLOB OPENSSL_ROOT_DIR /usr/local/Cellar/openssl/*)
@@ -99,18 +106,18 @@ if(APPLE AND NOT OPENSSL_ROOT_DIR)
 	list(REVERSE OPENSSL_ROOT_DIR)
 endif()
 # This should prevent linking against the system provided 0.9.8y
+# TODO Is this really needed?
 set(_OPENSSL_VERSION "")
 
+# Find OpenSSL. On success, defines:
+#	OPENSSL_FOUND - system has the OpenSSL library
+#	OPENSSL_INCLUDE_DIR - the OpenSSL include directory
+#	OPENSSL_LIBRARIES - The libraries needed to use OpenSSL
+#	OPENSSL_VERSION - This is set to $major.$minor.$revision$path (eg. 0.9.8s)
 find_package(OpenSSL 1.0.0 REQUIRED)
 
-link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib )
-
-
-IF (WITH_LOGGING)
-	message("-- Enabling logging")
-else()
-	message("-- NOT enabling logging")
-endif()
+# TODO This is probably not needed.
+link_directories(/usr/lib /usr/local/lib /usr/local/opt/openssl/lib)
 
 # Add in the various source directories (order matters here, of course).
 add_subdirectory(src)

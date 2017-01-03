@@ -179,8 +179,6 @@ source_group("src\\\\ext\\\\pugixml" FILES ${external_src_filepaths})
 target_link_libraries(mlclient
 	${LIB}cpprest
 	${OPENSSL_LIBRARIES}
-	${LIBSSL_LIB}
-	${LIBCRYPTO_LIB}
 	${CPPREST_LIB}
 	${Boost_FILESYSTEM_LIBRARY}
 	${Boost_SYSTEM_LIBRARY}
