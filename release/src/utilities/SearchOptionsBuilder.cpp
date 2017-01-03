@@ -328,7 +328,7 @@ void RangeOptions::clearFacetOptions() {
 }
 void RangeOptions::addFacetOptionWithValue(const FacetOption& option,const std::string& value) {
   // TODO add sanity checks here too, and catch any invalid values trying to slip in
-  mImpl->facetOptions.insert(std::pair<FacetOption,std::string>(option,value));
+  mImpl->facetOptions.insert(std::make_pair(option,value));
 }
 void RangeOptions::addFacetOption(const FacetOption& option) {
   if (FacetOption::CHECKED == option) {
@@ -355,7 +355,7 @@ void RangeOptions::addFacetOption(const FacetOption& option) {
   if (FacetOption::ITEM_ORDER == option) {
     mImpl->facetOptions.erase(FacetOption::FREQUENCY_ORDER);
   }
-  mImpl->facetOptions.insert(std::pair<FacetOption,std::string>(option,"true"));
+  mImpl->facetOptions.insert(std::make_pair(option,"true"));
 }
 const bool RangeOptions::hasFacetOptions() const {
   return 0 != mImpl->facetOptions.size();
@@ -369,7 +369,7 @@ void RangeOptions::clearRangeOptions() {
 }
 void RangeOptions::addRangeOptionWithValue(const RangeOption& option,const std::string& value) {
   // TODO add checks here, including checks for invalid values
-  mImpl->rangeOptions.insert(std::pair<RangeOption,std::string>(option,value));
+  mImpl->rangeOptions.insert(std::make_pair(option,value));
 }
 void RangeOptions::addRangeOption(const RangeOption& option) {
   if (RangeOption::CACHED == option) {
@@ -390,7 +390,7 @@ void RangeOptions::addRangeOption(const RangeOption& option) {
     mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_RECIPROCAL);
     mImpl->rangeOptions.erase(RangeOption::SCORE_FUNCTION_LINEAR);
   }
-  mImpl->rangeOptions.insert(std::pair<RangeOption,std::string>(option,"true"));
+  mImpl->rangeOptions.insert(std::make_pair<RangeOption,std::string>(option,"true"));
 }
 const bool RangeOptions::hasRangeOptions() const {
   return 0 != mImpl->rangeOptions.size();

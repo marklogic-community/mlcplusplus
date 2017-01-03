@@ -127,7 +127,7 @@ bool ValuesResultSet::fetch() {
 
     });
     LOG(DEBUG) << "Inserting task";
-    mImpl->tasks.insert(std::pair<long,pplx::task<void>*>(i++,fetchTask)); // end task initialisation
+    mImpl->tasks.insert(std::make_pair(i++,fetchTask)); // end task initialisation
 
 
   } // end loop
