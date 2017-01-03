@@ -4,6 +4,7 @@ cmake_minimum_required (VERSION 3.5.0)
 
 # Bring in some additional CMake modules.
 include(WriteCompilerDetectionHeader)
+include(CMakeDependentOption)
 
 # POLICY SETTING OVERRIDES
 set(CMAKE_MACOSX_RPATH 1)
@@ -17,7 +18,17 @@ set(mlclient_VERSION_MAJOR 8)
 set(mlclient_VERSION_MINOR 0)
 set(mlclient_VERSION_REVISION 3)
 set(mlclient_VERSION "${mlclient_VERSION_MAJOR}.${mlclient_VERSION_MINOR}.${mlclient_VERSION_REVISION}")
-	
+
+# Create a series of configuration options to tune portion of project that is in use.
+option(WITH_LOGGING "Enable logging." OFF)
+option(WITH_TESTS "Enable tests." OFF)
+option(WITH_SAMPLES "Enable samples." OFF)
+option(WITH_DOCS "Enable documentation." OFF)
+option(WITH_SWIG "Enable SWIG." OFF)
+# SWIG bindings require SWIG.
+cmake_dependent_option(WITH_PYTHON "Use Python (with SWIG)" OFF "WITH_SWIG" OFF)
+cmake_dependent_option(WITH_CSHARP "Use C# (with SWIG)" OFF "WITH_SWIG" OFF)
+
 # Declare the project (and tag it with a version).
 project(mlclient VERSION ${mlclient_VERSION})
 
