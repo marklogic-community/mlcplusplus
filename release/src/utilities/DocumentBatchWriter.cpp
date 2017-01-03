@@ -199,7 +199,7 @@ public:
         LOG(DEBUG) << "End document upload batch task: " << myi;
       });
       LOG(DEBUG) << "adding task";
-      refImpl.tasks.insert(std::pair<long,pplx::task<void>*>(i,fetchTask)); // end task initialisation
+      refImpl.tasks.insert(std::make_pair(i,fetchTask)); // end task initialisation
 
       //if (0 == i) {
       //  fetchTask->wait(); // WAIT for the first one...

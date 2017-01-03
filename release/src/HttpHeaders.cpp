@@ -37,7 +37,7 @@ void HttpHeaders::setHeaders(const StringMap& headers) {
 }
 void HttpHeaders::setHeader(const std::string& header,const std::string& value) {
   TIMED_FUNC(HttpHeaders_setHeader);
-  mHeaders.insert(std::pair<std::string,std::string>(header,value));
+  mHeaders.insert(std::make_pair(header,value));
 }
 
 const std::string& empty = "";

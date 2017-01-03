@@ -113,7 +113,7 @@ Response* FakeConnection::saveDocumentContent(const std::string& uri,const IDocu
   LOG(DEBUG) << "  Entering FakeConnection::saveDocumentContent";
 
   IDocumentContent* dp = &(const_cast<IDocumentContent&>(payload));
-  mImpl->documents.insert(std::pair<std::string,IDocumentContent*>(uri,dp));
+  mImpl->documents.insert(std::make_pair(uri,dp));
 
   Response* response = new Response;
 
