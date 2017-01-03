@@ -59,6 +59,8 @@ add_library (mlclient SHARED
     ext/pugixml/pugixml.cpp
 )
 
+# Compile under C++11
+set_property(TARGET mlclient PROPERTY CXX_STANDARD 11)
 
 
 # ML C++ dependencies
