@@ -54,7 +54,7 @@ void ml_samples_cstruct_unpack(CResponse* resp,struct ml_samples_sampledoc* obj)
     obj->second = const_cast<char*>(second); // no longer a hanging pointer
   } else {
     // assume XML
-    const pugi::xml_document* doc = PugiXmlHelper::fromResponse(t);
+    const std::unique_ptr<pugi::xml_document> doc = PugiXmlHelper::fromResponse(t);
     const pugi::xml_node& root = doc->root();
     //std::cout << "root node name: " << root.name() << std::endl;
     const pugi::xml_node& docroot = root.child("docroot");

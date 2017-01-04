@@ -33,6 +33,13 @@
 
 #include <boost/filesystem.hpp>
 
+
+#ifdef _DEBUG
+#pragma message("_DEBUG defined in logging")
+#else
+#pragma message("_DEBUG NOT defined in logging")
+#endif
+
 //#include <mlclient/internals/G3OutSink.hpp>
 //#include <mlclient/ext/g3log/filesink.hpp>
 
@@ -213,7 +220,10 @@ void libraryLoggingInit() {
 
 void reconfigureLogging(int argc,const char * argv[]) {
   LoggingConfiguration config;
-  config.folder = "./logs";
+  //config.folder = "./logs";
+  boost::filesystem::path temp = boost::filesystem::temp_directory_path();
+  auto& tempstr = temp.native();
+  config.folder = std::string(tempstr.begin(), tempstr.end());
 #ifdef _DEBUG
   config.level = "DEBUG";
 #else

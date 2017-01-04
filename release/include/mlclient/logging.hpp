@@ -171,14 +171,25 @@ protected:
   boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["File"]).set(path_to_filename(__FILE__)); \
   boost::log::attribute_cast<boost::log::attributes::mutable_constant<std::string>>(boost::log::core::get()->get_global_attributes()["Function"]).set(__func__);
 
-#define COMMENT SLASH(/)
+#ifdef _WIN32
 #define SLASH(s) /##s
+#define COMMENT SLASH(/)
+#else
+// The above method is caught by the clang compiler on Mac - so cannot use
+// Instead, using the if(false) method, although costly in CPU cycles... need a better way...
+
+#define COMMENT if(false) 
+#endif
 
 //#define LOG(DEBUG) BOOST_LOG_TRIVIAL(debug)
 #ifdef _DEBUG
 #define LOG(lvl) LOG_LOCATION; BOOST_LOG_SEV(boost::log::trivial::logger::get(), boost::log::trivial::severity_level::lvl)
 #else
+#ifdef _WIN32
 #define LOG(lvl) COMMENT 
+#else
+#define LOG(lvl) if(false) LOG_LOCATION; if(false) BOOST_LOG_SEV(boost::log::trivial::logger::get(), boost::log::trivial::severity_level::lvl)
+#endif
 #endif
 
 // The following redefined a low-level non formatted log function, as per easylogging++.h
