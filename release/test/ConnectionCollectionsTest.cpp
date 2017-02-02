@@ -46,7 +46,7 @@ void ConnectionCollectionsTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionCollectionsTest::tearDown";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ConnectionCollectionsTest::testListTopLevelCollections(void) {

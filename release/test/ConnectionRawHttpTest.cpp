@@ -47,7 +47,7 @@ void ConnectionRawHttpTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionRawHttpTest::tearDown";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ConnectionRawHttpTest::testDoPost(void) {

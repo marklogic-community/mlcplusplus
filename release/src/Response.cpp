@@ -251,7 +251,7 @@ Response::Response() : mImpl(new Impl) {
 Response::~Response() {
   TIMED_FUNC(Response_destructor);
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 
 

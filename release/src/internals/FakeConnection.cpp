@@ -48,7 +48,7 @@ FakeConnection::FakeConnection() : mImpl(new Impl) {
 
 FakeConnection::~FakeConnection() {
   delete mImpl;
-  mImpl = NULL;
+  mImpl = nullptr;
 }
 
 bool FakeConnection::connect() {

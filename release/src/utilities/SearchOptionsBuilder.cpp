@@ -282,7 +282,7 @@ RangeOptions::RangeOptions() : mImpl() {
   ;
 }
 RangeOptions::~RangeOptions() {
-  mImpl->container = NULL; // Do not delete - may be used elsewhere
+  mImpl->container = nullptr; // Do not delete - may be used elsewhere
 }
 
 void RangeOptions::setType(const RangeIndexType type) {

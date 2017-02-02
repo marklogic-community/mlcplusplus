@@ -27,7 +27,7 @@ SearchResult::~SearchResult() {
   //TIMED_FUNC(SearchResult_destructor);
   //LOG(DEBUG) << "    SearchResult::destructor @" << &*this;
   //delete this->detailContent;
-  //detailContent = NULL;
+  //detailContent = nullptr;
 }
 
 SearchResult::SearchResult(const long index, const std::string& uri, const std::string& path,const long score,
@@ -59,7 +59,7 @@ SearchResult::SearchResult(SearchResult&& other) {
   this->fitness = std::move(other.fitness);
   this->detail = std::move(other.detail);
   this->detailContent = other.detailContent;
-  //other.detailContent = NULL;
+  //other.detailContent = nullptr;
   this->mimeType = std::move(other.mimeType);
   this->format = std::move(other.format);
   this->confidence = std::move(other.confidence);
@@ -92,7 +92,7 @@ SearchResult& SearchResult::operator= (SearchResult&& other) {
   this->fitness = std::move(other.fitness);
   this->detail = std::move(other.detail);
   this->detailContent = other.detailContent;
-  other.detailContent = NULL;
+  other.detailContent = nullptr;
   this->mimeType = std::move(other.mimeType);
   this->format = std::move(other.format);
   this->confidence = std::move(other.confidence);

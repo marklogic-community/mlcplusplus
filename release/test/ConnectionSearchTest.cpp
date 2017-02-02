@@ -48,7 +48,7 @@ void ConnectionSearchTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionDocumentCrudTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ConnectionSearchTest::testEmptySearch() {

@@ -37,7 +37,7 @@ void SearchResultSetTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE SearchResultSetTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void SearchResultSetTest::testEmptySearch() {

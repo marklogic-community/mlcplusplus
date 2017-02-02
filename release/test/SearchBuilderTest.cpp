@@ -38,7 +38,7 @@ void SearchBuilderTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE SearchBuilderTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void SearchBuilderTest::testAll() {

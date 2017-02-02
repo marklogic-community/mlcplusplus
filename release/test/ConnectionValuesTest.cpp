@@ -31,7 +31,7 @@ void ConnectionValuesTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE ConnectionValuesTest::tearDown";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void ConnectionValuesTest::testValues(void) {

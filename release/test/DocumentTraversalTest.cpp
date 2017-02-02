@@ -38,7 +38,7 @@ void DocumentTraversalTest::tearDown(void) {
   LOG(DEBUG) << "LEAVING TEST SUITE DocumentTraversalTest";
   // delete all content
   ConnectionFactory::releaseConnection(ml);
-  ml = NULL;
+  ml = nullptr;
 }
 
 void DocumentTraversalTest::testJsonTraversal() {
