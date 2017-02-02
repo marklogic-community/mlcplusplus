@@ -39,7 +39,7 @@ ITextDocumentContent* PugiXmlHelper::toDocument(std::unique_ptr<pugi::xml_docume
   //GenericTextDocumentContent* tdc = new GenericTextDocumentContent;
   PugiXmlDocumentContent* tdc = new PugiXmlDocumentContent;
   tdc->setContent(std::move(dc));
-  tdc->setMimeType("application/xml");
+  tdc->setMimeType(IDocumentContent::MIME_XML);
   return tdc;
 }
 
