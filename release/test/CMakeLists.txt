@@ -2,7 +2,7 @@
 IF (WITH_TESTS)
 
 
-include_directories(../src ${OPENSSL_INCLUDE_DIR} ${CPPUNIT_INCLUDE_DIR})
+include_directories(${CPPUNIT_INCLUDE_DIR})
 
 add_executable(mlcpptest
     main.cpp
@@ -20,7 +20,7 @@ add_executable(mlcpptest
     DocumentBatchWriterTest.cpp
     PathNavigatorTest.cpp
 )
-target_link_libraries(mlcpptest mlclient cppunit ${Casablanca_LIBRARIES} ${GLOG_LIB})
+target_link_libraries(mlcpptest mlclient cppunit ${GLOG_LIB})
 
 
 else()
