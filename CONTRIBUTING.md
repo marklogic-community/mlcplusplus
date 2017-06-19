@@ -2,8 +2,7 @@
 
 ## <a name="question"></a> Got a Question or Problem?
 
-If you have questions about how to use MLCPlusPlus, please direct these to the
-Adam Fowler - adam.fowler@marklogic.com.
+If you have questions about how to use MLCPlusPlus, please file them as issues on this repository.
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
