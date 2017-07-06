@@ -29,7 +29,7 @@ The Python API supports the same features as the C++ API.
 \section sec_home_python_quickstart Quickstart
 
 Here is some sample code. The full detail can be found
-[in the Python basic sample](https://github.com/adamfowleruk/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py).
+[in the Python basic sample](https://github.com/marklogic-community/mlcplusplus/blob/develop/release/samples/pygetdoc/getdoc.py).
 
     #!/usr/bin/python
 
@@ -57,7 +57,7 @@ will be resolved in a future version, as other languages have the same restricti
 Python Classes are generated on a 1:1 basis with C++ classes. SWIG Python does support the STL iterator and collection
 mechanisms, mapping them on to Python idioms. There are known non-STL compliance issues with the current iterators,
 and so you may experience some issues using iterators (E.g. via SearchResultSet or DocumentSet). Please
-[log an issue on GitHub](https://github.com/adamfowleruk/mlcplusplus/issues) if you have any problems.
+[log an issue on GitHub](https://github.com/marklogic-community/mlcplusplus/issues) if you have any problems.
 
 C++ operators such as >> and << and +, =, ++, --, are not mapped to Python idioms currently. == is mapped to eq() and
 != is mapped to ne().

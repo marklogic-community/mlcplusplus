@@ -429,6 +429,6 @@ If in doubt, review all the test cases relevant to your function call. Ensure yo
 in the same manner as the test is. This provides you with a solid working example of every function call.
 
 Please do log an issue on the projects GitHub page, even if you think it may be your code. You can log issues with a
-Question label rather than bug to indicate you need assistance. You can do this here: https://github.com/adamfowleruk/mlcplusplus/issues
+Question label rather than bug to indicate you need assistance. You can do this here: https://github.com/marklogic-community/mlcplusplus/issues
 
 */

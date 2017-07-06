@@ -2,11 +2,11 @@
 \page page_ubuntu_install_raw Ubuntu Installation from the raw so library files
 \brief How to install on Ubuntu using the provided so library files
 
-Pull down the libraries from here: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/ubuntu-raw
+Pull down the libraries from here: https://github.com/marklogic-community/mlcplusplus/tree/develop/dist/ubuntu-raw
 
 \section sec_ubuntu_install_raw_include Install include files
 
-First grab the [*nix header files for mlclient](https://github.com/adamfowleruk/mlcplusplus/blob/develop/dist/osx-raw/mlclient-include.tar.gz?raw=true)
+First grab the [*nix header files for mlclient](https://github.com/marklogic-community/mlcplusplus/blob/develop/dist/osx-raw/mlclient-include.tar.gz?raw=true)
 
 Unzip the include files archive, and copy the 'mlclient' folder in to /usr/local/include (i.e. a folder called
 mlclient should be found inside the 'include' folder).

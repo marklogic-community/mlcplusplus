@@ -21,20 +21,20 @@ C++ | C | C# | Python
 MarkLogic Consulting may be engaged to assist you with development efforts, at normal rates and subject to negotiation.
 
 Having said that, the developers are always happy to receive questions! Please visit the
-[Issues Page on GitHub](https://github.com/adamfowleruk/mlcplusplus/issues) and
+[Issues Page on GitHub](https://github.com/marklogic-community/mlcplusplus/issues) and
 create a new issue with the tag 'question', or use the same mechanism to log an 'enhancement' request.
 
 \section sec_legal Copyright
 
 All code is Copyright MarkLogic Corporation, All Rights Reserved. It is published under the Apache 2.0 license.
 
-See the [License README](https://github.com/adamfowleruk/mlcplusplus/blob/develop/LICENSE.txt) for full details.
+See the [License README](https://github.com/marklogic-community/mlcplusplus/blob/develop/LICENSE.txt) for full details.
 
 \section sec_devguidelink Developer's guide
 
 For project maintainers/developers and contributors only, be sure to read:-
 
 - [Design Guide](@ref page_design)
-- [Contributing README](https://github.com/adamfowleruk/mlcplusplus/blob/develop/CONTRIBUTING.md)
+- [Contributing README](https://github.com/marklogic-community/mlcplusplus/blob/develop/CONTRIBUTING.md)
 
 */

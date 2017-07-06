@@ -9,7 +9,7 @@ Release: 1
 License: Apache 2.0
 Group: Development/libraries
 SOURCE0: %{name}-%{version}.tar.gz
-URL: http://github.com/adamfowleruk/mlcplusplus
+URL: http://github.com/marklogic-community/mlcplusplus
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
