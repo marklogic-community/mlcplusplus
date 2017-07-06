@@ -71,7 +71,7 @@ This class also abstracts the underlying security mechanism used to authenticate
 
 Simply create a Connection class, call configure to set up the connection parameters, then call a function!
 
-The API documentation can be found here: http://adamfowleruk.github.io/mlcplusplus/api/index.html
+The API documentation can be found here: http://marklogic-community.github.io/mlcplusplus/api/index.html
 
 To use this class, add the following include:-
 ```C++

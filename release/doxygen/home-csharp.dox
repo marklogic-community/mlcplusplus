@@ -31,7 +31,7 @@ There are several ways to install the C++ library
 
 Now installed the C# source packages and samples
 
-These can be found at: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/all-raw
+These can be found at: https://github.com/marklogic-community/mlcplusplus/tree/develop/dist/all-raw
 
 On windows, the easiest thing to do is copy all these EXE files and DLL libraries to the same folder. Then
 simply open a command prompt, cd to the folder they are in, and run one of the sample apps.
@@ -52,7 +52,7 @@ All the samples have been pre-built for you in Windows! Feel free to just downlo
 prompt.
 
 You can read their source code, or even grab the Visual Studio solution files, from the samples folders starting
-with 'cs' in their name: https://github.com/adamfowleruk/mlcplusplus/tree/develop/release/samples
+with 'cs' in their name: https://github.com/marklogic-community/mlcplusplus/tree/develop/release/samples
 
 \section sec_home_csharp_langspecific Language Specific Features
 

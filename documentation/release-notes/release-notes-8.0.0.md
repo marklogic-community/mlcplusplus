@@ -19,4 +19,4 @@ Bug fixes:-
  - Not applicable - first major release
 
 Known issues:-
- - C and C++ test apps receive HTTP Unauthorised exception when running - https://github.com/adamfowleruk/mlcplusplus/issues/118
+ - C and C++ test apps receive HTTP Unauthorised exception when running - https://github.com/marklogic-community/mlcplusplus/issues/118

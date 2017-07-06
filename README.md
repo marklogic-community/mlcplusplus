@@ -13,17 +13,13 @@ but use the core C++ API for speed of execution. This is transparent to the deve
 
 ## Latest release
 
-The latest release is 8.0.2 - See [The release notes](https://github.com/adamfowleruk/mlcplusplus/blob/develop/documentation/release-notes/release-notes-8.0.2.md) for details.
+The latest release is 8.0.2 - See [The release notes](https://github.com/marklogic-community/mlcplusplus/blob/develop/documentation/release-notes/release-notes-8.0.2.md) for details.
 
 Note the Major and Minor version numbers of this project track MarkLogic Server, the revision number tracks this API's changes, rather than the revision number of MarkLogic Server.
 
 ## Documentation
 
 Various documentation is available:-
- - Client documentation home page for all languages - http://adamfowleruk.github.io/mlcplusplus/api/index.html
- - GitHub future Release features - https://github.com/adamfowleruk/mlcplusplus/milestones
- - GitHub Issues tracker - https://github.com/adamfowleruk/mlcplusplus/issues
-
-## Getting involved
-
-Please email adam dot fowler at marklogic.com if you are interested in helping out.
+ - Client documentation home page for all languages - http://marklogic-community.github.io/mlcplusplus/api/index.html
+ - GitHub future Release features - https://github.com/marklogic-community/mlcplusplus/milestones
+ - GitHub Issues tracker - https://github.com/marklogic-community/mlcplusplus/issues

@@ -2,7 +2,7 @@
 \page page_mac_install_raw Mac Installation from the raw dylib library files
 \brief How to install on a Mac using the provided dylib library files
 
-Pull down the libraries and source from here: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/osx-raw
+Pull down the libraries and source from here: https://github.com/marklogic-community/mlcplusplus/tree/develop/dist/osx-raw
 
 \section sec_mac_install_raw_include Install include files
 

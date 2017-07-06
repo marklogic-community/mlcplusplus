@@ -2,7 +2,7 @@
 \page page_win_install_raw Mac Installation from the raw dylib library files
 \brief How to install on a Mac using the provided dylib library files
 
-Pull down the libraries and source from here: https://github.com/adamfowleruk/mlcplusplus/tree/develop/dist/windows-raw
+Pull down the libraries and source from here: https://github.com/marklogic-community/mlcplusplus/tree/develop/dist/windows-raw
 
 \section sec_win_install_raw_include Install include files
 

@@ -195,6 +195,6 @@ write your own REST handling code for extensions, and re-uses all the security, 
 code yourself.
 
 For any extensions you cannot write without source code changes, please file an issue at
-https://github.com/adamfowleruk/mlcplusplus/issues
+https://github.com/marklogic-community/mlcplusplus/issues
 
 */
