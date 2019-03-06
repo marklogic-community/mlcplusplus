@@ -1,4 +1,4 @@
-# THIS PROJECT IS DEPRECATED
+# WARNING: THIS PROJECT IS NO LONGER ACTIVELY MANAGED
 
 This repository contains a cross platform suite of client API for the MarkLogic Server REST API.
 
