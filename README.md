@@ -20,6 +20,6 @@ Note the Major and Minor version numbers of this project track MarkLogic Server,
 ## Documentation
 
 Various documentation is available:-
- - Client documentation home page for all languages - http://marklogic-community.github.io/mlcplusplus/api/index.html
+ - Client documentation home page for all languages - https://marklogic-community.github.io/mlcplusplus/api/
  - GitHub future Release features - https://github.com/marklogic-community/mlcplusplus/milestones
  - GitHub Issues tracker - https://github.com/marklogic-community/mlcplusplus/issues
